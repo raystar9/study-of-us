@@ -10,14 +10,8 @@ import javax.naming.NamingException;
 import beans.prototype.Member;
 
 public class DataPoster extends DataAccessor {
-
-	public ArrayList<Member> postMembers(Member member) throws NamingException, SQLException{
-		return postMembers(member, "");
-	}
 	
-	public ArrayList<Member> postMembers(Member member, String condition) throws NamingException, SQLException{
-		String query;
-		query = Member.QUERY_POST + condition;
+	public void postMembers(Member member, String query) throws NamingException, SQLException{
 		
 		PreparedStatement pstmt = getStatement("OracleDB", query);
 		pstmt.setInt(1, member.getIndex());
@@ -25,27 +19,6 @@ public class DataPoster extends DataAccessor {
 		
 		pstmt.executeUpdate();
 		
-		ArrayList<Member> members = new ArrayList<>(); 
-		
-		
 		pstmt.close();
-		return members;
 	}
-	
-/*	private ArrayList<?> getBean(ResultSet rs, Class<?> beanClass) throws SQLException{
-		Field[] fields = beanClass.getDeclaredFields();
-		ArrayList<beanClass> objects = new ArrayList<>();
-		for(int i = 0; i < fields.length; i++) {
-			rs.next();
-			switch(fields[i].getType().toString()) {
-			case "int" :
-				objects.add(rs.getInt(i+1));
-				break;
-			case "String" :
-				objects.add(rs.getString(i+1));
-				break;
-			}
-		};
-		return objects;
-	}*/
 }

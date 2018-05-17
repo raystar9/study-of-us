@@ -10,31 +10,17 @@ import javax.naming.NamingException;
 import beans.prototype.Member;
 
 public class DataGetter extends DataAccessor {
-
-	public ArrayList<Member> getMembers() throws NamingException, SQLException{
-		return getMembers(null);
-	}
 	
-	public ArrayList<Member> getMembers(String condition) throws NamingException, SQLException{
-		String query;
-		if(condition == null) {
-			query = Member.QUERY_GET;
-		} else {
-			query = Member.QUERY_GET + condition;
-		}
+	public ArrayList<Member> getMembers(String query) throws NamingException, SQLException{
+		
 		PreparedStatement pstmt = getStatement("OracleDB", query);
 		ResultSet rs = pstmt.executeQuery();
 		
-		ArrayList<Member> members = new ArrayList<>(); 
-		while(rs.next()) {
-			Member member = new Member();
-			member.setIndex(rs.getInt(1));
-			member.setId(rs.getString(2));
-			members.add(member);
-		}
+		ArrayList<Member> list = new ArrayList<>();
+		list = new Member().onGet(rs);
 		
 		pstmt.close();
-		return members;
+		return list;
 	}
 	
 /*	private ArrayList<?> getBean(ResultSet rs, Class<?> beanClass) throws SQLException{
