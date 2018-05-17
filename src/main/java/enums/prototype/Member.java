@@ -3,22 +3,22 @@ package enums.prototype;
 public enum Member implements DataAccessable{
 	INDEX("index", "DEPTNO"), ID("id", "DNAME");
 
-	Member(String id, String query) {
-		_id = id;
-		_query = query;
+	Member(String key, String columnName) {
+		_key = key;
+		_columnName = columnName;
 	}
-	private static final String _queryString = "SELECT id,pass FROM member where id = 1";
-	private String _id;
-	private String _query;
+	private static final String _queryString = "SELECT DEPTNO, DNAME FROM DEPT";
+	private String _key;
+	private String _columnName;
 	private static final int SIZE = Member.values().length;
 	
 	@Override
 	public String toString() {
-		return _id;
+		return _key;
 	}
 	@Override
 	public String getColumnName() {
-		return _query;
+		return _columnName;
 	}
 	public static String getQueryString() {
 		return _queryString;

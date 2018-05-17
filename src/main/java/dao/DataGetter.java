@@ -1,6 +1,5 @@
 package dao;
 
-import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,29 +18,15 @@ public class DataGetter extends DataAccessor {
 		String query = Member.getQueryString() + condition;
 		PreparedStatement pstmt = getStatement("OracleDB", query);
 		
-		pstmt.setInt(1, Integer.parseInt(Member.INDEX.toString()));
-		pstmt.setString(2, Member.ID.toString());
-		
 		JSONArray array = new JSONArray();
 		ResultSet rs = pstmt.executeQuery();
 		while(rs.next()) {
 			JSONObject obj = new JSONObject();
-			rs.getInt(Member.INDEX.getColumnName());
-			rs.getString(Member.ID.getColumnName());
+			obj.put(Member.INDEX.toString(), rs.getInt(Member.INDEX.getColumnName()));
+			obj.put(Member.ID.toString(), rs.getString(Member.ID.getColumnName()));
 			array.add(obj);
 		}
+		pstmt.close();
 		return array;
 	}
-	
-	@Override
-	public void close() throws IOException{
-		try {
-			_pstmt.close();
-			_conn.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-
 }
