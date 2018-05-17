@@ -1,6 +1,5 @@
 package dao;
 
-import java.io.Closeable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -10,9 +9,8 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-public abstract class DataAccessor implements Closeable{
+public abstract class DataAccessor implements AutoCloseable{
 	Connection _conn;
-	PreparedStatement _pstmt;
 	
 	protected Connection getConnection(String user) throws NamingException, SQLException{
 		Context init = new InitialContext();
@@ -27,5 +25,9 @@ public abstract class DataAccessor implements Closeable{
 		Connection conn = getConnection(user);
 		
 		return conn.prepareStatement(query);
+	}
+	
+	public void close() throws SQLException{
+		_conn.close();
 	}
 }
