@@ -7,7 +7,7 @@ public enum Member implements DataAccessable{
 		_key = key;
 		_columnName = columnName;
 	}
-	private static final String _queryString = "SELECT DEPTNO, DNAME FROM DEPT";
+	private static final String QUERYSTRING = "SELECT DEPTNO, DNAME FROM DEPT";
 	private String _key;
 	private String _columnName;
 	private static final int SIZE = Member.values().length;
@@ -21,7 +21,7 @@ public enum Member implements DataAccessable{
 		return _columnName;
 	}
 	public static String getQueryString() {
-		return _queryString;
+		return QUERYSTRING;
 	}
 	public static int getSize() {
 		return SIZE;
