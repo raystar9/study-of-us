@@ -131,7 +131,7 @@ option{
 
 </style>
 <body>
-<%@ include file = "/Navigation.jsp" %>
+<%@ include file = "/0_Navigation/Navigation.jsp" %>
 <div class="search">
 	<form class="example" action="/action_page.php">
   		<button type="submit"><i class="fa fa-search"></i></button>
@@ -250,7 +250,6 @@ option{
   			<p>John Doe saved us from a web disaster.</p>
 		</div>
 	</div>
-</div>
-<%@ include file = "/Footer.jsp" %>
+<%@ include file = "/0_Navigation/Footer.jsp" %>
 </body>
 </html> 
