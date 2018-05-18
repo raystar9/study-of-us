@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import dao.exceptions.DatabaseConnectException;
 import dao.interfaces.DataGettable;
 
-public class Member implements DataGettable{
+public class Study implements DataGettable{
 	public static final String QUERY_GET = "SELECT DEPTNO, DNAME FROM DEPT";
 	public static final String QUERY_POST = "INSERT INTO DEPTNO VALUES(seq.nextval, ?, ?)";
 	public static final String QUERY_PUT = "UPDATE ";
@@ -33,10 +33,10 @@ public class Member implements DataGettable{
 	}
 
 	@Override
-	public ArrayList<Member> onGetResult(ResultSet rs) throws DatabaseConnectException, SQLException {
-		ArrayList<Member> members = new ArrayList<>(); 
+	public ArrayList<Study> onGetResult(ResultSet rs) throws DatabaseConnectException, SQLException {
+		ArrayList<Study> members = new ArrayList<>(); 
 		while(rs.next()) {
-			Member member = new Member();
+			Study member = new Study();
 			member.setIndex(rs.getInt(1));
 			member.setId(rs.getString(2));
 			members.add(member);
