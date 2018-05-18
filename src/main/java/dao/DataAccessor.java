@@ -9,25 +9,37 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import dao.exceptions.DatabaseConnectException;
+
 public abstract class DataAccessor implements AutoCloseable{
 	Connection _conn;
 	
-	protected Connection getConnection(String user) throws NamingException, SQLException{
-		Context init = new InitialContext();
+	public DataAccessor(DatabaseAccounts user) throws DatabaseConnectException, SQLException {
+		getConnection(user.toString());
+	}
+	
+	protected Connection getConnection(String user) throws DatabaseConnectException, SQLException{
+		Context init;
 		DataSource source;
-		source = (DataSource) init.lookup("java:comp/env/jdbc/" + user);
-		_conn = source.getConnection();
+		try {
+			init = new InitialContext();
+			source = (DataSource) init.lookup("java:comp/env/jdbc/" + user);
+			_conn = source.getConnection();
+		} catch (NamingException e) {
+			throw new DatabaseConnectException();
+		}
+		
 		return _conn;
 	}
 	
-	protected PreparedStatement getStatement(String user, String query) throws NamingException, SQLException{
+	protected PreparedStatement getStatement(String query) throws DatabaseConnectException, SQLException{
 		
-		Connection conn = getConnection(user);
-		
-		return conn.prepareStatement(query);
+		return _conn.prepareStatement(query);
 	}
 	
 	public void close() throws SQLException{
-		_conn.close();
+		if(_conn != null) {
+			_conn.close();
+		}
 	}
 }

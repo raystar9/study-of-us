@@ -5,21 +5,33 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import javax.naming.NamingException;
-
 import beans.prototype.Member;
+import dao.exceptions.DatabaseConnectException;
+import dao.interfaces.DataGettable;
 
 public class DataGetter extends DataAccessor {
 	
-	public ArrayList<Member> getMembers(String query) throws NamingException, SQLException{
-		
-		PreparedStatement pstmt = getStatement("OracleDB", query);
+	public DataGetter(DatabaseAccounts query) throws DatabaseConnectException, SQLException {
+		super(query);
+	}
+	
+	private ArrayList<?> get(String query, DataGettable gettable) throws DatabaseConnectException, SQLException {
+		PreparedStatement pstmt = getStatement(query);
 		ResultSet rs = pstmt.executeQuery();
 		
-		ArrayList<Member> list = new ArrayList<>();
-		list = new Member().onGet(rs);
+		ArrayList<?> list = new ArrayList<>();
+		
+		list = gettable.onGet(rs);
 		
 		pstmt.close();
+		return list;
+	}
+	
+	public ArrayList<Member> getMembers(String query) throws DatabaseConnectException, SQLException{
+		
+		@SuppressWarnings("unchecked")
+		ArrayList<Member> list = (ArrayList<Member>) get(query, new Member());
+		
 		return list;
 	}
 	

@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import beans.prototype.Member;
 import dao.DataGetter;
+import dao.DatabaseAccounts;
+import dao.exceptions.DatabaseConnectException;
 
 /**
  * Servlet implementation class TestPage
@@ -25,14 +26,15 @@ public class TestPage extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		DataGetter getter = new DataGetter();
+		DataGetter getter = null;
 		try {
-			ArrayList<Member> members = getter.getMembers("");
+			getter = new DataGetter(DatabaseAccounts.ADMIN);
+			ArrayList<Member> members = getter.getMembers(Member.QUERY_GET);
 			
 			for(Member member  : members) {
 				System.out.println((member.getId()));
 			}
-		} catch (NamingException e) {
+		} catch (DatabaseConnectException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {

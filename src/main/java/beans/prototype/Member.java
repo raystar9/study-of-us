@@ -4,8 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import javax.naming.NamingException;
-
+import dao.exceptions.DatabaseConnectException;
 import dao.interfaces.DataGettable;
 
 public class Member implements DataGettable{
@@ -34,7 +33,7 @@ public class Member implements DataGettable{
 	}
 
 	@Override
-	public ArrayList<Member> onGet(ResultSet rs) throws NamingException, SQLException {
+	public ArrayList<Member> onGet(ResultSet rs) throws DatabaseConnectException, SQLException {
 		ArrayList<Member> members = new ArrayList<>(); 
 		while(rs.next()) {
 			Member member = new Member();
