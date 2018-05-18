@@ -6,6 +6,10 @@ import java.sql.SQLException;
 import dao.exceptions.DatabaseConnectException;
 import dao.interfaces.DataSettable;
 
+/**
+ * 접근지정자가 default(혹은 package private)입니다. 이는 패키지 밖에서 객체를 생성하는 것을 허용하지 않습니다.
+ * @author raystar
+ */
 abstract class DataSetter extends DataAccessor{
 
 	public DataSetter(DatabaseAccounts user) throws DatabaseConnectException, SQLException {

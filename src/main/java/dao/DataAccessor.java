@@ -12,9 +12,7 @@ import javax.sql.DataSource;
 import dao.exceptions.DatabaseConnectException;
 
 /* 
- * 접근지정자가 default(혹은 package private)입니다. 이는 패키지 밖에서 객체를 생성하는 것을 허용하지 않습니다.
- * 따라서 패키지 외부에서 볼 수 있는 클래스는 DataGetter, DataPoster, DataPutter, DataDeleter 네 가지입니다.
- * 또한 abstract class(추상 클래스)이기에 직접 객체를 생성할 수도 없습니다.
+ * abstract class(추상 클래스)이기에 직접 객체를 생성할 수 없습니다.
  * 
  * AutoCloseable 인터페이스는 객체를 생성한 측에서 Close()메서드 미실행시 경고를 띄우는 기능이 있습니다.
  */ 
