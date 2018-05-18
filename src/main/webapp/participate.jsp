@@ -8,24 +8,25 @@
 <style>
 
 table {
-	 margin : 0 auto;
-	width : 100%;
+	margin : 0 auto;
+	width : 800px;
     border-collapse: separate;
     border-spacing: 1px;
     line-height: 70px;
     border-top: 1px solid #ccc;
   	/* margin : 20px 10px; */
 }
-table th {
-    width: 40%;
+tr::first-child{
+	float : left;
+    width: 200px;
 	height : 70px;
     padding: 10px;
     font-weight: bold;
     vertical-align: top;
     border-bottom: 1px solid #ccc;
 }
-table td {
-    width: 100%;
+tr::last-child {
+    width: 600px;
 	height : 70px;
 	float : left;
     padding: 10px;
@@ -36,25 +37,35 @@ table td {
 </style>
 </head>
 <body>
+
+
+
 <hr>
 	<h1 align=center>스터디 명</h1>
 <hr>
 <div>
+
 <table>
 <tr>
-<th>스터디 기간</th>
+<td>스터디 기간</td>
 <td>스터디 기간</td>
 </tr>
 <tr>
-<th>스터디 종류</th>
+<td>스터디 종류</td>
 <td>스터디 종류</td>
 </tr>
 <tr>
-<th>스터디 목표</th>
+<td>스터디 목표</td>
 <td>스터디 목표</td>
 </tr>
 <tr>
-<th>교재 및 준비물</th>
+<td colspan=4>
+모집인원 활동시간 요일
+</td>
+</tr>
+
+<tr>
+<td>교재 및 준비물</td>
 <td>교재 및 준비물</td>
 </tr>
 <tr>
@@ -63,12 +74,12 @@ table td {
 </tr>
 
 <tr>
-<th>스터디 목표</th>
+<td>스터디 목표</td>
 <td>스터디 목표</td>
 </tr>
 
 <tr>
-<th>스터디 지역</th>
+<td>스터디 지역</td>
 <td>스터디 지역</td>
 </tr>
 </table>
