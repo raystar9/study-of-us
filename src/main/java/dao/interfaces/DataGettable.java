@@ -7,5 +7,5 @@ import java.util.ArrayList;
 import dao.exceptions.DatabaseConnectException;
 
 public interface DataGettable {
-	ArrayList<?> onGet(ResultSet rs) throws DatabaseConnectException, SQLException;
+	ArrayList<?> onGetResult(ResultSet rs) throws DatabaseConnectException, SQLException;
 }
