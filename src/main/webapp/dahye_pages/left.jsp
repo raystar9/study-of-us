@@ -1,3 +1,4 @@
+<!-- 스터디 안의 왼쪽 메뉴 바 -->
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="UTF-8"%>
 <html lang="en">

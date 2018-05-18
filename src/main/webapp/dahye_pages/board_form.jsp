@@ -1,3 +1,4 @@
+<!-- 스터디 안의 게시판 페이지 -->
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -6,14 +7,16 @@
 <head>
 <style>
 .input-group.custom-search-form {
-    width: 200px;
+	width: 200px;
 }
+
 .panel-heading {
-    height: 50px;
+	height: 50px;
 }
+
 .input-group.custom-search-form {
-    float: right;
-    height:20px;
+	float: right;
+	height: 20px;
 }
 </style>
 
@@ -23,7 +26,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>게시판</title>
+<title>게시판 페이지</title>
 
 <!-- Bootstrap Core CSS -->
 <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -46,79 +49,79 @@
 <link href="../vendor/font-awesome/css/font-awesome.min.css"
 	rel="stylesheet" type="text/css">
 
-
 </head>
 
 <body>
 
-		 <div class="row">
-                <div class="col-lg-12">
-                   &nbsp;&nbsp; <h1 class="page-header">게시판</h1>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-		<div class="col-lg-6">
-			<div class="panel panel-default">
-				<div class="panel-heading">
-                            <div class="input-group custom-search-form">
-                                <input type="text" class="form-control" placeholder="Search...">
-                                <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                           		</span>
-                           </div>
-                            <!-- /input-group -->
-				</div>
-				
-				<!-- /.panel-heading -->
-				<div class="panel-body">
-					<div class="table-responsive">
-						<table class="table table-striped">
-							<thead>
-								<tr>
-									<th>#</th>
-									<th>제목</th>
-									<th>글쓴이</th>
-									<th>날짜</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>1</td>
-									<td>장소 공지</td>
-									<td>구명회</td>
-									<td>2018/05/17</td>
-								</tr>
-								<tr>
-									<td>2</td>
-									<td>회비 공지</td>
-									<td>노동완</td>
-									<td>2018/05/15</td>
-								</tr>
-								<tr>
-									<td>3</td>
-									<td>포트폴리오 공지</td>
-									<td>곽승민</td>
-									<td>2018/05/10</td>
-								</tr>
-							</tbody>
-							<tfoot>
-							<tr><td>1,2,3,4,5 페이지 만들 곳</td></tr>
-							</tfoot>
-						</table>
-					</div>
-					<!-- /.table-responsive -->
-				</div>
-				<div></div>
-				<!-- /.panel-body -->
-			</div>
-			<!-- /.panel -->
+<form action="#" method="get">
+	<div class="row">
+		<div class="col-lg-12">
+			<h1 class="page-header">게시판</h1>
 		</div>
-		<!-- /.col-lg-6 -->
+		<!-- /.col-lg-12 -->
+	</div>
+	<div class="col-lg-6">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<div class="input-group custom-search-form">
+					<input type="text" class="form-control" placeholder="Search...">
+					<span class="input-group-btn">
+						<button class="btn btn-default" type="button">
+							<i class="fa fa-search"></i>
+						</button>
+					</span>
+				</div>
+				<!-- /input-group -->
+			</div>
 
-	<!-- /#wrapper -->
-
+			<!-- /.panel-heading -->
+			<div class="panel-body">
+				<div class="table-responsive">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>제목</th>
+								<th>글쓴이</th>
+								<th>날짜</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>1</td>
+								<td>장소 공지</td>
+								<td>구명회</td>
+								<td>2018/05/17</td>
+							</tr>
+							<tr>
+								<td>2</td>
+								<td>회비 공지</td>
+								<td>노동완</td>
+								<td>2018/05/15</td>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td>포트폴리오 공지</td>
+								<td>곽승민</td>
+								<td>2018/05/10</td>
+							</tr>
+						</tbody>
+						<tfoot>
+							<tr>
+								<td>1,2,3,4,5 페이지 만들 곳</td>
+							</tr>
+						</tfoot>
+					</table>
+				</div>
+				<!-- /.table-responsive -->
+			</div>
+			<div></div>
+			<!-- /.panel-body -->
+		</div>
+		<!-- /.panel -->
+	</div>
+	<!-- /.col-lg-6 -->
+</form>
 	<!-- jQuery -->
 	<script src="../vendor/jquery/jquery.min.js"></script>
 
