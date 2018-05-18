@@ -106,4 +106,3 @@ CREATE TABLE Notice(
 
 ALTER TABLE Notice ADD FOREIGN KEY(N_S_INDEX) REFERENCES Study(S_INDEX);
 
-select * from tab;
