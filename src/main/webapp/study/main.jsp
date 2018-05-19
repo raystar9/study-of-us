@@ -6,8 +6,8 @@
 </head>
 <body>
 
-<jsp:include page="left.jsp" />
-<jsp:include page="board_form.jsp" />
+<jsp:include page="sources/left.jsp" />
+<jsp:include page="board/board_form.jsp" />
 
 </body>
 </html>
