@@ -18,7 +18,7 @@ body, html {
 
 .bg-img {
     /* The image used */
-    background-image: url("images/image6.jpg");
+    background-image: url("/study-of-us/resources/images/image6.jpg");
 
     min-height: 600px;
 

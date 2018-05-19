@@ -59,7 +59,7 @@ div {
 
 
 <p class=icon>
-<a href=main.jsp><img class="icon" src="images/cat.png"></a>
+<a href=main.jsp><img class="icon" src="/study-of-us/resources/images/cat.png"></a>
 </p>
 <h3 align=center>Sign in to StudyOfUs</h3>
 
