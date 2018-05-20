@@ -33,6 +33,30 @@ table td {
     border-bottom: 1px solid #ccc;
 }
 
+input[type=text] {
+    width: 20%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=submit] {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
 </style>
 </head>
 <body>
@@ -68,10 +92,35 @@ table td {
 </tr>
 
 <tr>
+<th colspan=2>모집인원<input type=text> 활동시간<input type=text> 요일<input type=text></th>
+</tr>
+
+<tr>
+<th>스터디 개요</th>
+<td>스터디 개요</td>
+</tr>
+
+<tr>
+<th>교재 및 준비물</th>
+<td>교재 및 준비물</td>
+</tr>
+
+<tr>
+<th>스터디 기대효과</th>
+<td>스터디 기대효과</td>
+</tr>
+
+<tr>
+<th>스터디 목표</th>
+<td>스터디 목표</td>
+</tr>
+
+<tr>
 <th>스터디 지역</th>
 <td>스터디 지역</td>
 </tr>
 </table>
+	<input type=submit value=스터디 참여하기>
 </div>
 </body>
 </html>
