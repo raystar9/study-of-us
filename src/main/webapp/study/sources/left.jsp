@@ -14,19 +14,19 @@
 <title>왼쪽 사이드 메뉴</title>
 
 <!-- Bootstrap Core CSS -->
-<link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/study-of-us/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- MetisMenu CSS -->
-<link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+<link href="/study-of-us/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
 
 <!-- Custom CSS -->
 <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
 
 <!-- Morris Charts CSS -->
-<link href="../vendor/morrisjs/morris.css" rel="stylesheet">
+<link href="/study-of-us/vendor/morrisjs/morris.css" rel="stylesheet">
 
 <!-- Custom Fonts -->
-<link href="../vendor/font-awesome/css/font-awesome.min.css"
+<link href="/study-of-us/vendor/font-awesome/css/font-awesome.min.css"
 	rel="stylesheet" type="text/css">
 
 </head>
@@ -61,17 +61,17 @@
 	<!-- /#wrapper -->
 
 	<!-- jQuery -->
-	<script src="../vendor/jquery/jquery.min.js"></script>
+	<script src="/study-of-us/vendor/jquery/jquery.min.js"></script>
 
 	<!-- Bootstrap Core JavaScript -->
-	<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="/study-of-us/vendor/bootstrap/js/bootstrap.min.js"></script>
 
 	<!-- Metis Menu Plugin JavaScript -->
-	<script src="../vendor/metisMenu/metisMenu.min.js"></script>
+	<script src="/study-of-us/vendor/metisMenu/metisMenu.min.js"></script>
 
 	<!-- Morris Charts JavaScript -->
-	<script src="../vendor/raphael/raphael.min.js"></script>
-	<script src="../vendor/morrisjs/morris.min.js"></script>
+	<script src="/study-of-us/vendor/raphael/raphael.min.js"></script>
+	<script src="/study-of-us/vendor/morrisjs/morris.min.js"></script>
 	<script src="../data/morris-data.js"></script>
 
 	<!-- Custom Theme JavaScript -->
