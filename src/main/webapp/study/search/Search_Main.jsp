@@ -47,6 +47,19 @@
 				$("#secondArray").append(inner);
 			}
 		});
+		
+		$(".projectcontainer").hover(
+		function(){
+			$(this).css('background','#333333bd')
+		},
+		function(){
+			$(this).css('background','#eee')
+		}
+		);
+		
+		$(".projectcontainer").click(function(){
+			$(this).submit('action','/schedule/StyudySchedule.jsp');
+		})
 	})
 </script>
 <body>
