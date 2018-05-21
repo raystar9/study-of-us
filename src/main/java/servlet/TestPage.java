@@ -11,13 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import beans.prototype.Member;
+import dao.DataAccessor;
 import dao.DataGetter;
 import dao.DatabaseAccounts;
 import dao.exceptions.DatabaseConnectException;
 
-/**
- * Servlet implementation class TestPage
- */
 @WebServlet("/test")
 public class TestPage extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -26,28 +24,39 @@ public class TestPage extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		DataGetter getter = null;
-		try {
-			getter = new DataGetter(DatabaseAccounts.ADMIN);
-			ArrayList<Member> members = getter.getMembers(Member.QUERY_GET);
+		/*
+		 * ExceptionHandler는 Exception이 발생하는 함수를 한데 모아 같은 결과로 처리해주는 클래스다.
+		 */
+		ExceptionHandler.general(new ExceptionHandleable() {
 			
-			for(Member member  : members) {
-				System.out.println((member.getId()));
+			@Override
+			public DataAccessor methods() throws DatabaseConnectException, SQLException {
+				
+				DataGetter getter = new DataGetter(DatabaseAccounts.ADMIN);
+				ArrayList<Member> members = getter.getMembers();
+				
+				for(Member member  : members) {
+					System.out.println((member.getId()));
+				}
+				
+				return getter;
 			}
-		} catch (DatabaseConnectException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			try {
-				getter.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
+			
+		});
+		
+		/*
+		 * 람다식을 사용한 경우(위와 같은 코드임)
+		 */
+		
+//		ExceptionHandler.general(()->{
+//			DataGetter getter = new DataGetter(DatabaseAccounts.ADMIN);
+//			ArrayList<Member> members = getter.getMembers();
+//			
+//			for(Member member  : members) {
+//				System.out.println((member.getId()));
+//			}
+//			return getter;
+//		});
+		
 	}
-
 }
