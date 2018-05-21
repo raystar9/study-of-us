@@ -1,153 +1,114 @@
-<!-- 스터디 안의 게시판 페이지 -->
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html lang="en">
-
+<!-- 스터디 안의 게시판 리스트 페이지 -->
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<html>
 <head>
-<style>
-.input-group.custom-search-form {
-	width: 200px;
-}
-
-.panel-heading {
-	height: 50px;
-}
-
-.input-group.custom-search-form {
-	float: right;
-	height: 20px;
-}
-</style>
-
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="">
-<meta name="author" content="">
-
-<title>게시판 페이지</title>
-
-<!-- Bootstrap Core CSS -->
-<link href="/study-of-us/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-<!-- MetisMenu CSS -->
-<link href="/study-of-us/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
-
-<!-- DataTables CSS -->
-<link href="/study-of-us/vendor/datatables-plugins/dataTables.bootstrap.css"
-	rel="stylesheet">
-
-<!-- DataTables Responsive CSS -->
-<link href="/study-of-us/vendor/datatables-responsive/dataTables.responsive.css"
-	rel="stylesheet">
-
-<!-- Custom CSS -->
-<link href="../dist/css/sb-admin-2.css" rel="stylesheet">
-
-<!-- Custom Fonts -->
-<link href="/study-of-us/vendor/font-awesome/css/font-awesome.min.css"
-	rel="stylesheet" type="text/css">
-
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>스터디 안의 게시판 리스트 페이지</title>
 </head>
-
 <body>
-
-<form action="#" method="get">
-	<div class="row">
-		<div class="col-lg-12">
-			<h1 class="page-header">게시판</h1>
-		</div>
-		<!-- /.col-lg-12 -->
-	</div>
-	<div class="col-lg-6">
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<div class="input-group custom-search-form">
-					<input type="text" class="form-control" placeholder="Search...">
-					<span class="input-group-btn">
-						<button class="btn btn-default" type="button">
-							<i class="fa fa-search"></i>
-						</button>
-					</span>
-				</div>
-				<!-- /input-group -->
-			</div>
-
-			<!-- /.panel-heading -->
-			<div class="panel-body">
-				<div class="table-responsive">
-					<table class="table table-striped">
-						<thead>
-							<tr>
-								<th>#</th>
-								<th>제목</th>
-								<th>글쓴이</th>
-								<th>날짜</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>1</td>
-								<td>장소 공지</td>
-								<td>구명회</td>
-								<td>2018/05/17</td>
-							</tr>
-							<tr>
-								<td>2</td>
-								<td>회비 공지</td>
-								<td>노동완</td>
-								<td>2018/05/15</td>
-							</tr>
-							<tr>
-								<td>3</td>
-								<td>포트폴리오 공지</td>
-								<td>곽승민</td>
-								<td>2018/05/10</td>
-							</tr>
-						</tbody>
-						<tfoot>
-							<tr>
-								<td>1,2,3,4,5 페이지 만들 곳</td>
-							</tr>
-						</tfoot>
-					</table>
-				</div>
-				<!-- /.table-responsive -->
-			</div>
-			<div></div>
-			<!-- /.panel-body -->
-		</div>
-		<!-- /.panel -->
-	</div>
-	<!-- /.col-lg-6 -->
-</form>
-	<!-- jQuery -->
-	<script src="/study-of-us/vendor/jquery/jquery.min.js"></script>
-
-	<!-- Bootstrap Core JavaScript -->
-	<script src="/study-of-us/vendor/bootstrap/js/bootstrap.min.js"></script>
-
-	<!-- Metis Menu Plugin JavaScript -->
-	<script src="/study-of-us/vendor/metisMenu/metisMenu.min.js"></script>
-
-	<!-- DataTables JavaScript -->
-	<script src="/study-of-us/vendor/datatables/js/jquery.dataTables.min.js"></script>
-	<script src="/study-of-us/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
-	<script src="/study-of-us/vendor/datatables-responsive/dataTables.responsive.js"></script>
-
-	<!-- Custom Theme JavaScript -->
-	<script src="../dist/js/sb-admin-2.js"></script>
-
-	<!-- Page-Level Demo Scripts - Tables - Use for reference -->
-	<script>
-		$(document).ready(function() {
-			$('#dataTables-example').DataTable({
-				responsive : true
-			});
-		});
-	</script>
-
+   <!-- 게시판 리스트 -->
+   <table border='1'>
+   <!-- 레코드가 있으면 -->
+      <tr>
+         <th colspan="3">스터디 안의 게시판 리스트 페이지</th>
+         <th colspan="2">
+            <font size=2>글개수 : ${listcount }</font>
+         </th>
+      </tr>
+      <tr>
+         <th width="8%"><div>번호</div></th>
+         <th width="50%"><div>제목</div></th>
+         <th width="14%"><div>작성자</div></th>
+         <th width="17%"><div>날짜</div></th>
+         <th width="11%"><div>조회수</div></th>
+      </tr>
+      <c:set var="num" value="${listcount-(page-1)*10 }"/>
+       <c:forEach var ="b" items="${boardlist}">
+         <tr>
+            <td>
+               <c:out value="${num }"></c:out>
+               <c:set var="num" value = "${num-1}"/>
+            </td>
+            <td>
+               <div>
+               <%--답변글 제목앞에 여백 처리 부분
+                     BOARD_RE_LEV, BOARD_RE_LEV, BOARD_NUM, BOARD_SUBJECT, BOARD_NAME,
+                      BOARD_DATE, BOARD_RE_READCOUNT,BOARD_DATE --%>
+               <c:if test = "${b.BOARD_RE_LEV != 0 }" >
+                    <!-- 답글인 경우 -->
+                    
+                  <c:forEach var ="a" begin = "0" end= "${b.BOARD_RE_LEV*2 }" step = "1">
+                  &nbsp;
+                  </c:forEach>
+                        ▶   
+               </c:if>
+               
+               <c:if test="${b.BOARD_RE_LEV == 0}">
+               <!-- 원문인 경우 -->
+                  &nbsp; ▶
+               </c:if>
+               <a href="./BoardDetailAction.bo?num=${b.BOARD_NUM}">
+                  ${b.BOARD_SUBJECT}
+               </a>
+               </div>
+            </td>
+            <td>
+               <div>${b.BOARD_NAME}</div>
+            </td>
+            <td>
+               <div>${b.BOARD_DATE}</div>
+            </td>
+            <td>
+               <div>${b.BOARD_READCOUNT}</div>
+            </td>
+         </tr>
+      </c:forEach>
+      
+      <tr class="h30 lime center btn">
+      	<td colspan='5'>
+      		<c:if test="${page <= 1 }">
+      		이전&nbsp;
+      		</c:if>
+      		<c:if test="${page > 1 }">
+      			<a href="./BoardList.bo?page=${page-1}">이전</a>&nbsp;
+      		</c:if>
+      		
+      		<c:forEach var="a" begin="${startpage }" end="${endpage }">
+      			<c:if test = "${a == page}">
+      				${a}
+      			</c:if>
+      			<c:if test = "${a != page }">
+      				<a href="./BoardList.bo?page=${a}">${a}</a>
+      			</c:if>
+      		</c:forEach>
+      		
+      		<c:if test="${page >= maxpage}">
+      			&nbsp;다음
+      		</c:if>
+      		<c:if test="${page < maxpage }">
+      			<a href="./BoardList.bo?page=${page+1}">&nbsp;다음</a>
+      		</c:if>
+      	</td>
+      </tr>
+      
+   
+   <!-- 레코드가 없으면 -->
+      <c:if test="${listcount == 0 }">
+         <tr>
+            <td colspan="4">MVC 게시판</td>
+            <td style = "test-align:right">
+               <font size=2>등록된 글이 없습니다.</font>
+            </td>
+         </tr>
+      </c:if>
+      
+         <tr>
+            <td colspan="5" style="text-align:right">
+               <a href="./BoardWrite.bo">[글쓰기]</a>
+            </td>
+         </tr>
+   </table>
 </body>
-
 </html>

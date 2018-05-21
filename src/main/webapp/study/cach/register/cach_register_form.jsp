@@ -1,10 +1,14 @@
 <!-- 스터디 안의 회비관리 페이지에서 추가버튼 클릭했을 때 페이지 -->
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript" src="cash.js"></script>
+
 <style>
 .btn btn-default {
 	float: right;
@@ -42,30 +46,29 @@
 }
 </style>
 
-<meta charset="utf-8">
+<!-- <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
-<meta name="author" content="">
+<meta name="author" content=""> -->
 
 <title>회비 등록 페이지</title>
 
 <!-- Bootstrap Core CSS -->
-<link href="/study-of-us/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<!-- <link href="/study-of-us/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
 
 <!-- MetisMenu CSS -->
-<link href="/study-of-us/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+<!-- <link href="/study-of-us/vendor/metisMenu/metisMenu.min.css" rel="stylesheet"> -->
 
 <!-- Custom CSS -->
-<link href="../dist/css/sb-admin-2.css" rel="stylesheet">
+<!-- <link href="../dist/css/sb-admin-2.css" rel="stylesheet"> -->
 
 <!-- Custom Fonts -->
-<link href="/study-of-us/vendor/font-awesome/css/font-awesome.min.css"
-	rel="stylesheet" type="text/css">
+<!-- <link href="/study-of-us/vendor/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet" type="text/css"> -->
 </head>
 
 <body>
-
 	<form action="#" method="get">
 		<div id="page-wrapper">
 			<div class="row">
@@ -83,11 +86,11 @@
 							<div class="row">
 								<div class="col-lg-6">
 									<div class="form-group">
-										<label>*제목</label> <input class="form-control">
+										<label>*제목</label> <input type="text" id="cash_title" class="form-control">
 									</div>
 									<div class="calendar">
 										<div>
-											<label>*날짜</label><br> <input type="date" id="userdate"
+											<label>*날짜</label><br> <input type="date" id="cash_date"
 												name="userdate" value="2015-10-10">
 										</div>
 										<br>
@@ -136,8 +139,6 @@
 													</table>
 												</div>
 												<!-- /.table-responsive -->
-												<br>
-												<button type="button" class="btn btn-default" id="cash3">추가</button>
 											</div>
 											<!-- /.panel-body -->
 										</div>
@@ -155,29 +156,17 @@
 															<th>금액</th>
 														</tr>
 													</thead>
-													<tbody>
+													<tbody id='cash_tbody'>
 														<tr>
 															<td><input type="text" class="form-control"
-																placeholder="내역"></td>
+																placeholder="내역" id='cash_content1'></td>
 															<td><input type="text" class="form-control"
-																placeholder="금액"></td>
-														</tr>
-														<tr>
-															<td><input type="text" class="form-control"
-																placeholder="내역"></td>
-															<td><input type="text" class="form-control"
-																placeholder="금액"></td>
-														</tr>
-														<tr>
-															<td><input type="text" class="form-control"
-																placeholder="내역"></td>
-															<td><input type="text" class="form-control"
-																placeholder="금액"></td>
+																placeholder="금액" id='cash_money1'></td>
 														</tr>
 													</tbody>
 												</table>
 												<br>
-												<button type="button" class="btn btn-default" id="cash3">추가</button>
+												<input type="button" class="btn btn-default" value="추가" id="cashAdd_btn">
 											</div>
 										</div>
 									</div>
@@ -223,16 +212,16 @@
 		<!-- /#page-wrapper -->
 	</form>
 	<!-- jQuery -->
-	<script src="/study-of-us/vendor/jquery/jquery.min.js"></script>
+	<!-- <script src="/study-of-us/vendor/jquery/jquery.min.js"></script> -->
 
 	<!-- Bootstrap Core JavaScript -->
-	<script src="/study-of-us/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<!-- <script src="/study-of-us/vendor/bootstrap/js/bootstrap.min.js"></script> -->
 
 	<!-- Metis Menu Plugin JavaScript -->
-	<script src="/study-of-us/vendor/metisMenu/metisMenu.min.js"></script>
+	<!-- <script src="/study-of-us/vendor/metisMenu/metisMenu.min.js"></script> -->
 
 	<!-- Custom Theme JavaScript -->
-	<script src="../dist/js/sb-admin-2.js"></script>
+	<!-- <script src="../dist/js/sb-admin-2.js"></script> -->
 
 </body>
 

@@ -7,7 +7,7 @@
 <body>
 
 <jsp:include page="sources/left.jsp" />
-<jsp:include page="board/board_form.jsp" />
+<jsp:include page="board/board_list_form.jsp" />
 
 </body>
 </html>

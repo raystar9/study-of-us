@@ -1,136 +1,60 @@
 <!-- 스터디 안의 게시판 페이지에서 글을 클릭했을 때 상세보기 되는 페이지 -->
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
-<!DOCTYPE html>
-<html lang="en">
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<html>
 <head>
-<style>
-.col-lg-6 {
-	width: 600px;
-}
-
-.col-lg-4 {
-	width: 600px;
-}
-
-#date_text {
-	width: 150px;
-	display: inline;
-}
-
-#three_div {
-	width: 150px;
-	display: inline-block;
-}
-
-.form-control {
-	text-align: right;
-}
-
-#sub_text {
-	display: inline-block;
-	height: 30px;
-	padding: 6px 12px;
-	font-size: 13px;
-	line-height: 1.42857143;
-	color: #555;
-	background-color: #fff;
-	background-image: none;
-	border: 1px solid #ccc;
-	border-radius: 4px;
-	text-align: left;
-}
-.three_btn{
-	float:right;
-}
-</style>
-
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="">
-<meta name="author" content="">
-
-<title>게시판의 글을 클릭했을 때 상세정보를 볼 수 있는 페이지</title>
-
-<!-- Bootstrap Core CSS -->
-<link href="/study-of-us/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-<!-- MetisMenu CSS -->
-<link href="/study-of-us/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
-
-<!-- DataTables CSS -->
-<link href="/study-of-us/vendor/datatables-plugins/dataTables.bootstrap.css"
-	rel="stylesheet">
-
-<!-- DataTables Responsive CSS -->
-<link href="/study-of-us/vendor/datatables-responsive/dataTables.responsive.css"
-	rel="stylesheet">
-
-<!-- Custom CSS -->
-<link href="../dist/css/sb-admin-2.css" rel="stylesheet">
-
-<!-- Custom Fonts -->
-<link href="/study-of-us/vendor/font-awesome/css/font-awesome.min.css"
-	rel="stylesheet" type="text/css">
-
+<title>스터디 안의 게시판 페이지에서 글을 클릭했을 때 상세보기 되는 페이지</title>
 </head>
-
 <body>
-	<div class="row">
-
-		<div class="col-lg-12">
-			<h1 class="page-header">게시판</h1>
-		</div>
-		<!-- /.col-lg-12 -->
-	</div>
-	<div class="col-lg-4">
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<label>*제목:&nbsp;</label><input id="sub_text" value="교재 수정"
-					readOnly>
-			</div>
-			<div class="panel-body">
-				<div>
-					<textarea class="form-control" rows="20" readOnly>교재를 자바의 정석으로 바꾸겠습니다.</textarea>
-				</div>
-			</div>
-			<!-- /.panel-heading -->
-		</div>
-	<div class="three_btn">
-		<input type="button" class="btn btn-default" id="btn" value="수정">
-		<input type="button" class="btn btn-default" id="btn" value="삭제">
-		<input type="button" class="btn btn-default" id="btn" value="뒤로">
-	</div>
-	</div>
-	<!-- jQuery -->
-	<script src="/study-of-us/vendor/jquery/jquery.min.js"></script>
-
-	<!-- Bootstrap Core JavaScript -->
-	<script src="/study-of-us/vendor/bootstrap/js/bootstrap.min.js"></script>
-
-	<!-- Metis Menu Plugin JavaScript -->
-	<script src="/study-of-us/vendor/metisMenu/metisMenu.min.js"></script>
-
-	<!-- DataTables JavaScript -->
-	<script src="/study-of-us/vendor/datatables/js/jquery.dataTables.min.js"></script>
-	<script src="/study-of-us/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
-	<script src="/study-of-us/vendor/datatables-responsive/dataTables.responsive.js"></script>
-
-	<!-- Custom Theme JavaScript -->
-	<script src="../dist/js/sb-admin-2.js"></script>
-
-	<!-- Page-Level Demo Scripts - Tables - Use for reference -->
-	<script>
-		$(document).ready(function() {
-			$('#dataTables-example').DataTable({
-				responsive : true
-			});
-		});
-	</script>
+<c:set var='id' value="${sessionScope.id}" />
+<table border="1">
+	<tr class="center">
+		<th colspan="2">스터디 안의 게시판 페이지에서 글을 클릭했을 때 상세보기 되는 페이지</th>
+	</tr>
+	
+	<c:set var = "b" value="${boarddata}"/>
+	<tr>
+		<td>글쓴이</td>
+		<td><c:out value="${b.BOARD_NAME}"/></td>
+	</tr>
+	
+	<tr>
+		<td>제목</td>
+		<td><c:out value="${b.BOARD_SUBJECT }"/></td>
+	</tr>
+	
+	<tr>
+		<td>내용</td>
+		<td><c:out value="${b.BOARD_CONTENT }"/></td>
+	</tr>
+	
+	<tr>
+		<td>조회수</td>
+		<td><c:out value="${b.BOARD_READCOUNT}"/></td>
+	</tr>
+	
+	<tr>
+		<td>날짜</td>
+		<td><c:out value="${b.BOARD_DATE}"/></td>
+	</tr>
+	
+	<tr>
+		<td colspan="2" class="center">
+			<a href = "./BoardReplyView.bo?num=${b.BOARD_NUM}">답변</a>
+				&nbsp;&nbsp;
+				
+			<c:if test= "${b.BOARD_NAME == id || id == 'admin' }">
+				<a href= "./BoardModifyView.bo?num=${b.BOARD_NUM}">수정</a>
+				&nbsp;&nbsp;
+			
+			<a href= "./BoardDelete.bo?num=${b.BOARD_NUM}">삭제</a>
+				&nbsp;&nbsp;
+			</c:if>
+		<a href = "BoardList.bo">뒤로</a>
+		</td>
+	</tr>
+</table>
 
 </body>
-
 </html>
