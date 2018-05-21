@@ -46,26 +46,26 @@
 }
 </style>
 
-<!-- <meta charset="utf-8">
+<meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
-<meta name="author" content=""> -->
+<meta name="author" content="">
 
 <title>회비 등록 페이지</title>
 
 <!-- Bootstrap Core CSS -->
-<!-- <link href="/study-of-us/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
+<link href="/study-of-us/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- MetisMenu CSS -->
-<!-- <link href="/study-of-us/vendor/metisMenu/metisMenu.min.css" rel="stylesheet"> -->
+<link href="/study-of-us/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
 
 <!-- Custom CSS -->
-<!-- <link href="../dist/css/sb-admin-2.css" rel="stylesheet"> -->
+<link href="../dist/css/sb-admin-2.css" rel="stylesheet">
 
 <!-- Custom Fonts -->
-<!-- <link href="/study-of-us/vendor/font-awesome/css/font-awesome.min.css"
-	rel="stylesheet" type="text/css"> -->
+<link href="/study-of-us/vendor/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -102,7 +102,7 @@
 											<div class="panel-body">
 												<div class="table-responsive">
 													<table
-														class="table table-striped table-bordered table-hover">
+														class="table table-striped table-bordered table-hover" id="dues-table">
 														<thead>
 															<tr>
 																<th>이름</th>
@@ -113,27 +113,27 @@
 														<tbody>
 															<tr>
 																<td><input type="text" class="form-control"
-																	placeholder="이름" id='dues-mem1' name='duesMem1'></td>
+																	placeholder="이름" id='dues-mem' name='duesMem'></td>
 																<td><input type="text" class="form-control"
-																	placeholder="금액" id='dues-fee1' name='duesFee1'></td>
+																	placeholder="금액" id='dues-fee' name='duesFee' onkeyup="calculate();"></td>
 																<td><input type="text" class="form-control"
-																	placeholder="비고" id='dues-note1' name='duesNote1'></td>
+																	placeholder="비고" id='dues-note' name='duesNote'></td>
 															</tr>
 															<tr>
 																<td><input type="text" class="form-control"
-																	placeholder="이름" id='dues-mem2' name='duesMem2'></td>
+																	placeholder="이름" id='dues-mem' name='duesMem'></td>
 																<td><input type="text" class="form-control"
-																	placeholder="금액" id='dues-fee2' name='duesFee2'></td>
+																	placeholder="금액" id='dues-fee' name='duesFee' onkeyup="calculate();"></td>
 																<td><input type="text" class="form-control"
-																	placeholder="비고" id='dues-note2' name='duesNote2'></td>
+																	placeholder="비고" id='dues-note' name='duesNote'></td>
 															</tr>
 															<tr>
 																<td><input type="text" class="form-control"
-																	placeholder="이름" id='dues-mem3' name='duesMem3'></td>
+																	placeholder="이름" id='dues-mem' name='duesMem'></td>
 																<td><input type="text" class="form-control"
-																	placeholder="금액" id='dues-fee3' name='duesFee3'></td>
+																	placeholder="금액" id='dues-fee' name='duesFee' onkeyup="calculate();"></td>
 																<td><input type="text" class="form-control"
-																	placeholder="비고" id='dues-note3' name='duesNote3'></td>
+																	placeholder="비고" id='dues-note' name='duesNote'></td>
 															</tr>
 														</tbody>
 													</table>
@@ -149,7 +149,7 @@
 										<div class="panel panel-default" id="cash">
 											<div class="panel-body">
 												<table
-													class="table table-striped table-bordered table-hover">
+													class="table table-striped table-bordered table-hover" id="total-table">
 													<thead>
 														<tr>
 															<th>내역</th>
@@ -159,14 +159,14 @@
 													<tbody id='cash_tbody'>
 														<tr>
 															<td><input type="text" class="form-control"
-																placeholder="내역" id='dues-exp1' name='duesExp1'></td>
+																placeholder="내역" id='dues-exp' name='duesExp'></td>
 															<td><input type="text" class="form-control"
-																placeholder="금액" id='dues-expfee1' name='duesExpfee1'></td>
+																placeholder="금액" id='dues-expfee' name='duesExpfee' onkeyup="calculate();"></td>
 														</tr>
 													</tbody>
 												</table>
 												<br>
-												<input type="button" class="btn btn-default" value="추가" id="cashAdd_btn">
+												<input type="button" class="btn btn-default" value="추가" id="cashAdd-btn">
 											</div>
 										</div>
 									</div>
@@ -174,9 +174,10 @@
 										<label>*총계</label>
 										<div class="panel panel-default" id="cash">
 											<div class="panel-body">
-												<input type="text" class="total" id="dues-totalFee" name="duesTotalFee" placeholder="0">&nbsp;원
-												&nbsp;-&nbsp; <input type="text" class="total" id="dues-totalExpen" name="duesTotalExpen"  placeholder="0">&nbsp;원
-												&nbsp;=&nbsp; <input type="text" class="total" id="dues-total" name="dues-Total" placeholder="0">&nbsp;원
+												<input type="text" class="total" id="dues-totalFee" name="duesTotalFee" >&nbsp;원
+												&nbsp;-&nbsp; <input type="text" class="total" id="dues-totalExpen" name="duesTotalExpen">&nbsp;원
+												&nbsp;=&nbsp; <input type="text" class="total" id="dues-total" name="dues-Total" >&nbsp;원
+										<br><input type="button" class="btn btn-default" id="dues-cal-btn" value="계산">
 											</div>
 										</div>
 									</div>
@@ -212,16 +213,15 @@
 		<!-- /#page-wrapper -->
 	</form>
 	<!-- jQuery -->
-	<!-- <script src="/study-of-us/vendor/jquery/jquery.min.js"></script> -->
+<script src="/study-of-us/vendor/jquery/jquery.min.js"></script>
 
 	<!-- Bootstrap Core JavaScript -->
-	<!-- <script src="/study-of-us/vendor/bootstrap/js/bootstrap.min.js"></script> -->
+<script src="/study-of-us/vendor/bootstrap/js/bootstrap.min.js"></script>
 
 	<!-- Metis Menu Plugin JavaScript -->
-	<!-- <script src="/study-of-us/vendor/metisMenu/metisMenu.min.js"></script> -->
-
+<script src="/study-of-us/vendor/metisMenu/metisMenu.min.js"></script>
 	<!-- Custom Theme JavaScript -->
-	<!-- <script src="../dist/js/sb-admin-2.js"></script> -->
+<script src="../dist/js/sb-admin-2.js"></script>
 
 </body>
 
