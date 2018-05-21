@@ -1,14 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<link href='css/fullcalendar.min.css' rel='stylesheet' />
-<link href='css/fullcalendar.print.min.css' rel='stylesheet' media='print' />
-<script src='lib/moment.min.js'></script>
-<script src='lib/jquery.min.js'></script>
-<script src='js/fullcalendar.min.js'></script>
-<script>
 
   $(document).ready(function() {
 
@@ -81,49 +70,3 @@
     });
 
   });
-
-</script>
-<style>
-  body {
-    margin: 40px 10px;
-    padding: 0;
-    font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
-    font-size: 14px;
-  }
-
-  #calendar {
-    max-width: 900px;
-    margin: 0 auto;
-  }
-  
-  .js {width: 65%; background-color: #3a87ad;}
-
-.varcontainer {
-      margin: auto;
-    margin-top: 40px;
-    width: 65%;
-  background-color: #ddd;
-}
-
-.skills {
-  text-align: right;
-  padding-right: 20px;
-  line-height: 40px;
-  color: white;
-}
-
-</style>
-</head>
-<body>
-
-<%@ include file = "/general-sources/Navigation.jsp" %><br>
-  <div id='calendar'></div>
-<div class="varcontainer">
-  <div class="skills js">진행률(65%)</div>
-</div>
-  
-<%@ include file = "/general-sources/Footer.jsp" %>
-
-
-</body>
-</html>

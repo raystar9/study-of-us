@@ -8,20 +8,18 @@
 	</form>
 	
 	<div class="custom-select">
-  		<select>
-  			  <option value="0">대분류</option>
+  		<select id="firstArray">
+  			  <option value="-1">대분류</option>
   			  <option value="1">프로그래밍</option>
- 			  <option value="2">영어</option>
-   			  <option value="3">면접</option>
+ 			  <option value="2">외국어</option>
+   			  <option value="3">자격증</option>
   		</select>
 	</div>
 	
 	<div class="custom-select2">
-  		<select>
-  			  <option value="0">대분류</option>
-  			  <option value="1">프로그래밍</option>
- 			  <option value="2">영어</option>
-   			  <option value="3">면접</option>
+  		<select id="secondArray">
+  			  <option value="-1">소분류</option>
+  			  
   		</select>
 	</div>
 </div>
