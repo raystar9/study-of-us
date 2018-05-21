@@ -5,37 +5,40 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-
-
-
-
+<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=trCkUlkJ2oAOjw3kdZSY&submodules=geocoder"></script>
 <!-- <script src = "http://code.jquery.com/jquery-3.3.1.js"></script> -->
 
 <!--  아이콘 -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<link href="/study-of-us/study/registration/css/sutdy_.css" rel="stylesheet">
+<link href="/study-of-us/study/registration/css/study_.css" rel="stylesheet">
 
 <!-- 자바 ui -->
+
+
+
+<script src = "http://code.jquery.com/jquery-3.3.1.js"></script> 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="/resources/demos/style.css">
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <script src="/study-of-us/study/registration/js/study_.js"></script>
+<link rel="stylesheet" href="/study-of-us/study/registration/css/study_.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="/study-of-us/study/registration/js/study_.js"></script>
+
+  
 </head>
 <body>
 
-<h3 align=center>Sign Up</h3>
-<div>
+<h3 align=center>Modify</h3>
+<div class="signup">
 <i class="material-icons">category</i>
 <label for="category"><strong>카테고리</strong></label><br>
 
 <input type=text name=category id="category">
 <select name=sel id=sel>
-	<option value="">세부 카테고리..</option>
-	<option value="">option2</option>
-	<option value="">option3</option>
-	<option value="">option4</option>
-	<option value="">option5</option>
+   <option value="">세부 카테고리..</option>
+   <option value="">option2</option>
+   <option value="">option3</option>
+   <option value="">option4</option>
+   <option value="">option5</option>
 </select>
 <br>
 
@@ -53,22 +56,22 @@
 <p>
 
 <span class=one>
-		
-		<i class="material-icons">people</i>
-		<label for="category"><strong>모집인원</strong></label><br>
-		<input type=text name=people id=people name=people>
-		</span>
+      
+      <i class="material-icons">people</i>
+      <label for="category"><strong>모집인원</strong></label><br>
+      <input type=text name=people id=people name=people>
+      </span>
 <span class=two>
 
-		<i class="material-icons">access_time</i>
-		<label for="category"><strong>활동 시간</strong></label><br>
-		<input type=text name=people id=people name=people>
+      <i class="material-icons">access_time</i>
+      <label for="category"><strong>활동 시간</strong></label><br>
+      <input type=text name=people id=people name=people>
 </span>
 
 <span class=three>
-		<i class="material-icons">today</i>
-		<label for="day"><strong>활동 요일</strong></label><br>
-		<input type=text name=activity_day id=activity_day name=activity_day>
+      <i class="material-icons">today</i>
+      <label for="day"><strong>활동 요일</strong></label><br>
+      <input type=text name=activity_day id=activity_day name=activity_day>
 </span>
 </p>
 
@@ -89,46 +92,49 @@
 <p>
 <span class="check">
 
-	
-	<label class="container">서울
+   
+   <label class="checkcontainer">서울
         <input type="checkbox" checked="checked">
       <span class="checkmark"></span>
    </label>&nbsp;&nbsp;
-      <label class="container">부산
+      <label class="checkcontainer">부산
        <input type="checkbox">
         <span class="checkmark"></span>
    </label>
    <br>
-   <label class="container">대구
+   <label class="checkcontainer">대구
         <input type="checkbox" checked="checked">
       <span class="checkmark"></span>
    </label>&nbsp;&nbsp;
-      <label class="container">대전
+      <label class="checkcontainer">대전
        <input type="checkbox">
         <span class="checkmark"></span>
    </label>
    <br>
-   <label class="container">경기
+   <label class="checkcontainer">경기
         <input type="checkbox" checked="checked">
       <span class="checkmark"></span>
    </label>&nbsp;&nbsp;
-   <label class="container">인천
+   <label class="checkcontainer">인천
        <input type="checkbox">
         <span class="checkmark"></span>
    </label>
    <br>
-   <label class="container">강원
+   <label class="checkcontainer">강원
        <input type="checkbox">
         <span class="checkmark"></span>
    </label>&nbsp;&nbsp;
-   <label class="container">시흥
+   <label class="checkcontainer">시흥
        <input type="checkbox">
         <span class="checkmark"></span>
    </label>
 </span>
-<span id="map" style="width:48%;height:400px;"></span>
+<span id="map" style="width:48%;height:400px;">
+
+</span>
 </p>
-	<input type=submit value="올리기">
+   <input type=submit value="저장하기">
 </div>
+<br>
 </body>
 </html>

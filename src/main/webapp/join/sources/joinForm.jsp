@@ -6,6 +6,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <link href="/study-of-us/join/css/joinForm.css" rel="stylesheet">
+<script src = "http://code.jquery.com/jquery-3.3.1.js"></script> 
+<script src="/study-of-us/join/js/join.js"></script>
+
 
 
 </head>
@@ -14,15 +17,18 @@
 	<div>
   <form action="#">
     <label for="lid"><strong>ID</strong></label>
-    <input type="text" id="id" name="id" maxlength=7>
+    <input type="text" id="id" name="id" maxlength=10>
     
     <label for="password"><strong>Pass</strong></label><br>
-    <input type="text" id="pass" name="pass" maxlength=10><br>
+    <input type="password" id="pass" name="pass" maxlength=10><br>
     
-    <label for="password"><strong>Name</strong></label><br>
+    <label for="password2"><strong>비밀번호확인</strong></label><br>
+    <input type="password" id=pass2 name="pass2" maxlength=10><br>
+    
+    <label for="name"><strong>Name</strong></label><br>
     <input type="text" id="name" name="name" maxlength=10><br>
     
-    <label for="password"><strong>E-mail</strong></label><br>
+    <label for=email"><strong>E-mail</strong></label><br>
     <input type="text" id="email" name="email" maxlength=10> @
     <input type="text" id="domain" name="domain" maxlength=10>
     <select name=sel id=sel>
