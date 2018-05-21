@@ -1,12 +1,12 @@
--- MemberÅ×ÀÌºí INDEXÀÇ ½ÃÄö½º
+ï»¿-- Memberí…Œì´ë¸” INDEXì˜ ì‹œí€€ìŠ¤
 CREATE SEQUENCE member_index
 START WITH 1
 INCREMENT BY 1
 NOMAXVALUE;
 
--- Member Å×ÀÌºí »ý¼º
+-- Member í…Œì´ë¸” ìƒì„±
 CREATE TABLE Member(
-	M_INDEX NUMBER NOT NULL PRIMARY KEY,      -- member_index ½ÃÄö½º Ã³¸®
+	M_INDEX NUMBER NOT NULL PRIMARY KEY,      -- member_index ì‹œí€€ìŠ¤ ì²˜ë¦¬
 	M_ID VARCHAR(16) NOT NULL,
 	M_PASSWORD VARCHAR(16) NOT NULL,
 	M_NAME VARCHAR(15) NOT NULL,
@@ -18,49 +18,49 @@ CREATE TABLE Member(
 )
 
 SELECT * FROM Member;
-ALTER SEQUENCE member_index INCREMENT BY 1;   -- ½ÃÄö½ºÀÇ °ªÀ» 1·Î ¹Ù²ãÁÜ.
+ALTER SEQUENCE member_index INCREMENT BY 1;   -- ì‹œí€€ìŠ¤ì˜ ê°’ì„ 1ë¡œ ë°”ê¿”ì¤Œ.
 
--- Study Å×ÀÌºí »ý¼º
+-- Study í…Œì´ë¸” ìƒì„±
 CREATE TABLE Study(
-	S_INDEX NUMBER NOT NULL PRIMARY KEY,      -- study_index ½ÃÄö½º Ã³¸®
+	S_INDEX NUMBER NOT NULL PRIMARY KEY,      -- study_index ì‹œí€€ìŠ¤ ì²˜ë¦¬
 	S_NAME VARCHAR(16) NOT NULL,         
-	S_C_ID NUMBER NOT NULL,              -- CATEGORY.C_ID ¿Ü·¡Å° ÁöÁ¤ ÇØÁà¾ß ÇÔ.
-	S_PLACE VARCHAR(50) NOT NULL,             -- ¼öÁ¤ ¿ä¸Á.
+	S_C_ID NUMBER NOT NULL,              -- CATEGORY.C_ID ì™¸ëž˜í‚¤ ì§€ì • í•´ì¤˜ì•¼ í•¨.
+	S_PLACE VARCHAR(50) NOT NULL,             -- ìˆ˜ì • ìš”ë§.
 	S_TIME DATE NOT NULL,
 	S_PLOPIENUM NUMBER NOT NULL,
-	S_GOAL VARCHAR(100) NOT NULL,             -- Ãß°¡ Á¶Á¤(Å×ÀÌºí µû·Î »¬°ÍÀÎÁö?)
+	S_GOAL VARCHAR(100) NOT NULL,             -- ì¶”ê°€ ì¡°ì •(í…Œì´ë¸” ë”°ë¡œ ëº„ê²ƒì¸ì§€?)
 	S_TERM DATE NOT NULL
 )
 
 SELECT * FROM Study;
 
--- Study Å×ÀÌºí INDEXÀÇ ½ÃÄö½º
+-- Study í…Œì´ë¸” INDEXì˜ ì‹œí€€ìŠ¤
 CREATE SEQUENCE study_index
 START WITH 1
 INCREMENT BY 1
 NOMAXVALUE;
 
--- Category Å×ÀÌºí »ý¼º (½ºÅÍµð ºÐ¾ß¿¡ ´ëÇÑ Á¤º¸)
+-- Category í…Œì´ë¸” ìƒì„± (ìŠ¤í„°ë”” ë¶„ì•¼ì— ëŒ€í•œ ì •ë³´)
 CREATE TABLE Category(
-	C_ID NUMBER NOT NULL PRIMARY KEY,        -- StudyÅ×ÀÌºí¿¡ ¿Ü·¡Å°·Î »ç¿ëµÊ.
-	C_GROUP VARCHAR(20) NOT NULL,            -- ´ëºÐ·ù
-	C_SUB VARCHAR(20) NOT NULL               -- ¼ÒºÐ·ù
+	C_ID NUMBER NOT NULL PRIMARY KEY,        -- Studyí…Œì´ë¸”ì— ì™¸ëž˜í‚¤ë¡œ ì‚¬ìš©ë¨.
+	C_GROUP VARCHAR(20) NOT NULL,            -- ëŒ€ë¶„ë¥˜
+	C_SUB VARCHAR(20) NOT NULL               -- ì†Œë¶„ë¥˜
 )
 
 SELECT * FROM Category;
 
 ALTER TABLE Study MODIFY(S_C_ID NUMBER);
-ALTER TABLE Study ADD FOREIGN KEY(S_C_ID) REFERENCES Category(C_ID); -- ¿Ü·¡Å° ÁöÁ¤.
+ALTER TABLE Study ADD FOREIGN KEY(S_C_ID) REFERENCES Category(C_ID); -- ì™¸ëž˜í‚¤ ì§€ì •.
 
 
--- Interesting Å×ÀÌºí »ý¼º(È¸¿øº° °ü½É»ç)
+-- Interesting í…Œì´ë¸” ìƒì„±(íšŒì›ë³„ ê´€ì‹¬ì‚¬)
 CREATE TABLE Interesting(
 	I_M_INDEX NUMBER NOT NULL,
 	I_C_ID NUMBER NOT NULL,
-	PRIMARY KEY(I_M_INDEX, I_C_ID)           -- ´ÙÁß PRIMARY KEY ÁöÁ¤.
+	PRIMARY KEY(I_M_INDEX, I_C_ID)           -- ë‹¤ì¤‘ PRIMARY KEY ì§€ì •.
 )
 
--- PreferenceArea Å×ÀÌºí »ý¼º(È¸¿øÀÇ ¼±È£Áö¿ª)
+-- PreferenceArea í…Œì´ë¸” ìƒì„±(íšŒì›ì˜ ì„ í˜¸ì§€ì—­)
 ALTER TABLE Interesting ADD FOREIGN KEY(I_M_INDEX) REFERENCES Member(M_INDEX);
 ALTER TABLE Interesting ADD FOREIGN KEY(I_C_ID) REFERENCES Category(C_ID);
 
@@ -72,7 +72,7 @@ CREATE TABLE PreferenceArea(
 
 ALTER TABLE PreferenceArea ADD FOREIGN KEY(P_M_INDEX) REFERENCES Member(M_INDEX); 
 
--- StudyList Å×ÀÌºí »ý¼º(½ºÅÍµðÀÇ ¸í´Ü Á¤º¸)
+-- StudyList í…Œì´ë¸” ìƒì„±(ìŠ¤í„°ë””ì˜ ëª…ë‹¨ ì •ë³´)
 CREATE TABLE StudyList(
 	SL_S_INDEX NUMBER NOT NULL,
 	SL_M_INDEX NUMBER NOT NULL,
@@ -82,15 +82,15 @@ CREATE TABLE StudyList(
 ALTER TABLE StudyList ADD FOREIGN KEY(SL_S_INDEX) REFERENCES Study(S_INDEX); 
 ALTER TABLE StudyList ADD FOREIGN KEY(SL_M_INDEX) REFERENCES Member(M_INDEX); 
 
--- Board Å×ÀÌºí »ý¼º(°Ô½ÃÆÇ Á¤º¸)
+-- Board í…Œì´ë¸” ìƒì„±(ê²Œì‹œíŒ ì •ë³´)
 CREATE TABLE Board(
 	B_NO NUMBER NOT NULL PRIMARY KEY,
 	B_M_INDEX NUMBER NOT NULL,
 	B_DATE VARCHAR(10) NOT NULL,
-	B_CONTENT VARCHAR(300) NOT NULL               -- CLOEÃ³¸® ÇÒ¼öµµ..
+	B_CONTENT VARCHAR(300) NOT NULL               -- CLOEì²˜ë¦¬ í• ìˆ˜ë„..
 )
 
--- Board Å×ÀÌºí NOÀÇ ½ÃÄö½º
+-- Board í…Œì´ë¸” NOì˜ ì‹œí€€ìŠ¤
 CREATE SEQUENCE board_no
 START WITH 1
 INCREMENT BY 1
@@ -98,10 +98,10 @@ NOMAXVALUE;
 
 ALTER TABLE Board ADD FOREIGN KEY(B_M_INDEX) REFERENCES Member(M_INDEX); 
 
--- Notice Å×ÀÌºí »ý¼º(½ºÅÍµð ³»¿¡ °øÁö»çÇ× Á¤º¸)
+-- Notice í…Œì´ë¸” ìƒì„±(ìŠ¤í„°ë”” ë‚´ì— ê³µì§€ì‚¬í•­ ì •ë³´)
 CREATE TABLE Notice(
 	N_S_INDEX NUMBER NOT NULL PRIMARY KEY,
-	N_CONTENT VARCHAR(300) NOT NULL              -- CLOEÃ³¸® ÇÒ¼öµµ
+	N_CONTENT VARCHAR(300) NOT NULL              -- CLOEì²˜ë¦¬ í• ìˆ˜ë„
 )
 
 ALTER TABLE Notice ADD FOREIGN KEY(N_S_INDEX) REFERENCES Study(S_INDEX);
