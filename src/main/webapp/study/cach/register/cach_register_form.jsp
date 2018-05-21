@@ -26,7 +26,7 @@
 	float: right;
 }
 
-#total {
+.total {
 	width: 150px;
 	display: inline;
 	height: 34px;
@@ -86,12 +86,12 @@
 							<div class="row">
 								<div class="col-lg-6">
 									<div class="form-group">
-										<label>*제목</label> <input type="text" id="cash_title" class="form-control">
+										<label>*제목</label> <input type="text" id="dues-title" name="duesTitle" class="form-control">
 									</div>
 									<div class="calendar">
 										<div>
-											<label>*날짜</label><br> <input type="date" id="cash_date"
-												name="userdate" value="2015-10-10">
+											<label>*날짜</label><br> <input type="date" id="dues-date"
+												name="duesDate" value="2015-10-10">
 										</div>
 										<br>
 									</div>
@@ -113,27 +113,27 @@
 														<tbody>
 															<tr>
 																<td><input type="text" class="form-control"
-																	placeholder="이름"></td>
+																	placeholder="이름" id='dues-mem1' name='duesMem1'></td>
 																<td><input type="text" class="form-control"
-																	placeholder="금액"></td>
+																	placeholder="금액" id='dues-fee1' name='duesFee1'></td>
 																<td><input type="text" class="form-control"
-																	placeholder="비고"></td>
+																	placeholder="비고" id='dues-note1' name='duesNote1'></td>
 															</tr>
 															<tr>
 																<td><input type="text" class="form-control"
-																	placeholder="이름"></td>
+																	placeholder="이름" id='dues-mem2' name='duesMem2'></td>
 																<td><input type="text" class="form-control"
-																	placeholder="금액"></td>
+																	placeholder="금액" id='dues-fee2' name='duesFee2'></td>
 																<td><input type="text" class="form-control"
-																	placeholder="비고"></td>
+																	placeholder="비고" id='dues-note2' name='duesNote2'></td>
 															</tr>
 															<tr>
 																<td><input type="text" class="form-control"
-																	placeholder="이름"></td>
+																	placeholder="이름" id='dues-mem3' name='duesMem3'></td>
 																<td><input type="text" class="form-control"
-																	placeholder="금액"></td>
+																	placeholder="금액" id='dues-fee3' name='duesFee3'></td>
 																<td><input type="text" class="form-control"
-																	placeholder="비고"></td>
+																	placeholder="비고" id='dues-note3' name='duesNote3'></td>
 															</tr>
 														</tbody>
 													</table>
@@ -159,9 +159,9 @@
 													<tbody id='cash_tbody'>
 														<tr>
 															<td><input type="text" class="form-control"
-																placeholder="내역" id='cash_content1'></td>
+																placeholder="내역" id='dues-exp1' name='duesExp1'></td>
 															<td><input type="text" class="form-control"
-																placeholder="금액" id='cash_money1'></td>
+																placeholder="금액" id='dues-expfee1' name='duesExpfee1'></td>
 														</tr>
 													</tbody>
 												</table>
@@ -174,9 +174,9 @@
 										<label>*총계</label>
 										<div class="panel panel-default" id="cash">
 											<div class="panel-body">
-												<input type="text" id="total" placeholder="0">&nbsp;원
-												&nbsp;-&nbsp; <input type="text" id="total" placeholder="0">&nbsp;원
-												&nbsp;=&nbsp; <input type="text" id="total" placeholder="0">&nbsp;원
+												<input type="text" class="total" id="dues-totalFee" name="duesTotalFee" placeholder="0">&nbsp;원
+												&nbsp;-&nbsp; <input type="text" class="total" id="dues-totalExpen" name="duesTotalExpen"  placeholder="0">&nbsp;원
+												&nbsp;=&nbsp; <input type="text" class="total" id="dues-total" name="dues-Total" placeholder="0">&nbsp;원
 											</div>
 										</div>
 									</div>
@@ -185,7 +185,7 @@
 										<div class="panel panel-default" id="cash">
 											<div class="panel-body">
 												<div>
-													<input type="text" id="total" placeholder="0">&nbsp;원
+													<input type="text" class="total" id="dues-final" name="duesfinal" placeholder="0">&nbsp;원
 												</div>
 											</div>
 										</div>
