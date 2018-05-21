@@ -40,4 +40,5 @@ NOMAXVALUE;
 
 ALTER TABLE FeeExpense ADD FOREIGN KEY(FE_F_ID) REFERENCES Fee(F_ID);
 
+-- 테이블 전체 보기.
 select * from tab;
