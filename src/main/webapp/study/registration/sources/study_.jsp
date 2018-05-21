@@ -13,132 +13,14 @@
 
 <!--  아이콘 -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
+<link href="/study-of-us/study/registration/css/sutdy_.css" rel="stylesheet">
 
 <!-- 자바 ui -->
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="/resources/demos/style.css">
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  
-  
-   <script>
-  $( function() {
-    $( "#day1,#day2" ).datepicker({
-   	monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
-    dayNamesMin: ['일','월','화','수','목','금','토'],
-     dateFormat: "yy년mm월dd일",
-      changeYear: true,
-      changeMonth: true
-    });
-  });
-  </script>
-
-<style>
-input[type=text] {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-input[type=submit] {
-    width: 100%;
-    background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-input[type=submit]:hover {
-    background-color: #45a049;
-}
-
-div {
-	border : 1px solid #0000004a;
-	max-width : 700px;
-    border-radius: 5px;
-    background-color: #f2f2f259;
-    padding: 20px;
-    margin : 0 auto;
-}
-
-#day1{
-	width : 48%;
-}
-
-#day2{
-	width : 48%;
-}
-
-#category{
-	width : 50%;
-}
-
-#sel{
-	float : right;
-	width : 40%;
-	padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-	
-}
-
-#people{
-	width : 100%;
-}
-
-span{
-	display : inline-block;
-}
-
-.one{
-	width : 32%
-}
-
-.two{
-	width : 32%
-}
-
-.three{
-	width : 32%
-}
-
-textarea{
-	width : 100%;
-}
-.check{
-	border : 1px solid #ccc;
-	width :48%;
-	float : left;
-	height:400px;
-	text-align : center
-}
-
-#map{
-	border : 1px solid #ccc;
-	float : right;
-}
-
-textarea{
-	border : 1px solid #ccc;
-}
-.devide{
-	
-}
-
-
-
-</style>
+  <script src="/study-of-us/study/registration/js/study_.js"></script>
 </head>
 <body>
 
