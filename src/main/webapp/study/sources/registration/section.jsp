@@ -5,23 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=trCkUlkJ2oAOjw3kdZSY&submodules=geocoder"></script>
-<!-- <script src = "http://code.jquery.com/jquery-3.3.1.js"></script> -->
 
-<!--  아이콘 -->
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<link href="/study-of-us/study/registration/css/study_.css" rel="stylesheet">
-
-<!-- 자바 ui -->
-
-
-
-<script src = "http://code.jquery.com/jquery-3.3.1.js"></script> 
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<link rel="stylesheet" href="/study-of-us/study/registration/css/study_.css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="/study-of-us/study/registration/js/study_.js"></script>
 
   
 </head>

@@ -5,12 +5,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link href="/study-of-us/join/css/joinForm.css" rel="stylesheet">
-<script src = "http://code.jquery.com/jquery-3.3.1.js"></script> 
-<script src="/study-of-us/join/js/join.js"></script>
-
-
-
 </head>
 <body>
 <h3 align=center>Join StudyOfUs</h3>
@@ -28,7 +22,7 @@
     <label for="name"><strong>Name</strong></label><br>
     <input type="text" id="name" name="name" maxlength=10><br>
     
-    <label for=email"><strong>E-mail</strong></label><br>
+    <label for="email"><strong>E-mail</strong></label><br>
     <input type="text" id="email" name="email" maxlength=10> @
     <input type="text" id="domain" name="domain" maxlength=10>
     <select name=sel id=sel>
@@ -40,10 +34,12 @@
     	<option value="yahoo.co.kr">yahoo.co.kr</option>
     </select><br>
     
-    <label for="address"><strong>Address</strong></label><br>
+    <label for="post"><strong>post</strong></label><br>
     <input type="text" id=post1 name=post1 maxlength=3> -
     <input type="text" id=post2 name=post2 maxlength=3><br>
     
+    <label for="address"><strong>상세주소</strong></label><br>
+    <input type="text" id=address name=address> 
     
     <label for="gender"><strong>Gender</strong></label><br>
     

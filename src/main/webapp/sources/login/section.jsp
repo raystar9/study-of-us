@@ -5,8 +5,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="/study-of-us/login/css/loginForm.css" rel="stylesheet">
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+
 </head>
 <body>
 <p class=icon>
@@ -17,10 +17,10 @@
 <div>
   <form action="#">
     <label for="lid"><strong>Your ID</strong></label>
-    <input type="text" id="id" name="id" placeholder="Your ID..">
+    <input type="text" id="id" name="id" placeholder="Your ID.." maxlength="10">
 
     <label for="password"><strong>Your Pass</strong></label><a href="#" class="forgot">Forgot password?</a>
-    <input type="text" id="pass" name="pass" placeholder="Your PASS..">
+    <input type="password" id="pass" name="pass" placeholder="Your PASS.." maxlength="13">
     <input type="submit" value="Sign in">
   </form>
 </div>

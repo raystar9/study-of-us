@@ -6,10 +6,9 @@
       changeYear: true,
       changeMonth: true
     });
-  });
     
     var map = new naver.maps.Map('map');
-    var myaddress = '인사동';// 도로명 주소나 지번 주소만 가능 (건물명 불가!!!!)
+    var myaddress = '시흥';// 도로명 주소나 지번 주소만 가능 (건물명 불가!!!!)
     naver.maps.Service.geocode({address: myaddress}, function(status, response) {
         if (status !== naver.maps.Service.Status.OK) {
             return alert(myaddress + '의 검색 결과가 없거나 기타 네트워크 에러');
@@ -38,3 +37,4 @@
             content: '<h4> [네이버 개발자센터]</h4><a href="https://blog.naver.com/rumor1993" target="_blank"><img src="https://developers.naver.com/inc/devcenter/images/nd_img.png"></a>'
         });
     });
+  });
