@@ -1,4 +1,3 @@
-
 	$(document).ready(function(){
 		var secondArray_0 = new Array ("자바","c언어","파이썬","c++","c#");
 		var secondArray_1 = new Array ("영어","불어","중국어","일본어");

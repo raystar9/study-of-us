@@ -31,7 +31,7 @@ public class Home extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		System.out.println("메인페이지");
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/main/Main.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/Main.jsp");
 		dispatcher.forward(request, response);
 	}
 }
