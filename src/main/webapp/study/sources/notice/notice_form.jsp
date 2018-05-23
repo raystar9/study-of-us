@@ -1,3 +1,4 @@
+<!-- 해당 스터디 안에 들어왔을 때 처음으로 보이는 공지사항 페이지 -->
 <!-- 스터디 안의 게시판 리스트 페이지 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -5,23 +6,19 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>스터디 안의 게시판 리스트 페이지</title>
+<title>공지사항 페이지</title>
 </head>
 <body>
    <!-- 게시판 리스트 -->
    <table border='1'>
    <!-- 레코드가 있으면 -->
-      <tr>
-         <th colspan="3">스터디 안의 게시판 리스트 페이지</th>
-         <th colspan="2">
-            <font size=2>글개수 : ${listcount }</font>
-         </th>
-      </tr>
+      
       <tr>
          <th width="8%"><div>번호</div></th>
          <th width="50%"><div>제목</div></th>
          <th width="14%"><div>작성자</div></th>
          <th width="17%"><div>날짜</div></th>
+         <th width="11%"><div>조회수</div></th>
       </tr>
       <c:set var="num" value="${listcount-(page-1)*10 }"/>
        <c:forEach var ="b" items="${boardlist}">
@@ -103,11 +100,6 @@
          </tr>
       </c:if>
       
-         <tr>
-            <td colspan="5" style="text-align:right">
-               <a href="./BoardWrite.bo">[글쓰기]</a>
-            </td>
-         </tr>
    </table>
 </body>
 </html>

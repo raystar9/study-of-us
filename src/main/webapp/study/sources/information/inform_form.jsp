@@ -136,7 +136,7 @@
 		</div>
 		<div class="col-lg-6" id="three_div">
 			<div class="panel panel-default">
-				<div class="panel-heading"><p class="glyphicon glyphicon-ok">&nbsp;</p>모집인원</div>
+				<div class="panel-heading"><p class="glyphicon glyphicon-ok">&nbsp;</p>현재인원</div>
 				<div class="panel-body">
 				<input type="text" class="form-control" value="6"  readOnly>명
 				</div>
