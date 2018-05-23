@@ -6,7 +6,7 @@
 
   <groupId>team.nod</groupId>
   <artifactId>study-of-us</artifactId>
-  <version>0.0.1</version>
+  <version>0.2.0</version>
   <packaging>war</packaging>
 
   <name>study-of-us Maven Webapp</name>
@@ -46,6 +46,11 @@
 	    <groupId>jstl</groupId>
 	    <artifactId>jstl</artifactId>
 	    <version>1.2</version>
+	</dependency>
+	<dependency>
+	    <groupId>com.googlecode.json-simple</groupId>
+	    <artifactId>json-simple</artifactId>
+	    <version>1.1.1</version>
 	</dependency>
   </dependencies>
 
