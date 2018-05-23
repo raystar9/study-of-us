@@ -56,8 +56,8 @@ public class DataGetter extends DataAccessor {
 				ArrayList<Member> members = new ArrayList<>(); 
 				while(rs.next()) {
 					Member member = new Member();
-					member.setIndex(rs.getInt(1));
-					member.setId(rs.getString(2));
+					member.setM_index(rs.getInt(1));
+					member.setM_id(rs.getString(2));
 					members.add(member);
 				}
 				return members;
