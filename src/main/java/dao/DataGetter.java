@@ -46,10 +46,23 @@ public class DataGetter extends DataAccessor {
 	 * @throws DatabaseConnectException
 	 * @throws SQLException
 	 */
+	
 	public ArrayList<Member> getMembers() throws DatabaseConnectException, SQLException{
 		
 		@SuppressWarnings("unchecked")
-		ArrayList<Member> list = (ArrayList<Member>) get(Member.QUERY_GET, new Member());
+		ArrayList<Member> list = (ArrayList<Member>) get(Member.QUERY_GET, new DataGettable() {
+			@Override
+			public ArrayList<?> onGetResult(ResultSet rs) throws DatabaseConnectException, SQLException {
+				ArrayList<Member> members = new ArrayList<>(); 
+				while(rs.next()) {
+					Member member = new Member();
+					member.setIndex(rs.getInt(1));
+					member.setId(rs.getString(2));
+					members.add(member);
+				}
+				return members;
+			}
+		});
 		
 		return list;
 	}
