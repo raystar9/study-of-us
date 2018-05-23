@@ -67,6 +67,7 @@ public class DataGetter extends DataAccessor {
 		return list;
 	}
 	
+	
 /*	private ArrayList<?> getBean(ResultSet rs, Class<?> beanClass) throws SQLException{
 		Field[] fields = beanClass.getDeclaredFields();
 		ArrayList<beanClass> objects = new ArrayList<>();
