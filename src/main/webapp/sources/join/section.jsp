@@ -12,6 +12,7 @@
   <form action="#">
     <label for="lid"><strong>ID</strong></label>
     <input type="text" id="id" name="id" maxlength=10>
+    <input type="button" id="idcheck" name="idcheck" value="중복검사">
     
     <label for="password"><strong>Pass</strong></label><br>
     <input type="password" id="pass" name="pass" maxlength=10><br>

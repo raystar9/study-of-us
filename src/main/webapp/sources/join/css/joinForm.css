@@ -47,6 +47,9 @@ div {
 #post2{
 	width : 48%;
 }
+#id{
+	width: 80%;
+}
 
 p{
 	text-align : center;
@@ -63,5 +66,4 @@ select{
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
-	
 }
