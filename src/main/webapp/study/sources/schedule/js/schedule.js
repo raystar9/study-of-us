@@ -66,7 +66,12 @@
           url: 'http://google.com/',
           start: '2018-03-28'
         }
-      ]
+      ],
+      views: {
+    	  month: {
+    		  timeFormat:"h:mma", // top level of text
+    	  }
+      }
     });
 
   });
