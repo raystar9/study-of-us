@@ -3,13 +3,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link href='css/fullcalendar.min.css' rel='stylesheet' />
-<link href='css/fullcalendar.print.min.css' rel='stylesheet' media='print' />
-<link href='css/schedule.css' rel='stylesheet'/>
-<script src='js/moment.min.js'></script>
-<script src='js/jquery.min.js'></script>
-<script src='js/fullcalendar.min.js'></script>
-<script src='js/schedule.js'></script>
+<link href='sources/schedule/css/fullcalendar.min.css' rel='stylesheet' />
+<link href='sources/schedule/css/fullcalendar.print.min.css' rel='stylesheet' media='print' />
+<link href='sources/schedule/css/schedule.css' rel='stylesheet'/>
+<script src='sources/schedule/js/moment.min.js'></script>
+<script src='sources/schedule/js/jquery.min.js'></script>
+<script src='sources/schedule/js/fullcalendar.min.js'></script>
+<script src='sources/schedule/js/schedule.js'></script>
 
 </head>
 <body>
