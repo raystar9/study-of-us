@@ -11,7 +11,7 @@ $(document).ready(function() {
 			
 		$('#cash_tbody').append(strToAdd);	
 	})// click end
-	
+	alert(document.getElementById("dues-date").value);
 	
 })// ready end
 

@@ -71,7 +71,7 @@
 				<div class="panel-heading"><p class="fa fa-mortar-board">&nbsp;</p>카테고리</div>
 				<div class="panel-body">
 					<br>
-					<blockquote>자바 & JSP 공부</blockquote>
+					<blockquote><input type="text" value='자바 & JSP 공부'></blockquote>
 				</div>
 				<!-- /.panel-heading -->
 			</div>
@@ -81,7 +81,7 @@
 				<div class="panel-heading"><p class="fa fa-mortar-board">&nbsp;</p>스터디 명</div>
 				<div class="panel-body">
 					<br>
-					<blockquote>자바 & JSP 공부</blockquote>
+						<blockquote><input type="text" value='a'></blockquote>
 				</div>
 				<!-- /.panel-heading -->
 			</div>
