@@ -49,9 +49,9 @@ body {
 <body>
 
 <div class="topnav">
-  <a class="active" href="/home">Home</a>
+  <a class="active" href="/study-of-us/home">Home</a>
   <a href="Create">Study Create</a>
-  <a href="study/search">Study Search</a>
+  <a href="/study-of-us/study/search">Study Search</a>
   <a href="#information">Information</a>
   <div class="topnav-right">
     <a href="#login">Login</a>

@@ -58,8 +58,9 @@
 		);
 		
 		$(".projectcontainer").click(function(){
-			$(this).submit('action','/schedule/StyudySchedule.jsp');
+			location.href = "이동할 주소"
 		})
+		
 	})
 </script>
 <body>

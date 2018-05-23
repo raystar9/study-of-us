@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+	<form class="example" action="Request_Test.jsp" method="post">
 <div class="search">
-	<form class="example" action="/action_page.php">
   		<button type="submit"><i class="fa fa-search"></i></button>
- 		 <input type="text" placeholder="Search.." name="search2">
-	</form>
+ 		 <input type="text" placeholder="Search.." id="searchVal" name="searchVal">
+	
 	
 	<div class="custom-select">
-  		<select id="firstArray">
+  		<select id="firstArray" name="firstArray">
   			  <option value="-1">대분류</option>
   			  <option value="1">프로그래밍</option>
  			  <option value="2">외국어</option>
@@ -17,7 +17,7 @@
 	</div>
 	
 	<div class="custom-select2">
-  		<select id="secondArray">
+  		<select id="secondArray" name="secondArray">
   			  <option value="-1">소분류</option>
   			  
   		</select>
@@ -28,7 +28,7 @@
 	<p>
 	<span>체크사항1</span>
 	<label class="container">One
-  		<input type="checkbox" checked="checked">
+  		<input type="checkbox" checked="checked" value="One" name="check1">
 		<span class="checkmark"></span>
 	</label>
 		<label class="container">Two
@@ -85,7 +85,7 @@
 	</label>	
 	</p>
 	</div>
-	
+	</form>
 	<div class="project">
 		<div class="projectcontainer">
   			<img src="/study-of-us/resources/images/IMG2.jpg" alt="Avatar" style="width:90px">

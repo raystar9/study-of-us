@@ -4,22 +4,17 @@ body {
 }
 
  
-form.example{
-	margin-top:30px;
-	display: inline-block;
-	width: 80%;
-	float:right;
-}
 
 
-form.example input[type=text] {
+
+form.example input[type=text]  {
     padding: 10px;
     font-size: 17px;
     border: 1px solid grey;
     float: right;
-    width: 80%;
+    width: 70%;
+    margin-top: 30px;
     background: #f1f1f1;
-    
 }
 
 form.example button {
@@ -29,10 +24,11 @@ form.example button {
     background: #2196F3;
     color: white;
     font-size: 17px;
+    margin-top: 30px;
     border: 1px solid grey;
     border-left: none;
     cursor: pointer;
-    margin-right:20px;
+    margin-right: 20px;
 }
 
 form.example button:hover {

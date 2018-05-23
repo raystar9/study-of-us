@@ -13,14 +13,14 @@ import javax.xml.ws.Dispatch;
 /**
  * Servlet implementation class Home
  */
-@WebServlet("/home")
-public class Home extends HttpServlet {
+@WebServlet("/study/search")
+public class Search extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Home() {
+    public Search() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,8 +30,8 @@ public class Home extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		System.out.println("메인페이지");
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/main/Main.jsp");
+		System.out.println("스터디 검색 페이지");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/search.jsp");
 		dispatcher.forward(request, response);
 	}
 }
