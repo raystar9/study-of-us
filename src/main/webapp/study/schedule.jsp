@@ -14,11 +14,7 @@
 </head>
 <body>
 <%@ include file = "/general-sources/Navigation.jsp" %><br>
-	<div id='calendar'></div>
-	
-	<div class="varcontainer">
-  		<div class="skills js">진행률(65%)</div>
-	</div>
+<%@ include file = "sources/schedule/section.jsp" %><br>
 <%@ include file = "/general-sources/Footer.jsp" %>
 </body>
 </html>
