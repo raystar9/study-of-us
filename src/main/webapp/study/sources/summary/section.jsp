@@ -1,63 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<style>
 
-table {
-	 margin : 0 auto;
-	width : 100%;
-    border-collapse: separate;
-    border-spacing: 1px;
-    line-height: 70px;
-    border-top: 1px solid #ccc;
-  	/* margin : 20px 10px; */
-}
-table th {
-    width: 40%;
-	height : 70px;
-    padding: 10px;
-    font-weight: bold;
-    vertical-align: top;
-    border-bottom: 1px solid #ccc;
-}
-table td {
-    width: 100%;
-	height : 70px;
-	float : left;
-    padding: 10px;
-    vertical-align: top;
-    border-bottom: 1px solid #ccc;
-}
 
-input[type=text] {
-    width: 20%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-input[type=submit] {
-    width: 100%;
-    background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-input[type=submit]:hover {
-    background-color: #45a049;
-}
-</style>
 </head>
 <body>
 <hr>
