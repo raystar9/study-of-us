@@ -11,50 +11,50 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import beans.prototype.Study;
+import beans.StudySearch;
 import dao.DataAccessor;
 import dao.DataGetter;
 import dao.DatabaseAccounts;
 import dao.exceptions.DatabaseConnectException;
 
 /**
- * Servlet implementation class Home
+ * Servlet implementation class SearchList
  */
-@WebServlet("/study/search")
-public class Search extends HttpServlet {
+@WebServlet("/study/SearchList")
+public class SearchList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Search() {
+    public SearchList() {
         super();
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		System.out.println("스터디 검색 페이지");
 		
 		ExceptionHandler.general(new ExceptionHandleable() {
 			
 			@Override
 			public DataAccessor methods() throws DatabaseConnectException, SQLException {
-
-				DataGetter getter = new DataGetter(DatabaseAccounts.ADMIN);
-				ArrayList<Study> studies = getter.getStudys();
+				String searchVal = request.getParameter("searchVal");
+				System.out.println("검색어는 "+ searchVal);
 				
+				DataSetter setter = new DataSetter()
+				
+				DataGetter getter = new DataGetter(DatabaseAccounts.ADMIN);
+				ArrayList<StudySearch> studies = getter.getSearchList(searchVal);
 				
 				request.setAttribute("studies", studies);
 				return getter;
-				
 			}
 		});
+		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/search.jsp");
 		dispatcher.forward(request, response);
-		System.out.println("그러니?");
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
+
+
 }
