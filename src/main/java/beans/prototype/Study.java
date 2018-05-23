@@ -8,7 +8,7 @@ import dao.exceptions.DatabaseConnectException;
 import dao.interfaces.DataGettable;
 
 public class Study implements DataGettable{
-	public static final String QUERY_GET = "SELECT DEPTNO, DNAME FROM DEPT";
+	public static final String QUERY_GET = "SELECT * FROM Study";
 	public static final String QUERY_POST = "INSERT INTO DEPTNO VALUES(seq.nextval, ?, ?)";
 	public static final String QUERY_PUT = "UPDATE ";
 	public static final String QUERY_DELETE = "DELETE ";

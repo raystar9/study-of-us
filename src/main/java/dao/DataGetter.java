@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import beans.prototype.Member;
+import beans.prototype.Study;
 import dao.exceptions.DatabaseConnectException;
 import dao.interfaces.DataGettable;
 /**
@@ -65,6 +66,25 @@ public class DataGetter extends DataAccessor {
 		});
 		
 		return list;
+	}
+
+	public ArrayList<Study> getStudys() throws DatabaseConnectException, SQLException {
+		@SuppressWarnings("unchecked")
+		ArrayList<Study> list = (ArrayList<Study>) get(Study.QUERY_GET, new DataGettable() {
+			
+			@Override
+			public ArrayList<?> onGetResult(ResultSet rs) throws DatabaseConnectException, SQLException {
+				ArrayList<Study> studys = new ArrayList<>();
+				while(rs.next()) {
+					Study study = new Study();
+					study.set
+				}
+				return null;
+			}
+		})
+		
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

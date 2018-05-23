@@ -2,6 +2,7 @@ package servlet;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,9 +10,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.xml.ws.Dispatch;
 
+import beans.prototype.Study;
 import dao.DataAccessor;
+import dao.DataGetter;
+import dao.DatabaseAccounts;
 import dao.exceptions.DatabaseConnectException;
 
 /**
@@ -41,7 +44,9 @@ public class Search extends HttpServlet {
 			@Override
 			public DataAccessor methods() throws DatabaseConnectException, SQLException {
 
-				DataGetter
+				DataGetter getter = new DataGetter(DatabaseAccounts.ADMIN);
+				ArrayList<Study> studys = getter.getStudys();
+				
 				return null;
 			}
 		});
