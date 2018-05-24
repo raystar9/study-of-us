@@ -9,7 +9,7 @@
 <body>
 <h3 align=center>Join StudyOfUs</h3>
 	<div>
-  <form action="#">
+  <form action="insertprocess">
     <label for="lid"><strong>ID</strong></label><br>
     <input type="text" id="id" name="id" maxlength=10>
     <input type="button" id="idcheck" name="idcheck" value="중복검사"><br>
@@ -24,8 +24,8 @@
     <input type="password" id=pass2 name="pass2" maxlength=10><br>
     
     <label for="email"><strong>E-mail</strong></label><br>
-    <input type="text" id="email" name="email" maxlength=10> @
-    <input type="text" id="domain" name="domain" maxlength=10>
+    <input type="email" id="email" name="email" maxlength=30><br>
+    <!-- <input type="text" id="domain" name="domain" maxlength=10>
     <select name=sel id=sel>
     	<option value="">select domain</option>
     	<option value="naver.com">naver.com</option>
@@ -34,7 +34,7 @@
     	<option value="google.com">google.com</option>
     	<option value="yahoo.co.kr">yahoo.co.kr</option>
     </select><br>
-
+ -->
 	<label for="tel"><strong>전화번호</strong></label><br>
 	<input type=text id=tel name="tel"><br>
 	

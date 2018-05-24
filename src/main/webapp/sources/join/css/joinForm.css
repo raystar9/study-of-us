@@ -1,5 +1,5 @@
 @CHARSET "UTF-8";
-input[type=text],input[type=password] {
+input[type=text],input[type=password],input[type=email] {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -35,18 +35,12 @@ div {
    
 }
 #email{
-	width : 30%
+	width : 100%
 }
-
+/* 
 #domain{
 	width : 30%
-}	
-#post1{
-	width : 48%;
-}
-#post2{
-	width : 48%;
-}
+}	 */
 #id{
 	width: 80%;
 }
