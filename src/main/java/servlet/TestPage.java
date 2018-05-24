@@ -35,9 +35,9 @@ public class TestPage extends HttpServlet {
 				DataGetter getter = new DataGetter(DatabaseAccounts.ADMIN);
 				ArrayList<Member> members = getter.getMembers();
 				
-				for(Member member  : members) {
-					System.out.println((member.getId()));
-				}
+				/*for(Member member  : members) {
+					System.out.println((member.get));
+				}*/
 				
 				return getter;
 			}
