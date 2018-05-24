@@ -1,0 +1,24 @@
+@charset "UTF-8";
+.input-group.custom-search-form {
+	width: 200px;
+}
+
+.panel-heading {
+	height: 50px;
+}
+
+.input-group.custom-search-form {
+	float: right;
+	height: 20px;
+}
+
+#top_total {
+	text-align: right;
+	width: 200px;
+	display: inline-block;
+}
+
+.big-table{
+	width:100%;
+	height:300px;
+}
