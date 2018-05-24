@@ -139,7 +139,7 @@
 									name="duesTotalFee">&nbsp;원 &nbsp;-&nbsp; <input
 									type="text" class="total" id="dues-totalExpen"
 									name="duesTotalExpen">&nbsp;원 &nbsp;=&nbsp; <input
-									type="text" class="total" id="dues-total" name="dues-Total">&nbsp;원
+									type="text" class="total" id="dues-total" name="duesTotal">&nbsp;원
 							</div>
 						</div>
 					</div> <br>

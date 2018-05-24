@@ -14,7 +14,6 @@
 </head>
 
 <body>
-	<form action="#" method="post">
 		<div class="row">
 			<div class="col-lg-12">
 				<h1 class="page-header">회비 상세보기</h1>
@@ -132,7 +131,7 @@
 									name="duesTotalFee" readOnly>&nbsp;원 &nbsp;-&nbsp; <input
 									type="text" class="total" id="dues-totalExpen"
 									name="duesTotalExpen" readOnly>&nbsp;원 &nbsp;=&nbsp; <input
-									type="text" class="total" id="dues-total" name="dues-Total" readOnly>&nbsp;원
+									type="text" class="total" id="dues-total" name="duesTotal" readOnly>&nbsp;원
 							</div>
 						</div>
 					</div> <br>
@@ -159,7 +158,6 @@
 					id="delete-btn" value="삭제"></td>
 			</tr>
 		</table>
-	</form>
 
 </body>
 
