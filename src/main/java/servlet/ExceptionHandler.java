@@ -31,4 +31,24 @@ public class ExceptionHandler{
 			}
 		}
 	}
+	
+	public static void dongwan(ExceptionHandleable handleable) {
+		DataAccessor accessor = null;
+		try {
+			accessor = handleable.methods();
+		} catch (DatabaseConnectException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(accessor != null) {
+					accessor.close();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
 }

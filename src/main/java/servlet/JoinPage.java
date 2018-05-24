@@ -1,9 +1,8 @@
 package servlet;
 
 import java.io.IOException;
-import java.sql.PreparedStatement;
+import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import beans.prototype.Member;
 import dao.DataAccessor;
-import dao.DataGetter;
 import dao.DataPoster;
 import dao.DatabaseAccounts;
 import dao.exceptions.DatabaseConnectException;
@@ -38,8 +36,11 @@ public class JoinPage extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+			
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/joinForm.jsp");
+		dispatcher.forward(request, response);
+		
+		
 	}
 
 	/**
@@ -55,6 +56,8 @@ public class JoinPage extends HttpServlet {
 		member.setAddress(request.getParameter("area"));
 		member.setGender(request.getParameter("gender"));
 		member.setIntroduce(request.getParameter("introduce"));
+		//TODO 회원가입 완료 했다는 페이지 만들어줘야된다.
+		
 		
 		ExceptionHandler.general(new ExceptionHandleable() 
 		{
@@ -63,12 +66,10 @@ public class JoinPage extends HttpServlet {
 				// TODO Auto-generated method stub
 				DataPoster poster = new DataPoster(DatabaseAccounts.ADMIN);//계정이름은 context 에 서 정해줄 수 있다 현재 system/1234
 				poster.postMembers(member);			//멤버값을 받아오고
+				return poster;						// try 캐치문을 실행해주기위해 리턴을 보낸다.!
 				
-				return poster;						// 이리턴 은 왜 해야 되는가.
+				
 			}
 		});
-		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("Main.jsp");
-		dispatcher.forward(request, response);
 	}
 }

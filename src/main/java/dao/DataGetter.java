@@ -1,3 +1,7 @@
+//get 과 dataAccerssor 을 한페이지에서하는거고
+//set 과 post 를 나눠 준거다.
+//DataAccessor 은 데이터베이스 연결해주는 역할을한다.
+
 package dao;
 
 import java.sql.PreparedStatement;
@@ -28,7 +32,10 @@ public class DataGetter extends DataAccessor {
 	 * 쿼리문을 실행하며 넘겨받은 gettable에서 구현한 메서드대로 ResultSet을 List에 담아서 반환합니다.
 	 * 또한 onGetResult가 어떤 ArrayList를 반환할 지 모르기때문에 리스트는 제네릭 <?>으로 설정했습니다.
 	 */
+	
+	// arraylist 에 담아서 get 을 할 때 사용
 	private ArrayList<?> get(String query, DataGettable gettable) throws DatabaseConnectException, SQLException {
+		
 		PreparedStatement pstmt = getStatement(query);
 		ResultSet rs = pstmt.executeQuery();
 		

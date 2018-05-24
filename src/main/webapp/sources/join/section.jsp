@@ -9,7 +9,7 @@
 <body>
 <h3 align=center>Join StudyOfUs</h3>
 	<div>
-  <form action="insertprocess">
+  <form action="join" method="post">
     <label for="lid"><strong>ID</strong></label><br>
     <input type="text" id="id" name="id" maxlength=10>
     <input type="button" id="idcheck" name="idcheck" value="중복검사"><br>
@@ -18,7 +18,7 @@
     <input type="text" id="name" name="name" maxlength=10><br>
     
     <label for="password"><strong>Pass</strong></label><br>
-    <input type="password" id="pass" name="pass" maxlength=10><br>
+    <input type="password" id="password" name="password" maxlength=10><br>
     
     <label for="password2"><strong>비밀번호확인</strong></label><br>
     <input type="password" id=pass2 name="pass2" maxlength=10><br>
