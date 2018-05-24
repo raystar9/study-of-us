@@ -24,8 +24,8 @@ public class DataPoster extends DataSetter {
 			
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException{
-				pstmt.setInt(1, member.getIndex());
-				pstmt.setString(2, member.getId());
+				pstmt.setInt(1, member.getM_index());
+				pstmt.setString(2, member.getM_id());
 			}
 		});
 	}
