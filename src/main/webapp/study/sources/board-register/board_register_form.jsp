@@ -15,26 +15,20 @@
 	<tr>
 		<td><div>글쓴이</div></td>
 		<td>
-			<input name="BOARD_NAME" id="board_name" readOnly type="text" size="10" maxlength="30" value="${id}">
+			<input name="BOARD_NAME" id="board-name" readOnly type="text" size="10" maxlength="30" value="${id}">
 		</td>
 	</tr>
-	<tr>                          
-		<td><div>비밀번호</div></td>
-		<td>
-			<input name="BOARD_PASS" id="board_pass" type="password" 
-				   size="10" maxlength="30" value="">
-		</td>
-	</tr>
+	
 	<tr>
 		<td><div>제 목</div></td>
 		<td>
-			<input name="BOARD_SUBJECT" id="board_subject" type="text" size="50" maxlength="100" value="">
+			<input name="BOARD_SUBJECT" id="board-subject" type="text" size="50" maxlength="100" value="">
 		</td>
 	</tr>
 	<tr>
 		<td><div>내 용</div></td>
 		<td>
-			<textarea name="BOARD_CONTENT" id="board_content" cols="67" rows="15"></textarea>
+			<textarea name="BOARD_CONTENT" id="board-content" cols="67" rows="15"></textarea>
 		</td>
 	</tr>
 	<tr class="center">

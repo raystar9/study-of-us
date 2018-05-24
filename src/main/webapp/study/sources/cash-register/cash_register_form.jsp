@@ -7,7 +7,7 @@
 <head>
 
 <script src="http://code.jquery.com/jquery-latest.js"></script>
-<script type="text/javascript" src="sources/cash/register/js/cash.js"></script>
+<script type="text/javascript" src="js/cash_register.js"></script>
 
 <style>
 .btn btn-default {
@@ -89,8 +89,7 @@
 												<td><input type="text" class="form-control"
 													placeholder="이름" id='dues-mem' name='duesMem'></td>
 												<td><input type="text" class="form-control"
-													placeholder="금액" id='dues-
-' name='duesFee'
+													placeholder="금액" id='dues-fee' name='duesFee'
 													onkeyup="calculate();"></td>
 												<td><input type="text" class="form-control"
 													placeholder="비고" id='dues-note' name='duesNote'></td>
