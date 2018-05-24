@@ -4,9 +4,8 @@ import java.util.Date;
 
 public class Board_List {
 
-	public static final String QUERY_GET = "SELECT";
-	public static final String QUERY_GET_COUNT = "SELECT";
-	public static final String QUERY_PUT = "UPDATE";
+	public static final String QUERY_GET = "SELECT";		//board_list_form.jsp에서 데이터 가져올 때 쿼리
+	public static final String QUERY_GET_COUNT = "SELECT";	//board_list_form.jsp에서 게시물 수 가져올 때 쿼리
 
 	private String title; 	// 게시글 제목
 	private String name; 	// 게시글 작성자

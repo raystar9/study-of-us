@@ -4,9 +4,10 @@ import java.util.Date;
 
 public class Cash_View_Register {
 	
-	public static final String QUERY_GET = "SELECT";
-	public static final String QUERY_PUT = "UPDATE";
-	public static final String QUERY_DELETE = "DELETE ";
+	public static final String QUERY_GET = "SELECT";		//cash_view_form.jsp에서 데이터 가져올 때 쿼리
+	public static final String QUERY_PUT = "UPDATE";		//cash_view_form.jsp에서 데이터 수정할 때 쿼리	
+	public static final String QUERY_DELETE = "DELETE ";	//cash_view_form.jsp에서 데이터 삭제할 때 쿼리
+	public static final String QUERY_POST = "INSERT";		//cash_register_form.jsp에서 데이터 삽입할 때 쿼리
 
 	private String title; 		 // 회비게시글 제목
 	private Date date; 		 // 회비게시글 날짜

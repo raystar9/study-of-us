@@ -2,7 +2,10 @@ package beans;
 
 import java.util.Date;
 
-public class Inform {
+public class Inform_Setup {
+	
+	public static final String QUERY_GET = "SELECT";	//inform_form.jsp에서 데이터 가져올 때 쿼리
+	public static final String QUERY_PUT = "UPDATE";	//setup_form.jsp에서 데이터 수정할 때 쿼리
 	
 	private int index;			//스터디 번호
 	private String name;		//스터디 이름
@@ -17,6 +20,7 @@ public class Inform {
 	private String summary;		//스터디 개요
 	private String toPrepare;	//주요 교재 및 준비물
 	private	String effect;		//기대효과 및 활동분야
+	
 	public int getIndex() {
 		return index;
 	}

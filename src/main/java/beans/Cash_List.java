@@ -4,9 +4,7 @@ import java.util.Date;
 
 public class Cash_List {
 	
-	public static final String QUERY_GET = "SELECT";
-	public static final String QUERY_PUT = "UPDATE";
-	public static final String QUERY_DELETE = "DELETE ";
+	public static final String QUERY_GET = "SELECT";		//cash_list_form.jsp에서 데이터 가져올 때 쿼리
 
 	private int index; 		// 회비게시글 작성 번호
 	private String title; 	// 회비게시글 제목

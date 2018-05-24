@@ -33,6 +33,8 @@ CREATE TABLE Study(
 	S_TERM DATE NOT NULL
 )
 
+INSERT INTO Study VALUES(study_index.nextval,'JAVA&JSP','JAVA','부천','3','5','자바와 JSP 마스터','2018-05-24')
+
 SELECT * FROM Study;
 
 -- Study 테이블 INDEX의 시퀀스
