@@ -1,4 +1,4 @@
-package beans;
+package beans.study.each.board;
 
 import java.util.Date;
 

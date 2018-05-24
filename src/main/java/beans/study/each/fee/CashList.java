@@ -1,4 +1,4 @@
-package beans;
+package beans.study.each.fee;
 
 import java.util.Date;
 
