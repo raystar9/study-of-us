@@ -1,3 +1,5 @@
+/*board_view_form.jsp (게시글 상세보기 페이지) / board_register_form.jsp (게시글 등록 페이지) 에서 사용하는 Bean*/
+
 package beans;
 
 import java.util.Date;
@@ -12,7 +14,7 @@ public class BoardViewRegister {
 	private String title; 	 // 게시글 제목
 	private String name; 	 // 게시글 작성자
 	private String content;  // 게시글 내용
-	private Date date; 		 // 게시글 작성일
+	private String date; 		 // 게시글 작성일
 
 	public String getTitle() {
 		return title;
@@ -38,14 +40,14 @@ public class BoardViewRegister {
 		this.content = content;
 	}
 
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
-
+	
 	
 
 }

@@ -2,15 +2,17 @@ package beans.prototype;
 
 import java.sql.Date;
 
-public class Study {
-	public static final String QUERY_GET = "SELECT * from studyT";
+public class Study{
+	
+	public static final String QUERY_GET = "SELECT * FROM Study";
 	public static final String QUERY_POST = "INSERT INTO DEPTNO VALUES(seq.nextval, ?, ?)";
 	public static final String QUERY_PUT = "UPDATE ";
 	public static final String QUERY_DELETE = "DELETE ";
 	
+	
 	private int index;
 	private String name;
-	private String categoryid;
+	private String c_id;
 	private String place;
 	private Date time;
 	private int ploplenum;
@@ -29,11 +31,11 @@ public class Study {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getCategoryid() {
-		return categoryid;
+	public String getC_id() {
+		return c_id;
 	}
-	public void setCategoryid(String categoryid) {
-		this.categoryid = categoryid;
+	public void setC_id(String c_id) {
+		this.c_id = c_id;
 	}
 	public String getPlace() {
 		return place;
@@ -79,5 +81,27 @@ public class Study {
 	}
 	
 	
+
+
+	
+/*	public enum ColumnName{
+		INDEX("DEPTNO"), ID("DNAME");
+
+		ColumnName(String str) {
+			_str = str;
+		}
+		
+		private String _str;
+		
+		@Override
+		public String toString() {
+			return _str;
+		}
+		
+		public static String[] getNames() {
+			String[] strings = {INDEX.toString(), ID.toString()};
+			return strings;
+		}
+	}*/
 }
 

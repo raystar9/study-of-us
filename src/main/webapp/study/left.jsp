@@ -1,8 +1,12 @@
 <!-- 스터디 안의 왼쪽 메뉴 바 -->
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <html lang="en">
-
+<style>
+	#left{
+		width: 200px;
+	}
+</style>
 <head>
 
 <meta charset="utf-8">
@@ -33,9 +37,7 @@
 
 <body>
 
-	<div id="wrapper">
-
-		<div class="navbar-default sidebar" role="navigation">
+		<div class="navbar-default sidebar" role="navigation" id='left'>
 			<div class="sidebar-nav navbar-collapse">
 				<ul class="nav" id="side-menu">
 
@@ -57,8 +59,6 @@
 		</div>
 		<!-- /.navbar-default sidebar -->
 		
-	</div>
-	<!-- /#wrapper -->
 
 	<!-- jQuery -->
 	<script src="/study-of-us/vendor/jquery/jquery.min.js"></script>
