@@ -14,7 +14,7 @@ public class BoardViewRegister {
 	private String title; 	 // 게시글 제목
 	private String name; 	 // 게시글 작성자
 	private String content;  // 게시글 내용
-	private Date date; 		 // 게시글 작성일
+	private String date; 		 // 게시글 작성일
 
 	public String getTitle() {
 		return title;
@@ -40,14 +40,14 @@ public class BoardViewRegister {
 		this.content = content;
 	}
 
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
-
+	
 	
 
 }
