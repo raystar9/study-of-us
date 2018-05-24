@@ -1,3 +1,5 @@
+/*board_view_form.jsp (게시글 상세보기 페이지) / board_register_form.jsp (게시글 등록 페이지) 에서 사용하는 Bean*/
+
 package beans;
 
 import java.util.Date;
