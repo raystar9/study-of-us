@@ -1,6 +1,7 @@
 package beans.prototype;
 
 public class Board {
+	
 	 public static final String QUERY_GET ="SELECT * FROM Board";
      public static final String QUERY_POST = "insert into member values(member_index.nextval,?,?,?,?,?,?,?,?)";
      public static final String QUERY_PUT = "UPDATE ";

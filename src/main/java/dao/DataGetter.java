@@ -6,7 +6,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import beans.Login;
+import beans.StudyListCount;
+import beans.StudySearch;
 import beans.prototype.Member;
+import beans.prototype.Study;
 import dao.exceptions.DatabaseConnectException;
 import dao.interfaces.DataGettable;
 import dao.interfaces.DataSettable;
@@ -84,6 +87,111 @@ public class DataGetter extends DataAccessor {
 		
 		return list;
 	}
+
+	public ArrayList<Study> getStudys() throws DatabaseConnectException, SQLException {
+		@SuppressWarnings("unchecked")
+		ArrayList<Study> list = (ArrayList<Study>) get(Study.QUERY_GET, new DataGettable() {
+			
+			@Override
+			public ArrayList<?> onGetResult(ResultSet rs) throws DatabaseConnectException, SQLException {
+				ArrayList<Study> studies = new ArrayList<>();
+				while(rs.next()) {
+					Study study = new Study();
+					study.setIndex(rs.getInt(1));
+					study.setName(rs.getString(2));
+					study.setC_id(rs.getString(3));
+					study.setPlace(rs.getString(4));
+					study.setTime(rs.getDate(5));
+					study.setPloplenum(6);
+					study.setGoal(rs.getString(7));
+					study.setTerm(rs.getDate(8));
+					
+					studies.add(study);
+				}
+				return studies;
+			}
+		});
+		
+		// TODO Auto-generated method stub
+		return list;
+	}
+
+	public ArrayList<StudySearch> getSearchList(String searchVal) throws DatabaseConnectException, SQLException {
+		
+	
+		@SuppressWarnings("unchecked")
+		ArrayList<StudySearch> list = (ArrayList<StudySearch>) get(StudySearch.QUERY_GET, 
+			new DataSettable() {
+
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+				String serach = "%"+searchVal+"%";
+				System.out.println(serach);
+				pstmt.setString(1, serach);
+			}
+			
+		}, 
+			new DataGettable() {
+			
+			@Override
+			public ArrayList<?> onGetResult(ResultSet rs) throws DatabaseConnectException, SQLException {
+				ArrayList<StudySearch> StudySearchlist = new ArrayList<>();
+				while(rs.next()) {
+					StudySearch studysearch = new StudySearch();
+					studysearch.setIndex(rs.getInt(1));
+					studysearch.setName(rs.getString(2));
+					studysearch.setC_id(rs.getString(3));
+					studysearch.setPlace(rs.getString(4));
+					studysearch.setTime(rs.getDate(5));
+					studysearch.setPloplenum(6);
+					studysearch.setGoal(rs.getString(7));
+					studysearch.setTerm(rs.getDate(8));
+					
+					StudySearchlist.add(studysearch);
+				}
+				return StudySearchlist;
+			}
+		});
+		return list;
+	}
+
+	public ArrayList<StudyListCount> getStudyPaging(int startcount, int endcount) throws DatabaseConnectException, SQLException{
+		@SuppressWarnings("unchecked")
+		ArrayList<StudyListCount> list = (ArrayList<StudyListCount>) get(StudyListCount.QUERY_GET, new DataGettable() {
+			
+			@Override
+			public ArrayList<?> onGetResult(ResultSet rs) throws DatabaseConnectException, SQLException {
+				ArrayList<StudyListCount> StudyListCountlist = new ArrayList<>();
+				while(rs.next()) {
+					StudyListCount StudyListCount = new StudyListCount();
+					StudyListCount.setIndex(rs.getInt(2));
+					StudyListCount.setName(rs.getString(3));
+					StudyListCount.setC_id(rs.getString(4));
+					StudyListCount.setPlace(rs.getString(5));
+					StudyListCount.setTime(rs.getDate(6));
+					StudyListCount.setPloplenum(7);
+					StudyListCount.setGoal(rs.getString(8));
+					StudyListCount.setTerm(rs.getDate(9));
+					
+					StudyListCountlist.add(StudyListCount);
+				}
+				return StudyListCountlist;
+			}
+		}, new DataSettable() {
+			
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+				pstmt.setInt(1, startcount);
+				pstmt.setInt(2, endcount);
+				
+			}
+		});
+		return list;
+	}
+
+
+
+	
 	
 	public Login getLogin(Login loginbean) throws DatabaseConnectException, SQLException{
 		Login login = (Login) get(Login.QUERY_GET, new DataSettable() {
