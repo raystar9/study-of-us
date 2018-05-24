@@ -30,7 +30,7 @@ public class DataGetter extends DataAccessor {
 	 * 쿼리문을 실행하며 넘겨받은 gettable에서 구현한 메서드대로 ResultSet을 List에 담아서 반환합니다.
 	 * 또한 onGetResult가 어떤 ArrayList를 반환할 지 모르기때문에 리스트는 제네릭 <?>으로 설정했습니다.
 	 */
-	private Object get(String query, DataGettable gettable, DataSettable settable) throws DatabaseConnectException, SQLException {
+	private Object get(String query, DataSettable settable, DataGettable gettable) throws DatabaseConnectException, SQLException {
 		PreparedStatement pstmt = getStatement(query);
 		if(settable != null) {
 			settable.prepare(pstmt);
@@ -47,15 +47,15 @@ public class DataGetter extends DataAccessor {
 	
 	@SuppressWarnings("unused")
 	private Object get(String query, DataGettable gettable) throws DatabaseConnectException, SQLException {
-		return get(query, gettable, null);
+		return get(query, null, gettable);
 	}
 	
 	private ArrayList<?> getArrayList(String query, DataGettable gettable) throws DatabaseConnectException, SQLException {
-		return getArrayList(query, gettable, null);
+		return getArrayList(query, null, gettable);
 	}
 	
-	private ArrayList<?> getArrayList(String query, DataGettable gettable, DataSettable settable) throws DatabaseConnectException, SQLException {
-		return (ArrayList<?>) get(query, gettable, settable);
+	private ArrayList<?> getArrayList(String query, DataSettable settable, DataGettable gettable) throws DatabaseConnectException, SQLException {
+		return (ArrayList<?>) get(query, settable, gettable);
 	}
 	
 	/**
