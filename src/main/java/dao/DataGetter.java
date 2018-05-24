@@ -83,26 +83,37 @@ public class DataGetter extends DataAccessor {
 		return list;
 	}
 
+	//게시판에 들어갔을 때 나오는 목록 데이터를 가져오는 메소드 (board_list_form.jsp)
 	public ArrayList<BoardList> getBoardList() throws DatabaseConnectException, SQLException {
 
 		@SuppressWarnings("unchecked")
 		ArrayList<BoardList> list = (ArrayList<BoardList>) get(BoardList.QUERY_GET, new DataGettable() {
-			
+
 			@Override
 			public ArrayList<BoardList> onGetResult(ResultSet rs) throws DatabaseConnectException, SQLException {
 				ArrayList<BoardList> boardlist = new ArrayList<>();
 				while (rs.next()) {
 					BoardList board = new BoardList();
-					board.setCount(rs.getInt(1));
-					board.setIndex(rs.getInt(2));
-					board.setTitle(rs.getString(3));
-					board.setName(rs.getString(4));
-					board.setDate(rs.getDate(5));
+					board.setIndex(rs.getInt(1));
+					board.setTitle(rs.getString(2));
+					board.setName(rs.getString(3));
+					board.setDate(rs.getDate(4));
+					board.setCount(rs.getInt(5));
 					boardlist.add(board);
 				}
 				return boardlist;
 			}
-		});
+		}, new DataSettable() {
+
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+				// TODO Auto-generated method stub
+				//아직 뭐 들어갈지 몰라서 정의하지 않았음
+			}
+
+		}
+
+		);
 
 		return list;
 	}
