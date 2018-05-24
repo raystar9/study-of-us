@@ -1,15 +1,10 @@
-package beans;
-
+package beans.study;
 import java.sql.Date;
 
-public class StudyListCount {
-	public static final String QUERY_GET = "select * from (select rownum as rnum, s_index, s_name, s_c_id, s_place, s_time, s_plopienum, s_goal, s_term "
-			+ "from ("
-			+ "select s_index, s_name, s_c_id, s_place, s_time, s_plopienum, s_goal, s_term "
-			+ "from study "
-			+ "order by s_index)) "
-			+ "where rnum >= ? and rnum <= ?";
 
+public class StudySearch {
+	public static final String QUERY_GET = "select * from study where S_NAME LIKE ?";
+	
 	private int index;
 	private String name;
 	private String c_id;
@@ -18,6 +13,7 @@ public class StudyListCount {
 	private int ploplenum;
 	private String goal;
 	private Date term;
+	
 	
 	public int getIndex() {
 		return index;
@@ -70,6 +66,5 @@ public class StudyListCount {
 	public static String getQueryGet() {
 		return QUERY_GET;
 	}
-	
-	
 }
+

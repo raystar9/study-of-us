@@ -5,12 +5,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import beans.Login;
-import beans.StudyListCount;
-import beans.StudySearch;
-import beans.BoardList;
 import beans.prototype.Member;
 import beans.prototype.Study;
+import beans.root.Login;
+import beans.study.StudyListCount;
+import beans.study.StudySearch;
+import beans.study.each.board.BoardList;
 import dao.exceptions.DatabaseConnectException;
 import dao.interfaces.DataGettable;
 import dao.interfaces.DataSettable;
