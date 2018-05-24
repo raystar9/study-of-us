@@ -2,7 +2,7 @@ package beans;
 
 import java.util.Date;
 
-public class Cash_List {
+public class CashList {
 	
 	public static final String QUERY_GET = "SELECT";		//cash_list_form.jsp에서 데이터 가져올 때 쿼리
 
