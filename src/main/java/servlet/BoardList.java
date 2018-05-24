@@ -10,12 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebServlet("/study/boardview")
-public class BoardView extends HttpServlet {
+@WebServlet("/study/board")
+public class BoardList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
    
-    public BoardView() {
+    public BoardList() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -23,7 +23,7 @@ public class BoardView extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/boardView.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/boardList.jsp");
 		dispatcher.forward(request, response);
 		
 	}
