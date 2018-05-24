@@ -3,6 +3,7 @@ package servlet;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -36,9 +37,12 @@ public class LoginPage extends HttpServlet {
 			public DataAccessor methods() throws DatabaseConnectException, SQLException {
 				DataGetter getter = new DataGetter(DatabaseAccounts.ADMIN);
 				Login logpro = getter.getLogin(loginbean);
-				return getter;
+				response.sendRedirect("loginFail");
+				
+				return getter;				//트라이 캐치문 실행
 			}
 		});
-		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/list.jsp");
+		dispatcher.forward(request, response);
 	}
 }

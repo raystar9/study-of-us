@@ -36,7 +36,7 @@ public class DataGetter extends DataAccessor {
 			settable.prepare(pstmt);
 		}
 		
-		ResultSet rs = pstmt.executeQuery();
+		ResultSet rs = pstmt.executeQuery();			//2 번째로 되고
 		
 		Object result = gettable.onGetResult(rs);
 		
@@ -86,37 +86,28 @@ public class DataGetter extends DataAccessor {
 	}
 	
 	public Login getLogin(Login loginbean) throws DatabaseConnectException, SQLException{
-		Login login = (Login) get(Login.QUERY_GET, new DataGettable() {
-			
-			@Override
-			public Object onGetResult(ResultSet rs) throws DatabaseConnectException, SQLException {
-				
-				
-				Login innerLogin = new Login();			//얘
-				if(rs.next()) {
-					innerLogin.setId(rs.getString(1));
-					innerLogin.setPassword(rs.getString(2));
-					}
-					
-				
-				return innerLogin;    //ongetresult 로 리턴해주고.
-				
-				
-			
-			}
-		}, new DataSettable() {
+		Login login = (Login) get(Login.QUERY_GET, new DataSettable() {
 			
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
+						//1번째실행 위에 executeQuery 가 2번재
 				pstmt.setString(1, loginbean.getId());		// 바인딩변수를 채워주기위해서 데이터 세터블을 매개변수 추가하며 오버로딩을한다.
+			}
+		}, new DataGettable() {
+			
+			@Override
+			public Object onGetResult(ResultSet rs) throws DatabaseConnectException, SQLException {
+				Login innerLogin = null;
+				if(rs.next()) {
+					innerLogin = new Login();			//얘
+					innerLogin.setId(rs.getString(1));
+					innerLogin.setPassword(rs.getString(2));
+				}
+				return innerLogin;    //ongetresult 로 리턴해주고.
 			}
 		});
 		return login;				//나를 불러준 get 로그인한테 리턴해준다.
 	}
-	
-	
-	
-	
 /*	private ArrayList<?> getBean(ResultSet rs, Class<?> beanClass) throws SQLException{
 		Field[] fields = beanClass.getDeclaredFields();
 		ArrayList<beanClass> objects = new ArrayList<>();
