@@ -94,9 +94,10 @@
 					id="date_text"></td>
 			</tr>
 			<tr>
-				<td><h4>*현재인원</h4>
-					<hr> <input type="text" class="form-control" value="6">명
-				</td>
+				<td><h4>*현재인원 / 최대인원</h4>
+					<hr> <input type="text" class="form-control" value="6"
+					readOnly>명/ <input type="text" class="form-control"
+					value="10">명</td>
 			</tr>
 			<tr>
 				<td><h4>*활동시간</h4>
@@ -109,25 +110,25 @@
 				</td>
 			</tr>
 			<tr>
-				<td><h4>*프로젝트 개요</h4>
+				<td><h4>*스터디 지역</h4>
 					<hr> <input type="text" class="form-control"
-					value="우리 프로젝트는 자바와 JSP를 배우는 스터디로서 ~"></td>
+					value="경기도 부천시 원미구 상동"></td>
+			</tr>
+			<tr>
+				<td><h4>*프로젝트 개요</h4>
+					<hr> <textarea rows="7" cols="100">우리 프로젝트는 자바와 JSP를 배우는 스터디로서 ~</textarea>
+				</td>
 			</tr>
 			<tr>
 				<td><h4>*주요 교재 및 준비물</h4>
-					<hr> <input type="text" class="form-control"
-					value="주요 교재 및 준비물로는~"></td>
+					<hr> <textarea rows="7" cols="100">주요 교재 및 준비물로는~</textarea></td>
 			</tr>
 			<tr>
 				<td><h4>*기대효과 및 활동 분야</h4>
-					<hr> <input type="text" class="form-control"
-					value="우리 프로젝트는 자바와 JSP를 배우는 스터디로서 ~"></td>
+					<hr> <textarea rows="7" cols="100">우리 프로젝트는 자바와 JSP를 배우는 스터디로서 ~</textarea>
+					</td>
 			</tr>
-			<tr>
-				<td><h4>*스터디 지역</h4>
-					<hr> <input type="text" class="form-control"
-					value="우리 프로젝트는 자바와 JSP를 배우는 스터디로서 ~"></td>
-			</tr>
+			
 			<tr>
 				<td><input type="submit" class="btn btn-default" id="btn"
 					value="수정"> <input type="reset" class="btn btn-default"

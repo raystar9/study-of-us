@@ -26,6 +26,7 @@
 
 .form-control {
 	text-align: right;
+	width:50px;
 }
 </style>
 
@@ -89,8 +90,10 @@
 			</td>
 		</tr>
 		<tr>
-			<td><h4>*현재인원</h4>
-				<hr> <input type="text" class="form-control" value="6" readOnly>명
+			<td><h4>*현재인원 / 최대인원</h4>
+				<hr> 
+				<input type="text" class="form-control" value="6" readOnly>명/
+				<input type="text" class="form-control" value="10" readOnly>명
 			</td>
 		</tr>
 		<tr>

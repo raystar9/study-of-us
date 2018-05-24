@@ -35,8 +35,7 @@
 		</tr>
 
 		<tr>
-			<td colspan="2" class="center"><a
-				href="./BoardReplyView.bo?num=${b.BOARD_NUM}">답변</a> &nbsp;&nbsp; <c:if
+			<td colspan="2" class="center"> &nbsp; <c:if
 					test="${b.BOARD_NAME == id || id == 'admin' }">
 					<a href="./BoardModifyView.bo?num=${b.BOARD_NUM}">수정</a>
 				&nbsp;&nbsp;

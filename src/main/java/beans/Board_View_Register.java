@@ -12,7 +12,6 @@ public class Board_View_Register {
 	private String title; 	 // 게시글 제목
 	private String name; 	 // 게시글 작성자
 	private String content;  // 게시글 내용
-	private int index; 		 // 게시글 번호
 	private Date date; 		 // 게시글 작성일
 
 	public String getTitle() {
@@ -37,14 +36,6 @@ public class Board_View_Register {
 
 	public void setContent(String content) {
 		this.content = content;
-	}
-
-	public int getNo() {
-		return index;
-	}
-
-	public void setNo(int no) {
-		this.index = no;
 	}
 
 	public Date getDate() {

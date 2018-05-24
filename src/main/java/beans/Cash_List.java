@@ -9,7 +9,7 @@ public class Cash_List {
 	private int index; 		// 회비게시글 작성 번호
 	private String title; 	// 회비게시글 제목
 	private String name; 	// 회비게시글 작성자
-	private Date date; 	// 회비게시 작성일
+	private Date date; 		// 회비게시 작성일
 	private int total; 		// 회비 총액
 
 	
