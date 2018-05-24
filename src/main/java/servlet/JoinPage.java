@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -55,20 +56,19 @@ public class JoinPage extends HttpServlet {
 		member.setGender(request.getParameter("gender"));
 		member.setIntroduce(request.getParameter("introduce"));
 		
-		ExceptionHandler.general(new ExceptionHandleable() {
+		ExceptionHandler.general(new ExceptionHandleable() 
+		{
 			@Override
 			public DataAccessor methods() throws DatabaseConnectException, SQLException {
 				// TODO Auto-generated method stub
 				DataPoster poster = new DataPoster(DatabaseAccounts.ADMIN);//계정이름은 context 에 서 정해줄 수 있다 현재 system/1234
-				poster.postMembers(member);
+				poster.postMembers(member);			//멤버값을 받아오고
 				
-				return poster;
+				return poster;						// 이리턴 은 왜 해야 되는가.
 			}
 		});
 		
-		
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("Main.jsp");
+		dispatcher.forward(request, response);
 	}
-
 }
