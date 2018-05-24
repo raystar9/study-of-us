@@ -25,64 +25,39 @@
 	display: inline-block;
 }
 
-#top_head {
-	
+.big-table{
+	width:600px;
+	height:300px;
 }
 </style>
-
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="">
-<meta name="author" content="">
-
-<title>회비 관리 페이지</title>
-
-<!-- Bootstrap Core CSS -->
-<link href="/study-of-us/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-<!-- MetisMenu CSS -->
-<link href="/study-of-us/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
-
-<!-- DataTables CSS -->
-<link href="/study-of-us/vendor/datatables-plugins/dataTables.bootstrap.css"
-	rel="stylesheet">
-
-<!-- DataTables Responsive CSS -->
-<link href="/study-of-us/vendor/datatables-responsive/dataTables.responsive.css"
-	rel="stylesheet">
-
-<!-- Custom CSS -->
-<link href="../dist/css/sb-admin-2.css" rel="stylesheet">
-
-<!-- Custom Fonts -->
-<link href="/study-of-us/vendor/font-awesome/css/font-awesome.min.css"
-	rel="stylesheet" type="text/css">
-
 
 </head>
 
 <body>
-<form action="#" method="get">
-	<div class="row">
-		<div class="col-lg-12">
-			&nbsp;&nbsp;
-			<h1 class="page-header">회비 관리</h1>
-		</div>
-		<!-- /.col-lg-12 -->
-	</div>
-	<div class="col-lg-6">
-		<div class="panel panel-default">
-			<div class="panel-heading" id="top_head">
-				*회비: <input type="text" class="form-control" id="top_total"
-					placeholder="120,000" readOnly>&nbsp;원
-				<button type="button" class="btn btn-default" id="cash3">추가</button>
+	<form action="#" method="get">
+		<div class="row">
+			<div class="col-lg-12">
+				&nbsp;&nbsp;
+				<h1 class="page-header">회비 관리</h1>
 			</div>
+			<!-- /.col-lg-12 -->
+		</div>
+		<table border='1' class='big-table'>
+			<tr height="10%">
+				<td>
 
-			<!-- /.panel-heading -->
+					<div class="panel-heading" id="top_head">
+						*회비: <input type="text" class="form-control" id="top_total"
+							placeholder="120,000" readOnly>&nbsp;원
+						<button type="button" class="btn btn-default" id="fee-add-btn">추가</button>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
 			<div class="panel-body">
 				<div class="table-responsive">
-					<table class="table table-striped">
+					<table class="table table-striped" border='1' width="100%">
 						<thead>
 							<tr>
 								<th>#</th>
@@ -111,48 +86,16 @@
 								<td>2018/05/10</td>
 							</tr>
 						</tbody>
-						<tfoot>
-							<tr>
-								<td>1,2,3,4,5 페이지 만들 곳</td>
-							</tr>
-						</tfoot>
+						
 					</table>
 				</div>
 				<!-- /.table-responsive -->
 			</div>
-			<div></div>
-			<!-- /.panel-body -->
-		</div>
-		<!-- /.panel -->
-	</div>
-	<!-- /.col-lg-6 -->
-</form>
-
-	<!-- jQuery -->
-	<script src="/study-of-us/vendor/jquery/jquery.min.js"></script>
-
-	<!-- Bootstrap Core JavaScript -->
-	<script src="/study-of-us/vendor/bootstrap/js/bootstrap.min.js"></script>
-
-	<!-- Metis Menu Plugin JavaScript -->
-	<script src="/study-of-us/vendor/metisMenu/metisMenu.min.js"></script>
-
-	<!-- DataTables JavaScript -->
-	<script src="/study-of-us/vendor/datatables/js/jquery.dataTables.min.js"></script>
-	<script src="/study-of-us/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
-	<script src="/study-of-us/vendor/datatables-responsive/dataTables.responsive.js"></script>
-
-	<!-- Custom Theme JavaScript -->
-	<script src="../dist/js/sb-admin-2.js"></script>
-
-	<!-- Page-Level Demo Scripts - Tables - Use for reference -->
-	<script>
-		$(document).ready(function() {
-			$('#dataTables-example').DataTable({
-				responsive : true
-			});
-		});
-	</script>
+				</td>
+			</tr>
+			
+		</table>
+	</form>
 
 </body>
 

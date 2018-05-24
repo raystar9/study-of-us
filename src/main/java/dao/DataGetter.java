@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import beans.prototype.Member;
 import dao.exceptions.DatabaseConnectException;
 import dao.interfaces.DataGettable;
+import dao.interfaces.DataSettable;
 /**
  * 데이터베이스에 쿼리문을 실행하며 해당 쿼리문에 대한 결과를 ArrayList에 담아 반환합니다.
  * @author raystar
@@ -29,8 +30,16 @@ public class DataGetter extends DataAccessor {
 	 * 또한 onGetResult가 어떤 ArrayList를 반환할 지 모르기때문에 리스트는 제네릭 <?>으로 설정했습니다.
 	 */
 	private ArrayList<?> get(String query, DataGettable gettable) throws DatabaseConnectException, SQLException {
+		return get(query, gettable, null);
+	}
+	
+	private ArrayList<?> get(String query, DataGettable gettable, DataSettable settable) throws DatabaseConnectException, SQLException {
 		PreparedStatement pstmt = getStatement(query);
-		ResultSet rs = pstmt.executeQuery();
+		if(settable != null) {
+			settable.prepare(pstmt);
+		}
+		
+		ResultSet rs = pstmt.executeQuery();			
 		
 		ArrayList<?> list = new ArrayList<>();
 		
@@ -56,8 +65,8 @@ public class DataGetter extends DataAccessor {
 				ArrayList<Member> members = new ArrayList<>(); 
 				while(rs.next()) {
 					Member member = new Member();
-					member.setIndex(rs.getInt(1));
-					member.setId(rs.getString(2));
+					member.setM_index(rs.getInt(1));
+					member.setM_id(rs.getString(2));
 					members.add(member);
 				}
 				return members;
@@ -66,6 +75,7 @@ public class DataGetter extends DataAccessor {
 		
 		return list;
 	}
+	
 	
 /*	private ArrayList<?> getBean(ResultSet rs, Class<?> beanClass) throws SQLException{
 		Field[] fields = beanClass.getDeclaredFields();

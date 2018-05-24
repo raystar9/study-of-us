@@ -1,6 +1,7 @@
-<!-- 스터디 안의 설정 페이지 -->
+<!-- 스터디 안의 스터디 정보 페이지 -->
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+	pageEncoding="EUC-KR"%>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -17,180 +18,124 @@
 	width: 150px;
 	display: inline;
 }
-#three_div{
+
+#three_div {
 	width: 150px;
-	display:inline-block;
-}
-.form-control{
-	text-align:right;
+	display: inline-block;
 }
 
+.form-control {
+	text-align: right;
+}
 </style>
-
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="">
-<meta name="author" content="">
-
-<title>스터디 설정 페이지</title>
-
-<!-- Bootstrap Core CSS -->
-<link href="/study-of-us/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-<!-- MetisMenu CSS -->
-<link href="/study-of-us/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
-
-<!-- DataTables CSS -->
-<link href="/study-of-us/vendor/datatables-plugins/dataTables.bootstrap.css"
-	rel="stylesheet">
-
-<!-- DataTables Responsive CSS -->
-<link href="/study-of-us/vendor/datatables-responsive/dataTables.responsive.css"
-	rel="stylesheet">
-
-<!-- Custom CSS -->
-<link href="../dist/css/sb-admin-2.css" rel="stylesheet">
-
-<!-- Custom Fonts -->
-<link href="/study-of-us/vendor/font-awesome/css/font-awesome.min.css"
-	rel="stylesheet" type="text/css">
 
 </head>
 
 <body>
-	<form action="#" method="get">
-		<div class="row">
-			<div class="col-lg-12">
-				<h1 class="page-header">설정</h1>
-			</div>
-			<!-- /.col-lg-12 -->
-		</div>
-		<div class="col-lg-4">
-			<div class="panel panel-default">
-				<div class="panel-heading"><p class="fa fa-mortar-board">&nbsp;</p>카테고리</div>
-				<div class="panel-body">
-					<br>
-					<blockquote>자바 & JSP 공부</blockquote>
-				</div>
-				<!-- /.panel-heading -->
-			</div>
-		</div>
-		<div class="col-lg-4">
-			<div class="panel panel-default">
-				<div class="panel-heading"><p class="fa fa-mortar-board">&nbsp;</p>스터디 명</div>
-				<div class="panel-body">
-					<br>
-					<blockquote>자바 & JSP 공부</blockquote>
-				</div>
-				<!-- /.panel-heading -->
-			</div>
-		</div>
-		<div class="col-lg-6">
-			<div class="panel panel-default">
-				<div class="panel-heading"><p class="fa fa-bar-chart-o">&nbsp;</p>기간</div>
-				<!-- /.panel-heading -->
-				<div class="panel-body">
-				<input type="text" class="form-control"
-					placeholder="2018/05/18" id="date_text" >&nbsp; ~
-				&nbsp; <input type="text" class="form-control"
-					placeholder="2018/08/10" id="date_text" readOnly>
-				</div>
-			</div>
-		</div>
-		<div class="col-lg-6" id="three_div">
-			<div class="panel panel-default">
-				<div class="panel-heading"><p class="glyphicon glyphicon-ok">&nbsp;</p>모집인원</div>
-				<div class="panel-body">
-				<input type="text" class="form-control" value="6"  readOnly>명
-				</div>
-			</div>
-		</div>
-		<div class="col-lg-6" id="three_div">
-			<div class="panel panel-default">
-				<div class="panel-heading"><p class="fa fa-bell">&nbsp;</p>활동시간</div>
-				<div class="panel-body">
-				<input type="text" class="form-control" value="3"  readOnly>시간
-				</div>
-			</div>
-		</div>
-		<div class="col-lg-6" id="three_div">
-			<div class="panel panel-default">
-				<div class="panel-heading"><p class="fa fa-calendar">&nbsp;</p>요일</div>
-				<div class="panel-body">
-				<input type="text" class="form-control" value="수"  readOnly>요일
-				</div>
-			</div>
-		</div>
-		<div class="col-lg-4">
-			<div class="panel panel-default">
-				<div class="panel-heading"><p class="glyphicon glyphicon-bookmark">&nbsp;</p>프로젝트 개요</div>
-				<div class="panel-body">
-					<h4>[ 자바 & JSP ]</h4>
-					<blockquote>우리 프로젝트는 자바와 JSP를 배우는 스터디로서 ~</blockquote>
-				</div>
-				<!-- /.panel-body -->
-			</div>
-			<!-- /.panel -->
-		</div>
-		<div class="col-lg-4">
-			<div class="panel panel-default">
-				<div class="panel-heading"><p class="glyphicon glyphicon-bookmark">&nbsp;</p>주요 교재 및 준비물</div>
-				<div class="panel-body">
-					<blockquote>주요 교재 및 준비물로는 ~ </blockquote>
-				</div>
-				<!-- /.panel-body -->
-			</div>
-			<!-- /.panel -->
-		</div>
-		<div class="col-lg-4">
-			<div class="panel panel-default">
-				<div class="panel-heading"><p class="glyphicon glyphicon-bookmark">&nbsp;</p>기대효과 및 활동 분야</div>
-				<div class="panel-body">
-					<blockquote>기대효과와 활동 분야로는 ~</blockquote>
-				</div>
-				<!-- /.panel-body -->
-			</div>
-			<!-- /.panel -->
-		</div>
-		<div class="col-lg-4">
-			<div class="panel panel-default">
-				<div class="panel-heading"><p class="glyphicon glyphicon-bookmark">&nbsp;</p>스터디 지역</div>
-				<div class="panel-body">
-					<blockquote>KH정보교육원 (여기에 지도넣기)</blockquote>
-				</div>
-				<!-- /.panel-body -->
-			</div>
-			<!-- /.panel -->
-		</div>
-
+	<form action="#" method="post">
+		<table border='1'>
+			<tr>
+				<td>
+					<h1 class="page-header">스터디 설정</h1>
+				</td>
+			</tr>
+			<tr>
+				<td><h4>*스터디 명</h4>
+					<hr> <input type="text" class="form-control"
+					value="자바 & JSP 공부"></td>
+			</tr>
+			<tr>
+				<td><h4>*스터디 원</h4>
+					<hr>
+					<table class="table table-striped table-bordered table-hover"
+						border='1'>
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>이름</th>
+								<th>전화번호</th>
+								<th>이메일</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>1</td>
+								<td><input type="text" class="form-control"
+									value="자바 & JSP 공부"></td>
+								<td><input type="text" class="form-control"
+									value="010-2350-3059"></td>
+								<td><input type="text" class="form-control"
+									value="dahye950627@naver.com"></td>
+							</tr>
+							<tr>
+								<td>2</td>
+								<td><input type="text" class="form-control" value="소문혁"></td>
+								<td><input type="text" class="form-control"
+									value="010-0000-0000"></td>
+								<td><input type="text" class="form-control"
+									value="smh@naver.com"></td>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td><input type="text" class="form-control" value="노동완"></td>
+								<td><input type="text" class="form-control"
+									value="010-0000-0000"></td>
+								<td><input type="text" class="form-control"
+									value="ndw@naver.com"></td>
+							</tr>
+						</tbody>
+					</table></td>
+			</tr>
+			<tr>
+				<td><h4>*기간</h4>
+					<hr> <input type="text" class="form-control"
+					placeholder="2018/05/18" id="date_text">&nbsp; ~ &nbsp; <input
+					type="text" class="form-control" placeholder="2018/08/10"
+					id="date_text"></td>
+			</tr>
+			<tr>
+				<td><h4>*현재인원 / 최대인원</h4>
+					<hr> <input type="text" class="form-control" value="6"
+					readOnly>명/ <input type="text" class="form-control"
+					value="10">명</td>
+			</tr>
+			<tr>
+				<td><h4>*활동시간</h4>
+					<hr> <input type="text" class="form-control" value="3">시간
+				</td>
+			</tr>
+			<tr>
+				<td><h4>*요일</h4>
+					<hr> <input type="text" class="form-control" value="수">요일
+				</td>
+			</tr>
+			<tr>
+				<td><h4>*스터디 지역</h4>
+					<hr> <input type="text" class="form-control"
+					value="경기도 부천시 원미구 상동"></td>
+			</tr>
+			<tr>
+				<td><h4>*프로젝트 개요</h4>
+					<hr> <textarea rows="7" cols="100">우리 프로젝트는 자바와 JSP를 배우는 스터디로서 ~</textarea>
+				</td>
+			</tr>
+			<tr>
+				<td><h4>*주요 교재 및 준비물</h4>
+					<hr> <textarea rows="7" cols="100">주요 교재 및 준비물로는~</textarea></td>
+			</tr>
+			<tr>
+				<td><h4>*기대효과 및 활동 분야</h4>
+					<hr> <textarea rows="7" cols="100">우리 프로젝트는 자바와 JSP를 배우는 스터디로서 ~</textarea>
+					</td>
+			</tr>
+			
+			<tr>
+				<td><input type="submit" class="btn btn-default" id="btn"
+					value="수정"> <input type="reset" class="btn btn-default"
+					id="btn" value="취소"></td>
+			</tr>
+		</table>
 	</form>
-	<!-- jQuery -->
-	<script src="/study-of-us/vendor/jquery/jquery.min.js"></script>
-
-	<!-- Bootstrap Core JavaScript -->
-	<script src="/study-of-us/vendor/bootstrap/js/bootstrap.min.js"></script>
-
-	<!-- Metis Menu Plugin JavaScript -->
-	<script src="/study-of-us/vendor/metisMenu/metisMenu.min.js"></script>
-
-	<!-- DataTables JavaScript -->
-	<script src="/study-of-us/vendor/datatables/js/jquery.dataTables.min.js"></script>
-	<script src="/study-of-us/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
-	<script src="/study-of-us/vendor/datatables-responsive/dataTables.responsive.js"></script>
-
-	<!-- Custom Theme JavaScript -->
-	<script src="../dist/js/sb-admin-2.js"></script>
-
-	<!-- Page-Level Demo Scripts - Tables - Use for reference -->
-	<script>
-		$(document).ready(function() {
-			$('#dataTables-example').DataTable({
-				responsive : true
-			});
-		});
-	</script>
-
 </body>
 
 </html>

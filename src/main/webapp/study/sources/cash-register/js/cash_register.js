@@ -11,7 +11,7 @@ $(document).ready(function() {
 			
 		$('#cash_tbody').append(strToAdd);	
 	})// click end
-	
+	alert(document.getElementById("dues-date").value);
 	
 })// ready end
 
@@ -49,7 +49,7 @@ function calculate(){	// onkeyup 발생 함수 (자동계산)
 	
 	var totalFee = parseInt(document.getElementById('dues-totalFee').value);
 	var totalExpen = parseInt(document.getElementById('dues-totalExpen').value);
-	document.getElementById("dues-total").value = totalFee + totalExpen;
+	document.getElementById("dues-total").value = totalFee - totalExpen;
 	document.getElementById("dues-final").value = parseInt(document.getElementById("dues-total").value) 
 												+ parseInt(document.getElementById("dues-final").value);
 													
