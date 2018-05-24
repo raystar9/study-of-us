@@ -3,8 +3,8 @@
 	pageEncoding="UTF-8"%>
 <html lang="en">
 <style>
-	#wrapper{
-		width: 250px;
+	#left{
+		width: 200px;
 	}
 </style>
 <head>
@@ -37,23 +37,21 @@
 
 <body>
 
-	<div id="wrapper">
-
-		<div class="navbar-default sidebar" role="navigation">
+		<div class="navbar-default sidebar" role="navigation" id='left'>
 			<div class="sidebar-nav navbar-collapse">
 				<ul class="nav" id="side-menu">
 
-					<li><a href="sources/board-list/board_list_form.jsp?page=board_list_form"><i class="fa fa-edit fa-fw"></i>
+					<li><a href="#"><i class="fa fa-edit fa-fw"></i>
 							게시판 </a></li>
 					<li><a href="#"><i class="fa fa-table fa-fw"></i>
 							출석체크</a></li>
 					<li><a href="#"><i
 							class="fa fa-bar-chart-o fa-fw"></i> 진행현황</a></li>
-					<li><a href="sources/cash-list/cash_list_form.jsp?page=cash_list_form"><i class="fa fa-dollar fa-fw"></i>
+					<li><a href="#"><i class="fa fa-dollar fa-fw"></i>
 							회비관리</a></li>
-					<li><a href="sources/information/inform_form.jsp?page=inform_form"><i class="fa fa-bookmark fa-fw"></i> 스터디
+					<li><a href="#"><i class="fa fa-bookmark fa-fw"></i> 스터디
 							정보</a></li>
-					<li><a href="sources/setup/setup_form.jsp?page=setup_form"><i class="fa fa-cog fa-fw"></i> 설정<span
+					<li><a href="#"><i class="fa fa-cog fa-fw"></i> 설정<span
 							class="fa"></span></a></li>
 				</ul>
 			</div>
@@ -61,8 +59,6 @@
 		</div>
 		<!-- /.navbar-default sidebar -->
 		
-	</div>
-	<!-- /#wrapper -->
 
 	<!-- jQuery -->
 	<script src="/study-of-us/vendor/jquery/jquery.min.js"></script>

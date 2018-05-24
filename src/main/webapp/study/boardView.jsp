@@ -2,18 +2,16 @@
     pageEncoding="UTF-8"%>
 <html>
 <head>
-<title>해당 스터디 안에 들어왔을 때 </title>
-<%
-	String pagefile = request.getParameter("page");
-	if (pagefile == null) {
-		pagefile = "";
+<style>
+	#left{
+		float:left;
 	}
-%>
+</style>
 </head>
 <body>
 <%@ include file = "/general-sources/Navigation.jsp" %>
 <%@ include file = "left.jsp" %>
-<jsp:include page='<%=pagefile + ".jsp"%>' />
+<%@ include file = "sources/board-view/board_view_form.jsp" %>
 <%@ include file = "/general-sources/Footer.jsp" %>
 </body>
 </html>

@@ -9,20 +9,24 @@
 </head>
 
 <body>
-	<form action="#" method="get">
-		<div class="row">
-			<div class="col-lg-12">
-				&nbsp;&nbsp;
-				<h1 class="page-header">회비 관리</h1>
-			</div>
-			<!-- /.col-lg-12 -->
-		</div>
+	<div>
 		<table border='1' class='big-table'>
+			<tr>
+				<td>
+					<div class="row">
+						<div class="col-lg-12">
+							&nbsp;&nbsp;
+							<h1 class="page-header">회비 관리</h1>
+						</div>
+						<!-- /.col-lg-12 -->
+					</div>
+				</td>
+			</tr>
 			<tr height="10%">
 				<td>
 
 					<div class="panel-heading" id="top_head">
-						*회비: <input type="text" class="form-control" id="top_total"
+						*회비: <input type="text" class="form-control" id="top-total"
 							placeholder="120,000" readOnly>&nbsp;원
 						<button type="button" class="btn btn-default" id="fee-add-btn">추가</button>
 					</div>
@@ -70,8 +74,7 @@
 			</tr>
 
 		</table>
-	</form>
-
+	</div>
 </body>
 
 </html>

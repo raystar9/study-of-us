@@ -16,14 +16,18 @@
 
 <body>
 	<form action="#" method="post">
-		<div class="row">
-			<div class="col-lg-12">
-				<h1 class="page-header">회비관리</h1>
-			</div>
-			<!-- /.col-lg-12 -->
-		</div>
-		<!-- /.row -->
+
 		<table border='1'>
+			<tr>
+				<td>
+					<div class="row">
+						<div class="col-lg-12">
+							<h1 class="page-header">회비관리</h1>
+						</div>
+						<!-- /.col-lg-12 -->
+					</div> <!-- /.row -->
+				</td>
+			</tr>
 			<tr>
 				<td>
 					<div class="form-group">
@@ -139,7 +143,7 @@
 									name="duesTotalFee">&nbsp;원 &nbsp;-&nbsp; <input
 									type="text" class="total" id="dues-totalExpen"
 									name="duesTotalExpen">&nbsp;원 &nbsp;=&nbsp; <input
-									type="text" class="total" id="dues-total" name="dues-Total">&nbsp;원
+									type="text" class="total" id="dues-total" name="duesTotal">&nbsp;원
 							</div>
 						</div>
 					</div> <br>
