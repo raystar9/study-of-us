@@ -10,8 +10,8 @@
 </head>
 <body>
 <%@ include file = "/general-sources/Navigation.jsp" %>
-<%@ include file = "/study/left.jsp" %>
-<%@ include file = "/study/sources/board-register/board_register_form.jsp" %>
+<%@ include file = "left.jsp" %>
+<%@ include file = "sources/board-register/board_register_form.jsp" %>
 <%@ include file = "/general-sources/Footer.jsp" %>
 </body>
 </html>

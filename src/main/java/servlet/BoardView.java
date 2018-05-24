@@ -23,7 +23,7 @@ public class BoardView extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/boardView.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/boardView.jsp");
 		dispatcher.forward(request, response);
 		
 	}

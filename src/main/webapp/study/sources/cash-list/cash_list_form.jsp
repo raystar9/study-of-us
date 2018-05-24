@@ -9,14 +9,19 @@
 </head>
 
 <body>
-		<div class="row">
-			<div class="col-lg-12">
-				&nbsp;&nbsp;
-				<h1 class="page-header">회비 관리</h1>
-			</div>
-			<!-- /.col-lg-12 -->
-		</div>
+	<div>
 		<table border='1' class='big-table'>
+			<tr>
+				<td>
+					<div class="row">
+						<div class="col-lg-12">
+							&nbsp;&nbsp;
+							<h1 class="page-header">회비 관리</h1>
+						</div>
+						<!-- /.col-lg-12 -->
+					</div>
+				</td>
+			</tr>
 			<tr height="10%">
 				<td>
 
@@ -69,7 +74,7 @@
 			</tr>
 
 		</table>
-
+	</div>
 </body>
 
 </html>

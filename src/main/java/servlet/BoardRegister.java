@@ -23,7 +23,7 @@ public class BoardRegister extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/boardRegister.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/boardRegister.jsp");
 		dispatcher.forward(request, response);
 		
 	}

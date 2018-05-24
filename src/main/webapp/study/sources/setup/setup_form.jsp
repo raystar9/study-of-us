@@ -1,6 +1,6 @@
-<!-- ½ºÅÍµð ¾ÈÀÇ ½ºÅÍµð Á¤º¸ ÆäÀÌÁö -->
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<!-- ìŠ¤í„°ë”” ì•ˆì˜ ìŠ¤í„°ë”” ì •ë³´ íŽ˜ì´ì§€ -->
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,32 +13,32 @@
 		<table border='1'>
 			<tr>
 				<td>
-					<h1 class="page-header">½ºÅÍµð ¼³Á¤</h1>
+					<h1 class="page-header">ìŠ¤í„°ë”” ì„¤ì •</h1>
 				</td>
 			</tr>
 			<tr>
-				<td><h4>*½ºÅÍµð ¸í</h4>
+				<td><h4>*ìŠ¤í„°ë”” ëª…</h4>
 					<hr> <input type="text" class="form-control"
-					value="ÀÚ¹Ù & JSP °øºÎ"></td>
+					value="ìžë°” & JSP ê³µë¶€"></td>
 			</tr>
 			<tr>
-				<td><h4>*½ºÅÍµð ¿ø</h4>
+				<td><h4>*ìŠ¤í„°ë”” ì›</h4>
 					<hr>
 					<table class="table table-striped table-bordered table-hover"
 						border='1'>
 						<thead>
 							<tr>
 								<th>#</th>
-								<th>ÀÌ¸§</th>
-								<th>ÀüÈ­¹øÈ£</th>
-								<th>ÀÌ¸ÞÀÏ</th>
+								<th>ì´ë¦„</th>
+								<th>ì „í™”ë²ˆí˜¸</th>
+								<th>ì´ë©”ì¼</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
 								<td>1</td>
 								<td><input type="text" class="form-control"
-									value="ÀÚ¹Ù & JSP °øºÎ"></td>
+									value="ìžë°” & JSP ê³µë¶€"></td>
 								<td><input type="text" class="form-control"
 									value="010-2350-3059"></td>
 								<td><input type="text" class="form-control"
@@ -46,7 +46,7 @@
 							</tr>
 							<tr>
 								<td>2</td>
-								<td><input type="text" class="form-control" value="¼Ò¹®Çõ"></td>
+								<td><input type="text" class="form-control" value="ì†Œë¬¸í˜"></td>
 								<td><input type="text" class="form-control"
 									value="010-0000-0000"></td>
 								<td><input type="text" class="form-control"
@@ -54,7 +54,7 @@
 							</tr>
 							<tr>
 								<td>3</td>
-								<td><input type="text" class="form-control" value="³ëµ¿¿Ï"></td>
+								<td><input type="text" class="form-control" value="ë…¸ë™ì™„"></td>
 								<td><input type="text" class="form-control"
 									value="010-0000-0000"></td>
 								<td><input type="text" class="form-control"
@@ -64,52 +64,52 @@
 					</table></td>
 			</tr>
 			<tr>
-				<td><h4>*±â°£</h4>
+				<td><h4>*ê¸°ê°„</h4>
 					<hr> <input type="text" class="form-control"
 					placeholder="2018/05/18" id="date_text">&nbsp; ~ &nbsp; <input
 					type="text" class="form-control" placeholder="2018/08/10"
 					id="date_text"></td>
 			</tr>
 			<tr>
-				<td><h4>*ÇöÀçÀÎ¿ø / ÃÖ´ëÀÎ¿ø</h4>
+				<td><h4>*í˜„ìž¬ì¸ì› / ìµœëŒ€ì¸ì›</h4>
 					<hr> <input type="text" class="form-control" value="6"
-					readOnly>¸í/ <input type="text" class="form-control"
-					value="10">¸í</td>
+					readOnly>ëª…/ <input type="text" class="form-control"
+					value="10">ëª…</td>
 			</tr>
 			<tr>
-				<td><h4>*È°µ¿½Ã°£</h4>
-					<hr> <input type="text" class="form-control" value="3">½Ã°£
+				<td><h4>*í™œë™ì‹œê°„</h4>
+					<hr> <input type="text" class="form-control" value="3">ì‹œê°„
 				</td>
 			</tr>
 			<tr>
-				<td><h4>*¿äÀÏ</h4>
-					<hr> <input type="text" class="form-control" value="¼ö">¿äÀÏ
+				<td><h4>*ìš”ì¼</h4>
+					<hr> <input type="text" class="form-control" value="ìˆ˜">ìš”ì¼
 				</td>
 			</tr>
 			<tr>
-				<td><h4>*½ºÅÍµð Áö¿ª</h4>
+				<td><h4>*ìŠ¤í„°ë”” ì§€ì—­</h4>
 					<hr> <input type="text" class="form-control"
-					value="°æ±âµµ ºÎÃµ½Ã ¿ø¹Ì±¸ »óµ¿"></td>
+					value="ê²½ê¸°ë„ ë¶€ì²œì‹œ ì›ë¯¸êµ¬ ìƒë™"></td>
 			</tr>
 			<tr>
-				<td><h4>*ÇÁ·ÎÁ§Æ® °³¿ä</h4>
-					<hr> <textarea rows="7" cols="100">¿ì¸® ÇÁ·ÎÁ§Æ®´Â ÀÚ¹Ù¿Í JSP¸¦ ¹è¿ì´Â ½ºÅÍµð·Î¼­ ~</textarea>
+				<td><h4>*í”„ë¡œì íŠ¸ ê°œìš”</h4>
+					<hr> <textarea rows="7" cols="100">ìš°ë¦¬ í”„ë¡œì íŠ¸ëŠ” ìžë°”ì™€ JSPë¥¼ ë°°ìš°ëŠ” ìŠ¤í„°ë””ë¡œì„œ ~</textarea>
 				</td>
 			</tr>
 			<tr>
-				<td><h4>*ÁÖ¿ä ±³Àç ¹× ÁØºñ¹°</h4>
-					<hr> <textarea rows="7" cols="100">ÁÖ¿ä ±³Àç ¹× ÁØºñ¹°·Î´Â~</textarea></td>
+				<td><h4>*ì£¼ìš” êµìž¬ ë° ì¤€ë¹„ë¬¼</h4>
+					<hr> <textarea rows="7" cols="100">ì£¼ìš” êµìž¬ ë° ì¤€ë¹„ë¬¼ë¡œëŠ”~</textarea></td>
 			</tr>
 			<tr>
-				<td><h4>*±â´ëÈ¿°ú ¹× È°µ¿ ºÐ¾ß</h4>
-					<hr> <textarea rows="7" cols="100">¿ì¸® ÇÁ·ÎÁ§Æ®´Â ÀÚ¹Ù¿Í JSP¸¦ ¹è¿ì´Â ½ºÅÍµð·Î¼­ ~</textarea>
+				<td><h4>*ê¸°ëŒ€íš¨ê³¼ ë° í™œë™ ë¶„ì•¼</h4>
+					<hr> <textarea rows="7" cols="100">ìš°ë¦¬ í”„ë¡œì íŠ¸ëŠ” ìžë°”ì™€ JSPë¥¼ ë°°ìš°ëŠ” ìŠ¤í„°ë””ë¡œì„œ ~</textarea>
 					</td>
 			</tr>
 			
 			<tr>
 				<td><input type="submit" class="btn btn-default" id="btn"
-					value="¼öÁ¤"> <input type="reset" class="btn btn-default"
-					id="btn" value="Ãë¼Ò"></td>
+					value="ìˆ˜ì •"> <input type="reset" class="btn btn-default"
+					id="btn" value="ì·¨ì†Œ"></td>
 			</tr>
 		</table>
 	</form>

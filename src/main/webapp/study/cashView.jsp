@@ -11,7 +11,7 @@
 <body>
 <%@ include file = "/general-sources/Navigation.jsp" %>
 <%@ include file = "left.jsp" %>
-<%@ include file = "sources/board-view/board_view_form.jsp" %>
+<%@ include file = "sources/cash-view/cash_view_form.jsp" %>
 <%@ include file = "/general-sources/Footer.jsp" %>
 </body>
 </html>
