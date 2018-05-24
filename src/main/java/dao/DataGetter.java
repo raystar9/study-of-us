@@ -146,6 +146,40 @@ public class DataGetter extends DataAccessor {
 		return list;
 	}
 
+	public ArrayList<StudyListCount> getStudyPaging(int startcount, int endcount) throws DatabaseConnectException, SQLException{
+		@SuppressWarnings("unchecked")
+		ArrayList<StudyListCount> list = (ArrayList<StudyListCount>) get(StudyListCount.QUERY_GET, new DataGettable() {
+			
+			@Override
+			public ArrayList<?> onGetResult(ResultSet rs) throws DatabaseConnectException, SQLException {
+				ArrayList<StudyListCount> StudyListCountlist = new ArrayList<>();
+				while(rs.next()) {
+					StudyListCount StudyListCount = new StudyListCount();
+					StudyListCount.setIndex(rs.getInt(2));
+					StudyListCount.setName(rs.getString(3));
+					StudyListCount.setC_id(rs.getString(4));
+					StudyListCount.setPlace(rs.getString(5));
+					StudyListCount.setTime(rs.getDate(6));
+					StudyListCount.setPloplenum(7);
+					StudyListCount.setGoal(rs.getString(8));
+					StudyListCount.setTerm(rs.getDate(9));
+					
+					StudyListCountlist.add(StudyListCount);
+				}
+				return StudyListCountlist;
+			}
+		}, new DataSettable() {
+			
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+				pstmt.setInt(1, startcount);
+				pstmt.setInt(2, endcount);
+				
+			}
+		});
+		return list;
+	}
+
 
 
 	

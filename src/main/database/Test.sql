@@ -15,7 +15,18 @@ insert into Study values(study_index.nextval, '자바스터디2', 2, '경기', '
 insert into Study values(study_index.nextval, '영어스터디', 3, '수원', '2018-06-06', 6, '토익 만점', '2018-07-06');
 insert into Study values(study_index.nextval, '추가본', 3, '수원', '2018-06-06', 6, '토익 만점', '2018-07-06');
 
-
+select rownum as rnum, s_index, s_name, s_c_id, s_place, s_time, s_plopienum, s_goal, s_term  
+			from study (select s_index, s_name, s_c_id, s_place, s_time, s_plopienum, s_goal, s_term
+			from study
+			orderby s_index)
+			
+			select * from (select rownum rnum, s_index, s_name, s_c_id, s_place, s_time, s_plopienum, s_goal, s_term  
+			from (
+			select s_index, s_name, s_c_id, s_place, s_time, s_plopienum, s_goal, s_term
+			from study
+			order by s_index))
+			where rnum >= 6 and rnum <= 10
+			
 SELECT * FROM Study;
 
 -- Study 테이블 INDEX의 시퀀스

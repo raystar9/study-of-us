@@ -100,25 +100,25 @@
 		</div>
 		</c:forEach>
 		
-		<div class="paging">
+		<div class="paging"  style="text-align:center; margin-bottom:100px">
 		<c:if test="${startpage > 1}">
-			<a href="#">처음</a>
+			<a href="/study-of-us/study/search?page=1">처음</a>
 		</c:if>
 		
 		<c:if test="${page > 1}">
-			<a href="#">이전</a>
+			<a href="/study-of-us/study/search?page=${page-1 }">이전</a>
 		</c:if>
 		
 		<c:forEach var="i" begin= "${startpage }" end="${endpage }">
-			<a href="#">${i }</a>
+			<a href="/study-of-us/study/search?page=${i }">${i }</a>
 		</c:forEach>
 		
 		<c:if test="${page < totalpage}">
-			<a href="#">다음</a>
+			<a href="/study-of-us/study/search?page=${page+1 }">다음</a>
 		</c:if>
 		
 		<c:if test="${endpage < totalpage}">
-			<a href="#">끝</a>
+			<a href="/study-of-us/study/search?page=${totalpage }">끝</a>
 		</c:if>
 		</div>
 		

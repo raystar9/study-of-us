@@ -55,7 +55,24 @@ public class Search extends HttpServlet {
 				int countList = 5; // 화면에 보여줄 스터디의 수
 				int countpage = 5; // 
 				
+				System.out.println("page 값 "+request.getParameter("page"));
+				
 				totalList = studies.size();
+				
+				if(request.getParameter("page")==null) {
+					page = 1;
+				}else {
+				page = Integer.parseInt(request.getParameter("page"));
+				}
+				
+				int startcount = (page - 1)* countpage + 1; // 한페이지에 표시할 5개의 스터디중 시작 번호(rownum)
+				int endcount = page * countpage;			// 한페이지에 표시할 5개의 스터디중 끝나는 번호 (rownum)
+				
+				System.out.println("startcount" + startcount);
+				System.out.println("endcount" + endcount);
+				
+				ArrayList<StudyListCount> studiespaging = getter.getStudyPaging(startcount,endcount);
+				
 				
 				int totalpage = totalList / countList;
 				if(totalList % countList > 0) {
@@ -67,7 +84,7 @@ public class Search extends HttpServlet {
 					page = totalpage;
 				}
 				
-				int startpage =((page - 1)/10) * 10 + 1; // 시작 페이지를 구하는 방법
+				int startpage =((page - 1)/countpage) * countpage + 1; // 시작 페이지를 구하는 방법
 				int endpage = startpage + countpage -1; // 
 				
 				
@@ -79,13 +96,13 @@ public class Search extends HttpServlet {
 				request.setAttribute("page",page);
 				request.setAttribute("totalpage",totalpage);
 				request.setAttribute("endpage",endpage);
-				request.setAttribute("studies", studies);
+				request.setAttribute("studies", studiespaging);
 				return getter;
 				
 			}
 		});
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/search.jsp");
 		dispatcher.forward(request, response);
-		System.out.println("그러니?");
+		System.out.println("완료");
 	}
 }
