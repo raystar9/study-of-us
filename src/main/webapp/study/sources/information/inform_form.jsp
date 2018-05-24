@@ -5,31 +5,7 @@
 <html lang="en">
 
 <head>
-<style>
-.col-lg-6 {
-	width: 600px;
-}
-
-.col-lg-4 {
-	width: 600px;
-}
-
-#date_text {
-	width: 150px;
-	display: inline;
-}
-
-#three_div {
-	width: 150px;
-	display: inline-block;
-}
-
-.form-control {
-	text-align: right;
-	width:50px;
-}
-</style>
-
+<link rel="stylesheet" type="text/css" href="css/inform.css">
 </head>
 
 <body>

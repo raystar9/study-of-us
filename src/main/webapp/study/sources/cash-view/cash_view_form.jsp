@@ -8,33 +8,7 @@
 
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript" src="js/cash_register.js"></script>
-
-<style>
-.btn btn-default {
-	float: right;
-}
-
-#cash {
-	width: 600px;
-}
-
-#cash2 {
-	width: 700px;
-}
-
-#cash3 {
-	float: right;
-}
-
-.total {
-	width: 150px;
-}
-
-#btn {
-	float: right;
-}
-</style>
-
+<link rel="stylesheet" type="text/css" href="css/cash_view.css">
 <title>회비 등록 페이지</title>
 
 </head>
