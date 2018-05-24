@@ -41,8 +41,6 @@ public class SearchList extends HttpServlet {
 				String searchVal = request.getParameter("searchVal");
 				System.out.println("검색어는 "+ searchVal);
 				
-				DataSetter setter = new DataSetter()
-				
 				DataGetter getter = new DataGetter(DatabaseAccounts.ADMIN);
 				ArrayList<StudySearch> studies = getter.getSearchList(searchVal);
 				
@@ -53,7 +51,6 @@ public class SearchList extends HttpServlet {
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/search.jsp");
 		dispatcher.forward(request, response);
-		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 

@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import beans.StudyListCount;
 import beans.StudySearch;
 import beans.prototype.Member;
 import beans.prototype.Study;
@@ -110,7 +111,8 @@ public class DataGetter extends DataAccessor {
 		
 	
 		@SuppressWarnings("unchecked")
-		ArrayList<StudySearch> list = (ArrayList<StudySearch>) get(StudySearch.QUERY_GET, new DataGettable() {
+		ArrayList<StudySearch> list = (ArrayList<StudySearch>) get(StudySearch.QUERY_GET, 
+			new DataGettable() {
 			
 			@Override
 			public ArrayList<?> onGetResult(ResultSet rs) throws DatabaseConnectException, SQLException {
@@ -130,14 +132,22 @@ public class DataGetter extends DataAccessor {
 				}
 				return StudySearchlist;
 			}
+		}, 
+			new DataSettable() {
+
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+				String serach = "%"+searchVal+"%";
+				System.out.println(serach);
+				pstmt.setString(1, serach);
+			}
+			
 		});
 		return list;
 	}
 
-	private void set(String queryGet, DataSettable dataSettable) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
 	
 	
 /*	private ArrayList<?> getBean(ResultSet rs, Class<?> beanClass) throws SQLException{

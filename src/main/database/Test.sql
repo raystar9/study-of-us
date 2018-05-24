@@ -13,6 +13,7 @@ CREATE TABLE Study(
 insert into Study values(study_index.nextval, '자바스터디', 1, '서울', '2018-06-06', 6, '자바의정석 정독', '2018-07-06');
 insert into Study values(study_index.nextval, '자바스터디2', 2, '경기', '2018-06-06', 6, '자바의정석 정독', '2018-07-06');
 insert into Study values(study_index.nextval, '영어스터디', 3, '수원', '2018-06-06', 6, '토익 만점', '2018-07-06');
+insert into Study values(study_index.nextval, '추가본', 3, '수원', '2018-06-06', 6, '토익 만점', '2018-07-06');
 
 
 SELECT * FROM Study;

@@ -3,6 +3,7 @@ package beans.prototype;
 import java.sql.Date;
 
 public class Study{
+	
 	public static final String QUERY_GET = "SELECT * FROM Study";
 	public static final String QUERY_POST = "INSERT INTO DEPTNO VALUES(seq.nextval, ?, ?)";
 	public static final String QUERY_PUT = "UPDATE ";
