@@ -1,6 +1,6 @@
 /*cash_view_form.jsp (회비 상세보기 페이지) / cash_register_form.jsp (회비 등록 페이지) 에서 사용하는 Bean*/
 
-package beans;
+package beans.study.each.fee;
 
 import java.util.Date;
 

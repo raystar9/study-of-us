@@ -1,4 +1,4 @@
-package servlet;
+package servlet.root;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,6 +16,8 @@ import dao.DataAccessor;
 import dao.DataPoster;
 import dao.DatabaseAccounts;
 import dao.exceptions.DatabaseConnectException;
+import exceptionHanlder.ExceptionHandleable;
+import exceptionHanlder.ExceptionHandler;
 
 /**
  * Servlet implementation class InsertMember

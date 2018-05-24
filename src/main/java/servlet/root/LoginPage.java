@@ -1,4 +1,4 @@
-package servlet;
+package servlet.root;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -10,11 +10,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import beans.Login;
+import beans.root.Login;
 import dao.DataAccessor;
 import dao.DataGetter;
 import dao.DatabaseAccounts;
 import dao.exceptions.DatabaseConnectException;
+import exceptionHanlder.ExceptionHandleable;
+import exceptionHanlder.ExceptionHandler;
 
 /**
  * Servlet implementation class LoginPage
