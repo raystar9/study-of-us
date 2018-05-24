@@ -100,17 +100,7 @@ public class DataGetter extends DataAccessor {
 
 	public ArrayList<StudySearch> getSearchList(String searchVal) throws DatabaseConnectException, SQLException {
 		
-		
-		set(StudySearch.QUERY_GET,new DataSettable() {
-			
-			@Override
-			public void prepare(PreparedStatement pstmt) throws SQLException {
-				System.out.println("이부분은 실행?"+searchVal);
-				String search = "%"+searchVal+"%";
-				System.out.println(search);
-				pstmt.setString(1, search);
-			}
-		});
+	
 		@SuppressWarnings("unchecked")
 		ArrayList<StudySearch> list = (ArrayList<StudySearch>) get(StudySearch.QUERY_GET, new DataGettable() {
 			

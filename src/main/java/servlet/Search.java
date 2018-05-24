@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import beans.prototype.Study;
 import dao.DataAccessor;
 import dao.DataGetter;
+import dao.DataPoster;
 import dao.DatabaseAccounts;
 import dao.exceptions.DatabaseConnectException;
 
@@ -46,8 +47,7 @@ public class Search extends HttpServlet {
 
 				DataGetter getter = new DataGetter(DatabaseAccounts.ADMIN);
 				ArrayList<Study> studies = getter.getStudys();
-				
-				
+	
 				request.setAttribute("studies", studies);
 				return getter;
 				
