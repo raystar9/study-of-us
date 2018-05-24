@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import beans.Login;
-import beans.prototype.Member;
 import dao.DataAccessor;
 import dao.DataGetter;
 import dao.DatabaseAccounts;
@@ -37,12 +36,12 @@ public class LoginPage extends HttpServlet {
 			public DataAccessor methods() throws DatabaseConnectException, SQLException {
 				DataGetter getter = new DataGetter(DatabaseAccounts.ADMIN);
 				Login logpro = getter.getLogin(loginbean);
-				response.sendRedirect("loginFail");
-				
+				request.setAttribute("login", logpro);
 				return getter;				//트라이 캐치문 실행
 			}
 		});
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/list.jsp");
+		response.sendRedirect("loginFail");
 		dispatcher.forward(request, response);
 	}
 }
