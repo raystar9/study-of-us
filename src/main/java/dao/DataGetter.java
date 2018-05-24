@@ -32,8 +32,16 @@ public class DataGetter extends DataAccessor {
 	 * 또한 onGetResult가 어떤 ArrayList를 반환할 지 모르기때문에 리스트는 제네릭 <?>으로 설정했습니다.
 	 */
 	private ArrayList<?> get(String query, DataGettable gettable) throws DatabaseConnectException, SQLException {
+		return get(query, gettable, null);
+	}
+	
+	private ArrayList<?> get(String query, DataGettable gettable, DataSettable settable) throws DatabaseConnectException, SQLException {
 		PreparedStatement pstmt = getStatement(query);
-		ResultSet rs = pstmt.executeQuery();
+		if(settable != null) {
+			settable.prepare(pstmt);
+		}
+		
+		ResultSet rs = pstmt.executeQuery();			
 		
 		ArrayList<?> list = new ArrayList<>();
 		
