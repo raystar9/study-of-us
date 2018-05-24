@@ -1,4 +1,4 @@
-package servlet;
+package exceptionHanlder;
 
 import java.sql.SQLException;
 

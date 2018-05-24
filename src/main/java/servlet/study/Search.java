@@ -1,4 +1,4 @@
-package servlet;
+package servlet.study;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -12,13 +12,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import beans.StudyListCount;
 import beans.prototype.Study;
+import beans.study.StudyListCount;
 import dao.DataAccessor;
 import dao.DataGetter;
 import dao.DataPoster;
 import dao.DatabaseAccounts;
 import dao.exceptions.DatabaseConnectException;
+import exceptionHanlder.ExceptionHandleable;
+import exceptionHanlder.ExceptionHandler;
 
 /**
  * Servlet implementation class Home

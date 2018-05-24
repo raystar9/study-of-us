@@ -1,6 +1,8 @@
-package servlet;
+package servlet.study.each.board;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,13 +11,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import beans.study.each.board.BoardViewRegister;
 
-@WebServlet("/study/cashregister")
-public class CashRegister extends HttpServlet {
+
+@WebServlet("/study/boardregister")
+public class BoardRegister extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    
-    public CashRegister() {
+   
+    public BoardRegister() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -23,14 +27,19 @@ public class CashRegister extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/cashRegister.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/each/boardRegister.jsp");
 		dispatcher.forward(request, response);
+		
 	}
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		BoardViewRegister board = new BoardViewRegister();
+		board.setTitle(request.getParameter("boardSubject"));
+		board.setName(request.getParameter("boardName"));
+		board.setContent(request.getParameter("boardContent"));
+		board.setDate(request.getParameter("boardDate"));
 	}
 
 }

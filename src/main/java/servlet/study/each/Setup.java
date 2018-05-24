@@ -1,4 +1,4 @@
-package servlet;
+package servlet.study.each;
 
 import java.io.IOException;
 
@@ -10,12 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebServlet("/study/information")
-public class Information extends HttpServlet {
+@WebServlet("/study/setup")
+public class Setup extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     
-    public Information() {
+    public Setup() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -23,7 +23,7 @@ public class Information extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/information.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/each/setup.jsp");
 		dispatcher.forward(request, response);
 	}
 

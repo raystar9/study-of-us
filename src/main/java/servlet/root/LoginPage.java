@@ -1,4 +1,4 @@
-package servlet;
+package servlet.root;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -10,12 +10,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import beans.Login;
-import beans.prototype.Member;
+import beans.root.Login;
 import dao.DataAccessor;
 import dao.DataGetter;
 import dao.DatabaseAccounts;
 import dao.exceptions.DatabaseConnectException;
+import exceptionHanlder.ExceptionHandleable;
+import exceptionHanlder.ExceptionHandler;
 
 /**
  * Servlet implementation class LoginPage
@@ -37,12 +38,12 @@ public class LoginPage extends HttpServlet {
 			public DataAccessor methods() throws DatabaseConnectException, SQLException {
 				DataGetter getter = new DataGetter(DatabaseAccounts.ADMIN);
 				Login logpro = getter.getLogin(loginbean);
-				response.sendRedirect("loginFail");
-				
+				request.setAttribute("login", logpro);
 				return getter;				//트라이 캐치문 실행
 			}
 		});
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/list.jsp");
+		response.sendRedirect("loginFail");
 		dispatcher.forward(request, response);
 	}
 }
