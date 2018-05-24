@@ -2,7 +2,7 @@ package beans;
 
 import java.util.Date;
 
-public class Inform_Setup {
+public class InformSetup {
 	
 	public static final String QUERY_GET = "SELECT";	//inform_form.jsp에서 데이터 가져올 때 쿼리
 	public static final String QUERY_PUT = "UPDATE";	//setup_form.jsp에서 데이터 수정할 때 쿼리

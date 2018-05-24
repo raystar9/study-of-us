@@ -2,7 +2,7 @@ package beans;
 
 import java.util.Date;
 
-public class Board_View_Register {
+public class BoardViewRegister {
 
 	public static final String QUERY_GET = "SELECT";		//board_view_form.jsp에서 데이터 가져올 때 쿼리
 	public static final String QUERY_PUT = "UPDATE";		//board_view_form.jsp에서 데이터 수정할 때 쿼리
