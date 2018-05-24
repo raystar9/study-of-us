@@ -18,10 +18,10 @@
     <input type="text" id="name" name="name" maxlength=10><br>
     
     <label for="password"><strong>Pass</strong></label><br>
-    <input type="password" id="password" name="password" maxlength=10><br>
+    <input type="password" id="password" name="password" maxlength=15><br>
     
     <label for="password2"><strong>비밀번호확인</strong></label><br>
-    <input type="password" id=pass2 name="pass2" maxlength=10><br>
+    <input type="password" id=password2 name="password2" maxlength=15><br>
     
     <label for="email"><strong>E-mail</strong></label><br>
     <input type="email" id="email" name="email" maxlength=30><br>
@@ -36,7 +36,7 @@
     </select><br>
  -->
 	<label for="tel"><strong>전화번호</strong></label><br>
-	<input type=text id=tel name="tel"><br>
+	<input type=text id=tel name="tel" maxlength="11"><br>
 	
 	    
     <label for="area"><strong>preference Area</strong></label><br>

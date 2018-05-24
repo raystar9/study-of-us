@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import beans.Login;
 import beans.prototype.Member;
 import dao.exceptions.DatabaseConnectException;
 import dao.interfaces.DataGettable;
@@ -42,6 +43,7 @@ public class DataGetter extends DataAccessor {
 		pstmt.close();
 		return result;
 	}
+
 	
 	@SuppressWarnings("unused")
 	private Object get(String query, DataGettable gettable) throws DatabaseConnectException, SQLException {
@@ -82,6 +84,38 @@ public class DataGetter extends DataAccessor {
 		
 		return list;
 	}
+	
+	public Login getLogin(Login loginbean) throws DatabaseConnectException, SQLException{
+		Login login = (Login) get(Login.QUERY_GET, new DataGettable() {
+			
+			@Override
+			public Object onGetResult(ResultSet rs) throws DatabaseConnectException, SQLException {
+				
+				
+				Login innerLogin = new Login();			//얘
+				if(rs.next()) {
+					innerLogin.setId(rs.getString(1));
+					innerLogin.setPassword(rs.getString(2));
+					}
+					
+				
+				return innerLogin;    //ongetresult 로 리턴해주고.
+				
+				
+			
+			}
+		}, new DataSettable() {
+			
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+				pstmt.setString(1, loginbean.getId());		// 바인딩변수를 채워주기위해서 데이터 세터블을 매개변수 추가하며 오버로딩을한다.
+			}
+		});
+		return login;				//나를 불러준 get 로그인한테 리턴해준다.
+	}
+	
+	
+	
 	
 /*	private ArrayList<?> getBean(ResultSet rs, Class<?> beanClass) throws SQLException{
 		Field[] fields = beanClass.getDeclaredFields();
