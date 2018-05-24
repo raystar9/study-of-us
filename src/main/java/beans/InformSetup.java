@@ -1,3 +1,5 @@
+/*inform_form.jsp (스터디 정보보기 페이지) / setup_form.jsp (스터디 설정 페이지)에서 사용하는 Bean*/
+
 package beans;
 
 import java.util.Date;

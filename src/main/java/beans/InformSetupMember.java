@@ -1,3 +1,5 @@
+/*inform_form.jsp (스터디 정보 보기 페이지) 에서 회원들의 정보 가져올때 사용되는 Bean*/
+
 package beans;
 
 public class InformSetupMember {
