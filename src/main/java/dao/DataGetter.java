@@ -29,24 +29,31 @@ public class DataGetter extends DataAccessor {
 	 * 쿼리문을 실행하며 넘겨받은 gettable에서 구현한 메서드대로 ResultSet을 List에 담아서 반환합니다.
 	 * 또한 onGetResult가 어떤 ArrayList를 반환할 지 모르기때문에 리스트는 제네릭 <?>으로 설정했습니다.
 	 */
-	private ArrayList<?> get(String query, DataGettable gettable) throws DatabaseConnectException, SQLException {
-		return get(query, gettable, null);
-	}
-	
-	private ArrayList<?> get(String query, DataGettable gettable, DataSettable settable) throws DatabaseConnectException, SQLException {
+	private Object get(String query, DataGettable gettable, DataSettable settable) throws DatabaseConnectException, SQLException {
 		PreparedStatement pstmt = getStatement(query);
 		if(settable != null) {
 			settable.prepare(pstmt);
 		}
 		
-		ResultSet rs = pstmt.executeQuery();			
+		ResultSet rs = pstmt.executeQuery();
 		
-		ArrayList<?> list = new ArrayList<>();
-		
-		list = gettable.onGetResult(rs);
+		Object result = gettable.onGetResult(rs);
 		
 		pstmt.close();
-		return list;
+		return result;
+	}
+	
+	@SuppressWarnings("unused")
+	private Object get(String query, DataGettable gettable) throws DatabaseConnectException, SQLException {
+		return get(query, gettable, null);
+	}
+	
+	private ArrayList<?> getArrayList(String query, DataGettable gettable) throws DatabaseConnectException, SQLException {
+		return getArrayList(query, gettable, null);
+	}
+	
+	private ArrayList<?> getArrayList(String query, DataGettable gettable, DataSettable settable) throws DatabaseConnectException, SQLException {
+		return (ArrayList<?>) get(query, gettable, settable);
 	}
 	
 	/**
@@ -59,7 +66,7 @@ public class DataGetter extends DataAccessor {
 	public ArrayList<Member> getMembers() throws DatabaseConnectException, SQLException{
 		
 		@SuppressWarnings("unchecked")
-		ArrayList<Member> list = (ArrayList<Member>) get(Member.QUERY_GET, new DataGettable() {
+		ArrayList<Member> list = (ArrayList<Member>) getArrayList(Member.QUERY_GET, new DataGettable() {
 			@Override
 			public ArrayList<?> onGetResult(ResultSet rs) throws DatabaseConnectException, SQLException {
 				ArrayList<Member> members = new ArrayList<>(); 
