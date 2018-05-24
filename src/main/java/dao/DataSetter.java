@@ -1,3 +1,5 @@
+//set 은 여기서 하고 포스터에서 상속받고 사용한다.
+
 package dao;
 
 import java.sql.PreparedStatement;

@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import beans.Login;
 import beans.prototype.Member;
 import dao.exceptions.DatabaseConnectException;
 import dao.interfaces.DataGettable;
@@ -29,24 +30,32 @@ public class DataGetter extends DataAccessor {
 	 * 쿼리문을 실행하며 넘겨받은 gettable에서 구현한 메서드대로 ResultSet을 List에 담아서 반환합니다.
 	 * 또한 onGetResult가 어떤 ArrayList를 반환할 지 모르기때문에 리스트는 제네릭 <?>으로 설정했습니다.
 	 */
-	private ArrayList<?> get(String query, DataGettable gettable) throws DatabaseConnectException, SQLException {
-		return get(query, gettable, null);
-	}
-	
-	private ArrayList<?> get(String query, DataGettable gettable, DataSettable settable) throws DatabaseConnectException, SQLException {
+	private Object get(String query, DataSettable settable, DataGettable gettable) throws DatabaseConnectException, SQLException {
 		PreparedStatement pstmt = getStatement(query);
 		if(settable != null) {
 			settable.prepare(pstmt);
 		}
 		
-		ResultSet rs = pstmt.executeQuery();			
+		ResultSet rs = pstmt.executeQuery();			//2 번째로 되고
 		
-		ArrayList<?> list = new ArrayList<>();
-		
-		list = gettable.onGetResult(rs);
+		Object result = gettable.onGetResult(rs);
 		
 		pstmt.close();
-		return list;
+		return result;
+	}
+
+	
+	@SuppressWarnings("unused")
+	private Object get(String query, DataGettable gettable) throws DatabaseConnectException, SQLException {
+		return get(query, null, gettable);
+	}
+	
+	private ArrayList<?> getArrayList(String query, DataGettable gettable) throws DatabaseConnectException, SQLException {
+		return getArrayList(query, null, gettable);
+	}
+	
+	private ArrayList<?> getArrayList(String query, DataSettable settable, DataGettable gettable) throws DatabaseConnectException, SQLException {
+		return (ArrayList<?>) get(query, settable, gettable);
 	}
 	
 	/**
@@ -59,14 +68,14 @@ public class DataGetter extends DataAccessor {
 	public ArrayList<Member> getMembers() throws DatabaseConnectException, SQLException{
 		
 		@SuppressWarnings("unchecked")
-		ArrayList<Member> list = (ArrayList<Member>) get(Member.QUERY_GET, new DataGettable() {
+		ArrayList<Member> list = (ArrayList<Member>) getArrayList(Member.QUERY_GET, new DataGettable() {
 			@Override
 			public ArrayList<?> onGetResult(ResultSet rs) throws DatabaseConnectException, SQLException {
 				ArrayList<Member> members = new ArrayList<>(); 
 				while(rs.next()) {
 					Member member = new Member();
-					member.setM_index(rs.getInt(1));
-					member.setM_id(rs.getString(2));
+					member.setIndex(rs.getInt(1));
+					member.setId(rs.getString(2));
 					members.add(member);
 				}
 				return members;
@@ -76,7 +85,29 @@ public class DataGetter extends DataAccessor {
 		return list;
 	}
 	
-	
+	public Login getLogin(Login loginbean) throws DatabaseConnectException, SQLException{
+		Login login = (Login) get(Login.QUERY_GET, new DataSettable() {
+			
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+						//1번째실행 위에 executeQuery 가 2번재
+				pstmt.setString(1, loginbean.getId());		// 바인딩변수를 채워주기위해서 데이터 세터블을 매개변수 추가하며 오버로딩을한다.
+			}
+		}, new DataGettable() {
+			
+			@Override
+			public Object onGetResult(ResultSet rs) throws DatabaseConnectException, SQLException {
+				Login innerLogin = null;
+				if(rs.next()) {
+					innerLogin = new Login();			//얘
+					innerLogin.setId(rs.getString(1));
+					innerLogin.setPassword(rs.getString(2));
+				}
+				return innerLogin;    //ongetresult 로 리턴해주고.
+			}
+		});
+		return login;				//나를 불러준 get 로그인한테 리턴해준다.
+	}
 /*	private ArrayList<?> getBean(ResultSet rs, Class<?> beanClass) throws SQLException{
 		Field[] fields = beanClass.getDeclaredFields();
 		ArrayList<beanClass> objects = new ArrayList<>();

@@ -19,7 +19,6 @@ $(document).ready(function() {
 		if ($('#pass').val().length < 7 || $('#pass').val().length > 12) {
 			alert("비밀번호는 7자리이상 12자리 이하로 입력되어야합니다.");
 			return false
-			//비밀번호 자릿수 정해주고		확인해봐야함
 		}
 
 		if ($('#name').val() == '') {
@@ -33,23 +32,8 @@ $(document).ready(function() {
 			// 이메일 change 이용해서 도메인 값 넣어주기			//확인해야함 
 		}
 
-		if ($('#domain').val() == '') {
-			alert("이메일을 입력하세요")
-			return false
-		}
-
-		//우편번호 키업을 이용해서 숫자만 입력받을 수 있게.			//확인해야함
-		if ($('#post1').val() == '') {
-			alert("우편번호 앞자리를 입력하세요")
-			return false
-		}
-
-		//우편번호 키업을 이용해서 숫자만 입력받을 수 있게.			//확인해야함
-		if ($('#post2').val() == '') {
-			alert("우편번호 뒷자리를 입력하세요")
-			return false
-		}
-
+		
+		
 		//라디오 버튼
 		if ($('input:radio:checked').length < 1) {
 			alert("성별을 선택해주세요")
