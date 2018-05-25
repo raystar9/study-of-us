@@ -12,7 +12,7 @@ import dao.interfaces.DataSettable;
  * 접근지정자가 default(혹은 package private)입니다. 이는 패키지 밖에서 객체를 생성하는 것을 허용하지 않습니다.
  * @author raystar
  */
-abstract class DataSetter extends DataAccessor{
+abstract class DataSetter extends DataAccessor{ // 명호형이 만든지 확인하고 고고
 
 	public DataSetter(DatabaseAccounts user) throws DatabaseConnectException, SQLException {
 		super(user);
