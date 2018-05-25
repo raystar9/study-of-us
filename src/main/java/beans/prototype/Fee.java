@@ -3,8 +3,8 @@ package beans.prototype;
 import java.sql.Date;
 
 public class Fee {
-
-	 public static final String QUERY_GET ="SELECT * FROM Fee";
+	
+	 public static final String QUERY_GET ="SELECT * FROM fee";
      public static final String QUERY_POST = "insert into member values(member_index.nextval,?,?,?,?,?,?,?,?)";
      public static final String QUERY_PUT = "UPDATE ";
      public static final String QUERY_DELETE = "DELETE ";
@@ -12,8 +12,6 @@ public class Fee {
      private int id;
      private String title;
      private Date date;
-     
-     
 	public int getId() {
 		return id;
 	}
