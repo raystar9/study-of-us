@@ -146,4 +146,59 @@ select * from MEMBER;
 
 
 
+drop table Board;
 
+CREATE TABLE Board(
+	B_NO NUMBER NOT NULL PRIMARY KEY,
+	B_NAME VARCHAR(10) NOT NULL,
+	B_TITLE VARCHAR(50) NOT NULL,
+	B_DATE VARCHAR(10) NOT NULL,
+	B_CONTENT VARCHAR(300) NOT NULL               -- CLOE처리 할수도..
+)
+
+insert into Board values(board_no.nextval, '이다혜', '회비관련 공지하겠습니다.', '2018-05-25', '저번에 회비 안낸 노동완씨 이번에 꼭 내십시요.');
+insert into Board values(board_no.nextval, '소문혁', '교재관련 공지하겠습니다.', '2018-05-22', '안녕하시요');
+insert into Board values(board_no.nextval, '구명회', '회비관련 공지하겠습니다.', '2018-05-20', '가나다라마바사');
+insert into Board values(board_no.nextval, '노동완', '장소관련 공지하겠습니다.', '2018-04-02', '이거는 내용내용');
+insert into Board values(board_no.nextval, '곽승민', '교재관련 공지하겠습니다.', '2018-02-25', '여기도 내용내용내용!!!');
+
+insert into Board values(board_no.nextval, '이다혜1', '회비관련 공지하겠습니다.', '2018-05-25', '저번에 회비 안낸 노동완씨 이번에 꼭 내십시요.');
+insert into Board values(board_no.nextval, '소문혁1', '교재관련 공지하겠습니다.', '2018-05-22', '안녕하시요');
+insert into Board values(board_no.nextval, '구명회1', '회비관련 공지하겠습니다.', '2018-05-20', '가나다라마바사');
+insert into Board values(board_no.nextval, '노동완1', '장소관련 공지하겠습니다.', '2018-04-02', '이거는 내용내용');
+insert into Board values(board_no.nextval, '곽승민1', '교재관련 공지하겠습니다.', '2018-02-25', '여기도 내용내용내용!!!');
+insert into Board values(board_no.nextval, '이다혜2', '회비관련 공지하겠습니다.', '2018-05-25', '저번에 회비 안낸 노동완씨 이번에 꼭 내십시요.');
+insert into Board values(board_no.nextval, '소문혁2', '교재관련 공지하겠습니다.', '2018-05-22', '안녕하시요');
+insert into Board values(board_no.nextval, '구명회2', '회비관련 공지하겠습니다.', '2018-05-20', '가나다라마바사');
+insert into Board values(board_no.nextval, '노동완2', '장소관련 공지하겠습니다.', '2018-04-02', '이거는 내용내용');
+insert into Board values(board_no.nextval, '곽승민2', '교재관련 공지하겠습니다.', '2018-02-25', '여기도 내용내용내용!!!');
+insert into Board values(board_no.nextval, '이다혜3', '회비관련 공지하겠습니다.', '2018-05-25', '저번에 회비 안낸 노동완씨 이번에 꼭 내십시요.');
+insert into Board values(board_no.nextval, '소문혁3', '교재관련 공지하겠습니다.', '2018-05-22', '안녕하시요');
+insert into Board values(board_no.nextval, '구명회3', '회비관련 공지하겠습니다.', '2018-05-20', '가나다라마바사');
+insert into Board values(board_no.nextval, '노동완3', '장소관련 공지하겠습니다.', '2018-04-02', '이거는 내용내용');
+insert into Board values(board_no.nextval, '곽승민3', '교재관련 공지하겠습니다.', '2018-02-25', '여기도 내용내용내용!!!');
+
+select * from board;
+
+
+
+select B_NO, B_TITLE, B_M_INDEX, B_DATE 
+from (select rownum rnum, B_NO, B_TITLE, B_M_INDEX, B_DATE 
+      from board) 
+where rnum >= 1 and rnum <= 3
+order by rnum;
+
+
+select * from (select rownum rnum,BOARD_NUM,BOARD_NAME, B_TITLE, BOARD_SUBJECT,BOARD_CONTENT,BOARD_FILE,BOARD_RE_REF,BOARD_RE_LEV,BOARD_RE_SEQ,BOARD_READCOUNT,BOARD_DATE   
+where rnum >= ? and rnum <= ?
+order by rnum;
+
+
+
+
+
+SELECT B_NO, B_TITLE, B_NAME, B_DATE FROM(SELECT ROWNUM RNUM, B_NO, B_TITLE, B_NAME, B_DATE FROM BOARD)WHERE RNUM>=1 AND RNUM<=3 ORDER BY RNUM;
+
+SELECT B_NO, B_TITLE, B_NAME, B_DATE FROM(SELECT ROWNUM RNUM, B_NO, B_TITLE, B_NAME, B_DATE FROM BOARD) WHERE RNUM>=1 AND RNUM<=3 ORDER BY RNUM
+
+select count(*) from board;

@@ -1,6 +1,8 @@
 package servlet.study.each.board;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,29 +11,81 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import beans.study.each.board.BoardListBean;
+import dao.DataAccessor;
+import dao.DataGetter;
+import dao.DatabaseAccounts;
+import dao.exceptions.DatabaseConnectException;
+import exceptionHanlder.ExceptionHandleable;
+import exceptionHanlder.ExceptionHandler;
 
 @WebServlet("/study/board")
 public class BoardList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-   
-    public BoardList() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/each/boardList.jsp");
-		dispatcher.forward(request, response);
-		
+	public BoardList() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+		ExceptionHandler.general(new ExceptionHandleable() {
+
+			@Override
+			public DataAccessor methods() throws DatabaseConnectException, SQLException {
+				DataGetter getter = new DataGetter(DatabaseAccounts.ADMIN);
+				ArrayList<BoardListBean> boardlist = new ArrayList<BoardListBean>();
+
+				int page = 1;
+				int limit = 10;
+
+				if (request.getParameter("page") != null) {
+					page = Integer.parseInt(request.getParameter("page"));
+				}
+				System.out.println("넘어온 페이지 = " + page);
+
+				boardlist = getter.getBoardList(page, limit); // 총 리스트 받아오기
+				
+				int boardcount = getter.getBoardCount(); // 총 리스트 수 받아오기
+				System.out.println("총 리스트 수 = " + boardcount);
+
+				int maxpage = (boardcount + limit - 1) / limit;
+				System.out.println("총 페이지수 = " + maxpage);
+
+				int startpage = ((page - 1) / 10) * 10 + 1;
+				System.out.println("현재 페이지에 보여줄 시작 페이지수 = " + startpage);
+
+				int endpage = startpage + 10 - 1;
+				System.out.println("현재 페이지에 보여줄 마지막 페이지 수 = " + endpage);
+
+				if (endpage > maxpage)
+					endpage = maxpage;
+
+				request.setAttribute("page", page); // 현재 페이지 수
+				request.setAttribute("maxpage", maxpage); // 최대 페이지 수
+
+				// 현재 페이지에 표시할 첫 페이지 수
+				request.setAttribute("startpage", startpage);
+
+				// 현재 페이지에 표시할 끝 페이지 수
+				request.setAttribute("listcount", boardcount);
+
+				// 해당 페이지의 글 목록을 갖고 있는 리스트
+				request.setAttribute("boardlist", boardlist);
+				return getter;
+			}
+		});
+
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/each/boardList.jsp");
+		dispatcher.forward(request, response);
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+
 	}
 
 }

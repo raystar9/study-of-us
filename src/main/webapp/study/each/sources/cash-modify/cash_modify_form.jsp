@@ -1,4 +1,4 @@
-<!-- 스터디 안의 회비관리 페이지에서 추가버튼 클릭했을 때 페이지 -->
+<!-- 스터디 안의 회비관리 페이지에서 수정버튼 클릭했을 때 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -7,10 +7,10 @@
 <head>
 
 <script src="http://code.jquery.com/jquery-latest.js"></script>
-<script type="text/javascript" src="js/cash_register.js"></script>
-<link rel="stylesheet" type="text/css" href="css/cash_register.css">
+<script type="text/javascript" src="js/cash_modify.js"></script>
+<link rel="stylesheet" type="text/css" href="css/cash_modify.css">
 
-<title>회비 등록 페이지</title>
+<title>회비 수정 페이지</title>
 
 </head>
 
@@ -25,14 +25,15 @@
 							<h1 class="page-header">회비관리</h1>
 						</div>
 						<!-- /.col-lg-12 -->
-					</div> <!-- /.row -->
+					</div> 
+					<!-- /.row -->
 				</td>
 			</tr>
 			<tr>
 				<td>
 					<div class="form-group">
 						<label>*제목</label> <input type="text" id="dues-title"
-							name="duesTitle" class="form-control">
+							name="duesTitle" class="form-control" value="">
 					</div>
 				</td>
 			</tr>
@@ -41,7 +42,7 @@
 					<div class="calendar">
 						<div>
 							<label>*날짜</label><input type="date" id="dues-date"
-								name="duesDate" value="2015-10-10">
+								name="duesDate" value="">
 						</div>
 					</div>
 				</td>
@@ -66,7 +67,7 @@
 										<tbody>
 											<tr>
 												<td><input type="text" class="form-control"
-													placeholder="이름" id='dues-mem' name='duesMem'></td>
+													placeholder="이름" id='dues-mem' name='duesMem' ></td>
 												<td><input type="text" class="form-control"
 													placeholder="금액" id='dues-fee' name='duesFee'
 													onkeyup="calculate();"></td>
@@ -165,11 +166,9 @@
 				</td>
 			</tr>
 			<tr>
-				<td>
-				<input type="button" class="btn btn-default" id="btn"
-				value="취소" onclick="location.href='./cash';"> 
-					<input type="submit" class="btn btn-default"
-					id="btn" value="등록"></td>
+				<td><input type="reset" class="btn btn-default" id="btn"
+					value="취소"> <input type="submit" class="btn btn-default"
+					id="btn" value="수정"></td>
 			</tr>
 		</table>
 	</form>
