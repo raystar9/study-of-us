@@ -37,7 +37,7 @@ public class Search extends HttpServlet {
 		// TODO Auto-generated method stub
 		System.out.println("스터디 검색 페이지");
 		
-		DataGetter getter = new DataGetter(DatabaseAccounts.ADMIN);
+		DataGetter getter = new DataGetter(DatabaseAccounts.SCOTT);
 		ArrayList<Study> studies = getter.getStudies();
 		
 		int page = 1; // 현재페이지

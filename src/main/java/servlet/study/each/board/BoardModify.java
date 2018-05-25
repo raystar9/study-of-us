@@ -30,7 +30,7 @@ public class BoardModify extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		DataGetter getter = new DataGetter(DatabaseAccounts.ADMIN);
+		DataGetter getter = new DataGetter(DatabaseAccounts.SCOTT);
 		ArrayList<BoardViewRegisterBean> boardcontent = getter.getBoardView();
 		request.setAttribute("boardcontent", boardcontent);
 		

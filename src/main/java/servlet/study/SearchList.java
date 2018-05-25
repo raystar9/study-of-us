@@ -38,7 +38,7 @@ public class SearchList extends HttpServlet {
 		int totalList = 0; // 총 스터디의 수
 		int countList = 5; // 화면에 보여줄 스터디의 수
 		int countpage = 5; // 
-		DataGetter getter = new DataGetter(DatabaseAccounts.ADMIN);
+		DataGetter getter = new DataGetter(DatabaseAccounts.SCOTT);
 		String place = request.getParameter("place");
 		String searchVal ="";
 		HttpSession session = request.getSession();

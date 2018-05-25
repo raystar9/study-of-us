@@ -1,4 +1,5 @@
 <!DOCTYPE configuration>
 <Context>
-  <Resource name="jdbc/OracleDB" auth="Container" type="javax.sql.DataSource" username="scott" password="tiger" driverClassName="oracle.jdbc.driver.OracleDriver" factory="org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory" url="jdbc:oracle:thin:@localhost:1521:xe" maxTotal="500" maxIdle="100" />
+  <Resource name="jdbc/Admin" auth="Container" type="javax.sql.DataSource" username="admin" password="1234" driverClassName="oracle.jdbc.driver.OracleDriver" factory="org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory" url="jdbc:oracle:thin:@localhost:1521:xe" maxTotal="500" maxIdle="100" />
+  <Resource name="jdbc/Scott" auth="Container" type="javax.sql.DataSource" username="scott" password="tiger" driverClassName="oracle.jdbc.driver.OracleDriver" factory="org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory" url="jdbc:oracle:thin:@localhost:1521:xe" maxTotal="500" maxIdle="100" />
 </Context>

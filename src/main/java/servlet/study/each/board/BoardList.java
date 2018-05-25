@@ -27,7 +27,7 @@ public class BoardList extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		DataGetter getter = new DataGetter(DatabaseAccounts.ADMIN);
+		DataGetter getter = new DataGetter(DatabaseAccounts.SCOTT);
 		ArrayList<BoardListBean> boardlist = new ArrayList<BoardListBean>();
 
 		int page = 1;
