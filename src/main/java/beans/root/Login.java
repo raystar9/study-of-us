@@ -5,10 +5,9 @@ public class Login {
 	
 	
 	
-	public static final String QUERY_GET="select M_id,M_password where id = ? ";
+	public static final String QUERY_GET="select M_id,M_password from member where M_id = ? ";
 	private String id;
 	private String password;
-	private int result;
 	
 	
 	public String getId() {
@@ -22,13 +21,5 @@ public class Login {
 	}
 	public void setPassword(String password) {
 		this.password = password;
-	}
-	
-	
-	public int getResult() {
-		return result;
-	}
-	public void setResult(int result) {
-		this.result = result;
 	}
 }

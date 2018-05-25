@@ -1,23 +1,19 @@
 package dao;
 
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 import beans.prototype.Member;
 import beans.study.each.board.BoardViewRegisterBean;
-import dao.exceptions.DatabaseConnectException;
-import dao.interfaces.DataGettable;
 import dao.interfaces.DataSettable;
 
 public class DataPoster extends DataSetter {
 
-	public DataPoster(DatabaseAccounts user) throws DatabaseConnectException, SQLException {
+	public DataPoster(DatabaseAccounts user) {
 		super(user);
 	}
 
-	public void postMembers(Member member) throws DatabaseConnectException, SQLException {
+	public void postMembers(Member member) {
 
 		/*
 		 * DataSettable은 익명클래스로 구현하도록 되어있습니다. 외부 혹은 내부 클래스로 선언하여 실제로 구현하여 매개변수로 넣어줄 수도
@@ -42,7 +38,7 @@ public class DataPoster extends DataSetter {
 
 	}
 
-	public void postBoard(BoardViewRegisterBean board) throws DatabaseConnectException, SQLException {
+	public void postBoard(BoardViewRegisterBean board) {
 
 		// 콜백함수를 통해 setteble 안에있는 prepare 를 사용한다.
 		set(BoardViewRegisterBean.QUERY_POST, new DataSettable() {
@@ -58,7 +54,7 @@ public class DataPoster extends DataSetter {
 		});
 	}
 	
-	public void postBoardModify(BoardViewRegisterBean board) throws DatabaseConnectException, SQLException {
+	public void postBoardModify(BoardViewRegisterBean board) {
 
 		// 콜백함수를 통해 setteble 안에있는 prepare 를 사용한다.
 		set(BoardViewRegisterBean.QUERY_POST, new DataSettable() {

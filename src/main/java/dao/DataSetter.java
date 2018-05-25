@@ -5,8 +5,9 @@ package dao;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import dao.exceptions.DatabaseConnectException;
 import dao.interfaces.DataSettable;
+import exceptionHanlder.ExceptionHandler;
+import exceptionHanlder.TryGetObject;
 
 /**
  * 접근지정자가 default(혹은 package private)입니다. 이는 패키지 밖에서 객체를 생성하는 것을 허용하지 않습니다.
@@ -14,7 +15,7 @@ import dao.interfaces.DataSettable;
  */
 abstract class DataSetter extends DataAccessor{ // 명호형이 만든지 확인하고 고고
 
-	public DataSetter(DatabaseAccounts user) throws DatabaseConnectException, SQLException {
+	public DataSetter(DatabaseAccounts user) {
 		super(user);
 	}
 	
@@ -26,13 +27,21 @@ abstract class DataSetter extends DataAccessor{ // 명호형이 만든지 확인
 	 * @throws DatabaseConnectException
 	 * @throws SQLException
 	 */
-	protected int set(String query, DataSettable settable) throws DatabaseConnectException, SQLException {
-		PreparedStatement pstmt = _conn.prepareStatement(query);
+	protected int set(String query, DataSettable settable) {
+		int result = -1;
+		ExceptionHandler.handleSQLException(result, new TryGetObject(){
 		
-		settable.prepare(pstmt);
-		
-		int result = pstmt.executeUpdate();
-		pstmt.close();
+			@Override
+			public void action(Object result) throws SQLException {
+				PreparedStatement pstmt = _conn.prepareStatement(query);
+
+				settable.prepare(pstmt);
+
+				result = pstmt.executeUpdate();
+				
+				pstmt.close();
+			}
+		});
 		return result;
 	}
 }

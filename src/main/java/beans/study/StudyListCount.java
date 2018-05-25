@@ -9,6 +9,8 @@ public class StudyListCount {
 			+ "from study "
 			+ "order by s_index)) "
 			+ "where rnum >= ? and rnum <= ?";
+	
+
 
 	private int index;
 	private String name;

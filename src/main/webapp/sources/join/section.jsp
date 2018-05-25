@@ -7,21 +7,21 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h3 align=center>Join StudyOfUs</h3>
+<a href="home"><h3 align=center>Join StudyOfUs</h3></a>
 	<div>
   <form action="join" method="post">
     <label for="lid"><strong>ID</strong></label><br>
-    <input type="text" id="id" name="id" maxlength=10>
+    <input type="text" id="id" name="id" maxlength=13>
     <input type="button" id="idcheck" name="idcheck" value="중복검사"><br>
     
     <label for="name"><strong>Name</strong></label><br>
     <input type="text" id="name" name="name" maxlength=10><br>
     
     <label for="password"><strong>Pass</strong></label><br>
-    <input type="password" id="password" name="password" maxlength=15><br>
+    <input type="password" id="password" name="password" maxlength=13><br>
     
     <label for="password2"><strong>비밀번호확인</strong></label><br>
-    <input type="password" id=password2 name="password2" maxlength=15><br>
+    <input type="password" id=password2 name="password2" maxlength=13><br>
     
     <label for="email"><strong>E-mail</strong></label><br>
     <input type="email" id="email" name="email" maxlength=30><br>
@@ -44,10 +44,15 @@
     	<input type="checkbox" name=area id=area value="서울" checked>서울
     	<input type="checkbox" name=area id=area value="경기">경기
     	<input type="checkbox" name=area id=area value="인천">인천
+    	<input type="checkbox" name=area id=area value="강원">강원<br>
     	<input type="checkbox" name=area id=area value="대전">대전
+    	<input type="checkbox" name=area id=area value="세종">세종
+    	<input type="checkbox" name=area id=area value="충남">충남
+    	<input type="checkbox" name=area id=area value="충북">충북<br>
     	<input type="checkbox" name=area id=area value="부산">부산
-    	<input type="checkbox" name=area id=area value="대구">대구
-    	<input type="checkbox" name=area id=area value="광주">광주<br>
+    	<input type="checkbox" name=area id=area value="경남">경남
+    	<input type="checkbox" name=area id=area value="경북">경북
+    	<input type="checkbox" name=area id=area value="전북">전북<br>
     </p>
     
     <label for="gender"><strong>Gender</strong></label><br>

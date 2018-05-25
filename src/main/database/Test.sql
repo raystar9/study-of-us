@@ -11,9 +11,13 @@ CREATE TABLE Study(
 )
 
 insert into Study values(study_index.nextval, '자바스터디', 1, '서울', '2018-06-06', 6, '자바의정석 정독', '2018-07-06');
-insert into Study values(study_index.nextval, '자바스터디2', 2, '경기', '2018-06-06', 6, '자바의정석 정독', '2018-07-06');
-insert into Study values(study_index.nextval, '영어스터디', 3, '수원', '2018-06-06', 6, '토익 만점', '2018-07-06');
+insert into Study values(study_index.nextval, '이것이자바다', 2, '경기', '2018-06-06', 6, '자바의정석 정독', '2018-07-06');
+insert into Study values(study_index.nextval, '영어스터디', 3, '충북', '2018-06-06', 6, '토익 만점', '2018-07-06');
 insert into Study values(study_index.nextval, '추가본', 3, '수원', '2018-06-06', 6, '토익 만점', '2018-07-06');
+
+delete from study
+
+select * from STUDY;
 
 select rownum as rnum, s_index, s_name, s_c_id, s_place, s_time, s_plopienum, s_goal, s_term  
 			from study (select s_index, s_name, s_c_id, s_place, s_time, s_plopienum, s_goal, s_term
@@ -25,7 +29,24 @@ select rownum as rnum, s_index, s_name, s_c_id, s_place, s_time, s_plopienum, s_
 			select s_index, s_name, s_c_id, s_place, s_time, s_plopienum, s_goal, s_term
 			from study
 			order by s_index))
-			where rnum >= 6 and rnum <= 10
+			where rnum >= 1 and rnum <= 5
+			
+			select * from (select rownum rnum, s_index, s_name, s_c_id, s_place, s_time, s_plopienum, s_goal, s_term  
+			from (
+			select s_index, s_name, s_c_id, s_place, s_time, s_plopienum, s_goal, s_term
+			from (
+			select * 
+			from study where s_place LIKE '%서울%'
+			order by s_index)))
+			where rnum >= 1 and rnum <= 5
+			
+					select * from (select rownum rnum, s_index, s_name, s_c_id, s_place, s_time, s_plopienum, s_goal, s_term  
+			from (
+			select s_index, s_name, s_c_id, s_place, s_time, s_plopienum, s_goal, s_term
+			from study
+			order by s_index))
+			where rnum >= 1 and rnum <= 5
+			
 			
 SELECT * FROM Study;
 
