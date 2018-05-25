@@ -193,13 +193,13 @@ public class DataGetter extends DataAccessor {
 		return list;
 	}
 
-	public Login getLogin(Login loginbean) {
+	public Login getLogin(String id) {
 		Login login = (Login) get(Login.QUERY_GET, new DataSettable() {
 			
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
 						//1번째실행 위에 executeQuery 가 2번재
-				pstmt.setString(1, loginbean.getId());		// 바인딩변수를 채워주기위해서 데이터 세터블을 매개변수 추가하며 오버로딩을한다.
+				pstmt.setString(1, id);		// 바인딩변수를 채워주기위해서 데이터 세터블을 매개변수 추가하며 오버로딩을한다.
 			}
 		}, new DataGettable() {
 			

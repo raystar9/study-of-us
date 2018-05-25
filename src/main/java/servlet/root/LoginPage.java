@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import beans.root.Login;
 import dao.DataAccessor;
@@ -24,26 +25,41 @@ import exceptionHanlder.ExceptionHandler;
 @WebServlet("/LoginPage")
 public class LoginPage extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
-	
-	  protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Login loginbean= new Login(); 
-		loginbean.setId(request.getParameter("id"));
-		loginbean.setPassword(request.getParameter("password"));
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		 String id = request.getParameter("id");	
+		 String password = request.getParameter("password");
 		
 		
 		ExceptionHandler.general(new ExceptionHandleable() {
 			
 			@Override
-			public DataAccessor methods() throws DatabaseConnectException, SQLException {
+			public DataAccessor methods() throws DatabaseConnectException, SQLException, ServletException, IOException{
 				DataGetter getter = new DataGetter(DatabaseAccounts.ADMIN);
-				Login logpro = getter.getLogin(loginbean);
+				
+				Login logpro = getter.getLogin(id);
+				//
 				request.setAttribute("login", logpro);
+				
+				if(logpro == null || !logpro.getPassword().equals(password)) {
+					System.out.println(logpro);
+					RequestDispatcher dispatcher = request.getRequestDispatcher("/LoginFail");
+					dispatcher.forward(request, response);
+				}
+				if(logpro.getPassword().equals(password)){
+					//로그인 성공시 세션 생성 
+					HttpSession session = request.getSession();
+					session.setAttribute("id", id);
+					System.out.println(logpro.getPassword());
+					RequestDispatcher dispatcher = request.getRequestDispatcher("/study/list.jsp");
+					dispatcher.forward(request, response);
+				}
+			/*	}else {
+					RequestDispatcher dispatcher = request.getRequestDispatcher("/LoginFail");
+					dispatcher.forward(request, response);
+				}*/
 				return getter;				//트라이 캐치문 실행
 			}
 		});
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/list.jsp");
-		response.sendRedirect("loginFail");
-		dispatcher.forward(request, response);
 	}
 }
