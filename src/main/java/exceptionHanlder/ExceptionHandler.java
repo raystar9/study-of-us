@@ -1,12 +1,8 @@
 package exceptionHanlder;
 
-import java.io.IOException;
 import java.sql.SQLException;
 
 import javax.naming.NamingException;
-
-import dao.DataAccessor;
-import dao.exceptions.DatabaseConnectException;
 
 /**
  * Exception 처리를 담당하는 클래스입니다.
@@ -15,26 +11,6 @@ import dao.exceptions.DatabaseConnectException;
  *
  */
 public class ExceptionHandler{
-	//TODO 삭제 예정
-	public static void general(ExceptionHandleable handleable) {
-		DataAccessor accessor = null;
-		try {
-			accessor = handleable.methods();
-		} catch (DatabaseConnectException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if(accessor != null) {
-					accessor.close();
-				}
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-	}
 
 	public static void handleNamingException(TryNamingException tryNamingException) {
 		try {
