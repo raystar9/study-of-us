@@ -1,10 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+     <%@ taglib prefix="c"
+ 				uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-	<form class="example" action="Request_Test.jsp" method="post">
+	<form class="example" action="/study-of-us/study/SearchList" method="get">
 <div class="search">
   		<button type="submit"><i class="fa fa-search"></i></button>
- 		 <input type="text" placeholder="Search.." id="searchVal" name="searchVal">
+ 		 <input type="text" placeholder="Search.." id="searchVal" name="searchVal" value=${study.name }>
 	
 	
 	<div class="custom-select">
@@ -87,33 +90,36 @@
 	</div>
 	</form>
 	<div class="project">
+		<c:forEach var="study" items="${studies }">
 		<div class="projectcontainer">
-  			<img src="/study-of-us/resources/images/IMG2.jpg" alt="Avatar" style="width:90px">
- 			 <p><span>스터디장 아이디</span> 스터디 제목</p>
-  			<p>스터디 관련 내용.</p>
+		
+  			<img src="/study-of-us/resources/images/open-book.png" alt="Avatar" style="width:90px">
+ 			 <H3>스터디 : ${study.name }</H3>
+  			<p>목표 : ${study.goal } </p>
+  			 <span>스터디 기간 : ${study.term }</span>
+		</div>
+		</c:forEach>
+		
+		<div class="paging"  style="text-align:center; margin-bottom:100px">
+		<c:if test="${startpage > 1}">
+			<a href="/study-of-us/study/search?page=1">처음</a>
+		</c:if>
+		
+		<c:if test="${page > 1}">
+			<a href="/study-of-us/study/search?page=${page-1 }">이전</a>
+		</c:if>
+		
+		<c:forEach var="i" begin= "${startpage }" end="${endpage }">
+			<a href="/study-of-us/study/search?page=${i }">${i }</a>
+		</c:forEach>
+		
+		<c:if test="${page < totalpage}">
+			<a href="/study-of-us/study/search?page=${page+1 }">다음</a>
+		</c:if>
+		
+		<c:if test="${endpage < totalpage}">
+			<a href="/study-of-us/study/search?page=${totalpage }">끝</a>
+		</c:if>
 		</div>
 		
-		<div class="projectcontainer">
-  			<img src="/study-of-us/resources/images/IMG.jpg"  alt="Avatar" style="width:90px">
- 			 <p><span>Chris Fox.</span> CEO at Mighty Schools.</p>
-  			<p>John Doe saved us from a web disaster.</p>
-		</div>
-		
-		<div class="projectcontainer">
-  			<img src="/study-of-us/resources/images/IMG2.jpg"  alt="Avatar" style="width:90px">
- 			 <p><span>Chris Fox.</span> CEO at Mighty Schools.</p>
-  			<p>John Doe saved us from a web disaster.</p>
-		</div>
-		
-		<div class="projectcontainer">
-  			<img src="/study-of-us/resources/images/IMG.jpg"  alt="Avatar" style="width:90px">
- 			 <p><span>Chris Fox.</span> CEO at Mighty Schools.</p>
-  			<p>John Doe saved us from a web disaster.</p>
-		</div>
-		
-		<div class="projectcontainer">
-  			<img src="/study-of-us/resources/images/IMG2.jpg"  alt="Avatar" style="width:90px">
- 			 <p><span>Chris Fox.</span> CEO at Mighty Schools.</p>
-  			<p>John Doe saved us from a web disaster.</p>
-		</div>
 	</div>
