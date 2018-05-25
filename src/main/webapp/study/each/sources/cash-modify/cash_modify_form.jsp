@@ -1,4 +1,4 @@
-<!-- 스터디 안의 회비관리 페이지에서 추가버튼 클릭했을 때 페이지 -->
+<!-- 스터디 안의 회비관리 페이지에서 수정버튼 클릭했을 때 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -7,31 +7,33 @@
 <head>
 
 <script src="http://code.jquery.com/jquery-latest.js"></script>
-<script type="text/javascript" src="js/cash_register.js"></script>
-<link rel="stylesheet" type="text/css" href="css/cash_view.css">
-<title>회비 등록 페이지</title>
+<script type="text/javascript" src="js/cash_modify.js"></script>
+<link rel="stylesheet" type="text/css" href="css/cash_modify.css">
+
+<title>회비 수정 페이지</title>
 
 </head>
 
 <body>
-	<div>
-		<!-- /.row -->
+	<form action="#" method="post">
+
 		<table border='1'>
 			<tr>
 				<td>
 					<div class="row">
 						<div class="col-lg-12">
-							<h1 class="page-header">회비 상세보기</h1>
+							<h1 class="page-header">회비관리</h1>
 						</div>
 						<!-- /.col-lg-12 -->
-					</div>
+					</div> 
+					<!-- /.row -->
 				</td>
 			</tr>
 			<tr>
 				<td>
 					<div class="form-group">
 						<label>*제목</label> <input type="text" id="dues-title"
-							name="duesTitle" class="form-control" >
+							name="duesTitle" class="form-control" value="">
 					</div>
 				</td>
 			</tr>
@@ -40,7 +42,7 @@
 					<div class="calendar">
 						<div>
 							<label>*날짜</label><input type="date" id="dues-date"
-								name="duesDate" value="2015-10-10" >
+								name="duesDate" value="">
 						</div>
 					</div>
 				</td>
@@ -65,27 +67,30 @@
 										<tbody>
 											<tr>
 												<td><input type="text" class="form-control"
-													placeholder="이름" id='dues-mem' name='duesMem' readOnly></td>
+													placeholder="이름" id='dues-mem' name='duesMem' ></td>
 												<td><input type="text" class="form-control"
-													placeholder="금액" id='dues-fee' name='duesFee' readOnly></td>
+													placeholder="금액" id='dues-fee' name='duesFee'
+													onkeyup="calculate();"></td>
 												<td><input type="text" class="form-control"
-													placeholder="비고" id='dues-note' name='duesNote' readOnly></td>
+													placeholder="비고" id='dues-note' name='duesNote'></td>
 											</tr>
 											<tr>
 												<td><input type="text" class="form-control"
-													placeholder="이름" id='dues-mem' name='duesMem' readOnly></td>
+													placeholder="이름" id='dues-mem' name='duesMem'></td>
 												<td><input type="text" class="form-control"
-													placeholder="금액" id='dues-fee' name='duesFee' readOnly></td>
+													placeholder="금액" id='dues-fee' name='duesFee'
+													onkeyup="calculate();"></td>
 												<td><input type="text" class="form-control"
-													placeholder="비고" id='dues-note' name='duesNote' readOnly></td>
+													placeholder="비고" id='dues-note' name='duesNote'></td>
 											</tr>
 											<tr>
 												<td><input type="text" class="form-control"
-													placeholder="이름" id='dues-mem' name='duesMem' readOnly></td>
+													placeholder="이름" id='dues-mem' name='duesMem'></td>
 												<td><input type="text" class="form-control"
-													placeholder="금액" id='dues-fee' name='duesFee' readOnly></td>
+													placeholder="금액" id='dues-fee' name='duesFee'
+													onkeyup="calculate();"></td>
 												<td><input type="text" class="form-control"
-													placeholder="비고" id='dues-note' name='duesNote' readOnly></td>
+													placeholder="비고" id='dues-note' name='duesNote'></td>
 											</tr>
 										</tbody>
 									</table>
@@ -115,12 +120,15 @@
 									<tbody id='cash_tbody'>
 										<tr>
 											<td><input type="text" class="form-control"
-												placeholder="내역" id='dues-exp' name='duesExp' readOnly></td>
+												placeholder="내역" id='dues-exp' name='duesExp'></td>
 											<td><input type="text" class="form-control"
-												placeholder="금액" id='dues-expfee' name='duesExpFee' readOnly></td>
+												placeholder="금액" id='dues-expfee' name='duesExpFee'
+												onkeyup="calculate();"></td>
 										</tr>
 									</tbody>
 								</table>
+								<input type="button" class="btn btn-default" value="추가"
+									id="cashAdd-btn">
 							</div>
 						</div>
 					</div>
@@ -133,11 +141,10 @@
 						<div class="panel panel-default" id="cash">
 							<div class="panel-body">
 								<input type="text" class="total" id="dues-totalFee"
-									name="duesTotalFee" readOnly>&nbsp;원 &nbsp;-&nbsp; <input
+									name="duesTotalFee">&nbsp;원 &nbsp;-&nbsp; <input
 									type="text" class="total" id="dues-totalExpen"
-									name="duesTotalExpen" readOnly>&nbsp;원 &nbsp;=&nbsp; <input
-									type="text" class="total" id="dues-total" name="duesTotal"
-									readOnly>&nbsp;원
+									name="duesTotalExpen">&nbsp;원 &nbsp;=&nbsp; <input
+									type="text" class="total" id="dues-total" name="duesTotal">&nbsp;원
 							</div>
 						</div>
 					</div> <br>
@@ -151,7 +158,7 @@
 							<div class="panel-body">
 								<div>
 									<input type="text" class="total" id="dues-final"
-										name="duesfinal" placeholder="0" readOnly>&nbsp;원
+										name="duesfinal" placeholder="0">&nbsp;원
 								</div>
 							</div>
 						</div>
@@ -159,12 +166,13 @@
 				</td>
 			</tr>
 			<tr>
-				<td><input type="button" class="btn btn-default" id="list-btn"
-					value="목록"> <input type="button" class="btn btn-default"
-					id="delete-btn" value="삭제"></td>
+				<td><input type="reset" class="btn btn-default" id="btn"
+					value="취소"> <input type="submit" class="btn btn-default"
+					id="btn" value="수정"></td>
 			</tr>
 		</table>
-	</div>
+	</form>
+
 </body>
 
 </html>

@@ -165,8 +165,10 @@
 				</td>
 			</tr>
 			<tr>
-				<td><input type="reset" class="btn btn-default" id="btn"
-					value="취소"> <input type="submit" class="btn btn-default"
+				<td>
+				<input type="button" class="btn btn-default" id="btn"
+				value="취소" onclick="location.href='./cash';"> 
+					<input type="submit" class="btn btn-default"
 					id="btn" value="등록"></td>
 			</tr>
 		</table>

@@ -206,8 +206,8 @@ public class DataGetter extends DataAccessor {
 		return login; // 나를 불러준 get 로그인한테 리턴해준다.
 	}
 
-	// 게시판에 들어갔을 때 나오는 목록 데이터를 가져오는 메소드 (board_list_form.jsp)
-	public ArrayList<BoardListBean> getBoardList() throws DatabaseConnectException, SQLException {
+	// 게시판에 들어갔을 때 나오는 목록 데이터를 가져오는 메소드
+	public ArrayList<BoardListBean> getBoardList(int page, int limit) throws DatabaseConnectException, SQLException {
 
 		@SuppressWarnings("unchecked")
 		ArrayList<BoardListBean> list = (ArrayList<BoardListBean>) get(BoardListBean.QUERY_GET, new DataSettable() {
@@ -216,6 +216,11 @@ public class DataGetter extends DataAccessor {
 			public void prepare(PreparedStatement pstmt) throws SQLException {
 				// TODO Auto-generated method stub
 				// 아직 뭐 들어갈지 몰라서 정의하지 않았음
+				int startrow = (page - 1) * limit + 1; // 읽기 시작할 row 번호( 1 11 21 )
+				int endrow = startrow + limit - 1; // 읽을 마지막 row 번호( 10 20 30 )
+				pstmt.setInt(1, startrow);
+				pstmt.setInt(2, endrow);
+
 			}
 
 		}, new DataGettable() {
@@ -223,13 +228,13 @@ public class DataGetter extends DataAccessor {
 			@Override
 			public ArrayList<BoardListBean> onGetResult(ResultSet rs) throws DatabaseConnectException, SQLException {
 				ArrayList<BoardListBean> boardlist = new ArrayList<>();
+
 				while (rs.next()) {
 					BoardListBean board = new BoardListBean();
 					board.setIndex(rs.getInt(1));
 					board.setTitle(rs.getString(2));
 					board.setName(rs.getString(3));
 					board.setDate(rs.getDate(4));
-					board.setCount(rs.getInt(5));
 					boardlist.add(board);
 				}
 				return boardlist;
@@ -241,6 +246,7 @@ public class DataGetter extends DataAccessor {
 		return list;
 	}
 
+	// 게시판에서 게시글을 눌렀을 때 상세정보 가져오는 메소드
 	public ArrayList<BoardViewRegisterBean> getBoardView() throws DatabaseConnectException, SQLException {
 
 		@SuppressWarnings("unchecked")
@@ -269,40 +275,37 @@ public class DataGetter extends DataAccessor {
 						}
 						return boardlist;
 					}
-				}
-		);
+				});
 
 		return list;
 	}
-	
+
+	// 게시판의 글 개수를 가져오는 메소드
 	public int getBoardCount() throws DatabaseConnectException, SQLException {
 
-		int boardcount = (int)get(BoardListBean.QUERY_GET_COUNT,
-							new DataSettable() {
-			
-								@Override
-								public void prepare(PreparedStatement pstmt) throws SQLException {
-									// TODO Auto-generated method stub
-									// 아직 뭐 들어갈지 몰라서 정의하지 않았음
-								}
-			
-							}, new DataGettable() {
-			
-								@Override
-								public Integer onGetResult(ResultSet rs)
-										throws DatabaseConnectException, SQLException {
-									int count = 0;
-									while (rs.next()) {
-										count = rs.getInt(1);
-									}
-									return count;
-								}
-							}
-					);
+		int boardcount = (int) get(BoardListBean.QUERY_GET_COUNT, new DataSettable() {
+
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+				// TODO Auto-generated method stub
+				// 아직 뭐 들어갈지 몰라서 정의하지 않았음
+			}
+
+		}, new DataGettable() {
+
+			@Override
+			public Integer onGetResult(ResultSet rs) throws DatabaseConnectException, SQLException {
+				int count = 0;
+				while (rs.next()) {
+					count = rs.getInt(1);
+				}
+				return count;
+			}
+		});
 
 		return boardcount;
 	}
-	
+
 	/*
 	 * private ArrayList<?> getBean(ResultSet rs, Class<?> beanClass) throws
 	 * SQLException{ Field[] fields = beanClass.getDeclaredFields();

@@ -4,8 +4,8 @@ import java.util.Date;
 
 public class BoardListBean {
 
-	public static final String QUERY_GET = "SELECT";		//board_list_form.jsp에서 데이터 가져올 때 쿼리
-	public static final String QUERY_GET_COUNT = "SELECT";	//board_list_form.jsp에서 게시물 수 가져올 때 쿼리
+	public static final String QUERY_GET = "SELECT B_NO, B_TITLE, B_NAME, B_DATE FROM(SELECT ROWNUM RNUM, B_NO, B_TITLE, B_NAME, B_DATE FROM BOARD) WHERE RNUM>=? AND RNUM<=? ORDER BY RNUM";		//board_list_form.jsp에서 데이터 가져올 때 쿼리
+	public static final String QUERY_GET_COUNT = "SELECT COUNT(*) FROM BOARD";	//board_list_form.jsp에서 게시물 수 가져올 때 쿼리
 
 	private int index; 		// 게시글 번호
 	private String title; 	// 게시글 제목

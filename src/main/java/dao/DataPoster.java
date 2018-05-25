@@ -65,8 +65,8 @@ public class DataPoster extends DataSetter {
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
 				pstmt.setString(1, board.getTitle());
-				pstmt.setString(3, board.getContent());
-				pstmt.setString(4, board.getDate());
+				pstmt.setString(2, board.getContent());
+				pstmt.setString(3, board.getDate());
 				pstmt.executeUpdate();
 				pstmt.close();
 			}
