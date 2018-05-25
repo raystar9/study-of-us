@@ -10,7 +10,8 @@ import beans.prototype.Study;
 import beans.root.Login;
 import beans.study.StudyListCount;
 import beans.study.StudySearch;
-import beans.study.each.board.BoardList;
+import beans.study.each.board.BoardListBean;
+import beans.study.each.board.BoardViewRegisterBean;
 import dao.exceptions.DatabaseConnectException;
 import dao.interfaces.DataGettable;
 import dao.interfaces.DataSettable;
@@ -38,14 +39,15 @@ public class DataGetter extends DataAccessor {
 	 * 쿼리문을 실행하며 넘겨받은 gettable에서 구현한 메서드대로 ResultSet을 List에 담아서 반환합니다. 또한
 	 * onGetResult가 어떤 ArrayList를 반환할 지 모르기때문에 리스트는 제네릭 <?>으로 설정했습니다.
 	 */
-	private Object get(String query, DataSettable settable, DataGettable gettable) throws DatabaseConnectException, SQLException {
+	private Object get(String query, DataSettable settable, DataGettable gettable)
+			throws DatabaseConnectException, SQLException {
 		PreparedStatement pstmt = getStatement(query);
 		if (settable != null) {
 			settable.prepare(pstmt);
 		}
-		
-		ResultSet rs = pstmt.executeQuery();			//2 번째로 되고
-		
+
+		ResultSet rs = pstmt.executeQuery(); // 2 번째로 되고
+
 		Object result = gettable.onGetResult(rs);
 		pstmt.close();
 		return result;
@@ -85,11 +87,11 @@ public class DataGetter extends DataAccessor {
 	public ArrayList<Study> getStudys() throws DatabaseConnectException, SQLException {
 		@SuppressWarnings("unchecked")
 		ArrayList<Study> list = (ArrayList<Study>) get(Study.QUERY_GET, new DataGettable() {
-			
+
 			@Override
 			public ArrayList<?> onGetResult(ResultSet rs) throws DatabaseConnectException, SQLException {
 				ArrayList<Study> studies = new ArrayList<>();
-				while(rs.next()) {
+				while (rs.next()) {
 					Study study = new Study();
 					study.setIndex(rs.getInt(1));
 					study.setName(rs.getString(2));
@@ -99,36 +101,34 @@ public class DataGetter extends DataAccessor {
 					study.setPloplenum(6);
 					study.setGoal(rs.getString(7));
 					study.setTerm(rs.getDate(8));
-					
+
 					studies.add(study);
 				}
 				return studies;
 			}
 		});
-		
+
 		// TODO Auto-generated method stub
 		return list;
 	}
 
 	public ArrayList<StudySearch> getSearchList(String searchVal) throws DatabaseConnectException, SQLException {
-		
+
 		@SuppressWarnings("unchecked")
-		ArrayList<StudySearch> list = (ArrayList<StudySearch>) get(StudySearch.QUERY_GET, 
-			new DataSettable() {
+		ArrayList<StudySearch> list = (ArrayList<StudySearch>) get(StudySearch.QUERY_GET, new DataSettable() {
 
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
-				String serach = "%"+searchVal+"%";
+				String serach = "%" + searchVal + "%";
 				System.out.println(serach);
 				pstmt.setString(1, serach);
 			}
-		}, 
-			new DataGettable() {
-			
+		}, new DataGettable() {
+
 			@Override
 			public ArrayList<?> onGetResult(ResultSet rs) throws DatabaseConnectException, SQLException {
 				ArrayList<StudySearch> StudySearchlist = new ArrayList<>();
-				while(rs.next()) {
+				while (rs.next()) {
 					StudySearch studysearch = new StudySearch();
 					studysearch.setIndex(rs.getInt(1));
 					studysearch.setName(rs.getString(2));
@@ -138,7 +138,7 @@ public class DataGetter extends DataAccessor {
 					studysearch.setPloplenum(6);
 					studysearch.setGoal(rs.getString(7));
 					studysearch.setTerm(rs.getDate(8));
-					
+
 					StudySearchlist.add(studysearch);
 				}
 				return StudySearchlist;
@@ -147,22 +147,23 @@ public class DataGetter extends DataAccessor {
 		return list;
 	}
 
-	public ArrayList<StudyListCount> getStudyPaging(int startcount, int endcount) throws DatabaseConnectException, SQLException{
+	public ArrayList<StudyListCount> getStudyPaging(int startcount, int endcount)
+			throws DatabaseConnectException, SQLException {
 		@SuppressWarnings("unchecked")
 		ArrayList<StudyListCount> list = (ArrayList<StudyListCount>) get(StudyListCount.QUERY_GET, new DataSettable() {
-			
+
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
 				pstmt.setInt(1, startcount);
 				pstmt.setInt(2, endcount);
-				
+
 			}
 		}, new DataGettable() {
-			
+
 			@Override
 			public ArrayList<?> onGetResult(ResultSet rs) throws DatabaseConnectException, SQLException {
 				ArrayList<StudyListCount> StudyListCountlist = new ArrayList<>();
-				while(rs.next()) {
+				while (rs.next()) {
 					StudyListCount StudyListCount = new StudyListCount();
 					StudyListCount.setIndex(rs.getInt(2));
 					StudyListCount.setName(rs.getString(3));
@@ -172,7 +173,7 @@ public class DataGetter extends DataAccessor {
 					StudyListCount.setPloplenum(7);
 					StudyListCount.setGoal(rs.getString(8));
 					StudyListCount.setTerm(rs.getDate(9));
-					
+
 					StudyListCountlist.add(StudyListCount);
 				}
 				return StudyListCountlist;
@@ -181,49 +182,49 @@ public class DataGetter extends DataAccessor {
 		return list;
 	}
 
-	public Login getLogin(Login loginbean) throws DatabaseConnectException, SQLException{
+	public Login getLogin(Login loginbean) throws DatabaseConnectException, SQLException {
 		Login login = (Login) get(Login.QUERY_GET, new DataSettable() {
-			
+
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
-						//1번째실행 위에 executeQuery 가 2번재
-				pstmt.setString(1, loginbean.getId());		// 바인딩변수를 채워주기위해서 데이터 세터블을 매개변수 추가하며 오버로딩을한다.
+				// 1번째실행 위에 executeQuery 가 2번재
+				pstmt.setString(1, loginbean.getId()); // 바인딩변수를 채워주기위해서 데이터 세터블을 매개변수 추가하며 오버로딩을한다.
 			}
 		}, new DataGettable() {
-			
+
 			@Override
 			public Object onGetResult(ResultSet rs) throws DatabaseConnectException, SQLException {
 				Login innerLogin = null;
-				if(rs.next()) {
-					innerLogin = new Login();			//얘
+				if (rs.next()) {
+					innerLogin = new Login(); // 얘
 					innerLogin.setId(rs.getString(1));
 					innerLogin.setPassword(rs.getString(2));
 				}
-				return innerLogin;    //ongetresult 로 리턴해주고.
+				return innerLogin; // ongetresult 로 리턴해주고.
 			}
 		});
-		return login;				//나를 불러준 get 로그인한테 리턴해준다.
+		return login; // 나를 불러준 get 로그인한테 리턴해준다.
 	}
 
-	//게시판에 들어갔을 때 나오는 목록 데이터를 가져오는 메소드 (board_list_form.jsp)
-	public ArrayList<BoardList> getBoardList() throws DatabaseConnectException, SQLException {
+	// 게시판에 들어갔을 때 나오는 목록 데이터를 가져오는 메소드 (board_list_form.jsp)
+	public ArrayList<BoardListBean> getBoardList() throws DatabaseConnectException, SQLException {
 
 		@SuppressWarnings("unchecked")
-		ArrayList<BoardList> list = (ArrayList<BoardList>) get(BoardList.QUERY_GET, new DataSettable() {
+		ArrayList<BoardListBean> list = (ArrayList<BoardListBean>) get(BoardListBean.QUERY_GET, new DataSettable() {
 
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
 				// TODO Auto-generated method stub
-				//아직 뭐 들어갈지 몰라서 정의하지 않았음
+				// 아직 뭐 들어갈지 몰라서 정의하지 않았음
 			}
 
 		}, new DataGettable() {
 
 			@Override
-			public ArrayList<BoardList> onGetResult(ResultSet rs) throws DatabaseConnectException, SQLException {
-				ArrayList<BoardList> boardlist = new ArrayList<>();
+			public ArrayList<BoardListBean> onGetResult(ResultSet rs) throws DatabaseConnectException, SQLException {
+				ArrayList<BoardListBean> boardlist = new ArrayList<>();
 				while (rs.next()) {
-					BoardList board = new BoardList();
+					BoardListBean board = new BoardListBean();
 					board.setIndex(rs.getInt(1));
 					board.setTitle(rs.getString(2));
 					board.setName(rs.getString(3));
@@ -239,18 +240,76 @@ public class DataGetter extends DataAccessor {
 
 		return list;
 	}
-/*	private ArrayList<?> getBean(ResultSet rs, Class<?> beanClass) throws SQLException{
-		Field[] fields = beanClass.getDeclaredFields();
-		ArrayList<beanClass> objects = new ArrayList<>();
-		for(int i = 0; i < fields.length; i++) {
-			rs.next();
-			switch(fields[i].getType().toString()) {
-			case "int" :
-				objects.add(rs.getInt(i+1));
-				break;
-			case "String" :
-				objects.add(rs.getString(i+1));
-				break;
+
+	public ArrayList<BoardViewRegisterBean> getBoardView() throws DatabaseConnectException, SQLException {
+
+		@SuppressWarnings("unchecked")
+		ArrayList<BoardViewRegisterBean> list = (ArrayList<BoardViewRegisterBean>) get(BoardViewRegisterBean.QUERY_GET,
+				new DataSettable() {
+
+					@Override
+					public void prepare(PreparedStatement pstmt) throws SQLException {
+						// TODO Auto-generated method stub
+						// 아직 뭐 들어갈지 몰라서 정의하지 않았음
+					}
+
+				}, new DataGettable() {
+
+					@Override
+					public ArrayList<BoardViewRegisterBean> onGetResult(ResultSet rs)
+							throws DatabaseConnectException, SQLException {
+						ArrayList<BoardViewRegisterBean> boardlist = new ArrayList<>();
+						while (rs.next()) {
+							BoardViewRegisterBean boardcontent = new BoardViewRegisterBean();
+							boardcontent.setIndex(rs.getInt(1));
+							boardcontent.setTitle(rs.getString(2));
+							boardcontent.setName(rs.getString(3));
+							boardcontent.setDate(rs.getString(4));
+							boardlist.add(boardcontent);
+						}
+						return boardlist;
+					}
+				}
+		);
+
+		return list;
+	}
 	
-	*/
+	public int getBoardCount() throws DatabaseConnectException, SQLException {
+
+		int boardcount = (int)get(BoardListBean.QUERY_GET_COUNT,
+							new DataSettable() {
+			
+								@Override
+								public void prepare(PreparedStatement pstmt) throws SQLException {
+									// TODO Auto-generated method stub
+									// 아직 뭐 들어갈지 몰라서 정의하지 않았음
+								}
+			
+							}, new DataGettable() {
+			
+								@Override
+								public Integer onGetResult(ResultSet rs)
+										throws DatabaseConnectException, SQLException {
+									int count = 0;
+									while (rs.next()) {
+										count = rs.getInt(1);
+									}
+									return count;
+								}
+							}
+					);
+
+		return boardcount;
+	}
+	
+	/*
+	 * private ArrayList<?> getBean(ResultSet rs, Class<?> beanClass) throws
+	 * SQLException{ Field[] fields = beanClass.getDeclaredFields();
+	 * ArrayList<beanClass> objects = new ArrayList<>(); for(int i = 0; i <
+	 * fields.length; i++) { rs.next(); switch(fields[i].getType().toString()) {
+	 * case "int" : objects.add(rs.getInt(i+1)); break; case "String" :
+	 * objects.add(rs.getString(i+1)); break;
+	 * 
+	 */
 }

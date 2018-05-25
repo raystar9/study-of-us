@@ -2,7 +2,7 @@ package beans.study.each.board;
 
 import java.util.Date;
 
-public class BoardList {
+public class BoardListBean {
 
 	public static final String QUERY_GET = "SELECT";		//board_list_form.jsp에서 데이터 가져올 때 쿼리
 	public static final String QUERY_GET_COUNT = "SELECT";	//board_list_form.jsp에서 게시물 수 가져올 때 쿼리

@@ -54,14 +54,12 @@
                </div>
             </td>
             <td>
-               <div>${b.BOARD_NAME}</div>
+               <div>${b.name}</div>
             </td>
             <td>
-               <div>${b.BOARD_DATE}</div>
+               <div>${b.date}</div>
             </td>
-            <td>
-               <div>${b.BOARD_READCOUNT}</div>
-            </td>
+            
          </tr>
       </c:forEach>
       
