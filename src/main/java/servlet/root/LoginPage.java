@@ -28,13 +28,12 @@ public class LoginPage extends HttpServlet {
 	
 	  protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String password = request.getParameter("password");
-		Login logpro = null;
 		ExceptionHandler.general(new ExceptionHandleable() {
 			
 			@Override
 			public DataAccessor methods() throws DatabaseConnectException, SQLException, ServletException, IOException{
 				DataGetter getter = new DataGetter(DatabaseAccounts.ADMIN);
-				logpro = getter.getLogin(request.getParameter("id"));
+				Login logpro = getter.getLogin(request.getParameter("id"));
 				//
 				request.setAttribute("login", logpro);
 				if(logpro == null) {
