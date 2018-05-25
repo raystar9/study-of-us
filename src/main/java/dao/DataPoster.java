@@ -1,14 +1,11 @@
 package dao;
 
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 import beans.prototype.Member;
 import beans.study.each.board.BoardViewRegisterBean;
 import dao.exceptions.DatabaseConnectException;
-import dao.interfaces.DataGettable;
 import dao.interfaces.DataSettable;
 
 public class DataPoster extends DataSetter {
