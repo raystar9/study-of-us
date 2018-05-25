@@ -9,7 +9,9 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-import dao.exceptions.DatabaseConnectException;
+import exceptionHanlder.ExceptionHandler;
+import exceptionHanlder.TryNamingException;
+import exceptionHanlder.TrySQLException;
 
 /* 
  * abstract class(추상 클래스)이기에 직접 객체를 생성할 수 없습니다.
@@ -22,22 +24,28 @@ public abstract class DataAccessor implements AutoCloseable{
 	/**
 	 * 객체가 생성될 때 넘겨받은 user정보로부터 Connection을 생성합니다.
 	 */
-	public DataAccessor(DatabaseAccounts user) throws DatabaseConnectException, SQLException {
+	public DataAccessor(DatabaseAccounts user){
 		getConnection(user.toString());
 	}
 	
-	protected Connection getConnection(String user) throws DatabaseConnectException, SQLException{
-		Context init;
-		DataSource source;
-		try {
-			init = new InitialContext();
-			source = (DataSource) init.lookup("java:comp/env/jdbc/" + user);
-			_conn = source.getConnection();
-		} catch (NamingException e) {
-			throw new DatabaseConnectException();
-		}
-		
-		return _conn;
+	protected void getConnection(String user){
+		ExceptionHandler.handleNamingException(new TryNamingException() {
+			
+			@Override
+			public void action() throws NamingException{
+				Context init;
+				DataSource source;
+				init = new InitialContext();
+				source = (DataSource) init.lookup("java:comp/env/jdbc/" + user);
+				
+				ExceptionHandler.handleSQLException(new TrySQLException() {
+					@Override
+					public void action() throws SQLException {
+						_conn = source.getConnection();
+					}
+				});
+			}
+		});
 	}
 	
 	/**
@@ -47,7 +55,7 @@ public abstract class DataAccessor implements AutoCloseable{
 	 * @throws DatabaseConnectException
 	 * @throws SQLException
 	 */
-	protected PreparedStatement getStatement(String query) throws DatabaseConnectException, SQLException{
+	protected PreparedStatement getStatement(String query) throws SQLException{
 		
 		return _conn.prepareStatement(query);
 	}

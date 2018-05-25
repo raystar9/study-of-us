@@ -1,0 +1,36 @@
+.notice-main {
+	display : inline-block;
+	width : 500px;
+	height : 100%;
+}
+.notice-container {
+	box-sizing: border-box;
+	border: solid black 1px;
+	padding : 5px;
+	margin : 3px;
+}
+.notice-title-container {
+	height : 50px;
+}
+.notice-title {
+	text-align : center;
+	font-size : 20px;
+	display : inline-block;
+	width : 80%;
+}
+
+.notice-more {
+	display : inline-block;
+	width : 20%;
+}
+.notice-text-container1 {
+	height : 50px;
+}
+.notice-text-container2 {
+	height : 150px;
+}
+.notice-map-container {
+	display : inline-block;
+	width : 300px;
+	height : 300px;
+}

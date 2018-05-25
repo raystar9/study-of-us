@@ -99,6 +99,9 @@
 			<td><h4>*스터디 지역</h4>
 				<hr> 우리 프로젝트는 자바와 JSP를 배우는 스터디로서 ~</td>
 		</tr>
+		<tr>
+			<td><input type="button" id='withdraw-btn' value='탈퇴하기'></td>
+		</tr>
 	</table>
 </body>
 
