@@ -12,12 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import beans.root.Login;
-import dao.DataAccessor;
 import dao.DataGetter;
 import dao.DatabaseAccounts;
-import dao.exceptions.DatabaseConnectException;
-import exceptionHanlder.ExceptionHandleable;
-import exceptionHanlder.ExceptionHandler;
 
 /**
  * Servlet implementation class LoginPage
@@ -31,35 +27,36 @@ public class LoginPage extends HttpServlet {
 		 String password = request.getParameter("password");
 		
 		
-		ExceptionHandler.general(new ExceptionHandleable() {
-			
-			@Override
-			public DataAccessor methods() throws DatabaseConnectException, SQLException, ServletException, IOException{
-				DataGetter getter = new DataGetter(DatabaseAccounts.ADMIN);
-				
-				Login logpro = getter.getLogin(id);
-				//
-				request.setAttribute("login", logpro);
-				
-				if(logpro == null || !logpro.getPassword().equals(password)) {
-					System.out.println(logpro);
-					RequestDispatcher dispatcher = request.getRequestDispatcher("/LoginFail");
-					dispatcher.forward(request, response);
-				}
-				if(logpro.getPassword().equals(password)){
-					//로그인 성공시 세션 생성 
-					HttpSession session = request.getSession();
-					session.setAttribute("id", id);
-					System.out.println(logpro.getPassword());
-					RequestDispatcher dispatcher = request.getRequestDispatcher("/study/list.jsp");
-					dispatcher.forward(request, response);
-				}
-			/*	}else {
-					RequestDispatcher dispatcher = request.getRequestDispatcher("/LoginFail");
-					dispatcher.forward(request, response);
-				}*/
-				return getter;				//트라이 캐치문 실행
-			}
-		});
+
+		DataGetter getter = new DataGetter(DatabaseAccounts.ADMIN);
+		
+		Login logpro = getter.getLogin(id);
+		//
+		request.setAttribute("login", logpro);
+		
+		if(logpro == null || !logpro.getPassword().equals(password)) {
+			System.out.println(logpro);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/LoginFail");
+			dispatcher.forward(request, response);
+		}
+		if(logpro.getPassword().equals(password)){
+			//로그인 성공시 세션 생성 
+			HttpSession session = request.getSession();
+			session.setAttribute("id", id);
+			System.out.println(logpro.getPassword());
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/study/list.jsp");
+			dispatcher.forward(request, response);
+		}
+	/*	}else {
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/LoginFail");
+			dispatcher.forward(request, response);
+		}*/
+
+		try {
+			getter.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

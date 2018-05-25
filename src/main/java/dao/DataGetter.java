@@ -12,7 +12,6 @@ import beans.study.StudyListCount;
 import beans.study.StudySearch;
 import beans.study.each.board.BoardListBean;
 import beans.study.each.board.BoardViewRegisterBean;
-import dao.exceptions.DatabaseConnectException;
 import dao.interfaces.DataGettable;
 import dao.interfaces.DataSettable;
 import exceptionHanlder.ExceptionHandler;
