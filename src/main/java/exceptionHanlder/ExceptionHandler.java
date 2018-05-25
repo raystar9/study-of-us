@@ -2,6 +2,8 @@ package exceptionHanlder;
 
 import java.sql.SQLException;
 
+import javax.naming.NamingException;
+
 import dao.DataAccessor;
 import dao.exceptions.DatabaseConnectException;
 
@@ -12,6 +14,7 @@ import dao.exceptions.DatabaseConnectException;
  *
  */
 public class ExceptionHandler{
+	//TODO 삭제 예정
 	public static void general(ExceptionHandleable handleable) {
 		DataAccessor accessor = null;
 		try {
@@ -31,24 +34,28 @@ public class ExceptionHandler{
 			}
 		}
 	}
-	
-	public static void dongwan(ExceptionHandleable handleable) {
-		DataAccessor accessor = null;
+
+	public static void handleNamingException(TryNamingException tryNamingException) {
 		try {
-			accessor = handleable.methods();
-		} catch (DatabaseConnectException e) {
+			tryNamingException.action();
+		} catch (NamingException e) {
 			e.printStackTrace();
+		}
+	}
+	
+	public static void handleSQLException(TrySQLException trySQLException) {
+		try {
+			trySQLException.action();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
-			try {
-				if(accessor != null) {
-					accessor.close();
-				}
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		}
+	}
+
+	public static void handleSQLException(Object object, TryGetObject tryGetObject) {
+		try {
+			tryGetObject.action(object);
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 	}
 }

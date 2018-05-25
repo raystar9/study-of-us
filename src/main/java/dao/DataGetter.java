@@ -14,6 +14,8 @@ import beans.study.each.board.BoardList;
 import dao.exceptions.DatabaseConnectException;
 import dao.interfaces.DataGettable;
 import dao.interfaces.DataSettable;
+import exceptionHanlder.ExceptionHandler;
+import exceptionHanlder.TryGetObject;
 
 /**
  * 데이터베이스에 쿼리문을 실행하며 해당 쿼리문에 대한 결과를 ArrayList에 담아 반환합니다.
@@ -30,7 +32,7 @@ public class DataGetter extends DataAccessor {
 	 * @throws DatabaseConnectException
 	 * @throws SQLException
 	 */
-	public DataGetter(DatabaseAccounts user) throws DatabaseConnectException, SQLException {
+	public DataGetter(DatabaseAccounts user){
 		super(user);
 	}
 
@@ -38,20 +40,28 @@ public class DataGetter extends DataAccessor {
 	 * 쿼리문을 실행하며 넘겨받은 gettable에서 구현한 메서드대로 ResultSet을 List에 담아서 반환합니다. 또한
 	 * onGetResult가 어떤 ArrayList를 반환할 지 모르기때문에 리스트는 제네릭 <?>으로 설정했습니다.
 	 */
-	private Object get(String query, DataSettable settable, DataGettable gettable) throws DatabaseConnectException, SQLException {
-		PreparedStatement pstmt = getStatement(query);
-		if (settable != null) {
-			settable.prepare(pstmt);
-		}
+	private Object get(String query, DataSettable settable, DataGettable gettable) {
+		Object result = null;
+		ExceptionHandler.handleSQLException(result, new TryGetObject() {
+			
+			@Override
+			public void action(Object result) throws SQLException {
+				PreparedStatement pstmt = getStatement(query);
+				if (settable != null) {
+					settable.prepare(pstmt);
+				}
+				
+				ResultSet rs = pstmt.executeQuery();			//2 번째로 되고
+				
+				result = gettable.onGetResult(rs);
+				pstmt.close();
+			}
+		});
 		
-		ResultSet rs = pstmt.executeQuery();			//2 번째로 되고
-		
-		Object result = gettable.onGetResult(rs);
-		pstmt.close();
 		return result;
 	}
 
-	private Object get(String query, DataGettable gettable) throws DatabaseConnectException, SQLException {
+	private Object get(String query, DataGettable gettable) {
 		return get(query, null, gettable);
 	}
 
@@ -63,12 +73,12 @@ public class DataGetter extends DataAccessor {
 	 * @throws SQLException
 	 */
 
-	public ArrayList<Member> getMembers() throws DatabaseConnectException, SQLException {
+	public ArrayList<Member> getMembers() {
 
 		@SuppressWarnings("unchecked")
 		ArrayList<Member> list = (ArrayList<Member>) get(Member.QUERY_GET, new DataGettable() {
 			@Override
-			public ArrayList<?> onGetResult(ResultSet rs) throws DatabaseConnectException, SQLException {
+			public ArrayList<?> onGetResult(ResultSet rs) throws SQLException {
 				ArrayList<Member> members = new ArrayList<>();
 				while (rs.next()) {
 					Member member = new Member();
@@ -82,12 +92,12 @@ public class DataGetter extends DataAccessor {
 		return list;
 	}
 
-	public ArrayList<Study> getStudys() throws DatabaseConnectException, SQLException {
+	public ArrayList<Study> getStudys() {
 		@SuppressWarnings("unchecked")
 		ArrayList<Study> list = (ArrayList<Study>) get(Study.QUERY_GET, new DataGettable() {
 			
 			@Override
-			public ArrayList<?> onGetResult(ResultSet rs) throws DatabaseConnectException, SQLException {
+			public ArrayList<?> onGetResult(ResultSet rs) throws SQLException {
 				ArrayList<Study> studies = new ArrayList<>();
 				while(rs.next()) {
 					Study study = new Study();
@@ -110,7 +120,7 @@ public class DataGetter extends DataAccessor {
 		return list;
 	}
 
-	public ArrayList<StudySearch> getSearchList(String searchVal) throws DatabaseConnectException, SQLException {
+	public ArrayList<StudySearch> getSearchList(String searchVal) {
 		
 		@SuppressWarnings("unchecked")
 		ArrayList<StudySearch> list = (ArrayList<StudySearch>) get(StudySearch.QUERY_GET, 
@@ -126,7 +136,7 @@ public class DataGetter extends DataAccessor {
 			new DataGettable() {
 			
 			@Override
-			public ArrayList<?> onGetResult(ResultSet rs) throws DatabaseConnectException, SQLException {
+			public ArrayList<?> onGetResult(ResultSet rs) throws SQLException {
 				ArrayList<StudySearch> StudySearchlist = new ArrayList<>();
 				while(rs.next()) {
 					StudySearch studysearch = new StudySearch();
@@ -147,7 +157,7 @@ public class DataGetter extends DataAccessor {
 		return list;
 	}
 
-	public ArrayList<StudyListCount> getStudyPaging(int startcount, int endcount) throws DatabaseConnectException, SQLException{
+	public ArrayList<StudyListCount> getStudyPaging(int startcount, int endcount) {
 		@SuppressWarnings("unchecked")
 		ArrayList<StudyListCount> list = (ArrayList<StudyListCount>) get(StudyListCount.QUERY_GET, new DataSettable() {
 			
@@ -160,7 +170,7 @@ public class DataGetter extends DataAccessor {
 		}, new DataGettable() {
 			
 			@Override
-			public ArrayList<?> onGetResult(ResultSet rs) throws DatabaseConnectException, SQLException {
+			public ArrayList<?> onGetResult(ResultSet rs) throws SQLException {
 				ArrayList<StudyListCount> StudyListCountlist = new ArrayList<>();
 				while(rs.next()) {
 					StudyListCount StudyListCount = new StudyListCount();
@@ -181,7 +191,7 @@ public class DataGetter extends DataAccessor {
 		return list;
 	}
 
-	public Login getLogin(Login loginbean) throws DatabaseConnectException, SQLException{
+	public Login getLogin(Login loginbean) {
 		Login login = (Login) get(Login.QUERY_GET, new DataSettable() {
 			
 			@Override
@@ -192,7 +202,7 @@ public class DataGetter extends DataAccessor {
 		}, new DataGettable() {
 			
 			@Override
-			public Object onGetResult(ResultSet rs) throws DatabaseConnectException, SQLException {
+			public Object onGetResult(ResultSet rs) throws SQLException {
 				Login innerLogin = null;
 				if(rs.next()) {
 					innerLogin = new Login();			//얘
@@ -206,7 +216,7 @@ public class DataGetter extends DataAccessor {
 	}
 
 	//게시판에 들어갔을 때 나오는 목록 데이터를 가져오는 메소드 (board_list_form.jsp)
-	public ArrayList<BoardList> getBoardList() throws DatabaseConnectException, SQLException {
+	public ArrayList<BoardList> getBoardList() {
 
 		@SuppressWarnings("unchecked")
 		ArrayList<BoardList> list = (ArrayList<BoardList>) get(BoardList.QUERY_GET, new DataSettable() {
@@ -220,7 +230,7 @@ public class DataGetter extends DataAccessor {
 		}, new DataGettable() {
 
 			@Override
-			public ArrayList<BoardList> onGetResult(ResultSet rs) throws DatabaseConnectException, SQLException {
+			public ArrayList<BoardList> onGetResult(ResultSet rs) throws SQLException {
 				ArrayList<BoardList> boardlist = new ArrayList<>();
 				while (rs.next()) {
 					BoardList board = new BoardList();

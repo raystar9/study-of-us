@@ -29,22 +29,20 @@ public class TestPage extends HttpServlet {
 		/*
 		 * ExceptionHandler는 Exception이 발생하는 함수를 한데 모아 같은 결과로 처리해주는 클래스다.
 		 */
-		ExceptionHandler.general(new ExceptionHandleable() {
 			
-			@Override
-			public DataAccessor methods() throws DatabaseConnectException, SQLException {
+		DataGetter getter = new DataGetter(DatabaseAccounts.ADMIN);
+		ArrayList<Member> members = getter.getMembers();
+		
+		for(Member member  : members) {
+			System.out.println((member.getId()));
+		}
+		
+		try {
+			getter.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 				
-				DataGetter getter = new DataGetter(DatabaseAccounts.ADMIN);
-				ArrayList<Member> members = getter.getMembers();
-				
-				for(Member member  : members) {
-					System.out.println((member.getId()));
-				}
-				
-				return getter;
-			}
-			
-		});
 		
 		/*
 		 * 람다식을 사용한 경우(위와 같은 코드임)
