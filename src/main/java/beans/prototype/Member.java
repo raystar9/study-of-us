@@ -18,68 +18,70 @@ public class Member{
      public static final String QUERY_PUT = "UPDATE ";
      public static final String QUERY_DELETE = "DELETE ";
      
-     private int m_index;
-     private String m_id;
-     private String m_name;
-     private String m_password;
-     private String m_email;
-     private int m_tel;
-     private String m_address;
-     private String m_gender;
-     private String m_introduce;
+     private int index;
+     private String id;
+     private String name;
+     private String password;
+     private String email;
+     private int tel;
+     private String address;
+     private String gender;
+     private String introduce;
      
-     public int getM_index() {
-        return m_index;
-     }
-     public void setM_index(int m_index) {
-        this.m_index = m_index;
-     }
-     public String getM_id() {
-        return m_id;
-     }
-     public void setM_id(String m_id) {
-        this.m_id = m_id;
-     }
-     public String getM_name() {
-        return m_name;
-     }
-     public void setM_name(String m_name) {
-        this.m_name = m_name;
-     }
-     public String getM_password() {
-        return m_password;
-     }
-     public void setM_password(String m_password) {
-        this.m_password = m_password;
-     }
-     public String getM_email() {
-        return m_email;
-     }
-     public void setM_email(String m_email) {
-        this.m_email = m_email;
-     }
-     public int getM_tel() {
-        return m_tel;
-     }
-     public void setM_tel(int m_tel) {
-        this.m_tel = m_tel;
-     }
-     public String getM_address() {
-        return m_address;
-     }
-     public void setM_address(String m_address) {
-        this.m_address = m_address;
-     }
-     public String getM_gender() {
-        return m_gender;
-     }
-     public void setM_gender(String m_gender) {
-        this.m_gender = m_gender;
-     }
-     public String getM_introduce() {
-        return m_introduce;
-     }
-     public void setM_introduce(String m_introduce) {
-        this.m_introduce = m_introduce;
-     }
+	public int getIndex() {
+		return index;
+	}
+	public void setIndex(int index) {
+		this.index = index;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public int getTel() {
+		return tel;
+	}
+	public void setTel(int tel) {
+		this.tel = tel;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public String getGender() {
+		return gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+	public String getIntroduce() {
+		return introduce;
+	}
+	public void setIntroduce(String introduce) {
+		this.introduce = introduce;
+	}
+     
+     
 }

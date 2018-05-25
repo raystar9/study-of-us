@@ -1,25 +1,25 @@
 package beans.prototype;
 
 public class Interesting {
-
+	
 	 public static final String QUERY_GET ="SELECT * FROM Interesting";
      public static final String QUERY_POST = "insert into member values(member_index.nextval,?,?,?,?,?,?,?,?)";
      public static final String QUERY_PUT = "UPDATE ";
      public static final String QUERY_DELETE = "DELETE ";
      
-     private int memberindex;
-     private int categoryid;
-	public int getMemberindex() {
-		return memberindex;
+     int memberIndex;
+     int categoryId;
+	public int getMemberIndex() {
+		return memberIndex;
 	}
-	public void setMemberindex(int memberindex) {
-		this.memberindex = memberindex;
+	public void setMemberIndex(int memberIndex) {
+		this.memberIndex = memberIndex;
 	}
-	public int getCategoryid() {
-		return categoryid;
+	public int getCategoryId() {
+		return categoryId;
 	}
-	public void setCategoryid(int categoryid) {
-		this.categoryid = categoryid;
+	public void setCategoryId(int categoryId) {
+		this.categoryId = categoryId;
 	}
 	public static String getQueryGet() {
 		return QUERY_GET;
@@ -36,3 +36,4 @@ public class Interesting {
      
      
 }
+

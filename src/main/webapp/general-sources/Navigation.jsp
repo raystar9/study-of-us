@@ -55,7 +55,7 @@ body {
   <a href="#information">Information</a>
   <div class="topnav-right">
     <a href="#login">Login</a>
-    <a href="#signup">SignUp</a>
+    <a href="join">SignUp</a>
    <!-- if 문을 통해서 로그인 상태시 로그아웃을 표시하고 로그인을 하지 않으면 회원가입을 표시한다  -->
   </div>
 </div>
