@@ -5,13 +5,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-	<script>
-		alert("아이디 혹은 비밀번호를 확인해주세요.");
-		location.href="LoginForm";
-	</script>
 </head>
 <body>
-	
 
 </body>
 </html>
