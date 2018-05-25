@@ -5,6 +5,7 @@
 <html>
 <head>
 <script src='sources/schedule/js/jquery.min.js'></script>
+<link rel="stylesheet" href='sources/notice/css/notice.css'/>
 
 </head>
 <body>
