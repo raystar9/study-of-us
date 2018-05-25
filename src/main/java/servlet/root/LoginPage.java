@@ -35,7 +35,7 @@ public class LoginPage extends HttpServlet {
 		ExceptionHandler.general(new ExceptionHandleable() {
 			
 			@Override
-			public DataAccessor methods() throws DatabaseConnectException, SQLException {
+			public DataAccessor methods() throws DatabaseConnectException, SQLException, ServletException, IOException{
 				DataGetter getter = new DataGetter(DatabaseAccounts.ADMIN);
 				Login logpro = getter.getLogin(loginbean);
 				request.setAttribute("login", logpro);

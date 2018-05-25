@@ -1,6 +1,9 @@
 package exceptionHanlder;
 
+import java.io.IOException;
 import java.sql.SQLException;
+
+import javax.servlet.ServletException;
 
 import dao.DataAccessor;
 import dao.exceptions.DatabaseConnectException;
@@ -12,7 +15,7 @@ import dao.exceptions.DatabaseConnectException;
  *
  */
 public class ExceptionHandler{
-	public static void general(ExceptionHandleable handleable) {
+	public static void general(ExceptionHandleable handleable) throws ServletException, IOException {
 		DataAccessor accessor = null;
 		try {
 			accessor = handleable.methods();
@@ -32,7 +35,7 @@ public class ExceptionHandler{
 		}
 	}
 	
-	public static void dongwan(ExceptionHandleable handleable) {
+	public static void dongwan(ExceptionHandleable handleable) throws ServletException, IOException {
 		DataAccessor accessor = null;
 		try {
 			accessor = handleable.methods();
