@@ -2,7 +2,8 @@
 		var secondArray_0 = new Array ("자바","c언어","파이썬","c++","c#");
 		var secondArray_1 = new Array ("영어","불어","중국어","일본어");
 		var secondArray_2 = new Array ("정보처리기사","컴활","ccna","ccnp")
-		
+			
+			
 		$("#firstArray").change(function(){ // 대분류 선택시 소분류의 값을 선택할수 있도록 한다.
 			var selectVal = $("#firstArray").val();
 			var inner = "";
@@ -50,4 +51,23 @@
 			location.href = "이동할 주소"
 		})
 		
-	})
+		$("input[type=checkbox]").each(function(){
+			$(this).change(function(){
+				var a = $(this).val()
+				alert(a);
+				$("input[type=checkbox]").prop("checked",false)
+				$(this).prop("checked",true)
+				
+				$.ajax({
+					type : "get",
+					data : {"place" : a, "state":"ajax"},
+					url : "/study-of-us/study/SearchList",
+					success : function(rdata){
+							$(".project").empty().append(rdata);
+						}
+					})					
+					
+				})
+			})
+			
+		});

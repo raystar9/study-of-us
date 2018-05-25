@@ -50,7 +50,7 @@ public class Search extends HttpServlet {
 			public DataAccessor methods() throws DatabaseConnectException, SQLException {
 
 				DataGetter getter = new DataGetter(DatabaseAccounts.ADMIN);
-				ArrayList<Study> studies = getter.getStudys();
+				ArrayList<Study> studies = getter.getStudies();
 				
 				int page = 1; // 현재페이지
 				int totalList = 0; // 총 스터디의 수
@@ -59,7 +59,7 @@ public class Search extends HttpServlet {
 				
 				System.out.println("page 값 "+request.getParameter("page"));
 				
-				totalList = studies.size();
+				totalList = studies.size(); // 총 스터디의 개수를 구하기 위해서 사용
 				
 				if(request.getParameter("page")==null) {
 					page = 1;
@@ -73,7 +73,7 @@ public class Search extends HttpServlet {
 				System.out.println("startcount" + startcount);
 				System.out.println("endcount" + endcount);
 				
-				ArrayList<StudyListCount> studiespaging = getter.getStudyPaging(startcount,endcount);
+				ArrayList<StudyListCount> studiespaging = getter.getStudyPaging(startcount,endcount); // 페이징 기법을 통해서 보여주기 위한 부분
 				
 				
 				int totalpage = totalList / countList;
@@ -99,6 +99,7 @@ public class Search extends HttpServlet {
 				request.setAttribute("totalpage",totalpage);
 				request.setAttribute("endpage",endpage);
 				request.setAttribute("studies", studiespaging);
+				
 				return getter;
 				
 			}
