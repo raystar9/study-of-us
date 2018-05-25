@@ -2,19 +2,29 @@
 
 package beans.study.each.board;
 
-import java.util.Date;
 
-public class BoardViewRegister {
+
+public class BoardViewRegisterBean {
 
 	public static final String QUERY_GET = "SELECT";		//board_view_form.jsp에서 데이터 가져올 때 쿼리
 	public static final String QUERY_PUT = "UPDATE";		//board_view_form.jsp에서 데이터 수정할 때 쿼리
 	public static final String QUERY_DELETE = "DELETE ";	//board_view_form.jsp에서 데이터 삭제할 때 쿼리
 	public static final String QUERY_POST = "INSERT";		//board_register_form.jsp에서 데이터 삽입할 때 쿼리
 
+	private int index;	 	 // 게시글 번호
 	private String title; 	 // 게시글 제목
 	private String name; 	 // 게시글 작성자
 	private String content;  // 게시글 내용
-	private String date; 		 // 게시글 작성일
+	private String date; 	 // 게시글 작성일
+
+	
+	public int getIndex() {
+		return index;
+	}
+
+	public void setIndex(int index) {
+		this.index = index;
+	}
 
 	public String getTitle() {
 		return title;
@@ -47,6 +57,8 @@ public class BoardViewRegister {
 	public void setDate(String date) {
 		this.date = date;
 	}
+
+	
 	
 	
 

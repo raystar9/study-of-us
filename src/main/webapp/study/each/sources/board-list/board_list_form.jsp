@@ -32,36 +32,19 @@
             </td>
             <td>
                <div>
-               <%--답변글 제목앞에 여백 처리 부분
-                     BOARD_RE_LEV, BOARD_RE_LEV, BOARD_NUM, BOARD_SUBJECT, BOARD_NAME,
-                      BOARD_DATE, BOARD_RE_READCOUNT,BOARD_DATE --%>
-               <c:if test = "${b.BOARD_RE_LEV != 0 }" >
-                    <!-- 답글인 경우 -->
-                    
-                  <c:forEach var ="a" begin = "0" end= "${b.BOARD_RE_LEV*2 }" step = "1">
-                  &nbsp;
-                  </c:forEach>
-                        ▶   
-               </c:if>
-               
-               <c:if test="${b.BOARD_RE_LEV == 0}">
-               <!-- 원문인 경우 -->
                   &nbsp; ▶
-               </c:if>
-               <a href="./BoardDetailAction.bo?num=${b.BOARD_NUM}">
-                  ${b.BOARD_SUBJECT}
+               <a href="./study/boardview?num=${b.index}">
+                  ${b.title}
                </a>
                </div>
             </td>
             <td>
-               <div>${b.BOARD_NAME}</div>
+               <div>${b.name}</div>
             </td>
             <td>
-               <div>${b.BOARD_DATE}</div>
+               <div>${b.date}</div>
             </td>
-            <td>
-               <div>${b.BOARD_READCOUNT}</div>
-            </td>
+            
          </tr>
       </c:forEach>
       
@@ -71,7 +54,7 @@
       		이전&nbsp;
       		</c:if>
       		<c:if test="${page > 1 }">
-      			<a href="./BoardList.bo?page=${page-1}">이전</a>&nbsp;
+      			<a href="./study/board?page=${page-1}">이전</a>&nbsp;
       		</c:if>
       		
       		<c:forEach var="a" begin="${startpage }" end="${endpage }">
@@ -79,7 +62,7 @@
       				${a}
       			</c:if>
       			<c:if test = "${a != page }">
-      				<a href="./BoardList.bo?page=${a}">${a}</a>
+      				<a href="./study/board?page=${a}">${a}</a>
       			</c:if>
       		</c:forEach>
       		
@@ -87,7 +70,7 @@
       			&nbsp;다음
       		</c:if>
       		<c:if test="${page < maxpage }">
-      			<a href="./BoardList.bo?page=${page+1}">&nbsp;다음</a>
+      			<a href="./study/board?page=${page+1}">&nbsp;다음</a>
       		</c:if>
       	</td>
       </tr>
@@ -105,7 +88,7 @@
       
          <tr>
             <td colspan="5" style="text-align:right">
-               <a href="./BoardWrite.bo">[글쓰기]</a>
+               <a href="./boardregister">[글쓰기]</a>
             </td>
          </tr>
    </table>

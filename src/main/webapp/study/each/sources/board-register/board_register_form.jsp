@@ -39,8 +39,8 @@
 						rows="15"></textarea></td>
 			</tr>
 			<tr class="center">
-				<td colspan="3" class="h30 lime"><input type=submit value="등록">
-					<input type=reset value="취소"></td>
+				<td colspan="3" class="h30 lime"><input type=submit value="등록" onClick="location.href='./boardview'">
+					<input type=button value="취소" onClick="location.href='./board'"></td>
 			</tr>
 		</table>
 	</form>

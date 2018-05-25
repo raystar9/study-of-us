@@ -1,0 +1,24 @@
+@charset "UTF-8";
+.btn btn-default {
+	float: right;
+}
+
+#cash {
+	width: 600px;
+}
+
+#cash2 {
+	width: 700px;
+}
+
+#cash3 {
+	float: right;
+}
+
+.total {
+	width: 150px;
+}
+
+#btn {
+	float: right;
+}

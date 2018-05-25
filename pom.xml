@@ -6,7 +6,7 @@
 
   <groupId>team.nod</groupId>
   <artifactId>study-of-us</artifactId>
-  <version>0.2.5</version>
+  <version>0.2.8</version>
   <packaging>war</packaging>
 
   <name>study-of-us Maven Webapp</name>

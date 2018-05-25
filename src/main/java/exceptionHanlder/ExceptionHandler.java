@@ -1,12 +1,8 @@
 package exceptionHanlder;
 
-import java.io.IOException;
 import java.sql.SQLException;
 
-import javax.servlet.ServletException;
-
-import dao.DataAccessor;
-import dao.exceptions.DatabaseConnectException;
+import javax.naming.NamingException;
 
 /**
  * Exception 처리를 담당하는 클래스입니다.
@@ -15,43 +11,28 @@ import dao.exceptions.DatabaseConnectException;
  *
  */
 public class ExceptionHandler{
-	public static void general(ExceptionHandleable handleable) throws ServletException, IOException {
-		DataAccessor accessor = null;
+
+	public static void handleNamingException(TryNamingException tryNamingException) {
 		try {
-			accessor = handleable.methods();
-		} catch (DatabaseConnectException e) {
+			tryNamingException.action();
+		} catch (NamingException e) {
 			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if(accessor != null) {
-					accessor.close();
-				}
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 		}
 	}
 	
-	public static void dongwan(ExceptionHandleable handleable) throws ServletException, IOException {
-		DataAccessor accessor = null;
+	public static void handleSQLException(TrySQLException trySQLException) {
 		try {
-			accessor = handleable.methods();
-		} catch (DatabaseConnectException e) {
-			e.printStackTrace();
+			trySQLException.action();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
-			try {
-				if(accessor != null) {
-					accessor.close();
-				}
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		}
+	}
+
+	public static void handleSQLException(Object object, TryGetObject tryGetObject) {
+		try {
+			tryGetObject.action(object);
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 	}
 }
