@@ -27,23 +27,26 @@ public class LoginPage extends HttpServlet {
 	
 	
 	  protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Login loginbean= new Login(); 
-		loginbean.setId(request.getParameter("id"));
-		loginbean.setPassword(request.getParameter("password"));
-		
-		
+		String password = request.getParameter("password");
+		Login logpro = null;
 		ExceptionHandler.general(new ExceptionHandleable() {
 			
 			@Override
 			public DataAccessor methods() throws DatabaseConnectException, SQLException {
 				DataGetter getter = new DataGetter(DatabaseAccounts.ADMIN);
-				Login logpro = getter.getLogin(loginbean);
+				logpro = getter.getLogin(request.getParameter("id"));
+				//
 				request.setAttribute("login", logpro);
+				if(logpro == null) {
+					response.sendRedirect("/loginFail,jsp");
+				}else {
+					RequestDispatcher dispatcher = request.getRequestDispatcher("/study/list.jsp");
+					dispatcher.forward(request, response);			
+					}
 				return getter;				//트라이 캐치문 실행
 			}
 		});
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/list.jsp");
-		response.sendRedirect("loginFail");
 		dispatcher.forward(request, response);
 	}
 }

@@ -21,14 +21,14 @@
 
     <label for="password"><strong>Your Pass</strong></label><a href="#" class="forgot">Forgot password?</a>
     <input type="password" id="pass" name="pass" placeholder="Your PASS.." maxlength="13">
-    <input type="submit" value="Sign in">
+    <input type="submit" value="Sign in" id="submit">
   </form>
 </div>
 <br>
 <div>
 	<strong>New to StudyOfUs?&nbsp;&nbsp;<a href=#>Create an account</a></strong>
 </div>
-
+		<span id="message"></span>
 
 </body>
 </html>
