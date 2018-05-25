@@ -26,7 +26,7 @@ public class TestPage extends HttpServlet {
 		 * ExceptionHandler는 Exception이 발생하는 함수를 한데 모아 같은 결과로 처리해주는 클래스다.
 		 */
 			
-		DataGetter getter = new DataGetter(DatabaseAccounts.ADMIN);
+		DataGetter getter = new DataGetter(DatabaseAccounts.SCOTT);
 		ArrayList<Member> members = getter.getMembers();
 		
 		for(Member member  : members) {

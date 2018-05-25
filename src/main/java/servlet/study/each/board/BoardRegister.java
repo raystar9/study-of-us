@@ -43,7 +43,7 @@ public class BoardRegister extends HttpServlet {
 		// TODO Auto-generated method stub
 
 		// 계정이름은 context에서 정해줄 수 있다 현재 system/1234
-		DataPoster poster = new DataPoster(DatabaseAccounts.ADMIN);
+		DataPoster poster = new DataPoster(DatabaseAccounts.SCOTT);
 		poster.postBoard(board); // 멤버값을 받아오고
 		try {
 			poster.close();
