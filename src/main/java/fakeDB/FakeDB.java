@@ -22,6 +22,12 @@ public class FakeDB {
 	private void initMember() {
 		Member member = new Member();
 		members.add(member);
+		members.add(member);
+		members.add(member);
+		members.add(member);
+		members.add(member);
+		members.add(member);
+		members.add(member);
 	}
 	
 	private void initStudy() {
