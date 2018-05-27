@@ -1,7 +1,6 @@
 package servlet.root;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -60,12 +59,7 @@ public class JoinPage extends HttpServlet {
 		DataPoster poster = new DataPoster(DatabaseAccounts.ADMIN);//계정이름은 context 에 서 정해줄 수 있다 현재 system/1234
 		poster.postMembers(member);
 
-		try {
-			poster.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		poster.close();
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/home");
 		dispatcher.forward(request, response);

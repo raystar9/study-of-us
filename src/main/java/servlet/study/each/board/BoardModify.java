@@ -1,7 +1,6 @@
 package servlet.study.each.board;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -34,12 +33,7 @@ public class BoardModify extends HttpServlet {
 		ArrayList<BoardViewRegisterBean> boardcontent = getter.getBoardView();
 		request.setAttribute("boardcontent", boardcontent);
 		
-		try {
-			getter.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		getter.close();
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/each/boardModify.jsp");
 		dispatcher.forward(request, response);
@@ -57,12 +51,7 @@ public class BoardModify extends HttpServlet {
 		DataPoster poster = new DataPoster(DatabaseAccounts.ADMIN);
 		poster.postBoardModify(boardmodify);
 
-		try {
-			poster.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		poster.close();
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/each/boardView.jsp");
 		dispatcher.forward(request, response);
