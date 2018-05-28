@@ -10,20 +10,24 @@
   
 </head>
 <body>
-
+<form action="sutdy_registration" method="get">
 <h3 align=center>Modify</h3>
 <div class="signup">
 <i class="material-icons">category</i>
 <label for="category"><strong>카테고리</strong></label><br>
 
-<input type=text name=category id="category">
-<select name=sel id=sel>
-   <option value="">세부 카테고리..</option>
-   <option value="">option2</option>
-   <option value="">option3</option>
-   <option value="">option4</option>
-   <option value="">option5</option>
+<span id=category>
+<select name=first id="first">
+	<option value="-1">대분류</option>
+	<option value="1">프로그래밍</option>
+	<option value="2">외국어</option>
+	<option value="3">자격증</option>
 </select>
+
+<select name="second" id="second">
+	<option value="-1">소분류</option>
+</select>
+</span>
 <br>
 
 <i class="material-icons">create</i>
@@ -33,31 +37,67 @@
 
 <i class="material-icons">date_range</i>
 <label for="category"><strong>기간</strong></label><br>
-<input type=text name=day1 id="day1"> ~ 
-<input type=text name=day2 id="day2"><br>
+<input type=text name=day1 id="day1" readOnly> ~ 
+<input type=text name=day2 id="day2" readOnly><br>
 
 
-<p>
-
+<span>
 <span class=one>
       
       <i class="material-icons">people</i>
       <label for="category"><strong>모집인원</strong></label><br>
       <input type=text name=people id=people name=people>
       </span>
+
+
 <span class=two>
-
-      <i class="material-icons">access_time</i>
-      <label for="category"><strong>활동 시간</strong></label><br>
-      <input type=text name=people id=people name=people>
-</span>
-
-<span class=three>
       <i class="material-icons">today</i>
       <label for="day"><strong>활동 요일</strong></label><br>
-      <input type=text name=activity_day id=activity_day name=activity_day>
+      <select name="day" id="day">
+      <option value="">요일</option>
+      <option value="월">월</option>
+      <option value="화">화</option>
+      <option value="수">수</option>
+      <option value="목">목</option>
+      <option value="금">금</option>
+      <option value="토">토</option>
+      <option value="일">일</option>
+      </select>
 </span>
-</p>
+
+<span class="three">
+      <i class="material-icons">access_time</i>
+      <label for="category"><strong>활동 시간</strong></label><br>
+      <select id="stime" name="stime">
+      <option value = "">시간</option>
+      <option value = "1">01:00~</option>
+      <option value = "2">02:00~</option>
+      <option value = "3">03:00~</option>
+      <option value = "4">04:00~</option>
+      <option value = "5">05:00~</option>
+      <option value = "6">06:00~</option>
+      <option value = "7">07:00~</option>
+      <option value = "8">08:00~</option>
+      <option value = "9">09:00~</option>
+      <option value = "10">10:00~</option>
+      <option value = "11">11:00~</option>
+      <option value = "12">12:00~</option>
+      <option value = "13">13:00~</option>
+      <option value = "14">14:00~</option>
+      <option value = "15">15:00~</option>
+      <option value = "16">16:00~</option>
+      <option value = "17">17:00~</option>
+      <option value = "18">18:00~</option>
+      <option value = "19">19:00~</option>
+      <option value = "20">20:00~</option>
+      <option value = "21">21:00~</option>
+      <option value = "22">22:00~</option>
+      <option value = "23">23:00~</option>
+      <option value = "24">24:00~</option>
+      </select>
+</span>
+</span>
+
 
 
 <i class="material-icons">edit</i>
@@ -69,49 +109,23 @@
 <textarea rows=10 cols=60 name=prepared id=prepared></textarea><br>
 
 <label for="prepared"><strong>기대효과 및 활동 분야</strong></label><br>
-<textarea rows=10 cols=60 name=prepared id=prepared></textarea><br>
+<textarea rows=10 cols=60 name=activity id=activity></textarea><br>
 <br>
-
-
 <p>
-<span class="check">
-
-   
-   <label class="checkcontainer">서울
-        <input type="checkbox" checked="checked">
-      <span class="checkmark"></span>
-   </label>&nbsp;&nbsp;
-      <label class="checkcontainer">부산
-       <input type="checkbox">
-        <span class="checkmark"></span>
-   </label>
-   <br>
-   <label class="checkcontainer">대구
-        <input type="checkbox" checked="checked">
-      <span class="checkmark"></span>
-   </label>&nbsp;&nbsp;
-      <label class="checkcontainer">대전
-       <input type="checkbox">
-        <span class="checkmark"></span>
-   </label>
-   <br>
-   <label class="checkcontainer">경기
-        <input type="checkbox" checked="checked">
-      <span class="checkmark"></span>
-   </label>&nbsp;&nbsp;
-   <label class="checkcontainer">인천
-       <input type="checkbox">
-        <span class="checkmark"></span>
-   </label>
-   <br>
-   <label class="checkcontainer">강원
-       <input type="checkbox">
-        <span class="checkmark"></span>
-   </label>&nbsp;&nbsp;
-   <label class="checkcontainer">시흥
-       <input type="checkbox">
-        <span class="checkmark"></span>
-   </label>
+<span style="width:48%;height:400px;" id="location">
+<select id="locationSel">
+<option value="">지역</option>
+<option value="서울">서울</option>
+<option value="부천">부천</option>
+<option value="인천">인천</option>
+<option value="춘천">춘천</option>
+<option value="대전">대전</option>
+<option value="세종시">세종</option>
+<option value="천안">천안</option>
+<option value="부산">부산</option>
+<option value="창원">창원</option>
+<option value="광주">광주</option>
+</select>
 </span>
 <span id="map" style="width:48%;height:400px;">
 
@@ -119,6 +133,6 @@
 </p>
    <input type=submit value="저장하기">
 </div>
-<br>
+</form>
 </body>
 </html>

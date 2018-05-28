@@ -41,18 +41,19 @@
 	    
     <label for="area"><strong>preference Area</strong></label><br>
     <p>
-    	<input type="checkbox" name=area id=area value="서울" checked>서울
-    	<input type="checkbox" name=area id=area value="경기">경기
-    	<input type="checkbox" name=area id=area value="인천">인천
-    	<input type="checkbox" name=area id=area value="강원">강원<br>
-    	<input type="checkbox" name=area id=area value="대전">대전
-    	<input type="checkbox" name=area id=area value="세종">세종
-    	<input type="checkbox" name=area id=area value="충남">충남
-    	<input type="checkbox" name=area id=area value="충북">충북<br>
-    	<input type="checkbox" name=area id=area value="부산">부산
-    	<input type="checkbox" name=area id=area value="경남">경남
-    	<input type="checkbox" name=area id=area value="경북">경북
-    	<input type="checkbox" name=area id=area value="전북">전북<br>
+    	<select id="location" name="location">
+			<option value="">지역</option>
+			<option value="서울">서울</option>
+			<option value="부천">부천</option>
+			<option value="인천">인천</option>
+			<option value="춘천">춘천</option>
+			<option value="대전">대전</option>
+			<option value="세종시">세종</option>
+			<option value="천안">천안</option>
+			<option value="부산">부산</option>
+			<option value="창원">창원</option>
+			<option value="광주">광주</option>
+		</select>
     </p>
     
     <label for="gender"><strong>Gender</strong></label><br>
