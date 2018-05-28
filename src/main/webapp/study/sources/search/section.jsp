@@ -27,63 +27,63 @@
 	</div>
 </div>
 	
-	<div class="check">
+	<div class="check" >
 	<p>
-	<span>체크사항1</span>
-	<label class="container">One
-  		<input type="checkbox" checked="checked" value="One" name="check1">
+
+	<label class="container">서울
+  		<input type="checkbox"  value="서울">
 		<span class="checkmark"></span>
 	</label>
-		<label class="container">Two
- 		<input type="checkbox">
+		<label class="container">경기
+ 		<input type="checkbox" value="경기">
   		<span class="checkmark"></span>
 	</label>
-	<label class="container">Three
-  		<input type="checkbox">
+	<label class="container">인천
+  		<input type="checkbox" value="인천">
  		<span class="checkmark"></span>
 	</label>
-	<label class="container">Four
-  		<input type="checkbox">
+	<label class="container">강원
+  		<input type="checkbox" value="강원">
   		<span class="checkmark"></span>
 	</label>	
 	</p>
 	
 	<p>
-	<span>체크사항2</span>
-	<label class="container">One
-  		<input type="checkbox" checked="checked">
+		<span style="font-size: 1.17em;
+    font-weight: bold">선호지역</span>
+	<label class="container">대전
+  		<input type="checkbox" value="대전">
 		<span class="checkmark"></span>
 	</label>
-		<label class="container">Two
- 		<input type="checkbox">
+		<label class="container">세종
+ 		<input type="checkbox" value="세종">
   		<span class="checkmark"></span>
 	</label>
-	<label class="container">Three
-  		<input type="checkbox">
+	<label class="container">충남
+  		<input type="checkbox" value="충남">
  		<span class="checkmark"></span>
 	</label>
-	<label class="container">Four
-  		<input type="checkbox">
+	<label class="container">충북
+  		<input type="checkbox"  value="충북">
   		<span class="checkmark"></span>
 	</label>	
 	</p>
 	
 		<p>
-		<span>체크사항3</span>
-	<label class="container">One
-  		<input type="checkbox" checked="checked">
+	<label class="container">부산
+  		<input type="checkbox"  value="부산">
 		<span class="checkmark"></span>
 	</label>
-		<label class="container">Two
- 		<input type="checkbox">
+		<label class="container">경남
+ 		<input type="checkbox"  value="경남">
   		<span class="checkmark"></span>
 	</label>
-	<label class="container">Three
-  		<input type="checkbox">
+	<label class="container">경북
+  		<input type="checkbox"  value="경북">
  		<span class="checkmark"></span>
 	</label>
-	<label class="container">Four
-  		<input type="checkbox">
+	<label class="container">전북
+  		<input type="checkbox"  value="전북">
   		<span class="checkmark"></span>
 	</label>	
 	</p>

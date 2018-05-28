@@ -8,8 +8,8 @@
 <link rel="stylesheet" href="sources/search/css/search.css">
 <script src = "http://code.jquery.com/jquery-3.3.1.js"></script>
 <script src= "sources/search/js/search.js"></script>
-
 </head>
+
 <body>
 <%@ include file = "/general-sources/Navigation.jsp" %>
 <%@ include file = "sources/search/section.jsp" %>

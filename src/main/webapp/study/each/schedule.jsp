@@ -9,7 +9,7 @@
 <script src='sources/schedule/js/moment.min.js'></script>
 <script src='sources/schedule/js/jquery.min.js'></script>
 <script src='sources/schedule/js/fullcalendar.min.js'></script>
-<script src='sources/schedule/js/schedule.js'></script>
+<script src='sources/schedule/js/schedule2.js'></script>
 
 </head>
 <body>

@@ -23,14 +23,17 @@ public class FakeDB {
 	
 	private void initMember() {
 		Member member = new Member();
+		member.setName("소문혁");
+		member.setIndex(1);
 		members.add(member);
-		members.add(member);
-		members.add(member);
-		members.add(member);
-		members.add(member);
-		members.add(member);
-		members.add(member);
-		members.add(member);
+		Member member2 = new Member();
+		member2.setName("구명회");
+		member2.setIndex(2);
+		members.add(member2);
+		Member member3 = new Member();
+		member3.setName("이다혜");
+		member3.setIndex(3);
+		members.add(member3);
 	}
 	
 	private void initStudy() {
