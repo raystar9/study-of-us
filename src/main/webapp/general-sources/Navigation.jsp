@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+       <%@ taglib prefix = "c"
+				uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,14 +52,22 @@ body {
 <body>
 
 <div class="topnav">
-  <a class="active" href="/study-of-us/home">Home</a>
+  <a class="active" href="/study-of-us/LoginPage">Home</a>
   <a href="Create">Study Create</a>
   <a href="/study-of-us/study/search">Study Search</a>
   <a href="#information">Information</a>
+  
   <div class="topnav-right">
-    <a href="#login">Login</a>
+  <c:if test="${empty id }">
+    <a href="LoginForm">Login</a>
     <a href="join">SignUp</a>
-   <!-- if 문을 통해서 로그인 상태시 로그아웃을 표시하고 로그인을 하지 않으면 회원가입을 표시한다  -->
+  </c:if> 
+  
+  <c:if test="${!empty id }">
+ 	 <a>${id} 님 환영합니다</a>
+    <a href="LogOut">로그아웃</a>
+  </c:if>
+   
   </div>
 </div>
 
