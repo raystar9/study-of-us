@@ -41,11 +41,12 @@ public class DataGetter extends DataAccessor {
 	 * onGetResult가 어떤 ArrayList를 반환할 지 모르기때문에 리스트는 제네릭 <?>으로 설정했습니다.
 	 */
 	private Object get(String query, DataSettable settable, DataGettable gettable) {
-		Object result = null;
-		ExceptionHandler.handleSQLException(result, new TryGetObject() {
+		
+		return ExceptionHandler.handleSQLException(new TryGetObject() {
+			
 			
 			@Override
-			public void action(Object result) throws SQLException {
+			public Object action(Object result) throws SQLException {
 				PreparedStatement pstmt = getStatement(query);
 				if (settable != null) {
 					settable.prepare(pstmt);
@@ -54,11 +55,13 @@ public class DataGetter extends DataAccessor {
 				ResultSet rs = pstmt.executeQuery();			//2 번째로 되고
 				
 				result = gettable.onGetResult(rs);
+				
+				System.out.println(result);
 				pstmt.close();
+				
+				return result;
 			}
 		});
-		
-		return result;
 	}
 
 	private Object get(String query, DataGettable gettable) {
@@ -82,8 +85,7 @@ public class DataGetter extends DataAccessor {
 				ArrayList<Member> members = new ArrayList<>();
 				while (rs.next()) {
 					Member member = new Member();
-					member.setIndex(rs.getInt(1));
-					member.setId(rs.getString(2));
+					member.setId(rs.getString(1));
 					members.add(member);
 				}
 				return members;
