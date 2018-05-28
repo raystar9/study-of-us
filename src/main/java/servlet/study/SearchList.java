@@ -1,7 +1,6 @@
 package servlet.study;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -114,12 +113,7 @@ public class SearchList extends HttpServlet {
 		
 		System.out.println("검색어는 "+ searchVal);
 		
-		try {
-			getter.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		getter.close();
 
 		if(request.getParameter("state")!=null) {
 			

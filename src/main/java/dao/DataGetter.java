@@ -14,8 +14,8 @@ import beans.study.each.board.BoardListBean;
 import beans.study.each.board.BoardViewRegisterBean;
 import dao.interfaces.DataGettable;
 import dao.interfaces.DataSettable;
-import exceptionHanlder.ExceptionHandler;
-import exceptionHanlder.TryGetObject;
+import exceptionHandler.ExceptionHandler;
+import exceptionHandler.TryGetObject;
 
 /**
  * 데이터베이스에 쿼리문을 실행하며 해당 쿼리문에 대한 결과를 ArrayList에 담아 반환합니다.

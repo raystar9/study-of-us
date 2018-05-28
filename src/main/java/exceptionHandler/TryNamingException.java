@@ -1,4 +1,4 @@
-package exceptionHanlder;
+package exceptionHandler;
 
 import javax.naming.NamingException;
 
