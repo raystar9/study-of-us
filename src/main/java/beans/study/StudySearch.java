@@ -1,10 +1,17 @@
 package beans.study;
 import java.sql.Date;
 
-
 public class StudySearch {
-	public static final String QUERY_GET = "select * from study where S_NAME LIKE ?";
+	public static final String QUERY_GET = "select * from (select rownum as rnum, s_index, s_name, s_c_id, s_place, s_time, s_plopienum, s_goal, s_term "
+			+ "from ("
+			+ "select s_index, s_name, s_c_id, s_place, s_time, s_plopienum, s_goal, s_term "
+			+ "from ("
+			+ "select * from study where s_place LIKE ? "
+			+ "order by s_index))) "
+			+ "where rnum >= ? and rnum <= ?";;
 	
+			public static final String QUERY_GET2 = "select * from study where s_place LIKE ?";
+		
 	private int index;
 	private String name;
 	private String c_id;
@@ -66,5 +73,9 @@ public class StudySearch {
 	public static String getQueryGet() {
 		return QUERY_GET;
 	}
+	public static String getQueryGet2() {
+		return QUERY_GET2;
+	}
+	
 }
 
