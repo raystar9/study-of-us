@@ -24,12 +24,12 @@
         {
           id: 999,
           title: 'Repeating Event',
-          start: '2018-03-09T16:00:00'
+          start: '2018-03-09 16:00:00'
         },
         {
           id: 999,
           title: 'Repeating Event',
-          start: '2018-03-16T16:00:00'
+          start: '2018-03-16 18:00:00'
         },
         {
           title: 'Conference',

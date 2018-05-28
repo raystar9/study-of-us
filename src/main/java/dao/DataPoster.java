@@ -3,6 +3,7 @@ package dao;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import beans.prototype.Meeting;
 import beans.prototype.Member;
 import beans.study.each.board.BoardViewRegisterBean;
 import dao.interfaces.DataSettable;
@@ -64,6 +65,18 @@ public class DataPoster extends DataSetter {
 				pstmt.setString(2, board.getContent());
 				pstmt.setString(3, board.getDate());
 				pstmt.executeUpdate();
+				pstmt.close();
+			}
+		});
+	}
+	
+	public void postMeeting(Meeting meeting) {
+		
+		set(Meeting.QUERY_POST, new DataSettable() {
+			
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+				pstmt.setString(1, meeting.getLocation());
 				pstmt.close();
 			}
 		});
