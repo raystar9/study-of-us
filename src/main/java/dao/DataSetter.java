@@ -28,11 +28,11 @@ abstract class DataSetter extends DataAccessor{ // 명호형이 만든지 확인
 	 * @throws SQLException
 	 */
 	protected int set(String query, DataSettable settable) {
-		int result = -1;
-		ExceptionHandler.handleSQLException(result, new TryGetObject(){
+		return (Integer) ExceptionHandler.handleSQLException(new TryGetObject(){
 		
 			@Override
-			public void action(Object result) throws SQLException {
+			public Object action(Object result) throws SQLException {
+				
 				PreparedStatement pstmt = _conn.prepareStatement(query);
 
 				settable.prepare(pstmt);
@@ -40,8 +40,8 @@ abstract class DataSetter extends DataAccessor{ // 명호형이 만든지 확인
 				result = pstmt.executeUpdate();
 				
 				pstmt.close();
+				return result;
 			}
 		});
-		return result;
 	}
 }
