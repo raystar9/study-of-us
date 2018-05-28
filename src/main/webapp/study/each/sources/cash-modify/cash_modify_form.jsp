@@ -15,7 +15,7 @@
 </head>
 
 <body>
-	<form action="#" method="post">
+	<form action="/study/cashmodify" method="post">
 
 		<table border='1'>
 			<tr>
@@ -65,33 +65,7 @@
 											</tr>
 										</thead>
 										<tbody>
-											<tr>
-												<td><input type="text" class="form-control"
-													placeholder="이름" id='dues-mem' name='duesMem' ></td>
-												<td><input type="text" class="form-control"
-													placeholder="금액" id='dues-fee' name='duesFee'
-													onkeyup="calculate();"></td>
-												<td><input type="text" class="form-control"
-													placeholder="비고" id='dues-note' name='duesNote'></td>
-											</tr>
-											<tr>
-												<td><input type="text" class="form-control"
-													placeholder="이름" id='dues-mem' name='duesMem'></td>
-												<td><input type="text" class="form-control"
-													placeholder="금액" id='dues-fee' name='duesFee'
-													onkeyup="calculate();"></td>
-												<td><input type="text" class="form-control"
-													placeholder="비고" id='dues-note' name='duesNote'></td>
-											</tr>
-											<tr>
-												<td><input type="text" class="form-control"
-													placeholder="이름" id='dues-mem' name='duesMem'></td>
-												<td><input type="text" class="form-control"
-													placeholder="금액" id='dues-fee' name='duesFee'
-													onkeyup="calculate();"></td>
-												<td><input type="text" class="form-control"
-													placeholder="비고" id='dues-note' name='duesNote'></td>
-											</tr>
+											
 										</tbody>
 									</table>
 								</div>
@@ -119,11 +93,12 @@
 									</thead>
 									<tbody id='cash_tbody'>
 										<tr>
-											<td><input type="text" class="form-control"
-												placeholder="내역" id='dues-exp' name='duesExp'></td>
-											<td><input type="text" class="form-control"
-												placeholder="금액" id='dues-expfee' name='duesExpFee'
-												onkeyup="calculate();"></td>
+											<td>
+												<input type="text" class="form-control" placeholder="내역" id='dues-exp' name='duesExp'>
+											</td>
+											<td>
+												<input type="text" class="form-control" placeholder="금액" id='dues-expfee' name='duesExpFee' onkeyup="calculate();">
+											</td>
 										</tr>
 									</tbody>
 								</table>
@@ -140,11 +115,9 @@
 						<label>*총계</label>
 						<div class="panel panel-default" id="cash">
 							<div class="panel-body">
-								<input type="text" class="total" id="dues-totalFee"
-									name="duesTotalFee">&nbsp;원 &nbsp;-&nbsp; <input
-									type="text" class="total" id="dues-totalExpen"
-									name="duesTotalExpen">&nbsp;원 &nbsp;=&nbsp; <input
-									type="text" class="total" id="dues-total" name="duesTotal">&nbsp;원
+								<input type="text" class="total" id="dues-totalFee" name="duesTotalFee">&nbsp;원 &nbsp;-&nbsp; 
+								<input type="text" class="total" id="dues-totalExpen" name="duesTotalExpen">&nbsp;원 &nbsp;=&nbsp; 
+								<input type="text" class="total" id="dues-total" name="duesTotal">&nbsp;원
 							</div>
 						</div>
 					</div> <br>
@@ -157,18 +130,17 @@
 						<div class="panel panel-default" id="cash">
 							<div class="panel-body">
 								<div>
-									<input type="text" class="total" id="dues-final"
-										name="duesfinal" placeholder="0">&nbsp;원
+									<input type="text" class="total" id="dues-final" name="duesfinal" placeholder="0">&nbsp;원
 								</div>
 							</div>
 						</div>
-					</div> <br>
+					</div><br>
 				</td>
 			</tr>
 			<tr>
-				<td><input type="reset" class="btn btn-default" id="btn"
-					value="취소"> <input type="submit" class="btn btn-default"
-					id="btn" value="수정"></td>
+				<td><input type="reset" class="btn btn-default" id="btn" value="취소"> 
+				    <input type="submit" class="btn btn-default" id="btn" value="수정">
+				</td>
 			</tr>
 		</table>
 	</form>
