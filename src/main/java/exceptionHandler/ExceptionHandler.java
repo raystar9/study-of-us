@@ -28,11 +28,12 @@ public class ExceptionHandler{
 		}
 	}
 
-	public static void handleSQLException(Object object, TryGetObject tryGetObject) {
+	public static Object handleSQLException(TryGetObject tryGetObject) {
 		try {
-			tryGetObject.action(object);
+			return tryGetObject.action(new Object());
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return null;
 		}
 	}
 }
