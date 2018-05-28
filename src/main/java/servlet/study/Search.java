@@ -9,88 +9,139 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import beans.prototype.Study;
 import beans.study.StudyListCount;
 import dao.DataGetter;
 import dao.DatabaseAccounts;
+
 /**
  * Servlet implementation class Home
  */
 @WebServlet("/study/search")
 public class Search extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public Search() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public Search() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		System.out.println("스터디 검색 페이지");
-		
+
 		DataGetter getter = new DataGetter(DatabaseAccounts.SCOTT);
-		ArrayList<Study> studies = getter.getStudies();
+		HttpSession session = request.getSession();
 		
-		int page = 1; // 현재페이지
+		int[] count;
+		int page = 1; // 현재 페이지 번호 (이하 page)
 		int totalList = 0; // 총 스터디의 수
-		int countList = 5; // 화면에 보여줄 스터디의 수
-		int countpage = 5; // 
+		int totalSearchList = 0; // 검색조건 사용한 스터디의 수
+		int countpage = 5; // 한 화면에 출력될 페이지 수 (countPage)
+		int countList = 5; // 한 페이지에 출력될 게시물 수 (countList)
+		String searchVal = ""; // 검색바를 통해서 검색한 내용
+		String place = ""; // 체크박스를 통해 선택한 지역명
+
+		System.out.println("page 값 " + request.getParameter("page"));
+
+		if ( request.getParameter("searchVal") != null|| request.getParameter("place") != null) {
+
+			
 		
-		System.out.println("page 값 "+request.getParameter("page"));
+				// 검색어로 검색한 경우
+			searchVal = request.getParameter("searchVal");
+			session.setAttribute("searchVal", request.getParameter("searchVal"));
 		
-		totalList = studies.size(); // 총 스터디의 개수를 구하기 위해서 사용
-		
-		if(request.getParameter("page")==null) {
-			page = 1;
-		}else {
-		page = Integer.parseInt(request.getParameter("page"));
+			
+			
+			place = request.getParameter("place");
+			ArrayList<Study> studies = getter.getStudies(searchVal, place);
+			totalSearchList = studies.size(); // 총 스터디의 개수를 구하기 위해서 사용
+
+			count = gettotalpage(totalSearchList, countList, page, countpage, request); 
+			// 검색 후 페이징 처리 메서드
+			System.out.println("searchVal@@@@@@@@@@@@@");
+			ArrayList<StudyListCount> studiespaging = getter.getStudyPaging(count[0], count[1], searchVal, place); 
+			// 페이징 기법을 통해서 게시물 보여주는 부분
+																											
+			request.setAttribute("studies", studiespaging);
+		} else {
+			ArrayList<Study> studies = getter.getStudies();
+			totalList = studies.size(); 
+			// 총 스터디의 개수를 구하기 위해서 사용
+
+			count = gettotalpage(totalList, countList, page, countpage, request); 
+			// 검색 전 페이징 처리 메서드
+
+			ArrayList<StudyListCount> studiespaging = getter.getStudyPaging(count[0], count[1]); 
+			// 페이징 기법을 통해서 보여주기 위한  부분
+			
+			request.setAttribute("studies", studiespaging);
 		}
-		
-		int startcount = (page - 1)* countpage + 1; // 한페이지에 표시할 5개의 스터디중 시작 번호(rownum)
-		int endcount = page * countpage;			// 한페이지에 표시할 5개의 스터디중 끝나는 번호 (rownum)
-		
-		System.out.println("startcount" + startcount);
-		System.out.println("endcount" + endcount);
-		
-		ArrayList<StudyListCount> studiespaging = getter.getStudyPaging(startcount,endcount); // 페이징 기법을 통해서 보여주기 위한 부분
-		
-		
-		int totalpage = totalList / countList;
-		if(totalList % countList > 0) {
-			totalpage++;
-		}			
-		System.out.println("총페이지의 수는 :" + totalpage);
-		
-		if(totalpage < page) {
-			page = totalpage;
-		}
-		
-		int startpage =((page - 1)/countpage) * countpage + 1; // 시작 페이지를 구하는 방법
-		int endpage = startpage + countpage -1; // 
-		
-		
-		if(endpage > totalpage) { // startpage 와 endpage 만으로는 계산을하게 되면 26개의 페이지수가 나오더라도 30페이지가 나타나기 떄문에 조건문을 사용해 토탈페이지의 값을 바꿔준다
-			endpage = totalpage;
-		}
-		
-		request.setAttribute("startpage",startpage);
-		request.setAttribute("page",page);
-		request.setAttribute("totalpage",totalpage);
-		request.setAttribute("endpage",endpage);
-		request.setAttribute("studies", studiespaging);
-				
+
 		getter.close();
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/search.jsp");
-		dispatcher.forward(request, response);
-		System.out.println("완료");
+		if (request.getParameter("state") != null) {
+
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/study/sources/search/section2.jsp");
+			dispatcher.forward(request, response);
+			System.out.println("아작스 실행");
+		} else {
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/study/search.jsp");
+			dispatcher.forward(request, response);
+			System.out.println("완료");
+		}
+	}
+
+
+	
+	// 중복되는 부분 메서드 처리
+	public int[] gettotalpage(int totalList, int countList, int page, int countpage, HttpServletRequest request) {
+		int count[] = new int[2];
+
+		int totalpage = totalList / countList;
+		if (totalList % countList > 0) {
+			totalpage++;
+		}
+		System.out.println("총페이지의 수는 :" + totalpage);
+
+		if (totalpage < page) {
+			page = totalpage;
+		}
+
+		int startpage = ((page - 1) / countpage) * countpage + 1; // 시작 페이지를 구하는 방법
+		int endpage = startpage + countpage - 1; //
+
+		if (endpage > totalpage) { // startpage 와 endpage 만으로는 계산을하게 되면 26개의 페이지수가 나오더라도 30페이지가 나타나기 떄문에 조건문을 사용해
+									// 토탈페이지의 값을 바꿔준다
+			endpage = totalpage;
+		}
+
+		if (request.getParameter("page") == null) {
+			page = 1;
+		} else {
+			page = Integer.parseInt(request.getParameter("page"));
+		}
+		int startcount = (page - 1) * countpage + 1; // 한페이지에 표시할 5개의 스터디중 시작 번호(rownum)
+		int endcount = page * countpage; // 한페이지에 표시할 5개의 스터디중 끝나는 번호 (rownum)
+
+		count[0] = startcount;
+		count[1] = endcount;
+
+		request.setAttribute("startpage", startpage);
+		request.setAttribute("page", page);
+		request.setAttribute("totalpage", totalpage);
+		request.setAttribute("endpage", endpage);
+		return count;
 	}
 }
