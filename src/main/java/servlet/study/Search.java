@@ -1,7 +1,6 @@
 package servlet.study;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -88,12 +87,7 @@ public class Search extends HttpServlet {
 		request.setAttribute("endpage",endpage);
 		request.setAttribute("studies", studiespaging);
 				
-		try {
-			getter.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		getter.close();
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/search.jsp");
 		dispatcher.forward(request, response);

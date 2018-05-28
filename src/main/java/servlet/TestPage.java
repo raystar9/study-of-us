@@ -1,7 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -33,11 +32,7 @@ public class TestPage extends HttpServlet {
 			System.out.println((member.getId()));
 		}
 		
-		try {
-			getter.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		getter.close();
 				
 		
 		/*

@@ -1,7 +1,6 @@
 package servlet.study.each.board;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -67,12 +66,7 @@ public class BoardList extends HttpServlet {
 		// 해당 페이지의 글 목록을 갖고 있는 리스트
 		request.setAttribute("boardlist", boardlist);
 
-		try {
-			getter.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		getter.close();
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/each/boardList.jsp");
 		dispatcher.forward(request, response);

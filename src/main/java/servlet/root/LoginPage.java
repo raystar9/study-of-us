@@ -1,7 +1,6 @@
 package servlet.root;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -52,11 +51,6 @@ public class LoginPage extends HttpServlet {
 			dispatcher.forward(request, response);
 		}*/
 
-		try {
-			getter.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		getter.close();
 	}
 }
