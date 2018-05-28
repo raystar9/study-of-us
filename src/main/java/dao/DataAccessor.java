@@ -9,9 +9,9 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-import exceptionHanlder.ExceptionHandler;
-import exceptionHanlder.TryNamingException;
-import exceptionHanlder.TrySQLException;
+import exceptionHandler.ExceptionHandler;
+import exceptionHandler.TryNamingException;
+import exceptionHandler.TrySQLException;
 
 /* 
  * abstract class(추상 클래스)이기에 직접 객체를 생성할 수 없습니다.
@@ -61,9 +61,16 @@ public abstract class DataAccessor implements AutoCloseable{
 	}
 	
 	@Override
-	public void close() throws SQLException{
+	public void close(){
 		if(_conn != null) {
-			_conn.close();
+			ExceptionHandler.handleSQLException(new TrySQLException() {
+				
+				@Override
+				public void action() throws SQLException {
+					_conn.close();
+				}
+			});
+			
 		}
 	}
 }

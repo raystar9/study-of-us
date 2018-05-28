@@ -1,7 +1,6 @@
 package servlet.study.each.board;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -45,12 +44,8 @@ public class BoardRegister extends HttpServlet {
 		// 계정이름은 context에서 정해줄 수 있다 현재 system/1234
 		DataPoster poster = new DataPoster(DatabaseAccounts.SCOTT);
 		poster.postBoard(board); // 멤버값을 받아오고
-		try {
-			poster.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
+		poster.close();
 
 		//나중엔 그 해당 글번호를 가져와서 등록한 글의 세부보기 페이지로 이동할 것임.
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/each/board_view_form.jsp");
