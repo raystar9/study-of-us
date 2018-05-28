@@ -10,6 +10,13 @@ public class StudyListCount {
 			+ "order by s_index)) "
 			+ "where rnum >= ? and rnum <= ?";
 	
+	public static final String QUERY_GET2 = "select * from (select rownum as rnum, s_index, s_name, s_c_id, s_place, s_time, s_plopienum, s_goal, s_term "
+			+ "from ("
+			+ "select s_index, s_name, s_c_id, s_place, s_time, s_plopienum, s_goal, s_term "
+			+ "from ("
+			+ "select * from study where s_place LIKE ? or s_name LIKE ?"
+			+ "order by s_index))) "
+			+ "where rnum >= ? and rnum <= ?";
 
 
 	private int index;

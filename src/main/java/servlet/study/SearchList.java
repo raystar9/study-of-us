@@ -105,6 +105,7 @@ public class SearchList extends HttpServlet {
 			endpage = totalpage;
 		}
 		
+		request.setAttribute("check",request.getParameter("check"));
 		request.setAttribute("startpage",startpage);
 		request.setAttribute("page",page);
 		request.setAttribute("totalpage",totalpage);

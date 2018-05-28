@@ -108,7 +108,7 @@ public class DataGetter extends DataAccessor {
 					study.setC_id(rs.getString(3));
 					study.setPlace(rs.getString(4));
 					study.setTime(rs.getDate(5));
-					study.setPloplenum(6);
+					study.setPloplenum(rs.getInt(6));
 					study.setGoal(rs.getString(7));
 					study.setTerm(rs.getDate(8));
 
@@ -366,6 +366,97 @@ public class DataGetter extends DataAccessor {
 
 		return boardcount;
 	}
+
+	public ArrayList<Study> getStudies(String searchVal, String placeVal) {
+		@SuppressWarnings("unchecked")
+		ArrayList<Study> list = (ArrayList<Study>) get(Study.QUERY_GET2,new DataSettable() {
+			
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+				String place = "";
+				String search = "";
+				if(placeVal!=null) {
+					place = "%"+placeVal+"%";
+				}
+				if(searchVal!=null) {
+					search = "%"+searchVal+"%";
+				}
+				pstmt.setString(1, place);
+				pstmt.setString(2, search);
+				
+			}
+		}, new DataGettable() {
+
+			@Override
+			public ArrayList<?> onGetResult(ResultSet rs) throws SQLException {
+				ArrayList<Study> studies = new ArrayList<>();
+				while(rs.next()) {
+					Study study = new Study();
+					study.setIndex(rs.getInt(1));
+					study.setName(rs.getString(2));
+					study.setC_id(rs.getString(3));
+					study.setPlace(rs.getString(4));
+					study.setTime(rs.getDate(5));
+					study.setPloplenum(rs.getInt(6));
+					study.setGoal(rs.getString(7));
+					study.setTerm(rs.getDate(8));
+
+					studies.add(study);
+				}
+				System.out.println("sql문의 실행여부" + studies.size());
+				return studies;
+			}
+		});
+
+		// TODO Auto-generated method stub
+		return list;
+	}
+
+	public ArrayList<StudyListCount> getStudyPaging(int startcount, int endcount, String searchVal, String placeVal) {
+		@SuppressWarnings("unchecked")
+		ArrayList<StudyListCount> list = (ArrayList<StudyListCount>) get(StudyListCount.QUERY_GET2, new DataSettable() {
+
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+				String place = "";
+				String search = "";
+				if(placeVal!=null) {
+					place = "%"+placeVal+"%";
+				}
+				if(searchVal!=null) {
+					search = "%"+searchVal+"%";
+				}
+				pstmt.setString(1, place);
+				pstmt.setString(2, search);
+				pstmt.setInt(3, startcount);
+				pstmt.setInt(4, endcount);
+
+			}
+		}, new DataGettable() {
+
+			@Override
+			public ArrayList<?> onGetResult(ResultSet rs) throws SQLException {
+				ArrayList<StudyListCount> StudyListCountlist = new ArrayList<>();
+				while (rs.next()) {
+					StudyListCount StudyListCount = new StudyListCount();
+					StudyListCount.setIndex(rs.getInt(2));
+					StudyListCount.setName(rs.getString(3));
+					StudyListCount.setC_id(rs.getString(4));
+					StudyListCount.setPlace(rs.getString(5));
+					StudyListCount.setTime(rs.getDate(6));
+					StudyListCount.setPloplenum(7);
+					StudyListCount.setGoal(rs.getString(8));
+					StudyListCount.setTerm(rs.getDate(9));
+
+					StudyListCountlist.add(StudyListCount);
+				}
+				return StudyListCountlist;
+			}
+		});
+		return list;
+	}
+	
+	
 
 	/*
 	 * private ArrayList<?> getBean(ResultSet rs, Class<?> beanClass) throws
