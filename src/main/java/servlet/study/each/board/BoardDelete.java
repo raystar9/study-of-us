@@ -13,7 +13,7 @@ import dao.DataPoster;
 import dao.DatabaseAccounts;
 
 
-@WebServlet("/study/boarddelete")
+@WebServlet("/study/each/boarddelete")
 public class BoardDelete extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

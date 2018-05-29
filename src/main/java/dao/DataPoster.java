@@ -5,6 +5,7 @@ import java.sql.SQLException;
 
 import beans.prototype.Meeting;
 import beans.prototype.Member;
+import beans.study.each.InformSetup;
 import beans.study.each.board.BoardViewRegisterBean;
 import dao.interfaces.DataSettable;
 
@@ -95,4 +96,32 @@ public class DataPoster extends DataSetter {
 			}
 		});
 	}
+
+	
+	public void postSetup(InformSetup setup) {
+
+		// 콜백함수를 통해 setteble 안에있는 prepare 를 사용한다.
+		set(InformSetup.QUERY_PUT, new DataSettable() {
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+				pstmt.setString(1, setup.getCategory());
+				pstmt.setString(2, setup.getPeopleNum());
+				pstmt.setString(3, setup.getName());
+				pstmt.setString(4, setup.getPlace());
+				pstmt.setString(5, setup.getActivityTime());
+				pstmt.setString(6, setup.getStartDate());
+				pstmt.setString(7, setup.getEndDate());
+				pstmt.setString(8, setup.getDay());
+				pstmt.setString(9, setup.getExplain());
+				pstmt.setString(10, setup.getPrepared());
+				pstmt.setString(11, setup.getEffective());
+				/*pstmt.setInt(12, index);	where절에 넣을 스터디번호*/
+				
+				pstmt.executeUpdate();
+				pstmt.close();
+			}
+		});
+	}
+	
+	
 }

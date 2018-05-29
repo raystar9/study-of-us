@@ -10,9 +10,12 @@ import beans.prototype.Study;
 import beans.root.Login;
 import beans.study.StudyListCount;
 import beans.study.StudySearch;
+import beans.study.each.InformSetup;
 import beans.study.each.InformSetupMember;
+import beans.study.each.Member2;
 import beans.study.each.board.BoardListBean;
 import beans.study.each.board.BoardViewRegisterBean;
+import beans.study.each.board.CommentBean;
 import dao.interfaces.DataGettable;
 import dao.interfaces.DataSettable;
 import exceptionHandler.ExceptionHandler;
@@ -239,13 +242,12 @@ public class DataGetter extends DataAccessor {
 			@Override
 			public ArrayList<BoardListBean> onGetResult(ResultSet rs) throws SQLException {
 				ArrayList<BoardListBean> boardlist = new ArrayList<>();
-
 				while (rs.next()) {
 					BoardListBean board = new BoardListBean();
 					board.setIndex(rs.getInt(1));
 					board.setTitle(rs.getString(2));
 					board.setName(rs.getString(3));
-					board.setDate(rs.getDate(4));
+					board.setDate(rs.getString(4));
 					boardlist.add(board);
 				}
 				return boardlist;
@@ -449,7 +451,7 @@ public class DataGetter extends DataAccessor {
 	
 	public int getInformMemberCount() {
 
-		int membercount = (int) get(BoardListBean.QUERY_GET_COUNT, new DataSettable() {
+		int membercount = (int) get(Member2.QUERY_GET_COUNT, new DataSettable() {
 
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
@@ -491,10 +493,75 @@ public class DataGetter extends DataAccessor {
 							InformSetupMember InformMem = new InformSetupMember();
 							InformMem.setName(rs.getString(1));
 							InformMem.setPhone(rs.getInt(2));
-							InformMem.setName(rs.getString(3));
+							InformMem.setEmail(rs.getString(3));
 							informlist.add(InformMem);
 						}
 						return informlist;
+					}
+				});
+
+		return list;
+	}
+	
+	public InformSetup getInformation() {
+		InformSetup list = (InformSetup) get(InformSetup.QUERY_GET,
+				new DataSettable() {
+
+					@Override
+					public void prepare(PreparedStatement pstmt) throws SQLException {
+						// TODO Auto-generated method stub
+					}
+
+				}, new DataGettable() {
+
+					@Override
+					public InformSetup onGetResult(ResultSet rs) throws SQLException {
+						InformSetup Inform = new InformSetup();
+						while (rs.next()) {
+							Inform.setIndex(rs.getInt(1));
+							Inform.setCategory(rs.getString(2));
+							Inform.setPeopleNum(rs.getString(3));
+							Inform.setName(rs.getString(4));
+							Inform.setPlace(rs.getString(5));
+							Inform.setActivityTime(rs.getString(6));
+							Inform.setStartDate(rs.getString(7));
+							Inform.setEndDate(rs.getString(8));
+							Inform.setDay(rs.getString(9));
+							Inform.setExplain(rs.getString(10));
+							Inform.setPrepared(rs.getString(11));
+							Inform.setEffective(rs.getString(12));
+						}
+						return Inform;
+					}
+				});
+
+		return list;
+	}
+	
+	public ArrayList<CommentBean> getCommentList() {
+		@SuppressWarnings("unchecked")
+		ArrayList<CommentBean> list = (ArrayList<CommentBean>) get(CommentBean.QUERY_GET,
+				new DataSettable() {
+
+					@Override
+					public void prepare(PreparedStatement pstmt) throws SQLException {
+						// TODO Auto-generated method stub
+					}
+				}, new DataGettable() {
+
+					@Override
+					public ArrayList<CommentBean> onGetResult(ResultSet rs) throws SQLException {
+						ArrayList<CommentBean> commentlist = new ArrayList<CommentBean>();
+						while (rs.next()) {
+							CommentBean comment = new CommentBean();
+							comment.setName(rs.getString(1));
+							comment.setDate(rs.getString(2));
+							comment.setContent(rs.getString(3));
+							comment.setCno(rs.getInt(4));
+							comment.setBno(rs.getInt(5));
+							commentlist.add(comment);
+						}
+						return commentlist;
 					}
 				});
 

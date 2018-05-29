@@ -1,6 +1,7 @@
 <!-- 스터디 안의 스터디 정보 페이지 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    		
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,110 +10,115 @@
 </head>
 
 <body>
-	<form action="#" method="post">
+<form action="./setup" method="post">
+	<c:set var="m" value="${memlist}" />
+	<c:set var="s" value="${setup}" />
+	<input type='hidden' id='studyIndex' value='${s.index}'>
 		<table border='1'>
-			<tr>
-				<td>
-					<h1 class="page-header">스터디 설정</h1>
-				</td>
-			</tr>
-			<tr>
-				<td><h4>*스터디 명</h4>
-					<hr> <input type="text" class="form-control"
-					value="자바 & JSP 공부"></td>
-			</tr>
-			<tr>
-				<td><h4>*스터디 원</h4>
-					<hr>
-					<table class="table table-striped table-bordered table-hover"
-						border='1'>
-						<thead>
-							<tr>
-								<th>#</th>
-								<th>이름</th>
-								<th>전화번호</th>
-								<th>이메일</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>1</td>
-								<td><input type="text" class="form-control"
-									value="자바 & JSP 공부"></td>
-								<td><input type="text" class="form-control"
-									value="010-2350-3059"></td>
-								<td><input type="text" class="form-control"
-									value="dahye950627@naver.com"></td>
-							</tr>
-							<tr>
-								<td>2</td>
-								<td><input type="text" class="form-control" value="소문혁"></td>
-								<td><input type="text" class="form-control"
-									value="010-0000-0000"></td>
-								<td><input type="text" class="form-control"
-									value="smh@naver.com"></td>
-							</tr>
-							<tr>
-								<td>3</td>
-								<td><input type="text" class="form-control" value="노동완"></td>
-								<td><input type="text" class="form-control"
-									value="010-0000-0000"></td>
-								<td><input type="text" class="form-control"
-									value="ndw@naver.com"></td>
-							</tr>
-						</tbody>
-					</table></td>
-			</tr>
-			<tr>
-				<td><h4>*기간</h4>
-					<hr> <input type="text" class="form-control"
-					placeholder="2018/05/18" id="date_text">&nbsp; ~ &nbsp; <input
-					type="text" class="form-control" placeholder="2018/08/10"
-					id="date_text"></td>
-			</tr>
-			<tr>
-				<td><h4>*현재인원 / 최대인원</h4>
-					<hr> <input type="text" class="form-control" value="6"
-					readOnly>명/ <input type="text" class="form-control"
-					value="10">명</td>
-			</tr>
-			<tr>
-				<td><h4>*활동시간</h4>
-					<hr> <input type="text" class="form-control" value="3">시간
-				</td>
-			</tr>
-			<tr>
-				<td><h4>*요일</h4>
-					<hr> <input type="text" class="form-control" value="수">요일
-				</td>
-			</tr>
-			<tr>
-				<td><h4>*스터디 지역</h4>
-					<hr> <input type="text" class="form-control"
-					value="경기도 부천시 원미구 상동"></td>
-			</tr>
-			<tr>
-				<td><h4>*프로젝트 개요</h4>
-					<hr> <textarea rows="7" cols="100">우리 프로젝트는 자바와 JSP를 배우는 스터디로서 ~</textarea>
-				</td>
-			</tr>
-			<tr>
-				<td><h4>*주요 교재 및 준비물</h4>
-					<hr> <textarea rows="7" cols="100">주요 교재 및 준비물로는~</textarea></td>
-			</tr>
-			<tr>
-				<td><h4>*기대효과 및 활동 분야</h4>
-					<hr> <textarea rows="7" cols="100">우리 프로젝트는 자바와 JSP를 배우는 스터디로서 ~</textarea>
-					</td>
-			</tr>
-			
-			<tr>
-				<td><input type="submit" class="btn btn-default" id="btn"
-					value="수정"> <input type="reset" class="btn btn-default"
-					id="btn" value="취소"></td>
-			</tr>
-		</table>
-	</form>
+		<tr>
+			<td>
+				<h1 class="page-header">설정</h1>
+			</td>
+		</tr>
+		<tr>
+			<td><h4>*스터디 명</h4>
+				<hr>
+				<div class="panel-body"><input type="text" class="form-control" name='studyName' value="${s.name }"></div>
+			</td>
+		</tr>
+		<tr>
+			<td><h4>*카테고리 (대분류/소분류)</h4>
+				<hr>
+				<div class="panel-body">
+				<select>
+					<option value="프로그래밍">프로그래밍</option>
+					<option value="영어">영어</option>
+					<option value="국어">국어</option>
+				</select>
+				<select>
+					<option value="JAVA">JAVA</option>
+					<option value="토익">토익</option>
+					<option value="독후감">독후감</option>
+				</select>
+					
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td><h4>*스터디 원</h4>
+				<hr>
+				<table class="table table-striped table-bordered table-hover"
+					border='1'>
+					<thead>
+						<tr>
+							<th>이름</th>
+							<th>전화번호</th>
+							<th>이메일</th>
+						</tr>
+					</thead>
+					<tbody>
+					<c:forEach var="memlist" items="${memlist }">
+					 <tr>
+					 	<td>${memlist.name }</td>
+					 	<td>${memlist.phone }</td>
+					 	<td>${memlist.email }</td>
+					 </tr>
+					</c:forEach>
+					</tbody>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td><h4>*기간</h4>
+				<hr> <input type="text" name='startDate' class="form-control"
+				 id="date_text" value='${s.startDate }'>&nbsp; ~
+				&nbsp; <input type="text" name='endDate' class="form-control"
+				 id="date_text" value='${s.endDate }'>
+			</td>
+		</tr>
+		<tr>
+			<td><h4>*현재인원 / 최대인원</h4>
+				<hr> 
+				<input type="text" name='memberCount' class="form-control" value='${membercount }' readOnly>명/
+				<input type="text" name='peopleNum' class="form-control" value='${s.peopleNum }'>명
+			</td>
+		</tr>
+		<tr>
+			<td><h4>*활동시간</h4>
+				<hr> <input type="text" name='time' class="form-control" value='${s.activityTime }'>시간
+			</td>
+		</tr>
+		<tr>
+			<td><h4>*요일</h4>
+				<hr> <input type="text" name='day' class="form-control" value='${s.day }'>요일
+			</td>
+		</tr>
+		<tr>
+			<td><h4>*스터디 지역</h4>
+				<hr> <input type="text" name='place' class="form-control" value='${s.place }'></td>
+		</tr>
+		<tr>
+			<td><h4>*프로젝트 개요</h4>
+				<hr>
+				<textarea rows="7" cols="100" name='explain'>${s.explain}</textarea></td>
+		</tr>
+		<tr>
+			<td><h4>*주요 교재 및 준비물</h4>
+				<hr> <textarea rows="7" cols="100" name='prepared'>${s.prepared }</textarea></td>
+		</tr>
+		<tr>
+			<td><h4>*기대효과 및 활동 분야</h4>
+				<hr><textarea rows="7" cols="100" name='effective'>${s.effective}</textarea></td>
+		</tr>
+		<tr>
+			<td>
+				<input type="submit" class="btn btn-default" id="btn" value="수정"> 
+				<input type="reset" class="btn btn-default" id="btn" value="초기화">
+				<input type="button" class="btn btn-default" id="btn" value="취소" onClick="history.go(-1);">
+			</td>
+		</tr>
+	</table>
+</form>
 </body>
 
 </html>
