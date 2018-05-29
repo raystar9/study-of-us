@@ -10,17 +10,20 @@
 </head>
 
 <body>
-	<table border='1'>
+	<input type='hidden' id='membercount' value='${membercount }'>
+	<input type='hidden' id='memlist' value='${memlist }'>
+		<table border='1'>
 	<c:set var="m" value="${memlist}" />
+	<c:set var="s" value="${setup}" />
 		<tr>
 			<td>
-				<h1 class="page-header"></h1>
+				<h1 class="page-header">설정</h1>
 			</td>
 		</tr>
 		<tr>
 			<td><h4>*스터디 명</h4>
 				<hr>
-				<div class="panel-body"><c:out value="${}" /></div>
+				<div class="panel-body">${s.name}</div>
 			</td>
 		</tr>
 		<tr>
@@ -62,44 +65,44 @@
 		<tr>
 			<td><h4>*기간</h4>
 				<hr> <input type="text" class="form-control"
-				placeholder="2018/05/18" id="date_text" readOnly>&nbsp; ~
+				 id="date_text" readOnly value='${s.startDate }'>&nbsp; ~
 				&nbsp; <input type="text" class="form-control"
-				placeholder="2018/08/10" id="date_text" readOnly>
+				 id="date_text" readOnly value='${s.endDate }'>
 			</td>
 		</tr>
 		<tr>
 			<td><h4>*현재인원 / 최대인원</h4>
 				<hr> 
-				<input type="text" class="form-control" value="6" readOnly>명/
-				<input type="text" class="form-control" value="10" readOnly>명
+				<input type="text" class="form-control" value='${membercount }' readOnly>명/
+				<input type="text" class="form-control" value='${s.maxNum }' readOnly>명
 			</td>
 		</tr>
 		<tr>
 			<td><h4>*활동시간</h4>
-				<hr> <input type="text" class="form-control" value="3" readOnly>시간
+				<hr> <input type="text" class="form-control" value='${s.activityTime }' readOnly>시간
 			</td>
 		</tr>
 		<tr>
 			<td><h4>*요일</h4>
-				<hr> <input type="text" class="form-control" value="수" readOnly>요일
+				<hr> <input type="text" class="form-control" value='${s.day }' readOnly>요일
 			</td>
 		</tr>
 		<tr>
 			<td><h4>*프로젝트 개요</h4>
 				<hr>
-				우리 프로젝트는 자바와 JSP를 배우는 스터디로서 ~</td>
+				${s.explain }</td>
 		</tr>
 		<tr>
 			<td><h4>*주요 교재 및 준비물</h4>
-				<hr> 주요 교재 및 준비물로는~</td>
+				<hr> ${s.prepared }</td>
 		</tr>
 		<tr>
 			<td><h4>*기대효과 및 활동 분야</h4>
-				<hr> 우리 프로젝트는 자바와 JSP를 배우는 스터디로서 ~</td>
+				<hr> ${s.effective }</td>
 		</tr>
 		<tr>
 			<td><h4>*스터디 지역</h4>
-				<hr> 우리 프로젝트는 자바와 JSP를 배우는 스터디로서 ~</td>
+				<hr> ${s.place } </td>
 		</tr>
 		<tr>
 			<td><input type="button" id='withdraw-btn' value='탈퇴하기'></td>

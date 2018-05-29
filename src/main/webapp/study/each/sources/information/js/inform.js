@@ -1,8 +1,8 @@
 
 $(document).ready(function() {
 	
-	$sql = "select M_NAME, M_TEL, M_EMAIL from member";
 	
+	$('#membercount').val
 	
 	
 	
