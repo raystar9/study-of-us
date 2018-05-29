@@ -13,36 +13,37 @@
 			<th colspan="2">스터디 안의 게시판 페이지에서 글을 클릭했을 때 상세보기 되는 페이지</th>
 		</tr>
 
-		<c:set var="b" value="${boarddata}" />
-		<tr>
-			<td>글쓴이</td>
-			<td><c:out value="${b.BOARD_NAME}" /></td>
+		<c:set var="b" value="${boardcontent}" />
+		<tr >
+			<td width='10%'>글쓴이</td>
+			<td><c:out value="${b.name}" /></td>
 		</tr>
 
 		<tr>
 			<td>제목</td>
-			<td><c:out value="${b.BOARD_SUBJECT }" /></td>
+			<td><c:out value="${b.title }" /></td>
 		</tr>
 
 		<tr>
 			<td>내용</td>
-			<td><c:out value="${b.BOARD_CONTENT }" /></td>
+			<td><c:out value="${b.content }" /></td>
 		</tr>
 
 		<tr>
 			<td>날짜</td>
-			<td><c:out value="${b.BOARD_DATE}" /></td>
+			<td><c:out value="${b.date}" /></td>
 		</tr>
 
 		<tr>
-			<td colspan="2" class="center"> &nbsp; <c:if
-					test="${b.BOARD_NAME == id || id == 'admin' }">
-					<a href="./BoardModifyView.bo?num=${b.BOARD_NUM}">수정</a>
+			<!-- 여긴 나중에 구현! -->
+			<td colspan="2" class="center"> &nbsp; 
+					<a href="./boardmodify?num=${b.index}">수정</a>
 				&nbsp;&nbsp;
 			
-			<a href="./BoardDelete.bo?num=${b.BOARD_NUM}">삭제</a>
+			<a href="./boarddelete?num=${b.index}">삭제</a>
 				&nbsp;&nbsp;
-			</c:if> <a href="BoardList.bo">뒤로</a></td>
+			<a href="./board">뒤로</a>
+			</td>
 		</tr>
 	</table>
 

@@ -28,7 +28,6 @@
 					<div class="panel-heading" id="top_head">
 						*회비: <input type="text" class="form-control" id="top-total"
 							placeholder="120,000" readOnly>&nbsp;원
-						<button type="button" class="btn btn-default" id="fee-add-btn">추가</button>
 					</div>
 				</td>
 			</tr>

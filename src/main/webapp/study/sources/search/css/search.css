@@ -63,6 +63,8 @@ option{
     display: block;
     height: 50%;
     width: 100%;
+    font-size: 1.17em;
+    font-weight: bold;
 }
 .check p{
 	text-align: right;
@@ -72,6 +74,8 @@ option{
 .check p span{
 	float: left;
 	margin-left: 80px;
+	font-size: 1.17em;
+    font-weight: bold;
 }
 .search{
 	border:1px solid black;
@@ -119,3 +123,4 @@ div.paging{
     text-align: center;
     margin-bottom: 100px;
 }
+

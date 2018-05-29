@@ -1,6 +1,7 @@
 <!-- 스터디 안의 스터디 정보 페이지 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    	
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,15 +11,16 @@
 
 <body>
 	<table border='1'>
+	<c:set var="m" value="${memlist}" />
 		<tr>
 			<td>
-				<h1 class="page-header">스터디 정보</h1>
+				<h1 class="page-header"></h1>
 			</td>
 		</tr>
 		<tr>
 			<td><h4>*스터디 명</h4>
 				<hr>
-				<div class="panel-body">자바 & JSP 공부</div>
+				<div class="panel-body"><c:out value="${}" /></div>
 			</td>
 		</tr>
 		<tr>
@@ -98,6 +100,9 @@
 		<tr>
 			<td><h4>*스터디 지역</h4>
 				<hr> 우리 프로젝트는 자바와 JSP를 배우는 스터디로서 ~</td>
+		</tr>
+		<tr>
+			<td><input type="button" id='withdraw-btn' value='탈퇴하기'></td>
 		</tr>
 	</table>
 </body>

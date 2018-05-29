@@ -18,7 +18,9 @@ CREATE TABLE Member(
 	M_INTRODUCE VARCHAR(200) NOT NULL
 )
 
+SELECT M_NAME, M_TEL, M_EMAIL FROM MEMBER;
 SELECT * FROM Member;
+SELECT COUNT(*) FROM MEMBER;
 ALTER SEQUENCE member_index INCREMENT BY 1;   -- 시퀀스의 값을 1로 바꿔줌.
 
 -- Study 테이블 생성
@@ -33,7 +35,7 @@ CREATE TABLE Study(
 	S_TERM DATE NOT NULL
 )
 
-INSERT INTO Study VALUES(study_index.nextval,'JAVA&JSP','JAVA','부천','3','5','자바와 JSP 마스터','2018-05-24')
+INSERT INTO Study VALUES(study_index.nextval,'JAVA&JSP',3,'부천','20180528','5','자바와 JSP 마스터', '20180528')
 
 SELECT * FROM Study;
 
@@ -146,4 +148,78 @@ select * from MEMBER;
 
 
 
+drop table Board;
 
+CREATE TABLE Board(
+	B_NO NUMBER NOT NULL PRIMARY KEY,
+	B_NAME VARCHAR(10) NOT NULL,
+	B_TITLE VARCHAR(50) NOT NULL,
+	B_DATE VARCHAR(10) NOT NULL,
+	B_CONTENT VARCHAR(300) NOT NULL               -- CLOE처리 할수도..
+)
+
+insert into Board values(board_no.nextval, '이다혜', '회비관련 공지하겠습니다.', '2018-05-25', '저번에 회비 안낸 노동완씨 이번에 꼭 내십시요.');
+insert into Board values(board_no.nextval, '소문혁', '교재관련 공지하겠습니다.', '2018-05-22', '안녕하시요');
+insert into Board values(board_no.nextval, '구명회', '회비관련 공지하겠습니다.', '2018-05-20', '가나다라마바사');
+insert into Board values(board_no.nextval, '노동완', '장소관련 공지하겠습니다.', '2018-04-02', '이거는 내용내용');
+insert into Board values(board_no.nextval, '곽승민', '교재관련 공지하겠습니다.', '2018-02-25', '여기도 내용내용내용!!!');
+
+insert into Board values(board_no.nextval, '이다혜1', '회비관련 공지하겠습니다.', '2018-05-25', '저번에 회비 안낸 노동완씨 이번에 꼭 내십시요.');
+insert into Board values(board_no.nextval, '소문혁1', '교재관련 공지하겠습니다.', '2018-05-22', '안녕하시요');
+insert into Board values(board_no.nextval, '구명회1', '회비관련 공지하겠습니다.', '2018-05-20', '가나다라마바사');
+insert into Board values(board_no.nextval, '노동완1', '장소관련 공지하겠습니다.', '2018-04-02', '이거는 내용내용');
+insert into Board values(board_no.nextval, '곽승민1', '교재관련 공지하겠습니다.', '2018-02-25', '여기도 내용내용내용!!!');
+insert into Board values(board_no.nextval, '이다혜2', '회비관련 공지하겠습니다.', '2018-05-25', '저번에 회비 안낸 노동완씨 이번에 꼭 내십시요.');
+insert into Board values(board_no.nextval, '소문혁2', '교재관련 공지하겠습니다.', '2018-05-22', '안녕하시요');
+insert into Board values(board_no.nextval, '구명회2', '회비관련 공지하겠습니다.', '2018-05-20', '가나다라마바사');
+insert into Board values(board_no.nextval, '노동완2', '장소관련 공지하겠습니다.', '2018-04-02', '이거는 내용내용');
+insert into Board values(board_no.nextval, '곽승민2', '교재관련 공지하겠습니다.', '2018-02-25', '여기도 내용내용내용!!!');
+insert into Board values(board_no.nextval, '이다혜3', '회비관련 공지하겠습니다.', '2018-05-25', '저번에 회비 안낸 노동완씨 이번에 꼭 내십시요.');
+insert into Board values(board_no.nextval, '소문혁3', '교재관련 공지하겠습니다.', '2018-05-22', '안녕하시요');
+insert into Board values(board_no.nextval, '구명회3', '회비관련 공지하겠습니다.', '2018-05-20', '가나다라마바사');
+insert into Board values(board_no.nextval, '노동완3', '장소관련 공지하겠습니다.', '2018-04-02', '이거는 내용내용');
+insert into Board values(board_no.nextval, '곽승민3', '교재관련 공지하겠습니다.', '2018-02-25', '여기도 내용내용내용!!!');
+
+select * from board;
+
+
+select B_NO, B_TITLE, B_M_INDEX, B_DATE 
+from (select rownum rnum, B_NO, B_TITLE, B_M_INDEX, B_DATE 
+      from board) 
+where rnum >= 1 and rnum <= 3
+order by rnum;
+
+
+SELECT B_NO, B_TITLE, B_NAME, B_DATE FROM(SELECT ROWNUM RNUM, B_NO, B_TITLE, B_NAME, B_DATE FROM BOARD) WHERE RNUM>=1 AND RNUM<=10 ORDER BY B_NO;
+
+select * from board;
+
+delete from board where B_NO = 11;
+
+select count(*) from board;
+
+INSERT INTO BOARD VALUES (board_no.nextval, '이름', '제목', '내용', SYSDATE);
+
+CREATE TABLE Study(
+   S_INDEX NUMBER NOT NULL PRIMARY KEY,      -- study_index 시퀀스 처리
+   S_C_ID NUMBER NOT NULL,              -- CATEGORY.C_ID 외래키 지정 해줘야 함.
+   S_NAME VARCHAR(16) NOT NULL,            
+   S_MT_INDEX NUMBER NOT NULL,
+   S_START DATE NOT NULL,                     --시작날짜
+   S_END DATE NOT NULL,                     --끝날짜
+   S_PLOPIENUM NUMBER NOT NULL,               --인원
+   S_DAY varchar(3) not null,                  --요일
+   S_time number not null,                     --활동시간
+   S_explain varchar(100) not NULL,            --개요
+   S_prepared   varchar(100) not null,            --프로젝트 준비
+   S_effective VARCHAR(100) NOT NULL,            --기대및 효과
+   S_PLACE VARCHAR(10) NOT NULL            --프로젝트 장소
+
+);
+truncate table study;
+INSERT INTO Study VALUES(study_index.nextval,1,'JAVA&JSP',3,'20180501', '20180530', 4, '화',5,'개요입니다.','준비물입니다.','기대효과입니다.','장소');
+
+select * from study;
+select * from member;
+
+drop table Study cascade CONSTRAINT;

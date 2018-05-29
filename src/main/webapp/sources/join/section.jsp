@@ -7,21 +7,21 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h3 align=center>Join StudyOfUs</h3>
+<a href="home"><h3 align=center>Join StudyOfUs</h3></a>
 	<div>
   <form action="join" method="post">
     <label for="lid"><strong>ID</strong></label><br>
-    <input type="text" id="id" name="id" maxlength=10>
+    <input type="text" id="id" name="id" maxlength=13>
     <input type="button" id="idcheck" name="idcheck" value="중복검사"><br>
     
     <label for="name"><strong>Name</strong></label><br>
     <input type="text" id="name" name="name" maxlength=10><br>
     
     <label for="password"><strong>Pass</strong></label><br>
-    <input type="password" id="password" name="password" maxlength=15><br>
+    <input type="password" id="password" name="password" maxlength=13><br>
     
     <label for="password2"><strong>비밀번호확인</strong></label><br>
-    <input type="password" id=password2 name="password2" maxlength=15><br>
+    <input type="password" id=password2 name="password2" maxlength=13><br>
     
     <label for="email"><strong>E-mail</strong></label><br>
     <input type="email" id="email" name="email" maxlength=30><br>
@@ -41,13 +41,19 @@
 	    
     <label for="area"><strong>preference Area</strong></label><br>
     <p>
-    	<input type="checkbox" name=area id=area value="서울" checked>서울
-    	<input type="checkbox" name=area id=area value="경기">경기
-    	<input type="checkbox" name=area id=area value="인천">인천
-    	<input type="checkbox" name=area id=area value="대전">대전
-    	<input type="checkbox" name=area id=area value="부산">부산
-    	<input type="checkbox" name=area id=area value="대구">대구
-    	<input type="checkbox" name=area id=area value="광주">광주<br>
+    	<select id="location" name="location">
+			<option value="">지역</option>
+			<option value="서울">서울</option>
+			<option value="부천">부천</option>
+			<option value="인천">인천</option>
+			<option value="춘천">춘천</option>
+			<option value="대전">대전</option>
+			<option value="세종시">세종</option>
+			<option value="천안">천안</option>
+			<option value="부산">부산</option>
+			<option value="창원">창원</option>
+			<option value="광주">광주</option>
+		</select>
     </p>
     
     <label for="gender"><strong>Gender</strong></label><br>

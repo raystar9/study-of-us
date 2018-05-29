@@ -1,0 +1,127 @@
+input[type=text] {
+	width: 100%;
+	padding: 12px 20px;
+	margin: 8px 0;
+	display: inline-block;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+}
+
+input[type=submit] {
+	width: 100%;
+	background-color: #4CAF50;
+	color: white;
+	padding: 14px 20px;
+	margin: 8px 0;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+input[type=submit]:hover {
+	background-color: #45a049;
+}
+
+div.signup {
+	border: 1px solid #0000004a;
+	max-width: 700px;
+	border-radius: 5px;
+	background-color: #f2f2f259;
+	padding: 20px;
+	margin: 0 auto;
+}
+#people {
+	width: 100%;
+}
+
+span {
+	display: inline-block;
+	width: 100%;
+}
+
+.one {
+	width: 33%;
+}
+
+.two {
+	width: 33%;
+}
+
+.three{
+	width : 33%:
+}
+
+textarea {
+	width: 100%;
+}
+
+.check {
+	border: 1px solid #ccc;
+	width: 48%;
+	float: left;
+	height: 400px;
+	text-align: center
+}
+
+#map {
+	border: 1px solid #ccc;
+	float: right;
+}
+
+textarea {
+	border: 1px solid #ccc;
+}
+
+.checkcontainer {
+	margin-top: 30px;
+}
+
+#day {
+	width: 100%;
+	padding: 12px 20px;
+	margin: 8px 0;
+	display: inline-block;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+}
+
+#first, #second {
+	width: 48%;
+	padding: 12px 20px;
+	margin: 8px 0;
+	display: inline-block;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+}
+
+#category {
+	width: 100%;
+	diplay: inline-block
+}
+
+#stime {
+	width: 100%;
+	padding: 12px 20px;
+	margin: 8px 0;
+	display: inline-block;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+}
+
+
+#locationSel{
+	width: 100%;
+	padding: 12px 20px;
+	margin: 8px 0;
+	display: inline-block;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+}
+
+
+

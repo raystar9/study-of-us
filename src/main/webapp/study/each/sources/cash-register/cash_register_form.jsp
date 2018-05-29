@@ -15,7 +15,7 @@
 </head>
 
 <body>
-	<form action="#" method="post">
+	<form action="/study/cashregister" method="post">
 
 		<table border='1'>
 			<tr>
@@ -64,33 +64,7 @@
 											</tr>
 										</thead>
 										<tbody>
-											<tr>
-												<td><input type="text" class="form-control"
-													placeholder="이름" id='dues-mem' name='duesMem'></td>
-												<td><input type="text" class="form-control"
-													placeholder="금액" id='dues-fee' name='duesFee'
-													onkeyup="calculate();"></td>
-												<td><input type="text" class="form-control"
-													placeholder="비고" id='dues-note' name='duesNote'></td>
-											</tr>
-											<tr>
-												<td><input type="text" class="form-control"
-													placeholder="이름" id='dues-mem' name='duesMem'></td>
-												<td><input type="text" class="form-control"
-													placeholder="금액" id='dues-fee' name='duesFee'
-													onkeyup="calculate();"></td>
-												<td><input type="text" class="form-control"
-													placeholder="비고" id='dues-note' name='duesNote'></td>
-											</tr>
-											<tr>
-												<td><input type="text" class="form-control"
-													placeholder="이름" id='dues-mem' name='duesMem'></td>
-												<td><input type="text" class="form-control"
-													placeholder="금액" id='dues-fee' name='duesFee'
-													onkeyup="calculate();"></td>
-												<td><input type="text" class="form-control"
-													placeholder="비고" id='dues-note' name='duesNote'></td>
-											</tr>
+											
 										</tbody>
 									</table>
 								</div>
@@ -165,8 +139,10 @@
 				</td>
 			</tr>
 			<tr>
-				<td><input type="reset" class="btn btn-default" id="btn"
-					value="취소"> <input type="submit" class="btn btn-default"
+				<td>
+				<input type="button" class="btn btn-default" id="btn"
+				value="취소" onclick="location.href='./cash';"> 
+					<input type="submit" class="btn btn-default"
 					id="btn" value="등록"></td>
 			</tr>
 		</table>
