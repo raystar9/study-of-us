@@ -6,28 +6,55 @@ import java.util.Date;
 
 public class InformSetup {
 	
-	public static final String QUERY_GET = "SELECT";	//inform_form.jsp에서 데이터 가져올 때 쿼리
+	public static final String QUERY_GET = "SELECT * ";	//inform_form.jsp에서 데이터 가져올 때 쿼리
 	public static final String QUERY_PUT = "UPDATE";	//setup_form.jsp에서 데이터 수정할 때 쿼리
 	
 	private int index;			//스터디 번호
+	private int cateforyNum;	//카테고리 외래키
+	private String start;		//스터디 시작 날짜
+	private String end;			//스터디 끝 날짜
+	private String peopleNum;	//스터디 참여인원
 	private String name;		//스터디 명
 	private String category;	//스터디 카테고리
 	private String place;		//스터디 장소
-	private Date activityTime;	//스터디 활동시간
+	private int activityTime;	//스터디 활동시간
 	private int maxNum;			//스터디 모집인원
 	private String goal;		//스터디 목표
 	private Date startDate;		//스터디 시작날짜
 	private	Date endDate;		//스터디 종료날짜
 	private Date day;			//스터디 활동요일
-	private String summary;		//스터디 개요
-	private String toPrepare;	//주요 교재 및 준비물
-	private	String effect;		//기대효과 및 활동분야
-	
+	private String explain;		//스터디 개요
+	private String prepared;	//주요 교재 및 준비물
+	private	String effective;		//기대효과 및 활동분야
 	public int getIndex() {
 		return index;
 	}
 	public void setIndex(int index) {
 		this.index = index;
+	}
+	public int getCateforyNum() {
+		return cateforyNum;
+	}
+	public void setCateforyNum(int cateforyNum) {
+		this.cateforyNum = cateforyNum;
+	}
+	public String getStart() {
+		return start;
+	}
+	public void setStart(String start) {
+		this.start = start;
+	}
+	public String getEnd() {
+		return end;
+	}
+	public void setEnd(String end) {
+		this.end = end;
+	}
+	public String getPeopleNum() {
+		return peopleNum;
+	}
+	public void setPeopleNum(String peopleNum) {
+		this.peopleNum = peopleNum;
 	}
 	public String getName() {
 		return name;
@@ -47,13 +74,12 @@ public class InformSetup {
 	public void setPlace(String place) {
 		this.place = place;
 	}
-	public Date getActivityTime() {
+	public int getActivityTime() {
 		return activityTime;
 	}
-	public void setActivityTime(Date activityTime) {
+	public void setActivityTime(int activityTime) {
 		this.activityTime = activityTime;
 	}
-	
 	public int getMaxNum() {
 		return maxNum;
 	}
@@ -84,24 +110,31 @@ public class InformSetup {
 	public void setDay(Date day) {
 		this.day = day;
 	}
-	public String getSummary() {
-		return summary;
+	public String getExplain() {
+		return explain;
 	}
-	public void setSummary(String summary) {
-		this.summary = summary;
+	public void setExplain(String explain) {
+		this.explain = explain;
 	}
-	public String getToPrepare() {
-		return toPrepare;
+	public String getPrepared() {
+		return prepared;
 	}
-	public void setToPrepare(String toPrepare) {
-		this.toPrepare = toPrepare;
+	public void setPrepared(String prepared) {
+		this.prepared = prepared;
 	}
-	public String getEffect() {
-		return effect;
+	public String getEffective() {
+		return effective;
 	}
-	public void setEffect(String effect) {
-		this.effect = effect;
+	public void setEffective(String effective) {
+		this.effective = effective;
 	}
+	public static String getQueryGet() {
+		return QUERY_GET;
+	}
+	public static String getQueryPut() {
+		return QUERY_PUT;
+	}
+	
 	
 	
 

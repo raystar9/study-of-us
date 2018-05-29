@@ -1,5 +1,21 @@
 
 $(document).ready(function() {
+	
+	var personNum = 5;	//해당 스터디 원들의 인원수를 가져올 것임
+	
+	for(var i=0; i<personNum; i++){
+		var strToAdd = "<tr><td>";
+		strToAdd += "<input type='text' class='form-control' placeholder='이름' id='dues-mem' name='duesMem'>";
+		strToAdd += "</td>";
+		strToAdd += "<td>";
+		strToAdd += "<input type='text' class='form-control' placeholder='금액' id='dues-fee' name='duesFee'onkeyup='calculate();'>";
+		strToAdd += "</td>";
+		strToAdd += "<td>";
+		strToAdd += "<input type='text' class='form-control' placeholder='비고' id='dues-note' name='duesNote'>";
+		strToAdd += "</td></tr>";
+		$('#dues-table tbody').append(strToAdd);	
+	}
+	
 	var addNum = 1;
 	$('#cashAdd-btn').click(function() {
 		var strToAdd = "<tr><td>";
@@ -11,7 +27,6 @@ $(document).ready(function() {
 			
 		$('#cash_tbody').append(strToAdd);	
 	})// click end
-	alert(document.getElementById("dues-date").value);
 	
 })// ready end
 

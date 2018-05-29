@@ -1,13 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-     <%@ taglib prefix="c"
+    <%@ taglib prefix="c"
  				uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-	<form class="example" action="/study-of-us/study/SearchList" method="get">
+	<form class="example" action="/study-of-us/study/search" method="get">
 <div class="search">
   		<button type="submit"><i class="fa fa-search"></i></button>
- 		 <input type="text" placeholder="Search.." id="searchVal" name="searchVal" value=${study.name }>
+ 		 <input type="text" placeholder="Search.." id="searchVal" name="searchVal" value="">
 	
 	
 	<div class="custom-select">
@@ -96,29 +95,29 @@
   			<img src="/study-of-us/resources/images/open-book.png" alt="Avatar" style="width:90px">
  			 <H3>스터디 : ${study.name }</H3>
   			<p>목표 : ${study.goal } </p>
-  			 <span>스터디 기간 : ${study.term }</span>
+  			 <span>스터디 기간 : ${study.term } 스터디 위치 ${study.place}</span>
 		</div>
 		</c:forEach>
 		
 		<div class="paging"  style="text-align:center; margin-bottom:100px">
 		<c:if test="${startpage > 1}">
-			<a href="/study-of-us/study/search?page=1">처음</a>
+			<a href="/study-of-us/study/search?page=1&searchVal=${searchVal}"">처음</a>
 		</c:if>
 		
 		<c:if test="${page > 1}">
-			<a href="/study-of-us/study/search?page=${page-1 }">이전</a>
+			<a href="/study-of-us/study/search?page=${page-1 }&searchVal=${searchVal}">이전</a>
 		</c:if>
 		
 		<c:forEach var="i" begin= "${startpage }" end="${endpage }">
-			<a href="/study-of-us/study/search?page=${i }">${i }</a>
+			<a href="/study-of-us/study/search?page=${i }&searchVal=${searchVal}">${i }</a>
 		</c:forEach>
 		
 		<c:if test="${page < totalpage}">
-			<a href="/study-of-us/study/search?page=${page+1 }">다음</a>
+			<a href="/study-of-us/study/search?page=${page+1 }&searchVal=${searchVal}">다음</a>
 		</c:if>
 		
 		<c:if test="${endpage < totalpage}">
-			<a href="/study-of-us/study/search?page=${totalpage }">끝</a>
+			<a href="/study-of-us/study/search?page=${totalpage }&searchVal=${searchVal}">끝</a>
 		</c:if>
 		</div>
 		
