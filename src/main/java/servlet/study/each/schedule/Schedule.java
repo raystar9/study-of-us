@@ -7,6 +7,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import fakeDB.FakeDB;
+
 /**
  * Servlet implementation class Schedule
  */
@@ -26,6 +30,10 @@ public class Schedule extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ObjectMapper mapper = new ObjectMapper();
+		System.out.println(mapper.writeValueAsString(FakeDB.getInstance().getSchedules()));
+		request.setAttribute("schedules", mapper.writeValueAsString(FakeDB.getInstance().getSchedules()));
+		
 		request.getRequestDispatcher("schedule.jsp").forward(request, response);
 	}
 

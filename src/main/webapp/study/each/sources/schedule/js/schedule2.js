@@ -9,6 +9,7 @@
       },
       navLinks: true, // can click day/week names to navigate views
       eventLimit: true, // allow "more" link when too many events
+      events: eventList,
       views: {
     	  month: {
     		  timeFormat:"h:mma" // top level of text
