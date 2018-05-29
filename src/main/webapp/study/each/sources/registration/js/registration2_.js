@@ -65,6 +65,24 @@
 			 alert("지역을 선택해주세요!");
 			 return false;
 		 }
+		 
+		 $.ajax({
+			type : "GET",
+			url : "/study-of-us/SnameCheck",
+			data : {
+				"id" : $("input[name=study_name]").val()
+			},
+			success : function(result){
+				$("#place").empty();
+				if(result == -1){
+					$("#place").append("스터디명이 중복입니다.");
+					$("#place").css("color","red");
+					return false;
+				}
+			}
+		 })
+		 
+		 
 	  })
 	  
 	  
@@ -164,40 +182,36 @@
     	var inner = "";
     	
     	if(selectVal == 1){
-    		for(var i = 0; i < second0.length; i++){
-    			inner += "<option value="+i+">";
-    			inner += second0[i];
-    			inner += "</option>";
-    		}
-    		$("#second option").remove();
-    		$("#second").append(inner);
-    	}
-    	
-    	if(selectVal == 2){
-    		for(var i = 0; i < second1.length; i++){
-    			inner += "<option value="+i+">";
-    			inner += second1[i];
-    			inner += "</option>";
-    		}
-    		$("#second option").remove();
-    		$("#second").append(inner);
-    	}
-    	
-    	
-    	
-    	if(selectVal == 3){
-    		for(var i = 0; i < second2.length; i++){
-    			inner += "<option value="+i+">";
-    			inner += second2[i];
-    			inner += "</option>";
-    		}
-    		$("#second option").remove();
-    		$("#second").append(inner);
-    	}
-    	
-    })		
-    
-    
+		for(var i = 0; i < second0.length; i++){
+			inner += "<option value="+i+">";
+			inner += second0[i];
+			inner += "</option>";
+		}
+		$("#second option").remove();
+		$("#second").append(inner);
+	}
+	
+	if(selectVal == 2){
+		for(var i = 0; i < second1.length; i++){
+			inner += "<option value="+i+">";
+			inner += second1[i];
+			inner += "</option>";
+		}
+		$("#second option").remove();
+		$("#second").append(inner);
+	}
+	
+	if(selectVal == 3){
+		for(var i = 0; i < second2.length; i++){
+			inner += "<option value="+i+">";
+			inner += second2[i];
+			inner += "</option>";
+		}
+		$("#second option").remove();
+		$("#second").append(inner);
+	}
+	
+})		
     
     
   });
