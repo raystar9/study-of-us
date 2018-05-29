@@ -48,6 +48,8 @@ select rownum as rnum, s_index, s_name, s_c_id, s_place, s_time, s_plopienum, s_
 			where rnum >= 1 and rnum <= 5
 			
 			
+			select * from study where s_place LIKE '%서울%' or s_name LIKE '';
+			
 SELECT * FROM Study;
 
 -- Study 테이블 INDEX의 시퀀스

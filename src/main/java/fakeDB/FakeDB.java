@@ -3,6 +3,7 @@ package fakeDB;
 import java.sql.Date;
 import java.util.ArrayList;
 
+import beans.prototype.Meeting;
 import beans.prototype.Member;
 import beans.prototype.Study;
 import beans.study.StudyListCount;
@@ -12,11 +13,30 @@ public class FakeDB {
 	ArrayList<Member> members = new ArrayList<>();
 	ArrayList<Study> studies1 = new ArrayList<>();
 	ArrayList<StudyListCount> studies = new ArrayList<>();
+	ArrayList<Meeting> meetings = new ArrayList<>();
+	
 	private FakeDB() {
 		initMember();
 		initStudy();
+		initMeetings();
 	}
 	
+	private void initMeetings() {
+		Meeting meeting1 = new Meeting();
+		meeting1.setComment("내용내용");
+		meeting1.setDate(new java.util.Date());
+		meeting1.setFee(5000);
+		meeting1.setLocation("종각역");
+		Meeting meeting2 = new Meeting();
+		meeting2.setComment("내용내용2");
+		meeting2.setDate(new java.util.Date());
+		meeting2.setFee(8000);
+		meeting2.setLocation("덕소역");
+		
+		meetings.add(meeting1);
+		meetings.add(meeting2);
+	}
+
 	public static FakeDB getInstance() {
 		return instance;
 	}

@@ -1,7 +1,6 @@
 package servlet.study.each.board;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,17 +9,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import beans.study.each.board.BoardViewRegisterBean;
-import dao.DataGetter;
+import dao.DataPoster;
 import dao.DatabaseAccounts;
 
 
-@WebServlet("/study/boardview")
-public class BoardView extends HttpServlet {
+@WebServlet("/study/boarddelete")
+public class BoardDelete extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-   
-    public BoardView() {
+    
+    public BoardDelete() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,20 +26,21 @@ public class BoardView extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		DataGetter getter = new DataGetter(DatabaseAccounts.SCOTT);
-		BoardViewRegisterBean boardcontent = getter.getBoardView(Integer.parseInt(request.getParameter("num")));
-		request.setAttribute("boardcontent", boardcontent);
-		getter.close();
-
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/each/boardView.jsp");
-		dispatcher.forward(request, response);
+		int num = Integer.parseInt(request.getParameter("num"));
 		
+		DataPoster poster = new DataPoster(DatabaseAccounts.SCOTT);
+		poster.postBoardDelete(num);
+		poster.close();
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/each/boardList.jsp");
+		dispatcher.forward(request, response);
 	}
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		
+		
 	}
 
 }

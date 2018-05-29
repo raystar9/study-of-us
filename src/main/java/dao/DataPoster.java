@@ -45,10 +45,9 @@ public class DataPoster extends DataSetter {
 		set(BoardViewRegisterBean.QUERY_POST, new DataSettable() {
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
-				pstmt.setString(1, board.getTitle());
-				pstmt.setString(2, board.getName());
+				pstmt.setString(1, board.getName());
+				pstmt.setString(2, board.getTitle());
 				pstmt.setString(3, board.getContent());
-				pstmt.setString(4, board.getDate());
 				pstmt.executeUpdate();
 				pstmt.close();
 			}
@@ -58,12 +57,14 @@ public class DataPoster extends DataSetter {
 	public void postBoardModify(BoardViewRegisterBean board) {
 
 		// 콜백함수를 통해 setteble 안에있는 prepare 를 사용한다.
-		set(BoardViewRegisterBean.QUERY_POST, new DataSettable() {
+		set(BoardViewRegisterBean.QUERY_PUT, new DataSettable() {
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
 				pstmt.setString(1, board.getTitle());
-				pstmt.setString(2, board.getContent());
+				pstmt.setString(2, board.getName());
 				pstmt.setString(3, board.getDate());
+				pstmt.setString(4, board.getContent());
+				pstmt.setInt(5, board.getIndex());
 				pstmt.executeUpdate();
 				pstmt.close();
 			}
@@ -81,7 +82,17 @@ public class DataPoster extends DataSetter {
 			}
 		});
 	}
-	
-	
-	
+	public void postBoardDelete(int num) {
+
+		// 콜백함수를 통해 setteble 안에있는 prepare 를 사용한다.
+		set(BoardViewRegisterBean.QUERY_DELETE, new DataSettable() {
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+				pstmt.setInt(1, num);
+				
+				pstmt.executeUpdate();
+				pstmt.close();
+			}
+		});
+	}
 }
