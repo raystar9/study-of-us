@@ -15,6 +15,7 @@ import beans.study.each.InformSetupMember;
 import beans.study.each.Member2;
 import beans.study.each.board.BoardListBean;
 import beans.study.each.board.BoardViewRegisterBean;
+import beans.study.each.board.CommentBean;
 import dao.interfaces.DataGettable;
 import dao.interfaces.DataSettable;
 import exceptionHandler.ExceptionHandler;
@@ -246,7 +247,7 @@ public class DataGetter extends DataAccessor {
 					board.setIndex(rs.getInt(1));
 					board.setTitle(rs.getString(2));
 					board.setName(rs.getString(3));
-					board.setDate(rs.getDate(4));
+					board.setDate(rs.getString(4));
 					boardlist.add(board);
 				}
 				return boardlist;
@@ -403,7 +404,7 @@ public class DataGetter extends DataAccessor {
 							InformSetupMember InformMem = new InformSetupMember();
 							InformMem.setName(rs.getString(1));
 							InformMem.setPhone(rs.getInt(2));
-							InformMem.setName(rs.getString(3));
+							InformMem.setEmail(rs.getString(3));
 							informlist.add(InformMem);
 						}
 						return informlist;
@@ -442,6 +443,36 @@ public class DataGetter extends DataAccessor {
 							Inform.setEffective(rs.getString(12));
 						}
 						return Inform;
+					}
+				});
+
+		return list;
+	}
+	
+	public ArrayList<CommentBean> getCommentList() {
+		@SuppressWarnings("unchecked")
+		ArrayList<CommentBean> list = (ArrayList<CommentBean>) get(CommentBean.QUERY_GET,
+				new DataSettable() {
+
+					@Override
+					public void prepare(PreparedStatement pstmt) throws SQLException {
+						// TODO Auto-generated method stub
+					}
+				}, new DataGettable() {
+
+					@Override
+					public ArrayList<CommentBean> onGetResult(ResultSet rs) throws SQLException {
+						ArrayList<CommentBean> commentlist = new ArrayList<CommentBean>();
+						while (rs.next()) {
+							CommentBean comment = new CommentBean();
+							comment.setName(rs.getString(1));
+							comment.setDate(rs.getString(2));
+							comment.setContent(rs.getString(3));
+							comment.setCno(rs.getInt(4));
+							comment.setBno(rs.getInt(5));
+							commentlist.add(comment);
+						}
+						return commentlist;
 					}
 				});
 

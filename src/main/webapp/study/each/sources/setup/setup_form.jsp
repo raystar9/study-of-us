@@ -13,8 +13,6 @@
 <form action="./setup" method="post">
 	<c:set var="m" value="${memlist}" />
 	<c:set var="s" value="${setup}" />
-	<input type='hidden' id='membercount' value='${membercount }'>
-	<input type='hidden' id='memlist' value='${memlist }'>
 	<input type='hidden' id='studyIndex' value='${s.index}'>
 		<table border='1'>
 		<tr>
@@ -25,7 +23,7 @@
 		<tr>
 			<td><h4>*스터디 명</h4>
 				<hr>
-				<div class="panel-body"><input type="text" class="form-control" name='studyName' value=""></div>
+				<div class="panel-body"><input type="text" class="form-control" name='studyName' value="${s.name }"></div>
 			</td>
 		</tr>
 		<tr>
@@ -53,31 +51,19 @@
 					border='1'>
 					<thead>
 						<tr>
-							<th>#</th>
 							<th>이름</th>
 							<th>전화번호</th>
 							<th>이메일</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td>1</td>
-							<td>이다혜</td>
-							<td>010-2350-3059</td>
-							<td>dahye950627@naver.com</td>
-						</tr>
-						<tr>
-							<td>2</td>
-							<td>소문혁</td>
-							<td>010-0000-0000</td>
-							<td>smh@naver.com</td>
-						</tr>
-						<tr>
-							<td>3</td>
-							<td>노동완</td>
-							<td>010-0000-0000</td>
-							<td>ndw@naver.com</td>
-						</tr>
+					<c:forEach var="memlist" items="${memlist }">
+					 <tr>
+					 	<td>${memlist.name }</td>
+					 	<td>${memlist.phone }</td>
+					 	<td>${memlist.email }</td>
+					 </tr>
+					</c:forEach>
 					</tbody>
 				</table>
 			</td>
@@ -94,7 +80,7 @@
 			<td><h4>*현재인원 / 최대인원</h4>
 				<hr> 
 				<input type="text" name='memberCount' class="form-control" value='${membercount }' readOnly>명/
-				<input type="text" name='maxNum' class="form-control" value='${s.maxNum }'>명
+				<input type="text" name='peopleNum' class="form-control" value='${s.peopleNum }'>명
 			</td>
 		</tr>
 		<tr>

@@ -2,13 +2,11 @@
 
 package beans.study.each;
 
-import java.util.Date;
 
 public class InformSetup {
 	
-	public static final String QUERY_GET = "SELECT S_INDEX, S_C_ID, S_PLOPIENUM, S_NAME, S_PLACE, S_time, S_PLOPIENUM, S_START, S_END, S_DAY, S_explain, S_prepared, S_effective FROM STUDY";
-	public static final String QUERY_PUT = "UPDATE STUDY SET S_CATEGORY=?, S_PLOPIENUM=?, S_NAME=?, S_PLACE=?, S_TIME=?, S_START=?, S_END=?, S_DAY=?, S_EXPLAIN=?," + 
-			                               "S_PREPARED=?, S_EFFECTIVE=?";	//setup_form.jsp에서 데이터 수정할 때 쿼리
+	public static final String QUERY_GET = "SELECT S_INDEX, S_CATEGORY, S_PLOPIENUM, S_NAME, S_PLACE, S_time, S_START, S_END, S_DAY, S_explain, S_prepared, S_effective FROM STUDY";
+	public static final String QUERY_PUT = "UPDATE STUDY SET S_CATEGORY=?, S_PLOPIENUM=?, S_NAME=?, S_PLACE=?, S_TIME=?, S_START=?, S_END=?, S_DAY=?, S_EXPLAIN=?, S_PREPARED=?, S_EFFECTIVE=?"; 
 	
 	private int index;			//스터디 번호
 	private String category;	//카테고리

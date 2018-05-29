@@ -85,7 +85,7 @@ public class DataPoster extends DataSetter {
 		});
 	}
 	
-	public void postSetup(InformSetup setup, int index) {
+	public void postSetup(InformSetup setup) {
 
 		// 콜백함수를 통해 setteble 안에있는 prepare 를 사용한다.
 		set(InformSetup.QUERY_PUT, new DataSettable() {

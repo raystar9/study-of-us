@@ -16,7 +16,7 @@ import dao.DataGetter;
 import dao.DatabaseAccounts;
 
 
-@WebServlet("/study/information")
+@WebServlet("/study/each/information")
 public class Information extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

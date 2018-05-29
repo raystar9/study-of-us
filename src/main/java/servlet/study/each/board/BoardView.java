@@ -15,7 +15,7 @@ import dao.DataGetter;
 import dao.DatabaseAccounts;
 
 
-@WebServlet("/study/boardview")
+@WebServlet("/study/each/boardview")
 public class BoardView extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

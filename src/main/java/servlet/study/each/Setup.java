@@ -17,7 +17,7 @@ import dao.DataPoster;
 import dao.DatabaseAccounts;
 
 
-@WebServlet("/study/setup")
+@WebServlet("/study/each/setup")
 public class Setup extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -55,10 +55,10 @@ public class Setup extends HttpServlet {
 		// TODO Auto-generated method stub
 		DataPoster poster = new DataPoster(DatabaseAccounts.SCOTT);
 		InformSetup setup = new InformSetup();
-		int index = Integer.parseInt(request.getParameter("studyIndex"));
+		/*int index = Integer.parseInt(request.getParameter("studyIndex"));*/
 		
 		setup.setCategory("새로운카테");
-		setup.setPeopleNum(request.getParameter("maxNum"));
+		setup.setPeopleNum(request.getParameter("peopleNum"));
 		setup.setName(request.getParameter("studyName"));
 		setup.setPlace(request.getParameter("place"));
 		setup.setActivityTime(request.getParameter("time"));
@@ -69,7 +69,8 @@ public class Setup extends HttpServlet {
 		setup.setPrepared(request.getParameter("prepared"));
 		setup.setEffective(request.getParameter("effective"));
 		
-		poster.postSetup(setup, index);
+		System.out.println(setup.getName());
+		poster.postSetup(setup);
 		
 		poster.close();
 		

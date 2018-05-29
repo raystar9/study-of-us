@@ -158,6 +158,8 @@ CREATE TABLE Board(
 	B_CONTENT VARCHAR(300) NOT NULL               -- CLOE처리 할수도..
 )
 
+select * from board;
+
 insert into Board values(board_no.nextval, '이다혜', '회비관련 공지하겠습니다.', '2018-05-25', '저번에 회비 안낸 노동완씨 이번에 꼭 내십시요.');
 insert into Board values(board_no.nextval, '소문혁', '교재관련 공지하겠습니다.', '2018-05-22', '안녕하시요');
 insert into Board values(board_no.nextval, '구명회', '회비관련 공지하겠습니다.', '2018-05-20', '가나다라마바사');
@@ -216,7 +218,7 @@ CREATE TABLE Study(
 
 );
 truncate table study;
-INSERT INTO Study VALUES(study_index.nextval,'JAVA&JSP','카테카테','20180501', '20180530', 7, '화',5,'개요입니다.','준비물입니다.','기대효과입니다.','장소');
+INSERT INTO Study VALUES(study_index.nextval,'JAVA&JSP','카테카테1','20180501', '20180530', 7, '화',5,'개요입니다.','준비물입니다.','기대효과입니다.','장소');
 
 select * from study;
 select * from member;
@@ -257,8 +259,9 @@ AND b.B_NO = 3
 
 
 
+SELECT S_INDEX, S_CATEGORY, S_PLOPIENUM, S_NAME, S_PLACE, S_time, S_PLOPIENUM, S_START, S_END, S_DAY, S_explain, S_prepared, S_effective FROM STUDY
 
-
-
+select * from study;
+select * from board;
 
 
