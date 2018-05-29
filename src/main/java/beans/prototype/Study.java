@@ -13,12 +13,19 @@ public class Study{
 	
 	private int index;
 	private String name;
-	private String c_id;
+	private int c_id;
+	private Date start;
+	private Date end;
+	private int peoplenum;
+	private String day;
+	private String time;
+	private String explain;
+	private String prepared;
+	private String effective;
 	private String place;
-	private Date time;
-	private int ploplenum;
-	private String goal;
-	private Date term;
+	
+	
+	
 	
 	public int getIndex() {
 		return index;
@@ -32,11 +39,59 @@ public class Study{
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getC_id() {
+	public int getC_id() {
 		return c_id;
 	}
-	public void setC_id(String c_id) {
+	public void setC_id(int c_id) {
 		this.c_id = c_id;
+	}
+	public Date getStart() {
+		return start;
+	}
+	public void setStart(Date start) {
+		this.start = start;
+	}
+	public Date getEnd() {
+		return end;
+	}
+	public void setEnd(Date end) {
+		this.end = end;
+	}
+	public int getPeoplenum() {
+		return peoplenum;
+	}
+	public void setPeoplenum(int peoplenum) {
+		this.peoplenum = peoplenum;
+	}
+	public String getDay() {
+		return day;
+	}
+	public void setDay(String day) {
+		this.day = day;
+	}
+	public String getTime() {
+		return time;
+	}
+	public void setTime(String time) {
+		this.time = time;
+	}
+	public String getExplain() {
+		return explain;
+	}
+	public void setExplain(String explain) {
+		this.explain = explain;
+	}
+	public String getPrepared() {
+		return prepared;
+	}
+	public void setPrepared(String prepared) {
+		this.prepared = prepared;
+	}
+	public String getEffective() {
+		return effective;
+	}
+	public void setEffective(String effective) {
+		this.effective = effective;
 	}
 	public String getPlace() {
 		return place;
@@ -44,42 +99,11 @@ public class Study{
 	public void setPlace(String place) {
 		this.place = place;
 	}
-	public Date getTime() {
-		return time;
-	}
-	public void setTime(Date time) {
-		this.time = time;
-	}
-	public int getPloplenum() {
-		return ploplenum;
-	}
-	public void setPloplenum(int ploplenum) {
-		this.ploplenum = ploplenum;
-	}
-	public String getGoal() {
-		return goal;
-	}
-	public void setGoal(String goal) {
-		this.goal = goal;
-	}
-	public Date getTerm() {
-		return term;
-	}
-	public void setTerm(Date term) {
-		this.term = term;
-	}
-	public static String getQueryGet() {
-		return QUERY_GET;
-	}
-	public static String getQueryPost() {
-		return QUERY_POST;
-	}
-	public static String getQueryPut() {
-		return QUERY_PUT;
-	}
-	public static String getQueryDelete() {
-		return QUERY_DELETE;
-	}
+	
+	
+	
+	
+
 	
 	
 

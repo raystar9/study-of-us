@@ -15,7 +15,7 @@ import dao.DataGetter;
 import dao.DatabaseAccounts;
 
 
-@WebServlet("/study/boardview")
+@WebServlet("/study/each/boardview")
 public class BoardView extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -28,11 +28,9 @@ public class BoardView extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-
 		DataGetter getter = new DataGetter(DatabaseAccounts.SCOTT);
-		ArrayList<BoardViewRegisterBean> boardcontent = getter.getBoardView();
+		BoardViewRegisterBean boardcontent = getter.getBoardView(Integer.parseInt(request.getParameter("num")));
 		request.setAttribute("boardcontent", boardcontent);
-		
 		getter.close();
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/each/boardView.jsp");

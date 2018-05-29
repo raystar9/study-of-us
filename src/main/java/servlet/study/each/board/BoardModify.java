@@ -15,7 +15,7 @@ import dao.DataGetter;
 import dao.DataPoster;
 import dao.DatabaseAccounts;
 
-@WebServlet("/study/boardmodify")
+@WebServlet("/study/each/boardmodify")
 public class BoardModify extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -30,7 +30,7 @@ public class BoardModify extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		DataGetter getter = new DataGetter(DatabaseAccounts.SCOTT);
-		ArrayList<BoardViewRegisterBean> boardcontent = getter.getBoardView();
+		BoardViewRegisterBean boardcontent = getter.getBoardView(Integer.parseInt(request.getParameter("num")));
 		request.setAttribute("boardcontent", boardcontent);
 		
 		getter.close();
@@ -42,19 +42,20 @@ public class BoardModify extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
 		BoardViewRegisterBean boardmodify = new BoardViewRegisterBean();
 		boardmodify.setTitle(request.getParameter("boardSubject"));
 		boardmodify.setContent(request.getParameter("boardContent"));
 		boardmodify.setDate(request.getParameter("boardDate"));
+		boardmodify.setName(request.getParameter("boardName"));
+		boardmodify.setIndex(Integer.parseInt(request.getParameter("num")));
 		
-		DataPoster poster = new DataPoster(DatabaseAccounts.ADMIN);
+		DataPoster poster = new DataPoster(DatabaseAccounts.SCOTT);
+		
 		poster.postBoardModify(boardmodify);
-
-		poster.close();
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/each/boardView.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/each/boardList.jsp");
 		dispatcher.forward(request, response);
+		poster.close();
 	}
 
 }
