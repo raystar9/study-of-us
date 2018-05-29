@@ -6,10 +6,10 @@ package beans.study.each.board;
 
 public class BoardViewRegisterBean {
 
-	public static final String QUERY_GET = "SELECT";		//board_view_form.jsp에서 데이터 가져올 때 쿼리
-	public static final String QUERY_PUT = "UPDATE";		//board_view_form.jsp에서 데이터 수정할 때 쿼리
-	public static final String QUERY_DELETE = "DELETE ";	//board_view_form.jsp에서 데이터 삭제할 때 쿼리
-	public static final String QUERY_POST = "INSERT";		//board_register_form.jsp에서 데이터 삽입할 때 쿼리
+	public static final String QUERY_GET = "SELECT B_NO, B_NAME, B_TITLE, B_DATE, B_CONTENT FROM BOARD WHERE B_NO = ?";	//board_view_form.jsp에서 데이터 가져올 때 쿼리
+	public static final String QUERY_PUT = "UPDATE BOARD SET B_TITLE = ?, B_NAME = ?, B_DATE = ?, B_CONTENT = ? WHERE B_NO = ?";		//board_view_form.jsp에서 데이터 수정할 때 쿼리
+	public static final String QUERY_DELETE = "DELETE FROM BOARD WHERE B_NO = ?";	//board_view_form.jsp에서 데이터 삭제할 때 쿼리
+	public static final String QUERY_POST = "INSERT INTO BOARD VALUES (board_no.nextval, ?, ?, SYSDATE, ?)";		//board_register_form.jsp에서 데이터 삽입할 때 쿼리
 
 	private int index;	 	 // 게시글 번호
 	private String title; 	 // 게시글 제목

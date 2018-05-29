@@ -72,6 +72,6 @@
     		  timeFormat:"h:mma", // top level of text
     	  }
       }
-    });
+    }).formatDate();
 
   });

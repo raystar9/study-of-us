@@ -18,7 +18,9 @@ CREATE TABLE Member(
 	M_INTRODUCE VARCHAR(200) NOT NULL
 )
 
+SELECT M_NAME, M_TEL, M_EMAIL FROM MEMBER;
 SELECT * FROM Member;
+SELECT COUNT(*) FROM MEMBER;
 ALTER SEQUENCE member_index INCREMENT BY 1;   -- 시퀀스의 값을 1로 바꿔줌.
 
 -- Study 테이블 생성
@@ -33,7 +35,7 @@ CREATE TABLE Study(
 	S_TERM DATE NOT NULL
 )
 
-INSERT INTO Study VALUES(study_index.nextval,'JAVA&JSP','JAVA','부천','3','5','자바와 JSP 마스터','2018-05-24')
+INSERT INTO Study VALUES(study_index.nextval,'JAVA&JSP',3,'부천','20180528','5','자바와 JSP 마스터', '20180528')
 
 SELECT * FROM Study;
 
@@ -156,6 +158,8 @@ CREATE TABLE Board(
 	B_CONTENT VARCHAR(300) NOT NULL               -- CLOE처리 할수도..
 )
 
+select * from board;
+
 insert into Board values(board_no.nextval, '이다혜', '회비관련 공지하겠습니다.', '2018-05-25', '저번에 회비 안낸 노동완씨 이번에 꼭 내십시요.');
 insert into Board values(board_no.nextval, '소문혁', '교재관련 공지하겠습니다.', '2018-05-22', '안녕하시요');
 insert into Board values(board_no.nextval, '구명회', '회비관련 공지하겠습니다.', '2018-05-20', '가나다라마바사');
@@ -181,7 +185,6 @@ insert into Board values(board_no.nextval, '곽승민3', '교재관련 공지하
 select * from board;
 
 
-
 select B_NO, B_TITLE, B_M_INDEX, B_DATE 
 from (select rownum rnum, B_NO, B_TITLE, B_M_INDEX, B_DATE 
       from board) 
@@ -189,16 +192,76 @@ where rnum >= 1 and rnum <= 3
 order by rnum;
 
 
-select * from (select rownum rnum,BOARD_NUM,BOARD_NAME, B_TITLE, BOARD_SUBJECT,BOARD_CONTENT,BOARD_FILE,BOARD_RE_REF,BOARD_RE_LEV,BOARD_RE_SEQ,BOARD_READCOUNT,BOARD_DATE   
-where rnum >= ? and rnum <= ?
-order by rnum;
+SELECT B_NO, B_TITLE, B_NAME, B_DATE FROM(SELECT ROWNUM RNUM, B_NO, B_TITLE, B_NAME, B_DATE FROM BOARD) WHERE RNUM>=1 AND RNUM<=10 ORDER BY B_NO;
 
+select * from board;
 
-
-
-
-SELECT B_NO, B_TITLE, B_NAME, B_DATE FROM(SELECT ROWNUM RNUM, B_NO, B_TITLE, B_NAME, B_DATE FROM BOARD)WHERE RNUM>=1 AND RNUM<=3 ORDER BY RNUM;
-
-SELECT B_NO, B_TITLE, B_NAME, B_DATE FROM(SELECT ROWNUM RNUM, B_NO, B_TITLE, B_NAME, B_DATE FROM BOARD) WHERE RNUM>=1 AND RNUM<=3 ORDER BY RNUM
+delete from board where B_NO = 11;
 
 select count(*) from board;
+
+INSERT INTO BOARD VALUES (board_no.nextval, '이름', '제목', '내용', SYSDATE);
+
+CREATE TABLE Study(
+   S_INDEX NUMBER NOT NULL PRIMARY KEY,      -- study_index 시퀀스 처리
+   S_NAME VARCHAR(16) NOT NULL,            
+   S_CATEGORY VARCHAR(30) NOT NULL,              
+   S_START VARCHAR(16) NOT NULL,                     --시작날짜
+   S_END VARCHAR(16) NOT NULL,                     --끝날짜
+   S_PLOPIENUM NUMBER NOT NULL,               --인원
+   S_DAY varchar(3) not null,                  --요일
+   S_time number not null,                     --활동시간
+   S_explain varchar(100) not NULL,            --개요
+   S_prepared   varchar(100) not null,            --프로젝트 준비
+   S_effective VARCHAR(100) NOT NULL,            --기대및 효과
+   S_PLACE VARCHAR(10) NOT NULL            --프로젝트 장소
+
+);
+truncate table study;
+INSERT INTO Study VALUES(study_index.nextval,'JAVA&JSP','카테카테1','20180501', '20180530', 7, '화',5,'개요입니다.','준비물입니다.','기대효과입니다.','장소');
+
+select * from study;
+select * from member;
+
+drop table Study cascade CONSTRAINT;
+
+SELECT S_INDEX, S_C_ID, S_PLOPIENUM, S_NAME, S_PLACE, S_time, S_PLOPIENUM, S_START, S_END, S_DAY, S_explain, S_prepared, S_effective 
+FROM STUDY
+
+
+
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+< 해당 스터디의 게시판 리스트 1~10번째 것만 >
+select *
+from (SELECT ROWNUM RNUM, B_NO, B_TITLE, B_NAME, B_DATE 
+      FROM BOARD) b
+where (select S_INDEX
+	   from STUDY s
+	   where s.S_INDEX = ?) = b.B_S_INDEX
+AND	RNUM>=1 AND RNUM<=10 
+ORDER BY B_NO
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+< 3번 스터디의 게시판 리스트 개수 >
+select count(*)
+from BOARD b
+where (select S_INDEX
+	   from STUDY s
+	   where s.S_INDEX = 3) = b.B_S_INDEX
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ	   
+< 3번 스터디의 게시판의 글을 눌렀을 때의 제목, 내용>
+select B_TITLE, B_CONTENT, M_NAME
+from BOARD b, MEMBER m
+where (select S_INDEX
+	   from STUDY s
+	   where s.S_INDEX = ?) = b.B_S_INDEX)
+AND b.B_NO = 3
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+
+
+
+SELECT S_INDEX, S_CATEGORY, S_PLOPIENUM, S_NAME, S_PLACE, S_time, S_PLOPIENUM, S_START, S_END, S_DAY, S_explain, S_prepared, S_effective FROM STUDY
+
+select * from study;
+select * from board;
+
+
