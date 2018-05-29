@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class Study{
 	
-	public static final String QUERY_GET = "SELECT * FROM Study";
+	public static final String QUERY_GET = "SELECT S_name from study where S_NAME = ? ";
 	public static final String QUERY_POST = "INSERT INTO STUDY VALUES(study_index.nextval,?,?,?,?,?,?,?,?,?,?,?)";
 	public static final String QUERY_PUT = "UPDATE ";
 	public static final String QUERY_DELETE = "DELETE ";
@@ -22,6 +22,8 @@ public class Study{
 	private String prepared;
 	private String effective;
 	private String place;
+	
+	
 	
 	
 	public int getIndex() {

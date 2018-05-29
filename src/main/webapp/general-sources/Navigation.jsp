@@ -53,7 +53,7 @@ body {
 
 <div class="topnav">
   <a class="active" href="/study-of-us/LoginPage">Home</a>
-  <a href="Create">Study Create</a>
+  <a href="/study-of-us/study/each/Registration">Study Create</a>
   <a href="/study-of-us/study/search">Study Search</a>
   <a href="#information">Information</a>
   

@@ -5,6 +5,7 @@ import java.sql.SQLException;
 
 import beans.prototype.Meeting;
 import beans.prototype.Member;
+import beans.prototype.Study;
 import beans.study.each.board.BoardViewRegisterBean;
 import dao.interfaces.DataSettable;
 
@@ -90,6 +91,29 @@ public class DataPoster extends DataSetter {
 			public void prepare(PreparedStatement pstmt) throws SQLException {
 				pstmt.setInt(1, num);
 				
+				pstmt.executeUpdate();
+				pstmt.close();
+			}
+		});
+	}
+
+	public void postStudy(Study study) {
+		
+		set(Study.QUERY_POST, new DataSettable() {
+			
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+				pstmt.setString(1, study.getName());
+				pstmt.setInt(2, study.getC_id());
+				pstmt.setDate(3, study.getStart());
+				pstmt.setDate(4, study.getEnd());
+				pstmt.setInt(5, study.getPeoplenum());
+				pstmt.setString(6, study.getDay());
+				pstmt.setString(7, study.getTime());
+				pstmt.setString(8,study.getExplain());
+				pstmt.setString(9, study.getPrepared());
+				pstmt.setString(10, study.getEffective());
+				pstmt.setString(11, study.getPlace());
 				pstmt.executeUpdate();
 				pstmt.close();
 			}

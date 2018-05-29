@@ -1,5 +1,7 @@
 $(document).ready(function() {
 	var check = 0;
+	var overlap = false;
+	
 	$('form').submit(function() {
 		sid2 = $("input[name=id]").val();
 		
@@ -7,6 +9,15 @@ $(document).ready(function() {
 			alert('중복체크를 해주세요');
 			return false;
 		}
+		
+		
+		if(overlap == false ){
+			alert("아이디중복입니다");
+			return false;
+		}
+		
+		
+		
 	//유효성검사	
 		
 		if ($('#id').val() == "") {
@@ -25,14 +36,11 @@ $(document).ready(function() {
 		
 		
 		
-		if ($('#password').val() !=  $("password2").val()) {
+		if ($('#password').val() !=  $("#password2").val()) {
 			alert("비밀번호를 확인해주세요");
 			return false;
 		}
-
 		
-		
-
 		if ($('#name').val() == '') {
 			alert("이름을 입력하세요");
 			return false;
@@ -62,6 +70,7 @@ $(document).ready(function() {
 			alert("자기소개를 입력해주세요");
 			return false;
 		}
+	
 	})
 	
 	
@@ -83,9 +92,11 @@ $(document).ready(function() {
 				if(result == -1){
 					$("#place").append("아이디 사용 가능합니다.")
 					$("#place").css("color","blue")
+					overlap = true;
 				}else{
 					$("#place").append("중복된 아이디입니다.")
 					$("#place").css("color","red");
+					overlap = false;
 				}
 				alert(result);
 					

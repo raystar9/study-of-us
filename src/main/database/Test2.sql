@@ -15,6 +15,8 @@ CREATE TABLE Member(
 
 select * from member;
 
+delete from member;
+
 delete member where M_id = 'ndw8524';
 
 
@@ -45,6 +47,8 @@ CREATE TABLE Study(
 	constraint FK_s_c_id_study  FOREIGN KEY(S_C_ID) references Category(C_ID)	
 );
 
+
+drop table study
 
 
 alter table study

@@ -527,6 +527,30 @@ public class DataGetter extends DataAccessor {
 
 		return list;
 	}
+	
+	
+	//스터디명 체크
+	public Study getSname_ck(String sname) {
+		Study study = (Study) get(Study.QUERY_GET,new DataSettable() {
+			
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+				pstmt.setString(1, sname);
+			}
+		},new DataGettable() {
+			
+			@Override
+			public Object onGetResult(ResultSet rs) throws SQLException {
+				Study sck = null;
+				if(rs.next()) {
+					sck = new Study();
+					sck.setName(rs.getString(1));
+				}
+				return sck;
+			}
+		});
+		return study;
+	}
 
 	/*
 	 * private ArrayList<?> getBean(ResultSet rs, Class<?> beanClass) throws

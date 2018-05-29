@@ -65,6 +65,24 @@
 			 alert("지역을 선택해주세요!");
 			 return false;
 		 }
+		 
+		 $.ajax({
+			type : "GET",
+			url : "/study-of-us/SnameCheck",
+			data : {
+				"id" : $("input[name=study_name]").val()
+			},
+			success : function(result){
+				$("#place").empty();
+				if(result == -1){
+					$("#place").append("스터디명이 중복입니다.");
+					$("#place").css("color","red");
+					return false;
+				}
+			}
+		 })
+		 
+		 
 	  })
 	  
 	  
@@ -159,72 +177,41 @@
     var second1=new Array ("영어","불어","중국어","일본어");
     var second2=new Array ("정보처리기사","컴활","ccna","ccnp");
     
-    var arr = new Array();
-    
-    arr[0] = new Array();
-    arr[1] = new Array();
-    
-    arr[0][0] = "자바";
-    arr[0][0] = "c언어";
-    arr[0][0] = "파이썬";
-    arr[0][0] = "c++";
-    arr[0][0] = "c#";
-    arr[0][0] = "영어";
-    arr[0][0] = "불어";
-    arr[0][0] = "자바";
-    arr[0][0] = "자바";
-    arr[0][0] = "자바";
-    arr[0][0] = "자바";
-    arr[0][0] = "자바";
-    arr[0][0] = "자바";
-    arr[0][0] = "자바";
-    arr[0][0] = "자바";
-    for(var i = 0; i < arr.length; i++){
-    	for(var i = 0; i < arr[i].length;j++){
-    		
-    	}
-    }
-    
-    
     $("#first").change(function(){				//대분류 소분류의 값을 선택할 수 있도록한다.
     	var selectVal = $("#first").val();
     	var inner = "";
     	
     	if(selectVal == 1){
-    		for(var i = 0; i < second0.length; i++){
-    			inner += "<option value="+i+">";
-    			inner += second0[i];
-    			inner += "</option>";
-    		}
-    		$("#second option").remove();
-    		$("#second").append(inner);
-    	}
-    	
-    	if(selectVal == 2){
-    		for(var i = 0; i < second1.length; i++){
-    			inner += "<option value="+i+">";
-    			inner += second1[i];
-    			inner += "</option>";
-    		}
-    		$("#second option").remove();
-    		$("#second").append(inner);
-    	}
-    	
-    	
-    	
-    	if(selectVal == 3){
-    		for(var i = 0; i < second2.length; i++){
-    			inner += "<option value="+i+">";
-    			inner += second2[i];
-    			inner += "</option>";
-    		}
-    		$("#second option").remove();
-    		$("#second").append(inner);
-    	}
-    	
-    })		
-    
-    
+		for(var i = 0; i < second0.length; i++){
+			inner += "<option value="+i+">";
+			inner += second0[i];
+			inner += "</option>";
+		}
+		$("#second option").remove();
+		$("#second").append(inner);
+	}
+	
+	if(selectVal == 2){
+		for(var i = 0; i < second1.length; i++){
+			inner += "<option value="+i+">";
+			inner += second1[i];
+			inner += "</option>";
+		}
+		$("#second option").remove();
+		$("#second").append(inner);
+	}
+	
+	if(selectVal == 3){
+		for(var i = 0; i < second2.length; i++){
+			inner += "<option value="+i+">";
+			inner += second2[i];
+			inner += "</option>";
+		}
+		$("#second option").remove();
+		$("#second").append(inner);
+	}
+	
+})		
     
     
   });
