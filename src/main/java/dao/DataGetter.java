@@ -97,7 +97,7 @@ public class DataGetter extends DataAccessor {
 		return list;
 	}
 
-/*	public ArrayList<Study> getStudies() {
+	public ArrayList<Study> getStudies() {
 		@SuppressWarnings("unchecked")
 		ArrayList<Study> list = (ArrayList<Study>) get(Study.QUERY_GET, new DataGettable() {
 
@@ -123,7 +123,7 @@ public class DataGetter extends DataAccessor {
 
 		// TODO Auto-generated method stub
 		return list;
-	}*/
+	}
 
 	public ArrayList<StudySearch> getSearchList(String searchVal, int startcount, int endcount) {
 
@@ -393,8 +393,8 @@ public class DataGetter extends DataAccessor {
 			
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
-				String place = "";
-				String search = "";
+				String place = "%%";
+				String search = "%%";
 				if(placeVal!=null) {
 					place = "%"+placeVal+"%";
 				}
@@ -423,7 +423,6 @@ public class DataGetter extends DataAccessor {
 
 					studies.add(study);
 				}
-				System.out.println("sql문의 실행여부" + studies.size());
 				return studies;
 			}
 		});
@@ -438,8 +437,8 @@ public class DataGetter extends DataAccessor {
 
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
-				String place = "";
-				String search = "";
+				String place = "%%";
+				String search = "%%";
 				if(placeVal!=null) {
 					place = "%"+placeVal+"%";
 				}

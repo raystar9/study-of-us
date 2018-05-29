@@ -14,7 +14,7 @@ public class StudyListCount {
 			+ "from ("
 			+ "select s_index, s_name, s_c_id, s_place, s_time, s_plopienum, s_goal, s_term "
 			+ "from ("
-			+ "select * from study where s_place LIKE ? or s_name LIKE ?"
+			+ "select * from study where s_place LIKE ? and s_name LIKE ?"
 			+ "order by s_index))) "
 			+ "where rnum >= ? and rnum <= ?";
 
