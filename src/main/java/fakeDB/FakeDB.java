@@ -1,6 +1,7 @@
 package fakeDB;
 
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.ArrayList;
 
 import beans.prototype.Meeting;
@@ -15,9 +16,15 @@ public class FakeDB {
 	ArrayList<Study> studies1 = new ArrayList<>();
 	ArrayList<StudyListCount> studies = new ArrayList<>();
 	ArrayList<Meeting> meetings = new ArrayList<>();
-	ArrayList<ScheduleBean> schedules = new ArrayList<>();
+	
 	
 
+	ArrayList<ScheduleBean> schedules = new ArrayList<>();
+
+	public static FakeDB getInstance() {
+		return instance;
+	}
+	
 	private FakeDB() {
 		initMember();
 		initStudy();
@@ -36,12 +43,12 @@ public class FakeDB {
 	private void initMeetings() {
 		Meeting meeting1 = new Meeting();
 		meeting1.setComment("내용내용");
-		meeting1.setDate(new Date());
+		meeting1.setDate(new GregorianCalendar(2018, 4, 5).getTime());
 		meeting1.setFee(5000);
 		meeting1.setLocation("종각역");
 		Meeting meeting2 = new Meeting();
 		meeting2.setComment("내용내용2");
-		meeting2.setDate(new Date());
+		meeting2.setDate(new GregorianCalendar(2018, 4, 12).getTime());
 		meeting2.setFee(8000);
 		meeting2.setLocation("덕소역");
 		
@@ -49,9 +56,7 @@ public class FakeDB {
 		meetings.add(meeting2);
 	}
 
-	public static FakeDB getInstance() {
-		return instance;
-	}
+	
 	
 	private void initMember() {
 		Member member = new Member();
@@ -130,5 +135,13 @@ public class FakeDB {
 	
 	public void postStudy(StudyListCount study) {
 		studies.add(study);
+	}
+	
+	public ArrayList<Meeting> getMeetings() {
+		return meetings;
+	}
+
+	public void setMeeting(Meeting meeting) {
+		meetings.add(meeting);
 	}
 }

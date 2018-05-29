@@ -10,6 +10,8 @@
 <script src='sources/schedule/js/jquery.min.js'></script>
 <script src='sources/schedule/js/fullcalendar.min.js'></script>
 <script src='sources/schedule/js/schedule2.js'></script>
+<script src='sources/schedule/js/locale/ko.js'></script>
+
 <script>
 var eventList = ${schedules}
 console.log(eventList);

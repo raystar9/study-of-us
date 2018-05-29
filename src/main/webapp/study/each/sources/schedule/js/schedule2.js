@@ -10,17 +10,7 @@
       navLinks: true, // can click day/week names to navigate views
       eventLimit: true, // allow "more" link when too many events
       events: eventList,
-      views: {
-    	  month: {
-    		  timeFormat:"h:mma" // top level of text
-    	  },
-    	  basicWeek: {
-    		  timeFormat:"h:mma"
-    	  },
-    	  basicDay: {
-    		  timeFormat:"h:mma"
-    	  }
-      }
+      timezone: 'Asia/Seoul',
+      timeFormat: 'a h:mm'
     });
-
   });
