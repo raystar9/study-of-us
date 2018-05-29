@@ -14,8 +14,8 @@
 		</tr>
 
 		<c:set var="b" value="${boardcontent}" />
-		<tr>
-			<td>글쓴이</td>
+		<tr >
+			<td width='10%'>글쓴이</td>
 			<td><c:out value="${b.name}" /></td>
 		</tr>
 
@@ -37,13 +37,12 @@
 		<tr>
 			<!-- 여긴 나중에 구현! -->
 			<td colspan="2" class="center"> &nbsp; 
-			<c:if test="${b.name == id || id == 'admin' }">
-					<a href="./study/boardview?num=${b.index}">수정</a>
+					<a href="./boardmodify?num=${b.index}">수정</a>
 				&nbsp;&nbsp;
 			
-			<a href="./study/boardview?num=${b.index}">삭제</a>
+			<a href="./boarddelete?num=${b.index}">삭제</a>
 				&nbsp;&nbsp;
-			</c:if> <a href="BoardList.bo">뒤로</a>
+			<a href="./board">뒤로</a>
 			</td>
 		</tr>
 	</table>

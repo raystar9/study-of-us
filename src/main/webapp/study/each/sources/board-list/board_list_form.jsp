@@ -33,7 +33,7 @@
             <td>
                <div>
                   &nbsp; ▶
-               <a href="./study/boardview?num=${b.index}">
+               <a href="./boardview?num=${b.index}">
                   ${b.title}
                </a>
                </div>
@@ -54,7 +54,7 @@
       		이전&nbsp;
       		</c:if>
       		<c:if test="${page > 1 }">
-      			<a href="./study/board?page=${page-1}">이전</a>&nbsp;
+      			<a href="./board?page=${page-1}">이전</a>&nbsp;
       		</c:if>
       		
       		<c:forEach var="a" begin="${startpage }" end="${endpage }">
@@ -62,7 +62,7 @@
       				${a}
       			</c:if>
       			<c:if test = "${a != page }">
-      				<a href="./study/board?page=${a}">${a}</a>
+      				<a href="./board?page=${a}">${a}</a>
       			</c:if>
       		</c:forEach>
       		
@@ -70,7 +70,7 @@
       			&nbsp;다음
       		</c:if>
       		<c:if test="${page < maxpage }">
-      			<a href="./study/board?page=${page+1}">&nbsp;다음</a>
+      			<a href="./board?page=${page+1}">&nbsp;다음</a>
       		</c:if>
       	</td>
       </tr>
