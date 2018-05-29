@@ -6,10 +6,10 @@
 <link href='sources/schedule/css/fullcalendar.min.css' rel='stylesheet' />
 <link href='sources/schedule/css/fullcalendar.print.min.css' rel='stylesheet' media='print' />
 <link href='sources/schedule/css/schedule.css' rel='stylesheet'/>
+<script src='/study-of-us/webjars/jquery/3.2.1/jquery.min.js'></script>
 <script src='sources/schedule/js/moment.min.js'></script>
-<script src='sources/schedule/js/jquery.min.js'></script>
 <script src='sources/schedule/js/fullcalendar.min.js'></script>
-<script src='sources/schedule/js/schedule2.js'></script>
+<script src='sources/schedule/js/schedule3.js'></script>
 <script src='sources/schedule/js/locale/ko.js'></script>
 
 <script>

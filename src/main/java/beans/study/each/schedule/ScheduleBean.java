@@ -1,18 +1,16 @@
 package beans.study.each.schedule;
 
-import java.util.Date;
-
 public class ScheduleBean {
 	public static final String QUERY_GET = "";
 	
 	private String title;
-	private Date start;
+	private String start;
 	private String url;
 	
 	public String getTitle() {
 		return title;
 	}
-	public Date getStart() {
+	public String getStart() {
 		return start;
 	}
 	public String getUrl() {
@@ -21,10 +19,10 @@ public class ScheduleBean {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public void setStart(Date start) {
+	public void setStart(String start) {
 		this.start = start;
 	}
-	public void setUrl(String url) {
-		this.url = url;
+	public void setUrl(int postNo) {
+		this.url = "schedule/" + postNo;
 	}
 }

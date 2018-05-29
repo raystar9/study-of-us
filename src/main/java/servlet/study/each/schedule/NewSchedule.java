@@ -4,10 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URLDecoder;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.GregorianCalendar;
+import java.sql.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import beans.prototype.Meeting;
+import dateConverter.DateConverter;
 import fakeDB.FakeDB;
 
 /**
@@ -63,19 +61,10 @@ public class NewSchedule extends HttpServlet {
 		poster.close();
 		*/
 		Meeting m = new Meeting();
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-		try {
-			Date dateIn = format.parse((String)request.getAttribute("date"));
-			System.out.println(dateIn);
-			m.setDate(dateIn);
-			m.setLocation((String) request.getAttribute("location"));
-			FakeDB.getInstance().setMeeting(m);
-			System.out.println(request.getAttribute("time"));
-			System.out.println("전송함!");
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Date dateIn = DateConverter.convertDateTime((String)request.getAttribute("date") + 'T' + (String)request.getAttribute("time") + ":00");
+		m.setDate(dateIn);
+		m.setLocation((String) request.getAttribute("location"));
+		FakeDB.getInstance().setMeeting(m);
 		
 	}
 

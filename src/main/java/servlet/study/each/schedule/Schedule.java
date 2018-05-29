@@ -13,6 +13,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import beans.prototype.Meeting;
 import beans.study.each.schedule.ScheduleBean;
+import dateConverter.DateConverter;
 import fakeDB.FakeDB;
 
 /**
@@ -36,12 +37,12 @@ public class Schedule extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ObjectMapper mapper = new ObjectMapper();
 		ArrayList<Meeting> meetings = FakeDB.getInstance().getMeetings();
-		ArrayList<ScheduleBean> schedules = new ArrayList<>();
+		ArrayList<ScheduleBean> schedules = FakeDB.getInstance().getSchedules();
 		for(Meeting meeting : meetings) {
 			ScheduleBean s = new ScheduleBean();
-			s.setStart(meeting.getDate());
+			s.setStart(DateConverter.getDateString(meeting.getDate()));
 			s.setTitle(meeting.getLocation());
-			s.setUrl("1");
+			s.setUrl(meeting.getIndex());
 			schedules.add(s);
 		}
 		System.out.println(mapper.writeValueAsString(schedules));

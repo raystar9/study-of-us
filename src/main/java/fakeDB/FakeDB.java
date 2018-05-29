@@ -1,6 +1,6 @@
 package fakeDB;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.GregorianCalendar;
 import java.util.ArrayList;
 
@@ -16,9 +16,6 @@ public class FakeDB {
 	ArrayList<Study> studies1 = new ArrayList<>();
 	ArrayList<StudyListCount> studies = new ArrayList<>();
 	ArrayList<Meeting> meetings = new ArrayList<>();
-	
-	
-
 	ArrayList<ScheduleBean> schedules = new ArrayList<>();
 
 	public static FakeDB getInstance() {
@@ -34,21 +31,21 @@ public class FakeDB {
 	
 	private void initSchedules() {
 		ScheduleBean s1 = new ScheduleBean();
-		s1.setStart(new Date());
+		s1.setStart("2018-05-03T12:00:00+09:00");
 		s1.setTitle("안녕!");
-		s1.setUrl("./schedule/1");
+		s1.setUrl(1);
 		schedules.add(s1);
 	}
 
 	private void initMeetings() {
 		Meeting meeting1 = new Meeting();
 		meeting1.setComment("내용내용");
-		meeting1.setDate(new GregorianCalendar(2018, 4, 5).getTime());
+		meeting1.setDate(new Date(new GregorianCalendar(2018, 4, 5).getTimeInMillis()));
 		meeting1.setFee(5000);
 		meeting1.setLocation("종각역");
 		Meeting meeting2 = new Meeting();
 		meeting2.setComment("내용내용2");
-		meeting2.setDate(new GregorianCalendar(2018, 4, 12).getTime());
+		meeting2.setDate(new Date(new GregorianCalendar(2018, 4, 12).getTimeInMillis()));
 		meeting2.setFee(8000);
 		meeting2.setLocation("덕소역");
 		
@@ -77,32 +74,32 @@ public class FakeDB {
 		StudyListCount study = new StudyListCount();
 		study.setName("자바스터디");
 		study.setGoal("자바마스터");
-		study.setTerm(new Date());
+		study.setTerm(new Date(new GregorianCalendar(2018, 4, 5).getTimeInMillis()));
 		
 		StudyListCount study2 = new StudyListCount();
 		study2.setName("자바스터디");
 		study2.setGoal("자바마스터");
-		study2.setTerm(new Date());
+		study2.setTerm(new Date(new GregorianCalendar(2018, 4, 5).getTimeInMillis()));
 		
 		StudyListCount study3 = new StudyListCount();
 		study3.setName("자바스터디");
 		study3.setGoal("자바마스터");
-		study3.setTerm(new Date());
+		study3.setTerm(new Date(new GregorianCalendar(2018, 4, 5).getTimeInMillis()));
 		
 		StudyListCount study4 = new StudyListCount();
 		study4.setName("자바스터디");
 		study4.setGoal("자바마스터");
-		study4.setTerm(new Date());
+		study4.setTerm(new Date(new GregorianCalendar(2018, 4, 5).getTimeInMillis()));
 		
 		StudyListCount study5 = new StudyListCount();
 		study5.setName("자바스터디");
 		study5.setGoal("자바마스터");
-		study5.setTerm(new Date());
+		study5.setTerm(new Date(new GregorianCalendar(2018, 4, 5).getTimeInMillis()));
 		
 		StudyListCount study6 = new StudyListCount();
 		study6.setName("자바스터디");
 		study6.setGoal("자바마스터");
-		study6.setTerm(new Date());
+		study6.setTerm(new Date(new GregorianCalendar(2018, 4, 5).getTimeInMillis()));
 		
 		studies.add(study);
 		studies.add(study2);
