@@ -5,7 +5,7 @@ import java.sql.Date;
 public class Study{
 	
 	public static final String QUERY_GET = "SELECT * FROM Study"; 
-	public static final String QUERY_GET2 = "select * from study where s_place LIKE ? or s_name LIKE ?";
+	public static final String QUERY_GET2 = "select * from study where s_place LIKE ? and s_name LIKE ?";
 	public static final String QUERY_POST = "INSERT INTO DEPTNO VALUES(seq.nextval, ?, ?)";
 	public static final String QUERY_PUT = "UPDATE ";
 	public static final String QUERY_DELETE = "DELETE ";

@@ -13,7 +13,7 @@
   		<select id="firstArray" name="firstArray">
   			  <option value="-1">대분류</option>
   			  <option value="1">프로그래밍</option>
- 			  <option value="2">외국어</option>
+ 			  <option value="2">언어</option>
    			  <option value="3">자격증</option>
   		</select>
 	</div>
@@ -99,26 +99,27 @@
 		</div>
 		</c:forEach>
 		
-		<div class="paging"  style="text-align:center; margin-bottom:100px">
+	
+	<div class="paging"  style="text-align:center; margin-bottom:100px">
 		<c:if test="${startpage > 1}">
-			<a href="/study-of-us/study/search?page=1&searchVal=${searchVal}"">처음</a>
+			<a href="/study-of-us/study/search?page=1&searchVal=${searchVal}&check=${place}">처음</a>
 		</c:if>
 		
 		<c:if test="${page > 1}">
-			<a href="/study-of-us/study/search?page=${page-1 }&searchVal=${searchVal}">이전</a>
+			<a href="/study-of-us/study/search?page=${page-1 }&searchVal=${searchVal}&check=${place}">이전</a>
 		</c:if>
 		
 		<c:forEach var="i" begin= "${startpage }" end="${endpage }">
-			<a href="/study-of-us/study/search?page=${i }&searchVal=${searchVal}">${i }</a>
+			<a href="/study-of-us/study/search?page=${i }&searchVal=${searchVal}&check=${place}">${i }</a>
 		</c:forEach>
 		
 		<c:if test="${page < totalpage}">
-			<a href="/study-of-us/study/search?page=${page+1 }&searchVal=${searchVal}">다음</a>
+			<a href="/study-of-us/study/search?page=${page+1 }&searchVal=${searchVal}&check=${place}">다음</a>
 		</c:if>
 		
 		<c:if test="${endpage < totalpage}">
-			<a href="/study-of-us/study/search?page=${totalpage }&searchVal=${searchVal}">끝</a>
+			<a href="/study-of-us/study/search?page=${totalpage }&searchVal=${searchVal}&check=${place}">끝</a>
 		</c:if>
 		</div>
+		</div>
 		
-	</div>

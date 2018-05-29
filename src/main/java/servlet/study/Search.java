@@ -39,7 +39,7 @@ public class Search extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		System.out.println("스터디 검색 페이지");
-
+		
 		DataGetter getter = new DataGetter(DatabaseAccounts.SCOTT);
 		HttpSession session = request.getSession();
 		
@@ -51,30 +51,42 @@ public class Search extends HttpServlet {
 		int countList = 5; // 한 페이지에 출력될 게시물 수 (countList)
 		String searchVal = ""; // 검색바를 통해서 검색한 내용
 		String place = ""; // 체크박스를 통해 선택한 지역명
-
-		System.out.println("page 값 " + request.getParameter("page"));
-
-		if ( request.getParameter("searchVal") != null|| request.getParameter("place") != null) {
-
-			
 		
+		System.out.println("페이지값은 : " + request.getParameter("page"));
+		
+		if(request.getParameter("page")!=null) {
+			page = Integer.parseInt(request.getParameter("page"));
+		}
+	
+		if (request.getParameter("place")!=null || request.getParameter("searchVal")!=null || request.getParameter("check") != null){
+			
+			
+			if(request.getParameter("place")==null) {
+			place = request.getParameter("check");
+			System.out.println("check 값을 사용합니다.");
+			}else {
+			place = request.getParameter("place");
+			System.out.println("place 값을 사용합니다.");
+			}
+			
 				// 검색어로 검색한 경우
 			searchVal = request.getParameter("searchVal");
-			session.setAttribute("searchVal", request.getParameter("searchVal"));
-		
+			request.setAttribute("searchVal", searchVal);
+
 			
-			
-			place = request.getParameter("place");
+
+				
 			ArrayList<Study> studies = getter.getStudies(searchVal, place);
 			totalSearchList = studies.size(); // 총 스터디의 개수를 구하기 위해서 사용
 
 			count = gettotalpage(totalSearchList, countList, page, countpage, request); 
 			// 검색 후 페이징 처리 메서드
-			System.out.println("searchVal@@@@@@@@@@@@@");
 			ArrayList<StudyListCount> studiespaging = getter.getStudyPaging(count[0], count[1], searchVal, place); 
+			
 			// 페이징 기법을 통해서 게시물 보여주는 부분
 																											
 			request.setAttribute("studies", studiespaging);
+			request.setAttribute("place", place);
 		} else {
 			ArrayList<Study> studies = getter.getStudies();
 			totalList = studies.size(); 
@@ -91,15 +103,16 @@ public class Search extends HttpServlet {
 
 		getter.close();
 
+		System.out.println("상태는 : " + request.getParameter("state"));
 		if (request.getParameter("state") != null) {
 
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/study/sources/search/section2.jsp");
 			dispatcher.forward(request, response);
-			System.out.println("아작스 실행");
+			System.out.println("아작스 실행--------------------------완료-------------------------");
 		} else {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/study/search.jsp");
 			dispatcher.forward(request, response);
-			System.out.println("완료");
+			System.out.println("--------------------------완료-------------------------");
 		}
 	}
 
@@ -127,11 +140,7 @@ public class Search extends HttpServlet {
 			endpage = totalpage;
 		}
 
-		if (request.getParameter("page") == null) {
-			page = 1;
-		} else {
-			page = Integer.parseInt(request.getParameter("page"));
-		}
+	
 		int startcount = (page - 1) * countpage + 1; // 한페이지에 표시할 5개의 스터디중 시작 번호(rownum)
 		int endcount = page * countpage; // 한페이지에 표시할 5개의 스터디중 끝나는 번호 (rownum)
 

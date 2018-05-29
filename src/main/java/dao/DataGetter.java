@@ -373,8 +373,8 @@ public class DataGetter extends DataAccessor {
 			
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
-				String place = "";
-				String search = "";
+				String place = "%%";
+				String search = "%%";
 				if(placeVal!=null) {
 					place = "%"+placeVal+"%";
 				}
@@ -403,7 +403,6 @@ public class DataGetter extends DataAccessor {
 
 					studies.add(study);
 				}
-				System.out.println("sql문의 실행여부" + studies.size());
 				return studies;
 			}
 		});
@@ -418,8 +417,8 @@ public class DataGetter extends DataAccessor {
 
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
-				String place = "";
-				String search = "";
+				String place = "%%";
+				String search = "%%";
 				if(placeVal!=null) {
 					place = "%"+placeVal+"%";
 				}
