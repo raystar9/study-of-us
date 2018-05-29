@@ -2,9 +2,7 @@
 package servlet.study;
 
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.GregorianCalendar;
+import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import beans.prototype.Study;
+import dateConverter.DateConverter;
 @WebServlet("/Registration")
 public class Registration extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -29,7 +28,8 @@ public class Registration extends HttpServlet {
 		Study study = new Study();
 		study.setName(request.getParameter("name"));
 		study.setC_id(Integer.parseInt(request.getParameter("first")));
-		study.setStart(request.getParameter("day1"));
+		Date date = DateConverter.convertDate(request.getParameter("day1"));
+		study.setStart(date);
 		study.setStart(request.getParameter("day2"));
 		
 	}
