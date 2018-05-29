@@ -59,13 +59,13 @@ body {
   
   <div class="topnav-right">
   <c:if test="${empty id }">
-    <a href="LoginForm">Login</a>
-    <a href="join">SignUp</a>
+    <a href="/study-of-us/LoginForm">Login</a>
+    <a href="/study-of-us/join">SignUp</a>
   </c:if> 
   
   <c:if test="${!empty id }">
  	 <a>${id} 님 환영합니다</a>
-    <a href="LogOut">로그아웃</a>
+    <a href="/study-of-us/LogOut">로그아웃</a>
   </c:if>
    
   </div>

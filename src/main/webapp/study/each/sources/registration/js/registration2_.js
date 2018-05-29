@@ -159,6 +159,7 @@
     var second1=new Array ("영어","불어","중국어","일본어");
     var second2=new Array ("정보처리기사","컴활","ccna","ccnp");
     
+    
     $("#first").change(function(){				//대분류 소분류의 값을 선택할 수 있도록한다.
     	var selectVal = $("#first").val();
     	var inner = "";

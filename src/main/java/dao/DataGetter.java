@@ -94,7 +94,7 @@ public class DataGetter extends DataAccessor {
 		return list;
 	}
 
-	public ArrayList<Study> getStudies() {
+/*	public ArrayList<Study> getStudies() {
 		@SuppressWarnings("unchecked")
 		ArrayList<Study> list = (ArrayList<Study>) get(Study.QUERY_GET, new DataGettable() {
 
@@ -120,7 +120,7 @@ public class DataGetter extends DataAccessor {
 
 		// TODO Auto-generated method stub
 		return list;
-	}
+	}*/
 
 	public ArrayList<StudySearch> getSearchList(String searchVal, int startcount, int endcount) {
 		
@@ -365,6 +365,33 @@ public class DataGetter extends DataAccessor {
 		});
 
 		return boardcount;
+	}
+
+	
+	//idcheck
+	public Login getIdCheck(String id) {
+		Login login = (Login) get(Login.QUERY_GET2,new DataSettable() {
+			
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+				//바인딩변수채워주고
+				pstmt.setString(1, id);
+			}
+		},new DataGettable() {
+			
+			@Override
+			public Object onGetResult(ResultSet rs) throws SQLException {
+				Login idck = null;
+				if(rs.next()) {
+					//값이있다면 인스턴스변수 참조해서 값을 넣어준다
+					idck = new Login();
+					idck.setId(rs.getString(1));
+				}
+				
+				return idck;
+			}
+		});
+		return login;
 	}
 
 	/*

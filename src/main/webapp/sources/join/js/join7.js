@@ -1,5 +1,13 @@
 $(document).ready(function() {
+	var check = 0;
 	$('form').submit(function() {
+		sid2 = $("input[name=id]").val();
+		
+		if(check == 0 || sid != sid2){
+			alert('중복체크를 해주세요');
+			return false;
+		}
+	//유효성검사	
 		
 		if ($('#id').val() == "") {
 			alert("아이디를 입력하세요");
@@ -10,10 +18,20 @@ $(document).ready(function() {
 			return false;
 		}
 
-		if ($('#password2').val().length < 7 || $('#pass').val().length > 13) {
+		if ($('#password2').val().length < 7 || $('#password').val().length > 13) {
 			alert("비밀번호는 7자리이상 12자리 이하로 입력되어야합니다.");
 			return false;
 		}
+		
+		
+		
+		if ($('#password').val() !=  $("password2").val()) {
+			alert("비밀번호를 확인해주세요");
+			return false;
+		}
+
+		
+		
 
 		if ($('#name').val() == '') {
 			alert("이름을 입력하세요");
@@ -22,6 +40,13 @@ $(document).ready(function() {
 
 		if ($('#email').val() == '') {
 			alert("이메일을 입력하세요");
+			return false;
+			// 이메일 change 이용해서 도메인 값 넣어주기			//확인해야함 
+		}
+		
+		
+		if ($('#tel').val() == '') {
+			alert("전화번호를 입력하세요");
 			return false;
 			// 이메일 change 이용해서 도메인 값 넣어주기			//확인해야함 
 		}
@@ -39,6 +64,35 @@ $(document).ready(function() {
 		}
 	})
 	
+	
+	//ajax
+	$("#idcheck").click(function(){
+		check++;
+		sid = $('input[name=id]').val();
+		alert(sid);
+		$.ajax({
+			type : "GET",
+			url : "/study-of-us/IdCheck",
+			data : {
+				"id" : $("input[name=id]").val()
+			},
+			success : function(result){
+				check = result;
+				//비워주고 
+				$("#place").empty();
+				if(result == -1){
+					$("#place").append("아이디 사용 가능합니다.")
+					$("#place").css("color","blue")
+				}else{
+					$("#place").append("중복된 아이디입니다.")
+					$("#place").css("color","red");
+				}
+				alert(result);
+					
+			}
+		})
+	})
+	
 	$("input[type=checkbox]").each(function(){
 		$(this).change(function(){
 			/*var a = $(this).val()
@@ -47,18 +101,32 @@ $(document).ready(function() {
 			$(this).prop("checked",true)
 		})
 	})
+
 	
-	//sel 직접입력일때는 도메인의 값을 쓸수있게
-	//sel 값의 값이 있을때는 못쓰게.
-	$('#sel').change(function() {
-		if ($('#sel').val() == "") {
-			$('#domain').val("").focus()
-			$('#domain').attr("disabled", false)
-		} else {
-			$('#domain').val($("#sel").val())
-			$('#domain').attr("disabled", true)
+	$("#password").keyup(function(){
+		$("font[name=check]").text("");
+		if($("#password").val() != $("#password2").val()){
+			if($("#password2").val() == ""){
+				$("font[name=check]").text("");	
+			}else{
+			$("font[name=check]").text("");
+			$("font[name=check]").html("비밀번호가 일치하지 않습니다");
+			$("font[name=check]").css("color","red");
+			}
+		}
+	});
+	$("#password2").keyup(function(){
+		if($("#password").val() != $("#password2").val()){
+			$("font[name=check]").text("");
+			$("font[name=check]").html("비밀번호가 일치하지 않습니다");
+			$("font[name=check]").css("color","red");
+		}else{
+			$("font[name=check]").text("");
+			$("font[name=check]").html("비밀번호 일치");
+			$("font[name=check]").css("color","blue");
 		}
 	})
+	
 
 	$('#tel').keyup(function() {
 		if (isNaN($('#tel').val())) {
