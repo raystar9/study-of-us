@@ -2,7 +2,7 @@ package dateConverter;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.sql.Date;
 
 public class DateConverter {
 	/**
@@ -13,7 +13,8 @@ public class DateConverter {
 	public static Date convertDate(String dateString) {
 		SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
 		try {
-			return format.parse(dateString);
+			java.util.Date res = format.parse(dateString);
+			return new Date(res.getTime());
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -28,11 +29,14 @@ public class DateConverter {
 	public static Date convertDateTime(String dateString) {
 		SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd hh:mm");
 		try {
-			return format.parse(dateString);
+			java.util.Date res = format.parse(dateString);
+			return new Date(res.getTime());
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
 		}
 	}
+	
+	//TODO 메서드 공통부분 합쳐야됨.
 }
