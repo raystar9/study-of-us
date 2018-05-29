@@ -11,7 +11,7 @@ public class DateConverter {
 	 * @return
 	 */
 	public static Date convertDate(String dateString) {
-		SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		try {
 			java.util.Date res = format.parse(dateString);
 			return new Date(res.getTime());
@@ -27,7 +27,7 @@ public class DateConverter {
 	 * @return
 	 */
 	public static Date convertDateTime(String dateString) {
-		SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd hh:mm");
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
 		try {
 			java.util.Date res = format.parse(dateString);
 			return new Date(res.getTime());
@@ -36,6 +36,11 @@ public class DateConverter {
 			e.printStackTrace();
 			return null;
 		}
+	}
+	
+	public static String getDateString(Date date) {
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
+		return format.format(new java.util.Date(date.getTime()));
 	}
 	
 	//TODO 메서드 공통부분 합쳐야됨.
