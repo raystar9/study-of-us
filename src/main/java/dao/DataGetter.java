@@ -616,7 +616,6 @@ public class DataGetter extends DataAccessor {
 					comment.setContent(rs.getString(3));
 					comment.setCno(rs.getInt(4));
 					comment.setBno(rs.getInt(5));
-					System.out.println(rs.getInt(5));
 					commentlist.add(comment);
 				}
 				return commentlist;

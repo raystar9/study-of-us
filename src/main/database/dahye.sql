@@ -314,4 +314,15 @@ update comment2 set C_BNO = 39 where C_CONTENT = '댓글1';
 update comment2 set C_BNO = 40 where C_CONTENT = '댓글2';
 update comment2 set C_BNO = 41 where C_CONTENT = '댓글3';
 
+
+
+
+
+SELECT * FROM COMMENT2 WHERE C_BNO = ?
+
+
+
+
+
 select B_NO ,B_TITLE, B_CONTENT, B_NAME, B_DATE from BOARD b where B_S_INDEX = (select S_INDEX from STUDY where S_INDEX = 3) AND b.B_NO = 39
+select * from comment2;

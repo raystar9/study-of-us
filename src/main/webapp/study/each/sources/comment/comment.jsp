@@ -16,9 +16,17 @@
 	});
 
 	function commentList(){
+		var num = params.split('&').map(function(i) { 
+		    return i.split('=');
+		}).reduce(function(memo, i) { 
+		    memo[i[0]] = i[1] == +i[1] ? parseFloat(i[1],10) : decodeURIComponent(i[1]); 
+		    return memo;
+		}, {});
+		
 	    $.ajax({
-	        url : '/commentlist',
+	        url : '/study-of-us/commentlist',
 	        type : 'post',
+	        data: num,
 	        success : function(data){
 	            var a =''; 
 	            $.each(data, function(value){ 
