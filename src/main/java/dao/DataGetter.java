@@ -1,5 +1,6 @@
 package dao;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -108,12 +109,17 @@ public class DataGetter extends DataAccessor {
 					Study study = new Study();
 					study.setIndex(rs.getInt(1));
 					study.setName(rs.getString(2));
-					study.setC_id(rs.getString(3));
-					study.setPlace(rs.getString(4));
-					study.setTime(rs.getDate(5));
-					study.setPloplenum(rs.getInt(6));
-					study.setGoal(rs.getString(7));
-					study.setTerm(rs.getDate(8));
+					study.setC_id(rs.getInt(3));
+					study.setMt_index(rs.getInt(4));
+					study.setStart(rs.getDate(5));
+					study.setEnd(rs.getDate(6));
+					study.setPeoplenum(rs.getInt(7));
+					study.setDay(rs.getString(8));
+					study.setTime(rs.getString(9));
+					study.setExplain(rs.getString(10));
+					study.setPrepared(rs.getString(11));
+					study.setEffective(rs.getString(12));
+					study.setPlace(rs.getString(13));
 
 					studies.add(study);
 				}
@@ -178,17 +184,22 @@ public class DataGetter extends DataAccessor {
 			public ArrayList<?> onGetResult(ResultSet rs) throws SQLException {
 				ArrayList<StudyListCount> StudyListCountlist = new ArrayList<>();
 				while (rs.next()) {
-					StudyListCount StudyListCount = new StudyListCount();
-					StudyListCount.setIndex(rs.getInt(2));
-					StudyListCount.setName(rs.getString(3));
-					StudyListCount.setC_id(rs.getString(4));
-					StudyListCount.setPlace(rs.getString(5));
-					StudyListCount.setTime(rs.getDate(6));
-					StudyListCount.setPloplenum(7);
-					StudyListCount.setGoal(rs.getString(8));
-					StudyListCount.setTerm(rs.getDate(9));
+					StudyListCount study = new StudyListCount();
+					study.setIndex(rs.getInt(2));
+					study.setName(rs.getString(3));
+					study.setC_id(rs.getInt(4));
+					study.setMt_index(rs.getInt(5));
+					study.setStart(rs.getDate(6));
+					study.setEnd(rs.getDate(7));
+					study.setPeoplenum(rs.getInt(8));
+					study.setDay(rs.getString(9));
+					study.setTime(rs.getString(10));
+					study.setExplain(rs.getString(11));
+					study.setPrepared(rs.getString(12));
+					study.setEffective(rs.getString(13));
+					study.setPlace(rs.getString(14));
 
-					StudyListCountlist.add(StudyListCount);
+					StudyListCountlist.add(study);
 				}
 				return StudyListCountlist;
 			}
@@ -386,7 +397,7 @@ public class DataGetter extends DataAccessor {
 		});
 		return login;
 	}
-/*
+
 	public ArrayList<Study> getStudies(String searchVal, String placeVal) {
 		@SuppressWarnings("unchecked")
 		ArrayList<Study> list = (ArrayList<Study>) get(Study.QUERY_GET2,new DataSettable() {
@@ -414,12 +425,17 @@ public class DataGetter extends DataAccessor {
 					Study study = new Study();
 					study.setIndex(rs.getInt(1));
 					study.setName(rs.getString(2));
-					study.setC_id(rs.getString(3));
-					study.setPlace(rs.getString(4));
-					study.setTime(rs.getDate(5));
-					study.setPloplenum(rs.getInt(6));
-					study.setGoal(rs.getString(7));
-					study.setTerm(rs.getDate(8));
+					study.setC_id(rs.getInt(3));
+					study.setMt_index(rs.getInt(4));
+					study.setStart(rs.getDate(5));
+					study.setEnd(rs.getDate(6));
+					study.setPeoplenum(rs.getInt(7));
+					study.setDay(rs.getString(8));
+					study.setTime(rs.getString(9));
+					study.setExplain(rs.getString(10));
+					study.setPrepared(rs.getString(11));
+					study.setEffective(rs.getString(12));
+					study.setPlace(rs.getString(13));
 
 					studies.add(study);
 				}
@@ -430,8 +446,8 @@ public class DataGetter extends DataAccessor {
 		// TODO Auto-generated method stub
 		return list;
 	}
-*/
-	public ArrayList<StudyListCount> getStudyPaging(int startcount, int endcount, String searchVal, String placeVal) {
+
+	public ArrayList<StudyListCount> getStudyPaging(int startcount, int endcount, String searchVal, String placeVal, String secondArray) {
 		@SuppressWarnings("unchecked")
 		ArrayList<StudyListCount> list = (ArrayList<StudyListCount>) get(StudyListCount.QUERY_GET2, new DataSettable() {
 
@@ -439,16 +455,24 @@ public class DataGetter extends DataAccessor {
 			public void prepare(PreparedStatement pstmt) throws SQLException {
 				String place = "%%";
 				String search = "%%";
+				String second = "%%";
 				if(placeVal!=null) {
 					place = "%"+placeVal+"%";
 				}
 				if(searchVal!=null) {
 					search = "%"+searchVal+"%";
+				}	
+				if(secondArray!=null) {
+					second = "%"+secondArray+"%";
 				}
+				System.out.println("place sql 값" + place);
+				System.out.println("place sql 값" + search);
+				System.out.println("place sql 값" + second);
 				pstmt.setString(1, place);
 				pstmt.setString(2, search);
-				pstmt.setInt(3, startcount);
-				pstmt.setInt(4, endcount);
+				pstmt.setString(3, second );
+				pstmt.setInt(4, startcount);
+				pstmt.setInt(5, endcount);
 
 			}
 		}, new DataGettable() {
@@ -457,17 +481,22 @@ public class DataGetter extends DataAccessor {
 			public ArrayList<?> onGetResult(ResultSet rs) throws SQLException {
 				ArrayList<StudyListCount> StudyListCountlist = new ArrayList<>();
 				while (rs.next()) {
-					StudyListCount StudyListCount = new StudyListCount();
-					StudyListCount.setIndex(rs.getInt(2));
-					StudyListCount.setName(rs.getString(3));
-					StudyListCount.setC_id(rs.getString(4));
-					StudyListCount.setPlace(rs.getString(5));
-					StudyListCount.setTime(rs.getDate(6));
-					StudyListCount.setPloplenum(7);
-					StudyListCount.setGoal(rs.getString(8));
-					StudyListCount.setTerm(rs.getDate(9));
+					StudyListCount study = new StudyListCount();
+					study.setIndex(rs.getInt(2));
+					study.setName(rs.getString(3));
+					study.setC_id(rs.getInt(4));
+					study.setMt_index(rs.getInt(5));
+					study.setStart(rs.getDate(6));
+					study.setEnd(rs.getDate(7));
+					study.setPeoplenum(rs.getInt(8));
+					study.setDay(rs.getString(9));
+					study.setTime(rs.getString(10));
+					study.setExplain(rs.getString(11));
+					study.setPrepared(rs.getString(12));
+					study.setEffective(rs.getString(13));
+					study.setPlace(rs.getString(14));
 
-					StudyListCountlist.add(StudyListCount);
+					StudyListCountlist.add(study);
 				}
 				return StudyListCountlist;
 			}
