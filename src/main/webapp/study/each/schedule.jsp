@@ -3,6 +3,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+.button-container {text-align: center;}
+#new-button {width: 400px; height: 50px;}
+
+</style>
 <link href='sources/schedule/css/fullcalendar.min.css' rel='stylesheet' />
 <link href='sources/schedule/css/fullcalendar.print.min.css' rel='stylesheet' media='print' />
 <link href='sources/schedule/css/schedule.css' rel='stylesheet'/>

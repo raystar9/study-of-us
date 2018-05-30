@@ -1,8 +1,8 @@
 package dateConverter;
 
+import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.sql.Date;
 
 public class DateConverter {
 	/**
@@ -11,7 +11,7 @@ public class DateConverter {
 	 * @return
 	 */
 	public static Date convertDate(String dateString) {
-		SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		try {
 			java.util.Date res = format.parse(dateString);
 			return new Date(res.getTime());
@@ -27,7 +27,7 @@ public class DateConverter {
 	 * @return
 	 */
 	public static Date convertDateTime(String dateString) {
-		SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd hh:mm");
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm");
 		try {
 			java.util.Date res = format.parse(dateString);
 			return new Date(res.getTime());
@@ -36,6 +36,10 @@ public class DateConverter {
 			e.printStackTrace();
 			return null;
 		}
+	}
+	public static String getDateString(Date date) {
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ssZ");
+		return format.format(date);
 	}
 	
 	//TODO 메서드 공통부분 합쳐야됨.
