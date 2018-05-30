@@ -1,5 +1,7 @@
   $( function() {
-    
+	  
+	  var ck = 0;
+	  
 	  //유효성 검사 시작 
 	  $("form").submit(function(){
 		
@@ -66,21 +68,29 @@
 			 return false;
 		 }
 		 
+
+		 /*
+		 
 		 $.ajax({
 			type : "GET",
 			url : "/study-of-us/SnameCheck",
 			data : {
-				"id" : $("input[name=study_name]").val()
+				"name" : $("input[name=study_name]").val()
 			},
 			success : function(result){
+				alert(result);
 				$("#place").empty();
 				if(result == -1){
+					ck = -1;
 					$("#place").append("스터디명이 중복입니다.");
 					$("#place").css("color","red");
-					return false;
 				}
 			}
 		 })
+		 if(ck == -1){
+			 alert("스터디명을 다시적어주세요");
+			 return false;
+		 }*/
 		 
 		 
 	  })
@@ -104,7 +114,7 @@
           //buttonImageOnly : true,             // 버튼 이미지만 표시할지 여부
           //buttonText: "날짜선택",             // 버튼의 대체 텍스트
            minDate : 0,
-          dateFormat: "yy/mm/dd",             // 날짜의 형식
+          dateFormat: "yy-mm-dd",             // 날짜의 형식
           changeMonth: true,                  // 월을 이동하기 위한 선택상자 표시여부
               /*maxDate: 0,                       // 선택할수있는 최소날짜, ( 0 : 오늘 이후 날짜 선택 불가)
 */          onClose: function( selectedDate ) {    
@@ -119,7 +129,7 @@
            /*dateFormat: "yy-mm-dd",*/
            monthNamesShort: ["1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"],
            dayNamesMin:["일","월","화","수","목","금","토"], 
-          dateFormat: "yy/mm/dd",
+          dateFormat: "yy-mm-dd",
           changeMonth: true,
           /*maxDate: 0, // 오늘 이후 날짜 선택 불가
 */          onClose: function( selectedDate ) {

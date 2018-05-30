@@ -1,6 +1,5 @@
 package dao;
 
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -692,6 +691,29 @@ public class DataGetter extends DataAccessor {
 
 		// TODO Auto-generated method stub
 		return list;
+	}
+	
+	//로그인할때 인덱스 번호를 가져오기
+	public Login getIndex(String id) {
+		Login index = (Login) get(Login.QUERY_GET3,new DataSettable() {
+			
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+				pstmt.setString(1, id);
+			}
+		},new DataGettable() {
+			
+			@Override
+			public Object onGetResult(ResultSet rs) throws SQLException {
+				Login innerIndex = null;
+				if(rs.next()) {
+					innerIndex = new Login();
+					innerIndex.setIndex(rs.getInt(1));
+				}
+				return innerIndex;
+			}
+		});
+		return index;
 	}
 
 	/*

@@ -2,6 +2,7 @@
 package servlet.study.each;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Date;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import beans.prototype.Study;
 import dao.DataPoster;
@@ -17,9 +19,25 @@ import dateConverter.DateConverter;
 @WebServlet("/study/each/Registration")
 public class Registration extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	@SuppressWarnings("unused")
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html;charset=UTF-8");
+		 
+		
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("id");
+		
+		if(id == null) {
+			PrintWriter out = response.getWriter();
+			out.print("<script>");
+			out.print("alert('로그인을 해주세요');");
+			out.print("history.back();");
+			out.print("</script>");
+		}else {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("registration.jsp");
 		dispatcher.forward(request, response);
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -35,8 +53,8 @@ public class Registration extends HttpServlet {
 		study.setTime(request.getParameter("stime"));
 		study.setExplain(request.getParameter("explain"));
 		study.setPrepared(request.getParameter("prepared"));
-		study.setEffective("activity");
-		study.setPlace("location");
+		study.setEffective(request.getParameter("activity"));
+		study.setPlace(request.getParameter("location"));
 		
 		DataPoster poster = new DataPoster(DatabaseAccounts.SCOTT);
 		poster.postStudy(study);
