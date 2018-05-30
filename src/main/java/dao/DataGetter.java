@@ -398,7 +398,7 @@ public class DataGetter extends DataAccessor {
 		return login;
 	}
 
-	public ArrayList<Study> getStudies(String searchVal, String placeVal) {
+	public ArrayList<Study> getStudies(String searchVal, String placeVal, String secondArray) {
 		@SuppressWarnings("unchecked")
 		ArrayList<Study> list = (ArrayList<Study>) get(Study.QUERY_GET2,new DataSettable() {
 			
@@ -406,14 +406,20 @@ public class DataGetter extends DataAccessor {
 			public void prepare(PreparedStatement pstmt) throws SQLException {
 				String place = "%%";
 				String search = "%%";
+				String second = "%%";
+				
 				if(placeVal!=null) {
 					place = "%"+placeVal+"%";
 				}
 				if(searchVal!=null) {
 					search = "%"+searchVal+"%";
 				}
+				if(secondArray!=null) {
+					second = "%"+secondArray+"%";
+				}
 				pstmt.setString(1, place);
 				pstmt.setString(2, search);
+				pstmt.setString(3, second);
 				
 			}
 		}, new DataGettable() {

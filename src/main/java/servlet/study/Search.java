@@ -95,7 +95,7 @@ public class Search extends HttpServlet {
 			
 
 				
-			ArrayList<Study> studies = getter.getStudies(searchVal, place);
+			ArrayList<Study> studies = getter.getStudies(searchVal, place, secondArray);
 			totalSearchList = studies.size(); // 총 스터디의 개수를 구하기 위해서 사용
 
 			count = gettotalpage(totalSearchList, countList, page, countpage, request); 
