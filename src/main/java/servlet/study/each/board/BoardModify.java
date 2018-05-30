@@ -1,7 +1,6 @@
 package servlet.study.each.board;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -16,7 +15,7 @@ import dao.DataGetter;
 import dao.DataPoster;
 import dao.DatabaseAccounts;
 
-@WebServlet("/study/boardmodify")
+@WebServlet("/study/each/boardmodify")
 public class BoardModify extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -29,17 +28,12 @@ public class BoardModify extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+		int studyIndex = 3;
 		DataGetter getter = new DataGetter(DatabaseAccounts.SCOTT);
-		ArrayList<BoardViewRegisterBean> boardcontent = getter.getBoardView();
+		BoardViewRegisterBean boardcontent = getter.getBoardView(Integer.parseInt(request.getParameter("num")), studyIndex);
 		request.setAttribute("boardcontent", boardcontent);
 		
-		try {
-			getter.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		getter.close();
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/each/boardModify.jsp");
 		dispatcher.forward(request, response);
@@ -48,24 +42,21 @@ public class BoardModify extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+		int studyIndex = 3;
 		BoardViewRegisterBean boardmodify = new BoardViewRegisterBean();
 		boardmodify.setTitle(request.getParameter("boardSubject"));
 		boardmodify.setContent(request.getParameter("boardContent"));
 		boardmodify.setDate(request.getParameter("boardDate"));
+		boardmodify.setName(request.getParameter("boardName"));
+		boardmodify.setIndex(Integer.parseInt(request.getParameter("num")));
 		
-		DataPoster poster = new DataPoster(DatabaseAccounts.ADMIN);
-		poster.postBoardModify(boardmodify);
-
-		try {
-			poster.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		DataPoster poster = new DataPoster(DatabaseAccounts.SCOTT);
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/each/boardView.jsp");
+		poster.postBoardModify(boardmodify, studyIndex);
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/each/boardList.jsp");
 		dispatcher.forward(request, response);
+		poster.close();
 	}
 
 }

@@ -1,7 +1,6 @@
 package servlet.study;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -106,6 +105,7 @@ public class SearchList extends HttpServlet {
 			endpage = totalpage;
 		}
 		
+		request.setAttribute("check",request.getParameter("check"));
 		request.setAttribute("startpage",startpage);
 		request.setAttribute("page",page);
 		request.setAttribute("totalpage",totalpage);
@@ -114,12 +114,7 @@ public class SearchList extends HttpServlet {
 		
 		System.out.println("검색어는 "+ searchVal);
 		
-		try {
-			getter.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		getter.close();
 
 		if(request.getParameter("state")!=null) {
 			

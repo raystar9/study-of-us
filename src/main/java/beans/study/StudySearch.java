@@ -12,6 +12,9 @@ public class StudySearch {
 	
 			public static final String QUERY_GET2 = "select * from study where s_place LIKE ?";
 		
+			public static final String QUERY_GET3 = "select * from study inner join CATEGORY on STUDY.S_C_ID = CATEGORY.C_ID where s_place LIKE ? and s_name LIKE ? and category.C_SUB LIKE ? ";
+			
+		
 	private int index;
 	private String name;
 	private String c_id;

@@ -1,7 +1,6 @@
 package servlet.study.each.board;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -15,7 +14,7 @@ import beans.study.each.board.BoardListBean;
 import dao.DataGetter;
 import dao.DatabaseAccounts;
 
-@WebServlet("/study/board")
+@WebServlet("/study/each/board")
 public class BoardList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -32,15 +31,16 @@ public class BoardList extends HttpServlet {
 
 		int page = 1;
 		int limit = 10;
+		int studyIndex = 3;
 
 		if (request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
 		}
 		System.out.println("넘어온 페이지 = " + page);
 
-		boardlist = getter.getBoardList(page, limit); // 총 리스트 받아오기
+		boardlist = getter.getBoardList(page, limit, studyIndex); // 총 리스트 받아오기
 		
-		int boardcount = getter.getBoardCount(); // 총 리스트 수 받아오기
+		int boardcount = getter.getBoardCount(studyIndex); // 총 리스트 수 받아오기
 		System.out.println("총 리스트 수 = " + boardcount);
 
 		int maxpage = (boardcount + limit - 1) / limit;
@@ -54,7 +54,6 @@ public class BoardList extends HttpServlet {
 
 		if (endpage > maxpage)
 			endpage = maxpage;
-
 		request.setAttribute("page", page); // 현재 페이지 수
 		request.setAttribute("maxpage", maxpage); // 최대 페이지 수
 
@@ -63,16 +62,9 @@ public class BoardList extends HttpServlet {
 
 		// 현재 페이지에 표시할 끝 페이지 수
 		request.setAttribute("listcount", boardcount);
-
 		// 해당 페이지의 글 목록을 갖고 있는 리스트
 		request.setAttribute("boardlist", boardlist);
-
-		try {
-			getter.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		getter.close();
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/each/boardList.jsp");
 		dispatcher.forward(request, response);

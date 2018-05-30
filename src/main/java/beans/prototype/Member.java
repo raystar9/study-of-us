@@ -18,12 +18,13 @@ public class Member{
      public static final String QUERY_PUT = "UPDATE ";
      public static final String QUERY_DELETE = "DELETE ";
      
+     //TODO tel 디비정의서 스트링으로 변경
      private int index;
      private String id;
      private String name;
      private String password;
      private String email;
-     private int tel;
+     private String tel;
      private String address;
      private String gender;
      private String introduce;
@@ -58,10 +59,10 @@ public class Member{
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public int getTel() {
+	public String getTel() {
 		return tel;
 	}
-	public void setTel(int tel) {
+	public void setTel(String tel) {
 		this.tel = tel;
 	}
 	public String getAddress() {

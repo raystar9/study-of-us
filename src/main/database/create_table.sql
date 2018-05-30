@@ -11,6 +11,7 @@ CREATE TABLE Member(
 	M_INTRODUCE VARCHAR(200) NOT NULL
 )
 
+
 ﻿-- Member테이블 INDEX의 시퀀스
 CREATE SEQUENCE member_index
 START WITH 1

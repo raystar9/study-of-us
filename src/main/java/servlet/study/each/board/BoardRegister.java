@@ -1,7 +1,6 @@
 package servlet.study.each.board;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,7 +13,7 @@ import beans.study.each.board.BoardViewRegisterBean;
 import dao.DataPoster;
 import dao.DatabaseAccounts;
 
-@WebServlet("/study/boardregister")
+@WebServlet("/study/each/boardregister")
 public class BoardRegister extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -34,23 +33,17 @@ public class BoardRegister extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		int studyIndex = 3;
 		BoardViewRegisterBean board = new BoardViewRegisterBean();
 		board.setTitle(request.getParameter("boardSubject"));
 		board.setName(request.getParameter("boardName"));
 		board.setContent(request.getParameter("boardContent"));
-		board.setDate(request.getParameter("boardDate"));
 
-		// TODO Auto-generated method stub
 
-		// 계정이름은 context에서 정해줄 수 있다 현재 system/1234
 		DataPoster poster = new DataPoster(DatabaseAccounts.SCOTT);
-		poster.postBoard(board); // 멤버값을 받아오고
-		try {
-			poster.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		poster.postBoard(board, studyIndex); 
+		
+		poster.close();
 
 		//나중엔 그 해당 글번호를 가져와서 등록한 글의 세부보기 페이지로 이동할 것임.
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/each/board_view_form.jsp");
