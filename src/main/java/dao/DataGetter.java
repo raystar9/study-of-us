@@ -1,6 +1,5 @@
 package dao;
 
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -400,23 +399,29 @@ public class DataGetter extends DataAccessor {
 		return login;
 	}
 
-	public ArrayList<Study> getStudies(String searchVal, String placeVal) {
+	public ArrayList<Study> getStudies(String searchVal, String placeVal, String secondArray) {
 		@SuppressWarnings("unchecked")
-		ArrayList<Study> list = (ArrayList<Study>) get(Study.QUERY_GET2, new DataSettable() {
-
+		ArrayList<Study> list = (ArrayList<Study>) get(Study.QUERY_GET3,new DataSettable() {
+			
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
 				String place = "%%";
 				String search = "%%";
-				if (placeVal != null) {
-					place = "%" + placeVal + "%";
+				String second = "%%";
+				
+				if(placeVal!=null) {
+					place = "%"+placeVal+"%";
 				}
 				if (searchVal != null) {
 					search = "%" + searchVal + "%";
 				}
+				if(secondArray!=null) {
+					second = "%"+secondArray+"%";
+				}
 				pstmt.setString(1, place);
 				pstmt.setString(2, search);
-
+				pstmt.setString(3, second);
+				
 			}
 		}, new DataGettable() {
 
@@ -459,8 +464,9 @@ public class DataGetter extends DataAccessor {
 				String place = "%%";
 				String search = "%%";
 				String second = "%%";
-				if (placeVal != null) {
-					place = "%" + placeVal + "%";
+				
+				if(placeVal!=null) {
+					place = "%"+placeVal+"%";
 				}
 				if (searchVal != null) {
 					search = "%" + searchVal + "%";
@@ -646,6 +652,70 @@ public class DataGetter extends DataAccessor {
 			}
 		});
 		return study;
+	}
+
+	public ArrayList<Study> getStudies(int index) {
+		@SuppressWarnings("unchecked")
+		ArrayList<Study> list = (ArrayList<Study>) get(Study.QUERY_GET4,new DataSettable() {
+			
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+	
+				pstmt.setInt(1, index);
+
+			}
+		}, new DataGettable() {
+
+			@Override
+			public ArrayList<?> onGetResult(ResultSet rs) throws SQLException {
+				ArrayList<Study> studies = new ArrayList<>();
+				while(rs.next()) {
+					Study study = new Study();
+					study.setIndex(rs.getInt(1));
+					study.setName(rs.getString(2));
+					study.setC_id(rs.getInt(3));
+					study.setMt_index(rs.getInt(4));
+					study.setStart(rs.getDate(5));
+					study.setEnd(rs.getDate(6));
+					study.setPeoplenum(rs.getInt(7));
+					study.setDay(rs.getString(8));
+					study.setTime(rs.getString(9));
+					study.setExplain(rs.getString(10));
+					study.setPrepared(rs.getString(11));
+					study.setEffective(rs.getString(12));
+					study.setPlace(rs.getString(13));
+
+					studies.add(study);
+				}
+				return studies;
+			}
+		});
+
+		// TODO Auto-generated method stub
+		return list;
+	}
+	
+	//로그인할때 인덱스 번호를 가져오기
+	public Login getIndex(String id) {
+		Login index = (Login) get(Login.QUERY_GET3,new DataSettable() {
+			
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+				pstmt.setString(1, id);
+			}
+		},new DataGettable() {
+			
+			@Override
+			public Object onGetResult(ResultSet rs) throws SQLException {
+				Login innerIndex = null;
+				if(rs.next()) {
+					innerIndex = new Login();
+					innerIndex.setIndex(rs.getInt(1));
+				}
+				return innerIndex;
+			}
+		});
+		return index;
 	}
 
 	/*

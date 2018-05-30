@@ -37,16 +37,12 @@ public class SoupGlobalFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
-		System.out.println(httpRequest.getRequestURI().split("/")[2]);
 		if(httpRequest.getRequestURI().split("/")[2].equals("test")) {
-			System.out.println("안뇽");
 			new TestPage().doGet(httpRequest, httpResponse);
 		} else {
 			httpRequest.setAttribute("root", httpRequest.getContextPath());
 			chain.doFilter(request, response);
-			System.out.println("안녕하지못해ㅠ");
 		}
-		
 	}
 
 	/**

@@ -30,7 +30,7 @@ public class DataPoster extends DataSetter {
 				pstmt.setString(2, member.getName());
 				pstmt.setString(3, member.getPassword());
 				pstmt.setString(4, member.getEmail());
-				pstmt.setInt(5, member.getTel());
+				pstmt.setString(5, member.getTel());
 				pstmt.setString(6, member.getAddress());
 				pstmt.setString(7, member.getGender());
 				pstmt.setString(8, member.getIntroduce());
@@ -149,7 +149,7 @@ public class DataPoster extends DataSetter {
 		});
 	}
 	
-public void postComment(CommentBean comment) {
+	public void postComment(CommentBean comment) {
 		
 		set(CommentBean.QUERY_POST, new DataSettable() {
 			

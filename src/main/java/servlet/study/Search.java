@@ -76,8 +76,14 @@ public class Search extends HttpServlet {
 			
 			
 			if(request.getParameter("place")==null) {
-			place = request.getParameter("check");
-			System.out.println("check 값을 사용합니다." + place);
+				if( request.getParameter("check")==null) {
+					place = request.getParameter("place2");
+					System.out.println("place2 값을 사용합니다." + place);
+					request.setAttribute("place2", place);
+				}else {
+					place = request.getParameter("check");
+					System.out.println("check 값을 사용합니다." + place);
+				}
 			}else{
 			place = request.getParameter("place");
 			System.out.println("place 값을 사용합니다."+ place);
@@ -90,7 +96,7 @@ public class Search extends HttpServlet {
 			
 
 				
-			ArrayList<Study> studies = getter.getStudies(searchVal, place);
+			ArrayList<Study> studies = getter.getStudies(searchVal, place, secondArray);
 			totalSearchList = studies.size(); // 총 스터디의 개수를 구하기 위해서 사용
 
 			count = gettotalpage(totalSearchList, countList, page, countpage, request); 
