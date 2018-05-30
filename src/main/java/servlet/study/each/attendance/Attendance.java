@@ -1,4 +1,4 @@
-package servlet.study.each.schedule;
+package servlet.study.each.attendance;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -37,4 +37,9 @@ public class Attendance extends HttpServlet {
 		request.getRequestDispatcher("/study/each/attendance/attendance.jsp").forward(request, response);
 	}
 
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		System.out.println("데이터를 넣어줌!");
+	}
+	
 }
