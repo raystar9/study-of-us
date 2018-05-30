@@ -623,9 +623,9 @@ public class DataGetter extends DataAccessor {
 		return list;
 	}
 	
-	//스터디명 체크
-	public Study getSname_ck(String sname) {
-		Study study = (Study) get(Study.QUERY_GET,new DataSettable() {
+	/*//스터디명 체크
+		public Study getSname_ck(String sname) {
+		Study study = (Study) get(Study.QUERY_GET2,new DataSettable() {
 			
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
@@ -645,6 +645,30 @@ public class DataGetter extends DataAccessor {
 		});
 		return study;
 	}
+			*/
+		
+		//로그인할때 인덱스 번호를 가져오기
+		public Login getIndex(String id) {
+			Login index = (Login) get(Login.QUERY_GET3,new DataSettable() {
+				
+				@Override
+				public void prepare(PreparedStatement pstmt) throws SQLException {
+					pstmt.setString(1, id);
+				}
+			},new DataGettable() {
+				
+				@Override
+				public Object onGetResult(ResultSet rs) throws SQLException {
+					Login innerIndex = null;
+					if(rs.next()) {
+						innerIndex = new Login();
+						innerIndex.setIndex(rs.getInt(1));
+					}
+					return innerIndex;
+				}
+			});
+			return index;
+		}
 
 	/*
 	 * private ArrayList<?> getBean(ResultSet rs, Class<?> beanClass) throws
@@ -655,4 +679,14 @@ public class DataGetter extends DataAccessor {
 	 * objects.add(rs.getString(i+1)); break;
 	 * 
 	 */
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 }

@@ -13,6 +13,8 @@ CREATE TABLE Member(
 );
 
 
+
+alter table member modify(M_TEL varchar(50));
 select * from member;
 
 delete from member;
@@ -27,7 +29,6 @@ INCREMENT BY 1
 NOMAXVALUE;
 
 
-insert into member2 values(member_index.nextval,'ndw8524','노동완','shehddhks123','ndw2280@naver.com','01073580411','')
 
 
 -- Study 테이블 생성
@@ -56,7 +57,7 @@ rename column s_plopienum to s_peoplenum
 
 select * from study;
 
-
+delete study
 
 CREATE TABLE Category(
 	C_ID NUMBER NOT NULL PRIMARY KEY,        -- Study테이블에 외래키로 사용됨.
@@ -95,6 +96,9 @@ CREATE SEQUENCE study_index
 START WITH 1
 INCREMENT BY 1
 NOMAXVALUE;
+
+
+create table studyList
 
 
 
