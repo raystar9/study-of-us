@@ -6,10 +6,10 @@ package beans.study.each.board;
 
 public class BoardViewRegisterBean {
 
-	public static final String QUERY_GET = "SELECT B_NO, B_NAME, B_TITLE, B_DATE, B_CONTENT FROM BOARD WHERE B_NO = ?";	//board_view_form.jsp에서 데이터 가져올 때 쿼리
-	public static final String QUERY_PUT = "UPDATE BOARD SET B_TITLE = ?, B_NAME = ?, B_DATE = ?, B_CONTENT = ? WHERE B_NO = ?";		//board_view_form.jsp에서 데이터 수정할 때 쿼리
-	public static final String QUERY_DELETE = "DELETE FROM BOARD WHERE B_NO = ?";	//board_view_form.jsp에서 데이터 삭제할 때 쿼리
-	public static final String QUERY_POST = "INSERT INTO BOARD VALUES (board_no.nextval, ?, ?, SYSDATE, ?)";		//board_register_form.jsp에서 데이터 삽입할 때 쿼리
+	public static final String QUERY_GET = "select B_NO ,B_TITLE, B_CONTENT, B_NAME, B_DATE from BOARD b where B_S_INDEX = (select S_INDEX from STUDY where S_INDEX = ?) AND b.B_NO = ?";			//board_view_form.jsp에서 데이터 가져올 때 쿼리
+	public static final String QUERY_PUT = "update BOARD b set B_TITLE=?, B_NAME=?, B_DATE=?, B_CONTENT=? where (select S_INDEX from STUDY s where s.S_INDEX = b.B_S_INDEX) = ? AND b.B_NO = ?";	//board_view_form.jsp에서 데이터 수정할 때 쿼리
+	public static final String QUERY_DELETE = "delete from BOARD b where (select S_INDEX from STUDY s where s.S_INDEX = b.B_S_INDEX) = ? AND b.B_NO = ?";											//board_view_form.jsp에서 데이터 삭제할 때 쿼리
+	public static final String QUERY_POST = "insert into BOARD values (board_no.nextval, ?, ?, ?, sysdate) where (select S_INDEX from STUDY s where s.S_INDEX = b.B_S_INDEX) = ?";					//board_register_form.jsp에서 데이터 삽입할 때 쿼리
 
 	private int index;	 	 // 게시글 번호
 	private String title; 	 // 게시글 제목

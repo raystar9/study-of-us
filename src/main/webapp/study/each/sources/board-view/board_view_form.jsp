@@ -5,8 +5,10 @@
 <html>
 <head>
 <title>스터디 안의 게시판 페이지에서 글을 클릭했을 때 상세보기 되는 페이지</title>
+
 </head>
 <body>
+	<%@ include file="../comment/comment.jsp" %>
 	<c:set var='id' value="${sessionScope.id}" />
 	<table border="1">
 		<tr class="center">
@@ -60,6 +62,8 @@
     <div class="container">
         <div class="commentList"></div>
     </div>
+
+
 
 </body>
 </html>

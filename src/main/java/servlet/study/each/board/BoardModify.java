@@ -28,9 +28,9 @@ public class BoardModify extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+		int studyIndex = 3;
 		DataGetter getter = new DataGetter(DatabaseAccounts.SCOTT);
-		BoardViewRegisterBean boardcontent = getter.getBoardView(Integer.parseInt(request.getParameter("num")));
+		BoardViewRegisterBean boardcontent = getter.getBoardView(Integer.parseInt(request.getParameter("num")), studyIndex);
 		request.setAttribute("boardcontent", boardcontent);
 		
 		getter.close();
@@ -42,6 +42,7 @@ public class BoardModify extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		int studyIndex = 3;
 		BoardViewRegisterBean boardmodify = new BoardViewRegisterBean();
 		boardmodify.setTitle(request.getParameter("boardSubject"));
 		boardmodify.setContent(request.getParameter("boardContent"));
@@ -51,7 +52,7 @@ public class BoardModify extends HttpServlet {
 		
 		DataPoster poster = new DataPoster(DatabaseAccounts.SCOTT);
 		
-		poster.postBoardModify(boardmodify);
+		poster.postBoardModify(boardmodify, studyIndex);
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/each/boardList.jsp");
 		dispatcher.forward(request, response);

@@ -2,7 +2,13 @@
     pageEncoding="UTF-8"%>
 
 <script>
-	var bno = '${detail.bno}';	//게시글 번호
+
+	$(document).ready(function(){
+    	commentList(); //페이지 로딩시 댓글 목록 출력 
+	});
+	
+	
+	//var bno = '${detail.bno}';	//게시글 번호
 	
 	$('[name=commentInsertBtn]').click(function(){
 		var insertData = $('[name=commentInsertForm]').serialize();
@@ -13,12 +19,11 @@
 	    $.ajax({
 	        url : '/commentlist',
 	        type : 'post',
-	        data : {'bno':bno},
 	        success : function(data){
 	            var a =''; 
-	            $.each(data, function(key, value){ 
+	            $.each(data, function(value){ 
 	                a += '<div class="commentArea" style="border-bottom:1px solid darkgray; margin-bottom: 15px;">';
-	                a += '작성자 : '+value.writer;
+	                a += '작성자 : '+value.name + '날짜: ' + value.date;
 	                a += '<a onclick="commentUpdate('+value.cno+',\''+value.content+'\');"> 수정 </a>';
 	                a += '<a onclick="commentDelete('+value.cno+');"> 삭제 </a> </div>';
 	                a += '<div class="commentContent'+value.cno+'"> <p> 내용 : '+value.content +'</p>';
@@ -81,12 +86,6 @@
 	        }
 	    });
 	}
-	 
-	 
-	$(document).ready(function(){
-	    commentList(); //페이지 로딩시 댓글 목록 출력 
-	});
-	 
 
 </script>
 

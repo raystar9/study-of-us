@@ -29,7 +29,9 @@ public class BoardView extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		DataGetter getter = new DataGetter(DatabaseAccounts.SCOTT);
-		BoardViewRegisterBean boardcontent = getter.getBoardView(Integer.parseInt(request.getParameter("num")));
+		int studyIndex = 3; 
+		BoardViewRegisterBean boardcontent = getter.getBoardView(Integer.parseInt(request.getParameter("num")), studyIndex);
+		System.out.println(boardcontent.getIndex());
 		request.setAttribute("boardcontent", boardcontent);
 		getter.close();
 

@@ -232,7 +232,7 @@ public class DataGetter extends DataAccessor {
 	}
 
 	// 게시판에 들어갔을 때 나오는 목록 데이터를 가져오는 메소드
-	public ArrayList<BoardListBean> getBoardList(int page, int limit) {
+	public ArrayList<BoardListBean> getBoardList(int page, int limit, int studyIndex) {
 
 		@SuppressWarnings("unchecked")
 		ArrayList<BoardListBean> list = (ArrayList<BoardListBean>) get(BoardListBean.QUERY_GET, new DataSettable() {
@@ -243,8 +243,9 @@ public class DataGetter extends DataAccessor {
 				// 아직 뭐 들어갈지 몰라서 정의하지 않았음
 				int startrow = (page - 1) * limit + 1; // 읽기 시작할 row 번호( 1 11 21 )
 				int endrow = startrow + limit - 1; // 읽을 마지막 row 번호( 10 20 30 )
-				pstmt.setInt(1, startrow);
-				pstmt.setInt(2, endrow);
+				pstmt.setInt(1, studyIndex);
+				pstmt.setInt(2, startrow);
+				pstmt.setInt(3, endrow);
 
 			}
 
@@ -316,14 +317,15 @@ public class DataGetter extends DataAccessor {
 	 */
 
 	// 게시판에서 게시글을 눌렀을 때 상세정보 가져오는 메소드
-	public BoardViewRegisterBean getBoardView(int index) {
+	public BoardViewRegisterBean getBoardView(int num, int studyIndex) {
 
 		BoardViewRegisterBean list = (BoardViewRegisterBean) get(BoardViewRegisterBean.QUERY_GET, new DataSettable() {
 
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
 				// TODO Auto-generated method stub
-				pstmt.setInt(1, index);
+				pstmt.setInt(1, studyIndex);
+				pstmt.setInt(2, num);
 			}
 
 		}, new DataGettable() {
@@ -333,10 +335,10 @@ public class DataGetter extends DataAccessor {
 				BoardViewRegisterBean boardcontent = new BoardViewRegisterBean();
 				while (rs.next()) {
 					boardcontent.setIndex(rs.getInt(1));
-					boardcontent.setName(rs.getString(2));
-					boardcontent.setTitle(rs.getString(3));
-					boardcontent.setDate(rs.getString(4));
-					boardcontent.setContent(rs.getString(5));
+					boardcontent.setTitle(rs.getString(2));
+					boardcontent.setContent(rs.getString(3));
+					boardcontent.setName(rs.getString(4));
+					boardcontent.setDate(rs.getString(5));
 				}
 				return boardcontent;
 			}
@@ -346,7 +348,7 @@ public class DataGetter extends DataAccessor {
 	}
 
 	// 게시판의 글 개수를 가져오는 메소드
-	public int getBoardCount() {
+	public int getBoardCount(int studyIndex) {
 
 		int boardcount = (int) get(BoardListBean.QUERY_GET_COUNT, new DataSettable() {
 
@@ -354,6 +356,7 @@ public class DataGetter extends DataAccessor {
 			public void prepare(PreparedStatement pstmt) throws SQLException {
 				// TODO Auto-generated method stub
 				// 아직 뭐 들어갈지 몰라서 정의하지 않았음
+				pstmt.setInt(1, studyIndex);
 			}
 
 		}, new DataGettable() {
@@ -371,27 +374,26 @@ public class DataGetter extends DataAccessor {
 		return boardcount;
 	}
 
-	
-	//idcheck
+	// idcheck
 	public Login getIdCheck(String id) {
-		Login login = (Login) get(Login.QUERY_GET2,new DataSettable() {
-			
+		Login login = (Login) get(Login.QUERY_GET2, new DataSettable() {
+
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
-				//바인딩변수채워주고
+				// 바인딩변수채워주고
 				pstmt.setString(1, id);
 			}
-		},new DataGettable() {
-			
+		}, new DataGettable() {
+
 			@Override
 			public Object onGetResult(ResultSet rs) throws SQLException {
 				Login idck = null;
-				if(rs.next()) {
-					//값이있다면 인스턴스변수 참조해서 값을 넣어준다
+				if (rs.next()) {
+					// 값이있다면 인스턴스변수 참조해서 값을 넣어준다
 					idck = new Login();
 					idck.setId(rs.getString(1));
 				}
-				
+
 				return idck;
 			}
 		});
@@ -400,28 +402,28 @@ public class DataGetter extends DataAccessor {
 
 	public ArrayList<Study> getStudies(String searchVal, String placeVal) {
 		@SuppressWarnings("unchecked")
-		ArrayList<Study> list = (ArrayList<Study>) get(Study.QUERY_GET2,new DataSettable() {
-			
+		ArrayList<Study> list = (ArrayList<Study>) get(Study.QUERY_GET2, new DataSettable() {
+
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
 				String place = "%%";
 				String search = "%%";
-				if(placeVal!=null) {
-					place = "%"+placeVal+"%";
+				if (placeVal != null) {
+					place = "%" + placeVal + "%";
 				}
-				if(searchVal!=null) {
-					search = "%"+searchVal+"%";
+				if (searchVal != null) {
+					search = "%" + searchVal + "%";
 				}
 				pstmt.setString(1, place);
 				pstmt.setString(2, search);
-				
+
 			}
 		}, new DataGettable() {
 
 			@Override
 			public ArrayList<?> onGetResult(ResultSet rs) throws SQLException {
 				ArrayList<Study> studies = new ArrayList<>();
-				while(rs.next()) {
+				while (rs.next()) {
 					Study study = new Study();
 					study.setIndex(rs.getInt(1));
 					study.setName(rs.getString(2));
@@ -447,7 +449,8 @@ public class DataGetter extends DataAccessor {
 		return list;
 	}
 
-	public ArrayList<StudyListCount> getStudyPaging(int startcount, int endcount, String searchVal, String placeVal, String secondArray) {
+	public ArrayList<StudyListCount> getStudyPaging(int startcount, int endcount, String searchVal, String placeVal,
+			String secondArray) {
 		@SuppressWarnings("unchecked")
 		ArrayList<StudyListCount> list = (ArrayList<StudyListCount>) get(StudyListCount.QUERY_GET2, new DataSettable() {
 
@@ -456,21 +459,21 @@ public class DataGetter extends DataAccessor {
 				String place = "%%";
 				String search = "%%";
 				String second = "%%";
-				if(placeVal!=null) {
-					place = "%"+placeVal+"%";
+				if (placeVal != null) {
+					place = "%" + placeVal + "%";
 				}
-				if(searchVal!=null) {
-					search = "%"+searchVal+"%";
-				}	
-				if(secondArray!=null) {
-					second = "%"+secondArray+"%";
+				if (searchVal != null) {
+					search = "%" + searchVal + "%";
+				}
+				if (secondArray != null) {
+					second = "%" + secondArray + "%";
 				}
 				System.out.println("place sql 값" + place);
 				System.out.println("place sql 값" + search);
 				System.out.println("place sql 값" + second);
 				pstmt.setString(1, place);
 				pstmt.setString(2, search);
-				pstmt.setString(3, second );
+				pstmt.setString(3, second);
 				pstmt.setInt(4, startcount);
 				pstmt.setInt(5, endcount);
 
@@ -503,7 +506,7 @@ public class DataGetter extends DataAccessor {
 		});
 		return list;
 	}
-	
+
 	public int getInformMemberCount() {
 
 		int membercount = (int) get(Member2.QUERY_GET_COUNT, new DataSettable() {
@@ -557,86 +560,86 @@ public class DataGetter extends DataAccessor {
 
 		return list;
 	}
-	
+
 	public InformSetup getInformation() {
-		InformSetup list = (InformSetup) get(InformSetup.QUERY_GET,
-				new DataSettable() {
+		InformSetup list = (InformSetup) get(InformSetup.QUERY_GET, new DataSettable() {
 
-					@Override
-					public void prepare(PreparedStatement pstmt) throws SQLException {
-						// TODO Auto-generated method stub
-					}
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+				// TODO Auto-generated method stub
+			}
 
-				}, new DataGettable() {
+		}, new DataGettable() {
 
-					@Override
-					public InformSetup onGetResult(ResultSet rs) throws SQLException {
-						InformSetup Inform = new InformSetup();
-						while (rs.next()) {
-							Inform.setIndex(rs.getInt(1));
-							Inform.setCategory(rs.getString(2));
-							Inform.setPeopleNum(rs.getString(3));
-							Inform.setName(rs.getString(4));
-							Inform.setPlace(rs.getString(5));
-							Inform.setActivityTime(rs.getString(6));
-							Inform.setStartDate(rs.getString(7));
-							Inform.setEndDate(rs.getString(8));
-							Inform.setDay(rs.getString(9));
-							Inform.setExplain(rs.getString(10));
-							Inform.setPrepared(rs.getString(11));
-							Inform.setEffective(rs.getString(12));
-						}
-						return Inform;
-					}
-				});
+			@Override
+			public InformSetup onGetResult(ResultSet rs) throws SQLException {
+				InformSetup Inform = new InformSetup();
+				while (rs.next()) {
+					Inform.setIndex(rs.getInt(1));
+					Inform.setCategory(rs.getString(2));
+					Inform.setPeopleNum(rs.getString(3));
+					Inform.setName(rs.getString(4));
+					Inform.setPlace(rs.getString(5));
+					Inform.setActivityTime(rs.getString(6));
+					Inform.setStartDate(rs.getString(7));
+					Inform.setEndDate(rs.getString(8));
+					Inform.setDay(rs.getString(9));
+					Inform.setExplain(rs.getString(10));
+					Inform.setPrepared(rs.getString(11));
+					Inform.setEffective(rs.getString(12));
+				}
+				return Inform;
+			}
+		});
 
 		return list;
 	}
-	
-	public ArrayList<CommentBean> getCommentList() {
+
+	public ArrayList<CommentBean> getCommentList(int num) {
 		@SuppressWarnings("unchecked")
-		ArrayList<CommentBean> list = (ArrayList<CommentBean>) get(CommentBean.QUERY_GET,
-				new DataSettable() {
+		ArrayList<CommentBean> list = (ArrayList<CommentBean>) get(CommentBean.QUERY_GET, new DataSettable() {
 
-					@Override
-					public void prepare(PreparedStatement pstmt) throws SQLException {
-						// TODO Auto-generated method stub
-					}
-				}, new DataGettable() {
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+				// TODO Auto-generated method stub
+				pstmt.setInt(1, num);
+			}
+		}, new DataGettable() {
 
-					@Override
-					public ArrayList<CommentBean> onGetResult(ResultSet rs) throws SQLException {
-						ArrayList<CommentBean> commentlist = new ArrayList<CommentBean>();
-						while (rs.next()) {
-							CommentBean comment = new CommentBean();
-							comment.setName(rs.getString(1));
-							comment.setDate(rs.getString(2));
-							comment.setContent(rs.getString(3));
-							comment.setCno(rs.getInt(4));
-							comment.setBno(rs.getInt(5));
-							commentlist.add(comment);
-						}
-						return commentlist;
-					}
-				});
+			@Override
+			public ArrayList<CommentBean> onGetResult(ResultSet rs) throws SQLException {
+				ArrayList<CommentBean> commentlist = new ArrayList<CommentBean>();
+				while (rs.next()) {
+					CommentBean comment = new CommentBean();
+					comment.setName(rs.getString(1));
+					comment.setDate(rs.getString(2));
+					comment.setContent(rs.getString(3));
+					comment.setCno(rs.getInt(4));
+					comment.setBno(rs.getInt(5));
+					System.out.println(rs.getInt(5));
+					commentlist.add(comment);
+				}
+				return commentlist;
+			}
+		});
 
 		return list;
 	}
-	
-	//스터디명 체크
+
+	// 스터디명 체크
 	public Study getSname_ck(String sname) {
-		Study study = (Study) get(Study.QUERY_GET,new DataSettable() {
-			
+		Study study = (Study) get(Study.QUERY_GET, new DataSettable() {
+
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
 				pstmt.setString(1, sname);
 			}
-		},new DataGettable() {
-			
+		}, new DataGettable() {
+
 			@Override
 			public Object onGetResult(ResultSet rs) throws SQLException {
 				Study sck = null;
-				if(rs.next()) {
+				if (rs.next()) {
 					sck = new Study();
 					sck.setName(rs.getString(1));
 				}
