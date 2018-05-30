@@ -40,12 +40,12 @@ public class FakeDB {
 	private void initMeetings() {
 		Meeting meeting1 = new Meeting();
 		meeting1.setComment("내용내용");
-		meeting1.setDate(new Date(new GregorianCalendar(2018, 4, 5).getTimeInMillis()));
+		meeting1.setDate(new Date(new GregorianCalendar(2018, 4, 5, 22, 00).getTimeInMillis()));
 		meeting1.setFee(5000);
 		meeting1.setLocation("종각역");
 		Meeting meeting2 = new Meeting();
 		meeting2.setComment("내용내용2");
-		meeting2.setDate(new Date(new GregorianCalendar(2018, 4, 12).getTimeInMillis()));
+		meeting2.setDate(new Date(new GregorianCalendar(2018, 4, 12, 18, 00).getTimeInMillis()));
 		meeting2.setFee(8000);
 		meeting2.setLocation("덕소역");
 		
@@ -71,7 +71,8 @@ public class FakeDB {
 	}
 	
 	private void initStudy() {
-		StudyListCount study = new StudyListCount();
+		//TODO study바뀌어서 수정해야되긴함.... 혹은 삭제
+		/*StudyListCount study = new StudyListCount();
 		study.setName("자바스터디");
 		study.setGoal("자바마스터");
 		study.setTerm(new Date(new GregorianCalendar(2018, 4, 5).getTimeInMillis()));
@@ -106,7 +107,7 @@ public class FakeDB {
 		studies.add(study3);
 		studies.add(study4);
 		studies.add(study5);
-		studies.add(study6);
+		studies.add(study6);*/
 		
 	}
 	

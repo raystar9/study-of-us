@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URLDecoder;
 import java.sql.Date;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import beans.prototype.Meeting;
+import beans.study.each.schedule.ScheduleBean;
 import dateConverter.DateConverter;
 import fakeDB.FakeDB;
 
@@ -60,11 +62,20 @@ public class NewSchedule extends HttpServlet {
 		
 		poster.close();
 		*/
+		ArrayList<ScheduleBean> schedules = FakeDB.getInstance().getSchedules();
+		
 		Meeting m = new Meeting();
 		Date dateIn = DateConverter.convertDateTime((String)request.getAttribute("date") + 'T' + (String)request.getAttribute("time") + ":00");
 		m.setDate(dateIn);
 		m.setLocation((String) request.getAttribute("location"));
 		FakeDB.getInstance().setMeeting(m);
+		
+		ScheduleBean s = new ScheduleBean();
+		s.setStart(DateConverter.getDateString(m.getDate()));
+		s.setTitle(m.getLocation());
+		s.setUrl(m.getIndex());
+		schedules.add(s);
+		//TODO Database 연결 시 위의 두 코드가 합쳐질 예정임.
 		
 	}
 

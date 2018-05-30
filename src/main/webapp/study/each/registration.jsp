@@ -27,8 +27,9 @@
   
 </head>
 <body>
+	<%@ include file ="/general-sources/Navigation.jsp" %>
+	<%@include file= "sources/registration/section.jsp"%>
+	<%@ include file ="/general-sources/Footer.jsp" %>
 
-
-<%@include file= "sources/registration/section.jsp"%>
 </body>
 </html>

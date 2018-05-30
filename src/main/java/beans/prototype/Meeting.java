@@ -27,6 +27,9 @@ public class Meeting {
 	public String getComment() {
 		return comment;
 	}
+	public void setIndex(int index) {
+		this.index = index;
+	}
 	public void setLocation(String location) {
 		this.location = location;
 	}
