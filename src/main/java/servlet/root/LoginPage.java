@@ -31,7 +31,7 @@ public class LoginPage extends HttpServlet {
 		
 		Login logpro = getter.getLogin(id);
 		//
-		request.setAttribute("login", logpro);
+		/*request.setAttribute("login", logpro);*/
 		
 		if(logpro == null || !logpro.getPassword().equals(password)) {
 			System.out.println(logpro);

@@ -10,7 +10,7 @@
   
 </head>
 <body>
-<form action="sutdy_registration" method="get">
+<form action="/study-of-us/study/each/Registration" method="post">
 <h3 align=center>Modify</h3>
 <div class="signup">
 <i class="material-icons">category</i>
@@ -31,6 +31,7 @@
 <br>
 
 <i class="material-icons">create</i>
+<span id="place"></span>
 <label for="category"><strong>스터디명</strong></label><br>
 <input type=text name=study_name id="study_name"><br>
 
@@ -113,7 +114,7 @@
 <br>
 <p>
 <span style="width:48%;height:400px;" id="location">
-<select id="locationSel">
+<select id="locationSel" name=location>
 <option value="">지역</option>
 <option value="서울">서울</option>
 <option value="부천">부천</option>

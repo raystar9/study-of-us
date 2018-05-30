@@ -14,7 +14,7 @@
 		</tr>
 
 		<c:set var="b" value="${boardcontent}" />
-		<tr >
+		<tr>
 			<td width='10%'>글쓴이</td>
 			<td><c:out value="${b.name}" /></td>
 		</tr>
@@ -35,17 +35,31 @@
 		</tr>
 
 		<tr>
-			<!-- 여긴 나중에 구현! -->
-			<td colspan="2" class="center"> &nbsp; 
-					<a href="./boardmodify?num=${b.index}">수정</a>
-				&nbsp;&nbsp;
-			
-			<a href="./boarddelete?num=${b.index}">삭제</a>
-				&nbsp;&nbsp;
-			<a href="./board">뒤로</a>
+			<td colspan="2" class="center">&nbsp; <c:if
+					test="${b.name == id || id == 'admin' }">
+					<a href="./boardmodify?num=${b.index}">수정</a>&nbsp;&nbsp;
+				<a href="./boarddelete?num=${b.index}">삭제</a>&nbsp;&nbsp;
+			</c:if> <a href="./board">뒤로</a>
 			</td>
 		</tr>
-	</table>
+	</table><br>
+	
+	 <div class="container">
+        <label for="content">comment</label>
+        <form name="commentInsertForm">
+            <div class="input-group">
+               <input type="hidden" name="bno" value="${detail.bno}"/>
+               <input type="text" class="form-control" id="content" name="content" placeholder="내용을 입력하세요.">
+               <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" name="commentInsertBtn">등록</button>
+               </span>
+              </div>
+        </form>
+    </div>
+    
+    <div class="container">
+        <div class="commentList"></div>
+    </div>
 
 </body>
 </html>

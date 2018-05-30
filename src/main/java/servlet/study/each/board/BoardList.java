@@ -14,7 +14,7 @@ import beans.study.each.board.BoardListBean;
 import dao.DataGetter;
 import dao.DatabaseAccounts;
 
-@WebServlet("/study/board")
+@WebServlet("/study/each/board")
 public class BoardList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

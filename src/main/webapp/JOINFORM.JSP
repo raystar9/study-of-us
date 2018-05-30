@@ -7,8 +7,7 @@
 <title>Insert title here</title>
 <link href="sources/join/css/joinForm.css" rel="stylesheet">
 <script src = "http://code.jquery.com/jquery-3.3.1.js"></script> 
-
-<script src="sources/join/js/join7.js"></script>
+<script src="sources/join/js/join.js"></script>
 </head>
 <body>
 <%@ include file= "sources/join/section.jsp" %>

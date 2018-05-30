@@ -13,7 +13,7 @@
   		<select id="firstArray" name="firstArray">
   			  <option value="-1">대분류</option>
   			  <option value="1">프로그래밍</option>
- 			  <option value="2">외국어</option>
+ 			  <option value="2">언어</option>
    			  <option value="3">자격증</option>
   		</select>
 	</div>
@@ -30,19 +30,19 @@
 	<p>
 
 	<label class="container">서울
-  		<input type="checkbox"  value="서울">
+  		<input type="checkbox" name="checkbox" value="서울">
 		<span class="checkmark"></span>
 	</label>
 		<label class="container">경기
- 		<input type="checkbox" value="경기">
+ 		<input type="checkbox" value="경기" name="checkbox">
   		<span class="checkmark"></span>
 	</label>
 	<label class="container">인천
-  		<input type="checkbox" value="인천">
+  		<input type="checkbox" value="인천" name="checkbox">
  		<span class="checkmark"></span>
 	</label>
 	<label class="container">강원
-  		<input type="checkbox" value="강원">
+  		<input type="checkbox" value="강원" name="checkbox">
   		<span class="checkmark"></span>
 	</label>	
 	</p>
@@ -51,38 +51,38 @@
 		<span style="font-size: 1.17em;
     font-weight: bold">선호지역</span>
 	<label class="container">대전
-  		<input type="checkbox" value="대전">
+  		<input type="checkbox" value="대전" name="checkbox">
 		<span class="checkmark"></span>
 	</label>
 		<label class="container">세종
- 		<input type="checkbox" value="세종">
+ 		<input type="checkbox" value="세종" name="checkbox">
   		<span class="checkmark"></span>
 	</label>
 	<label class="container">충남
-  		<input type="checkbox" value="충남">
+  		<input type="checkbox" value="충남" name="checkbox">
  		<span class="checkmark"></span>
 	</label>
 	<label class="container">충북
-  		<input type="checkbox"  value="충북">
+  		<input type="checkbox"  value="충북" name="checkbox">
   		<span class="checkmark"></span>
 	</label>	
 	</p>
 	
 		<p>
 	<label class="container">부산
-  		<input type="checkbox"  value="부산">
+  		<input type="checkbox"  value="부산" name="checkbox"> 
 		<span class="checkmark"></span>
 	</label>
 		<label class="container">경남
- 		<input type="checkbox"  value="경남">
+ 		<input type="checkbox"  value="경남" name="checkbox">
   		<span class="checkmark"></span>
 	</label>
 	<label class="container">경북
-  		<input type="checkbox"  value="경북">
+  		<input type="checkbox"  value="경북" name="checkbox">
  		<span class="checkmark"></span>
 	</label>
 	<label class="container">전북
-  		<input type="checkbox"  value="전북">
+  		<input type="checkbox"  value="전북" name="checkbox">
   		<span class="checkmark"></span>
 	</label>	
 	</p>
@@ -94,31 +94,32 @@
 		
   			<img src="/study-of-us/resources/images/open-book.png" alt="Avatar" style="width:90px">
  			 <H3>스터디 : ${study.name }</H3>
-  			<p>목표 : ${study.goal } </p>
-  			 <span>스터디 기간 : ${study.term } 스터디 위치 ${study.place}</span>
+  			<p>목표 :  </p>
+  			 <span>스터디 기간 :  스터디 위치 ${study.place}</span>
 		</div>
 		</c:forEach>
 		
-		<div class="paging"  style="text-align:center; margin-bottom:100px">
+	
+	<div class="paging"  style="text-align:center; margin-bottom:100px">
 		<c:if test="${startpage > 1}">
-			<a href="/study-of-us/study/search?page=1&searchVal=${searchVal}"">처음</a>
+			<a href="/study-of-us/study/search?page=1&searchVal=${searchVal}&check=${place}">처음</a>
 		</c:if>
 		
 		<c:if test="${page > 1}">
-			<a href="/study-of-us/study/search?page=${page-1 }&searchVal=${searchVal}">이전</a>
+			<a href="/study-of-us/study/search?page=${page-1 }&searchVal=${searchVal}&check=${place}">이전</a>
 		</c:if>
 		
 		<c:forEach var="i" begin= "${startpage }" end="${endpage }">
-			<a href="/study-of-us/study/search?page=${i }&searchVal=${searchVal}">${i }</a>
+			<a href="/study-of-us/study/search?page=${i }&searchVal=${searchVal}&check=${place}">${i }</a>
 		</c:forEach>
 		
 		<c:if test="${page < totalpage}">
-			<a href="/study-of-us/study/search?page=${page+1 }&searchVal=${searchVal}">다음</a>
+			<a href="/study-of-us/study/search?page=${page+1 }&searchVal=${searchVal}&check=${place}">다음</a>
 		</c:if>
 		
 		<c:if test="${endpage < totalpage}">
-			<a href="/study-of-us/study/search?page=${totalpage }&searchVal=${searchVal}">끝</a>
+			<a href="/study-of-us/study/search?page=${totalpage }&searchVal=${searchVal}&check=${place}">끝</a>
 		</c:if>
 		</div>
+		</div>
 		
-	</div>

@@ -13,7 +13,7 @@ import beans.study.each.board.BoardViewRegisterBean;
 import dao.DataPoster;
 import dao.DatabaseAccounts;
 
-@WebServlet("/study/boardregister")
+@WebServlet("/study/each/boardregister")
 public class BoardRegister extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

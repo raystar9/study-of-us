@@ -11,7 +11,7 @@
 	<div>
   <form action="join" method="post">
     <label for="lid"><strong>ID</strong></label><br>
-    <input type="text" id="id" name="id" maxlength=13>
+    <span id="place"></span><input type="text" id="id" name="id" maxlength=13>
     <input type="button" id="idcheck" name="idcheck" value="중복검사"><br>
     
     <label for="name"><strong>Name</strong></label><br>
@@ -21,7 +21,9 @@
     <input type="password" id="password" name="password" maxlength=13><br>
     
     <label for="password2"><strong>비밀번호확인</strong></label><br>
-    <input type="password" id=password2 name="password2" maxlength=13><br>
+    <input type="password" id=password2 name="password2" maxlength=13>
+    <font name = check size="2"></font>
+    <br>
     
     <label for="email"><strong>E-mail</strong></label><br>
     <input type="email" id="email" name="email" maxlength=30><br>

@@ -58,6 +58,7 @@ public class JoinPage extends HttpServlet {
 		
 		DataPoster poster = new DataPoster(DatabaseAccounts.ADMIN);//계정이름은 context 에 서 정해줄 수 있다 현재 system/1234
 		poster.postMembers(member);
+		
 
 		poster.close();
 

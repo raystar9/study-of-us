@@ -27,7 +27,7 @@ public class DateConverter {
 	 * @return
 	 */
 	public static Date convertDateTime(String dateString) {
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm");
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
 		try {
 			java.util.Date res = format.parse(dateString);
 			return new Date(res.getTime());
