@@ -23,6 +23,6 @@ public class ScheduleBean {
 		this.start = start;
 	}
 	public void setUrl(int postNo) {
-		this.url = "schedule/" + postNo;
+		this.url = "schedule/" + "each";
 	}
 }

@@ -33,7 +33,7 @@ public class JoinPage extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/joinForm.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/joinform.jsp");
 		dispatcher.forward(request, response);
 		
 		
@@ -58,7 +58,7 @@ public class JoinPage extends HttpServlet {
 		
 		
 		
-		DataPoster poster = new DataPoster(DatabaseAccounts.ADMIN);//계정이름은 context 에 서 정해줄 수 있다 현재 system/1234
+		DataPoster poster = new DataPoster(DatabaseAccounts.SCOTT);//계정이름은 context 에 서 정해줄 수 있다 현재 system/1234
 		poster.postMembers(member);
 		poster.close();
 		response.sendRedirect("/study-of-us/home");
