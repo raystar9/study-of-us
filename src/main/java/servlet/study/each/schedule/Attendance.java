@@ -1,4 +1,4 @@
-package servlet.study.each;
+package servlet.study.each.schedule;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ import fakeDB.FakeDB;
 /**
  * Servlet implementation class Attendance
  */
-@WebServlet("/study/each/attendance")
+@WebServlet("/study/each/attendance/each")
 public class Attendance extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -34,7 +34,7 @@ public class Attendance extends HttpServlet {
 		FakeDB db = FakeDB.getInstance();
 		ArrayList<Member> members = db.getMembers();
 		request.setAttribute("members", members);
-		request.getRequestDispatcher("/study/each/attendance.jsp").forward(request, response);
+		request.getRequestDispatcher("/study/each/attendance/attendance.jsp").forward(request, response);
 	}
 
 }
