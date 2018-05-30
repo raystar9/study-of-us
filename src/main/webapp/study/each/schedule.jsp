@@ -8,7 +8,7 @@
 .main-container {height: 100%;}
 #new-button {width: 400px; height: 50px;}
 #left {display: table-cell; width:200px; vertical-align: top;}
-#calendar {display: table-cell; vertical-align: top; padding: 15px;}
+#calendar {display: table-cell; vertical-align: top; padding: 15px; text-align: center;}
 </style>
 <link href='sources/schedule/css/fullcalendar.min.css' rel='stylesheet' />
 <link href='sources/schedule/css/fullcalendar.print.min.css' rel='stylesheet' media='print' />

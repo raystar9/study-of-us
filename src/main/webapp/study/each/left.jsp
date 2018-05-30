@@ -8,9 +8,6 @@
 <!-- MetisMenu CSS -->
 <link href="/study-of-us/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
 
-<!-- Custom CSS -->
-<link href="../dist/css/sb-admin-2.css" rel="stylesheet">
-
 <!-- Morris Charts CSS -->
 <link href="/study-of-us/vendor/morrisjs/morris.css" rel="stylesheet">
 
