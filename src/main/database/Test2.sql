@@ -17,6 +17,7 @@ CREATE TABLE Member(
 alter table member modify(M_TEL varchar(50));
 select * from member;
 
+drop table member
 delete from member;
 
 delete member where M_id = 'ndw8524';
