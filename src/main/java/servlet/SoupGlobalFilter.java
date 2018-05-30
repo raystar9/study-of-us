@@ -39,12 +39,10 @@ public class SoupGlobalFilter implements Filter {
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
 		System.out.println(httpRequest.getRequestURI().split("/")[2]);
 		if(httpRequest.getRequestURI().split("/")[2].equals("test")) {
-			System.out.println("안뇽");
 			new TestPage().doGet(httpRequest, httpResponse);
 		} else {
 			httpRequest.setAttribute("root", httpRequest.getContextPath());
 			chain.doFilter(request, response);
-			System.out.println("안녕하지못해ㅠ");
 		}
 		
 	}
