@@ -54,15 +54,9 @@ drop table study
 alter table study
 rename column s_plopienum to s_peoplenum
 
-
-
-drop table STUDY
-
-
 select * from study;
 
 
-select * from study;
 
 CREATE TABLE Category(
 	C_ID NUMBER NOT NULL PRIMARY KEY,        -- Study테이블에 외래키로 사용됨.

@@ -25,7 +25,7 @@ public class SnameCheck extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
 		String sname = request.getParameter("id");
-		System.out.println(sname);
+		System.out.println("아이디는" + sname);
 		PrintWriter out = response.getWriter();
 		int result = 0;
 		
