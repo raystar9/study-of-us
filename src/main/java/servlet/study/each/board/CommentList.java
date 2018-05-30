@@ -39,9 +39,9 @@ public class CommentList extends HttpServlet {
 		DataGetter getter = new DataGetter(DatabaseAccounts.SCOTT);
 		ObjectMapper mapper = new ObjectMapper();
 		int studyIndex = 3; 
-		
+		System.out.println("gdgd");
 		ArrayList<CommentBean> comment = new ArrayList<CommentBean>();
-		System.out.println("num=" + request.getAttribute("num"));
+		/*System.out.println("num=" + request.getAttribute("num"));*/
 		BoardViewRegisterBean boardcontent = getter.getBoardView(Integer.parseInt(request.getParameter("num")), studyIndex);
 		
 		int num = boardcontent.getIndex();

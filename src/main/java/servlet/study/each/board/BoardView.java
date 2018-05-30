@@ -28,6 +28,9 @@ public class BoardView extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		System.out.println("넘엉ㄴ=@@@@@@@@@@@@"+request.getParameter("num"));
+	
 		request.setAttribute("num", request.getParameter("num"));
 		
 		DataGetter getter = new DataGetter(DatabaseAccounts.SCOTT);
