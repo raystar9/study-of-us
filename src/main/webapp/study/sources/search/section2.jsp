@@ -3,14 +3,15 @@
 
      
      <script>
-
+     $(document).ready(function(){
     	 $(document).on("click",".atag1",function(e){
      		e.preventDefault();
      		var page = $(this).text()
+     		var place = $("#place").val();
      		
      		$.ajax({
      				type : "get",
-     				data : {"page" : page, "check" : '${place}' , "state" : "ajax"},
+     				data : {"page" : page, "check" : place , "state" : "ajax"},
      				url  : "/study-of-us/study/search",	
      			   cache: false, 
      				success : function(rdata){
@@ -27,10 +28,11 @@
   		//var page=${page+1};
   		var page2=$("#page").val();
   		page2=parseInt(page2)+1;
-  	
+  		var place = $("#place").val();
+  		
   		$.ajax({
   				type : "get",
-  				data : {"page" : page2, "check" : '${place}' , "state" : "ajax"},
+  				data : {"page" : page2, "check" : place, "state" : "ajax"},
   				url  : "/study-of-us/study/search",	
   			  headers : {"cache-control" : "no-cache", 
 		    	       "pragma" : "no-cache"},
@@ -45,12 +47,12 @@
       
       $(document).on("click","#atagPrevious",function(e){
   		e.preventDefault();
-  
+  		var place = $("#place").val();
   		var page2=$("#page").val();
   		page2=parseInt(page2)-1;
   		$.ajax({
   				type : "get",
-  				data : {"page" : page2, "check" : '${place}' , "state" : "ajax"},
+  				data : {"page" : page2, "check" : place , "state" : "ajax"},
   				url  : "/study-of-us/study/search",	
   			   cache: false, 
   				success : function(rdata){
@@ -65,6 +67,7 @@
       $(document).on("click","#atagFirst",function(e){
   		e.preventDefault();
   		var page = 1
+  		alert(page)
   		$.ajax({
   				type : "get",
   				data : {"page" : page, "check" : '${place}' , "state" : "ajax"},
@@ -81,6 +84,7 @@
       $(document).on("click","#atagLast",function(e){
    		e.preventDefault();
    		var page2 = $("#totalpage").val();
+
    		$.ajax({
    				type : "get",
    				data : {"page" : page2, "check" : '${place}' , "state" : "ajax"},
@@ -96,7 +100,8 @@
 
    	});
       
-      $(document).on("hover",".projectcontainer",function(e){
+      $(".projectcontainer").hover(
+    			function(){
     				$(this).css('background','#333333bd')
     			},
     			function(){
@@ -107,7 +112,7 @@
     			$(".projectcontainer").click(function(){
     				location.href = "이동할 주소"
     			})
-    
+     })
      
      </script>
      <%@ taglib prefix="c"
@@ -118,8 +123,8 @@
 		
   			<img src="/study-of-us/resources/images/open-book.png" alt="Avatar" style="width:90px">
  			 <H3>스터디 : ${study.name }</H3>
-  			<p>목표 : ${study.goal } </p>
-  			 <span>스터디 기간 : ${study.term } 스터디 위치 ${study.place}</span>
+  			<p>목표 :  </p>
+  			 <span>스터디 기간 :  스터디 위치 ${study.place}</span>
 		</div>
 	</c:forEach>
 			<div class="paging"  style="text-align:center; margin-bottom:100px">
@@ -145,4 +150,5 @@
 		</div>
 		<input type="hidden" id="page" value="${page}"/>
 		<input type="hidden" id="totalpage" value="${totalpage}"/>
+		<input type="hidden" id="place" value="${place}"/>
 	</div>

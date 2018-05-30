@@ -15,6 +15,7 @@
 			if(selectVal == 1){
 				for(var i=0; i<secondArray_0.length; i++){
 				inner += "<option value="+secondArray_0[i]+">";
+				alert(secondArray_0[i])
 				inner += secondArray_0[i];
 				inner += "</option>";
 				}
