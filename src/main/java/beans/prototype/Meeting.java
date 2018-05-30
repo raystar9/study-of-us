@@ -1,16 +1,20 @@
 package beans.prototype;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Meeting {
 	public static final String QUERY_GET = "";
 	public static final String QUERY_POST = "";
 	
+	private int index;
 	private String location;
 	private Date date;
 	private int fee;
 	private String comment;
 	
+	public int getIndex() {
+		return index;
+	}
 	public String getLocation() {
 		return location;
 	}
