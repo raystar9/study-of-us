@@ -43,6 +43,8 @@ public class Search extends HttpServlet {
 		DataGetter getter = new DataGetter(DatabaseAccounts.SCOTT);
 		HttpSession session = request.getSession();
 		
+
+
 		int[] count;
 		int page = 1; // 현재 페이지 번호 (이하 page)
 		int totalList = 0; // 총 스터디의 수
@@ -94,7 +96,6 @@ public class Search extends HttpServlet {
 			request.setAttribute("searchVal", searchVal);
 
 			
-
 				
 			ArrayList<Study> studies = getter.getStudies(searchVal, place, secondArray);
 			totalSearchList = studies.size(); // 총 스터디의 개수를 구하기 위해서 사용

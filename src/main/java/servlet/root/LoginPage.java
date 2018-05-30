@@ -27,7 +27,7 @@ public class LoginPage extends HttpServlet {
 		 
 		
 
-		DataGetter getter = new DataGetter(DatabaseAccounts.ADMIN);
+		DataGetter getter = new DataGetter(DatabaseAccounts.SCOTT);
 		
 		
 		Login Index = getter.getIndex(id);
@@ -47,6 +47,8 @@ public class LoginPage extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("id", id);
 			session.setAttribute("index", Index.getIndex());
+			
+			System.out.println("세션값:"+session.getAttribute("index"));
 			
 			
 			System.out.println(logpro.getPassword());

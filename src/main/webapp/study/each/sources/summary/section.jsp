@@ -9,6 +9,7 @@
 
 </head>
 <body>
+<form action="result.jsp" method="post">
 <hr>
 	<h1 align=center>${study[0].name }</h1>
 <hr>
@@ -41,14 +42,17 @@
 <tr>
 <th colspan=2>모집인원<input type=text value="${study[0].peoplenum }"> 활동시간<input type=text value="${study[0].time}"> 요일<input type=text value="${study[0].day }"></th>
 </tr>
-
-
+${index }
+${study[0].index }
 <tr>
-<th>스터디 지역</th>
+<th>스터디 지역 </th>
 <td>${study[0].place }</td>
 </tr>
 </table>
+<input type="hidden" name="s_index" value=${study[0].index }>
+<input type="hidden" name="m_index" value=${index }>
 	<input type=submit value='스터디 참여하기'>
 </div>
+</form>
 </body>
 </html>
