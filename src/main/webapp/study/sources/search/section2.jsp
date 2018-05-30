@@ -3,7 +3,7 @@
 
      
      <script>
-     $(document).ready(function(){
+   
     	 $(document).on("click",".atag1",function(e){
      		e.preventDefault();
      		var page = $(this).text()
@@ -100,31 +100,29 @@
 
    	});
       
-      $(".projectcontainer").hover(
-    			function(){
-    				$(this).css('background','#333333bd')
-    			},
-    			function(){
-    				$(this).css('background','#eee')
-    			}
-    			);
-    			
-    			$(".projectcontainer").click(function(){
-    				location.href = "이동할 주소"
-    			})
-     })
+      
+		$(document).on("click","#projectcontainer",function(){
+			var index = $(this).children('#index') 
+			//자식의 값을 가져오기 위해서 children('선택자')를 사용
+			location.href = "/study-of-us/study/each/participate?index="+index.val();
+		});
+
+
+
+  
      
      </script>
      <%@ taglib prefix="c"
  				uri="http://java.sun.com/jsp/jstl/core" %>
 	<div class="project">
 		<c:forEach var="study" items="${studies }">
-		<div class="projectcontainer">
+		<div class="projectcontainer" id="projectcontainer">
 		
   			<img src="/study-of-us/resources/images/open-book.png" alt="Avatar" style="width:90px">
  			 <H3>스터디 : ${study.name }</H3>
-  			<p>목표 :  </p>
+  			<p>목표 :   </p>
   			 <span>스터디 기간 :  스터디 위치 ${study.place}</span>
+  			 <input type="hidden" id="index" name="index" value="${study.index }"/>
 		</div>
 	</c:forEach>
 			<div class="paging"  style="text-align:center; margin-bottom:100px">

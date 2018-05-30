@@ -33,16 +33,16 @@
   		<input type="checkbox" name="checkbox" value="서울">
 		<span class="checkmark"></span>
 	</label>
-		<label class="container">경기
- 		<input type="checkbox" value="경기" name="checkbox">
+		<label class="container">부천
+ 		<input type="checkbox" value="부천" name="checkbox">
   		<span class="checkmark"></span>
 	</label>
 	<label class="container">인천
   		<input type="checkbox" value="인천" name="checkbox">
  		<span class="checkmark"></span>
 	</label>
-	<label class="container">강원
-  		<input type="checkbox" value="강원" name="checkbox">
+	<label class="container">춘천
+  		<input type="checkbox" value="춘천" name="checkbox">
   		<span class="checkmark"></span>
 	</label>	
 	</p>
@@ -58,12 +58,12 @@
  		<input type="checkbox" value="세종" name="checkbox">
   		<span class="checkmark"></span>
 	</label>
-	<label class="container">충남
-  		<input type="checkbox" value="충남" name="checkbox">
+	<label class="container">천안
+  		<input type="checkbox" value="천안" name="checkbox">
  		<span class="checkmark"></span>
 	</label>
-	<label class="container">충북
-  		<input type="checkbox"  value="충북" name="checkbox">
+	<label class="container">부산
+  		<input type="checkbox"  value="부산" name="checkbox">
   		<span class="checkmark"></span>
 	</label>	
 	</p>
@@ -74,15 +74,15 @@
 		<span class="checkmark"></span>
 	</label>
 		<label class="container">경남
- 		<input type="checkbox"  value="경남" name="checkbox">
+ 		<input type="checkbox"  value="창원" name="checkbox">
   		<span class="checkmark"></span>
 	</label>
 	<label class="container">경북
-  		<input type="checkbox"  value="경북" name="checkbox">
+  		<input type="checkbox"  value="광주" name="checkbox">
  		<span class="checkmark"></span>
 	</label>
 	<label class="container">전북
-  		<input type="checkbox"  value="전북" name="checkbox">
+  		<input type="checkbox"  value="수원" name="checkbox">
   		<span class="checkmark"></span>
 	</label>	
 	</p>
@@ -97,6 +97,7 @@
  			 <H3>스터디 : ${study.name }</H3>
   			<p>목표 :  </p>
   			 <span>스터디 기간 :  스터디 위치 ${study.place}</span>
+  			<input type="hidden" id="index" name="index" value="${study.index }"/>
 		</div>
 		</c:forEach>
 		

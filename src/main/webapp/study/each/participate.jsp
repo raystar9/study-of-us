@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <link href="sources/summary/css/participate.css" rel="stylesheet">
+<script src = "http://code.jquery.com/jquery-3.3.1.js"></script>
 </head>
 <body>
 
