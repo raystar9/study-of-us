@@ -150,5 +150,5 @@
 		</div>
 		<input type="hidden" id="page" value="${page}"/>
 		<input type="hidden" id="totalpage" value="${totalpage}"/>
-		<input type="hidden" id="place" value="${place}"/>
+		<input type="hidden" id="place" name="place2" value="${place}"/>
 	</div>

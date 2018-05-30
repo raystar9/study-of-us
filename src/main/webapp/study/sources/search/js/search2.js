@@ -15,7 +15,6 @@
 			if(selectVal == 1){
 				for(var i=0; i<secondArray_0.length; i++){
 				inner += "<option value="+secondArray_0[i]+">";
-				alert(secondArray_0[i])
 				inner += secondArray_0[i];
 				inner += "</option>";
 				}
@@ -76,7 +75,7 @@
 		$("input[type=checkbox]").each(function(){
 			$(this).change(function(){
 				var a = $(this).val()
-				alert(a);
+				$("#place2").val(a)
 				$("input[type=checkbox]").prop("checked",false)
 				$(this).prop("checked",true)
 				

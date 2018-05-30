@@ -76,8 +76,13 @@ public class Search extends HttpServlet {
 			
 			
 			if(request.getParameter("place")==null) {
-			place = request.getParameter("check");
-			System.out.println("check 값을 사용합니다." + place);
+				if( request.getParameter("check")==null) {
+					place = request.getParameter("place2");
+					System.out.println("place2 값을 사용합니다." + place);
+				}else {
+					place = request.getParameter("check");
+					System.out.println("check 값을 사용합니다." + place);
+				}
 			}else{
 			place = request.getParameter("place");
 			System.out.println("place 값을 사용합니다."+ place);
