@@ -73,9 +73,7 @@ public class Setup extends HttpServlet {
 		poster.postSetup(setup);
 		
 		poster.close();
-		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/each/setup.jsp");
-		dispatcher.forward(request, response);
+		response.sendRedirect("./setup");
 	}
 
 }

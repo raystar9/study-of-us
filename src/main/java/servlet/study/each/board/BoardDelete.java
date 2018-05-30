@@ -27,9 +27,10 @@ public class BoardDelete extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		int num = Integer.parseInt(request.getParameter("num"));
+		int studyIndex = 3;
 		
 		DataPoster poster = new DataPoster(DatabaseAccounts.SCOTT);
-		poster.postBoardDelete(num);
+		poster.postBoardDelete(num, studyIndex);
 		poster.close();
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/each/boardList.jsp");

@@ -4,9 +4,11 @@ import java.sql.Date;
 
 public class Study{
 	
-	public static final String QUERY_GET = "SELECT * FROM Study"; 
-	public static final String QUERY_GET2 = "select * from study where s_place LIKE ? and s_name LIKE ?";
-	public static final String QUERY_POST = "INSERT INTO DEPTNO VALUES(seq.nextval, ?, ?)";
+	public static final String QUERY_GET = "SELECT * FROM study"; 
+	public static final String QUERY_GET2 = "select * from study where s_place LIKE ? and s_name LIKE ? ";
+	public static final String QUERY_GET3 = "select * from study inner join CATEGORY on STUDY.S_C_ID = CATEGORY.C_ID where s_place LIKE ? and s_name LIKE ? and category.C_SUB LIKE ? ";
+	public static final String QUERY_GET4 = "SELECT * FROM study where s_index = ? "; 
+	public static final String QUERY_POST = "INSERT INTO study VALUES(study_index.nextval, ?,?,?,?,?,?,?,?,?,?,?)";
 	public static final String QUERY_PUT = "UPDATE ";
 	public static final String QUERY_DELETE = "DELETE ";
 	
@@ -14,6 +16,7 @@ public class Study{
 	private int index;
 	private String name;
 	private int c_id;
+	private int mt_index; 
 	private Date start;
 	private Date end;
 	private int peoplenum;
@@ -99,6 +102,12 @@ public class Study{
 	public void setPlace(String place) {
 		this.place = place;
 	}
+	public int getMt_index() {
+		return mt_index;
+	}
+	public void setMt_index(int mt_index) {
+		this.mt_index = mt_index;
+	}
 	
 	
 	
@@ -129,4 +138,3 @@ public class Study{
 		}
 	}*/
 }
-
