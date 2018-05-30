@@ -71,7 +71,8 @@ public class FakeDB {
 	}
 	
 	private void initStudy() {
-		StudyListCount study = new StudyListCount();
+		//TODO study바뀌어서 수정해야되긴함.... 혹은 삭제
+		/*StudyListCount study = new StudyListCount();
 		study.setName("자바스터디");
 		study.setGoal("자바마스터");
 		study.setTerm(new Date(new GregorianCalendar(2018, 4, 5).getTimeInMillis()));
@@ -106,7 +107,7 @@ public class FakeDB {
 		studies.add(study3);
 		studies.add(study4);
 		studies.add(study5);
-		studies.add(study6);
+		studies.add(study6);*/
 		
 	}
 	
