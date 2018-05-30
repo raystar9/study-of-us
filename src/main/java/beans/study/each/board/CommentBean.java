@@ -2,10 +2,10 @@ package beans.study.each.board;
 
 public class CommentBean {
 	
-	public static final String QUERY_GET = "SELECT ";
+	public static final String QUERY_GET = "SELECT * FROM COMMENT2 WHERE C_BNO = ?";
 	public static final String QUERY_PUT = "UPDATE ";		
 	public static final String QUERY_DELETE = "DELETE";	
-	public static final String QUERY_POST = "INSERT";		
+	public static final String QUERY_POST = "INSERT INTO COMMENT2 VALUES(?,?,?,?,?)";		
 	
 	private String name;
 	private String date;
