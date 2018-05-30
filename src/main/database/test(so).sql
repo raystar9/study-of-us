@@ -46,11 +46,13 @@ select * from (select rownum as rnum, s_index, s_name, s_c_id, S_MT_INDEX, S_STA
 			from (
 			select s_index, s_name, s_c_id, S_MT_INDEX, S_START, S_END, S_PLOPIENUM, S_DAY, S_TIME,S_EXPLAIN,S_PREPARED,S_EFFECTIVE ,S_PLACE 
 			from (
-			select * from study inner join CATEGORY on STUDY.S_C_ID = CATEGORY.C_ID where s_place LIKE '%자바%' and s_name LIKE '%자바%' and category.C_SUB LIKE '%자바%' 
+			select * from study inner join CATEGORY on STUDY.S_C_ID = CATEGORY.C_ID where s_place LIKE '%자바%' and s_name LIKE '%영어%' and category.C_SUB LIKE '%자바%' 
 			order by s_index))) 
-			where rnum >= ? and rnum <= ?;
+			where rnum >= 1 and rnum <= 5;
 
 select * from Category
+select * from study
+
 
 select * from (select rownum as rnum, s_index, s_name, s_c_id, S_MT_INDEX, S_START, S_END, S_PLOPIENUM, S_DAY, S_TIME,S_EXPLAIN,S_PREPARED,S_EFFECTIVE ,S_PLACE
 			from (
@@ -59,4 +61,21 @@ select * from (select rownum as rnum, s_index, s_name, s_c_id, S_MT_INDEX, S_STA
 			order by s_index)) 
 			where rnum >= 1 and rnum <= 5;
 insert into study values(study_index.nextval,'자바스터디',1,2,'2018-05-29','2018-06-15',6,'2018-06-15','2018-06-15','2018-06-15','2018-06-15','2018-06-15','인천');
-insert into study values(study_index.nextval,'영어스터디',2,2,'2018-05-29','2018-06-15',6,'2018-06-15','2018-06-15','2018-06-15','2018-06-15','2018-06-15','서울');
+insert into study values(study_index.nextval,'c언어스터디',2,2,'2018-05-29','2018-06-15',6,'2018-06-15','2018-06-15','2018-06-15','2018-06-15','2018-06-15','서울');
+insert into study values(study_index.nextval,'c++스터디',4,2,'2018-05-29','2018-06-15',6,'2018-06-15','2018-06-15','2018-06-15','2018-06-15','2018-06-15','세종');
+insert into study values(study_index.nextval,'c#언어스',5,2,'2018-05-29','2018-06-15',6,'2018-06-15','2018-06-15','2018-06-15','2018-06-15','2018-06-15','서울');
+insert into study values(study_index.nextval,'파이썬',3,2,'2018-05-29','2018-06-15',6,'2018-06-15','2018-06-15','2018-06-15','2018-06-15','2018-06-15','인천');
+insert into study values(study_index.nextval,'영어스터디',6,2,'2018-05-29','2018-06-15',6,'2018-06-15','2018-06-15','2018-06-15','2018-06-15','2018-06-15','서울');
+insert into study values(study_index.nextval,'불어스터디',7,2,'2018-05-29','2018-06-15',6,'2018-06-15','2018-06-15','2018-06-15','2018-06-15','2018-06-15','세종');
+insert into study values(study_index.nextval,'중국어스터',8,2,'2018-05-29','2018-06-15',6,'2018-06-15','2018-06-15','2018-06-15','2018-06-15','2018-06-15','서울');
+insert into study values(study_index.nextval,'일본어스터',9,2,'2018-05-29','2018-06-15',6,'2018-06-15','2018-06-15','2018-06-15','2018-06-15','2018-06-15','서울');
+insert into study values(study_index.nextval,'한국어스터',10,2,'2018-05-29','2018-06-15',6,'2018-06-15','2018-06-15','2018-06-15','2018-06-15','2018-06-15','인천');
+insert into study values(study_index.nextval,'정보처리',11,2,'2018-05-29','2018-06-15',6,'2018-06-15','2018-06-15','2018-06-15','2018-06-15','2018-06-15','서울');
+insert into study values(study_index.nextval,'컴활',12,2,'2018-05-29','2018-06-15',6,'2018-06-15','2018-06-15','2018-06-15','2018-06-15','2018-06-15','세종');
+insert into study values(study_index.nextval,'ccna',13,2,'2018-05-29','2018-06-15',6,'2018-06-15','2018-06-15','2018-06-15','2018-06-15','2018-06-15','세종');
+insert into study values(study_index.nextval,'ccnp',14,2,'2018-05-29','2018-06-15',6,'2018-06-15','2018-06-15','2018-06-15','2018-06-15','2018-06-15','서울');
+insert into study values(study_index.nextval,'네트워크',15,2,'2018-05-29','2018-06-15',6,'2018-06-15','2018-06-15','2018-06-15','2018-06-15','2018-06-15','서울');
+
+insert into study values(study_index.nextval,'토익',6,2,'2018-05-29','2018-06-15',6,'2018-06-15','2018-06-15','2018-06-15','2018-06-15','2018-06-15','서울');
+insert into study values(study_index.nextval,'토플',6,2,'2018-05-29','2018-06-15',6,'2018-06-15','2018-06-15','2018-06-15','2018-06-15','2018-06-15','서울');
+insert into study values(study_index.nextval,'토스',6,2,'2018-05-29','2018-06-15',6,'2018-06-15','2018-06-15','2018-06-15','2018-06-15','2018-06-15','인천');

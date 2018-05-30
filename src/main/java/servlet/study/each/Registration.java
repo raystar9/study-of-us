@@ -38,7 +38,7 @@ public class Registration extends HttpServlet {
 		study.setEffective("activity");
 		study.setPlace("location");
 		
-		DataPoster poster = new DataPoster(DatabaseAccounts.ADMIN);
+		DataPoster poster = new DataPoster(DatabaseAccounts.SCOTT);
 		poster.postStudy(study);
 		
 		//try catch 문 실행
