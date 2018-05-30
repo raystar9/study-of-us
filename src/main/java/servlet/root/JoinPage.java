@@ -49,7 +49,7 @@ public class JoinPage extends HttpServlet {
 		member.setPassword(request.getParameter("password"));
 		member.setEmail(request.getParameter("email"));
 		member.setTel(Integer.parseInt(request.getParameter("tel")));
-		member.setAddress(request.getParameter("area"));
+		member.setAddress(request.getParameter("location"));
 		member.setGender(request.getParameter("gender"));
 		member.setIntroduce(request.getParameter("introduce"));
 		//TODO 회원가입 완료 했다는 페이지 만들어줘야된다. 전화번호 디비에 저장될때 맨앞에 0이면 0 이 생략됨.
@@ -58,6 +58,7 @@ public class JoinPage extends HttpServlet {
 		
 		DataPoster poster = new DataPoster(DatabaseAccounts.ADMIN);//계정이름은 context 에 서 정해줄 수 있다 현재 system/1234
 		poster.postMembers(member);
+		
 
 		poster.close();
 
