@@ -40,12 +40,12 @@ public class FakeDB {
 	private void initMeetings() {
 		Meeting meeting1 = new Meeting();
 		meeting1.setComment("내용내용");
-		meeting1.setDate(new Date(new GregorianCalendar(2018, 4, 5).getTimeInMillis()));
+		meeting1.setDate(new Date(new GregorianCalendar(2018, 4, 5, 22, 00).getTimeInMillis()));
 		meeting1.setFee(5000);
 		meeting1.setLocation("종각역");
 		Meeting meeting2 = new Meeting();
 		meeting2.setComment("내용내용2");
-		meeting2.setDate(new Date(new GregorianCalendar(2018, 4, 12).getTimeInMillis()));
+		meeting2.setDate(new Date(new GregorianCalendar(2018, 4, 12, 18, 00).getTimeInMillis()));
 		meeting2.setFee(8000);
 		meeting2.setLocation("덕소역");
 		
