@@ -4,11 +4,14 @@
 <html>
 <head>
 <style>
+
 .button-container {text-align: center; display:table;}
-.main-container {height: 100%;}
+.schedule-flexbox {height: 100%; vertical-align: top;}
+.schedule-flexbox aside {width: 200px;}
+.schedule-flexbox section {width: 100%;}
 #new-button {width: 400px; height: 50px;}
-#left {display: table-cell; width:200px; vertical-align: top;}
-#calendar {display: table-cell; vertical-align: top; padding: 15px; text-align: center;}
+#left {width: 200px; height: 100%;}
+#calendar {vertical-align: top; padding: 15px; text-align: center;}
 </style>
 <link href='sources/schedule/css/fullcalendar.min.css' rel='stylesheet' />
 <link href='sources/schedule/css/fullcalendar.print.min.css' rel='stylesheet' media='print' />
@@ -26,11 +29,19 @@ console.log(eventList);
 
 </head>
 <body>
-<%@ include file = "/general-sources/Navigation.jsp" %>
+<div class="page-container">
+<div class="nav-container">
+<%@ include file = "/general-sources/Navigation.jsp" %></div>
 <div class="main-container">
+<div class="schedule-flexbox aside">
 <%@ include file = "left.jsp" %>
+</div>
+<div class="schedule-flexbox section">
 <%@ include file = "sources/schedule/section.jsp" %><br>
 </div>
+</div>
 <%@ include file = "/general-sources/Footer.jsp" %>
+</div>
 </body>
+
 </html>
