@@ -15,5 +15,6 @@
 <%@ include file = "/general-sources/Navigation.jsp" %>
 <%@ include file = "sources/search/section.jsp" %>
 <%@ include file = "/general-sources/Footer.jsp" %>
+
 </body>
 </html> 
