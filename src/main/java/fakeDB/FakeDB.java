@@ -1,9 +1,10 @@
 package fakeDB;
 
 import java.sql.Date;
-import java.util.GregorianCalendar;
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 
+import beans.prototype.Attendance;
 import beans.prototype.Meeting;
 import beans.prototype.Member;
 import beans.prototype.Study;
@@ -17,7 +18,8 @@ public class FakeDB {
 	ArrayList<StudyListCount> studies = new ArrayList<>();
 	ArrayList<Meeting> meetings = new ArrayList<>();
 	ArrayList<ScheduleBean> schedules = new ArrayList<>();
-
+	ArrayList<Attendance> attendances = new ArrayList<>();
+	
 	public static FakeDB getInstance() {
 		return instance;
 	}
@@ -29,6 +31,14 @@ public class FakeDB {
 		initSchedules();
 	}
 	
+	public ArrayList<Attendance> getAttendances() {
+		return attendances;
+	}
+
+	public void addAttendances(Attendance attendance) {
+		attendances.add(attendance);
+	}
+
 	private void initSchedules() {
 		ScheduleBean s1 = new ScheduleBean();
 		s1.setStart("2018-05-03T12:00:00+09:00");

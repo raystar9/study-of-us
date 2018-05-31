@@ -27,7 +27,7 @@ public class LoginPage extends HttpServlet {
 		 
 		
 
-		DataGetter getter = new DataGetter(DatabaseAccounts.SCOTT);
+		DataGetter getter = new DataGetter(DatabaseAccounts.ADMIN);
 		
 		
 		Login Index = getter.getIndex(id);

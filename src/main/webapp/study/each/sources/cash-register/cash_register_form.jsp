@@ -1,17 +1,13 @@
 <!-- 스터디 안의 회비관리 페이지에서 추가버튼 클릭했을 때 페이지 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-
-<script src="http://code.jquery.com/jquery-latest.js"></script>
-<script type="text/javascript" src="js/cash_register.js"></script>
 <link rel="stylesheet" type="text/css" href="css/cash_register.css">
-
 <title>회비 등록 페이지</title>
-
 </head>
 
 <body>
@@ -58,13 +54,21 @@
 										id="dues-table" border='1'>
 										<thead>
 											<tr>
+												<th>#</th>
 												<th>이름</th>
 												<th>금액</th>
 												<th>비고</th>
 											</tr>
 										</thead>
 										<tbody>
-											
+											<c:forEach var="name" items="${names }" begin='0' end="${membercount }"  varStatus="status">
+												<tr>
+													<td>${status.count}</td>
+													<td>${name }</td>
+													<td><input type='text' class='form-control' placeholder='금액' id='dues-fee' name='duesFee'onkeyup='calculate();'></td>
+													<td><input type='text' class='form-control' placeholder='비고' id='dues-note' name='duesNote'></td>
+												</tr>
+											</c:forEach>
 										</tbody>
 									</table>
 								</div>
@@ -139,11 +143,9 @@
 				</td>
 			</tr>
 			<tr>
-				<td>
-				<input type="button" class="btn btn-default" id="btn"
-				value="취소" onclick="location.href='./cash';"> 
-					<input type="submit" class="btn btn-default"
-					id="btn" value="등록"></td>
+				<td><input type="button" class="btn btn-default" id="btn"
+					value="취소" onclick="location.href='./cash';"> <input
+					type="submit" class="btn btn-default" id="btn" value="등록"></td>
 			</tr>
 		</table>
 	</form>
