@@ -27,8 +27,8 @@ abstract class DataSetter extends DataAccessor{ // 명호형이 만든지 확인
 	 * @throws DatabaseConnectException
 	 * @throws SQLException
 	 */
-	protected int set(String query, DataSettable settable) {
-		return (Integer) ExceptionHandler.handleSQLException(new TryGetObject(){
+	protected void set(String query, DataSettable settable) {
+		ExceptionHandler.handleSQLException(new TryGetObject(){
 		
 			@Override
 			public Object action(Object result) throws SQLException {

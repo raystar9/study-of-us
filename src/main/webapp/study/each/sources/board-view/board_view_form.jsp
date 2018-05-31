@@ -5,8 +5,10 @@
 <html>
 <head>
 <title>스터디 안의 게시판 페이지에서 글을 클릭했을 때 상세보기 되는 페이지</title>
+
 </head>
 <body>
+	<%@ include file="../comment/comment.jsp" %>
 	<c:set var='id' value="${sessionScope.id}" />
 	<table border="1">
 		<tr class="center">
@@ -15,7 +17,7 @@
 
 		<c:set var="b" value="${boardcontent}" />
 		<tr>
-			<td>글쓴이</td>
+			<td width='10%'>글쓴이</td>
 			<td><c:out value="${b.name}" /></td>
 		</tr>
 
@@ -35,18 +37,33 @@
 		</tr>
 
 		<tr>
-			<!-- 여긴 나중에 구현! -->
-			<td colspan="2" class="center"> &nbsp; 
-			<c:if test="${b.name == id || id == 'admin' }">
-					<a href="./study/boardview?num=${b.index}">수정</a>
-				&nbsp;&nbsp;
-			
-			<a href="./study/boardview?num=${b.index}">삭제</a>
-				&nbsp;&nbsp;
-			</c:if> <a href="BoardList.bo">뒤로</a>
+			<td colspan="2" class="center">&nbsp; <c:if
+					test="${b.name == id || id == 'admin' }">
+					<a href="./boardmodify?num=${b.index}">수정</a>&nbsp;&nbsp;
+				<a href="./boarddelete?num=${b.index}">삭제</a>&nbsp;&nbsp;
+			</c:if> <a href="./board">뒤로</a>
 			</td>
 		</tr>
-	</table>
+	</table><br>
+	
+	 <div class="container">
+        <label for="content">comment</label>
+        <form name="commentInsertForm">
+            <div class="input-group">
+               <input type="hidden" name="bno" value="${b.index}" id="bno" />
+               <input type="text" class="form-control" id="content" name="content" placeholder="내용을 입력하세요.">
+               <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" name="commentInsertBtn">등록</button>
+               </span>
+              </div>
+        </form>
+    </div>
+    
+    <div class="container">
+        <div class="commentList"></div>
+    </div>
+
+
 
 </body>
 </html>

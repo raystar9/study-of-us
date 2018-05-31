@@ -8,13 +8,14 @@
 </head>
 <body>
 	<c:set var='id' value="${sessionScope.id}" />
-	<form method='#' action='post'>
+	<form action='./boardmodify' method='post' >
+		<c:set var="b" value="${boardcontent}" />
+		<input type="hidden" name="num" value="${b.index}">
 		<table border="1">
 			<tr class="center">
 				<th colspan="2">스터디 안의 게시판 페이지에서 글을 클릭했을 때 상세보기 되는 페이지</th>
 			</tr>
 
-			<c:set var="b" value="${boardcontent}" />
 			<tr>
 				<td>글쓴이</td>
 				<td><input type="text" name="boardName" id="board-name"
@@ -40,9 +41,9 @@
 			</tr>
 
 			<tr>
-				<td colspan="2" class="center">&nbsp; <a
-					href="./study/boardview?num=${b.index}">수정</a>&nbsp;&nbsp; <a
-					href="./study/boardview?num=${b.index}">취소</a>
+				<td colspan="2" class="center">&nbsp; 
+				<input type=submit value="수정" >
+				<input type=reset value="취소" onClick="history.go(-1);">
 				</td>
 			</tr>
 		</table>

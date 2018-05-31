@@ -4,9 +4,7 @@ package beans.study.each;
 
 public class InformSetupMember {
 	//해당 스터디를 들어갔을 때 그 스터디 안에있는 회원들의 정보를 가져옴
-	public static final String QUERY_GET = "SELECT"; 
-	//해당 스터디에 참여하고있는 스터디원들 명수를 가져옴
-	public static final String QUERY_GET_COUNT = "SELECT"; 
+	public static final String QUERY_GET = "SELECT M_NAME, M_TEL, M_EMAIL FROM MEMBER"; 
 	
 	private String name;	//스터디원 이름
 	private int phone;		//스터디원 전화번호

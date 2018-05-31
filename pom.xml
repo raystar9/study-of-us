@@ -6,7 +6,7 @@
 
   <groupId>team.nod</groupId>
   <artifactId>study-of-us</artifactId>
-  <version>0.2.9</version>
+  <version>0.3.0</version>
   <packaging>war</packaging>
 
   <name>study-of-us Maven Webapp</name>
@@ -62,6 +62,11 @@
 	    <groupId>oracle</groupId>
 	    <artifactId>ojdbc6</artifactId>
 	    <version>11.2.0.3</version>
+	</dependency>
+	<dependency>
+	    <groupId>com.fasterxml.jackson.core</groupId>
+	    <artifactId>jackson-core</artifactId>
+	    <version>2.9.5</version>
 	</dependency>
   </dependencies>
 
