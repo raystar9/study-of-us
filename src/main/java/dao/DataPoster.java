@@ -171,6 +171,17 @@ public class DataPoster extends DataSetter {
 
 	public ArrayList<StudyList> Insertindex(int s_index, int m_index) {
 		
-		set(StudyList.QUERY_POST)
+		set(StudyList.QUERY_POST, new DataSettable() {
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+				pstmt.setInt(1, s_index);
+				pstmt.setInt(2, m_index);
+				
+				pstmt.executeUpdate();
+				pstmt.close();
+				
+			}
+		});
+		return null;
 	}
 }

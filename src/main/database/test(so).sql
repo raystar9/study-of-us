@@ -1,6 +1,8 @@
 
 delete study;
 
+select * from studylist
+
 
 CREATE TABLE Study(
 	S_INDEX NUMBER NOT NULL PRIMARY KEY,      -- study_index 시퀀스 처리

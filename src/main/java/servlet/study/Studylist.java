@@ -52,7 +52,9 @@ public class Studylist extends HttpServlet {
 		DataGetter getter = new DataGetter(DatabaseAccounts.SCOTT);
 		DataPoster poster = new DataPoster(DatabaseAccounts.SCOTT);
 		
-		ArrayList<StudyList> study = poster.Insertindex(s_index,m_index)
+		ArrayList<StudyList> study = poster.Insertindex(s_index,m_index);
+		
+		
 	}
 
 }
