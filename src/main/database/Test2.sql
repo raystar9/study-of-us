@@ -6,13 +6,14 @@ CREATE TABLE Member(
 	M_NAME VARCHAR(15) NOT NULL,
 	M_PASSWORD VARCHAR(16) NOT NULL,
 	M_EMAIL VARCHAR(50) NOT NULL,
-	M_TEL NUMBER NOT NULL,
+	M_TEL VARCHAR(13) NOT NULL,
 	M_ADDRESS VARCHAR(200),
 	M_GENDER VARCHAR(2) NOT NULL,
 	M_INTRODUCE VARCHAR(200) NOT NULL
 );
 
 
+INSERT INTO MEMBER VALUES(member_index.nextval,'snow','곽승민', '1234', 'snowdrop0207@naver.com', '010-5066-7016','경기도 의정부시','M','하여');
 
 alter table member modify(M_TEL varchar(50));
 select * from member;
@@ -22,15 +23,14 @@ delete from member;
 
 delete member where M_id = 'ndw8524';
 
+select * from tab;
+
 
 ﻿-- Member테이블 INDEX의 시퀀스
 CREATE SEQUENCE member_index
 START WITH 1
 INCREMENT BY 1
 NOMAXVALUE;
-
-
-
 
 -- Study 테이블 생성
 CREATE TABLE Study(
