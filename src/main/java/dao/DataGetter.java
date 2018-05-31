@@ -7,8 +7,10 @@ import java.util.ArrayList;
 
 import beans.prototype.Member;
 import beans.prototype.Study;
+import beans.prototype.StudyList;
 import beans.root.Login;
 import beans.study.StudyListCount;
+import beans.study.StudyListSelect;
 import beans.study.StudySearch;
 import beans.study.each.InformSetup;
 import beans.study.each.InformSetupMember;
@@ -717,6 +719,74 @@ public class DataGetter extends DataAccessor {
 		});
 		return index;
 	}
+
+	
+	
+	//스터디 리스트 가져오기
+	public ArrayList<StudyListSelect> getStudyList(int index) {
+		@SuppressWarnings("unchecked")
+		ArrayList<StudyListSelect> studylist = (ArrayList<StudyListSelect>) get(StudyListSelect.QUERY_GET,new DataSettable() {
+			
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+				pstmt.setInt(1, index);
+			}
+		}, new DataGettable() {
+			
+			
+			
+			@Override
+			public ArrayList<?> onGetResult(ResultSet rs) throws SQLException {
+				ArrayList<StudyListSelect> studylists = new ArrayList<>();
+				while(rs.next()) {
+					StudyListSelect sl = new StudyListSelect();
+					
+					sl.setProgress(rs.getInt("progress"));
+					sl.setS_name(rs.getString("s_name"));
+					sl.setS_peoplenum(rs.getInt("s_peoplenum"));
+					
+					studylists.add(sl);
+					
+				}
+				return studylists; 
+			}
+		});
+		return studylist;
+	}
+	
+	
+	
+// 스터디 count 수 가져오기
+	public StudyListSelect getStudyListCount(int index) {
+		StudyListSelect count = (StudyListSelect) get(StudyListSelect.QUERY_GET2,new DataSettable() {
+			
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+				pstmt.setInt(1, index);
+				
+			}
+		}, new DataGettable() {
+			
+			@Override
+			public Object onGetResult(ResultSet rs) throws SQLException {
+				StudyListSelect slist = null;
+				if(rs.next()) {
+					slist = new StudyListSelect();
+					slist.setCount(rs.getInt("count"));
+				}
+				
+				return slist;
+			}
+		});
+		
+		// TODO Auto-generated method stub
+		return count;
+	}
+
+	
+	
+	
+	
 
 	/*
 	 * private ArrayList<?> getBean(ResultSet rs, Class<?> beanClass) throws
