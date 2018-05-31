@@ -52,7 +52,13 @@ body {
 <body>
 
 <div class="topnav">
-  <a class="active" href="/study-of-us/LoginPage">Home</a>
+
+<c:if test="${empty id }">
+  <a class="active" href="/study-of-us/home">Home</a>
+  </c:if>
+  <c:if test="${!empty id }">
+  <a class="active" href="/study-of-us/study/list">Home</a>
+  </c:if>
   <a href="/study-of-us/study/each/Registration">Study Create</a>
   <a href="/study-of-us/study/search">Study Search</a>
   <a href="#information">Information</a>

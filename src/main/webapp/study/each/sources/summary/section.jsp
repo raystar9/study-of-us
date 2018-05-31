@@ -9,67 +9,50 @@
 
 </head>
 <body>
+<form action="result.jsp" method="post">
 <hr>
-	<h1 align=center>스터디 명</h1>
+	<h1 align=center>${study[0].name }</h1>
 <hr>
 <div>
 <table>
 <tr>
 <th>스터디 기간</th>
-<td>스터디 기간</td>
+<td>${study[0].start } - ${study[0].end }</td>
 </tr>
 <tr>
 <th>스터디 종류</th>
-<td>스터디 종류</td>
-</tr>
-<tr>
-<th>스터디 목표</th>
-<td>스터디 목표</td>
-</tr>
-<tr>
-<th>교재 및 준비물</th>
-<td>교재 및 준비물</td>
-</tr>
-<tr>
-<th>스터디 기대효과</th>
-<td>스터디 기대효과</td>
-</tr>
-
-<tr>
-<th>스터디 목표</th>
-<td>스터디 목표</td>
-</tr>
-
-<tr>
-<th colspan=2>모집인원<input type=text> 활동시간<input type=text> 요일<input type=text></th>
+<td>${study[0].c_id }</td>
 </tr>
 
 <tr>
 <th>스터디 개요</th>
-<td>스터디 개요</td>
+<td>${study[0].explain }</td>
 </tr>
 
+<tr>
+<th>스터디 기대 및 효과</th>
+<td>${study[0].effective }</td>
+</tr>
 <tr>
 <th>교재 및 준비물</th>
-<td>교재 및 준비물</td>
+<td>${study[0].prepared }</td>
 </tr>
+<tr>
 
 <tr>
-<th>스터디 기대효과</th>
-<td>스터디 기대효과</td>
+<th colspan=2>모집인원<input type=text value="${study[0].peoplenum }"> 활동시간<input type=text value="${study[0].time}"> 요일<input type=text value="${study[0].day }"></th>
 </tr>
-
+${index }
+${study[0].index }
 <tr>
-<th>스터디 목표</th>
-<td>스터디 목표</td>
-</tr>
-
-<tr>
-<th>스터디 지역</th>
-<td>스터디 지역</td>
+<th>스터디 지역 </th>
+<td>${study[0].place }</td>
 </tr>
 </table>
-	<input type=submit value=스터디 참여하기>
+<input type="hidden" name="s_index" value=${study[0].index }>
+<input type="hidden" name="m_index" value=${index }>
+	<input type=submit value='스터디 참여하기'>
 </div>
+</form>
 </body>
 </html>
