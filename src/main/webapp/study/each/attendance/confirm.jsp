@@ -13,7 +13,7 @@
 </head>
 <body>
 <%@ include file = "/general-sources/Navigation.jsp" %>
-<%@ include file = "sources/attendance/section.jsp" %>
+<%@ include file = "sources/confirm/section.jsp" %>
 <%@ include file = "/general-sources/Footer.jsp" %>
 </body>
 </html>
