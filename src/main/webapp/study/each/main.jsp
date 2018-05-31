@@ -6,35 +6,6 @@
 <title>스터디 메인 페이지입니다.</title>
 <script src='sources/schedule/js/jquery.min.js'></script>
 <link rel="stylesheet" href="sources/main/css/main.css">
-<style>
-* {
-	margin: 0px;
-	padding: 0px;
-}
-html, body{
-	width: 100%; 
-	height: 100%;
-}
-body {
-	display: table;
-}
-.page-container {
-	display:flex;
-	width: 100%;
-	height: 100%;
-	flex-direction: column;
-}
-.nav-container {
-	width: 100%;
-}
-.main-container {
-	display:flex;
-	width: 100%;
-	height: 100%;
-	
-}
-#left {width: 200px; height: 100%;}
-</style>
 </head>
 <body>
 <div class="page-container">

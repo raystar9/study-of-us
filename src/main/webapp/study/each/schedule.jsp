@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="sources/main/css/main.css">
 <style>
 
 .button-container {text-align: center; display:table;}
@@ -30,17 +31,12 @@ console.log(eventList);
 </head>
 <body>
 <div class="page-container">
-<div class="nav-container">
-<%@ include file = "/general-sources/Navigation.jsp" %></div>
-<div class="main-container">
-<div class="schedule-flexbox aside">
-<%@ include file = "left.jsp" %>
-</div>
-<div class="schedule-flexbox section">
-<%@ include file = "sources/schedule/section.jsp" %><br>
-</div>
-</div>
-<%@ include file = "/general-sources/Footer.jsp" %>
+	<div class="nav-container"><%@ include file = "/general-sources/Navigation.jsp" %></div>
+	<div class="main-container">
+		<div class="schedule-flexbox aside"><%@ include file = "left.jsp" %></div>
+		<div class="schedule-flexbox section"><%@ include file = "sources/schedule/section.jsp" %><br></div>
+	</div>
+	<%@ include file = "/general-sources/Footer.jsp" %>
 </div>
 </body>
 
