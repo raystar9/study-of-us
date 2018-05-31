@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import beans.study.each.board.BoardViewRegisterBean;
+import beans.study.each.board.CommentBean;
 import dao.DataGetter;
 import dao.DatabaseAccounts;
 
@@ -28,18 +29,19 @@ public class BoardView extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
-		System.out.println("넘엉ㄴ=@@@@@@@@@@@@"+request.getParameter("num"));
-	
-		request.setAttribute("num", request.getParameter("num"));
-		
 		DataGetter getter = new DataGetter(DatabaseAccounts.SCOTT);
 		int studyIndex = 3; 
+		
 		BoardViewRegisterBean boardcontent = getter.getBoardView(Integer.parseInt(request.getParameter("num")), studyIndex);
-		System.out.println(boardcontent.getIndex());
 		request.setAttribute("boardcontent", boardcontent);
+		
+		ArrayList<CommentBean> comment = new ArrayList<CommentBean>();
+		int num = boardcontent.getIndex();
+		comment = getter.getCommentList(num);
+		request.setAttribute("comment", comment);
+		
 		getter.close();
-
+		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/each/boardView.jsp");
 		dispatcher.forward(request, response);
 		
@@ -48,7 +50,6 @@ public class BoardView extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
 	}
 
 }

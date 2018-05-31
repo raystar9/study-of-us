@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebServlet("/study/cashview")
+@WebServlet("/study/each/cashview")
 public class CashView extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
