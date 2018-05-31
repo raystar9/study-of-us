@@ -5,8 +5,10 @@ import java.sql.Date;
 public class Study{
 	
 	public static final String QUERY_GET = "SELECT * FROM study"; 
-	public static final String QUERY_GET2 = "select * from study where s_place LIKE ? and s_name LIKE ?";
-	public static final String QUERY_POST = "INSERT INTO DEPTNO VALUES(seq.nextval, ?, ?)";
+	public static final String QUERY_GET2 = "select * from study where s_place LIKE ? and s_name LIKE ? ";
+	public static final String QUERY_GET3 = "select * from study inner join CATEGORY on STUDY.S_C_ID = CATEGORY.C_ID where s_place LIKE ? and s_name LIKE ? and category.C_SUB LIKE ? ";
+	public static final String QUERY_GET4 = "SELECT * FROM study where s_index = ? "; 
+	public static final String QUERY_POST = "INSERT INTO study VALUES(study_index.nextval, ?,?,?,?,?,?,?,?,?,?,?)";
 	public static final String QUERY_PUT = "UPDATE ";
 	public static final String QUERY_DELETE = "DELETE ";
 	
@@ -136,4 +138,3 @@ public class Study{
 		}
 	}*/
 }
-

@@ -10,6 +10,8 @@
 <script src="sources/join/js/join.js"></script>
 </head>
 <body>
-<%@ include file= "sources/join/section.jsp" %>
+	<%@ include file ="/general-sources/Navigation.jsp" %>
+	<%@ include file= "sources/join/section.jsp" %>
+	<%@ include file ="/general-sources/Footer.jsp" %>
 </body>
 </html>

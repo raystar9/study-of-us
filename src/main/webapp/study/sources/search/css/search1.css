@@ -124,3 +124,7 @@ div.paging{
     margin-bottom: 100px;
 }
 
+
+.projectcontainer:hover{
+	background-color: #333333bd;
+}

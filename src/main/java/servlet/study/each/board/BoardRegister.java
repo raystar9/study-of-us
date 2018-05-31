@@ -33,6 +33,7 @@ public class BoardRegister extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		int studyIndex = 3;
 		BoardViewRegisterBean board = new BoardViewRegisterBean();
 		board.setTitle(request.getParameter("boardSubject"));
 		board.setName(request.getParameter("boardName"));
@@ -40,7 +41,7 @@ public class BoardRegister extends HttpServlet {
 
 
 		DataPoster poster = new DataPoster(DatabaseAccounts.SCOTT);
-		poster.postBoard(board); 
+		poster.postBoard(board, studyIndex); 
 		
 		poster.close();
 
