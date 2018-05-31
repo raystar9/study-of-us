@@ -2,10 +2,12 @@ package dao;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import beans.prototype.Meeting;
 import beans.prototype.Member;
 import beans.prototype.Study;
+import beans.prototype.StudyList;
 import beans.study.each.InformSetup;
 import beans.study.each.board.BoardViewRegisterBean;
 import beans.study.each.board.CommentBean;
@@ -165,5 +167,10 @@ public class DataPoster extends DataSetter {
 				pstmt.close();
 			}
 		});
+	}
+
+	public ArrayList<StudyList> Insertindex(int s_index, int m_index) {
+		
+		set(StudyList.QUERY_POST)
 	}
 }
