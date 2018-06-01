@@ -44,6 +44,7 @@ public class SoupGlobalFilter implements Filter {
 		
 		String queryString = new BufferedReader(new InputStreamReader(request.getInputStream())).readLine();
 		if(queryString != null) {
+			/*System.out.println("str = " +queryString);*/
 			String[] splitted = queryString.split("&");
 			for(int i = 0; i < splitted.length; i++) {
 				String[] keyValue = splitted[i].split("=");

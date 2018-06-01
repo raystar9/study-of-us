@@ -333,6 +333,17 @@ create table feemember(
 	FM_FEE NUMBER NOT NULL,
 	FM_NOTE VARCHAR(30)
 )
+
+create table fee(
+	F_NO NUMBER NOT NULL PRIMARY KEY,
+	FM_M_INDEX NUMBER NOT NULL,
+	FM_MT_ID NUMBER NOT NULL,
+	FM_FEE NUMBER NOT NULL,
+	FM_NOTE VARCHAR(30)
+)
+
+
+
 select * from fee;
 
 drop table fee;
@@ -348,14 +359,38 @@ create table feeExpense(
 
 SELECT * FROM COMMENT2 WHERE C_BNO = ?
 insert into feeExpense values (1, 1, '카페예약', 30000);
-insert into feeExpense values (2, 1, '카페예약', 30000);
-insert into feeExpense values (, 1, '카페예약', 30000);
-insert into feeExpense values (1, 1, '카페예약', 30000);
-insert into feeExpense values (1, 1, '카페예약', 30000);
-insert into feeExpense values (1, 1, '카페예약', 30000);
+insert into feeExpense values (2, 1, '밥', 20000);
+insert into feeExpense values (3, 1, '디저트', 10000);
+insert into feeExpense values (4, 1, '교재', 5000);
+insert into feeExpense values (5, 1, '복사', 5000);
 
-select * from fee;
+insert into feeMember values (1, 2, 1, 5000,'어디갔다옴');
+insert into feeMember values (2, 3, 1, 5000, '지각함');
+insert into feeMember values (3, 4, 1, 5000, null);
+insert into feeMember values (4, 5, 1, 5000, null);
 
+select * from member;
 
-select B_NO ,B_TITLE, B_CONTENT, B_NAME, B_DATE from BOARD b where B_S_INDEX = (select S_INDEX from STUDY where S_INDEX = 3) AND b.B_NO = 39
+select * from feeMember order by FM_ID;
+select * from feeExpense order by FE_ID;
+select * from board;
+
+select B_NO ,B_TITLE, B_CONTENT, B_NAME, B_DATE, B_FILENAME from BOARD b where B_S_INDEX = (select S_INDEX from STUDY where S_INDEX = 3) AND b.B_NO = 68
 select * from comment2;
+
+select FM_ID, FM_FEE, FM_NOTE 
+from (SELECT ROWNUM RNUM, FM_FEE, FM_NOTE, FM_ID 
+      FROM FeeMember fm) 
+where B_S_INDEX IN (select S_INDEX 
+		       from STUDY 
+		       where S_INDEX = 3) 
+AND (select FE_MT_ID
+     from FeeExpense
+     where FE_MT_ID = fm.FM_MT_ID) = 1
+AND (select M_INDEX 
+     from Member
+     where M_INDEX = fm.FM_M_INDEX) = 2
+AND FM_ID = 1
+AND RNUM>=1 
+AND RNUM<=10
+ORDER BY FM_ID desc

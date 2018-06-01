@@ -36,10 +36,11 @@
                <a href="./boardview?num=${b.index}">
                   ${b.title}
                </a>
+               <c:if test='${!empty b.filename }'><img src='../sources/board-list/file.png' width='13px' height='13px'></c:if>
                </div>
             </td>
             <td>
-               <div>${b.name}</div>
+            	   <div>${b.name}</div>
             </td>
             <td>
                <div>${b.date}</div>
