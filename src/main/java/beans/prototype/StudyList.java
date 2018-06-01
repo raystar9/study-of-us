@@ -3,9 +3,6 @@ package beans.prototype;
 public class StudyList {
 
 	 public static final String QUERY_GET ="SELECT * FROM StudyList";
-	 
-	 
-	 		
      public static final String QUERY_POST = "insert into member values(member_index.nextval,?,?,?,?,?,?,?,?)";
      public static final String QUERY_PUT = "UPDATE ";
      public static final String QUERY_DELETE = "DELETE ";

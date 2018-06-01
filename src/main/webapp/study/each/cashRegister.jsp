@@ -7,6 +7,8 @@
 		float:left;
 	}
 </style>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript" src="sources/cash-register/js/cash_register.js"></script>
 </head>
 <body>
 <%@ include file = "/general-sources/Navigation.jsp" %>

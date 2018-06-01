@@ -5,7 +5,7 @@
 <html>
 <head>
 <title>스터디 안의 게시판 페이지에서 글을 클릭했을 때 상세보기 되는 페이지</title>
-
+<script src="http://code.jquery.com/jquery-latest.js"></script>
 </head>
 <body>
 	<%@ include file="../comment/comment.jsp" %>
@@ -35,7 +35,17 @@
 			<td>날짜</td>
 			<td><c:out value="${b.date}" /></td>
 		</tr>
-
+		<tr>
+			<td><div>첨부파일</div></td>
+			<c:if test="${!empty b.filename }">
+				<td>
+					<img src="image/down.png" width="10px">
+					<a href="./boardfiledown?filename=${b.filename }">
+						${b.filename }
+					</a>
+				</td>
+			</c:if>
+		</tr>
 		<tr>
 			<td colspan="2" class="center">&nbsp; <c:if
 					test="${b.name == id || id == 'admin' }">
@@ -46,14 +56,16 @@
 		</tr>
 	</table><br>
 	
-	 <div class="container">
+	<input type="button" class="btn btn-default" type="button" id="commentListBtn"  value='답글보기▼'>
+	
+	<div class="container">
         <label for="content">comment</label>
         <form name="commentInsertForm">
             <div class="input-group">
                <input type="hidden" name="bno" value="${b.index}" id="bno" />
                <input type="text" class="form-control" id="content" name="content" placeholder="내용을 입력하세요.">
                <span class="input-group-btn">
-                    <button class="btn btn-default" type="button" name="commentInsertBtn">등록</button>
+               		<input type="button" class="btn btn-default" type="button" name="commentInsertBtn" value="등록" id='commentInsertBtn'>
                </span>
               </div>
         </form>
@@ -62,8 +74,5 @@
     <div class="container">
         <div class="commentList"></div>
     </div>
-
-
-
 </body>
 </html>
