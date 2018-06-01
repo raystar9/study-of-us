@@ -9,7 +9,7 @@
 
 </head>
 <body>
-<form action="result.jsp" method="post">
+<form action="/study-of-us/study/Studylist" method="post">
 <hr>
 	<h1 align=center>${study[0].name }</h1>
 <hr>

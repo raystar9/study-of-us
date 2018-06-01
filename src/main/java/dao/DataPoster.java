@@ -2,10 +2,12 @@ package dao;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import beans.prototype.Meeting;
 import beans.prototype.Member;
 import beans.prototype.Study;
+import beans.prototype.StudyList;
 import beans.study.each.InformSetup;
 import beans.study.each.board.BoardViewRegisterBean;
 import beans.study.each.board.CommentBean;
@@ -150,9 +152,9 @@ public class DataPoster extends DataSetter {
 	}
 
 	public void postComment(CommentBean comment) {
-
+		
 		set(CommentBean.QUERY_POST, new DataSettable() {
-
+			
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
 				pstmt.setString(1, comment.getName());
@@ -160,11 +162,27 @@ public class DataPoster extends DataSetter {
 				pstmt.setString(3, comment.getContent());
 				pstmt.setInt(4, comment.getCno());
 				pstmt.setInt(5, comment.getBno());
-
+				
 				pstmt.executeUpdate();
 				pstmt.close();
 			}
 		});
+	}
+	
+	public ArrayList<StudyList> Insertindex(int s_index, int m_index) {
+		
+		set(StudyList.QUERY_POST, new DataSettable() {
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+				pstmt.setInt(1, s_index);
+				pstmt.setInt(2, m_index);
+				
+				pstmt.executeUpdate();
+				pstmt.close();
+				
+			}
+		});
+		return null;
 	}
 
 	public void postCommentDelete(int cno) {
