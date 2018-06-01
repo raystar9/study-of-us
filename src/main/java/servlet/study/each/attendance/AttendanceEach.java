@@ -15,7 +15,7 @@ import fakeDB.FakeDB;
 /**
  * Servlet implementation class Attendance
  */
-@WebServlet("/study/each/attendance/each")
+@WebServlet("/study/each/attendance/each/record")
 public class AttendanceEach extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -34,7 +34,7 @@ public class AttendanceEach extends HttpServlet {
 		FakeDB db = FakeDB.getInstance();
 		ArrayList<Member> members = db.getMembers();
 		request.setAttribute("members", members);
-		request.getRequestDispatcher("/study/each/attendance/record.jsp").forward(request, response);
+		request.getRequestDispatcher("/study/each/attendance/each/record.jsp").forward(request, response);
 	}
 
 	@Override

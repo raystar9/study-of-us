@@ -43,7 +43,8 @@ public class FakeDB {
 		ScheduleBean s1 = new ScheduleBean();
 		s1.setStart("2018-05-03T12:00:00+09:00");
 		s1.setTitle("안녕!");
-		s1.setUrl(1);
+		//TODO 수정해야될 예정...
+		s1.setUrl("/study-of-us/study/each/schedule/each");
 		schedules.add(s1);
 	}
 

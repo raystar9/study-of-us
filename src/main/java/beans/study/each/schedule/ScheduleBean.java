@@ -22,7 +22,7 @@ public class ScheduleBean {
 	public void setStart(String start) {
 		this.start = start;
 	}
-	public void setUrl(int postNo) {
-		this.url = "schedule/" + "each";
+	public void setUrl(String url) {
+		this.url = url;
 	}
 }
