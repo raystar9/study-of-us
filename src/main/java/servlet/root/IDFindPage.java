@@ -41,14 +41,15 @@ public class IDFindPage extends HttpServlet{
 		}
 		if(findpro.getEmail().equals(email) || Index != null){
 			HttpSession session = request.getSession();
-			session.setAttribute("id", name);
+			session.setAttribute("name", name);
+			session.setAttribute("email", findpro.getEmail());
 			session.setAttribute("index", Index.getIndex());
 			
 			System.out.println("세션값:"+session.getAttribute("index"));
 			
 			
 			System.out.println(findpro.getEmail());
-			response.sendRedirect("/study-of-us/study/list");
+			response.sendRedirect("/study-of-us/IDFindResult");
 			/*RequestDispatcher dispatcher = request.getRequestDispatcher("/list");
 			dispatcher.forward(request, response);*/
 		}
