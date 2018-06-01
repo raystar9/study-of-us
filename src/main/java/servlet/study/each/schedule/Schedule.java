@@ -33,16 +33,18 @@ public class Schedule extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		String type = null;
-		if(request.getParameter("type") == null) {
-			type = "notice";
-		} else {
+		String type = "notice";
+		if(request.getParameter("type") != null) {
 			type = request.getParameter("type");
 		}
 		if(type.equals("attend")) {
 			System.out.println("attend입니다.");
-			//TODO 데이터베이스에서 attendance 링크를 받아와서 attribute로 넘겨줘야함
+			ObjectMapper mapper = new ObjectMapper();
+			ArrayList<ScheduleBean> schedules = FakeDB.getInstance().getSchedules();
+			schedules.get(0).setUrl("/study-of-us/study/each/attendance/each");
+			System.out.println(mapper.writeValueAsString(schedules));
+			request.setAttribute("schedules", mapper.writeValueAsString(schedules));
+			
 			request.getRequestDispatcher("schedule.jsp").forward(request, response);
 		}else if(type.equals("notice")) {
 			ObjectMapper mapper = new ObjectMapper();
@@ -53,7 +55,6 @@ public class Schedule extends HttpServlet {
 			
 			request.getRequestDispatcher("schedule.jsp").forward(request, response);
 		}
-		
 	}
 
 }
