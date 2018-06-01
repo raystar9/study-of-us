@@ -1,6 +1,8 @@
 
 delete study;
 
+select * from studylist
+
 
 CREATE TABLE Study(
 	S_INDEX NUMBER NOT NULL PRIMARY KEY,      -- study_index 시퀀스 처리
@@ -28,7 +30,7 @@ select * from (select rownum as rnum, s_index, s_name, s_c_id, S_MT_INDEX, S_STA
 			
 			
 			select * from study where s_place LIKE '%인천%' and s_name LIKE '%자바%' and LIKE 
-			
+			select * from study where s_place LIKE '%인천%' or s_place LIKE '%서울%'
 			select * from study inner join CATEGORY on STUDY.S_C_ID = CATEGORY.C_ID where Study.s_c_id = 1
 
 			CREATE TABLE Category(

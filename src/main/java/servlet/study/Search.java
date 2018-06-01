@@ -43,6 +43,9 @@ public class Search extends HttpServlet {
 		DataGetter getter = new DataGetter(DatabaseAccounts.SCOTT);
 		HttpSession session = request.getSession();
 		
+		
+	
+
 
 
 		int[] count;
@@ -76,10 +79,12 @@ public class Search extends HttpServlet {
 	
 		if (request.getParameter("place")!=null || request.getParameter("searchVal")!=null || request.getParameter("check") != null){
 			
-			
+				String str = request.getParameter("checks");
+				System.out.println(str +"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 			if(request.getParameter("place")==null) {
 				if( request.getParameter("check")==null) {
 					place = request.getParameter("place2");
+			
 					System.out.println("place2 값을 사용합니다." + place);
 					request.setAttribute("place2", place);
 				}else {

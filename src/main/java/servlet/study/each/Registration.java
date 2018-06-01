@@ -56,14 +56,14 @@ public class Registration extends HttpServlet {
 		study.setEffective(request.getParameter("activity"));
 		study.setPlace(request.getParameter("location"));
 		
-		DataPoster poster = new DataPoster(DatabaseAccounts.SCOTT);
+		DataPoster poster = new DataPoster(DatabaseAccounts.ADMIN);
 		poster.postStudy(study);
 		
 		//try catch 문 실행
 		poster.close();
-		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/list.jsp");
-		dispatcher.forward(request, response);
+		response.sendRedirect("/study-of-us/study/list");
+		/*RequestDispatcher dispatcher = request.getRequestDispatcher("/study-of-us/study/list");
+		dispatcher.forward(request, response);*/
 	}
 }
 

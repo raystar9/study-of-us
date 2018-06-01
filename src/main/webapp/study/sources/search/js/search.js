@@ -66,20 +66,22 @@
         })
 		
 		$("input[type=checkbox]").each(function(){
-			$(this).change(function(){
-				var a = $(this).val()
-				$("#place2").val(a)
-				$("input[type=checkbox]").prop("checked",false)
-				$(this).prop("checked",true)
+			$(this).click(function(){
 				
+				var checks = $(this).serialize()
+				a = $(this).val()
+				alert(a)
+				$("#place2").val(a)
+			
 				$.ajax({
 					type : "get",
-					data : {"place" : a, "state":"ajax"},
+					data : {"place" : a, "state":"ajax", "checks" : checks},
 					url : "/study-of-us/study/search",
 					success : function(rdata){
 							$(".project").empty().append(rdata);
 						}
-					})					
+					})	
+				
 				})
 			})
 			
