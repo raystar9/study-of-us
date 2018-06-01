@@ -601,6 +601,36 @@ public class DataGetter extends DataAccessor {
 		return list;
 	}
 
+	public ArrayList<CommentBean> getCommentCount(int num) {
+		@SuppressWarnings("unchecked")
+		ArrayList<CommentBean> list = (ArrayList<CommentBean>) get(CommentBean.QUERY_GET, new DataSettable() {
+
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+				// TODO Auto-generated method stub
+				pstmt.setInt(1, num);
+			}
+		}, new DataGettable() {
+
+			@Override
+			public ArrayList<CommentBean> onGetResult(ResultSet rs) throws SQLException {
+				ArrayList<CommentBean> commentlist = new ArrayList<CommentBean>();
+				while (rs.next()) {
+					CommentBean comment = new CommentBean();
+					comment.setName(rs.getString(1));
+					comment.setDate(rs.getString(2));
+					comment.setContent(rs.getString(3));
+					comment.setCno(rs.getInt(4));
+					comment.setBno(rs.getInt(5));
+					commentlist.add(comment);
+				}
+				return commentlist;
+			}
+		});
+
+		return list;
+	}
+	
 	public ArrayList<CommentBean> getCommentList(int num) {
 		@SuppressWarnings("unchecked")
 		ArrayList<CommentBean> list = (ArrayList<CommentBean>) get(CommentBean.QUERY_GET, new DataSettable() {
@@ -630,7 +660,7 @@ public class DataGetter extends DataAccessor {
 
 		return list;
 	}
-
+	
 	// 스터디명 체크
 	public Study getSname_ck(String sname) {
 		Study study = (Study) get(Study.QUERY_GET, new DataSettable() {

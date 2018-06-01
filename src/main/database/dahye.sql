@@ -317,9 +317,9 @@ SELECT * FROM COMMENT2;
 select * from study;
 select * from board;
 update study set S_INDEX = 3;
-update comment2 set C_BNO = 39 where C_CONTENT = '댓글1';
-update comment2 set C_BNO = 40 where C_CONTENT = '댓글2';
-update comment2 set C_BNO = 41 where C_CONTENT = '댓글3';
+update comment2 set C_BNO = 68 where C_CONTENT = '안녕하십니까';
+update comment2 set C_BNO = 68, C_CNO = 9 where C_CONTENT = 'ㅇㅇㅇㅇ';
+update comment2 set C_BNO = 68, C_CNO = 8 where C_CONTENT = '댓글3';
 
 select * from feemember;
 
