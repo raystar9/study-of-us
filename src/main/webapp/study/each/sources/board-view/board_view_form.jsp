@@ -9,14 +9,14 @@
 </head>
 <body>
 	<%@ include file="../comment/comment.jsp" %>
+	<c:set var="b" value="${boardcontent}" />
 	<input type="hidden" name="commentcount" value="${commentcount}" id="commentcount" />
-	<c:set var='id' value="${sessionScope.id}" />
+	<c:set var='id' value="${b.name}" /><!-- "${sessionScope.id}" 바꿀꺼임 -->
 	<table border="1">
 		<tr class="center">
 			<th colspan="2">스터디 안의 게시판 페이지에서 글을 클릭했을 때 상세보기 되는 페이지</th>
 		</tr>
 
-		<c:set var="b" value="${boardcontent}" />
 		<tr>
 			<td width='10%'>글쓴이</td>
 			<td><c:out value="${b.name}" /></td>
