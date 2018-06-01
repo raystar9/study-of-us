@@ -60,7 +60,8 @@ public class NewSchedule extends HttpServlet {
 		ScheduleBean s = new ScheduleBean();
 		s.setStart(DateConverter.getDateString(m.getDate()));
 		s.setTitle(m.getLocation());
-		s.setUrl(m.getIndex());
+		//TODO 추후에 schedule번호로 수정해야함.
+		s.setUrl("/study-of-us/study/each/schedule/each");
 		schedules.add(s);
 		//TODO Database 연결 시 위의 두 코드가 합쳐질 예정임.
 		
