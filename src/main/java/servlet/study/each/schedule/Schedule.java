@@ -37,24 +37,20 @@ public class Schedule extends HttpServlet {
 		if(request.getParameter("type") != null) {
 			type = request.getParameter("type");
 		}
+		ObjectMapper mapper = new ObjectMapper();
+		ArrayList<ScheduleBean> schedules = FakeDB.getInstance().getSchedules();
 		if(type.equals("attend")) {
 			System.out.println("attend입니다.");
-			ObjectMapper mapper = new ObjectMapper();
-			ArrayList<ScheduleBean> schedules = FakeDB.getInstance().getSchedules();
 			schedules.get(0).setUrl("/study-of-us/study/each/attendance/each");
 			System.out.println(mapper.writeValueAsString(schedules));
 			request.setAttribute("schedules", mapper.writeValueAsString(schedules));
-			
-			request.getRequestDispatcher("schedule.jsp").forward(request, response);
 		}else if(type.equals("notice")) {
-			ObjectMapper mapper = new ObjectMapper();
-			ArrayList<ScheduleBean> schedules = FakeDB.getInstance().getSchedules();
 			
 			System.out.println(mapper.writeValueAsString(schedules));
+			schedules.get(0).setUrl("/study-of-us/study/each/schedule/each");
 			request.setAttribute("schedules", mapper.writeValueAsString(schedules));
-			
-			request.getRequestDispatcher("schedule.jsp").forward(request, response);
 		}
+		request.getRequestDispatcher("schedule.jsp").forward(request, response);
 	}
 
 }
