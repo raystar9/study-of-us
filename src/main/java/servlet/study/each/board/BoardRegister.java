@@ -36,6 +36,7 @@ public class BoardRegister extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		System.out.println("BoardRegister 서블릿으로 들어옴");
 		// TODO Auto-generated method stub
 		int studyIndex = 3;
 		String realFolder = "";
@@ -54,14 +55,13 @@ public class BoardRegister extends HttpServlet {
 	    System.out.println("realFolder = " + realFolder);
 		
 	    MultipartRequest multi = null;
-	    multi = new MultipartRequest(request, realFolder, fileSize,"euc-kr",new DefaultFileRenamePolicy());
+	    multi = new MultipartRequest(request, realFolder, fileSize,"UTF-8",new DefaultFileRenamePolicy());
 		
 	    //BoardBean 객체에 글 등록 폼에서 입력 받은 정보들을 저장
 		BoardViewRegisterBean board = new BoardViewRegisterBean();
 		board.setTitle(request.getParameter("boardSubject"));
 		board.setName(request.getParameter("boardName"));
 		board.setContent(request.getParameter("boardContent"));
-		
 		//업로드의 파일명은 업로드한 파일의 전체 경로에서 파일 이름만 저장합니다.
         board.setFilename(multi.getFilesystemName((String)multi.getFileNames().nextElement()));
 
