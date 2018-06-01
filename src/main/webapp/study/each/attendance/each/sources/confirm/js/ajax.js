@@ -1,10 +1,14 @@
 $().ready(()=>{
 	
-	$('form').submit(e=>{
+	$("form").submit(e=>{
 		e.preventDefault();
 		$.ajax({
-			success: ()=>{
+			url: "./confirm",
+			method: "post",
+			data: $("form").serialize(),
+			success: (result)=>{
 				location.href='/study-of-us/study/each/schedule';
+				
 			}
 		});
 	});
