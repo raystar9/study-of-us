@@ -10,57 +10,50 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import beans.root.Login;
+import beans.root.Find;
 import dao.DataGetter;
 import dao.DatabaseAccounts;
 
-/**
- * Servlet implementation class LoginPage
- */
-@WebServlet("/LoginPage")
-public class LoginPage extends HttpServlet {
+@WebServlet("/IDFindPage")
+public class IDFindPage extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 String id = request.getParameter("id");	
-		 String password = request.getParameter("password");
+		 String name = request.getParameter("name");	
+		 String email = request.getParameter("email");
 		 
 		
 
 		DataGetter getter = new DataGetter(DatabaseAccounts.ADMIN);
 		
 		
-		Login Index = getter.getIndex(id);
+		Find Index = getter.getIndex2(name);
 		
 		
-		Login logpro = getter.getLogin(id);
+		Find findpro = getter.getFind(name);
 		//
 		/*request.setAttribute("login", logpro);*/
 		
-		if(logpro == null || !logpro.getPassword().equals(password)) {
-			System.out.println(logpro);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/LoginFail");
+		if(findpro == null || !findpro.getEmail().equals(email)) {
+			System.out.println(findpro);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/IDFindFail");
 			dispatcher.forward(request, response);
 		}
-		if(logpro.getPassword().equals(password) || Index != null){
-			//로그인 성공시 세션 생성 
+		if(findpro.getEmail().equals(email) || Index != null){
 			HttpSession session = request.getSession();
-			session.setAttribute("id", id);
+			session.setAttribute("id", name);
 			session.setAttribute("index", Index.getIndex());
 			
 			System.out.println("세션값:"+session.getAttribute("index"));
 			
 			
-			System.out.println(logpro.getPassword());
+			System.out.println(findpro.getEmail());
 			response.sendRedirect("/study-of-us/study/list");
 			/*RequestDispatcher dispatcher = request.getRequestDispatcher("/list");
 			dispatcher.forward(request, response);*/
 		}
-	/*	}else {
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/LoginFail");
-			dispatcher.forward(request, response);
-		}*/
 
 		getter.close();
 	}
+
 }
