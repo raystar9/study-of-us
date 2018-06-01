@@ -3,6 +3,7 @@ package servlet.study.each.schedule;
 import java.io.IOException;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,6 +15,7 @@ import beans.prototype.Meeting;
 import beans.study.each.schedule.ScheduleBean;
 import dateConverter.DateConverter;
 import fakeDB.FakeDB;
+import param.ParameterGetter;
 
 /**
  * Servlet implementation class NewSchedule
@@ -50,11 +52,13 @@ public class NewSchedule extends HttpServlet {
 		poster.close();
 		*/
 		ArrayList<ScheduleBean> schedules = FakeDB.getInstance().getSchedules();
+		HashMap<String, String> map = ParameterGetter.get(request);
 		
 		Meeting m = new Meeting();
-		Date dateIn = DateConverter.convertDateTime((String)request.getAttribute("date") + 'T' + (String)request.getAttribute("time") + ":00");
+		ParameterGetter.get(request).get("date");
+		Date dateIn = DateConverter.convertDateTime(map.get("date") + 'T' + map.get("time") + ":00");
 		m.setDate(dateIn);
-		m.setLocation((String) request.getAttribute("location"));
+		m.setLocation((String) map.get("location"));
 		FakeDB.getInstance().setMeeting(m);
 		
 		ScheduleBean s = new ScheduleBean();
