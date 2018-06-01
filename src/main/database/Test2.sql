@@ -139,21 +139,32 @@ insert into StudyList values(24,65)
 insert into StudyList values(18,65)
 insert into StudyList values(30,65)
 insert into StudyList values(29,65)
-insert into StudyList values(27,65)
+insert into StudyList values(43,65)
 
 
-insert into StudyList values(23,67)
-insert into StudyList values(25,67)
+insert into StudyList values(41,67)
+insert into StudyList values(18,67)
+insert into StudyList values(42,67)
+insert into StudyList values(43,67)
 
 
-select * from studyList
+select * from studyList where sl_m_index = 67
 select * from study
 select * from member;
 
+select * from studyList where sl_m_index = 67
+
+
+delete from studylist where sl_m_index = 67;
 delete from studylist
 
 select * from studyList where sl_m_index = 67;
-update study set s_start = to_date('2018-04-30') where s_index = 21;
+update study set s_start = to_date('2018-04-30') where s_index = 42;
+update study set s_start = to_date('2018-05-30') where s_index = 41;
+update study set s_start = to_date('2018-01-30') where s_index = 43;
+update study set s_start = to_date('2017-12-30') where s_index = 18;
 
+
+update study set s_name = '이름좀 ㅡㅡ' where s_index = 18;
 
 

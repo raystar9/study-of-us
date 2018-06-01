@@ -33,7 +33,7 @@ public class List extends HttpServlet {
 		int page = 1;
 
 		//// 한페이지에 보여줄 스터디테이블 갯수
-		int limit = 3;
+		int limit = 2;
 
 		if (request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
