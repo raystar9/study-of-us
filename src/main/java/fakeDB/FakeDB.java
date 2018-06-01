@@ -9,6 +9,7 @@ import beans.prototype.Meeting;
 import beans.prototype.Member;
 import beans.prototype.Study;
 import beans.study.StudyListCount;
+import beans.study.each.AttendanceRecordBean;
 import beans.study.each.schedule.ScheduleBean;
 
 public class FakeDB {
@@ -19,6 +20,7 @@ public class FakeDB {
 	ArrayList<Meeting> meetings = new ArrayList<>();
 	ArrayList<ScheduleBean> schedules = new ArrayList<>();
 	ArrayList<Attendance> attendances = new ArrayList<>();
+	ArrayList<AttendanceRecordBean> records = new ArrayList<>();
 	
 	public static FakeDB getInstance() {
 		return instance;
@@ -29,6 +31,19 @@ public class FakeDB {
 		initStudy();
 		initMeetings();
 		initSchedules();
+		initAttendanceRecord();
+	}
+
+	private void initAttendanceRecord() {
+		AttendanceRecordBean a = new AttendanceRecordBean();
+		//TODO 여기서 작업마침 해야돼!!
+	}
+
+	public void setAttendanceRecord() {
+		
+	}
+	public ArrayList<AttendanceRecordBean> getAttendanceRecords() {
+		return records;
 	}
 	
 	public ArrayList<Attendance> getAttendances() {

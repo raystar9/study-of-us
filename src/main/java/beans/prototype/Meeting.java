@@ -1,17 +1,25 @@
 package beans.prototype;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 public class Meeting {
 	public static final String QUERY_GET = "";
 	public static final String QUERY_POST = "";
 	
 	private int index;
+	private ArrayList<Member> members = new ArrayList<>();
 	private String location;
 	private Date date;
 	private int fee;
 	private String comment;
 	
+	public ArrayList<Member> getMembers() {
+		return members;
+	}
+	public void setMembers(ArrayList<Member> members) {
+		this.members = members;
+	}
 	public int getIndex() {
 		return index;
 	}
