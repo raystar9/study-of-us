@@ -126,21 +126,33 @@ DELETE FROM StudyList WHERE SL_S_INDEX=? AND SL_M_INDEX=?;
 
 
 
-insert into StudyList values(19,65)
 insert into StudyList values(20,66)
 insert into StudyList values(21,67)
 insert into StudyList values(19,67)
 insert into StudyList values(20,65)
+insert into StudyList values(19,65)
 insert into StudyList values(21,65)
 insert into StudyList values(22,65)
 insert into StudyList values(23,65)
 insert into StudyList values(24,65)
 
+insert into StudyList values(18,65)
+insert into StudyList values(30,65)
+insert into StudyList values(29,65)
+insert into StudyList values(27,65)
+
+
+insert into StudyList values(23,67)
+insert into StudyList values(25,67)
+
+
 select * from studyList
 select * from study
 select * from member;
 
+delete from studylist
 
+select * from studyList where sl_m_index = 67;
 update study set s_start = to_date('2018-04-30') where s_index = 21;
 
 
