@@ -130,6 +130,137 @@ public class DataGetter extends DataAccessor {
 		return list;
 	}
 
+
+	public ArrayList<Study> getStudies(String search, String[] check, String secondArray, int startcount, int endcount) { 
+		
+		String sql = StudyListCount.QUERY_GET+StudyListCount.QUERY_GET2;
+		 if(search != null && search != "") { 
+			 sql = StudyListCount.QUERY_GET;
+			 sql += " where s_name LIKE '%"+search+"%' "+ StudyListCount.QUERY_GET2;
+			 System.out.println(sql);
+				if(!secondArray.equals("소분류") && secondArray != "" ) {
+			 		sql += "and c_sub LIKE '%"+secondArray+"%'" ;
+				}
+					if(check != null) { // 검색어와 체크값을 같이 검색 했을 시 
+						// 체크값을 만족하는 경우
+							String str = "and s_place LIKE ";
+								for(int i=0; i<check.length; i++) {
+					    	if(i<1) {
+					    		str += "'%"+check[i]+"%' ";
+					    	}else {
+					    		str += "or s_place LIKE '%"+check[i]+"%' ";
+					    	}
+					    }
+					 sql += str; 
+					}		
+		 	
+		 }
+		 System.out.println(sql);
+	
+		@SuppressWarnings("unchecked")
+		ArrayList<Study> list = (ArrayList<Study>) get(sql,new DataSettable() {
+			
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+				pstmt.setInt(1, startcount);
+				pstmt.setInt(2, endcount);
+				
+			}
+		}, new DataGettable() {
+
+			@Override
+			public ArrayList<?> onGetResult(ResultSet rs) throws SQLException {
+				ArrayList<Study> studies = new ArrayList<>();
+				while (rs.next()) {
+					Study study = new Study();
+					study.setIndex(rs.getInt(2));
+					study.setName(rs.getString(3));
+					study.setC_id(rs.getInt(4));
+					study.setMt_index(rs.getInt(5));
+					study.setStart(rs.getDate(6));
+					study.setEnd(rs.getDate(7));
+					study.setPeoplenum(rs.getInt(8));
+					study.setDay(rs.getString(9));
+					study.setTime(rs.getString(10));
+					study.setExplain(rs.getString(11));
+					study.setPrepared(rs.getString(12));
+					study.setEffective(rs.getString(13));
+					study.setPlace(rs.getString(14));
+
+					studies.add(study);
+				}
+				return studies;
+			}
+		});
+
+		// TODO Auto-generated method stub
+		return list;
+	}
+	
+	public ArrayList<Study> getStudies(String search, String[] check, String secondArray) { 
+		
+		String sql = StudyListCount.QUERY_GET+StudyListCount.QUERY_GET3;
+		 System.out.println(sql);
+		 if(search != null && search != "") { 
+			 sql = StudyListCount.QUERY_GET;
+			 sql += " where s_name LIKE '%"+search+"%' "+ StudyListCount.QUERY_GET3;
+			 System.out.println(sql);
+				if(!secondArray.equals("소분류") && secondArray != "" ) {
+			 		sql += "where c_sub LIKE '%"+secondArray+"%'" ;
+				}
+					if(check != null ) { // 검색어와 체크값을 같이 검색 했을 시
+						String str = "";
+						// 체크값을 만족하는 경우
+						if(!secondArray.equals("소분류") && secondArray != "") {
+							 str = "and s_place LIKE ";
+						}else {
+							 str = "where s_place LIKE ";
+						}
+								for(int i=0; i<check.length; i++) {
+					    	if(i<1) {
+					    		str += "'%"+check[i]+"%' ";
+					    	}else {
+					    		str += "or s_place LIKE '%"+check[i]+"%' ";
+					    	}
+					    }
+					 sql += str; 
+					}		
+		 	
+		 }
+		 System.out.println(sql);
+	
+		@SuppressWarnings("unchecked")
+		ArrayList<Study> list = (ArrayList<Study>) get(sql, new DataGettable() {
+
+			@Override
+			public ArrayList<?> onGetResult(ResultSet rs) throws SQLException {
+				ArrayList<Study> studies = new ArrayList<>();
+				while (rs.next()) {
+					Study study = new Study();
+					study.setIndex(rs.getInt(2));
+					study.setName(rs.getString(3));
+					study.setC_id(rs.getInt(4));
+					study.setMt_index(rs.getInt(5));
+					study.setStart(rs.getDate(6));
+					study.setEnd(rs.getDate(7));
+					study.setPeoplenum(rs.getInt(8));
+					study.setDay(rs.getString(9));
+					study.setTime(rs.getString(10));
+					study.setExplain(rs.getString(11));
+					study.setPrepared(rs.getString(12));
+					study.setEffective(rs.getString(13));
+					study.setPlace(rs.getString(14));
+
+					studies.add(study);
+				}
+				return studies;
+			}
+		});
+
+		// TODO Auto-generated method stub
+		return list;
+	}
+
 	public ArrayList<StudySearch> getSearchList(String searchVal, int startcount, int endcount) {
 
 		@SuppressWarnings("unchecked")

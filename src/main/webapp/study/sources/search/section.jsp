@@ -1,11 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c"
  				uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 	<form class="example" action="/study-of-us/study/search" method="get">
 <div class="search">
-  		<button type="submit"><i class="fa fa-search"></i></button>
+  		<button type="submit" id="button"><i class="fa fa-search"></i></button>
  		 <input type="text" placeholder="Search.." id="searchVal" name="searchVal" value="">
 	
 	
@@ -20,7 +20,7 @@
 	
 	<div class="custom-select2">
   		<select id="secondArray" name="secondArray">
-  			  <option value="">소분류</option>
+  			  <option>소분류</option>
   			  
   		</select>
 	</div>
@@ -28,7 +28,7 @@
 	
 	<div class="check" >
 	<p>
-
+	 
 	<label class="container">서울
   		<input type="checkbox" name="checkbox" value="서울">
 		<span class="checkmark"></span>
@@ -69,6 +69,7 @@
 	</p>
 	
 		<p>
+	
 	<label class="container">부산
   		<input type="checkbox"  value="부산" name="checkbox"> 
 		<span class="checkmark"></span>
@@ -101,26 +102,29 @@
 		</div>
 		</c:forEach>
 		
-	
+		<c:forEach var="check2" items="${checkbox }">
+		<input type="text"  id="check" name="check" value="${check2}"/>
+		</c:forEach>
+		
 	<div class="paging"  style="text-align:center; margin-bottom:100px">
 		<c:if test="${startpage > 1}">
-			<a href="/study-of-us/study/search?page=1&searchVal=${searchVal}&check=${place}">처음</a>
+			<a href="/study-of-us/study/search?page=1&searchVal=${searchVal}${check}&secondArray=${secondArray}">처음</a>
 		</c:if>
 		
 		<c:if test="${page > 1}">
-			<a href="/study-of-us/study/search?page=${page-1 }&searchVal=${searchVal}&check=${place}">이전</a>
+			<a href="/study-of-us/study/search?page=${page-1 }&searchVal=${searchVal}${check}&secondArray=${secondArray}">이전</a>
 		</c:if>
 		
 		<c:forEach var="i" begin= "${startpage }" end="${endpage }">
-			<a href="/study-of-us/study/search?page=${i }&searchVal=${searchVal}&check=${place}">${i }</a>
+			<a href="/study-of-us/study/search?page=${i }&searchVal=${searchVal}${check}&secondArray=${secondArray}">${i }</a>
 		</c:forEach>
 		
 		<c:if test="${page < totalpage}">
-			<a href="/study-of-us/study/search?page=${page+1 }&searchVal=${searchVal}&check=${place}">다음</a>
+			<a href="/study-of-us/study/search?page=${page+1 }&searchVal=${searchVal}&checkbox=${check}&secondArray=${secondArray}">다음</a>
 		</c:if>
 		
 		<c:if test="${endpage < totalpage}">
-			<a href="/study-of-us/study/search?page=${totalpage }&searchVal=${searchVal}&check=${place}">끝</a>
+			<a href="/study-of-us/study/search?page=${totalpage }&searchVal=${searchVal}${check}&secondArray=${secondArray}">끝</a>
 		</c:if>
 
 		</div>
