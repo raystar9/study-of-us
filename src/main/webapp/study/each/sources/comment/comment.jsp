@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 
 <script>
-	var pandan = 0; //댓글 열고 접는 판단 변수
 	$(function() {
 		var commentcount = $('#commentcount').val();
 		$('#commentListBtn').val('답글보기(' + commentcount + ')▼');
@@ -13,11 +12,11 @@
 		});
 		
 		$('#commentListBtn').click(function() {
-			if($('#commentListBtn').val() == '답글보기▲'){
+			if($('#commentListBtn').val() == '답글보기(' + commentcount + ')▲'){
 				$(".commentList").empty();
-				$('#commentListBtn').val('답글보기▼');
+				$('#commentListBtn').val('답글보기(' + commentcount + ')▼');
 			}else{
-			$('#commentListBtn').val('답글보기▲');
+			$('#commentListBtn').val('답글보기(' + commentcount + ')▲');
 			commentList();
 			}
 		});
@@ -25,7 +24,6 @@
 
 	function commentList() {
 		var bno = $("#bno").val();
-		alert(bno);
 			$.ajax({ url : '/study-of-us/commentlist',
 					 type : 'post',
 					 data : {"bno" : bno},
@@ -53,11 +51,11 @@
 			type : 'post',
 			data : insertData,
 			success : function(data) {
-				if (data == 1) {
-					commentList(); //댓글 작성 후 댓글 목록 reload
+				$('#commentListBtn').val('답글보기(' + data + ')▲');
 					$('[name=content]').val('');
+					 commentList(bno);
 				}
-			}
+			
 		});
 		
 	}
@@ -99,14 +97,16 @@
 	//댓글 삭제 
 	function commentDelete(cno) {
 		var c = cno;
+		var bno = $("#bno").val();
 		$.ajax({
 			url : '/study-of-us/commentdelete',
 			type : 'post',
 			data : {
-				"cno" : c
+				"cno" : cno,
+				"bno" : bno
 			},
 			success : function(data) {
-				if (data == 1)
+				$('#commentListBtn').val('답글보기(' + data + ')▲');
 					commentList(bno); //댓글 삭제후 목록 출력 
 			}
 		});
