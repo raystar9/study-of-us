@@ -56,12 +56,12 @@
 					</thead>
 					<tbody>
 					<c:forEach var="memlist" items="${memlist }">
-					 <tr>
+					 	<tr>
 					 	<td>${memlist.name }</td>
 					 	<td>${memlist.phone }</td>
 					 	<td>${memlist.email }</td>
 					 </tr>
-					</c:forEach>
+					</c:forEach>				
 					</tbody>
 				</table>
 			</td>
