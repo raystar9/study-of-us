@@ -146,8 +146,6 @@ INSERT INTO MEMBER VALUES(member_index.nextval,'zxc','zxc','이다혜4','dahye30
 select * from MEMBER;
 
 
-
-
 drop table Board;
 
 CREATE TABLE Board(
@@ -394,3 +392,19 @@ AND FM_ID = 1
 AND RNUM>=1 
 AND RNUM<=10
 ORDER BY FM_ID desc
+
+drop table fee;
+select * from fee;
+
+CREATE TABLE fee(
+	F_NO NUMBER NOT NULL PRIMARY KEY,      		-- 글번호
+	F_S_INDEX VARCHAR(16) NOT NULL,				-- 스터디 외래키
+	F_DATE varchar(50) NOT NULL				-- 회비 등록 날짜
+)
+
+insert into fee values(1, 3, '이다혜', '')
+
+create table fee(
+	
+)
+

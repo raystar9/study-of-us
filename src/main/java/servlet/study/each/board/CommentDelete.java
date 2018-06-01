@@ -29,10 +29,10 @@ public class CommentDelete extends HttpServlet {
 		System.out.println("Delete 서블릿으로 왔음");
 		DataPoster poster = new DataPoster(DatabaseAccounts.SCOTT);
 		DataGetter getter = new DataGetter(DatabaseAccounts.SCOTT);
-		int cno = Integer.parseInt((String)request.getAttribute("cno"));
+		int cno = Integer.parseInt(request.getParameter("cno"));
 		poster.postCommentDelete(cno);
 		//게시글 번호
-		int boardnum = Integer.parseInt((String) request.getAttribute("bno"));
+		int boardnum = Integer.parseInt(request.getParameter("bno"));
 		//댓글 개수
 		int commentcount = getter.getCommentCount(boardnum);
 		

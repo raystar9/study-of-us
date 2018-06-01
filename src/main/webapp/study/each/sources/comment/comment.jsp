@@ -17,7 +17,7 @@
 				$('#commentListBtn').val('답글보기(' + commentcount + ')▼');
 			}else{
 			$('#commentListBtn').val('답글보기(' + commentcount + ')▲');
-			commentList();
+				commentList();
 			}
 		});
 	});
@@ -62,8 +62,6 @@
 
 	//댓글 수정 - 댓글 내용 출력을 input 폼으로 변경 
 	function commentUpdate(cno, content) {
-		alert(cno);
-		alert(content);
 		var a = '';
 		a += '<div class="input-group">';
 		a += '<input type="text" class="form-control" name="content_'+cno+'" value="'+content+'"/>';

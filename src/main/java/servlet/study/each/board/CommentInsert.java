@@ -34,15 +34,15 @@ public class CommentInsert extends HttpServlet {
 		CommentBean comment = new CommentBean();
 		
 		//insert할 데이터 가져와서 Bean에 저장
-		comment.setContent((String) request.getAttribute("content"));
-		comment.setBno(Integer.parseInt((String)request.getAttribute("bno")));		//시퀀스 처리?
+		comment.setContent(request.getParameter("content"));
+		comment.setBno(Integer.parseInt(request.getParameter("bno")));		//시퀀스 처리?
 		comment.setCno(10);	
 		comment.setName("이다혜");	
 		//DB안에 넣기
 		poster.postCommentInsert(comment);
 		
 		//게시글 번호
-		int boardnum = Integer.parseInt((String)request.getAttribute("bno"));
+		int boardnum = Integer.parseInt(request.getParameter("bno"));
 		//댓글 개수
 		int commentcount = getter.getCommentCount(boardnum);
 		
@@ -51,7 +51,6 @@ public class CommentInsert extends HttpServlet {
 		
 		PrintWriter out = response.getWriter();
 		out.println(commentcount);
-		
 	}
 
 }

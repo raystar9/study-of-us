@@ -56,7 +56,7 @@ public class BoardRegister extends HttpServlet {
 		
 	    MultipartRequest multi = null;
 	    multi = new MultipartRequest(request, realFolder, fileSize,"UTF-8",new DefaultFileRenamePolicy());
-		
+
 	    //BoardBean 객체에 글 등록 폼에서 입력 받은 정보들을 저장
 		BoardViewRegisterBean board = new BoardViewRegisterBean();
 		board.setTitle(request.getParameter("boardSubject"));

@@ -40,8 +40,6 @@
 								<thead>
 									<tr>
 										<th width="8%"><div>번호</div></th>
-										<th width="50%"><div>제목</div></th>
-										<th width="14%"><div>작성자</div></th>
 										<th width="17%"><div>날짜</div></th>
 									</tr>
 								</thead>
@@ -51,14 +49,6 @@
 										<tr>
 											<td><c:out value="${num }"></c:out> <c:set var="num"
 													value="${num-1}" /></td>
-											<td>
-
-												<div>
-													&nbsp; ▶ <a href="./cashview?num=${c.index}">
-														${c.title} </a>
-												</div>
-											</td>
-											<td><div>${c.name}</div></td>
 											<td><div>${c.date}</div></td>
 										</tr>
 									</c:forEach>
@@ -93,7 +83,7 @@
 
 									<tr>
 										<td colspan="5" style="text-align: right"><a
-											href="./cashregister">[글쓰기]</a></td>
+											href="#">[회비등록]</a></td>
 									</tr>
 								</tbody>
 
