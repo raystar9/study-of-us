@@ -340,6 +340,7 @@ public class DataGetter extends DataAccessor {
 					boardcontent.setContent(rs.getString(3));
 					boardcontent.setName(rs.getString(4));
 					boardcontent.setDate(rs.getString(5));
+					boardcontent.setFilename(rs.getString(6));
 				}
 				return boardcontent;
 			}
@@ -603,9 +604,8 @@ public class DataGetter extends DataAccessor {
 		return list;
 	}
 
-	public ArrayList<CommentBean> getCommentCount(int num) {
-		@SuppressWarnings("unchecked")
-		ArrayList<CommentBean> list = (ArrayList<CommentBean>) get(CommentBean.QUERY_GET, new DataSettable() {
+	public int getCommentCount(int num) {
+		int commentcount = (int)get(CommentBean.QUERY_GET_COUNT, new DataSettable() {
 
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
@@ -615,32 +615,26 @@ public class DataGetter extends DataAccessor {
 		}, new DataGettable() {
 
 			@Override
-			public ArrayList<CommentBean> onGetResult(ResultSet rs) throws SQLException {
-				ArrayList<CommentBean> commentlist = new ArrayList<CommentBean>();
+			public Integer onGetResult(ResultSet rs) throws SQLException {
+				int count = 0;
 				while (rs.next()) {
-					CommentBean comment = new CommentBean();
-					comment.setName(rs.getString(1));
-					comment.setDate(rs.getString(2));
-					comment.setContent(rs.getString(3));
-					comment.setCno(rs.getInt(4));
-					comment.setBno(rs.getInt(5));
-					commentlist.add(comment);
+					count = rs.getInt(1);
 				}
-				return commentlist;
+				return count;
 			}
 		});
 
-		return list;
+		return commentcount;
 	}
 	
-	public ArrayList<CommentBean> getCommentList(int num) {
+	public ArrayList<CommentBean> getCommentList(int boardnum) {
 		@SuppressWarnings("unchecked")
 		ArrayList<CommentBean> list = (ArrayList<CommentBean>) get(CommentBean.QUERY_GET, new DataSettable() {
 
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
 				// TODO Auto-generated method stub
-				pstmt.setInt(1, num);
+				pstmt.setInt(1, boardnum);
 			}
 		}, new DataGettable() {
 

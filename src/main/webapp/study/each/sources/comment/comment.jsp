@@ -4,6 +4,9 @@
 <script>
 	var pandan = 0; //댓글 열고 접는 판단 변수
 	$(function() {
+		var commentcount = $('#commentcount').val();
+		$('#commentListBtn').val('답글보기(' + commentcount + ')▼');
+		
 		$('#commentInsertBtn').click(function() {
 			var insertData = $('[name=commentInsertForm]').serialize();
 			commentInsert(insertData);
@@ -22,12 +25,10 @@
 
 	function commentList() {
 		var bno = $("#bno").val();
-			$.ajax({
-						url : '/study-of-us/commentlist',
-						type : 'post',
-						data : {
-							"bno" : bno
-						},
+		alert(bno);
+			$.ajax({ url : '/study-of-us/commentlist',
+					 type : 'post',
+					 data : {"bno" : bno},
 						success : function(data) {
 							var a = '';
 							$.each(JSON.parse(data), function(value) {

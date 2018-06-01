@@ -9,6 +9,7 @@
 </head>
 <body>
 	<%@ include file="../comment/comment.jsp" %>
+	<input type="hidden" name="commentcount" value="${commentcount}" id="commentcount" />
 	<c:set var='id' value="${sessionScope.id}" />
 	<table border="1">
 		<tr class="center">
@@ -56,7 +57,7 @@
 		</tr>
 	</table><br>
 	
-	<input type="button" class="btn btn-default" type="button" id="commentListBtn"  value='답글보기▼'>
+	<input type="button" class="btn btn-default" type="button" id="commentListBtn"  value=''>
 	
 	<div class="container">
         <label for="content">comment</label>
