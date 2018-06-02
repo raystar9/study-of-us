@@ -18,6 +18,7 @@ import beans.study.each.Member2;
 import beans.study.each.board.BoardListBean;
 import beans.study.each.board.BoardViewRegisterBean;
 import beans.study.each.board.CommentBean;
+import beans.study.each.fee.CashListBean;
 import dao.interfaces.DataGettable;
 import dao.interfaces.DataSettable;
 import exceptionHandler.ExceptionHandler;
@@ -247,7 +248,6 @@ public class DataGetter extends DataAccessor {
 				pstmt.setInt(1, studyIndex);
 				pstmt.setInt(2, startrow);
 				pstmt.setInt(3, endrow);
-
 			}
 
 		}, new DataGettable() {
@@ -261,6 +261,7 @@ public class DataGetter extends DataAccessor {
 					board.setTitle(rs.getString(2));
 					board.setName(rs.getString(3));
 					board.setDate(rs.getString(4));
+					board.setFilename(rs.getString(5));
 					boardlist.add(board);
 				}
 				return boardlist;
@@ -340,6 +341,7 @@ public class DataGetter extends DataAccessor {
 					boardcontent.setContent(rs.getString(3));
 					boardcontent.setName(rs.getString(4));
 					boardcontent.setDate(rs.getString(5));
+					boardcontent.setFilename(rs.getString(6));
 				}
 				return boardcontent;
 			}
@@ -514,7 +516,8 @@ public class DataGetter extends DataAccessor {
 		});
 		return list;
 	}
-
+	
+	//정보보기&설정 구성원들 총원 가져오는 메소드
 	public int getInformMemberCount() {
 
 		int membercount = (int) get(Member2.QUERY_GET_COUNT, new DataSettable() {
@@ -539,7 +542,8 @@ public class DataGetter extends DataAccessor {
 
 		return membercount;
 	}
-
+	
+	//정보보기&설정 구성원들 이름, 전화번호 등 가져오는 메소드
 	public ArrayList<InformSetupMember> getInformMember() {
 		@SuppressWarnings("unchecked")
 		ArrayList<InformSetupMember> list = (ArrayList<InformSetupMember>) get(InformSetupMember.QUERY_GET,
@@ -568,7 +572,8 @@ public class DataGetter extends DataAccessor {
 
 		return list;
 	}
-
+	
+	//설정 정보 가져오는 메소드
 	public InformSetup getInformation() {
 		InformSetup list = (InformSetup) get(InformSetup.QUERY_GET, new DataSettable() {
 
@@ -602,15 +607,40 @@ public class DataGetter extends DataAccessor {
 
 		return list;
 	}
+	
+	//댓글 총 개수 가져오는 메소드
+	public int getCommentCount(int num) {
+		int commentcount = (int)get(CommentBean.QUERY_GET_COUNT, new DataSettable() {
 
-	public ArrayList<CommentBean> getCommentList(int num) {
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+				// TODO Auto-generated method stub
+				pstmt.setInt(1, num);
+			}
+		}, new DataGettable() {
+
+			@Override
+			public Integer onGetResult(ResultSet rs) throws SQLException {
+				int count = 0;
+				while (rs.next()) {
+					count = rs.getInt(1);
+				}
+				return count;
+			}
+		});
+
+		return commentcount;
+	}
+	
+	//게시글 당 댓글 총 리스트 가져오는 메소드
+	public ArrayList<CommentBean> getCommentList(int boardnum) {
 		@SuppressWarnings("unchecked")
 		ArrayList<CommentBean> list = (ArrayList<CommentBean>) get(CommentBean.QUERY_GET, new DataSettable() {
 
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
 				// TODO Auto-generated method stub
-				pstmt.setInt(1, num);
+				pstmt.setInt(1, boardnum);
 			}
 		}, new DataGettable() {
 
@@ -632,7 +662,7 @@ public class DataGetter extends DataAccessor {
 
 		return list;
 	}
-
+	
 	// 스터디명 체크
 	public Study getSname_ck(String sname) {
 		Study study = (Study) get(Study.QUERY_GET, new DataSettable() {
@@ -767,8 +797,6 @@ public class DataGetter extends DataAccessor {
 		return find; 
 	}
 		
-	
-	
 	//스터디 리스트 가져오기
 	public ArrayList<StudyListSelect> getStudyList(int index) {
 		@SuppressWarnings("unchecked")
@@ -803,7 +831,7 @@ public class DataGetter extends DataAccessor {
 	
 	
 	
-// 스터디 count 수 가져오기
+	// 스터디 count 수 가져오기
 	public StudyListSelect getStudyListCount(int index) {
 		StudyListSelect count = (StudyListSelect) get(StudyListSelect.QUERY_GET2,new DataSettable() {
 			
@@ -829,6 +857,72 @@ public class DataGetter extends DataAccessor {
 		// TODO Auto-generated method stub
 		return count;
 	}
+	
+	//회비관리 리스트 가져오는 메소드
+	public ArrayList<CashListBean> getCashList(int page, int limit /*, int studyIndex*/) {
+
+		@SuppressWarnings("unchecked")
+		ArrayList<CashListBean> list = (ArrayList<CashListBean>) get(CashListBean.QUERY_GET, new DataSettable() {
+
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+				// TODO Auto-generated method stub
+				// 아직 뭐 들어갈지 몰라서 정의하지 않았음
+				int startrow = (page - 1) * limit + 1; // 읽기 시작할 row 번호( 1 11 21 )
+				int endrow = startrow + limit - 1; // 읽을 마지막 row 번호( 10 20 30 )
+				/*pstmt.setInt(1, studyIndex);*/
+				pstmt.setInt(1, startrow);
+				pstmt.setInt(2, endrow);
+			}
+
+		}, new DataGettable() {
+
+			@Override
+			public ArrayList<CashListBean> onGetResult(ResultSet rs) throws SQLException {
+				ArrayList<CashListBean> cashlist = new ArrayList<>();
+				while (rs.next()) {
+					CashListBean cash = new CashListBean();
+					cash.setIndex(rs.getInt(1));
+					cash.setTitle(rs.getString(2));
+					cash.setName(rs.getString(3));
+					cash.setDate(rs.getString(4));
+					cashlist.add(cash);
+				}
+				return cashlist;
+			}
+		}
+
+		);
+
+		return list;
+	}
+	
+	// 회비관리의 리스트 개수를 가져오는 메소드
+		public int getCashCount(/*int studyIndex*/) {
+
+			int cashcount = (int) get(CashListBean.QUERY_GET_COUNT, new DataSettable() {
+
+				@Override
+				public void prepare(PreparedStatement pstmt) throws SQLException {
+					// TODO Auto-generated method stub
+					// 아직 뭐 들어갈지 몰라서 정의하지 않았음
+					/*pstmt.setInt(1, studyIndex);*/
+				}
+
+			}, new DataGettable() {
+
+				@Override
+				public Integer onGetResult(ResultSet rs) throws SQLException {
+					int count = 0;
+					while (rs.next()) {
+						count = rs.getInt(1);
+					}
+					return count;
+				}
+			});
+
+			return cashcount;
+		}
 
 	/*
 	 * private ArrayList<?> getBean(ResultSet rs, Class<?> beanClass) throws

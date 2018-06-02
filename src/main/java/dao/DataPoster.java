@@ -50,10 +50,12 @@ public class DataPoster extends DataSetter {
 		set(BoardViewRegisterBean.QUERY_POST, new DataSettable() {
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
+
 				pstmt.setString(1, board.getName());
 				pstmt.setString(2, board.getTitle());
 				pstmt.setString(3, board.getContent());
-				pstmt.setInt(4, studyIndex);
+				pstmt.setString(4, board.getFilename());
+				pstmt.setInt(5, studyIndex);
 				pstmt.executeUpdate();
 				pstmt.close();
 			}
