@@ -53,10 +53,10 @@ public class Study {
 	public void setCategory(Category category) {
 		this.category = category;
 	}
-	public Member getMember() {
+	public Member getLeader() {
 		return leader;
 	}
-	public void setMember(Member member) {
+	public void setLeader(Member member) {
 		this.leader = member;
 	}
 	public Date getStartDate() {
