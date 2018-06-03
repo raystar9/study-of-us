@@ -1,15 +1,15 @@
 package beans.study.each.fee;
 
-import java.util.Date;
 
-public class CashList {
+public class CashListBean {
 	
-	public static final String QUERY_GET = "SELECT";		//cash_list_form.jsp에서 데이터 가져올 때 쿼리
+	public static final String QUERY_GET = "SELECT * from ";		
+	public static final String QUERY_GET_COUNT = "SELECT";		
 
 	private int index; 		// 회비게시글 작성 번호
 	private String title; 	// 회비게시글 제목
 	private String name; 	// 회비게시글 작성자
-	private Date date; 		// 회비게시 작성일
+	private String date; 	// 회비게시 작성일
 	private int total; 		// 회비 총액
 
 	
@@ -37,11 +37,11 @@ public class CashList {
 		this.name = name;
 	}
 
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 

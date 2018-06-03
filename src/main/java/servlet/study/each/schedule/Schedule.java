@@ -12,7 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import beans.study.each.schedule.ScheduleBean;
+import beansNew.Meeting;
+import dao.DataGetter;
 import fakeDB.FakeDB;
+import fakeDB.FakeGetter;
 
 /**
  * Servlet implementation class Schedule
@@ -37,8 +40,9 @@ public class Schedule extends HttpServlet {
 		if(request.getParameter("type") != null) {
 			type = request.getParameter("type");
 		}
+		FakeGetter getter = new FakeGetter();
 		ObjectMapper mapper = new ObjectMapper();
-		ArrayList<ScheduleBean> schedules = FakeDB.getInstance().getSchedules();
+		ArrayList<ScheduleBean> schedules = getter.getSchedules();
 		if(type.equals("attend")) {
 			System.out.println("attend입니다.");
 			schedules.get(0).setUrl("/study-of-us/study/each/attendance/each");
