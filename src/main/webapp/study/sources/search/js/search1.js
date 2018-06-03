@@ -9,7 +9,37 @@ $(document).ready(function(){
 			alert("검색어를 입력해주세요!")
 			$(this).focus();
 			}
+			
+			var params = $("form").serialize()
+			// form의 모든 Element을 문자열의 데이터에 serialize 한다
+			$.ajax({
+				type : "get",		
+				data : {"state": "ajax"},
+				url : "/study-of-us/study/search?"+params,
+				success : function(rdata){
+					$(".project").empty().append(rdata);
+				}
+				
+			})
+			return false;
 		})
+		
+		$(document).on("click","#atag",function(){
+			var page = $(this).text()
+			var params = $("form").serialize()
+			$.ajax({
+ 				type : "get",
+ 				data : {"page" : page , "state" : "ajax"},
+ 				url  : "/study-of-us/study/search?"+params,
+ 				success : function(rdata){
+ 					$(".project").empty().append(rdata);
+ 				}
+ 			
+ 			})
+ 			return false;
+
+        })
+    
 		
 		$("#firstArray").change(function(){ // 대분류 선택시 소분류의 값을 선택할수 있도록 한다.
 			var selectVal = $("#firstArray").val();
@@ -57,12 +87,7 @@ $(document).ready(function(){
 	   		
 	   	 	 $("input[value=checkbox]").prop("checked",true)
 	   	  a = $(this).val()
-	   	 
-	
-	   		  
-
-  
   	  }); 
-	 
-	    
+		
+		
 	});

@@ -1,6 +1,7 @@
 package servlet.study;
 
 import java.io.IOException;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -9,6 +10,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.lang3.SystemUtils;
 
 import beans.prototype.Study;
 import dao.DataGetter;
@@ -24,14 +27,26 @@ public class Search extends HttpServlet {
 	@SuppressWarnings("resource")
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		System.out.println("스터디 검색 페이지");
 		DataGetter getter = new DataGetter(DatabaseAccounts.SCOTT);
 		String url = "";
+		
+
+		System.out.println(request.getParameter("params"));
+		
 
 		String[] check = request.getParameterValues("checkbox");
 		String secondArray = request.getParameter("secondArray");
 		String search = request.getParameter("searchVal");
 
+	
+	/*	if(request.getParameter("state")!=null) {
+			search = request.getParameter("searchVal");
+			check = request.getParameterValues("checkbox");
+			secondArray = request.getParameter("secondArray");
+		*/
+		
 		int startcount = 0;
 		int endcount = 0;
 
@@ -93,8 +108,16 @@ public class Search extends HttpServlet {
 		request.setAttribute("totalpage", totalpage);
 		request.setAttribute("endpage", endpage);
 		System.out.println("check: "+check);
+		
+		if(request.getParameter("state")!=null) {
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/study/sources/search/section2.jsp");
+			dispatcher.forward(request, response);
+			System.out.println("--------------------------Ajax 완료-------------------------");
+		
+		}else {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/search.jsp");
 		dispatcher.forward(request, response);
 		System.out.println("--------------------------완료-------------------------");
+		}
 	}
 }

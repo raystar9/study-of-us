@@ -101,11 +101,6 @@
   			<input type="hidden" id="index" name="index" value="${study.index }"/>
 		</div>
 		</c:forEach>
-		
-		<c:forEach var="check2" items="${checkbox }">
-		<input type="text"  id="check" name="check" value="${check2}"/>
-		</c:forEach>
-		
 	<div class="paging"  style="text-align:center; margin-bottom:100px">
 		<c:if test="${startpage > 1}">
 			<a href="/study-of-us/study/search?page=1&searchVal=${searchVal}${check}&secondArray=${secondArray}">처음</a>
