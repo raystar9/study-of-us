@@ -18,7 +18,7 @@ public class FakeDB {
 	private ArrayList<Board> boards = new ArrayList<>();
 	private ArrayList<Category> categories = new ArrayList<>();
 	private ArrayList<FeeCollect> feeCollects = new ArrayList<>();
-	private ArrayList<FeeSpend> feesSpends = new ArrayList<>();
+	private ArrayList<FeeSpend> feeSpends = new ArrayList<>();
 	private ArrayList<Meeting> meetings = new ArrayList<>();
 	private ArrayList<Member> members = new ArrayList<>();
 	private ArrayList<Study> studies = new ArrayList<>();
@@ -105,8 +105,8 @@ public class FakeDB {
 
 	private void initFeeSpends() {
 		for(Meeting meeting : meetings) {
-			feesSpends.add(new FeeSpend(meeting, "장소대여료", 30000));
-			feesSpends.add(new FeeSpend(meeting, "간식비", 10000));
+			feeSpends.add(new FeeSpend(meeting, "장소대여료", 30000));
+			feeSpends.add(new FeeSpend(meeting, "간식비", 10000));
 		}
 	}
 
@@ -138,4 +138,58 @@ public class FakeDB {
 			attends.add(new Attend(meeting, meeting.getStudy().getMembers().get(2), "a"));
 		}
 	}
+	public void addAttend(Attend attend) {
+		attends.add(attend);
+	}
+	public void addBoard(Board board){
+		boards.add(board);
+	}
+	public void addFeeCollect(FeeCollect feeCollect) {
+		feeCollects.add(feeCollect);
+	}
+	public void addFeeSpend(FeeSpend feeSpend) {
+		feeSpends.add(feeSpend);
+	}
+	public void addMeeting(Meeting meeting) {
+		meetings.add(meeting);
+	}
+	public void addMember(Member member) {
+		members.add(member);
+	}
+	public void addStudy(Study study) {
+		studies.add(study);
+	}
+	public ArrayList<Attend> getAttends() {
+		return attends;
+	}
+
+	public ArrayList<Board> getBoards() {
+		return boards;
+	}
+
+	public ArrayList<Category> getCategories() {
+		return categories;
+	}
+
+	public ArrayList<FeeCollect> getFeeCollects() {
+		return feeCollects;
+	}
+
+	public ArrayList<FeeSpend> getFeesSpends() {
+		return feeSpends;
+	}
+
+	public ArrayList<Meeting> getMeetings() {
+		return meetings;
+	}
+
+	public ArrayList<Member> getMembers() {
+		return members;
+	}
+
+	public ArrayList<Study> getStudies() {
+		return studies;
+	}
+	
+	
 }
