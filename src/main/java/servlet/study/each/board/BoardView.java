@@ -36,10 +36,15 @@ public class BoardView extends HttpServlet {
 		request.setAttribute("boardcontent", boardcontent);
 		
 		ArrayList<CommentBean> comment = new ArrayList<CommentBean>();
-		int num = boardcontent.getIndex();
-		comment = getter.getCommentList(num);
-		request.setAttribute("comment", comment);
+		//게시글 번호
+		int boardnum = boardcontent.getIndex();
 		
+		//댓글 개수
+		int commentcount = getter.getCommentCount(boardnum);
+		comment = getter.getCommentList(boardnum);
+		
+		request.setAttribute("comment", comment);
+		request.setAttribute("commentcount", commentcount);
 		getter.close();
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/each/boardView.jsp");

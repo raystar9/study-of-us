@@ -1,156 +1,196 @@
 package fakeDB;
 
-import java.sql.Date;
 import java.util.ArrayList;
-import java.util.GregorianCalendar;
 
-import beans.prototype.Attendance;
-import beans.prototype.Meeting;
-import beans.prototype.Member;
-import beans.prototype.Study;
-import beans.study.StudyListCount;
-import beans.study.each.schedule.ScheduleBean;
+import beansNew.Attend;
+import beansNew.Board;
+import beansNew.Category;
+import beansNew.FeeCollect;
+import beansNew.FeeSpend;
+import beansNew.Meeting;
+import beansNew.Member;
+import beansNew.Study;
+import dateConverter.DateConverter;
 
 public class FakeDB {
 	private static FakeDB instance = new FakeDB();
-	ArrayList<Member> members = new ArrayList<>();
-	ArrayList<Study> studies1 = new ArrayList<>();
-	ArrayList<StudyListCount> studies = new ArrayList<>();
-	ArrayList<Meeting> meetings = new ArrayList<>();
-	ArrayList<ScheduleBean> schedules = new ArrayList<>();
-	ArrayList<Attendance> attendances = new ArrayList<>();
+	private ArrayList<Attend> attends = new ArrayList<>();
+	private ArrayList<Board> boards = new ArrayList<>();
+	private ArrayList<Category> categories = new ArrayList<>();
+	private ArrayList<FeeCollect> feeCollects = new ArrayList<>();
+	private ArrayList<FeeSpend> feeSpends = new ArrayList<>();
+	private ArrayList<Meeting> meetings = new ArrayList<>();
+	private ArrayList<Member> members = new ArrayList<>();
+	private ArrayList<Study> studies = new ArrayList<>();
 	
 	public static FakeDB getInstance() {
 		return instance;
 	}
 	
 	private FakeDB() {
-		initMember();
-		initStudy();
+		initMembers();
+		initCategories();
+		initStudies();
+		initBoards();
 		initMeetings();
-		initSchedules();
+		initAttends();
+		initFeeCollects();
+		initFeeSpends();
 	}
 	
-	public ArrayList<Attendance> getAttendances() {
-		return attendances;
+	private void initMembers() {
+		for(int i = 0; i < 50; i++) {
+			Member member = new Member();
+			member.setAddress("서울");
+			member.setEmail("a@naver.com");
+			member.setGender("m");
+			member.setId("user" + i);
+			member.setIntroduce("반갑습니다");
+			member.setName("나회원");
+			member.setPassword("1234");
+			member.setStudies(new ArrayList<Study>());
+			member.setTel("010-000-0000");
+			members.add(member);
+		}
+		
 	}
 
-	public void addAttendances(Attendance attendance) {
-		attendances.add(attendance);
+	private void initCategories() {
+		categories.add(new Category("프로그래밍", "자바"));
+		categories.add(new Category("프로그래밍", "c"));
+		categories.add(new Category("프로그래밍", "파이썬"));
+		categories.add(new Category("외국어", "영어"));
+		categories.add(new Category("외국어", "중국어"));
+		categories.add(new Category("외국어", "독일어"));
 	}
 
-	private void initSchedules() {
-		ScheduleBean s1 = new ScheduleBean();
-		s1.setStart("2018-05-03T12:00:00+09:00");
-		s1.setTitle("안녕!");
-		//TODO 수정해야될 예정...
-		s1.setUrl("/study-of-us/study/each/schedule/each");
-		schedules.add(s1);
+	private void initStudies() {
+		for(int i = 0; i < 30; i++) {
+			Study study = new Study();
+			study.setCategory(categories.get(i % 6));
+			study.setDayOfWeek("금");
+			study.setEffects("최고가 되자.");
+			study.setEndDate(DateConverter.convertDate("2018-05-03"));
+			study.setExplain("어서오세요!");
+			study.setLeader(members.get(i));
+			study.setMaterial("준비물 없음");
+			study.setMaxMember(6);
+			study.setMembers(new ArrayList<>());
+			study.setName("스터디" + i);
+			study.setPlace("서울");
+			study.setStartDate(DateConverter.convertDate("2018-04-07"));
+			study.setTime("7시");
+			ArrayList<Member> ms = new ArrayList<>();
+			for(int j = 0; j < 3; j++) {
+				ms.add(members.get(i + j));
+			}
+			study.setMembers(ms);
+			studies.add(study);
+		}
 	}
+
 
 	private void initMeetings() {
-		Meeting meeting1 = new Meeting();
-		meeting1.setComment("내용내용");
-		meeting1.setDate(new Date(new GregorianCalendar(2018, 4, 5, 22, 00).getTimeInMillis()));
-		meeting1.setFee(5000);
-		meeting1.setLocation("종각역");
-		Meeting meeting2 = new Meeting();
-		meeting2.setComment("내용내용2");
-		meeting2.setDate(new Date(new GregorianCalendar(2018, 4, 12, 18, 00).getTimeInMillis()));
-		meeting2.setFee(8000);
-		meeting2.setLocation("덕소역");
-		
-		meetings.add(meeting1);
-		meetings.add(meeting2);
+		for(Study study : studies) {
+			for(int i = 0; i < 3; i++) {
+				Meeting meeting = new Meeting();
+				meeting.setStudy(study);
+				meeting.setDate(DateConverter.convertDate("2018-06-0" + (i+5)));
+				meeting.setExpectedFee(10000);
+				meeting.setPlace("종각역");
+				meeting.setComment("꼭 오세요!");
+				meetings.add(meeting);
+			}
+		}
 	}
 
-	
-	
-	private void initMember() {
-		Member member = new Member();
-		member.setName("소문혁");
-		member.setIndex(1);
-		members.add(member);
-		Member member2 = new Member();
-		member2.setName("구명회");
-		member2.setIndex(2);
-		members.add(member2);
-		Member member3 = new Member();
-		member3.setName("이다혜");
-		member3.setIndex(3);
-		members.add(member3);
-	}
-	
-	private void initStudy() {
-		//TODO study바뀌어서 수정해야되긴함.... 혹은 삭제
-		/*StudyListCount study = new StudyListCount();
-		study.setName("자바스터디");
-		study.setGoal("자바마스터");
-		study.setTerm(new Date(new GregorianCalendar(2018, 4, 5).getTimeInMillis()));
-		
-		StudyListCount study2 = new StudyListCount();
-		study2.setName("자바스터디");
-		study2.setGoal("자바마스터");
-		study2.setTerm(new Date(new GregorianCalendar(2018, 4, 5).getTimeInMillis()));
-		
-		StudyListCount study3 = new StudyListCount();
-		study3.setName("자바스터디");
-		study3.setGoal("자바마스터");
-		study3.setTerm(new Date(new GregorianCalendar(2018, 4, 5).getTimeInMillis()));
-		
-		StudyListCount study4 = new StudyListCount();
-		study4.setName("자바스터디");
-		study4.setGoal("자바마스터");
-		study4.setTerm(new Date(new GregorianCalendar(2018, 4, 5).getTimeInMillis()));
-		
-		StudyListCount study5 = new StudyListCount();
-		study5.setName("자바스터디");
-		study5.setGoal("자바마스터");
-		study5.setTerm(new Date(new GregorianCalendar(2018, 4, 5).getTimeInMillis()));
-		
-		StudyListCount study6 = new StudyListCount();
-		study6.setName("자바스터디");
-		study6.setGoal("자바마스터");
-		study6.setTerm(new Date(new GregorianCalendar(2018, 4, 5).getTimeInMillis()));
-		
-		studies.add(study);
-		studies.add(study2);
-		studies.add(study3);
-		studies.add(study4);
-		studies.add(study5);
-		studies.add(study6);*/
-		
-	}
-	
-	public ArrayList<ScheduleBean> getSchedules() {
-		return schedules;
+	private void initFeeSpends() {
+		for(Meeting meeting : meetings) {
+			feeSpends.add(new FeeSpend(meeting, "장소대여료", 30000));
+			feeSpends.add(new FeeSpend(meeting, "간식비", 10000));
+		}
 	}
 
-	public void setSchedules(ArrayList<ScheduleBean> schedules) {
-		this.schedules = schedules;
+	private void initFeeCollects() {
+		for(Meeting meeting : meetings) {
+			feeCollects.add(new FeeCollect(meeting, meeting.getStudy().getLeader(), 10000, "회비"));
+			feeCollects.add(new FeeCollect(meeting, meeting.getStudy().getMembers().get(1), 8000, "회비"));
+			feeCollects.add(new FeeCollect(meeting, meeting.getStudy().getMembers().get(2), 8000, "회비"));
+		}
+		
 	}
-	
-	public ArrayList<Member> getMembers() {
-		return members;
+
+	private void initBoards() {
+		for(Study study : studies) {
+			boards.add(new Board(1, study, study.getLeader(), "글제목임",
+					DateConverter.convertDate("2018-06-04"), "글내용임", "파일명임"));
+			boards.add(new Board(2, study, study.getLeader(), "글제목임",
+					DateConverter.convertDate("2018-06-04"), "글내용임", "파일명임"));
+			boards.add(new Board(3, study, study.getLeader(), "글제목임",
+					DateConverter.convertDate("2018-06-04"), "글내용임", "파일명임"));
+		}
+		
 	}
-	
-	public ArrayList<StudyListCount> getStudies() {
-		return studies;
+
+	private void initAttends() {
+		for(Meeting meeting : meetings) {
+			attends.add(new Attend(meeting, meeting.getStudy().getMembers().get(0), "a"));
+			attends.add(new Attend(meeting, meeting.getStudy().getMembers().get(1), "na"));
+			attends.add(new Attend(meeting, meeting.getStudy().getMembers().get(2), "a"));
+		}
 	}
-	
-	public void postMember(Member member) {
+	public void addAttend(Attend attend) {
+		attends.add(attend);
+	}
+	public void addBoard(Board board){
+		boards.add(board);
+	}
+	public void addFeeCollect(FeeCollect feeCollect) {
+		feeCollects.add(feeCollect);
+	}
+	public void addFeeSpend(FeeSpend feeSpend) {
+		feeSpends.add(feeSpend);
+	}
+	public void addMeeting(Meeting meeting) {
+		meetings.add(meeting);
+	}
+	public void addMember(Member member) {
 		members.add(member);
 	}
-	
-	public void postStudy(StudyListCount study) {
+	public void addStudy(Study study) {
 		studies.add(study);
 	}
-	
+	public ArrayList<Attend> getAttends() {
+		return attends;
+	}
+
+	public ArrayList<Board> getBoards() {
+		return boards;
+	}
+
+	public ArrayList<Category> getCategories() {
+		return categories;
+	}
+
+	public ArrayList<FeeCollect> getFeeCollects() {
+		return feeCollects;
+	}
+
+	public ArrayList<FeeSpend> getFeesSpends() {
+		return feeSpends;
+	}
+
 	public ArrayList<Meeting> getMeetings() {
 		return meetings;
 	}
 
-	public void setMeeting(Meeting meeting) {
-		meetings.add(meeting);
+	public ArrayList<Member> getMembers() {
+		return members;
 	}
+
+	public ArrayList<Study> getStudies() {
+		return studies;
+	}
+	
+	
 }

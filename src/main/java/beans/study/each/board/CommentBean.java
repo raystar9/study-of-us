@@ -3,6 +3,7 @@ package beans.study.each.board;
 public class CommentBean {
 	
 	public static final String QUERY_GET = "SELECT * FROM COMMENT2 WHERE C_BNO = ?";
+	public static final String QUERY_GET_COUNT = "SELECT COUNT(*) FROM COMMENT2 WHERE C_BNO = ?";
 	public static final String QUERY_PUT = "UPDATE COMMENT2 SET C_CONTENT=? WHERE C_CNO=? AND C_BNO=?";		
 	public static final String QUERY_DELETE = "DELETE FROM COMMENT2 WHERE C_CNO = ?";	
 	public static final String QUERY_POST = "INSERT INTO COMMENT2 VALUES(?,sysdate,?,?,?)";		
