@@ -42,6 +42,9 @@ public class Registration extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Study study = new Study();
+		System.out.println("데이1" + request.getParameter("day1"));
+		System.out.println("데이2" + request.getParameter("day1"));
+		
 		Date date = DateConverter.convertDate(request.getParameter("day1"));
 		Date date2 = DateConverter.convertDate(request.getParameter("day2"));
 		study.setC_id(Integer.parseInt(request.getParameter("first")));

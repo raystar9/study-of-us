@@ -2,32 +2,31 @@
 	pageEncoding="UTF-8"%>
 
 <script>
-	var pandan = 0; //댓글 열고 접는 판단 변수
 	$(function() {
+		var commentcount = $('#commentcount').val();
+		$('#commentListBtn').val('답글보기(' + commentcount + ')▼');
+		
 		$('#commentInsertBtn').click(function() {
 			var insertData = $('[name=commentInsertForm]').serialize();
 			commentInsert(insertData);
 		});
 		
 		$('#commentListBtn').click(function() {
-			if($('#commentListBtn').val() == '답글보기▲'){
+			if($('#commentListBtn').val() == '답글보기(' + commentcount + ')▲'){
 				$(".commentList").empty();
-				$('#commentListBtn').val('답글보기▼');
+				$('#commentListBtn').val('답글보기(' + commentcount + ')▼');
 			}else{
-			$('#commentListBtn').val('답글보기▲');
-			commentList();
+			$('#commentListBtn').val('답글보기(' + commentcount + ')▲');
+				commentList();
 			}
 		});
 	});
 
 	function commentList() {
 		var bno = $("#bno").val();
-			$.ajax({
-						url : '/study-of-us/commentlist',
-						type : 'post',
-						data : {
-							"bno" : bno
-						},
+			$.ajax({ url : '/study-of-us/commentlist',
+					 type : 'post',
+					 data : {"bno" : bno},
 						success : function(data) {
 							var a = '';
 							$.each(JSON.parse(data), function(value) {
@@ -52,19 +51,17 @@
 			type : 'post',
 			data : insertData,
 			success : function(data) {
-				if (data == 1) {
-					commentList(); //댓글 작성 후 댓글 목록 reload
+				$('#commentListBtn').val('답글보기(' + data + ')▲');
 					$('[name=content]').val('');
+					 commentList(bno);
 				}
-			}
+			
 		});
 		
 	}
 
 	//댓글 수정 - 댓글 내용 출력을 input 폼으로 변경 
 	function commentUpdate(cno, content) {
-		alert(cno);
-		alert(content);
 		var a = '';
 		a += '<div class="input-group">';
 		a += '<input type="text" class="form-control" name="content_'+cno+'" value="'+content+'"/>';
@@ -98,14 +95,16 @@
 	//댓글 삭제 
 	function commentDelete(cno) {
 		var c = cno;
+		var bno = $("#bno").val();
 		$.ajax({
 			url : '/study-of-us/commentdelete',
 			type : 'post',
 			data : {
-				"cno" : c
+				"cno" : cno,
+				"bno" : bno
 			},
 			success : function(data) {
-				if (data == 1)
+				$('#commentListBtn').val('답글보기(' + data + ')▲');
 					commentList(bno); //댓글 삭제후 목록 출력 
 			}
 		});

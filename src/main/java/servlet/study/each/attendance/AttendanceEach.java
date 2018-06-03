@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import beans.prototype.Member;
+import beansNew.Member;
 import fakeDB.FakeDB;
 
 /**
@@ -32,7 +32,7 @@ public class AttendanceEach extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		FakeDB db = FakeDB.getInstance();
-		ArrayList<Member> members = db.getMembers();
+		ArrayList<Member> members = db.getStudies().get(0).getMembers();
 		request.setAttribute("members", members);
 		request.getRequestDispatcher("/study/each/attendance/each/record.jsp").forward(request, response);
 	}

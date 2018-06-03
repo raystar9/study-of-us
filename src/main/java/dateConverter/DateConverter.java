@@ -7,7 +7,7 @@ import java.text.SimpleDateFormat;
 public class DateConverter {
 	/**
 	 * 
-	 * @param dateString yyyy/MM/dd
+	 * @param dateString yyyy-MM-dd
 	 * @return
 	 */
 	public static Date convertDate(String dateString) {
@@ -23,7 +23,7 @@ public class DateConverter {
 	}
 	/**
 	 * 
-	 * @param dateString yyyy/MM/dd hh:mm
+	 * @param dateString yyyy-MM-dd hh:mm
 	 * @return
 	 */
 	public static Date convertDateTime(String dateString) {
