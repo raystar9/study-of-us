@@ -38,7 +38,7 @@ public class DateConverter {
 		}
 	}
 	public static String getDateString(Date date) {
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ssZ");
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
 		return format.format(date);
 	}
 	

@@ -12,7 +12,7 @@
 .schedule-flexbox section {width: 100%;}
 #new-button {width: 400px; height: 50px;}
 #left {width: 200px; height: 100%;}
-#calendar {vertical-align: top; padding: 15px; text-align: center;}
+#calendar {vertical-align: top; padding: 15px;}
 </style>
 <link href='sources/schedule/css/fullcalendar.min.css' rel='stylesheet' />
 <link href='sources/schedule/css/fullcalendar.print.min.css' rel='stylesheet' media='print' />

@@ -13,7 +13,8 @@ public class FakeGetter {
 			ScheduleBean schedule = new ScheduleBean();
 			schedule.setStart(DateConverter.getDateString(meeting.getDate()));
 			schedule.setTitle(meeting.getPlace());
-			schedule.setUrl("each");
+			schedule.setUrl("/study-of-us/study/each/schedule/each");
+			results.add(schedule);
 		}
 		return results;
 	}
