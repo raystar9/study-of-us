@@ -8,6 +8,17 @@ public class StudyListSelect {
 	
 	public static final String QUERY_GET2 = "select count(sl_s_index) as count from studyList where sl_m_index = ? ";
 	
+	
+	public static final String QUERY_GET3 =   "select * from( "
+			+ " select * "
+			+ " from( "
+			+ " select rownum as rnum, s.s_index, s.s_name ,s.s_peoplenum, nvl(to_number(greatest(sysdate - s.s_start,0))/decode(to_number(s.s_end - s.s_start),0,null,to_number(s.s_end - s.s_start)),0) * 100 progress from study s, studyList sl "
+			+ " where s.s_index = sl.sl_s_index and sl.sl_m_index = ? "
+			+ " order by s_index desc )) "
+			+ " where rnum >= ? and rnum <= ? ";
+			 
+
+	
 	private int count;
 	private int progress;
 	private String s_name;
