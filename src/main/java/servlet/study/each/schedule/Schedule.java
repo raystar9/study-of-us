@@ -12,9 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import beans.study.each.schedule.ScheduleBean;
-import beansNew.Meeting;
-import dao.DataGetter;
-import fakeDB.FakeDB;
 import fakeDB.FakeGetter;
 
 /**
@@ -42,7 +39,7 @@ public class Schedule extends HttpServlet {
 		}
 		FakeGetter getter = new FakeGetter();
 		ObjectMapper mapper = new ObjectMapper();
-		ArrayList<ScheduleBean> schedules = getter.getSchedules();
+		ArrayList<ScheduleBean> schedules = getter.getSchedule(0);
 		if(type.equals("attend")) {
 			System.out.println("attend입니다.");
 			schedules.get(0).setUrl("/study-of-us/study/each/attendance/each");
