@@ -39,6 +39,7 @@ public class BoardList extends HttpServlet {
 		System.out.println("넘어온 페이지 = " + page);
 
 		boardlist = getter.getBoardList(page, limit, studyIndex); // 총 리스트 받아오기
+		System.out.println("getFilename = " + boardlist.get(0).getName());
 		
 		int boardcount = getter.getBoardCount(studyIndex); // 총 리스트 수 받아오기
 		System.out.println("총 리스트 수 = " + boardcount);
@@ -54,6 +55,7 @@ public class BoardList extends HttpServlet {
 
 		if (endpage > maxpage)
 			endpage = maxpage;
+		
 		request.setAttribute("page", page); // 현재 페이지 수
 		request.setAttribute("maxpage", maxpage); // 최대 페이지 수
 
@@ -68,12 +70,6 @@ public class BoardList extends HttpServlet {
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/each/boardList.jsp");
 		dispatcher.forward(request, response);
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-
 	}
 
 }

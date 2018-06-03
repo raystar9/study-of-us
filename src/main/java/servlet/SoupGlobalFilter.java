@@ -42,15 +42,16 @@ public class SoupGlobalFilter implements Filter {
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
 		
-		String queryString = new BufferedReader(new InputStreamReader(request.getInputStream())).readLine();
+		/*String queryString = new BufferedReader(new InputStreamReader(request.getInputStream())).readLine();
 		if(queryString != null) {
-			String[] splitted = queryString.split("&");
+			/*System.out.println("str = " +queryString);*/
+			/*String[] splitted = queryString.split("&");
 			for(int i = 0; i < splitted.length; i++) {
 				String[] keyValue = splitted[i].split("=");
 				request.setAttribute(keyValue[0], URLDecoder.decode(keyValue[1], "utf-8"));
 				System.out.println(URLDecoder.decode(keyValue[1], "utf-8"));
 			}
-		}
+		}*/
 		
 		if(httpRequest.getRequestURI().split("/")[2].equals("test")) {
 			new TestPage().doGet(httpRequest, httpResponse);

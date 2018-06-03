@@ -17,7 +17,7 @@
 <h3 align=center>Sign in to StudyOfUs</h3>
 
 <div>
-  <form action="LoginPage" method="post">
+  <form action="LoginPage" method="get">
     <label for="lid"><strong>Your ID</strong></label>
     <input type="text" id="id" name="id" placeholder="Your ID.." maxlength="10">
 
