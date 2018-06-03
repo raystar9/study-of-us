@@ -76,6 +76,10 @@ $(document).ready(function() {
 	
 	//ajax
 	$("#idcheck").click(function(){
+		if($('#id').val() == ""){
+			alert("아이디를 입력하세요");
+			return false;
+		}
 		check++;
 		sid = $('input[name=id]').val();
 		alert(sid);
@@ -99,7 +103,6 @@ $(document).ready(function() {
 					overlap = false;
 				}
 				alert(result);
-					
 			}
 		})
 	})

@@ -830,7 +830,6 @@ public class DataGetter extends DataAccessor {
 	}
 	
 	
-	
 	// 스터디 count 수 가져오기
 	public StudyListSelect getStudyListCount(int index) {
 		StudyListSelect count = (StudyListSelect) get(StudyListSelect.QUERY_GET2,new DataSettable() {
@@ -857,7 +856,7 @@ public class DataGetter extends DataAccessor {
 		// TODO Auto-generated method stub
 		return count;
 	}
-	
+
 	//회비관리 리스트 가져오는 메소드
 	public ArrayList<CashListBean> getCashList(int page, int limit /*, int studyIndex*/) {
 
@@ -923,6 +922,42 @@ public class DataGetter extends DataAccessor {
 
 			return cashcount;
 		}
+	
+//		보여줄 스터디를 정리햇 ㅓ가져오기 
+	public ArrayList<StudyListSelect> getStudyList(int index, int page, int limit) {
+@SuppressWarnings("unchecked")
+ArrayList<StudyListSelect> studylist = (ArrayList<StudyListSelect>) get(StudyListSelect.QUERY_GET3 , new DataSettable() {
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+				//읽기 시작할 row 번호 1
+				int startrow = (page - 1 ) * limit + 1;
+				//읽을 마지막 row 번호 2
+				int endrow = startrow + limit -1;
+				
+				pstmt.setInt(1, index);
+				pstmt.setInt(2, startrow);
+				pstmt.setInt(3, endrow);
+				
+			}
+		}, new DataGettable() {
+			
+			@Override
+			public ArrayList<?> onGetResult(ResultSet rs) throws SQLException {
+				ArrayList<StudyListSelect> studylists = new ArrayList<>();
+				while(rs.next()) {
+					StudyListSelect sl = new StudyListSelect();
+					
+					sl.setProgress(rs.getInt("progress"));
+					sl.setS_name(rs.getString("s_name"));
+					sl.setS_peoplenum(rs.getInt("s_peoplenum"));
+					studylists.add(sl);
+			}
+		
+			return studylists;
+		}
+	});
+		return studylist;
+}
 
 	/*
 	 * private ArrayList<?> getBean(ResultSet rs, Class<?> beanClass) throws
