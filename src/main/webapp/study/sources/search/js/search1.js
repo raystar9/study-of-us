@@ -12,15 +12,23 @@ $(document).ready(function(){
 			
 			var params = $("form").serialize()
 			// form의 모든 Element을 문자열의 데이터에 serialize 한다
-			$.ajax({
-				type : "get",		
-				data : {"state": "ajax"},
-				url : "/study-of-us/study/search?"+params,
-				success : function(rdata){
-					$(".project").empty().append(rdata);
-				}
-				
+			
+			$("#loader").addClass("loader")
+			$(".project").empty()
+			
+			setTimeout(function(){
+				// ajax를 사용해서 검색을 하면 바로 화면이 전환되어 검색이 적용됬는지 확인하기 어려워
+				// 1초정도의 시간을 두고 로더화면을 띄우고 검색내용을 화면에 나타낸다.
+				$.ajax({
+					type : "get",		
+					data : {"state": "ajax"},
+					url : "/study-of-us/study/search?"+params,
+					success : function(rdata){
+					$("#loader").removeClass("loader")
+					$(".project").append(rdata);	
+				}	
 			})
+		},1000)
 			return false;
 		})
 		
@@ -39,7 +47,6 @@ $(document).ready(function(){
  			return false;
 
         })
-    
 		
 		$("#firstArray").change(function(){ // 대분류 선택시 소분류의 값을 선택할수 있도록 한다.
 			var selectVal = $("#firstArray").val();
@@ -75,7 +82,8 @@ $(document).ready(function(){
 			}
 		});
 		// 스터디를 클릭하면 참여할수 있도록 함
-		$(".projectcontainer").click(function(){
+		
+		$(document).on("click",".projectcontainer",function(){
 			var index = $(this).children('#index') 
 			//자식의 값을 가져오기 위해서 children('선택자')를 사용
 			location.href = "/study-of-us/study/each/participate?index="+index.val();

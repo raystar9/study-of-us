@@ -7,8 +7,6 @@
 <div class="search">
   		<button type="submit" id="button"><i class="fa fa-search"></i></button>
  		 <input type="text" placeholder="Search.." id="searchVal" name="searchVal" value="">
-	
-	
 	<div class="custom-select">
   		<select id="firstArray" name="firstArray">
   			  <option value="-1">대분류</option>
@@ -90,7 +88,9 @@
 	</div>
 		<input type="hidden" id="place2" name="place2" value=""/>
 	</form>
+			<div id="loader"></div>
 	<div class="project">
+	
 		<c:forEach var="study" items="${studies }">
 		<div class="projectcontainer">
 		
@@ -124,4 +124,5 @@
 
 		</div>
 		</div>
-		
+
+	
