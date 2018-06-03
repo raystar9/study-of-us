@@ -12,9 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import beans.study.each.schedule.ScheduleBean;
-import beansNew.Meeting;
-import dao.DataGetter;
-import fakeDB.FakeDB;
 import fakeDB.FakeGetter;
 
 /**
@@ -45,13 +42,17 @@ public class Schedule extends HttpServlet {
 		ArrayList<ScheduleBean> schedules = getter.getSchedules();
 		if(type.equals("attend")) {
 			System.out.println("attend입니다.");
-			schedules.get(0).setUrl("/study-of-us/study/each/attendance/each");
+			for(ScheduleBean schedule : schedules) {
+				schedule.setUrl("/study-of-us/study/each/attendance/each/record");
+			}
 			System.out.println(mapper.writeValueAsString(schedules));
 			request.setAttribute("schedules", mapper.writeValueAsString(schedules));
 		}else if(type.equals("notice")) {
 			
 			System.out.println(mapper.writeValueAsString(schedules));
-			schedules.get(0).setUrl("/study-of-us/study/each/schedule/each");
+			for(ScheduleBean schedule : schedules) {
+				schedule.setUrl("/study-of-us/study/each/schedule/each");
+			}
 			request.setAttribute("schedules", mapper.writeValueAsString(schedules));
 		}
 		request.getRequestDispatcher("schedule.jsp").forward(request, response);
