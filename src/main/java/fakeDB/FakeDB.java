@@ -49,57 +49,93 @@ public class FakeDB {
 			member.setName("나회원");
 			member.setPassword("1234");
 			member.setStudies(new ArrayList<Study>());
-			member.setTel("0100000000");
+			member.setTel("010-000-0000");
+			members.add(member);
 		}
 		
+	}
+
+	private void initCategories() {
+		categories.add(new Category("프로그래밍", "자바"));
+		categories.add(new Category("프로그래밍", "c"));
+		categories.add(new Category("프로그래밍", "파이썬"));
+		categories.add(new Category("외국어", "영어"));
+		categories.add(new Category("외국어", "중국어"));
+		categories.add(new Category("외국어", "독일어"));
 	}
 
 	private void initStudies() {
 		for(int i = 0; i < 30; i++) {
 			Study study = new Study();
-			study.setCategory(new Category("프로그래밍","자바"));
+			study.setCategory(categories.get(i % 6));
 			study.setDayOfWeek("금");
-			study.setEffects("자바왕이 됩니다.");
+			study.setEffects("최고가 되자.");
 			study.setEndDate(DateConverter.convertDate("2018-05-03"));
 			study.setExplain("어서오세요!");
+			study.setLeader(members.get(i));
 			study.setMaterial("준비물 없음");
 			study.setMaxMember(6);
 			study.setMembers(new ArrayList<>());
-			study.setName("자바스터디왕");
+			study.setName("스터디" + i);
 			study.setPlace("서울");
 			study.setStartDate(DateConverter.convertDate("2018-04-07"));
 			study.setTime("7시");
+			ArrayList<Member> ms = new ArrayList<>();
+			for(int j = 0; j < 3; j++) {
+				ms.add(members.get(i + j));
+			}
+			study.setMembers(ms);
+			studies.add(study);
 		}
 	}
 
 
 	private void initMeetings() {
-		// TODO Auto-generated method stub
-		
+		for(Study study : studies) {
+			for(int i = 0; i < 3; i++) {
+				Meeting meeting = new Meeting();
+				meeting.setStudy(study);
+				meeting.setDate(DateConverter.convertDate("2018-06-0" + (i+5)));
+				meeting.setExpectedFee(10000);
+				meeting.setPlace("종각역");
+				meetings.add(meeting);
+			}
+		}
 	}
 
 	private void initFeeSpends() {
-		// TODO Auto-generated method stub
-		
+		for(Meeting meeting : meetings) {
+			feesSpends.add(new FeeSpend(meeting, "장소대여료", 30000));
+			feesSpends.add(new FeeSpend(meeting, "간식비", 10000));
+		}
 	}
 
 	private void initFeeCollects() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	private void initCategories() {
-		// TODO Auto-generated method stub
+		for(Meeting meeting : meetings) {
+			feeCollects.add(new FeeCollect(meeting, meeting.getStudy().getLeader(), 10000, "회비"));
+			feeCollects.add(new FeeCollect(meeting, meeting.getStudy().getMembers().get(1), 8000, "회비"));
+			feeCollects.add(new FeeCollect(meeting, meeting.getStudy().getMembers().get(2), 8000, "회비"));
+		}
 		
 	}
 
 	private void initBoards() {
-		// TODO Auto-generated method stub
+		for(Study study : studies) {
+			boards.add(new Board(1, study, study.getLeader(), "글제목임",
+					DateConverter.convertDate("2018-06-04"), "글내용임", "파일명임"));
+			boards.add(new Board(2, study, study.getLeader(), "글제목임",
+					DateConverter.convertDate("2018-06-04"), "글내용임", "파일명임"));
+			boards.add(new Board(3, study, study.getLeader(), "글제목임",
+					DateConverter.convertDate("2018-06-04"), "글내용임", "파일명임"));
+		}
 		
 	}
 
 	private void initAttends() {
-		// TODO Auto-generated method stub
-		
+		for(Meeting meeting : meetings) {
+			attends.add(new Attend(meeting, meeting.getStudy().getMembers().get(0), "a"));
+			attends.add(new Attend(meeting, meeting.getStudy().getMembers().get(1), "na"));
+			attends.add(new Attend(meeting, meeting.getStudy().getMembers().get(2), "a"));
+		}
 	}
 }
