@@ -48,14 +48,15 @@ public class BoardModify extends HttpServlet {
 		boardmodify.setContent(request.getParameter("boardContent"));
 		boardmodify.setDate(request.getParameter("boardDate"));
 		boardmodify.setName(request.getParameter("boardName"));
+		boardmodify.setFilename(request.getParameter("fileName"));
 		boardmodify.setIndex(Integer.parseInt(request.getParameter("num")));
 		
 		DataPoster poster = new DataPoster(DatabaseAccounts.SCOTT);
+		int boardnum = Integer.parseInt(request.getParameter("num"));
 		
 		poster.postBoardModify(boardmodify, studyIndex);
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/each/boardList.jsp");
-		dispatcher.forward(request, response);
+		response.sendRedirect("/study-of-us/study/each/boardview" + "?num=" + boardnum);
 		poster.close();
 	}
 

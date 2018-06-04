@@ -261,7 +261,6 @@ public class DataGetter extends DataAccessor {
 					board.setTitle(rs.getString(2));
 					board.setName(rs.getString(3));
 					board.setDate(rs.getString(4));
-					board.setFilename(rs.getString(5));
 					boardlist.add(board);
 				}
 				return boardlist;
@@ -922,6 +921,75 @@ public class DataGetter extends DataAccessor {
 			});
 
 			return cashcount;
+		}
+		
+		public ArrayList<BoardListBean> getBoardSearch(int page, int limit, int studyIndex, String search, String searchSelect) {
+
+			@SuppressWarnings("unchecked")
+			ArrayList<BoardListBean> list = (ArrayList<BoardListBean>) get(BoardListBean.QUERY_GET_SEARCH, new DataSettable() {
+
+				@Override
+				public void prepare(PreparedStatement pstmt) throws SQLException {
+					// TODO Auto-generated method stub
+					// 아직 뭐 들어갈지 몰라서 정의하지 않았음
+					int startrow = (page - 1) * limit + 1; // 읽기 시작할 row 번호( 1 11 21 )
+					int endrow = startrow + limit - 1; // 읽을 마지막 row 번호( 10 20 30 )
+					pstmt.setInt(1, studyIndex);
+					pstmt.setInt(2, startrow);
+					pstmt.setInt(3, endrow);
+					pstmt.setInt(4, );
+					pstmt.setInt(5, );
+				}
+
+			}, new DataGettable() {
+
+				@Override
+				public ArrayList<BoardListBean> onGetResult(ResultSet rs) throws SQLException {
+					ArrayList<BoardListBean> boardlist = new ArrayList<>();
+					while (rs.next()) {
+						BoardListBean board = new BoardListBean();
+						board.setIndex(rs.getInt(1));
+						board.setTitle(rs.getString(2));
+						board.setName(rs.getString(3));
+						board.setDate(rs.getString(4));
+						boardlist.add(board);
+					}
+					return boardlist;
+				}
+			}
+
+			);
+
+			return list;
+		}
+		
+		// 게시판의 글 개수를 가져오는 메소드
+		public int getBoardSearchCount(int studyIndex, String search, String searchSelect) {
+
+			int boardcount = (int) get(BoardListBean.QUERY_GET_SEARCH_COUNT, new DataSettable() {
+
+				@Override
+				public void prepare(PreparedStatement pstmt) throws SQLException {
+					// TODO Auto-generated method stub
+					// 아직 뭐 들어갈지 몰라서 정의하지 않았음
+					pstmt.setInt(1, studyIndex);
+					pstmt.setString(2, searchSelect);
+					pstmt.setString(3, search);
+				}
+
+			}, new DataGettable() {
+
+				@Override
+				public Integer onGetResult(ResultSet rs) throws SQLException {
+					int count = 0;
+					while (rs.next()) {
+						count = rs.getInt(1);
+					}
+					return count;
+				}
+			});
+
+			return boardcount;
 		}
 
 	/*

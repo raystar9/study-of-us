@@ -18,8 +18,8 @@
 					<div>글쓴이</div>
 				</td>
 				<td>
-					<input type="text" name="boardName" id="board-name" readOnly size="10" maxlength="30" value="다또리">
-					<%-- value="${id}" --%>
+					<input type="text" name="boardName" id="board-name" size="10" maxlength="30">
+					<%-- value="${id}"하고 readOnly로 바꿀것임 --%>
 				</td>
 				
 			</tr>
