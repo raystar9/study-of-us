@@ -12,12 +12,12 @@ public class Member {
 	String gender;
 	String introduce;
 	ArrayList<Study> studies;
-	
+	ArrayList<Category> interests;
 	
 	public Member() {
 	}
 	public Member(String id, String password, String name, String email, String tel, String address, String gender,
-			String introduce, ArrayList<Study> studies) {
+			String introduce, ArrayList<Study> studies, ArrayList<Category> interests) {
 		this.id = id;
 		this.password = password;
 		this.name = name;
@@ -27,6 +27,7 @@ public class Member {
 		this.gender = gender;
 		this.introduce = introduce;
 		this.studies = studies;
+		this.interests = interests;
 	}
 	public String getId() {
 		return id;
