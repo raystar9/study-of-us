@@ -5,7 +5,8 @@ import java.sql.Date;
 import java.util.HashMap;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,11 +15,11 @@ import beansNew.Meeting;
 import dateConverter.DateConverter;
 import fakeDB.FakePoster;
 import param.ParameterGetter;
+import servlet.ServletDispatcher;
 
 /**
  * Servlet implementation class NewSchedule
  */
-@WebServlet("/study/each/schedule/new")
 public class NewSchedule extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -34,7 +35,7 @@ public class NewSchedule extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("new-schedule.jsp").forward(request, response);
+		ServletDispatcher.forward(request, response, "new-schedule.jsp");
 	}
 
 	/**
@@ -63,5 +64,5 @@ public class NewSchedule extends HttpServlet {
 		//TODO Database 연결 시 위의 두 코드가 합쳐질 예정임.
 		
 	}
-
+	
 }
