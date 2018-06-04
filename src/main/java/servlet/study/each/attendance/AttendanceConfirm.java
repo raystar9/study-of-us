@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import beansNew.Member;
 import fakeDB.FakeDB;
+import servlet.ServletDispatcher;
 
 /**
  * Servlet implementation class AttendanceConfirm
@@ -34,7 +35,7 @@ public class AttendanceConfirm extends HttpServlet {
 		FakeDB db = FakeDB.getInstance();
 		ArrayList<Member> members = db.getStudies().get(0).getMembers();
 		request.setAttribute("members", members);
-		request.getRequestDispatcher("/study/each/attendance/each/confirm.jsp").forward(request, response);
+		ServletDispatcher.forward(request, response, "confirm.jsp");
 	}
 
 	/**
