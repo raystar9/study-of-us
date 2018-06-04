@@ -4,6 +4,12 @@ START WITH 1
 INCREMENT BY 1
 NOMAXVALUE;
 
+
+select B_NO, B_TITLE, B_NAME, B_DATE from (SELECT ROWNUM RNUM, B_TITLE, B_NAME, B_DATE, B_S_INDEX, B_NO FROM BOARD b) where B_S_INDEX IN (select S_INDEX from STUDY where S_INDEX = 3) AND RNUM>=1 AND RNUM<=10 AND B_TITLE like '%교재%' ORDER BY B_NO desc
+
+select B_NO, B_TITLE, B_NAME, B_DATE from (SELECT ROWNUM RNUM, B_TITLE, B_NAME, B_DATE, B_S_INDEX, B_NO FROM BOARD b) where B_S_INDEX IN (select S_INDEX from STUDY where S_INDEX = 3) AND RNUM>=1 AND RNUM<=10 AND B_TITLE like '%교재%'  ORDER BY B_NO desc
+
+
 drop table Member;
 -- Member 테이블 생성
 CREATE TABLE Member(

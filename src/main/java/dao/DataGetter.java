@@ -234,20 +234,34 @@ public class DataGetter extends DataAccessor {
 	}
 
 	// 게시판에 들어갔을 때 나오는 목록 데이터를 가져오는 메소드
-	public ArrayList<BoardListBean> getBoardList(int page, int limit, int studyIndex) {
-
+	public ArrayList<BoardListBean> getBoardList(int page, int limit, int studyIndex, String pluswhere, String search, String searchSelect) {
+		String sql = BoardListBean.QUERY_GET + pluswhere + " ORDER BY B_NO desc";
+		System.out.println(sql);
 		@SuppressWarnings("unchecked")
-		ArrayList<BoardListBean> list = (ArrayList<BoardListBean>) get(BoardListBean.QUERY_GET, new DataSettable() {
+		ArrayList<BoardListBean> list = (ArrayList<BoardListBean>) get(sql, new DataSettable() {
 
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
 				// TODO Auto-generated method stub
-				// 아직 뭐 들어갈지 몰라서 정의하지 않았음
+				
 				int startrow = (page - 1) * limit + 1; // 읽기 시작할 row 번호( 1 11 21 )
 				int endrow = startrow + limit - 1; // 읽을 마지막 row 번호( 10 20 30 )
 				pstmt.setInt(1, studyIndex);
+				System.out.println(studyIndex + "인덱스");
 				pstmt.setInt(2, startrow);
 				pstmt.setInt(3, endrow);
+				System.out.println("startrow " + startrow);
+
+				System.out.println("endrow " + startrow);
+				if(search!=null && searchSelect!=null && search!="" && searchSelect!="") {
+					pstmt.setString(4, searchSelect);
+					System.out.println(searchSelect);
+					String search2 = "'%"+search+"%'";
+					System.out.println(search2);
+					pstmt.setString(5, search2);
+					
+				}
+				System.out.println(sql);
 			}
 
 		}, new DataGettable() {
@@ -263,6 +277,7 @@ public class DataGetter extends DataAccessor {
 					board.setDate(rs.getString(4));
 					boardlist.add(board);
 				}
+				System.out.println("보드리스트"+boardlist.size());
 				return boardlist;
 			}
 		}
@@ -923,75 +938,6 @@ public class DataGetter extends DataAccessor {
 			return cashcount;
 		}
 		
-		public ArrayList<BoardListBean> getBoardSearch(int page, int limit, int studyIndex, String search, String searchSelect) {
-
-			@SuppressWarnings("unchecked")
-			ArrayList<BoardListBean> list = (ArrayList<BoardListBean>) get(BoardListBean.QUERY_GET_SEARCH, new DataSettable() {
-
-				@Override
-				public void prepare(PreparedStatement pstmt) throws SQLException {
-					// TODO Auto-generated method stub
-					// 아직 뭐 들어갈지 몰라서 정의하지 않았음
-					int startrow = (page - 1) * limit + 1; // 읽기 시작할 row 번호( 1 11 21 )
-					int endrow = startrow + limit - 1; // 읽을 마지막 row 번호( 10 20 30 )
-					pstmt.setInt(1, studyIndex);
-					pstmt.setInt(2, startrow);
-					pstmt.setInt(3, endrow);
-					pstmt.setInt(4, );
-					pstmt.setInt(5, );
-				}
-
-			}, new DataGettable() {
-
-				@Override
-				public ArrayList<BoardListBean> onGetResult(ResultSet rs) throws SQLException {
-					ArrayList<BoardListBean> boardlist = new ArrayList<>();
-					while (rs.next()) {
-						BoardListBean board = new BoardListBean();
-						board.setIndex(rs.getInt(1));
-						board.setTitle(rs.getString(2));
-						board.setName(rs.getString(3));
-						board.setDate(rs.getString(4));
-						boardlist.add(board);
-					}
-					return boardlist;
-				}
-			}
-
-			);
-
-			return list;
-		}
-		
-		// 게시판의 글 개수를 가져오는 메소드
-		public int getBoardSearchCount(int studyIndex, String search, String searchSelect) {
-
-			int boardcount = (int) get(BoardListBean.QUERY_GET_SEARCH_COUNT, new DataSettable() {
-
-				@Override
-				public void prepare(PreparedStatement pstmt) throws SQLException {
-					// TODO Auto-generated method stub
-					// 아직 뭐 들어갈지 몰라서 정의하지 않았음
-					pstmt.setInt(1, studyIndex);
-					pstmt.setString(2, searchSelect);
-					pstmt.setString(3, search);
-				}
-
-			}, new DataGettable() {
-
-				@Override
-				public Integer onGetResult(ResultSet rs) throws SQLException {
-					int count = 0;
-					while (rs.next()) {
-						count = rs.getInt(1);
-					}
-					return count;
-				}
-			});
-
-			return boardcount;
-		}
-
 	/*
 	 * private ArrayList<?> getBean(ResultSet rs, Class<?> beanClass) throws
 	 * SQLException{ Field[] fields = beanClass.getDeclaredFields();

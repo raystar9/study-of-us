@@ -10,6 +10,7 @@
 </head>
 <body>
 	<!-- 게시판 리스트 -->
+	<form action='./board' method='get'>
 	<table border='1'>
 		<!-- 레코드가 있으면 -->
 		<tr>
@@ -66,15 +67,13 @@
 		</tbody>
 		<tr>
 			<td colspan="5">
-				<form name="boardSearchForm">
 					<select name="searchSelect">
 						<option value="B_TITLE" selected="selected">제목</option>
 						<option value="B_NAME">작성자</option>
 						<option value="B_DATE">날짜</option>
 					</select> <input type="text" class="" id="search" name="search"> <input
-						type="button" type="button" name="boardSearchBtn" value="검색"
+						type="submit" value="검색"
 						id='boardSearchBtn'>
-				</form>
 			</td>
 		</tr>
 
@@ -92,5 +91,6 @@
 				href="./boardregister">[글쓰기]</a></td>
 		</tr>
 	</table>
+	</form>
 </body>
 </html>
