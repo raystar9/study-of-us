@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.DataPoster;
+import dao.DatabaseAccounts;
+
 
 @WebServlet("/study/each/cashdelete")
 public class CashDelete extends HttpServlet {
@@ -20,7 +23,17 @@ public class CashDelete extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		int num = Integer.parseInt(request.getParameter("num"));
+		int studyIndex = 3;
+		
+		DataPoster poster = new DataPoster(DatabaseAccounts.SCOTT);
+		
+		/* 지우는 DB 메소드 만들어야 함 */
+		
+		/*poster.postBoardDelete(num, studyIndex);*/
+		poster.close();
+		
+		response.sendRedirect("/study-of-us/study/each/cash");
 	}
 
 }
