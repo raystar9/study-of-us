@@ -16,9 +16,9 @@
   <form action="IDFindPage" method="post">
     <label for="lid"><strong>Your Name</strong></label>
     <input type="text" id="name" name="name" placeholder="Your Name.." maxlength="20">
-
-    <label for="password"><strong>Your EMail</strong></label>
-    <input type="text" id="email" name="email" placeholder="Your EMail.." maxlength="50">
+    
+    <label for="lid"><strong>Your Email</strong></label>
+    <input type="text" id="email" name="email" placeholder="Your Email.." maxlength="50">
     <input type="submit" value="Find" id="submit">
   </form>
 </div>

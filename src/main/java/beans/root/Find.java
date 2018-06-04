@@ -1,16 +1,11 @@
 package beans.root;
 
 public class Find {
-	public static final String QUERY_GET="select M_id,M_name,M_email from member where M_name = ? ";
-	public static final String QUERY_GET2="select M_name from member where M_name = ? ";
-	public static final String QUERY_GET3 = "select M_INDEX from member where M_name = ? ";
-	public static final String QUERY_GET4 = "select M_id from member where M_name = ? ";
+	public static final String QUERY_GET="select M_id,M_name from member where M_name = ? ";
+	public static final String QUERY_GET2="select M_id,M_email from member where M_email = ? ";
 	private String id;
 	private String name;
 	private String email;
-	private int index;
-	
-	
 	
 	public String getId() {
 		return id;
@@ -31,10 +26,5 @@ public class Find {
 		this.email = email;
 	}
 	
-	public int getIndex() {
-		return index;
-	}
-	public void setIndex(int index) {
-		this.index = index;
-	}
+	
 }

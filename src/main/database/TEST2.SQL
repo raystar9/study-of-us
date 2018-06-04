@@ -13,12 +13,14 @@ CREATE TABLE Member(
 );
 
 
+select * from tab;
+
 INSERT INTO MEMBER VALUES(member_index.nextval,'snow','곽승민', '1234', 'snowdrop0207@naver.com', '010-5066-7016','경기도 의정부시','M','하여');
 
 alter table member modify(M_TEL varchar(50));
 select * from member;
 
-drop table member
+drop table member;
 delete from member;
 
 delete member where M_id = 'ndw8524';

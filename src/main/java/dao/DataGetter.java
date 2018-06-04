@@ -718,30 +718,6 @@ public class DataGetter extends DataAccessor {
 		});
 		return index;
 	}
-
-	//아이디 찾을 떄 인덱스 번호 가져오기
-		public Find getIndex2(String name) {
-			Find id = (Find) get(Find.QUERY_GET3,new DataSettable() {
-				
-				@Override
-				public void prepare(PreparedStatement pstmt) throws SQLException {
-					pstmt.setString(1, name);
-				}
-			},new DataGettable() {
-				
-				@Override
-				public Object onGetResult(ResultSet rs) throws SQLException {
-					Find innerIndex = null;
-					if(rs.next()) {
-						innerIndex = new Find();
-						innerIndex.setIndex(rs.getInt(1));
-					}
-					return innerIndex;
-				}
-			});
-			return id;
-		}
-	
 		
 		public Find getFind(String name) {
 			Find find = (Find) get(Find.QUERY_GET, new DataSettable() {
@@ -759,7 +735,29 @@ public class DataGetter extends DataAccessor {
 						innerLogin = new Find();
 						innerLogin.setId(rs.getString(1));
 						innerLogin.setName(rs.getString(2));
-						innerLogin.setEmail(rs.getString(3));
+					}
+					return innerLogin; 
+				}
+			});
+			return find; 
+		}
+		
+		public Find getEmail(String email) {
+			Find find = (Find) get(Find.QUERY_GET2, new DataSettable() {
+
+				@Override
+				public void prepare(PreparedStatement pstmt) throws SQLException {
+					pstmt.setString(1, email); // 바인딩변수를 채워주기위해서 데이터 세터블을 매개변수 추가하며 오버로딩을한다.
+				}
+			}, new DataGettable() {
+
+				@Override
+				public Object onGetResult(ResultSet rs) throws SQLException {
+					Find innerLogin = null;
+					if (rs.next()) {
+						innerLogin = new Find();
+						innerLogin.setId(rs.getString(1));
+						innerLogin.setEmail(rs.getString(2));
 					}
 					return innerLogin; 
 				}
