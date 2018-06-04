@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import beans.prototype.Member;
 import beans.prototype.Study;
+import beans.prototype.StudyList;
 import beans.root.Login;
 import beans.study.StudyListCount;
 import beans.study.StudySearch;
@@ -133,17 +134,24 @@ public class DataGetter extends DataAccessor {
 
 	public ArrayList<Study> getStudies(String search, String[] check, String secondArray, int startcount, int endcount) { 
 		
-		String sql = StudyListCount.QUERY_GET+StudyListCount.QUERY_GET2;
+		String sql = StudyListCount.QUERY_GET3+StudyListCount.QUERY_GET4;
 		 if(search != null && search != "") { 
-			 sql = StudyListCount.QUERY_GET;
-			 sql += " where s_name LIKE '%"+search+"%' "+ StudyListCount.QUERY_GET2;
-			 System.out.println(sql);
-				if(!secondArray.equals("소분류") && secondArray != "" ) {
-			 		sql += "and c_sub LIKE '%"+secondArray+"%'" ;
+			 sql = StudyListCount.QUERY_GET3;
+			 // ) 로 짜른부분왓 ㅓ다시
+			 sql += " where s_name LIKE '%"+search+"%'"+StudyListCount.QUERY_GET4;
+				if(!secondArray.equals("소분 +`류") && secondArray != "" ) {
+					sql = (sql.substring(0,sql.length()-3));
+			 		sql += "where c_sub LIKE '%"+secondArray+"%' ))" ;
 				}
-					if(check != null) { // 검색어와 체크값을 같이 검색 했을 시 
+					if(check != null ) { // 검색어와 체크값을 같이 검색 했을 시
+						String str = "";
 						// 체크값을 만족하는 경우
-							String str = "and s_place LIKE ";
+						if(!secondArray.equals("소분류") && secondArray != "") {
+							sql = (sql.substring(0,sql.length()-1));
+							 str = " where s_place LIKE ";
+						}else {
+							str = ") where s_place LIKE ";
+						}
 								for(int i=0; i<check.length; i++) {
 					    	if(i<1) {
 					    		str += "'%"+check[i]+"%' ";
@@ -151,10 +159,11 @@ public class DataGetter extends DataAccessor {
 					    		str += "or s_place LIKE '%"+check[i]+"%' ";
 					    	}
 					    }
-					 sql += str; 
+					 sql += str + ")"; 
 					}		
 		 	
 		 }
+		 sql += StudyListCount.QUERY_GET5;
 		 System.out.println(sql);
 	
 		@SuppressWarnings("unchecked")
@@ -199,22 +208,23 @@ public class DataGetter extends DataAccessor {
 	
 	public ArrayList<Study> getStudies(String search, String[] check, String secondArray) { 
 		
-		String sql = StudyListCount.QUERY_GET+StudyListCount.QUERY_GET3;
-		 System.out.println(sql);
+		String sql = StudyListCount.QUERY_GET3+StudyListCount.QUERY_GET4;
 		 if(search != null && search != "") { 
-			 sql = StudyListCount.QUERY_GET;
-			 sql += " where s_name LIKE '%"+search+"%' "+ StudyListCount.QUERY_GET3;
-			 System.out.println(sql);
+			 sql = StudyListCount.QUERY_GET3;
+			 // ) 로 짜른부분왓 ㅓ다시
+			 sql += " where s_name LIKE '%"+search+"%'"+StudyListCount.QUERY_GET4;
 				if(!secondArray.equals("소분류") && secondArray != "" ) {
-			 		sql += "where c_sub LIKE '%"+secondArray+"%'" ;
+					sql = (sql.substring(0,sql.length()-3));
+			 		sql += "where c_sub LIKE '%"+secondArray+"%' ))" ;
 				}
 					if(check != null ) { // 검색어와 체크값을 같이 검색 했을 시
 						String str = "";
 						// 체크값을 만족하는 경우
 						if(!secondArray.equals("소분류") && secondArray != "") {
-							 str = "and s_place LIKE ";
+							sql = (sql.substring(0,sql.length()-1));
+							 str = " where s_place LIKE ";
 						}else {
-							 str = "where s_place LIKE ";
+							str = ") where s_place LIKE ";
 						}
 								for(int i=0; i<check.length; i++) {
 					    	if(i<1) {
@@ -223,7 +233,7 @@ public class DataGetter extends DataAccessor {
 					    		str += "or s_place LIKE '%"+check[i]+"%' ";
 					    	}
 					    }
-					 sql += str; 
+					 sql += str + ")"; 
 					}		
 		 	
 		 }
@@ -847,6 +857,36 @@ public class DataGetter extends DataAccessor {
 			}
 		});
 		return index;
+	}
+
+	public ArrayList<StudyList> studylist(int s_index, int m_index) {
+		@SuppressWarnings("unchecked")
+		ArrayList<StudyList> list = (ArrayList<StudyList>) get(StudyList.QUERY_GET2, new DataSettable() {
+			
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+				pstmt.setInt(1, s_index);
+				pstmt.setInt(2, m_index);
+				
+			}
+		}, new DataGettable() {
+			
+			@Override
+			public Object onGetResult(ResultSet rs) throws SQLException {
+				ArrayList<StudyList> StudyListCheck = new ArrayList<>();
+				while(rs.next()) {
+					StudyList studycheck = new StudyList();
+					studycheck.setStudyindex(rs.getInt(1));
+					studycheck.setMemberindex(rs.getInt(2));
+					StudyListCheck.add(studycheck);
+				}
+				return StudyListCheck;
+			}
+		});
+		
+		return list;
+		// TODO Auto-generated method stub
+		
 	}
 
 	/*

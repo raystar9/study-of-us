@@ -169,7 +169,7 @@ public class DataPoster extends DataSetter {
 		});
 	}
 
-	public ArrayList<StudyList> Insertindex(int s_index, int m_index) {
+	public void Insertindex(int s_index, int m_index) {
 		
 		set(StudyList.QUERY_POST, new DataSettable() {
 			@Override
@@ -181,7 +181,7 @@ public class DataPoster extends DataSetter {
 				pstmt.close();
 				
 			}
-		});
-		return null;
+		}
+		);
 	}
 }
