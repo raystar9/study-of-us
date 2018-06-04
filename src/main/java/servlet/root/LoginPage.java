@@ -35,6 +35,7 @@ public class LoginPage extends HttpServlet {
 		System.out.println( "리턴받아온 아이디 : "+logpro.getId());
 		System.out.println( "리턴받아온 비밀번호 : "+logpro.getPassword());
 		
+		
 
 		if (logpro == null || !logpro.getPassword().equals(password)) {
 			System.out.println("logpro"+logpro);
@@ -51,14 +52,10 @@ public class LoginPage extends HttpServlet {
 
 			System.out.println("비번 " + logpro.getPassword());
 			response.sendRedirect("/study-of-us/study/list");
+			
 			/*response.sendRedirect("/study-of-us/home");*/
 		}
 		getter.close();
-		
 	}
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		
-		
-	}
+
 }

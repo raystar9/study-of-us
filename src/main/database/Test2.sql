@@ -22,6 +22,8 @@ select * from member;
 select * from study;
 
 
+update study set s_name = '43번테이블' where s_index = 43 
+
 
 
 
@@ -107,7 +109,7 @@ NOMAXVALUE;
 
 -- StudyList 테이블 생성(스터디의 명단 정보)
 
-select * from studyList;
+select * from studyList where sl_m_index = 65;
 
 
 CREATE TABLE StudyList(
@@ -129,18 +131,28 @@ DELETE FROM StudyList WHERE SL_S_INDEX=? AND SL_M_INDEX=?;
 insert into StudyList values(20,66)
 insert into StudyList values(21,67)
 insert into StudyList values(19,67)
+
+
+
 insert into StudyList values(20,65)
 insert into StudyList values(19,65)
 insert into StudyList values(21,65)
 insert into StudyList values(22,65)
 insert into StudyList values(23,65)
 insert into StudyList values(24,65)
-
 insert into StudyList values(18,65)
 insert into StudyList values(30,65)
 insert into StudyList values(29,65)
 insert into StudyList values(43,65)
+insert into StudyList values(41,65)
+insert into StudyList values(42,65)
+insert into StudyList values(31,65)
+insert into StudyList values(32,65)
 
+update study set s_name = '32번 테이블' where s_index = 32;
+
+
+select * from(  select *  from(  select rownum as rnum, s.s_index, s.s_name ,s.s_peoplenum, nvl(to_number(greatest(sysdate - s.s_start,0))/decode(to_number(s.s_end - s.s_start),0,null,to_number(s.s_end - s.s_start)),0) * 100 progress from study s, studyList sl  where s.s_index = sl.sl_s_index and sl.sl_m_index = 65  order by s_index desc ))  where rnum >= 1 and rnum <= 2 
 
 insert into StudyList values(41,67)
 insert into StudyList values(18,67)
@@ -166,5 +178,18 @@ update study set s_start = to_date('2017-12-30') where s_index = 18;
 
 
 update study set s_name = '이름좀 ㅡㅡ' where s_index = 18;
+
+
+
+
+
+select max(s_index) from study; 
+select * from studyList
+
+
+
+
+
+
 
 

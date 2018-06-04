@@ -19,7 +19,7 @@ public class DataPoster extends DataSetter {
 		super(user);
 	}
 
-	public void postMembers(Member member) {
+	public int postMembers(Member member) {
 
 		/*
 		 * DataSettable은 익명클래스로 구현하도록 되어있습니다. 외부 혹은 내부 클래스로 선언하여 실제로 구현하여 매개변수로 넣어줄 수도
@@ -41,7 +41,7 @@ public class DataPoster extends DataSetter {
 
 			}
 		});
-
+		return 1;
 	}
 
 	public void postBoard(BoardViewRegisterBean board, int studyIndex) {
@@ -128,10 +128,8 @@ public class DataPoster extends DataSetter {
 		});
 	}
 
-	public void postStudy(Study study) {
-
+	public int postStudy(Study study) {
 		set(Study.QUERY_POST, new DataSettable() {
-
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
 				pstmt.setString(1, study.getName());
@@ -147,8 +145,10 @@ public class DataPoster extends DataSetter {
 				pstmt.setString(11, study.getPlace());
 				pstmt.executeUpdate();
 				pstmt.close();
+				
 			}
 		});
+		return 1;
 	}
 
 	public void postComment(CommentBean comment) {
@@ -223,6 +223,20 @@ public class DataPoster extends DataSetter {
 				pstmt.setString(1, content);
 				pstmt.setInt(2, cno);
 				pstmt.setInt(3, bno);
+				pstmt.executeUpdate();
+				pstmt.close();
+			}
+		});
+	}
+
+	
+	public void postStudyList(int m_index, int s_index) {
+		set(StudyList.QUERY_POST,new DataSettable() {
+			
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+				pstmt.setInt(1, s_index);
+				pstmt.setInt(2, m_index);
 				pstmt.executeUpdate();
 				pstmt.close();
 			}

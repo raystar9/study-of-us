@@ -3,7 +3,9 @@ package beans.prototype;
 public class StudyList {
 
 	 public static final String QUERY_GET ="SELECT * FROM StudyList";
-     public static final String QUERY_POST = "insert into member values(member_index.nextval,?,?,?,?,?,?,?,?)";
+	 
+	 //이거살려야함 -동완
+     public static final String QUERY_POST = "insert into studyList values(?,?)";
      public static final String QUERY_PUT = "UPDATE ";
      public static final String QUERY_DELETE = "DELETE ";
      

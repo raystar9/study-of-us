@@ -803,12 +803,16 @@ ArrayList<StudyListSelect> studylist = (ArrayList<StudyListSelect>) get(StudyLis
 			public void prepare(PreparedStatement pstmt) throws SQLException {
 				//읽기 시작할 row 번호 1
 				int startrow = (page - 1 ) * limit + 1;
+				System.out.println("스타트로우" + startrow);
 				//읽을 마지막 row 번호 2
 				int endrow = startrow + limit -1;
+				System.out.println("엔드로우" +endrow);
 				
 				pstmt.setInt(1, index);
 				pstmt.setInt(2, startrow);
 				pstmt.setInt(3, endrow);
+			
+				System.out.println(StudyListSelect.QUERY_GET3);
 				
 			}
 		}, new DataGettable() {
@@ -830,6 +834,27 @@ ArrayList<StudyListSelect> studylist = (ArrayList<StudyListSelect>) get(StudyLis
 	});
 		return studylist;
 }
+
+	
+	
+	
+	public Study getSindex() {
+		
+		@SuppressWarnings("unchecked")
+		Study index = (Study) get(Study.QUERY_GET5, new DataGettable() {
+			
+			@Override
+			public Object onGetResult(ResultSet rs) throws SQLException {
+				Study s_index = null;
+				if(rs.next()) { 
+					s_index = new Study();
+					s_index.setIndex(rs.getInt("s_index"));
+				}
+				return s_index;
+			}
+		});
+		return index;
+	}
 
 
 	/*
