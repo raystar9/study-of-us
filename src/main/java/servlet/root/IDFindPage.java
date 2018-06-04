@@ -27,7 +27,7 @@ public class IDFindPage extends HttpServlet{
 		DataGetter getter = new DataGetter(DatabaseAccounts.ADMIN);
 		
 		
-		Find Index = getter.getIndex2(name);
+		Find index = getter.getIndex2(name);
 		
 		
 		Find findpro = getter.getFind(name);
@@ -39,11 +39,11 @@ public class IDFindPage extends HttpServlet{
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/IDFindFail");
 			dispatcher.forward(request, response);
 		}
-		if(findpro.getEmail().equals(email) || Index != null){
+		if(findpro.getEmail().equals(email) || index != null){
 			HttpSession session = request.getSession();
 			session.setAttribute("name", name);
 			session.setAttribute("email", findpro.getEmail());
-			session.setAttribute("index", Index.getIndex());
+			session.setAttribute("index", index.getIndex());
 			
 			System.out.println("세션값:"+session.getAttribute("index"));
 			

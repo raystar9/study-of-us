@@ -721,7 +721,7 @@ public class DataGetter extends DataAccessor {
 
 	//아이디 찾을 떄 인덱스 번호 가져오기
 		public Find getIndex2(String name) {
-			Find index = (Find) get(Find.QUERY_GET3,new DataSettable() {
+			Find id = (Find) get(Find.QUERY_GET3,new DataSettable() {
 				
 				@Override
 				public void prepare(PreparedStatement pstmt) throws SQLException {
@@ -739,7 +739,7 @@ public class DataGetter extends DataAccessor {
 					return innerIndex;
 				}
 			});
-			return index;
+			return id;
 		}
 	
 		
@@ -757,8 +757,9 @@ public class DataGetter extends DataAccessor {
 					Find innerLogin = null;
 					if (rs.next()) {
 						innerLogin = new Find();
-						innerLogin.setName(rs.getString(1));
-						innerLogin.setEmail(rs.getString(2));
+						innerLogin.setId(rs.getString(1));
+						innerLogin.setName(rs.getString(2));
+						innerLogin.setEmail(rs.getString(3));
 					}
 					return innerLogin; 
 				}
