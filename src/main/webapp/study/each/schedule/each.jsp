@@ -4,8 +4,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src='sources/schedule/js/jquery.min.js'></script>
-<link rel="stylesheet" href='sources/each/css/notice.css'/>
+<script src='/study-of-us/webjars/jquery/3.2.1/jquery.min.js'></script>
+<link rel="stylesheet" href='/study-of-us/study/each/schedule/sources/each/css/notice.css'/>
 
 </head>
 <body>

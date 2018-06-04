@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,11 +12,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import beans.study.each.schedule.ScheduleBean;
 import fakeDB.FakeGetter;
+import servlet.ServletDispatcher;
 
 /**
  * Servlet implementation class Schedule
  */
-@WebServlet("/study/each/schedule")
 public class Schedule extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -55,7 +54,7 @@ public class Schedule extends HttpServlet {
 			}
 			request.setAttribute("schedules", mapper.writeValueAsString(schedules));
 		}
-		request.getRequestDispatcher("schedule.jsp").forward(request, response);
+		ServletDispatcher.forward(request, response, "schedule.jsp");
 	}
 
 }
