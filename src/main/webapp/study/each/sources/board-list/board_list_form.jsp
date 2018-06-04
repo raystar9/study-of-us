@@ -24,7 +24,6 @@
 			<th width="17%"><div>날짜</div></th>
 		</tr>
 		<c:set var="num" value="${listcount-(page-1)*10 }" />
-		<tbody class='container'>
 			<c:forEach var="b" items="${boardlist}">
 				<tr>
 					<td align="center"><c:out value="${num }"></c:out> <c:set var="num"
@@ -64,7 +63,6 @@
       		</c:if> <c:if test="${page < maxpage }">
 						<a href="./board?page=${page+1}">&nbsp;다음</a>
 					</c:if></td>
-		</tbody>
 		<tr>
 			<td colspan="5">
 					<select name="searchSelect">
