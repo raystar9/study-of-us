@@ -39,7 +39,7 @@ public class Schedule extends HttpServlet {
 		}
 		FakeGetter getter = new FakeGetter();
 		ObjectMapper mapper = new ObjectMapper();
-		ArrayList<ScheduleBean> schedules = getter.getSchedules();
+		ArrayList<ScheduleBean> schedules = getter.getSchedule(0);
 		if(type.equals("attend")) {
 			System.out.println("attend입니다.");
 			for(ScheduleBean schedule : schedules) {

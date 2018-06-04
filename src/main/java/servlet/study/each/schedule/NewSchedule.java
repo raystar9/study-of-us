@@ -56,6 +56,8 @@ public class NewSchedule extends HttpServlet {
 		Date dateIn = DateConverter.convertDateTime(map.get("date") + 'T' + map.get("time") + ":00");
 		meeting.setDate(dateIn);
 		meeting.setPlace((String) map.get("location"));
+		meeting.setComment("안녕!");
+		meeting.setExpectedFee(Integer.parseInt((String)map.get("fee")));
 		FakePoster poster = new FakePoster();
 		poster.postMeeting(0, meeting);
 		//TODO Database 연결 시 위의 두 코드가 합쳐질 예정임.
