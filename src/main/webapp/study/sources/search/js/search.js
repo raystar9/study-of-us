@@ -28,10 +28,11 @@ $(document).ready(function(){
 					$(".project").append(rdata);	
 				}	
 			})
-		},1000)
+		},700)
 			return false;
 		})
 		
+
 		$(document).on("click","#atag",function(){
 			var page = $(this).text()
 			var params = $("form").serialize()
@@ -42,11 +43,10 @@ $(document).ready(function(){
  				success : function(rdata){
  					$(".project").empty().append(rdata);
  				}
- 			
  			})
  			return false;
-
         })
+        
 		
 		$("#firstArray").change(function(){ // 대분류 선택시 소분류의 값을 선택할수 있도록 한다.
 			var selectVal = $("#firstArray").val();

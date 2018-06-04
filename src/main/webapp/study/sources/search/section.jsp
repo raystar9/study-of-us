@@ -101,25 +101,27 @@
   			<input type="hidden" id="index" name="index" value="${study.index }"/>
 		</div>
 		</c:forEach>
+		
+		<H3 style="text-align: center">현재 페이지 ${page }</H3>
 	<div class="paging"  style="text-align:center; margin-bottom:100px">
 		<c:if test="${startpage > 1}">
-			<a href="/study-of-us/study/search?page=1&searchVal=${searchVal}${check}&secondArray=${secondArray}">처음</a>
+			<a class="round2" href="/study-of-us/study/search?page=1&searchVal=${searchVal}${check}&secondArray=${secondArray}">&laquo;</a>
 		</c:if>
 		
 		<c:if test="${page > 1}">
-			<a href="/study-of-us/study/search?page=${page-1 }&searchVal=${searchVal}${check}&secondArray=${secondArray}">이전</a>
+			<a a class="round" href="/study-of-us/study/search?page=${page-1 }&searchVal=${searchVal}${check}&secondArray=${secondArray}">&#8249;</a>
 		</c:if>
 		
 		<c:forEach var="i" begin= "${startpage }" end="${endpage }">
-			<a href="/study-of-us/study/search?page=${i }&searchVal=${searchVal}${check}&secondArray=${secondArray}">${i }</a>
+			<a id=atag href="/study-of-us/study/search?page=${i }&searchVal=${searchVal}${check}&secondArray=${secondArray}">${i }</a>
 		</c:forEach>
 		
 		<c:if test="${page < totalpage}">
-			<a href="/study-of-us/study/search?page=${page+1 }&searchVal=${searchVal}&checkbox=${check}&secondArray=${secondArray}">다음</a>
+			<a class="round" href="/study-of-us/study/search?page=${page+1 }&searchVal=${searchVal}&checkbox=${check}&secondArray=${secondArray}">&#8250;</a>
 		</c:if>
 		
 		<c:if test="${endpage < totalpage}">
-			<a href="/study-of-us/study/search?page=${totalpage }&searchVal=${searchVal}${check}&secondArray=${secondArray}">끝</a>
+			<a class="round2" href="/study-of-us/study/search?page=${totalpage }&searchVal=${searchVal}${check}&secondArray=${secondArray}">&raquo;</a>
 		</c:if>
 
 		</div>

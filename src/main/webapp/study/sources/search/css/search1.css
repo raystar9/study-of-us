@@ -121,6 +121,7 @@ option{
 
 div.paging{
     text-align: center;
+    margin-top: 40px;
     margin-bottom: 100px;
 }
 
@@ -143,4 +144,32 @@ div.paging{
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+a:hover {
+    background-color: #ddd;	
+    color: black;
+}
+
+.paging a {
+	margin-top:30px;
+    color: black;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+}
+
+.round {
+    border-radius: 50%;
+       background-color: #f1f1f1;
+    color: white;
+}
+
+.round2 {
+    border-radius: 50%;
+       background-color:#dcdcdc;
+    color: white;
+}
+.co{
+	color:red;
 }
