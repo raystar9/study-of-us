@@ -9,7 +9,7 @@
 </head>
 <body>
 	<div id="result" name="reuslt">
-		아이디는 ${param.id}입니다.
+		아이디는 ${id}입니다.
 	</div>	
 </body>
 </html>
