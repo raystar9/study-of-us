@@ -27,35 +27,32 @@ public class LoginPage extends HttpServlet {
 		String password = request.getParameter("password");
 
 		DataGetter getter = new DataGetter(DatabaseAccounts.ADMIN);
-		Login Index = getter.getIndex(id);
 
+		
 		Login logpro = getter.getLogin(id);
 		
 		
-		System.out.println( "리턴받아온 아이디 : "+logpro.getId());
-		System.out.println( "리턴받아온 비밀번호 : "+logpro.getPassword());
+		/*System.out.println( "리턴받아온 아이디 : "+logpro.getId());
+		System.out.println( "리턴받아온 비밀번호 : "+logpro.getPassword());*/
 		
 		
 
 		if (logpro == null || !logpro.getPassword().equals(password)) {
 			System.out.println("logpro"+logpro);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/LoginFail");
-			dispatcher.forward(request, response);
+			response.sendRedirect(("/study-of-us/LoginFail"));
 		}
-		if (logpro.getPassword().equals(password) || Index != null) {
+		else if (logpro.getPassword().equals(password)) {
 			// 로그인 성공시 세션 생성
 			HttpSession session = request.getSession();
 			session.setAttribute("id", id);
-			session.setAttribute("index", Index.getIndex());
-
+			session.setAttribute("index", logpro.getIndex());
 			System.out.println("세션값:" + session.getAttribute("index"));
-
 			System.out.println("비번 " + logpro.getPassword());
-			response.sendRedirect("/study-of-us/study/list");
-			
 			/*response.sendRedirect("/study-of-us/home");*/
+			getter.close();
+			response.sendRedirect("/study-of-us/study/list");
 		}
-		getter.close();
+		
 	}
 
 }

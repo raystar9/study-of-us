@@ -184,10 +184,61 @@ update study set s_name = '이름좀 ㅡㅡ' where s_index = 18;
 
 
 select max(s_index) from study; 
-select * from studyList
+select * from studyList where sl_m_index = 65
+
+
+select * from study
 
 
 
+
+
+
+
+select s_name , round(greatest((greatest((s_end - s_start),0)) - (greatest(sysdate - s_start,0)),0)) as dday from study s , studylist sl
+where sl.sl_s_index = s.s_index and sl.sl_m_index = 65
+
+
+
+
+
+
+
+select * from study
+
+
+
+
+select round(greatest((greatest((s_end - s_start),0)) - (greatest(sysdate - s_start,0)),0)) as dday 
+		from study s , studylist sl 
+		 where sl.sl_s_index = s.s_index and sl.sl_m_index = 65 
+		 order by sl.sl_s_index desc;
+
+		 
+		 update study set s_name = '20번 테이블' where s_index = 20
+
+
+
+
+
+select * from( 
+			 select s_end, rownum as rnum, s_index,s_name,s_peoplenum,progress 
+			 from( 
+			 select s_end ,rownum as rnum, s.s_index, s.s_name ,s.s_peoplenum, nvl(to_number(sysdate - s.s_start)/decode(to_number(s.s_end - s.s_start),0,null,to_number(s.s_end - s.s_start)),0) * 100 progress from study s, studyList sl
+			   where s.s_index = sl.sl_s_index and sl.sl_m_index = 65 order by s_index desc 
+			 )where progress > 0) 
+			 
+			 
+			 
+			 
+			 select * from( 
+			select rownum as rnum, s_index,s_name,s_peoplenum,progress 
+			 from( 
+			 select rownum as rnum, s.s_index, s.s_name ,s.s_peoplenum, nvl(to_number(greatest(sysdate - s.s_start,0))/decode(to_number(s.s_end - s.s_start),0,null,to_number(s.s_end - s.s_start)),0) * 100 progress from study s, studyList sl
+			   where s.s_index = sl.sl_s_index and sl.sl_m_index = 65 order by s_index desc 
+			 )where progress > 0 ) 
+		
+select * from study
 
 
 

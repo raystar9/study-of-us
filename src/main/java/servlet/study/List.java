@@ -42,13 +42,16 @@ public class List extends HttpServlet {
 		System.out.println("넘어온 페이지 = " + page);
 
 		// 총스터디 수를 받아옵니다. (나의스터디만)
-		DataGetter getter2 = new DataGetter(DatabaseAccounts.ADMIN);
-		StudyListSelect studycount = getter2.getStudyListCount(index);
-
-		// 내가뽑아올 목록을 받아옵니다.
 		DataGetter getter = new DataGetter(DatabaseAccounts.ADMIN);
+		// 스터디 개수 뽑아옵니다
+		StudyListSelect studycount = getter.getStudyListCount(index);
+		// 내가뽑아올 목록을 받아옵니다.
 		ArrayList<StudyListSelect> studyList = getter.getStudyList(index,page ,limit);
+		// 남은일수 뽑아옵니다.
+		ArrayList<StudyListSelect> dday = getter.getDday(index, page, limit);
 
+		
+		
 		// (17 + (3 - 1)) / 3 = 6페이지가 마지막 페이지가된다. 19 / 3 = 6
 		int maxpage = (studycount.getCount() + limit - 1) / limit;
 		System.out.println("총페이지수 = " + maxpage);
@@ -79,17 +82,18 @@ public class List extends HttpServlet {
 
 		// 카운트받아온 나의 스터디 개수
 		request.setAttribute("studycount", studycount.getCount());
+		
+		//남은일수를 갖고있는 리스트
+		request.setAttribute("day", dday);
+		
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/list.jsp");
 		dispatcher.forward(request, response);
 
 		getter.close();
-		getter2.close();
 
 	}
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 	}
-	
 }

@@ -225,6 +225,7 @@ public class DataGetter extends DataAccessor {
 					innerLogin = new Login(); // 얘
 					innerLogin.setId(rs.getString(1));
 					innerLogin.setPassword(rs.getString(2));
+					innerLogin.setIndex(rs.getInt(3));
 				}
 				return innerLogin; // ongetresult 로 리턴해주고.
 			}
@@ -697,28 +698,7 @@ public class DataGetter extends DataAccessor {
 		return list;
 	}
 	
-	//로그인할때 인덱스 번호를 가져오기
-	public Login getIndex(String id) {
-		Login index = (Login) get(Login.QUERY_GET3,new DataSettable() {
-			
-			@Override
-			public void prepare(PreparedStatement pstmt) throws SQLException {
-				pstmt.setString(1, id);
-			}
-		},new DataGettable() {
-			
-			@Override
-			public Object onGetResult(ResultSet rs) throws SQLException {
-				Login innerIndex = null;
-				if(rs.next()) {
-					innerIndex = new Login();
-					innerIndex.setIndex(rs.getInt(1));
-				}
-				return innerIndex;
-			}
-		});
-		return index;
-	}
+
 
 //아이디 찾을 떄 인덱스 번호 가져오기
 	public Find getIndex2(String name) {
@@ -856,6 +836,38 @@ ArrayList<StudyListSelect> studylist = (ArrayList<StudyListSelect>) get(StudyLis
 		return index;
 	}
 
+	
+	
+	
+	public ArrayList<StudyListSelect> getDday(int index, int page, int limit) {
+		@SuppressWarnings("unchecked")
+		ArrayList<StudyListSelect> dday = (ArrayList<StudyListSelect>) get(StudyListSelect.QUERY_GET4,new DataSettable() {
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+				int startrow = (page - 1 ) * limit + 1;
+				int endrow = startrow + limit -1;
+				pstmt.setInt(1, index);
+				pstmt.setInt(2, startrow);
+				pstmt.setInt(3, endrow);
+			}
+		}, new DataGettable() {
+			
+			@Override
+			public ArrayList<?> onGetResult(ResultSet rs) throws SQLException {
+				ArrayList<StudyListSelect> days = new ArrayList<>();
+				while(rs.next()) {
+					StudyListSelect day = new StudyListSelect();
+					day.setDday(rs.getInt("dday"));
+					days.add(day);
+				}
+				
+				return days;
+				
+			}
+		});
+		return dday;
+	}
+
 
 	/*
 	 * private ArrayList<?> getBean(ResultSet rs, Class<?> beanClass) throws
@@ -867,3 +879,19 @@ ArrayList<StudyListSelect> studylist = (ArrayList<StudyListSelect>) get(StudyLis
 	 * 
 	 */
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

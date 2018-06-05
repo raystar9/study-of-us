@@ -9,13 +9,14 @@
 <div class="StudyList">
 	<span class="heading">아직 생성된 스터디가 없습니다</span>
 	<hr style="border:3px olid #f1f1f1">
-	<a href=#>스터디 생성하러가기</a>/<a href=#>스터디 참가하러가기</a>
+	<a href="/study-of-us/study/each/Registration">스터디 생성하러가기</a>/<a href=#>스터디 참가하러가기</a>
 </div>	
 </c:when>
 
 <c:otherwise>
 
-<c:forEach var="list" items="${studyList}">
+<c:forEach var="list" items="${studyList}" varStatus="status">
+
 
 <div class="StudyList">
 <span class="heading">${list.s_name} </span>
@@ -27,9 +28,10 @@
   </div>
   <div class="middle">
     <div class="bar-container">
+    
+    
+    <div class="bar-5" style="width: ${list.progress}%" title="스터디 종료일까지  ${day[status.index].dday} 일 남았습니다"></div>
  
-      <div class="bar-5" style="width: ${list.progress}%"></div>
-     
     </div>
   </div>
   <div class="side right">
