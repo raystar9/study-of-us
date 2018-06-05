@@ -40,17 +40,43 @@ public class FakeDB {
 	
 	private void initMembers() {
 		for(int i = 0; i < 50; i++) {
-			Member member = new Member();
-			member.setAddress("서울");
-			member.setEmail("a@naver.com");
-			member.setGender("m");
-			member.setId("user" + i);
-			member.setIntroduce("반갑습니다");
-			member.setName("나회원");
-			member.setPassword("1234");
-			member.setStudies(new ArrayList<Study>());
-			member.setTel("010-000-0000");
-			members.add(member);
+			if(i % 3 == 0) {
+				Member member = new Member();
+				member.setAddress("남양주");
+				member.setEmail("a@naver.com");
+				member.setGender("m");
+				member.setId("user" + i);
+				member.setIntroduce("반갑습니다");
+				member.setName("구명회");
+				member.setPassword("1234");
+				member.setStudies(new ArrayList<Study>());
+				member.setTel("010-000-0000");
+				members.add(member);
+			} else if (i % 3 == 1) {
+				Member member = new Member();
+				member.setAddress("서울");
+				member.setEmail("b@naver.com");
+				member.setGender("m");
+				member.setId("user" + i);
+				member.setIntroduce("반갑습니다");
+				member.setName("이다혜");
+				member.setPassword("1234");
+				member.setStudies(new ArrayList<Study>());
+				member.setTel("010-000-0000");
+				members.add(member);
+			} else {
+				Member member = new Member();
+				member.setAddress("서울");
+				member.setEmail("c@naver.com");
+				member.setGender("m");
+				member.setId("user" + i);
+				member.setIntroduce("반갑습니다");
+				member.setName("소문혁");
+				member.setPassword("1234");
+				member.setStudies(new ArrayList<Study>());
+				member.setTel("010-000-0000");
+				members.add(member);
+			}
 		}
 		
 	}
