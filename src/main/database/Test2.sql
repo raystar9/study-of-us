@@ -1,5 +1,5 @@
 --member2 테이블
-
+	 s_place LIKE ? and s_name LIKE ? and category.C_SUB LIKE ? 
 CREATE TABLE Member(
 	M_INDEX NUMBER NOT NULL PRIMARY KEY,    
 	M_ID VARCHAR(16) NOT NULL,
@@ -11,9 +11,36 @@ CREATE TABLE Member(
 	M_GENDER VARCHAR(2) NOT NULL,
 	M_INTRODUCE VARCHAR(200) NOT NULL
 );
+public static final String QUERY_GET3 = select * from study inner join CATEGORY on STUDY.S_C_ID = CATEGORY.C_ID where s_place LIKE ? and s_name LIKE ? and category.C_SUB LIKE ? ;
+	
+select * from studylist
 
+select * from (select rownum as rnum, s_index, s_name, s_c_id, S_MT_INDEX, S_START, S_END, S_PLOPIENUM, S_DAY, S_TIME,S_EXPLAIN,S_PREPARED,S_EFFECTIVE ,S_PLACE ,C_SUB
+from (
+select *
+from (
+select * from study inner join CATEGORY on STUDY.S_C_ID = CATEGORY.C_ID where c_sub LIKE '%자바%' order by s_index)
+ where s_place LIKE '%서울%' or s_place LIKE '%인천%' or s_place LIKE '%세종%' or s_place LIKE '%부산%')
+ where s_name LIKE '%자바%') where rnum >= 1 and rnum <= 5 
+
+select * from study inner join CATEGORY on STUDY.S_C_ID = CATEGORY.C_ID 
+where s_name LIKE '%토익%' AND s_place LIKE '%서울%' or s_place LIKE '%부천%' or s_place LIKE '%인천%' or s_place LIKE '%춘천%' AND c_sub LIKE '%영어%' order by s_index where rnum >= 1 and rnum <= 5
+
+
+select * from (select rownum as rnum, s_index, s_name, s_c_id, S_MT_INDEX, S_START, S_END, S_PLOPIENUM, S_DAY, S_TIME,S_EXPLAIN,S_PREPARED,S_EFFECTIVE ,S_PLACE from (select s_index, s_name, s_c_id, S_MT_INDEX, S_START, S_END, S_PLOPIENUM, S_DAY, S_TIME,S_EXPLAIN,S_PREPARED,S_EFFECTIVE ,S_PLACE from (select * from study inner join CATEGORY on STUDY.S_C_ID = CATEGORY.C_ID   order by s_index))) where rnum >= 1 and rnum <= 5
+
+
+select * from (select rownum as rnum, s_index, s_name, s_c_id, S_MT_INDEX, S_START, S_END, S_PLOPIENUM, S_DAY, S_TIME,S_EXPLAIN,S_PREPARED,S_EFFECTIVE ,S_PLACE from (select s_index, s_name, s_c_id, S_MT_INDEX, S_START, S_END, S_PLOPIENUM, S_DAY, S_TIME,S_EXPLAIN,S_PREPARED,S_EFFECTIVE ,S_PLACE from (select * from study inner join CATEGORY on STUDY.S_C_ID = CATEGORY.C_ID  where s_name LIKE 자바 order by s_index))) where rnum >= 1 and rnum <= 5
 
 INSERT INTO MEMBER VALUES(member_index.nextval,'snow','곽승민', '1234', 'snowdrop0207@naver.com', '010-5066-7016','경기도 의정부시','M','하여');
+
+select * from (select rownum as rnum, s_index, s_name, s_c_id, S_MT_INDEX, S_START, S_END, S_PLOPIENUM, S_DAY, S_TIME,S_EXPLAIN,S_PREPARED,S_EFFECTIVE ,S_PLACE from (select s_index, s_name, s_c_id, S_MT_INDEX, S_START, S_END, S_PLOPIENUM, S_DAY, S_TIME,S_EXPLAIN,S_PREPARED,S_EFFECTIVE ,S_PLACE from 
+(select * from study inner join CATEGORY on STUDY.S_C_ID = CATEGORY.C_ID where   order by s_index))) where rnum >= 1 and rnum <= 5
+
+
+select * from (select rownum as rnum, s_index, s_name, s_c_id, S_MT_INDEX, S_START, S_END, S_PLOPIENUM, S_DAY, S_TIME,S_EXPLAIN,S_PREPARED,S_EFFECTIVE ,S_PLACE from (select s_index, s_name, s_c_id, S_MT_INDEX, S_START, S_END, S_PLOPIENUM, S_DAY, S_TIME,S_EXPLAIN,S_PREPARED,S_EFFECTIVE ,S_PLACE from (select * from study inner join CATEGORY on STUDY.S_C_ID = CATEGORY.C_ID  order by s_index))) where rnum >= 1 and rnum <= 5
+
+select * from (select rownum as rnum, s_index, s_name, s_c_id, S_MT_INDEX, S_START, S_END, S_PLOPIENUM, S_DAY, S_TIME,S_EXPLAIN,S_PREPARED,S_EFFECTIVE ,S_PLACE from (select s_index, s_name, s_c_id, S_MT_INDEX, S_START, S_END, S_PLOPIENUM, S_DAY, S_TIME,S_EXPLAIN,S_PREPARED,S_EFFECTIVE ,S_PLACE from (select * from study inner join CATEGORY on STUDY.S_C_ID = CATEGORY.C_ID  where s_name LIKE '%자바%' or s_place LIKE '%서울%' or s_place LIKE '%부천%' or s_place LIKE '%인천%' or s_place LIKE '%춘천%'  order by s_index))) where rnum >= 1 and rnum <= 5
 
 alter table member modify(M_TEL varchar(50));
 
@@ -106,6 +133,8 @@ START WITH 1
 INCREMENT BY 1
 NOMAXVALUE;
 
+select * from (select rownum as rnum, s_index, s_name, s_c_id, S_MT_INDEX, S_START, S_END, S_PLOPIENUM, S_DAY, S_TIME,S_EXPLAIN,S_PREPARED,S_EFFECTIVE ,S_PLACE, C_SUB from (select s_index, s_name, s_c_id, S_MT_INDEX, S_START, S_END, S_PLOPIENUM, S_DAY, S_TIME,S_EXPLAIN,S_PREPARED,S_EFFECTIVE ,S_PLACE, C_SUB from (select * from study inner join CATEGORY on STUDY.S_C_ID = CATEGORY.C_ID  order by s_index))) 
+
 
 -- StudyList 테이블 생성(스터디의 명단 정보)
 
@@ -188,8 +217,21 @@ select * from studyList
 
 
 
+select * from (select rownum as rnum, s_index, s_name, s_c_id, S_MT_INDEX, S_START, S_END, S_PLOPIENUM, S_DAY, S_TIME,S_EXPLAIN,S_PREPARED,S_EFFECTIVE ,S_PLACE from (select s_index, s_name, s_c_id, S_MT_INDEX, S_START, S_END, S_PLOPIENUM, S_DAY, S_TIME,S_EXPLAIN,S_PREPARED,S_EFFECTIVE ,S_PLACE
+ from (select * from study inner join CATEGORY on STUDY.S_C_ID = CATEGORY.C_ID  where s_name LIKE '%토익%' order by s_index)WHERE  s_place LIKE '%서울%' or s_place LIKE '%부천%' or s_place LIKE '%인천%'  )) where rnum >= 1 and rnum <= 5
+
+select * from
+(select rownum as rnum, s_index, s_name, s_c_id, S_MT_INDEX, S_START, S_END, S_PLOPIENUM, S_DAY, S_TIME,S_EXPLAIN,S_PREPARED,S_EFFECTIVE ,S_PLACE, c_sub 
+from (select s_index, s_name, s_c_id, S_MT_INDEX, S_START, S_END, S_PLOPIENUM, S_DAY, S_TIME,S_EXPLAIN,S_PREPARED,S_EFFECTIVE ,S_PLACE, c_sub from 
+(select * from study inner join CATEGORY on STUDY.S_C_ID = CATEGORY.C_ID  where s_name LIKE '%토익%'  order by s_index))) 
+where rnum >= 1 and rnum <= 5 and s_place LIKE '%서울%' or s_place LIKE '%부천%' or s_place LIKE '%인천%' and c_sub LIKE '%영어%' 
 
 
+select * from 
+(select rownum as rnum, s_index, s_name, s_c_id, S_MT_INDEX, S_START, S_END, S_PLOPIENUM, S_DAY, S_TIME,S_EXPLAIN,S_PREPARED,S_EFFECTIVE ,S_PLACE from 
+(select s_index, s_name, s_c_id, S_MT_INDEX, S_START, S_END, S_PLOPIENUM, S_DAY, S_TIME,S_EXPLAIN,S_PREPARED,S_EFFECTIVE ,S_PLACE from 
+(select * from study inner join CATEGORY on STUDY.S_C_ID = CATEGORY.C_ID  where s_name LIKE '%토익%' and c_sub LIKE '%영어%' 
+order by s_index))) where rnum >= 1 and rnum <= 5 and s_place LIKE '%서울%' or s_place LIKE '%부천%' or s_place LIKE '%인천%' or s_place LIKE '%춘천%'
 
-
+select * from (select rownum as rnum, s_index, s_name, s_c_id, S_MT_INDEX, S_START, S_END, S_PLOPIENUM, S_DAY, S_TIME,S_EXPLAIN,S_PREPARED,S_EFFECTIVE ,S_PLACE, C_SUB from (select s_index, s_name, s_c_id, S_MT_INDEX, S_START, S_END, S_PLOPIENUM, S_DAY, S_TIME,S_EXPLAIN,S_PREPARED,S_EFFECTIVE ,S_PLACE from (select * from study inner join CATEGORY on STUDY.S_C_ID = CATEGORY.C_ID  where s_name LIKE '%자바%' and c_sub LIKE '%자바%' order by s_index))) where rnum >= 1 and rnum <= 5
 

@@ -121,10 +121,55 @@ option{
 
 div.paging{
     text-align: center;
+    margin-top: 40px;
     margin-bottom: 100px;
 }
 
 
 .projectcontainer:hover{
 	background-color: #333333bd;
+}
+
+.loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+   margin: auto;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+a:hover {
+    background-color: #ddd;	
+    color: black;
+}
+
+.paging a {
+	margin-top:30px;
+    color: black;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+}
+
+.round {
+    border-radius: 50%;
+       background-color: #f1f1f1;
+    color: white;
+}
+
+.round2 {
+    border-radius: 50%;
+       background-color:#dcdcdc;
+    color: white;
+}
+.co{
+	color:red;
 }

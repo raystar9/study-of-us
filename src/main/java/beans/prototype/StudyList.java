@@ -3,9 +3,8 @@ package beans.prototype;
 public class StudyList {
 
 	 public static final String QUERY_GET ="SELECT * FROM StudyList";
-	 
-	 //이거살려야함 -동완
-     public static final String QUERY_POST = "insert into studyList values(?,?)";
+	 public static final String QUERY_GET2 ="SELECT * FROM StudyList where SL_S_INDEX = ? and SL_M_INDEX = ? ";
+     public static final String QUERY_POST = "insert into StudyList values(?,?)";
      public static final String QUERY_PUT = "UPDATE ";
      public static final String QUERY_DELETE = "DELETE ";
      
@@ -27,7 +26,5 @@ public class StudyList {
 	public void setMemberindex(int memberindex) {
 		this.memberindex = memberindex;
 	}
-	
-	
      
 }
