@@ -237,7 +237,6 @@ public class DataGetter extends DataAccessor {
 	public ArrayList<BoardListBean> getBoardList(int page, int limit, int studyIndex, String pluswhere, String search) {
 		String sql = BoardListBean.QUERY_GET + pluswhere
 				+ "where B_S_INDEX IN (select S_INDEX from STUDY where S_INDEX = ?) AND RNUM>=? AND RNUM<=? ORDER BY B_NO desc";
-		System.out.println("***list sql = " + sql);
 		@SuppressWarnings("unchecked")
 		ArrayList<BoardListBean> list = (ArrayList<BoardListBean>) get(sql, new DataSettable() {
 
@@ -249,14 +248,10 @@ public class DataGetter extends DataAccessor {
 				
 				if (search != null && search != "") {
 					String search2 = "%" + search + "%";
-					System.out.println(search2);
 					pstmt.setString(1, search2);
 					pstmt.setInt(2, studyIndex);
 					pstmt.setInt(3, startrow);
 					pstmt.setInt(4, endrow);
-					System.out.println(studyIndex);
-					System.out.println(startrow);
-					System.out.println(endrow);
 				} else {
 					pstmt.setInt(1, studyIndex);
 					pstmt.setInt(2, startrow);
@@ -272,13 +267,11 @@ public class DataGetter extends DataAccessor {
 				while (rs.next()) {
 					BoardListBean board = new BoardListBean();
 					board.setIndex(rs.getInt(1));
-					System.out.println("rs.getInt(1) = " + rs.getInt(1));
 					board.setTitle(rs.getString(2));
 					board.setName(rs.getString(3));
 					board.setDate(rs.getString(4));
 					boardlist.add(board);
 				}
-				System.out.println("boardlist.size() = " + boardlist.size());
 				return boardlist;
 			}
 		}
@@ -369,7 +362,6 @@ public class DataGetter extends DataAccessor {
 	public int getBoardCount(int studyIndex, String pluswhere, String search) {
 		String sql = BoardListBean.QUERY_GET_COUNT + pluswhere
 				+ " where B_S_INDEX IN (select S_INDEX from STUDY where S_INDEX = ?) ORDER BY B_NO desc";
-		System.out.println("***count sql = " + sql);
 
 		int boardcount = (int) get(sql, new DataSettable() {
 			@Override
@@ -378,7 +370,6 @@ public class DataGetter extends DataAccessor {
 				// 아직 뭐 들어갈지 몰라서 정의하지 않았음
 				if (search != null && search != "") {
 					String search2 = "%" + search + "%";
-					System.out.println(search2);
 					pstmt.setString(1, search2);
 					pstmt.setInt(2, studyIndex);
 

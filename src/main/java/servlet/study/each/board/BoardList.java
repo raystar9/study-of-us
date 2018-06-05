@@ -79,6 +79,10 @@ public class BoardList extends HttpServlet {
 		request.setAttribute("listcount", boardcount);
 		// 해당 페이지의 글 목록을 갖고 있는 리스트
 		request.setAttribute("boardlist", boardlist);
+		
+		request.setAttribute("search", search);
+		request.setAttribute("searchSelect", searchSelect);
+		
 		getter.close();
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/each/boardList.jsp");

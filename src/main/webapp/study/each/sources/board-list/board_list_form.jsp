@@ -50,13 +50,13 @@
 				<td colspan="5"><c:if test="${page <= 1 }">
       		이전&nbsp;
       		</c:if> <c:if test="${page > 1 }">
-					<a href="./board?page=${page-1}">이전</a>&nbsp;
+					<a href="./board?searchSelect=${searchSelect }&search=${search }&page=${page-1}">이전</a>&nbsp;
       		</c:if> <c:forEach var="a" begin="${startpage }" end="${endpage }">
 						<c:if test="${a == page}">
       				${a}
       			</c:if>
 						<c:if test="${a != page }">
-							<a href="./board?page=${a}">${a}</a>
+							<a href="./board?searchSelect=${searchSelect }&search=${search }&page=${a}">${a}</a>
 						</c:if>
 					</c:forEach> <c:if test="${page >= maxpage}">
       			&nbsp;다음
