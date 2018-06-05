@@ -7,6 +7,8 @@
 		float:left;
 	}
 </style>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="sources/board-list/js/board_list_search.js" type="text/javascript"></script>
 </head>
 <body>
 <%@ include file = "/general-sources/Navigation.jsp" %>

@@ -4,7 +4,16 @@
 				uri="http://java.sun.com/jsp/jstl/core" %>
 
 
+<c:choose>
+<c:when test="${studycount == 0}">
+<div class="StudyList">
+	<span class="heading">아직 생성된 스터디가 없습니다</span>
+	<hr style="border:3px olid #f1f1f1">
+	<a href=#>스터디 생성하러가기</a>/<a href=#>스터디 참가하러가기</a>
+</div>	
+</c:when>
 
+<c:otherwise>
 
 <c:forEach var="list" items="${studyList}">
 
@@ -43,7 +52,7 @@
 </c:forEach>
 
 <!-- 페이지가 1보다 같거나 작으면 "이전"에 a태그 없이 표시함 -->
-<table class= "page" border = 1>
+<div class= "page">
 <c:if test="${page <= 1}">
 	이전&nbsp;
 </c:if>
@@ -52,7 +61,7 @@
 	<a href="/study-of-us/study/list?page=${page-1 }">이전</a>&nbsp;
 </c:if>
 
-<!--  a 에다 start값 1 end값 3 을 집어넣는다 -->
+<!--  a 에다 start값  end값  을 집어넣는다 -->
 <c:forEach var="a" begin="${startpage }" end="${endpage}">
 	<c:if test="${a==page }">
 	${a}
@@ -68,19 +77,13 @@
 <c:if test="${page < maxpage }">
 	<a href="/study-of-us/study/list?page=${page+1 }">다음</a>&nbsp;
 </c:if>
-</table>
+</div>
 
 
 
 
-
-
-
-
-
-
-
-
+</c:otherwise>
+</c:choose>
 
 
 
