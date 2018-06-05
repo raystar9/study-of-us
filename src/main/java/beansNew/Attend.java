@@ -1,37 +1,52 @@
 package beansNew;
 
 public class Attend {
-	Meeting meeting;
-	Member member;
+	int attendId;
+	int meetingId;
+	int memberId;
 	String attend;
 	
 	public Attend() {
 	}
-	
-	public Attend(Meeting meeting, Member member, String attend) {
-		this.meeting = meeting;
-		this.member = member;
+
+	public Attend(int attendId, int meetingId, int memberId, String attend) {
+		this.attendId = attendId;
+		this.meetingId = meetingId;
+		this.memberId = memberId;
 		this.attend = attend;
 	}
 
-	public Meeting getMeeting() {
-		return meeting;
+
+	public int getAttendId() {
+		return attendId;
 	}
-	public void setMeeting(Meeting meeting) {
-		this.meeting = meeting;
+
+	public int getMeetingId() {
+		return meetingId;
 	}
-	public Member getMember() {
-		return member;
+
+	public int getMemberId() {
+		return memberId;
 	}
-	public void setMember(Member member) {
-		this.member = member;
-	}
+
 	public String getAttend() {
 		return attend;
 	}
+
+	public void setAttendId(int attendId) {
+		this.attendId = attendId;
+	}
+
+	public void setMeetingId(int meetingId) {
+		this.meetingId = meetingId;
+	}
+
+	public void setMemberId(int memberId) {
+		this.memberId = memberId;
+	}
+
 	public void setAttend(String attend) {
 		this.attend = attend;
 	}
-	
-	
+
 }
