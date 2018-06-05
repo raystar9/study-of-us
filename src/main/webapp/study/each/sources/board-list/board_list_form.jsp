@@ -66,9 +66,9 @@
 		<tr>
 			<td colspan="5">
 					<select name="searchSelect">
-						<option value="B_TITLE" selected="selected">제목</option>
-						<option value="B_NAME">작성자</option>
-						<option value="B_DATE">날짜</option>
+						<option value="title" selected="selected">제목</option>
+						<option value="name">작성자</option>
+						<option value="date">날짜</option>
 					</select> <input type="text" class="" id="search" name="search"> <input
 						type="submit" value="검색"
 						id='boardSearchBtn'>

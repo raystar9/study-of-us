@@ -24,7 +24,6 @@ public class CashList extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		DataGetter getter = new DataGetter(DatabaseAccounts.SCOTT);
@@ -32,7 +31,7 @@ public class CashList extends HttpServlet {
 
 		int page = 1;
 		int limit = 10;
-		/*int studyIndex = 3;*/
+		int studyIndex = 3;
 		
 		if (request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
@@ -40,9 +39,9 @@ public class CashList extends HttpServlet {
 		System.out.println("넘어온 페이지 = " + page);
 		
 		//회비관리 리스트 가져옴
-		cashlist = getter.getCashList(page, limit /*, studyIndex*/);
+		cashlist = getter.getCashList(page, limit, studyIndex);
 		//회비관리 리스트 개수 가져옴
-		int cashcount = getter.getCashCount(/*studyIndex*/);
+		int cashcount = getter.getCashCount(studyIndex);
 		System.out.println("총 리스트 수 = " + cashcount);
 		
 		int maxpage = (cashcount + limit - 1) / limit;
@@ -62,7 +61,6 @@ public class CashList extends HttpServlet {
 
 		// 현재 페이지에 표시할 첫 페이지 수
 		request.setAttribute("startpage", startpage);
-		
 		request.setAttribute("endpage", endpage);
 
 		// 현재 페이지에 표시할 끝 페이지 수
