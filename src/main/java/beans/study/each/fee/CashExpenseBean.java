@@ -2,6 +2,8 @@ package beans.study.each.fee;
 
 public class CashExpenseBean {
 	
+	public static final String QUERY_GET = "select";
+	
 	private String content;
 	private int expense;
 	
@@ -17,8 +19,4 @@ public class CashExpenseBean {
 	public void setExpense(int expense) {
 		this.expense = expense;
 	}
-	
-	
-	
-
 }

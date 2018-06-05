@@ -9,20 +9,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-@WebServlet("/study/cashmodify")
+@WebServlet("/study/each/cashmodify")
 public class CashModify extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     
     public CashModify() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		/* 가져오는 메소드로 가져오고 */
+
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/each/cashModify.jsp");
 		dispatcher.forward(request, response);
 	}
@@ -30,7 +31,9 @@ public class CashModify extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		
+		/* 수정하는 메소드 만들기 */
+		
 	}
 
 }

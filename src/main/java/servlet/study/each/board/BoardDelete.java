@@ -33,8 +33,7 @@ public class BoardDelete extends HttpServlet {
 		poster.postBoardDelete(num, studyIndex);
 		poster.close();
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/each/boardList.jsp");
-		dispatcher.forward(request, response);
+		response.sendRedirect("/study-of-us/study/each/board");
 	}
 
 	

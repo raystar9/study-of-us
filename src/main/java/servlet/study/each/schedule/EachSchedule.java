@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import beansNew.Meeting;
 import fakeDB.FakeDB;
+import servlet.ServletDispatcher;
 
 /**
  * Servlet implementation class EachStudy
@@ -34,8 +35,7 @@ public class EachSchedule extends HttpServlet {
 		request.setAttribute("meeting", m);
 		SimpleDateFormat format = new SimpleDateFormat("yy-MM-dd a h:mm");
 		request.setAttribute("time", format.format(m.getDate().getTime()));
-		
-		request.getRequestDispatcher("/study/each/schedule/each.jsp").forward(request, response);
+		ServletDispatcher.forward(request, response, "each.jsp");
 	}
 
 	/**

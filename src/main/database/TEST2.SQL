@@ -13,19 +13,14 @@ CREATE TABLE Member(
 );
 
 
+select * from tab;
+
 INSERT INTO MEMBER VALUES(member_index.nextval,'snow','곽승민', '1234', 'snowdrop0207@naver.com', '010-5066-7016','경기도 의정부시','M','하여');
 
 alter table member modify(M_TEL varchar(50));
-
-
 select * from member;
-select * from study;
 
-
-
-
-
-drop table member
+drop table member;
 delete from member;
 
 delete member where M_id = 'ndw8524';
@@ -63,6 +58,7 @@ drop table study
 alter table study
 rename column s_plopienum to s_peoplenum
 
+select * from study;
 
 delete study
 
@@ -105,66 +101,10 @@ INCREMENT BY 1
 NOMAXVALUE;
 
 
--- StudyList 테이블 생성(스터디의 명단 정보)
-
-select * from studyList;
-
-
-CREATE TABLE StudyList(
-	SL_S_INDEX NUMBER NOT NULL,
-	SL_M_INDEX NUMBER NOT NULL,
-	PRIMARY KEY(SL_S_INDEX, SL_M_INDEX)
-)
-
-ALTER TABLE StudyList ADD FOREIGN KEY(SL_S_INDEX) REFERENCES Study(S_INDEX); 
-ALTER TABLE StudyList ADD FOREIGN KEY(SL_M_INDEX) REFERENCES Member(M_INDEX); 
-
-SELECT SL_S_INDEX, SL_M_INDEX FROM StudyList;
-INSERT INTO StudyList(SL_S_INDEX, SL_M_INDEX) VALUES (?, ?);
-UPDATE StudyList SET SL_S_INDEX=?, SL_M_INDEX=? WHERE SL_S_INDEX=? AND SL_M_INDEX=?;
-DELETE FROM StudyList WHERE SL_S_INDEX=? AND SL_M_INDEX=?;
+create table studyList
 
 
 
-insert into StudyList values(20,66)
-insert into StudyList values(21,67)
-insert into StudyList values(19,67)
-insert into StudyList values(20,65)
-insert into StudyList values(19,65)
-insert into StudyList values(21,65)
-insert into StudyList values(22,65)
-insert into StudyList values(23,65)
-insert into StudyList values(24,65)
 
-insert into StudyList values(18,65)
-insert into StudyList values(30,65)
-insert into StudyList values(29,65)
-insert into StudyList values(43,65)
-
-
-insert into StudyList values(41,67)
-insert into StudyList values(18,67)
-insert into StudyList values(42,67)
-insert into StudyList values(43,67)
-
-
-select * from studyList where sl_m_index = 67
-select * from study
-select * from member;
-
-select * from studyList where sl_m_index = 67
-
-
-delete from studylist where sl_m_index = 67;
-delete from studylist
-
-select * from studyList where sl_m_index = 67;
-update study set s_start = to_date('2018-04-30') where s_index = 42;
-update study set s_start = to_date('2018-05-30') where s_index = 41;
-update study set s_start = to_date('2018-01-30') where s_index = 43;
-update study set s_start = to_date('2017-12-30') where s_index = 18;
-
-
-update study set s_name = '이름좀 ㅡㅡ' where s_index = 18;
 
 

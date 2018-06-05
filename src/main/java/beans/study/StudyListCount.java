@@ -2,24 +2,21 @@ package beans.study;
 
 import java.util.Date;
 
+
 public class StudyListCount {
-	public static final String QUERY_GET = "select * from (select rownum as rnum, s_index, s_name, s_c_id, S_MT_INDEX, S_START, S_END, S_PLOPIENUM, S_DAY, S_TIME,S_EXPLAIN,S_PREPARED,S_EFFECTIVE ,S_PLACE "
-			+ "from ("
-			+ "select s_index, s_name, s_c_id, S_MT_INDEX, S_START, S_END, S_PLOPIENUM, S_DAY, S_TIME,S_EXPLAIN,S_PREPARED,S_EFFECTIVE ,S_PLACE "
-			+ "from study "
-			+ "order by s_index)) "
-			+ "where rnum >= ? and rnum <= ?";
+	public static final String QUERY_GET = "select * from "
+							+"(select rownum as rnum, s_index, s_name, s_c_id, S_MT_INDEX, S_START, S_END, S_PLOPIENUM, S_DAY, S_TIME,S_EXPLAIN,S_PREPARED,S_EFFECTIVE ,S_PLACE, C_SUB from "
+							+"(select s_index, s_name, s_c_id, S_MT_INDEX, S_START, S_END, S_PLOPIENUM, S_DAY, S_TIME,S_EXPLAIN,S_PREPARED,S_EFFECTIVE ,S_PLACE, C_SUB from "
+							+"(select * from study inner join CATEGORY on STUDY.S_C_ID = CATEGORY.C_ID ";
+		
+	public static final String QUERY_GET2 = " order by s_index))) where rnum >= ? and rnum <= ? ";
 	
 	
-	public static final String QUERY_GET2 = "select * from (select rownum as rnum, s_index, s_name, s_c_id, S_MT_INDEX, S_START, S_END, S_PLOPIENUM, S_DAY, S_TIME,S_EXPLAIN,S_PREPARED,S_EFFECTIVE ,S_PLACE "
-			+ "from ("
-			+ "select s_index, s_name, s_c_id, S_MT_INDEX, S_START, S_END, S_PLOPIENUM, S_DAY, S_TIME,S_EXPLAIN,S_PREPARED,S_EFFECTIVE ,S_PLACE "
-			+ "from ("
-			+ "select * from study inner join CATEGORY on STUDY.S_C_ID = CATEGORY.C_ID where s_place LIKE ? and s_name LIKE ? and category.C_SUB LIKE ? "
-			+ "order by s_index))) "
-			+ "where rnum >= ? and rnum <= ?";
-
-
+	
+	public static final String QUERY_GET3 = "select * from (select rownum as rnum, s_index, s_name, s_c_id, S_MT_INDEX, S_START, S_END, S_PLOPIENUM, S_DAY, S_TIME,S_EXPLAIN,S_PREPARED,S_EFFECTIVE ,S_PLACE, C_SUB from (select s_index, s_name, s_c_id, S_MT_INDEX, S_START, S_END, S_PLOPIENUM, S_DAY, S_TIME,S_EXPLAIN,S_PREPARED,S_EFFECTIVE ,S_PLACE, C_SUB from (select * from study inner join CATEGORY on STUDY.S_C_ID = CATEGORY.C_ID ";
+	public static final String QUERY_GET4 = " order by s_index))) ";
+	public static final String QUERY_GET5 = "where rnum >= ? and rnum <= ? ";
+	
 	private int index;
 	private String name;
 	private int c_id;
@@ -112,12 +109,7 @@ public class StudyListCount {
 	public void setPlace(String place) {
 		this.place = place;
 	}
-	public static String getQueryGet() {
-		return QUERY_GET;
-	}
-	public static String getQueryGet2() {
-		return QUERY_GET2;
-	}
+
 	
 	
 	

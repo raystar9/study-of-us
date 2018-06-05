@@ -1,16 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-
-<script>
 	$(function() {
 		var commentcount = $('#commentcount').val();
 		$('#commentListBtn').val('답글보기(' + commentcount + ')▼');
 		
+		//댓글 버튼 눌렀을 때
 		$('#commentInsertBtn').click(function() {
 			var insertData = $('[name=commentInsertForm]').serialize();
 			commentInsert(insertData);
 		});
 		
+		//댓글 등록 버튼 눌었을 때
 		$('#commentListBtn').click(function() {
 			if($('#commentListBtn').val() == '답글보기(' + commentcount + ')▲'){
 				$(".commentList").empty();
@@ -21,7 +19,8 @@
 			}
 		});
 	});
-
+	
+	//댓글 목록 출력
 	function commentList() {
 		var bno = $("#bno").val();
 			$.ajax({ url : '/study-of-us/commentlist',
@@ -109,4 +108,3 @@
 			}
 		});
 	}
-</script>
