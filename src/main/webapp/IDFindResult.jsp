@@ -6,6 +6,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Insert title here</title>
 <link href="sources/idfindresult/css/IDFindResult.css" rel="stylesheet">
+<script src = "/study-of-us/sources/idfindresult/js/ajax.js">
+</script>
 </head>
 
 <body>

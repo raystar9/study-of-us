@@ -32,6 +32,8 @@ select * from (select rownum as rnum, s_index, s_name, s_c_id, S_MT_INDEX, S_STA
 
 select * from (select rownum as rnum, s_index, s_name, s_c_id, S_MT_INDEX, S_START, S_END, S_PLOPIENUM, S_DAY, S_TIME,S_EXPLAIN,S_PREPARED,S_EFFECTIVE ,S_PLACE from (select s_index, s_name, s_c_id, S_MT_INDEX, S_START, S_END, S_PLOPIENUM, S_DAY, S_TIME,S_EXPLAIN,S_PREPARED,S_EFFECTIVE ,S_PLACE from (select * from study inner join CATEGORY on STUDY.S_C_ID = CATEGORY.C_ID  where s_name LIKE 자바 order by s_index))) where rnum >= 1 and rnum <= 5
 
+select * from tab;
+
 INSERT INTO MEMBER VALUES(member_index.nextval,'snow','곽승민', '1234', 'snowdrop0207@naver.com', '010-5066-7016','경기도 의정부시','M','하여');
 
 select * from (select rownum as rnum, s_index, s_name, s_c_id, S_MT_INDEX, S_START, S_END, S_PLOPIENUM, S_DAY, S_TIME,S_EXPLAIN,S_PREPARED,S_EFFECTIVE ,S_PLACE from (select s_index, s_name, s_c_id, S_MT_INDEX, S_START, S_END, S_PLOPIENUM, S_DAY, S_TIME,S_EXPLAIN,S_PREPARED,S_EFFECTIVE ,S_PLACE from 
@@ -54,7 +56,7 @@ update study set s_name = '43번테이블' where s_index = 43
 
 
 
-drop table member
+drop table member;
 delete from member;
 
 delete member where M_id = 'ndw8524';
