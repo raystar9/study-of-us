@@ -11,7 +11,7 @@
 </head>
 
 <body>
-	<form action="/study/cashregister" method="post">
+	<form action="./cashregister" method="post">
 
 		<table border='1'>
 			<tr>
@@ -26,18 +26,10 @@
 			</tr>
 			<tr>
 				<td>
-					<div class="form-group">
-						<label>*제목</label> <input type="text" id="dues-title"
-							name="duesTitle" class="form-control">
-					</div>
-				</td>
-			</tr>
-			<tr>
-				<td>
 					<div class="calendar">
 						<div>
 							<label>*날짜</label><input type="date" id="dues-date"
-								name="duesDate" value="2015-10-10">
+								name="duesDate" value="" readOnly><!-- 선택한 날짜로 자동으로 채워지게 해야 함 -->
 						</div>
 					</div>
 				</td>
@@ -61,7 +53,7 @@
 											</tr>
 										</thead>
 										<tbody>
-											<c:forEach var="name" items="${names }" begin='0' end="${membercount }"  varStatus="status">
+											<c:forEach var="name" items="${names }" varStatus="status">
 												<tr>
 													<td>${status.count}</td>
 													<td>${name }</td>

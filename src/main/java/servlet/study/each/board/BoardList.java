@@ -28,7 +28,15 @@ public class BoardList extends HttpServlet {
 		// TODO Auto-generated method stub
 		DataGetter getter = new DataGetter(DatabaseAccounts.SCOTT);
 		ArrayList<BoardListBean> boardlist = new ArrayList<BoardListBean>();
-
+		
+		String search = request.getParameter("search");
+		System.out.println("search = " + search);
+		String searchSelect = request.getParameter("searchSelect");
+		String pluswhere = "";
+		
+		if(search != null && search != "") {
+			pluswhere = " AND ? like ? ";
+		}
 		int page = 1;
 		int limit = 10;
 		int studyIndex = 3;
@@ -38,11 +46,10 @@ public class BoardList extends HttpServlet {
 		}
 		System.out.println("넘어온 페이지 = " + page);
 
-		boardlist = getter.getBoardList(page, limit, studyIndex); // 총 리스트 받아오기
-		System.out.println("getFilename = " + boardlist.get(0).getName());
-		
 		int boardcount = getter.getBoardCount(studyIndex); // 총 리스트 수 받아오기
-		System.out.println("총 리스트 수 = " + boardcount);
+		
+		boardlist = getter.getBoardList(page, limit, studyIndex, pluswhere, search, searchSelect); // 총 리스트 받아오기
+		boardcount = boardlist.size();
 
 		int maxpage = (boardcount + limit - 1) / limit;
 		System.out.println("총 페이지수 = " + maxpage);
@@ -58,6 +65,7 @@ public class BoardList extends HttpServlet {
 		
 		request.setAttribute("page", page); // 현재 페이지 수
 		request.setAttribute("maxpage", maxpage); // 최대 페이지 수
+		request.setAttribute("endpage", endpage); 
 
 		// 현재 페이지에 표시할 첫 페이지 수
 		request.setAttribute("startpage", startpage);

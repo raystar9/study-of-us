@@ -5,10 +5,8 @@
 <html>
 <head>
 <title>스터디 안의 게시판 페이지에서 글을 클릭했을 때 상세보기 되는 페이지</title>
-<script src="http://code.jquery.com/jquery-latest.js"></script>
 </head>
 <body>
-	<%@ include file="../comment/comment.jsp" %>
 	<c:set var="b" value="${boardcontent}" />
 	<input type="hidden" name="commentcount" value="${commentcount}" id="commentcount" />
 	<c:set var='id' value="${b.name}" /><!-- "${sessionScope.id}" 바꿀꺼임 -->
@@ -29,7 +27,7 @@
 
 		<tr>
 			<td>내용</td>
-			<td><c:out value="${b.content }" /></td>
+			<td><textarea cols="67" rows="15" readOnly><c:out value="${b.content }" /></textarea></td>
 		</tr>
 
 		<tr>
