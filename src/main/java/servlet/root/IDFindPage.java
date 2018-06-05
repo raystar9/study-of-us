@@ -19,39 +19,30 @@ public class IDFindPage extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 String name = request.getParameter("name");	
+		 String name = request.getParameter("name");
 		 String email = request.getParameter("email");
-		 
-		
 
-		DataGetter getter = new DataGetter(DatabaseAccounts.ADMIN);
+		DataGetter getter = new DataGetter(DatabaseAccounts.SCOTT);
 		
-		
-		Find Index = getter.getIndex2(name);
-		
-		
-		Find findpro = getter.getFind(name);
+		Find findname = getter.getFind(name);
+		Find findemail = getter.getEmail(email);
 		//
 		/*request.setAttribute("login", logpro);*/
 		
-		if(findpro == null || !findpro.getEmail().equals(email)) {
-			System.out.println(findpro);
+		if(findname == null || !findname.getName().equals(name) || findemail == null || !findemail.getEmail().equals(email)) {
+			System.out.println(findname);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/IDFindFail");
 			dispatcher.forward(request, response);
 		}
-		if(findpro.getEmail().equals(email) || Index != null){
+		if(findname.getName().equals(name) && findemail.getEmail().equals(email)){
 			HttpSession session = request.getSession();
 			session.setAttribute("name", name);
-			session.setAttribute("email", findpro.getEmail());
-			session.setAttribute("index", Index.getIndex());
-			
-			System.out.println("세션값:"+session.getAttribute("index"));
-			
-			
-			System.out.println(findpro.getEmail());
+			session.setAttribute("email", email);
+			session.setAttribute("id", findemail.getId());
+
+			System.out.println(findname.getName());
+			System.out.println(findemail.getEmail());
 			response.sendRedirect("/study-of-us/IDFindResult");
-			/*RequestDispatcher dispatcher = request.getRequestDispatcher("/list");
-			dispatcher.forward(request, response);*/
 		}
 
 		getter.close();

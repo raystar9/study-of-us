@@ -3,9 +3,10 @@ package beansNew;
 import java.sql.Date;
 
 public class Board {
+	int boardId;
 	int postNo;
-	Study study;
-	Member writer;
+	int studyId;
+	int memberId;
 	String title;
 	Date date;
 	String content;
@@ -14,57 +15,99 @@ public class Board {
 	
 	public Board() {
 	}
-	public Board(int postNo, Study study, Member writer, String title, Date date, String content, String filename) {
+
+
+	public Board(int boardId, int postNo, int studyId, int memberId, String title, Date date, String content,
+			String filename) {
+		this.boardId = boardId;
 		this.postNo = postNo;
-		this.study = study;
-		this.writer = writer;
+		this.studyId = studyId;
+		this.memberId = memberId;
 		this.title = title;
 		this.date = date;
 		this.content = content;
 		this.filename = filename;
 	}
+
+
+	public int getBoardId() {
+		return boardId;
+	}
+
+
 	public int getPostNo() {
 		return postNo;
 	}
-	public void setPostNo(int postNo) {
-		this.postNo = postNo;
+
+
+	public int getStudyId() {
+		return studyId;
 	}
-	public Study getStudy() {
-		return study;
+
+
+	public int getMemberId() {
+		return memberId;
 	}
-	public void setStudy(Study study) {
-		this.study = study;
-	}
-	public Member getWriter() {
-		return writer;
-	}
-	public void setWriter(Member writer) {
-		this.writer = writer;
-	}
+
+
 	public String getTitle() {
 		return title;
 	}
-	public void setTitle(String title) {
-		this.title = title;
-	}
+
+
 	public Date getDate() {
 		return date;
 	}
-	public void setDate(Date date) {
-		this.date = date;
-	}
+
+
 	public String getContent() {
 		return content;
 	}
-	public void setContent(String content) {
-		this.content = content;
-	}
+
+
 	public String getFilename() {
 		return filename;
 	}
+
+
+	public void setBoardId(int boardId) {
+		this.boardId = boardId;
+	}
+
+
+	public void setPostNo(int postNo) {
+		this.postNo = postNo;
+	}
+
+
+	public void setStudyId(int studyId) {
+		this.studyId = studyId;
+	}
+
+
+	public void setMemberId(int memberId) {
+		this.memberId = memberId;
+	}
+
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+
 	public void setFilename(String filename) {
 		this.filename = filename;
 	}
-	
+
 	
 }

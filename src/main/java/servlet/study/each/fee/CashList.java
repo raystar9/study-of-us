@@ -62,6 +62,8 @@ public class CashList extends HttpServlet {
 
 		// 현재 페이지에 표시할 첫 페이지 수
 		request.setAttribute("startpage", startpage);
+		
+		request.setAttribute("endpage", endpage);
 
 		// 현재 페이지에 표시할 끝 페이지 수
 		request.setAttribute("listcount", cashcount);

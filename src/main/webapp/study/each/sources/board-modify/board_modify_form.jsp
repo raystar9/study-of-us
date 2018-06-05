@@ -8,7 +8,7 @@
 </head>
 <body>
 	<c:set var='id' value="${sessionScope.id}" />
-	<form action='./boardmodify' method='post' >
+	<form action='./boardmodify' method='post'>
 		<c:set var="b" value="${boardcontent}" />
 		<input type="hidden" name="num" value="${b.index}">
 		<table border="1">
@@ -41,9 +41,16 @@
 			</tr>
 
 			<tr>
-				<td colspan="2" class="center">&nbsp; 
-				<input type=submit value="수정" >
-				<input type=reset value="취소" onClick="history.go(-1);">
+				<td><div>첨부파일</div></td>
+				<c:if test="${!empty b.filename }">
+					<td>&nbsp;${b.filename }</td>
+				</c:if>
+			</tr>
+
+			<tr>
+				<td colspan="2" class="center">&nbsp; <input type=submit
+					value="수정"> <input type=reset value="취소"
+					onClick="history.go(-1);">
 				</td>
 			</tr>
 		</table>
