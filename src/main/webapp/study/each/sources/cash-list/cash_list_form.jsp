@@ -28,7 +28,7 @@
 				<td colspan='2'>
 					<div class="panel-heading" id="top_head">
 						*회비: <input type="text" class="form-control" id="top-total"
-							placeholder="120,000" value="" readOnly>&nbsp;원
+							value="" readOnly>&nbsp;원
 					</div>
 				</td>
 			</tr>
@@ -47,7 +47,7 @@
 									<c:set var="num" value="${listcount-(page-1)*10 }" />
 									<c:forEach var="c" items="${cashlist}">
 										<tr>
-											<td><c:out value="${num }"></c:out> <c:set var="num"
+											<td align="center"><c:out value="${num }"></c:out> <c:set var="num"
 													value="${num-1}" /></td>
 											<td><div>${c.date}</div></td>
 										</tr>
@@ -82,8 +82,7 @@
 									</c:if>
 
 									<tr>
-										<td colspan="5" style="text-align: right"><a
-											href="#">[회비등록]</a></td>
+										<td colspan="5" style="text-align: right"><a href="#">[회비등록]</a></td>
 									</tr>
 								</tbody>
 

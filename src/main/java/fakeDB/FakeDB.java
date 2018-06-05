@@ -124,6 +124,7 @@ public class FakeDB {
 				meeting.setDate(DateConverter.convertDate("2018-06-0" + (i+5)));
 				meeting.setExpectedFee(10000);
 				meeting.setPlace("종각역");
+				meeting.setComment("꼭 오세요!");
 				meetings.add(meeting);
 			}
 		}

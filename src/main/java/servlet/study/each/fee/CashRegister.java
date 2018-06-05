@@ -28,10 +28,8 @@ public class CashRegister extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		System.out.println("회비등록 서블릿 들어옴");
+		System.out.println("CashRegister 서블릿 들어옴");
 		DataGetter getter = new DataGetter(DatabaseAccounts.SCOTT);
-		
-		int membercount = getter.getInformMemberCount();	//스터디 참여인원
 		
 		ArrayList<InformSetupMember> memlist = new ArrayList<InformSetupMember>(); //스터디 참여인원의 정보
 		memlist = getter.getInformMember();
@@ -42,7 +40,6 @@ public class CashRegister extends HttpServlet {
 		}
 		
 		request.setAttribute("names", names); 	
-		request.setAttribute("membercount", membercount);
 		getter.close();
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/each/cashRegister.jsp");
@@ -52,7 +49,10 @@ public class CashRegister extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		
+		/* 등록했을 때 데이터 넣는 것 구현해야 함 */
+		
+		response.sendRedirect("/study-of-us/study/each/cash");
 	}
 
 }

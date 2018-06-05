@@ -4,6 +4,12 @@ START WITH 1
 INCREMENT BY 1
 NOMAXVALUE;
 
+
+select B_NO, B_TITLE, B_NAME, B_DATE from (SELECT ROWNUM RNUM, B_TITLE, B_NAME, B_DATE, B_S_INDEX, B_NO FROM BOARD b) where B_S_INDEX IN (select S_INDEX from STUDY where S_INDEX = 3) AND RNUM>=1 AND RNUM<=10 AND B_TITLE like '%교재%' ORDER BY B_NO desc
+
+select B_NO, B_TITLE, B_NAME, B_DATE from (SELECT ROWNUM RNUM, B_TITLE, B_NAME, B_DATE, B_S_INDEX, B_NO FROM BOARD b) where B_S_INDEX IN (select S_INDEX from STUDY where S_INDEX = 3) AND RNUM>=1 AND RNUM<=10 AND B_TITLE like '%교재%'  ORDER BY B_NO desc
+
+
 drop table Member;
 -- Member 테이블 생성
 CREATE TABLE Member(
@@ -407,4 +413,41 @@ insert into fee values(1, 3, '이다혜', '')
 create table fee(
 	
 )
+
+insert into BOARD
+values (board_no.nextval, '이이이2', '테스트2', sysdate, '테스트2', 3, '테스트2.jpg');
+
+
+
+
+where (select S_INDEX 
+       from STUDY s 
+       where s.S_INDEX = B_S_INDEX) = 3;
+
+
+
+
+
+
+
+
+select * from board;
+
+select 
+
+select B_TITLE
+from (SELECT ROWNUM RNUM, B_TITLE, B_NAME, B_DATE, B_S_INDEX, B_NO
+      FROM BOARD b) 
+      where B_S_INDEX IN (select S_INDEX 
+       					  from STUDY 
+       					  where S_INDEX = 3) 
+AND B_TITLE like '%회비%'
+ORDER BY B_NO desc
+
+select count(*) from BOARD where (select S_INDEX from STUDY s where s.S_INDEX = b.B_S_INDEX) = 3) AND B_TITLE like '%회비%' ORDER BY B_NO desc
+select count(*) from (SELECT ROWNUM RNUM, B_TITLE, B_NAME, B_DATE, B_S_INDEX, B_NO FROM BOARD b) where B_S_INDEX IN (select S_INDEX from STUDY where S_INDEX = 3) ORDER BY B_NO desc
+
+
+
+
 
