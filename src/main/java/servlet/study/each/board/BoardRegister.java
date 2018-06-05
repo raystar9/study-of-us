@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.websocket.Session;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -69,6 +70,10 @@ public class BoardRegister extends HttpServlet {
 		DataPoster poster = new DataPoster(DatabaseAccounts.SCOTT);
 		poster.postBoard(board, studyIndex); 
 		poster.close();
+		
+		/* 사용자 아이디 session에서 가져오는 것 필요 */
+        /* 사용자 아이디 session에서 저장해서 form으로 보내는 것 필요 */
+		
 		//나중엔 그 해당 글번호를 가져와서 등록한 글의 세부보기 페이지로 이동할 것임.
 		response.sendRedirect("/study-of-us/study/each/board");
 	}

@@ -10,6 +10,7 @@ public class CashMemberBean {
 	
 	private int memfee;			//스터디원이 낸 회비
 	private String note;		//스터디원의 비고
+	private String name;		//스터디원의 이름
 	
 	
 	public int getMemfee() {

@@ -236,7 +236,7 @@ public class DataGetter extends DataAccessor {
 	// 게시판에 들어갔을 때 나오는 목록 데이터를 가져오는 메소드
 	public ArrayList<BoardListBean> getBoardList(int page, int limit, int studyIndex, String pluswhere, String search) {
 		String sql = BoardListBean.QUERY_GET + pluswhere
-				+ "where B_S_INDEX IN (select S_INDEX from STUDY where S_INDEX = ?) AND RNUM>=? AND RNUM<=? ORDER BY B_NO desc";
+				+ "where B_S_INDEX IN (select S_INDEX from STUDY where S_INDEX = ?) AND RNUM>=? AND RNUM<=? ORDER BY B_NO DESC";
 		@SuppressWarnings("unchecked")
 		ArrayList<BoardListBean> list = (ArrayList<BoardListBean>) get(sql, new DataSettable() {
 
@@ -878,10 +878,9 @@ public class DataGetter extends DataAccessor {
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
 				// TODO Auto-generated method stub
-				// 아직 뭐 들어갈지 몰라서 정의하지 않았음
-				int startrow = (page - 1) * limit + 1; // 읽기 시작할 row 번호( 1 11 21 )
-				int endrow = startrow + limit - 1; // 읽을 마지막 row 번호( 10 20 30 )
-				/* pstmt.setInt(1, studyIndex); */
+				int startrow = (page - 1) * limit + 1;
+				int endrow = startrow + limit - 1; 
+				pstmt.setInt(1, studyIndex);
 				pstmt.setInt(1, startrow);
 				pstmt.setInt(2, endrow);
 			}
@@ -893,10 +892,9 @@ public class DataGetter extends DataAccessor {
 				ArrayList<CashListBean> cashlist = new ArrayList<>();
 				while (rs.next()) {
 					CashListBean cash = new CashListBean();
-					cash.setIndex(rs.getInt(1));
-					cash.setTitle(rs.getString(2));
-					cash.setName(rs.getString(3));
-					cash.setDate(rs.getString(4));
+					//회비 상세보기로 넘어갈 때 index 넘겨줘야 하니까 필요함
+					cash.setIndex(rs.getInt(1));	
+					cash.setDate(rs.getString(2));
 					cashlist.add(cash);
 				}
 				return cashlist;
@@ -916,8 +914,7 @@ public class DataGetter extends DataAccessor {
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
 				// TODO Auto-generated method stub
-				// 아직 뭐 들어갈지 몰라서 정의하지 않았음
-				/* pstmt.setInt(1, studyIndex); */
+				pstmt.setInt(1, studyIndex);
 			}
 
 		}, new DataGettable() {

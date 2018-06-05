@@ -78,8 +78,8 @@
 		<!-- 레코드가 없으면 -->
 		<c:if test="${listcount == 0 }">
 			<tr>
-				<td colspan="4">MVC 게시판</td>
-				<td style="test-align: right"><font size=2>등록된 글이 없습니다.</font>
+				<td style="test-align: right">
+					<font size=2>등록된 글이 없습니다.</font>
 				</td>
 			</tr>
 		</c:if>

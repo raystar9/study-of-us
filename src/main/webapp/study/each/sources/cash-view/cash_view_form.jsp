@@ -12,8 +12,9 @@
 <title>회비 등록 페이지</title>
 
 </head>
-<c:set var='id' value="${b.name}" />
 <c:set var='c' value="${cash}" />
+<c:set var='ex' value="${expense}" />
+<c:set var='m' value="${mem}" />
 <body>
 	<div>
 		<!-- /.row -->
@@ -62,7 +63,7 @@
 											<tr>
 												<td>${status.count}</td>
 												<td><div>${mem.name}</div></td>
-												<td><div>${mem.fee}</div></td>
+												<td><div>${mem.memfee}</div></td>
 												<td><div>${mem.note}</div></td>
 											</tr>
 										</c:forEach>
@@ -113,9 +114,11 @@
 						<div class="panel panel-default" id="cash">
 							<div class="panel-body">
 								<input type="text" class="total" id="dues-totalFee"
-									name="duesTotalFee" readOnly value='${totalFee }'>&nbsp;원 &nbsp;-&nbsp; <input
+									name="duesTotalFee" readOnly value='${c.memfeetotal }'>&nbsp;원 &nbsp;-&nbsp; <input
 									type="text" class="total" id="dues-totalExpen"
-									name="duesTotalExpen" readOnly value='${totalExpense }'>&nbsp;원 &nbsp;=&nbsp; <input
+									name="duesTotalExpen" readOnly value='${c.expensetotal }'>&nbsp;원 &nbsp;=&nbsp; 
+									<c:set var='total' value="${c.memfeetotal }-${c.expensetotal }" />
+									<input
 									type="text" class="total" id="dues-total" name="duesTotal"
 									readOnly value='${total }'>&nbsp;원
 								
@@ -131,6 +134,7 @@
 						<div class="panel panel-default" id="cash">
 							<div class="panel-body">
 								<div>
+									<c:set var='allTotal' value="${c.alltotal }+${total }" />
 									<input type="text" class="total" id="dues-final"
 										name="duesfinal" placeholder="0" readOnly value='${allTotal}'>&nbsp;원
 								</div>
@@ -140,13 +144,8 @@
 				</td>
 			</tr>
 			<tr>
-				<td><input type="button" class="btn btn-default" id="list-btn"
-					value="목록"> 
-					<c:if test="${id == '?'}"> <!-- 이 아이디가 팀장이면 수정, 삭제 가능하게 할것임 -->
-						<a href="./cashmodify?num=${c.index}">수정</a>
-						<a href="./cashdelete?num=${c.index}">삭제</a>
-					</c:if>
-						<a href="./cash">뒤로</a>
+				<td>
+					<a href="./cash">뒤로</a>
 				</td>
 					
 			</tr>

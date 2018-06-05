@@ -12,6 +12,16 @@ $(document).ready(function() {
 			
 		$('#cash_tbody').append(strToAdd);	
 	})// click end
+	$('#submittbtn').click(function() {
+		var result = confirm("회비는 수정 또는 삭제를 할 수 없습니다. 등록하시겠습니까?");
+		if(result == true){
+			$(".cashRegisterForm").submit();
+		}else{
+			return false;
+		}
+		
+	});// click end
+	
 	
 })// ready end
 

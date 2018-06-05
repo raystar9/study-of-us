@@ -10,6 +10,8 @@
 </head>
 
 <body>
+	<!-- "${sessionScope.id}" 바꿀꺼임 -->
+	<c:set var='id' value="${b.name}" />
 	<div>
 		<table border='1' class='big-table'>
 			<tr>
@@ -49,7 +51,7 @@
 										<tr>
 											<td align="center"><c:out value="${num }"></c:out> <c:set var="num"
 													value="${num-1}" /></td>
-											<td><div>${c.date}</div></td>
+											<td><a href="./cashview?num=${c.index}">${c.date}</a></td>
 										</tr>
 									</c:forEach>
 									<tr class="h30 lime center btn">
@@ -75,14 +77,15 @@
 									<!-- 레코드가 없으면 -->
 									<c:if test="${listcount == 0 }">
 										<tr>
-											<td colspan="4">MVC 게시판</td>
-											<td style="test-align: right"><font size=2>등록된 글이
-													없습니다.</font></td>
+											<td style="test-align: right"><font size=2>등록된 회비가 없습니다.
+													</font></td>
 										</tr>
 									</c:if>
 
 									<tr>
-										<td colspan="5" style="text-align: right"><a href="#">[회비등록]</a></td>
+										<c:if test="${b.name == id || id == 'admin' }">
+											<td colspan="5" style="text-align: right"><a href="#">[회비등록]</a></td>
+										</c:if>
 									</tr>
 								</tbody>
 

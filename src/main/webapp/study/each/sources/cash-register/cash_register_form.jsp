@@ -11,7 +11,7 @@
 </head>
 
 <body>
-	<form action="./cashregister" method="post">
+	<form action="./cashregister" method="post" class="cashRegisterForm">
 
 		<table border='1'>
 			<tr>
@@ -137,7 +137,7 @@
 			<tr>
 				<td><input type="button" class="btn btn-default" id="btn"
 					value="취소" onclick="location.href='./cash';"> <input
-					type="submit" class="btn btn-default" id="btn" value="등록"></td>
+					type="button" class="btn btn-default" id="submittbtn" value="등록"></td>
 			</tr>
 		</table>
 	</form>

@@ -40,7 +40,6 @@ public class BoardList extends HttpServlet {
 		}else if(search != null && search != "" && searchSelect.equals("date")) {
 			pluswhere = " where B_DATE like ?) ";
 		}
-		System.out.println("pluswhere = " + pluswhere);
 		
 		int page = 1;
 		int limit = 10;
