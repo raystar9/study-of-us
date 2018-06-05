@@ -22,7 +22,7 @@ public class BoardFileDown extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		/*request.setCharacterEncoding("UTF-8");
+		request.setCharacterEncoding("UTF-8");
 		String fileName = request.getParameter("filename");
 		System.out.println("fileName = " + fileName);
 		String savaPath = "./boardupload";
@@ -53,7 +53,7 @@ public class BoardFileDown extends HttpServlet {
 		System.out.println("sEncoding = " + sEncoding);
 
 		// 다운로드 처리
-		response.setHeader("Content-Dispostion", "attachment; filename= " + sEncoding);
+		response.setHeader("Content-Disposition", "attachment; filename= " + sEncoding);
 
 		try (
 				// 웹 브라우저로의 출력 스트림 생성합니다.
@@ -67,7 +67,7 @@ public class BoardFileDown extends HttpServlet {
 				// 바이트 배열 b의 0번부터 numRead크기 만큼 브라우저로 출력
 				out2.write(b, 0, numRead);
 			}
-		}*/
+		}
 
 	}
 
