@@ -121,7 +121,7 @@ public class FakeDB {
 		for(int j = 0; j < studies.size(); j++) {
 			for(int i = 0; i < 3; i++) {
 				Meeting meeting = new Meeting();
-				meeting.setMeetingId(i);
+				meeting.setMeetingId(i*j + j);
 				meeting.setStudyId(j);
 				meeting.setDate(DateConverter.convertDate("2018-06-0" + (i+5)));
 				meeting.setExpectedFee(10000);

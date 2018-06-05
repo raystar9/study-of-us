@@ -40,8 +40,10 @@ public class FakeGetter {
 		FakeDB db = FakeDB.getInstance();
 		ArrayList<Member> m = db.getMembers();
 		ArrayList<Attend> a = db.getAttends();
+		ArrayList<Meeting> mt = db.getMeetings();
 		for(int j = 0; j < a.size(); j++) {
 			for(int i = 0; i < m.size(); i++) {
+				System.out.println("i : " + a.get(j).getMemberId() + ", j : " + m.get(i).getMemberId());
 				if(a.get(j).getMemberId() == m.get(i).getMemberId()) {
 					result.add(new MemberAttendanceBean(m.get(i).getName(), a.get(j).getAttend()));
 				}
