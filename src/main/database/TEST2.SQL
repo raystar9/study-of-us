@@ -19,6 +19,7 @@ INSERT INTO MEMBER VALUES(member_index.nextval,'snow','곽승민', '1234', 'snow
 
 alter table member modify(M_TEL varchar(50));
 select * from member;
+select M_id,M_name from member where M_name = '곽승민';
 
 drop table member;
 delete from member;

@@ -1,6 +1,7 @@
 package servlet.root;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,11 +9,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import beans.root.Find;
+import beansNew.Member;
 import dao.DataGetter;
 import dao.DatabaseAccounts;
+import fakeDB.FakeDB;
 
 @WebServlet("/IDFindPage")
 public class IDFindPage extends HttpServlet{
@@ -35,14 +37,20 @@ public class IDFindPage extends HttpServlet{
 			dispatcher.forward(request, response);
 		}
 		if(findname.getName().equals(name) && findemail.getEmail().equals(email)){
-			HttpSession session = request.getSession();
+			/*HttpSession session = request.getSession();
 			session.setAttribute("name", name);
 			session.setAttribute("email", email);
 			session.setAttribute("id", findemail.getId());
 
 			System.out.println(findname.getName());
 			System.out.println(findemail.getEmail());
-			response.sendRedirect("/study-of-us/IDFindResult");
+			response.sendRedirect("/study-of-us/IDFindResult");*/
+			
+			String id = findname.getId();
+		
+			System.out.println(id);
+			request.setAttribute("id", id);
+			request.getRequestDispatcher("/IDFindResult.jsp").forward(request, response);
 		}
 
 		getter.close();
