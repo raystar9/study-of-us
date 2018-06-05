@@ -23,7 +23,6 @@ public class LogOut extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		session.invalidate();
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/home");
-		dispatcher.forward(request, response);
+		response.sendRedirect("/study-of-us/home");
 	}
 }

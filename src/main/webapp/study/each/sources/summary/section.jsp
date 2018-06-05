@@ -5,11 +5,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script>
+	
 
+</script>
 
 </head>
 <body>
-<form action="result.jsp" method="post">
+<form action="/study-of-us/study/Studylist" method="get">
 <hr>
 	<h1 align=center>${study[0].name }</h1>
 <hr>
@@ -42,8 +45,6 @@
 <tr>
 <th colspan=2>모집인원<input type=text value="${study[0].peoplenum }"> 활동시간<input type=text value="${study[0].time}"> 요일<input type=text value="${study[0].day }"></th>
 </tr>
-${index }
-${study[0].index }
 <tr>
 <th>스터디 지역 </th>
 <td>${study[0].place }</td>

@@ -132,6 +132,7 @@
 
 </span>
 </p>
+
    <input type=submit value="저장하기">
 </div>
 </form>

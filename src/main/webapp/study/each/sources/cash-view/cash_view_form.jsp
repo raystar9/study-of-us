@@ -1,18 +1,19 @@
 <!-- 스터디 안의 회비관리 페이지에서 추가버튼 클릭했을 때 페이지 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
 
 <script src="http://code.jquery.com/jquery-latest.js"></script>
-<script type="text/javascript" src="js/cash_register.js"></script>
 <link rel="stylesheet" type="text/css" href="css/cash_view.css">
 <title>회비 등록 페이지</title>
 
 </head>
-
+<c:set var='id' value="${b.name}" />
+<c:set var='c' value="${cash}" />
 <body>
 	<div>
 		<!-- /.row -->
@@ -27,20 +28,13 @@
 					</div>
 				</td>
 			</tr>
-			<tr>
-				<td>
-					<div class="form-group">
-						<label>*제목</label> <input type="text" id="dues-title"
-							name="duesTitle" class="form-control" readOnly>
-					</div>
-				</td>
-			</tr>
+			
 			<tr>
 				<td>
 					<div class="calendar">
 						<div>
 							<label>*날짜</label><input type="date" id="dues-date"
-								name="duesDate" value="2015-10-10" readOnly>
+								name="duesDate" value="${c.date }" readOnly>
 						</div>
 					</div>
 				</td>
@@ -57,36 +51,21 @@
 										id="dues-table" border='1'>
 										<thead>
 											<tr>
+												<th>#</th>
 												<th>이름</th>
 												<th>금액</th>
 												<th>비고</th>
 											</tr>
 										</thead>
 										<tbody>
+										<c:forEach var="mem" items="${mem }" varStatus="status">
 											<tr>
-												<td><input type="text" class="form-control"
-													placeholder="이름" id='dues-mem' name='duesMem' readOnly></td>
-												<td><input type="text" class="form-control"
-													placeholder="금액" id='dues-fee' name='duesFee' readOnly></td>
-												<td><input type="text" class="form-control"
-													placeholder="비고" id='dues-note' name='duesNote' readOnly></td>
+												<td>${status.count}</td>
+												<td><div>${mem.name}</div></td>
+												<td><div>${mem.fee}</div></td>
+												<td><div>${mem.note}</div></td>
 											</tr>
-											<tr>
-												<td><input type="text" class="form-control"
-													placeholder="이름" id='dues-mem' name='duesMem' readOnly></td>
-												<td><input type="text" class="form-control"
-													placeholder="금액" id='dues-fee' name='duesFee' readOnly></td>
-												<td><input type="text" class="form-control"
-													placeholder="비고" id='dues-note' name='duesNote' readOnly></td>
-											</tr>
-											<tr>
-												<td><input type="text" class="form-control"
-													placeholder="이름" id='dues-mem' name='duesMem' readOnly></td>
-												<td><input type="text" class="form-control"
-													placeholder="금액" id='dues-fee' name='duesFee' readOnly></td>
-												<td><input type="text" class="form-control"
-													placeholder="비고" id='dues-note' name='duesNote' readOnly></td>
-											</tr>
+										</c:forEach>
 										</tbody>
 									</table>
 								</div>
@@ -113,12 +92,13 @@
 										</tr>
 									</thead>
 									<tbody id='cash_tbody'>
-										<tr>
-											<td><input type="text" class="form-control"
-												placeholder="내역" id='dues-exp' name='duesExp' readOnly></td>
-											<td><input type="text" class="form-control"
-												placeholder="금액" id='dues-expfee' name='duesExpFee' readOnly></td>
-										</tr>
+									<c:forEach var="expense" items="${expense }" varStatus="status">
+											<tr>
+												<td>${status.count}</td>
+												<td><div>${expense.content}</div></td>
+												<td><div>${expense.expense}</div></td>
+											</tr>
+									</c:forEach>
 									</tbody>
 								</table>
 							</div>
@@ -133,11 +113,12 @@
 						<div class="panel panel-default" id="cash">
 							<div class="panel-body">
 								<input type="text" class="total" id="dues-totalFee"
-									name="duesTotalFee" readOnly>&nbsp;원 &nbsp;-&nbsp; <input
+									name="duesTotalFee" readOnly value='${totalFee }'>&nbsp;원 &nbsp;-&nbsp; <input
 									type="text" class="total" id="dues-totalExpen"
-									name="duesTotalExpen" readOnly>&nbsp;원 &nbsp;=&nbsp; <input
+									name="duesTotalExpen" readOnly value='${totalExpense }'>&nbsp;원 &nbsp;=&nbsp; <input
 									type="text" class="total" id="dues-total" name="duesTotal"
-									readOnly>&nbsp;원
+									readOnly value='${total }'>&nbsp;원
+								
 							</div>
 						</div>
 					</div> <br>
@@ -151,7 +132,7 @@
 							<div class="panel-body">
 								<div>
 									<input type="text" class="total" id="dues-final"
-										name="duesfinal" placeholder="0" readOnly>&nbsp;원
+										name="duesfinal" placeholder="0" readOnly value='${allTotal}'>&nbsp;원
 								</div>
 							</div>
 						</div>
@@ -160,8 +141,14 @@
 			</tr>
 			<tr>
 				<td><input type="button" class="btn btn-default" id="list-btn"
-					value="목록"> <input type="button" class="btn btn-default"
-					id="delete-btn" value="삭제"></td>
+					value="목록"> 
+					<c:if test="${id == '?'}"> <!-- 이 아이디가 팀장이면 수정, 삭제 가능하게 할것임 -->
+						<a href="./cashmodify?num=${c.index}">수정</a>
+						<a href="./cashdelete?num=${c.index}">삭제</a>
+					</c:if>
+						<a href="./cash">뒤로</a>
+				</td>
+					
 			</tr>
 		</table>
 	</div>

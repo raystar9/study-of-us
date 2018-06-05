@@ -1,5 +1,43 @@
 
+
+select * from (select rownum as rnum, s_index, s_name, s_c_id, S_MT_INDEX, S_START, S_END, S_PLOPIENUM, S_DAY, S_TIME,S_EXPLAIN,S_PREPARED,S_EFFECTIVE ,S_PLACE, C_SUB from (select s_index, s_name, s_c_id, S_MT_INDEX, S_START, S_END, S_PLOPIENUM, S_DAY, S_TIME,S_EXPLAIN,S_PREPARED,S_EFFECTIVE ,S_PLACE, C_SUB from (select * from study inner join CATEGORY on STUDY.S_C_ID = CATEGORY.C_ID  where s_name LIKE '%토%' order by s_index))) 
+
+select * from (select rownum as rnum, s_index, s_name, s_c_id, S_MT_INDEX, S_START, S_END, S_PLOPIENUM, S_DAY, S_TIME,S_EXPLAIN,S_PREPARED,S_EFFECTIVE ,S_PLACE, C_SUB from (select s_index, s_name, s_c_id, S_MT_INDEX, S_START, S_END, S_PLOPIENUM, S_DAY, S_TIME,S_EXPLAIN,S_PREPARED,S_EFFECTIVE ,S_PLACE, C_SUB from (select * from study inner join CATEGORY on STUDY.S_C_ID = CATEGORY.C_ID order by s_index where s_name LIKE '%토%' )))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+select * from 
+(select rownum as rnum, s_index, s_name, s_c_id, S_MT_INDEX, S_START, S_END, S_PLOPIENUM, S_DAY, S_TIME,S_EXPLAIN,S_PREPARED,S_EFFECTIVE ,S_PLACE, C_SUB 
+from (select 
+s_index, s_name, s_c_id, S_MT_INDEX, S_START, S_END, S_PLOPIENUM, S_DAY, S_TIME,S_EXPLAIN,S_PREPARED,S_EFFECTIVE ,S_PLACE, C_SUB from 
+(select 
+* from study inner join CATEGORY on STUDY.S_C_ID = CATEGORY.C_ID 
+where s_name LIKE '%스%'  order by s_index) where c_sub like '%영어%')) 
+where rnum >= 1 and rnum <= 5 and s_place LIKE '%서울%' or s_place LIKE '%인천%' 
+
+select 
+* from study inner join CATEGORY on STUDY.S_C_ID = CATEGORY.C_ID 
+where s_name LIKE '%스%' and c_sub LIKE '%영어%' order by s_index 
+
 delete study;
+
+select * from studylist
 
 
 CREATE TABLE Study(
@@ -28,7 +66,7 @@ select * from (select rownum as rnum, s_index, s_name, s_c_id, S_MT_INDEX, S_STA
 			
 			
 			select * from study where s_place LIKE '%인천%' and s_name LIKE '%자바%' and LIKE 
-			
+			select * from study where s_place LIKE '%인천%' or s_place LIKE '%서울%'
 			select * from study inner join CATEGORY on STUDY.S_C_ID = CATEGORY.C_ID where Study.s_c_id = 1
 
 			CREATE TABLE Category(
