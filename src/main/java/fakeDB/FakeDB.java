@@ -1,5 +1,6 @@
 package fakeDB;
 
+import java.sql.Date;
 import java.util.ArrayList;
 
 import beansNew.Attend;
@@ -9,7 +10,9 @@ import beansNew.FeeCollect;
 import beansNew.FeeSpend;
 import beansNew.Meeting;
 import beansNew.Member;
+import beansNew.MemberCategory;
 import beansNew.Study;
+import beansNew.StudyMember;
 import dateConverter.DateConverter;
 
 public class FakeDB {
@@ -22,6 +25,8 @@ public class FakeDB {
 	private ArrayList<Meeting> meetings = new ArrayList<>();
 	private ArrayList<Member> members = new ArrayList<>();
 	private ArrayList<Study> studies = new ArrayList<>();
+	private ArrayList<MemberCategory> memberCategories = new ArrayList<>();
+	private ArrayList<StudyMember> studyMembers = new ArrayList<>();
 	
 	public static FakeDB getInstance() {
 		return instance;
@@ -36,12 +41,14 @@ public class FakeDB {
 		initAttends();
 		initFeeCollects();
 		initFeeSpends();
+		initMemberCategory();
 	}
 	
 	private void initMembers() {
 		for(int i = 0; i < 50; i++) {
 			if(i % 3 == 0) {
 				Member member = new Member();
+				member.setMemberId(i);
 				member.setAddress("남양주");
 				member.setEmail("a@naver.com");
 				member.setGender("m");
@@ -49,11 +56,11 @@ public class FakeDB {
 				member.setIntroduce("반갑습니다");
 				member.setName("구명회");
 				member.setPassword("1234");
-				member.setStudies(new ArrayList<Study>());
 				member.setTel("010-000-0000");
 				members.add(member);
 			} else if (i % 3 == 1) {
 				Member member = new Member();
+				member.setMemberId(i);
 				member.setAddress("서울");
 				member.setEmail("b@naver.com");
 				member.setGender("m");
@@ -61,11 +68,11 @@ public class FakeDB {
 				member.setIntroduce("반갑습니다");
 				member.setName("이다혜");
 				member.setPassword("1234");
-				member.setStudies(new ArrayList<Study>());
 				member.setTel("010-000-0000");
 				members.add(member);
 			} else {
 				Member member = new Member();
+				member.setMemberId(i);
 				member.setAddress("서울");
 				member.setEmail("c@naver.com");
 				member.setGender("m");
@@ -73,7 +80,6 @@ public class FakeDB {
 				member.setIntroduce("반갑습니다");
 				member.setName("소문혁");
 				member.setPassword("1234");
-				member.setStudies(new ArrayList<Study>());
 				member.setTel("010-000-0000");
 				members.add(member);
 			}
@@ -93,34 +99,30 @@ public class FakeDB {
 	private void initStudies() {
 		for(int i = 0; i < 30; i++) {
 			Study study = new Study();
-			study.setCategory(categories.get(i % 6));
+			study.setStudyId(i);
+			study.setCategoryId(i % 6);
 			study.setDayOfWeek("금");
 			study.setEffects("최고가 되자.");
 			study.setEndDate(DateConverter.convertDate("2018-05-03"));
 			study.setExplain("어서오세요!");
-			study.setLeader(members.get(i));
+			study.setLeaderId(i);
 			study.setMaterial("준비물 없음");
 			study.setMaxMember(6);
-			study.setMembers(new ArrayList<>());
 			study.setName("스터디" + i);
 			study.setPlace("서울");
 			study.setStartDate(DateConverter.convertDate("2018-04-07"));
 			study.setTime("7시");
-			ArrayList<Member> ms = new ArrayList<>();
-			for(int j = 0; j < 3; j++) {
-				ms.add(members.get(i + j));
-			}
-			study.setMembers(ms);
 			studies.add(study);
 		}
 	}
 
 
 	private void initMeetings() {
-		for(Study study : studies) {
+		for(int j = 0; j < studies.size(); j++) {
 			for(int i = 0; i < 3; i++) {
 				Meeting meeting = new Meeting();
-				meeting.setStudy(study);
+				meeting.setMeetingId(i);
+				meeting.setStudyId(j);
 				meeting.setDate(DateConverter.convertDate("2018-06-0" + (i+5)));
 				meeting.setExpectedFee(10000);
 				meeting.setPlace("종각역");
@@ -131,39 +133,46 @@ public class FakeDB {
 	}
 
 	private void initFeeSpends() {
-		for(Meeting meeting : meetings) {
-			feeSpends.add(new FeeSpend(meeting, "장소대여료", 30000));
-			feeSpends.add(new FeeSpend(meeting, "간식비", 10000));
+		for(int i = 0; i < meetings.size(); i++) {
+			feeSpends.add(new FeeSpend(2*i, i, "장소대여료", 30000));
+			feeSpends.add(new FeeSpend((2*i)+1, i, "간식비", 10000));
 		}
 	}
 
 	private void initFeeCollects() {
-		for(Meeting meeting : meetings) {
-			feeCollects.add(new FeeCollect(meeting, meeting.getStudy().getLeader(), 10000, "회비"));
-			feeCollects.add(new FeeCollect(meeting, meeting.getStudy().getMembers().get(1), 8000, "회비"));
-			feeCollects.add(new FeeCollect(meeting, meeting.getStudy().getMembers().get(2), 8000, "회비"));
+		for(int i = 0; i < meetings.size(); i++) {
+			feeCollects.add(new FeeCollect(i*3, i, i*3, 10000, "회비"));
+			feeCollects.add(new FeeCollect(i*3 +1, i, i*3 +1, 10000, "회비"));
+			feeCollects.add(new FeeCollect(i*3 +2, i, i*3 +2, 10000, "회비"));
 		}
 		
 	}
 
 	private void initBoards() {
-		for(Study study : studies) {
-			boards.add(new Board(1, study, study.getLeader(), "글제목임",
-					DateConverter.convertDate("2018-06-04"), "글내용임", "파일명임"));
-			boards.add(new Board(2, study, study.getLeader(), "글제목임",
-					DateConverter.convertDate("2018-06-04"), "글내용임", "파일명임"));
-			boards.add(new Board(3, study, study.getLeader(), "글제목임",
-					DateConverter.convertDate("2018-06-04"), "글내용임", "파일명임"));
+		for(int j = 0; j < 30; j++) {
+			for(int i = 0; i < 5; i++) {
+				new Board(30*i + j, i, j, i, "글제목임" + (30*i + j), new Date(new java.util.Date().getTime()), "글내용임", "자료");
+			}
 		}
 		
 	}
 
 	private void initAttends() {
-		for(Meeting meeting : meetings) {
-			attends.add(new Attend(meeting, meeting.getStudy().getMembers().get(0), "a"));
-			attends.add(new Attend(meeting, meeting.getStudy().getMembers().get(1), "na"));
-			attends.add(new Attend(meeting, meeting.getStudy().getMembers().get(2), "a"));
+		for(int i = 0; i < meetings.size(); i++) {
+			attends.add(new Attend(3*i, i%3, i%30, "a"));
+			attends.add(new Attend(3*i + 1, i%3, i%30, "na"));
+			attends.add(new Attend(3*i + 2, i%3, i%30, "a"));
 		}
+	}
+	
+	private void initMemberCategory() {
+		for(int i = 0; i < members.size(); i++) {
+			memberCategories.add(new MemberCategory(i, i%6));
+		}
+	}
+	
+	private void initStudyMember() {
+		
 	}
 	public void addAttend(Attend attend) {
 		attends.add(attend);

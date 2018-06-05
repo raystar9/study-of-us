@@ -3,6 +3,7 @@ package beansNew;
 import java.util.ArrayList;
 
 public class Member {
+	int memberId;
 	String id;
 	String password;
 	String name;
@@ -11,8 +12,6 @@ public class Member {
 	String address;
 	String gender;
 	String introduce;
-	ArrayList<Study> studies;
-	ArrayList<Category> interests;
 	
 	public Member() {
 	}
@@ -26,8 +25,13 @@ public class Member {
 		this.address = address;
 		this.gender = gender;
 		this.introduce = introduce;
-		this.studies = studies;
-		this.interests = interests;
+	}
+	
+	public int getMemberId() {
+		return memberId;
+	}
+	public void setMemberId(int memberId) {
+		this.memberId = memberId;
 	}
 	public String getId() {
 		return id;
@@ -52,15 +56,6 @@ public class Member {
 	}
 	public void setEmail(String email) {
 		this.email = email;
-	}
-	public ArrayList<Study> getStudies(){
-		return studies;
-	}
-	public void setStudies(ArrayList<Study> studies) {
-		this.studies = studies;
-	}
-	public void addStudy(Study study) {
-		studies.add(study);
 	}
 	public String getTel() {
 		return tel;
