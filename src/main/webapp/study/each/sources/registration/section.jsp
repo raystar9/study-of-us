@@ -46,8 +46,8 @@
 <span class=one>
       
       <i class="material-icons">people</i>
-      <label for="category"><strong>모집인원</strong></label><br>
-      <input type=text name=people id=people name=people>
+      <label for="people"><strong>모집인원</strong></label><br>
+      <input type=text name=people id=people>
       </span>
 
 

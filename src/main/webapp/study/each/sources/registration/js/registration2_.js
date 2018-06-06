@@ -95,6 +95,14 @@
 		 
 	  })
 	  
+	  $('#people').keyup(function(){
+		  if(isNaN($("#people").val())){
+			  alert("숫자만 입력가능합니다.")
+			  $("#people").val("")
+		  }
+	  })
+	  
+	  
 	  
 	  //달력
 	  
@@ -113,7 +121,7 @@
           //buttonImage: "/jdAdmin/images/calendar.png", // 버튼 이미지
           //buttonImageOnly : true,             // 버튼 이미지만 표시할지 여부
           //buttonText: "날짜선택",             // 버튼의 대체 텍스트
-           minDate : 0,
+           minDate : 7,
           dateFormat: "yy-mm-dd",             // 날짜의 형식
           changeMonth: true,                  // 월을 이동하기 위한 선택상자 표시여부
               /*maxDate: 0,                       // 선택할수있는 최소날짜, ( 0 : 오늘 이후 날짜 선택 불가)

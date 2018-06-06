@@ -11,6 +11,7 @@ import beans.root.Find;
 import beans.root.Login;
 import beans.study.StudyListCount;
 import beans.study.StudyListSelect;
+import beans.study.StudyListSelect2;
 import beans.study.StudySearch;
 import beans.study.each.InformSetup;
 import beans.study.each.InformSetupMember;
@@ -806,6 +807,8 @@ ArrayList<StudyListSelect> studylist = (ArrayList<StudyListSelect>) get(StudyLis
 					sl.setProgress(rs.getInt("progress"));
 					sl.setS_name(rs.getString("s_name"));
 					sl.setS_peoplenum(rs.getInt("s_peoplenum"));
+					sl.setStart(rs.getString("s_start"));
+					sl.setEnd(rs.getString("s_end"));
 					studylists.add(sl);
 			}
 		
@@ -878,6 +881,106 @@ ArrayList<StudyListSelect> studylist = (ArrayList<StudyListSelect>) get(StudyLis
 	 * objects.add(rs.getString(i+1)); break;
 	 * 
 	 */
+	
+	// 스터디 count 수 가져오기
+		public StudyListSelect2 getStudyListCount2(int index) {
+			StudyListSelect2 count = (StudyListSelect2) get(StudyListSelect2.QUERY_GET2,new DataSettable() {
+				
+				@Override
+				public void prepare(PreparedStatement pstmt) throws SQLException {
+					pstmt.setInt(1, index);
+					
+				}
+			}, new DataGettable() {
+				
+				@Override
+				public Object onGetResult(ResultSet rs) throws SQLException {
+					StudyListSelect2 slist = null;
+					if(rs.next()) {
+						slist = new StudyListSelect2();
+						slist.setCount(rs.getInt("count"));
+					}
+					
+					return slist;
+				}
+			});
+			
+			// TODO Auto-generated method stub
+			return count;
+		}
+	
+		public ArrayList<StudyListSelect2> getStudyList2(int index, int page, int limit) {
+			@SuppressWarnings("unchecked")
+			ArrayList<StudyListSelect2> studylist = (ArrayList<StudyListSelect2>) get(StudyListSelect2.QUERY_GET3 , new DataSettable() {
+						@Override
+						public void prepare(PreparedStatement pstmt) throws SQLException {
+							//읽기 시작할 row 번호 1
+							int startrow = (page - 1 ) * limit + 1;
+							System.out.println("스타트로우" + startrow);
+							//읽을 마지막 row 번호 2
+							int endrow = startrow + limit -1;
+							System.out.println("엔드로우" +endrow);
+							
+							pstmt.setInt(1, index);
+							pstmt.setInt(2, startrow);
+							pstmt.setInt(3, endrow);
+						
+							System.out.println(StudyListSelect.QUERY_GET3);
+							
+						}
+					}, new DataGettable() {
+						
+						@Override
+						public ArrayList<?> onGetResult(ResultSet rs) throws SQLException {
+							ArrayList<StudyListSelect2> studylists = new ArrayList<>();
+							while(rs.next()) {
+								StudyListSelect2 sl = new StudyListSelect2();
+								
+								sl.setProgress(rs.getInt("progress"));
+								sl.setS_name(rs.getString("s_name"));
+								sl.setS_peoplenum(rs.getInt("s_peoplenum"));
+								studylists.add(sl);
+						}
+					
+						return studylists;
+					}
+				});
+					return studylist;
+			}
+
+		
+		
+		public ArrayList<StudyListSelect2> getDday2(int index, int page, int limit) {
+			@SuppressWarnings("unchecked")
+			ArrayList<StudyListSelect2> dday = (ArrayList<StudyListSelect2>) get(StudyListSelect2.QUERY_GET4,new DataSettable() {
+				@Override
+				public void prepare(PreparedStatement pstmt) throws SQLException {
+					int startrow = (page - 1 ) * limit + 1;
+					int endrow = startrow + limit -1;
+					pstmt.setInt(1, index);
+					pstmt.setInt(2, startrow);
+					pstmt.setInt(3, endrow);
+				}
+			}, new DataGettable() {
+				
+				@Override
+				public ArrayList<?> onGetResult(ResultSet rs) throws SQLException {
+					ArrayList<StudyListSelect2> days = new ArrayList<>();
+					while(rs.next()) {
+						StudyListSelect2 day = new StudyListSelect2();
+						day.setDday(rs.getInt("dday"));
+						days.add(day);
+					}
+					
+					return days;
+					
+				}
+			});
+			return dday;
+		}
+		
+		
+		
 }
 
 

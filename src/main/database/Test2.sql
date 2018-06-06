@@ -12,6 +12,7 @@ CREATE TABLE Member(
 	M_INTRODUCE VARCHAR(200) NOT NULL
 );
 
+drop table member;
 
 INSERT INTO MEMBER VALUES(member_index.nextval,'snow','곽승민', '1234', 'snowdrop0207@naver.com', '010-5066-7016','경기도 의정부시','M','하여');
 
@@ -58,6 +59,8 @@ CREATE TABLE Study(
 	constraint FK_s_c_id_study  FOREIGN KEY(S_C_ID) references Category(C_ID)	
 );
 
+select * from study
+select * from category
 
 drop table study
 
@@ -171,7 +174,7 @@ delete from studylist where sl_m_index = 67;
 delete from studylist
 
 select * from studyList where sl_m_index = 67;
-update study set s_start = to_date('2018-04-30') where s_index = 42;
+update study set s_start = to_date('2018-04-30') where s_index = 2;
 update study set s_start = to_date('2018-05-30') where s_index = 41;
 update study set s_start = to_date('2018-01-30') where s_index = 43;
 update study set s_start = to_date('2017-12-30') where s_index = 18;
@@ -240,6 +243,15 @@ select * from(
 		
 select * from study
 
+select * from member;
+
+select * from studyList
+
+
+update study set s_start = '2018-02-06' where s_name = '노동완입니다'
+update study set s_end = '2018-06-06' where s_explain = 'ㄴㄷㅇ'
+update study set s_start = '2018-06-07' where s_name = 'ㅁㄴㅇ'
+update study set s_end = '2019-03-21' where s_name = 'ㅁㄴㅇ'
 
 
 

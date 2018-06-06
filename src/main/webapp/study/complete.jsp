@@ -11,7 +11,7 @@
 </head>
 <body>
 	<%@ include file ="/general-sources/Navigation.jsp" %>
-	<%@ include file ="sources/list/section.jsp" %>
+	<%@ include file ="sources/complete/section.jsp" %>
 	<%-- <%@ include file ="/general-sources/Footer.jsp" %> --%>
 </body>
 </html>
