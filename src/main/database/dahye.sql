@@ -4,6 +4,8 @@ START WITH 1
 INCREMENT BY 1
 NOMAXVALUE;
 
+select * from study;
+
 update board set B_DATE = '2018-06-05' where B_NAME='ㅂㅈㄷ'
 
 select B_NO, B_TITLE, B_NAME, B_DATE from (SELECT ROWNUM RNUM, B_TITLE, B_NAME, B_DATE, B_S_INDEX, B_NO FROM BOARD b) where B_S_INDEX IN (select S_INDEX from STUDY where S_INDEX = 3) AND RNUM>=11 AND RNUM<=20 ORDER BY B_NO desc
@@ -469,5 +471,14 @@ select B_NO, B_TITLE, B_NAME, B_DATE from (SELECT ROWNUM RNUM, B_TITLE, B_NAME, 
 select B_NO, B_TITLE, B_NAME, B_DATE from (SELECT ROWNUM RNUM, B_TITLE, B_NAME, B_DATE, B_S_INDEX, B_NO FROM BOARD b)where B_S_INDEX IN (select S_INDEX from STUDY where S_INDEX = 3) AND RNUM>=1 AND RNUM<=10 ORDER BY B_NO desc
 select count(*) from (SELECT ROWNUM RNUM, B_TITLE, B_NAME, B_DATE, B_S_INDEX, B_NO FROM BOARD b where B_TITLE like '%교재%')  where B_S_INDEX IN (select S_INDEX from STUDY where S_INDEX = 3) ORDER BY B_NO desc
 select B_NO, B_TITLE, B_NAME, B_DATE from (SELECT ROWNUM RNUM, B_TITLE, B_NAME, B_DATE, B_S_INDEX, B_NO FROM BOARD b where B_TITLE like ?) where B_S_INDEX IN (select S_INDEX from STUDY where S_INDEX = ?) AND RNUM>=? AND RNUM<=? ORDER BY B_NO desc
+
+create table CATEGORY(
+	C_ID NUMBER,
+	C_GROUP VARCHAR2(20),
+	C_SUB VARCHAR2(20)
+)
+Insert into category values (1, '프로그래밍', 'JAVA');
+
+select * from category;
 
 
