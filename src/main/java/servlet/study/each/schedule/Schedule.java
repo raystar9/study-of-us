@@ -53,7 +53,7 @@ public class Schedule extends HttpServlet {
 			}
 			request.setAttribute("schedules", mapper.writeValueAsString(schedules));
 		}
-		request.getRequestDispatcher(request.getAttribute("eachStudyPath") + "/schedule.jsp").forward(request, response);
+		request.getRequestDispatcher("/study/each/schedule.jsp").forward(request, response);
 	}
 
 }

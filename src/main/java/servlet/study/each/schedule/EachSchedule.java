@@ -34,7 +34,7 @@ public class EachSchedule extends HttpServlet {
 		request.setAttribute("meeting", m);
 		SimpleDateFormat format = new SimpleDateFormat("yy-MM-dd a h:mm");
 		request.setAttribute("time", format.format(m.getDate().getTime()));
-		request.getRequestDispatcher(request.getAttribute("eachStudyPath") + "/each.jsp").forward(request, response);
+		request.getRequestDispatcher("/study/each/schedule/each.jsp").forward(request, response);
 	}
 
 	/**
