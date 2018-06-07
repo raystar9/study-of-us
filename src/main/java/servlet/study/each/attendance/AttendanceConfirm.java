@@ -9,8 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import beansNew.Member;
+import beans.study.each.attendacne.MemberAttendanceBean;
 import fakeDB.FakeDB;
+import fakeDB.FakeGetter;
 import servlet.ServletDispatcher;
 
 /**
@@ -32,8 +33,8 @@ public class AttendanceConfirm extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		FakeDB db = FakeDB.getInstance();
-		ArrayList<Member> members = db.getStudies().get(0).getMembers();
+		FakeGetter getter = new FakeGetter();
+		ArrayList<MemberAttendanceBean> members = getter.getMemberAttendance(); 
 		request.setAttribute("members", members);
 		ServletDispatcher.forward(request, response, "confirm.jsp");
 	}
