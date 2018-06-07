@@ -51,7 +51,6 @@ public class SoupGlobalFilter implements Filter {
 			chain.doFilter(request, response);
 		} else if(uri.length >= 3) {
 			request.setAttribute("root", httpRequest.getContextPath());
-			request.setAttribute("uri", uri);
 			if(uri[2].equals("study")) {
 				studyPaging(httpRequest, httpResponse, chain, uri);
 			} else {
@@ -75,7 +74,6 @@ public class SoupGlobalFilter implements Filter {
 				chain.doFilter(request, response);
 			}
 			uri[3] = "each";
-			request.setAttribute("eachStudyPath", getPath(2, 4, uri));
 			if(uri.length == 4) {
 				//TODO 각study의 기본 페이지로
 			} else {
@@ -98,7 +96,6 @@ public class SoupGlobalFilter implements Filter {
 			new Attendance().service(request, response);
 		} else {
 			uri[5] = "each";
-			request.setAttribute("eachAttendancePath", getPath(2, 6, uri));
 			if(uri[6].equals("confirm")) {
 				new AttendanceConfirm().service(request, response);
 			} else if(uri[6].equals("record")) {
@@ -121,13 +118,5 @@ public class SoupGlobalFilter implements Filter {
 					break;
 			}
 		}
-	}
-	
-	private String getPath(int start, int end, String[] uri) {
-		String result = "";
-		for(int i = start; i < end; i++ ) {
-			result += "/" + uri[i];
-		}
-		return result;
 	}
 }
