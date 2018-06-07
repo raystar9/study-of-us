@@ -1167,6 +1167,30 @@ ArrayList<StudyListSelect> studylist = (ArrayList<StudyListSelect>) get(StudyLis
 			});
 			return find; 
 		}
+		
+		
+		public Find getPass(String id) {
+			Find find = (Find) get(Find.QUERY_GET3, new DataSettable() {
+
+				@Override
+				public void prepare(PreparedStatement pstmt) throws SQLException {
+					pstmt.setString(1, id); // 바인딩변수를 채워주기위해서 데이터 세터블을 매개변수 추가하며 오버로딩을한다.
+				}
+			}, new DataGettable() {
+
+				@Override
+				public Object onGetResult(ResultSet rs) throws SQLException {
+					Find innerLogin = null;
+					if (rs.next()) {
+						innerLogin = new Find();
+						innerLogin.setId(rs.getString(1));
+						innerLogin.setPassword(rs.getString(2));
+					}
+					return innerLogin; 
+				}
+			});
+			return find; 
+		}
 	
 
 	/*

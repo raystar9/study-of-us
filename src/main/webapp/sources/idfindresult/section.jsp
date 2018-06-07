@@ -6,5 +6,4 @@
 %>  
 <div class="idresult">
 			아이디는 ${id }입니다.
-		</div>
 </div>
