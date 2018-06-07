@@ -19,7 +19,7 @@
 
 
 <div class="StudyList">
-<span class="heading">${list.s_name} </span> <span>시작날짜 : ${list.start} &nbsp; 종료날짜 : ${list.end} </span>
+<span class="heading">${list.s_name} </span> <span class="dayday">기간 ${list.start} ~  ${list.end} </span>
 <hr style="border:3px solid #f1f1f1">
 <div class="people">${list.s_peoplenum}명</div><br>
 <div class="row">

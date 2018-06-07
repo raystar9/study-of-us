@@ -10,7 +10,7 @@ public class StudyListSelect {
 			+ " select rownum as rnum, s_index,s_name,s_peoplenum,progress "
 			+ " from( " 
 			+ " select rownum as rnum, s.s_index, s.s_name ,s.s_peoplenum, nvl(to_number(greatest(sysdate - s.s_start,0))/decode(to_number(s.s_end - s.s_start),0,null,to_number(s.s_end - s.s_start)),0) * 100 progress from study s, studyList sl " 
-			+ "   where s.s_index = sl.sl_s_index and sl.sl_m_index = ? order by s_index desc " 
+			+ "   where s.s_index = sl.sl_s_index and sl.sl_m_index = ? order by s_start desc " 
 			+ " )where progress < 100 ) " ; 
 
 	
@@ -22,7 +22,7 @@ public class StudyListSelect {
 			+ " select s_start,s_end, rownum as rnum, s_index,s_name,s_peoplenum,progress "
 			+ " from( "
 			+ " select s.s_start,s.s_end,rownum as rnum, s.s_index, s.s_name ,s.s_peoplenum, nvl(to_number(greatest(sysdate - s.s_start,0))/decode(to_number(s.s_end - s.s_start),0,null,to_number(s.s_end - s.s_start)),0) * 100 progress from study s, studyList sl "
-			+ "   where s.s_index = sl.sl_s_index and sl.sl_m_index = ? order by s_index desc " 
+			+ "   where s.s_index = sl.sl_s_index and sl.sl_m_index = ? order by s_start desc " 
 			+ " )where progress < 100) "
 			+ " where rnum >= ? and rnum <= ? " ;
 	
@@ -33,7 +33,7 @@ public class StudyListSelect {
 			+ " from( "
 			+ " select s_index, greatest((greatest((s_end - s_start),0)) - (greatest(sysdate - s_start,0)),0) as dday,nvl(to_number(greatest(sysdate - s.s_start,0))/decode(to_number(s.s_end - s.s_start),0,null,to_number(s.s_end - s.s_start)),0) * 100 progress " 
 			+ " from study s , studylist sl " 
-			+ " where sl.sl_s_index = s.s_index and sl.sl_m_index = ? order by s_index desc ) where progress < 100 ) "
+			+ " where sl.sl_s_index = s.s_index and sl.sl_m_index = ? order by s_start desc ) where progress < 100 ) "
 			+ " where rnum >= ? and rnum <= ? ";
 
 			 

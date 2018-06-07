@@ -11,7 +11,7 @@
 </head>
 <body>
 <form action="/study-of-us/study/each/Registration" method="post">
-<h3 align=center>Modify</h3>
+<h3 align=center><a href = "/study-of-us/home">StudyOfUs</a></h3>
 <div class="signup">
 <i class="material-icons">category</i>
 <label for="category"><strong>카테고리</strong></label><br>
@@ -113,7 +113,8 @@
 <textarea rows=10 cols=60 name=activity id=activity></textarea><br>
 <br>
 <p>
-<span style="width:48%;height:400px;" id="location">
+<label for="location"><strong>선호 지역</strong></label><br>
+<span style="width:100%" id="location">
 <select id="locationSel" name=location>
 <option value="">지역</option>
 <option value="서울">서울</option>
@@ -128,9 +129,9 @@
 <option value="광주">광주</option>
 </select>
 </span>
-<span id="map" style="width:48%;height:400px;">
+<!-- <span id="map" style="width:48%;height:400px;">
 
-</span>
+</span> -->
 </p>
 
    <input type=submit value="저장하기">

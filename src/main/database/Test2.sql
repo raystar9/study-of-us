@@ -137,15 +137,15 @@ insert into StudyList values(19,67)
 
 
 
-insert into StudyList values(20,65)
-insert into StudyList values(19,65)
-insert into StudyList values(21,65)
-insert into StudyList values(22,65)
-insert into StudyList values(23,65)
-insert into StudyList values(24,65)
-insert into StudyList values(18,65)
-insert into StudyList values(30,65)
-insert into StudyList values(29,65)
+insert into StudyList values(87,65)
+insert into StudyList values(88,65)
+insert into StudyList values(89,65)
+insert into StudyList values(90,65)
+insert into StudyList values(91,65)
+insert into StudyList values(92,65)
+insert into StudyList values(93,65)
+insert into StudyList values(94,65)
+insert into StudyList values(86,65)
 insert into StudyList values(43,65)
 insert into StudyList values(41,65)
 insert into StudyList values(42,65)
@@ -248,10 +248,25 @@ select * from member;
 select * from studyList
 
 
-update study set s_start = '2018-02-06' where s_name = '노동완입니다'
-update study set s_end = '2018-06-06' where s_explain = 'ㄴㄷㅇ'
-update study set s_start = '2018-06-07' where s_name = 'ㅁㄴㅇ'
-update study set s_end = '2019-03-21' where s_name = 'ㅁㄴㅇ'
+update study set s_start = '2018-06-03' where s_name = '7'
+update study set s_end = '2018-06-05' where s_name = '7'
+update study set s_start = '2018-06-06' where s_index = '81'
+update study set s_end = '2018-06-07' where s_index = '첫뻔째 test'
+
+
+delete study where s_name ='alert 실험1'
+delete study where s
+
+
+delete from study
+delete from studyList
+
+insert into study
+
+
+rollback;
+
+
 
 
 

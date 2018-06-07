@@ -19,7 +19,7 @@
 
 
 <div class="StudyList">
-<span class="heading">${list.s_name} </span>
+<span class="heading">${list.s_name} </span> <span class="dayday">기간 ${list.start} ~  ${list.end}</span>
 <hr style="border:3px solid #f1f1f1">
 <div class="people">${list.s_peoplenum}명</div><br>
 <div class="row">
@@ -68,7 +68,7 @@
 </c:if>
 <!-- 페이지가 1보다 크면 "이전"에 a태그 값을주어표시함 -->
 <c:if test="${page > 1 }">
-	<a href="/study-of-us/study/list?page=${page-1 }">이전</a>&nbsp;
+	<a href="/study-of-us/study/complete?page=${page-1 }">이전</a>&nbsp;
 </c:if>
 
 <!--  a 에다 start값  end값  을 집어넣는다 -->
@@ -77,7 +77,7 @@
 	${a}
 	</c:if>
 	<c:if test="${a != page }">
-		<a href="/study-of-us/study/list?page=${a}">${a}</a>&nbsp;
+		<a href="/study-of-us/study/complete?page=${a}">${a}</a>&nbsp;
 	</c:if>
 </c:forEach>
 <!--  숫자 누르면 가는곳 -->
