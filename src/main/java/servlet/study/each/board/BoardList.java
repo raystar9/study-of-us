@@ -84,7 +84,7 @@ public class BoardList extends HttpServlet {
 		
 		getter.close();
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/each/boardList.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/each/board/boardList.jsp");
 		dispatcher.forward(request, response);
 	}
 

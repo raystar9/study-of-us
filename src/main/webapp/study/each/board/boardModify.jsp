@@ -7,13 +7,11 @@
 		float:left;
 	}
 </style>
-<script src="http://code.jquery.com/jquery-latest.js"></script>
-<script src="sources/board-list/js/board_list_search.js" type="text/javascript"></script>
 </head>
 <body>
 <%@ include file = "/general-sources/Navigation.jsp" %>
-<%@ include file = "left.jsp" %>
-<%@ include file = "sources/board-list/board_list_form.jsp" %>
+<%@ include file = "/study/each/left.jsp" %>
+<%@ include file = "sources/board-modify/board_modify_form.jsp" %>
 <%@ include file = "/general-sources/Footer.jsp" %>
 </body>
 </html>

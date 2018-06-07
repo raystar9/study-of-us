@@ -50,7 +50,7 @@ public class BoardView extends HttpServlet {
 		/* 사용자 아이디 session에서 가져오는 것 필요 */
         /* 사용자 아이디 session에서 저장해서 form으로 보내는 것 필요 */
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/each/boardView.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/each/board/boardView.jsp");
 		dispatcher.forward(request, response);
 		
 	}

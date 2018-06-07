@@ -34,7 +34,7 @@ public class BoardModify extends HttpServlet {
 		
 		getter.close();
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/each/boardModify.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/each/board/boardModify.jsp");
 		dispatcher.forward(request, response);
 		
 	}
