@@ -34,7 +34,7 @@ public class AttendanceEach extends HttpServlet {
 		FakeDB db = FakeDB.getInstance();
 //		ArrayList<Member> members = db.getStudies().get(0).getMembers();
 //		request.setAttribute("members", members);
-		request.getRequestDispatcher(request.getAttribute("eachAttendancePath") + "/record.jsp").forward(request, response);
+		request.getRequestDispatcher("/study/each/attendance/each/record.jsp").forward(request, response);
 	}
 
 	@Override

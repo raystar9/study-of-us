@@ -32,8 +32,7 @@ public class AttendanceConfirm extends HttpServlet {
 		FakeDB db = FakeDB.getInstance();
 //		ArrayList<Member> members = db.getStudies().get(0).getMembers();
 //		request.setAttribute("members", members);
-		System.out.println(request.getAttribute("eachAttendancePath"));
-		request.getRequestDispatcher(request.getAttribute("eachAttendancePath") + "/confirm.jsp").forward(request, response);
+		request.getRequestDispatcher("/study/each/attendance/each/confirm.jsp").forward(request, response);
 	}
 
 	/**
