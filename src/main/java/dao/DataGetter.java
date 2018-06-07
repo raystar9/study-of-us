@@ -11,6 +11,7 @@ import beans.prototype.StudyList;
 import beans.root.Login;
 import beans.study.StudyListCount;
 import beans.study.StudySearch;
+import beans.study.StudySearchMain;
 import beans.study.each.InformSetup;
 import beans.study.each.InformSetupMember;
 import beans.study.each.Member2;
@@ -873,21 +874,71 @@ public class DataGetter extends DataAccessor {
 			
 			@Override
 			public Object onGetResult(ResultSet rs) throws SQLException {
-				ArrayList<StudyList> StudyListCheck = new ArrayList<>();
+				ArrayList<Study> studies = new ArrayList<>();
 				while(rs.next()) {
-					StudyList studycheck = new StudyList();
-					studycheck.setStudyindex(rs.getInt(1));
-					studycheck.setMemberindex(rs.getInt(2));
-					StudyListCheck.add(studycheck);
+					Study study = new Study();
+					study.setIndex(rs.getInt(1));
+					study.setName(rs.getString(2));
+					study.setC_id(rs.getInt(3));
+					study.setMt_index(rs.getInt(4));
+					study.setStart(rs.getDate(5));
+					study.setEnd(rs.getDate(6));
+					study.setPeoplenum(rs.getInt(7));
+					study.setDay(rs.getString(8));
+					study.setTime(rs.getString(9));
+					study.setExplain(rs.getString(10));
+					study.setPrepared(rs.getString(11));
+					study.setEffective(rs.getString(12));
+					study.setPlace(rs.getString(13));
+
+					studies.add(study);
 				}
-				return StudyListCheck;
+				return studies;
 			}
 		});
-		
-		return list;
+
 		// TODO Auto-generated method stub
-		
+		return list;
 	}
+	public ArrayList<Study> getCategryStudies(String category) {
+			@SuppressWarnings("unchecked")
+			ArrayList<Study> list = (ArrayList<Study>) get(StudySearchMain.QUERY_GET, new DataSettable() {
+				
+				@Override
+				public void prepare(PreparedStatement pstmt) throws SQLException {
+					pstmt.setString(1, category);
+					
+				}
+			},new DataGettable() {
+				
+				@Override
+				public Object onGetResult(ResultSet rs) throws SQLException {
+					ArrayList<Study> studies = new ArrayList<>();
+					while(rs.next()) {
+						Study study = new Study();
+						study.setIndex(rs.getInt(1));
+						study.setName(rs.getString(2));
+						study.setC_id(rs.getInt(3));
+						study.setMt_index(rs.getInt(4));
+						study.setStart(rs.getDate(5));
+						study.setEnd(rs.getDate(6));
+						study.setPeoplenum(rs.getInt(7));
+						study.setDay(rs.getString(8));
+						study.setTime(rs.getString(9));
+						study.setExplain(rs.getString(10));
+						study.setPrepared(rs.getString(11));
+						study.setEffective(rs.getString(12));
+						study.setPlace(rs.getString(13));
+
+						studies.add(study);
+					}
+					return studies;
+				}
+			});
+
+			// TODO Auto-generated method stub
+			return list;
+		}
 
 	/*
 	 * private ArrayList<?> getBean(ResultSet rs, Class<?> beanClass) throws

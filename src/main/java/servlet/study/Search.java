@@ -32,21 +32,12 @@ public class Search extends HttpServlet {
 		DataGetter getter = new DataGetter(DatabaseAccounts.SCOTT);
 		String url = "";
 		
-
 		System.out.println(request.getParameter("params"));
-		
 
 		String[] check = request.getParameterValues("checkbox");
 		String secondArray = request.getParameter("secondArray");
 		String search = request.getParameter("searchVal");
 
-	
-	/*	if(request.getParameter("state")!=null) {
-			search = request.getParameter("searchVal");
-			check = request.getParameterValues("checkbox");
-			secondArray = request.getParameter("secondArray");
-		*/
-		
 		int startcount = 0;
 		int endcount = 0;
 
@@ -107,7 +98,7 @@ public class Search extends HttpServlet {
 		request.setAttribute("page", page);
 		request.setAttribute("totalpage", totalpage);
 		request.setAttribute("endpage", endpage);
-		System.out.println("check: "+check);
+		System.out.println("check"+check);
 		
 		if(request.getParameter("state")!=null) {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/study/sources/search/section2.jsp");

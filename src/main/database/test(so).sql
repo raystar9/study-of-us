@@ -1,4 +1,8 @@
 
+select * from study inner join CATEGORY on STUDY.S_C_ID = CATEGORY.C_ID where c_sub = ?
+
+select * from study inner join CATEGORY on STUDY.S_C_ID = CATEGORY.C_ID where c_group = '프로그래밍';
+		
 select * from 
 (select rownum as rnum, s_index, s_name, s_c_id, S_MT_INDEX, S_START, S_END, S_PLOPIENUM, S_DAY, S_TIME,S_EXPLAIN,S_PREPARED,S_EFFECTIVE ,S_PLACE, C_SUB 
 from (select 
