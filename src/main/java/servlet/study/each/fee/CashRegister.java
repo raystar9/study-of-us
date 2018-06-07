@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import beans.study.each.InformSetupMember;
+import beans.study.each.Member2;
 import beans.study.each.fee.CashExpenseBean;
 import beans.study.each.fee.CashMemberBean;
 import beans.study.each.fee.CashViewRegisterBean;
@@ -33,6 +34,7 @@ public class CashRegister extends HttpServlet {
 		// TODO Auto-generated method stub
 		System.out.println("CashRegister 서블릿 들어옴");
 		DataGetter getter = new DataGetter(DatabaseAccounts.SCOTT);
+		int studyIndex = 3;
 		
 		ArrayList<InformSetupMember> memlist = new ArrayList<InformSetupMember>(); //스터디 참여인원의 정보
 		memlist = getter.getInformMember();
@@ -42,6 +44,9 @@ public class CashRegister extends HttpServlet {
 			names[i] = memlist.get(i).getName();
 		}
 		
+		int[] memIndex = getter.getMemIndex(studyIndex);
+		
+		request.setAttribute("memIndex", memIndex);
 		request.setAttribute("names", names); 	
 		getter.close();
 		
@@ -61,12 +66,13 @@ public class CashRegister extends HttpServlet {
 		int memFeeTotal = 0;
 		for(int i=1; i<=memcount; i++) {
 			CashMemberBean m = new CashMemberBean();
-			m.setName(request.getParameter("name" + i));
-			m.setMemfee(Integer.parseInt(request.getParameter("duesFee" + i)));
-			m.setNote(request.getParameter("duesNote" + i));
+			m.setMemIndex(Integer.parseInt(request.getParameter("memIndex" + i)));							//이름
+			m.setMemfee(Integer.parseInt(request.getParameter("duesFee" + i)));		//낸 회비
+			m.setNote(request.getParameter("duesNote" + i));						//비고
 			memFeeTotal += Integer.parseInt(request.getParameter("duesFee" + i));
 			mem.add(m);
 		}
+		poster.postFeeMemberInsert(mem);
 		
 		//사용 내역, 금액
 		int expenseCount = Integer.parseInt(request.getParameter("expenseCount"));
@@ -79,6 +85,7 @@ public class CashRegister extends HttpServlet {
 			expenseTotal += Integer.parseInt(request.getParameter("duesExpFee" + j));
 			expense.add(ex);
 		}
+		
 		
 		//날짜, 총액 등
 		CashViewRegisterBean cash = new CashViewRegisterBean();

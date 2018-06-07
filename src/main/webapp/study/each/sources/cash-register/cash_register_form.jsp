@@ -59,7 +59,7 @@
 													<td>${status.count}</td>
 													<td>
 														${name }
-														<input type='hidden' value='${name }' name='name${status.count}'>
+														<input type='hidden' value='${memIndex }' name='memIndex${status.count}'>
 													</td>
 													<td><input type='text' class='form-control' placeholder='금액' id='duesFee${status.count}' name='duesFee${status.count}' onkeyup='calculate();'></td>
 													<td><input type='text' class='form-control' placeholder='비고' id='duesNote${status.count}' name='duesNote${status.count}'></td>

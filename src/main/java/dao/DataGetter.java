@@ -958,6 +958,33 @@ public class DataGetter extends DataAccessor {
 
 			return category;
 		}
+	
+	public int[] getMemIndex(int studyIndex) {
+
+		int[] Index1 = (int[]) get(Member2.QUERY_GET_INDEX, new DataSettable() {
+
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+				// TODO Auto-generated method stub
+				/*pstmt.setInt(1, studyIndex);*/
+			}
+
+		}, new DataGettable() {
+
+			@Override
+			public int[] onGetResult(ResultSet rs) throws SQLException {
+				int[] index = new int[100];
+				int i = 0;
+				while (rs.next()) {
+					index[i] = rs.getInt(1);
+					i++;
+				}
+				return index;
+			}
+		});
+
+		return Index1;
+	}
 
 	/*
 	 * private ArrayList<?> getBean(ResultSet rs, Class<?> beanClass) throws
