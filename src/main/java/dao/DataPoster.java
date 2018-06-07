@@ -229,18 +229,4 @@ public class DataPoster extends DataSetter {
 		});
 	}
 	
-	public void postCommentUpdate(String content, int cno, int bno) {
-
-		set(CommentBean.QUERY_PUT, new DataSettable() {
-
-			@Override
-			public void prepare(PreparedStatement pstmt) throws SQLException {
-				pstmt.setString(1, content);
-				pstmt.setInt(2, cno);
-				pstmt.setInt(3, bno);
-				pstmt.executeUpdate();
-				pstmt.close();
-			}
-		});
-	}
 }

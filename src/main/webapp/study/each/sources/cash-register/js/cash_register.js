@@ -4,10 +4,10 @@ $(document).ready(function() {
 	var addNum = 2;
 	$('#cashAdd-btn').click(function() {
 		var strToAdd = "<tr><td>";
-			strToAdd += "<input type='text' class='form-control' placeholder='내역' id='dues-exp' name='duesExp" + addNum + "'>";
+			strToAdd += "<input type='text' class='form-control' placeholder='내역' id='duesExp" + addNum + "' name='duesExp" + addNum + "'>";
 			strToAdd += "</td>";
 			strToAdd += "<td>";
-			strToAdd += "<input type='text' class='form-control' placeholder='금액' id='dues-expfee' name='duesExpFee" + addNum + "' onkeyup='calculate();'>";
+			strToAdd += "<input type='text' class='form-control' placeholder='금액' id='duesExpFee" + addNum + "' name='duesExpFee" + addNum + "' onkeyup='calculate();'>";
 			strToAdd += "</td></tr>";
 			addNum++;
 		$('#expenseCount').val(addNum);
@@ -36,13 +36,14 @@ function calculate(){	// onkeyup 발생 함수 (자동계산)
 	for(var i=1; i<= $('#dues-table tbody tr').length; i++){
 		duesFee = document.getElementById('duesFee'+i).value;
 		if(isNaN(parseInt(duesFee))){
-			duesFeee = 0;
+			duesFee = 0;
 		}
 		duesFee_sum += parseInt(duesFee);
 	}
 	
 	for(var i=1; i<= $('#total-table tbody tr').length; i++){
 		duesExpFee = document.getElementById('duesExpFee'+i).value;
+		/*alert(document.getElementById('duesExpFee'+i).value);*/
 		if(isNaN(parseInt(duesExpFee))){
 			duesExpFee = 0;
 		}
