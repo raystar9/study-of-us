@@ -16,14 +16,17 @@ import beans.study.StudySearch;
 import beans.study.each.InformSetup;
 import beans.study.each.InformSetupMember;
 import beans.study.each.Member2;
+import beans.study.each.attendacne.MemberAttendanceBean;
 import beans.study.each.board.BoardListBean;
 import beans.study.each.board.BoardViewRegisterBean;
 import beans.study.each.board.CommentBean;
 import beans.study.each.fee.CashListBean;
+import beansNew.StudyMember;
 import dao.interfaces.DataGettable;
 import dao.interfaces.DataSettable;
 import exceptionHandler.ExceptionHandler;
 import exceptionHandler.TryGetObject;
+import query.Queries;
 
 /**
  * 데이터베이스에 쿼리문을 실행하며 해당 쿼리문에 대한 결과를 ArrayList에 담아 반환합니다.
@@ -133,7 +136,6 @@ public class DataGetter extends DataAccessor {
 		// TODO Auto-generated method stub
 		return list;
 	}
-
 
 	public ArrayList<Study> getStudies(String search, String[] check, String secondArray, int startcount, int endcount) { 
 		
@@ -1168,6 +1170,86 @@ ArrayList<StudyListSelect> studylist = (ArrayList<StudyListSelect>) get(StudyLis
 			return find; 
 		}
 	
+	
+				//구명회파트
+				@SuppressWarnings("unchecked")
+				public ArrayList<MemberAttendanceBean> getAttends(String studyName){
+					return (ArrayList<MemberAttendanceBean>) get(MemberAttendanceBean.QUERY_GET,new DataSettable() {
+						
+						@Override
+						public void prepare(PreparedStatement pstmt) throws SQLException {
+							pstmt.setString(1, studyName);
+						}
+					}  ,new DataGettable() {
+						@Override
+						public Object onGetResult(ResultSet rs) throws SQLException {
+							ArrayList<MemberAttendanceBean> results = new ArrayList<>();
+							while(rs.next()) {
+								MemberAttendanceBean bean = new MemberAttendanceBean();
+								bean.setMemberId(rs.getInt(1));
+								bean.setMemberName(rs.getString(2));
+								bean.setAttend(rs.getString(3));
+								results.add(bean);
+							}
+							return results;
+						}
+					});
+				}
+	
+	//공용
+	@SuppressWarnings("unchecked")
+	public ArrayList<Integer> getMemberIndexes(int studyIndex) {
+		return (ArrayList<Integer>) get(StudyMember.QUERY_GET_MEMBERS,new DataSettable() {
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+				pstmt.setInt(1, studyIndex);
+			}
+		}, new DataGettable() {
+			@Override
+			public Object onGetResult(ResultSet rs) throws SQLException {
+				ArrayList<Integer> results = new ArrayList<>();
+				while(rs.next()) {
+					results.add(rs.getInt(1));
+				}
+				return results;
+			}
+		} );
+	}
+	
+		public int getStudyIndex(String studyName) {
+			return (int) get(Queries.GET_STUDY_ID, new DataSettable() {
+				@Override
+				public void prepare(PreparedStatement pstmt) throws SQLException {
+					pstmt.setString(1, studyName);
+				}
+			}, new DataGettable() {
+				@Override
+				public Object onGetResult(ResultSet rs) throws SQLException {
+					rs.next();
+					return rs.getInt(1);
+				}
+			} );
+		}
+	
+	@SuppressWarnings("unchecked")
+	public ArrayList<String> getMemberNames(String studyName) {
+		return (ArrayList<String>) get(Queries.GET_STUDY_MEMBER_NAMES, new DataSettable() {
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+				System.out.println(studyName);
+				pstmt.setString(1, studyName);
+			}
+		}, new DataGettable() {
+			@Override
+			public Object onGetResult(ResultSet rs) throws SQLException {
+				ArrayList<String> results = new ArrayList<>();
+				while(rs.next()) {
+					results.add(rs.getString(1));
+				}
+				return results;
+			}
+		} );
+	}
 
 	/*
 	 * private ArrayList<?> getBean(ResultSet rs, Class<?> beanClass) throws

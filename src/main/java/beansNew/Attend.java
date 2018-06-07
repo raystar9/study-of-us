@@ -1,6 +1,9 @@
 package beansNew;
 
 public class Attend {
+	//TODO 시퀀스명 변경해야함!
+	public static final String QUERY_POST = "INSERT INTO attend(A_INDEX, A_MT_ID, A_M_INDEX, A_ATTEND) VALUES(1, ?, ?, ?)";
+	
 	int attendId;
 	int meetingId;
 	int memberId;
@@ -9,8 +12,7 @@ public class Attend {
 	public Attend() {
 	}
 
-	public Attend(int attendId, int meetingId, int memberId, String attend) {
-		this.attendId = attendId;
+	public Attend(int meetingId, int memberId, String attend) {
 		this.meetingId = meetingId;
 		this.memberId = memberId;
 		this.attend = attend;
