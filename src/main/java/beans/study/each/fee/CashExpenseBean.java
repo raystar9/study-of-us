@@ -4,8 +4,8 @@ public class CashExpenseBean {
 	
 	public static final String QUERY_GET = "select";
 	
-	private String content;
-	private int expense;
+	private String content;		//사용 내역 
+	private int expense;		//사용 금액
 	
 	public String getContent() {
 		return content;
