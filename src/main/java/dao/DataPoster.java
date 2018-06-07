@@ -11,6 +11,7 @@ import beans.prototype.StudyList;
 import beans.study.each.InformSetup;
 import beans.study.each.board.BoardViewRegisterBean;
 import beans.study.each.board.CommentBean;
+import beansNew.Attend;
 import dao.interfaces.DataSettable;
 
 public class DataPoster extends DataSetter {
@@ -242,5 +243,22 @@ public class DataPoster extends DataSetter {
 				pstmt.close();
 			}
 		});
+	}
+	
+	//구명회 파트
+	
+	public void postAttend(ArrayList<Attend> attends) {
+		for(Attend attend : attends) {
+			set(Attend.QUERY_POST, new DataSettable() {
+				@Override
+				public void prepare(PreparedStatement pstmt) throws SQLException {
+					pstmt.setInt(1, attend.getMeetingId());
+					pstmt.setInt(2, attend.getMemberId());
+					pstmt.setString(3, attend.getAttend());
+					pstmt.executeQuery();
+					pstmt.close();
+				}
+			});
+		}
 	}
 }
