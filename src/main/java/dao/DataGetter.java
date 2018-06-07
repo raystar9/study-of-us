@@ -12,6 +12,7 @@ import beans.root.Login;
 import beans.study.StudyListCount;
 import beans.study.StudyListSelect;
 import beans.study.StudySearch;
+import beans.study.each.CategoryBean;
 import beans.study.each.InformSetup;
 import beans.study.each.InformSetupMember;
 import beans.study.each.Member2;
@@ -245,7 +246,7 @@ public class DataGetter extends DataAccessor {
 				// TODO Auto-generated method stub
 				int startrow = (page - 1) * limit + 1; // 읽기 시작할 row 번호( 1 11 21 )
 				int endrow = startrow + limit - 1; // 읽을 마지막 row 번호( 10 20 30 )
-				
+
 				if (search != null && search != "") {
 					String search2 = "%" + search + "%";
 					pstmt.setString(1, search2);
@@ -604,17 +605,16 @@ public class DataGetter extends DataAccessor {
 				InformSetup Inform = new InformSetup();
 				while (rs.next()) {
 					Inform.setIndex(rs.getInt(1));
-					Inform.setCategory(rs.getString(2));
-					Inform.setPeopleNum(rs.getString(3));
-					Inform.setName(rs.getString(4));
-					Inform.setPlace(rs.getString(5));
-					Inform.setActivityTime(rs.getString(6));
-					Inform.setStartDate(rs.getString(7));
-					Inform.setEndDate(rs.getString(8));
-					Inform.setDay(rs.getString(9));
-					Inform.setExplain(rs.getString(10));
-					Inform.setPrepared(rs.getString(11));
-					Inform.setEffective(rs.getString(12));
+					Inform.setPeopleNum(rs.getString(2));
+					Inform.setName(rs.getString(3));
+					Inform.setPlace(rs.getString(4));
+					Inform.setActivityTime(rs.getString(5));
+					Inform.setStartDate(rs.getString(6));
+					Inform.setEndDate(rs.getString(7));
+					Inform.setDay(rs.getString(8));
+					Inform.setExplain(rs.getString(9));
+					Inform.setPrepared(rs.getString(10));
+					Inform.setEffective(rs.getString(11));
 				}
 				return Inform;
 			}
@@ -879,7 +879,7 @@ public class DataGetter extends DataAccessor {
 			public void prepare(PreparedStatement pstmt) throws SQLException {
 				// TODO Auto-generated method stub
 				int startrow = (page - 1) * limit + 1;
-				int endrow = startrow + limit - 1; 
+				int endrow = startrow + limit - 1;
 				pstmt.setInt(1, studyIndex);
 				pstmt.setInt(1, startrow);
 				pstmt.setInt(2, endrow);
@@ -892,8 +892,8 @@ public class DataGetter extends DataAccessor {
 				ArrayList<CashListBean> cashlist = new ArrayList<>();
 				while (rs.next()) {
 					CashListBean cash = new CashListBean();
-					//회비 상세보기로 넘어갈 때 index 넘겨줘야 하니까 필요함
-					cash.setIndex(rs.getInt(1));	
+					// 회비 상세보기로 넘어갈 때 index 넘겨줘야 하니까 필요함
+					cash.setIndex(rs.getInt(1));
 					cash.setDate(rs.getString(2));
 					cashlist.add(cash);
 				}
@@ -931,6 +931,33 @@ public class DataGetter extends DataAccessor {
 
 		return cashcount;
 	}
+
+	// 카테고리 대분류, 소분류를 가져오는 메소드
+	public CategoryBean getCategory(int studyIndex) {
+
+			CategoryBean category = (CategoryBean) get(CategoryBean.QUERY_GET, new DataSettable() {
+
+				@Override
+				public void prepare(PreparedStatement pstmt) throws SQLException {
+					// TODO Auto-generated method stub
+					/*pstmt.setInt(1, studyIndex);*/
+				}
+
+			}, new DataGettable() {
+
+				@Override
+				public CategoryBean onGetResult(ResultSet rs) throws SQLException {
+					CategoryBean cate = new CategoryBean();
+					while (rs.next()) {
+						cate.setCategory1(rs.getString(1));
+						cate.setCategory2(rs.getString(2));
+					}
+					return cate;
+				}
+			});
+
+			return category;
+		}
 
 	/*
 	 * private ArrayList<?> getBean(ResultSet rs, Class<?> beanClass) throws

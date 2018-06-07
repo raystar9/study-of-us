@@ -7,6 +7,8 @@
 		float:left;
 	}
 </style>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="sources/setup/js/setup.js" type="text/javascript"></script>
 </head>
 <body>
 <%@ include file = "/general-sources/Navigation.jsp" %>

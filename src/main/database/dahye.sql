@@ -217,10 +217,8 @@ INSERT INTO BOARD VALUES (board_no.nextval, '이름', '제목', '내용', SYSDAT
 CREATE TABLE Study(
    S_INDEX NUMBER NOT NULL PRIMARY KEY,      -- study_index 시퀀스 처리
    S_NAME VARCHAR(16) NOT NULL,            
-   S_CATEGORY VARCHAR(30) NOT NULL,              
    S_START VARCHAR(16) NOT NULL,                     --시작날짜
    S_END VARCHAR(16) NOT NULL,                     --끝날짜
-   
    S_PLOPIENUM NUMBER NOT NULL,               --인원
    S_DAY varchar(3) not null,                  --요일
    S_time number not null,                     --활동시간
@@ -231,7 +229,7 @@ CREATE TABLE Study(
 
 );
 truncate table study;
-INSERT INTO Study VALUES(study_index.nextval,'JAVA&JSP','카테카테1','20180501', '20180530', 7, '화',5,'개요입니다.','준비물입니다.','기대효과입니다.','장소');
+INSERT INTO Study VALUES(study_index.nextval,'JAVA&JSP','20180501', '20180530', 7, '화',5,'개요입니다.','준비물입니다.','기대효과입니다.','장소');
 
 select * from study;
 select * from member;
@@ -480,5 +478,7 @@ create table CATEGORY(
 Insert into category values (1, '프로그래밍', 'JAVA');
 
 select * from category;
+
+select * from study;
 
 
