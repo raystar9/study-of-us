@@ -32,7 +32,7 @@ public class NewSchedule extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher(request.getAttribute("eachStudyPath") + "/new-schedule.jsp").forward(request, response);
+		request.getRequestDispatcher(request.getAttribute("eachStudyPath") + "/schedule/new-schedule.jsp").forward(request, response);
 	}
 
 	/**

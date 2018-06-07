@@ -15,7 +15,7 @@
 #calendar {vertical-align: top; padding: 15px;}
 </style>
 <link href='/study-of-us/study/each/sources/schedule/css/fullcalendar.min.css' rel='stylesheet' />
-<link href='/study-of-us/study/each}/sources/schedule/css/fullcalendar.print.min.css' rel='stylesheet' media='print' />
+<link href='/study-of-us/study/each/sources/schedule/css/fullcalendar.print.min.css' rel='stylesheet' media='print' />
 <link href='/study-of-us/study/each/sources/schedule/css/schedule.css' rel='stylesheet'/>
 <script src='/study-of-us/webjars/jquery/3.2.1/jquery.min.js'></script>
 <script src='/study-of-us/study/each/sources/schedule/js/moment.min.js'></script>
