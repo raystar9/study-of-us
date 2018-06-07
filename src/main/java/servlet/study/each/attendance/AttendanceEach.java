@@ -32,9 +32,9 @@ public class AttendanceEach extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		FakeDB db = FakeDB.getInstance();
-		ArrayList<Member> members = db.getStudies().get(0).getMembers();
-		request.setAttribute("members", members);
-		request.getRequestDispatcher("/study/each/attendance/each/record.jsp").forward(request, response);
+//		ArrayList<Member> members = db.getStudies().get(0).getMembers();
+//		request.setAttribute("members", members);
+		request.getRequestDispatcher(request.getAttribute("eachAttendancePath") + "/record.jsp").forward(request, response);
 	}
 
 	@Override

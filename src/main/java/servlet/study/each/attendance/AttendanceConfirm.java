@@ -1,7 +1,6 @@
 package servlet.study.each.attendance;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,9 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import beansNew.Member;
 import fakeDB.FakeDB;
-import servlet.ServletDispatcher;
 
 /**
  * Servlet implementation class AttendanceConfirm
@@ -33,9 +30,10 @@ public class AttendanceConfirm extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		FakeDB db = FakeDB.getInstance();
-		ArrayList<Member> members = db.getStudies().get(0).getMembers();
-		request.setAttribute("members", members);
-		ServletDispatcher.forward(request, response, "confirm.jsp");
+//		ArrayList<Member> members = db.getStudies().get(0).getMembers();
+//		request.setAttribute("members", members);
+		System.out.println(request.getAttribute("eachAttendancePath"));
+		request.getRequestDispatcher(request.getAttribute("eachAttendancePath") + "/confirm.jsp").forward(request, response);
 	}
 
 	/**
