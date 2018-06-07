@@ -68,7 +68,7 @@ select * from (select rownum as rnum, s_index, s_name, s_c_id, S_MT_INDEX, S_STA
 select * from Category
 select * from study
 
-
+drop table study cascade constraint;
 select * from (select rownum as rnum, s_index, s_name, s_c_id, S_MT_INDEX, S_START, S_END, S_PLOPIENUM, S_DAY, S_TIME,S_EXPLAIN,S_PREPARED,S_EFFECTIVE ,S_PLACE
 			from (
 			select s_index, s_name, s_c_id, S_MT_INDEX, S_START, S_END, S_PLOPIENUM, S_DAY, S_TIME,S_EXPLAIN,S_PREPARED,S_EFFECTIVE ,S_PLACE 
