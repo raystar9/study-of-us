@@ -5,8 +5,6 @@ import java.sql.Date;
 import java.util.HashMap;
 
 import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,7 +13,6 @@ import beansNew.Meeting;
 import dateConverter.DateConverter;
 import fakeDB.FakePoster;
 import param.ParameterGetter;
-import servlet.ServletDispatcher;
 
 /**
  * Servlet implementation class NewSchedule
@@ -35,7 +32,7 @@ public class NewSchedule extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ServletDispatcher.forward(request, response, "new-schedule.jsp");
+		request.getRequestDispatcher(request.getAttribute("eachStudyPath") + "/new-schedule.jsp").forward(request, response);
 	}
 
 	/**
