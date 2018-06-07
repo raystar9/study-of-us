@@ -21,7 +21,7 @@
 <div class="StudyList">
 <span class="heading">${list.s_name} </span> <span class="dayday">기간 ${list.start} ~  ${list.end}</span>
 <hr style="border:3px solid #f1f1f1">
-<div class="people">${list.s_peoplenum}명</div><br>
+<div class="people">${list.s_maxmember}명</div><br>
 <div class="row">
   <div class="side">
     <div>스터디 진행현황</div>
@@ -54,7 +54,6 @@
        </c:otherwise>
        </c:choose>
     <br>
-    
     <a href="#">내스터디</a>
   </div>
 </div>

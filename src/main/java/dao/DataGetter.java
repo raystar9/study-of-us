@@ -806,7 +806,7 @@ ArrayList<StudyListSelect> studylist = (ArrayList<StudyListSelect>) get(StudyLis
 					
 					sl.setProgress(rs.getInt("progress"));
 					sl.setS_name(rs.getString("s_name"));
-					sl.setS_peoplenum(rs.getInt("s_peoplenum"));
+					sl.setS_maxmember(rs.getInt("s_maxmember"));
 					sl.setStart(rs.getString("s_start"));
 					sl.setEnd(rs.getString("s_end"));
 					studylists.add(sl);
@@ -938,7 +938,7 @@ ArrayList<StudyListSelect> studylist = (ArrayList<StudyListSelect>) get(StudyLis
 								
 								sl.setProgress(rs.getInt("progress"));
 								sl.setS_name(rs.getString("s_name"));
-								sl.setS_peoplenum(rs.getInt("s_peoplenum"));
+								sl.setS_maxmember(rs.getInt("s_maxmember"));
 								sl.setStart(rs.getString("s_start"));
 								sl.setEnd(rs.getString("s_end"));
 								studylists.add(sl);

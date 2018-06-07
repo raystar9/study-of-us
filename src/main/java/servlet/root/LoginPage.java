@@ -26,15 +26,15 @@ public class LoginPage extends HttpServlet {
 		String id = request.getParameter("id");
 		String password = request.getParameter("password");
 
-		DataGetter getter = new DataGetter(DatabaseAccounts.ADMIN);
+		DataGetter getter = new DataGetter(DatabaseAccounts.PROJECT);
 
 		
 		Login logpro = getter.getLogin(id);
 		
-		
-		/*System.out.println( "리턴받아온 아이디 : "+logpro.getId());
-		System.out.println( "리턴받아온 비밀번호 : "+logpro.getPassword());*/
-		
+		/*
+		System.out.println( "리턴받아온 아이디 : "+logpro.getId());
+		System.out.println( "리턴받아온 비밀번호 : "+logpro.getPassword());
+		*/
 		
 
 		if (logpro == null || !logpro.getPassword().equals(password)) {

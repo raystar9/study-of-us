@@ -42,13 +42,15 @@ public class List extends HttpServlet {
 		System.out.println("넘어온 페이지 = " + page);
 
 		// 총스터디 수를 받아옵니다. (나의스터디만)
-		DataGetter getter = new DataGetter(DatabaseAccounts.ADMIN);
+		DataGetter getter = new DataGetter(DatabaseAccounts.PROJECT);
 		// 스터디 개수 뽑아옵니다
 		StudyListSelect studycount = getter.getStudyListCount(index);
 		// 내가뽑아올 목록을 받아옵니다.
 		ArrayList<StudyListSelect> studyList = getter.getStudyList(index,page ,limit);
 		// 남은일수 뽑아옵니다.
 		ArrayList<StudyListSelect> dday = getter.getDday(index, page, limit);
+		// 조장이름 뽑아옵니다.
+		
 
 		
 		

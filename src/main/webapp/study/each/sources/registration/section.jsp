@@ -20,8 +20,9 @@
 <select name=first id="first">
 	<option value="-1">대분류</option>
 	<option value="1">프로그래밍</option>
-	<option value="2">외국어</option>
+	<option value="2">언어</option>
 	<option value="3">자격증</option>
+	<option value="4">수능</option>
 </select>
 
 <select name="second" id="second">

@@ -40,7 +40,7 @@ public class Complete extends HttpServlet {
 				System.out.println("넘어온 페이지 = " + page);
 
 				// 총스터디 수를 받아옵니다. (나의스터디만)
-				DataGetter getter = new DataGetter(DatabaseAccounts.ADMIN);
+				DataGetter getter = new DataGetter(DatabaseAccounts.PROJECT);
 				// 스터디 개수 뽑아옵니다
 				StudyListSelect2 studycount = getter.getStudyListCount2(index);
 				// 내가뽑아올 목록을 받아옵니다.
