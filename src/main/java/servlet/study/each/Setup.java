@@ -37,7 +37,7 @@ public class Setup extends HttpServlet {
 		int membercount = getter.getInformMemberCount();	//스터디 참여인원
 		
 		ArrayList<InformSetupMember> memlist = new ArrayList<InformSetupMember>(); //스터디 참여인원의 정보
-		memlist = getter.getInformMember();
+		memlist = getter.getInformMember((String)request.getAttribute("studyName"));
 		
 		InformSetup setup = new InformSetup();
 		setup = getter.getInformation();	

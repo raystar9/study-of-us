@@ -32,12 +32,12 @@ public class IdCheck extends HttpServlet {
 		DataGetter getter = new DataGetter(DatabaseAccounts.ADMIN);
 		Login idcheck = getter.getIdCheck(id);
 		
+		
 		if(idcheck == null) {
 			System.out.println("아이디 사용가능");
 			result = -1;
 			out.print(result);
-		}
-		else {
+		}else{
 			System.out.println("아이디 존재함");
 			System.out.println(idcheck.getId());
 			result = 1;
