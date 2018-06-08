@@ -17,7 +17,7 @@ import dao.DataGetter;
 import dao.DatabaseAccounts;
 
 
-@WebServlet("/study/each/cashview")
+@WebServlet("/study/each/fee/each")
 public class CashView extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -52,7 +52,7 @@ public class CashView extends HttpServlet {
 		*/
 		
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/each/cashView.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/each/fee/cashView.jsp");
 		dispatcher.forward(request, response);
 	}
 

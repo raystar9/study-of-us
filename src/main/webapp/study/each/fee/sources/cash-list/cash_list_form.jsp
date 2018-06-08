@@ -6,7 +6,7 @@
 <html>
 
 <head>
-<link rel="stylesheet" type="text/css" href="css/cash_list.css">
+<link rel="stylesheet" type="text/css" href="/study-of-us/study/each/fee/sources/cash-list/css/cash_list.css">
 </head>
 
 <body>

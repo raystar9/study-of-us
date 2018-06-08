@@ -20,7 +20,7 @@ import dao.DataPoster;
 import dao.DatabaseAccounts;
 
 
-@WebServlet("/study/each/cashregister")
+@WebServlet("/study/each/fee/each/register")
 public class CashRegister extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -50,7 +50,7 @@ public class CashRegister extends HttpServlet {
 		request.setAttribute("names", names); 	
 		getter.close();
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/each/cashRegister.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/each/fee/cashRegister.jsp");
 		dispatcher.forward(request, response);
 	}
 
@@ -98,7 +98,7 @@ public class CashRegister extends HttpServlet {
 		getter.close();
 		poster.close();
 		
-		response.sendRedirect("/study-of-us/study/each/cash");
+		response.sendRedirect("/study-of-us/study/each/fee/cash");
 	}
 
 }

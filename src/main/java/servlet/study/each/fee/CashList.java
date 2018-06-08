@@ -14,7 +14,7 @@ import beans.study.each.fee.CashListBean;
 import dao.DataGetter;
 import dao.DatabaseAccounts;
 
-@WebServlet("/study/each/cash")
+@WebServlet("/study/each/fee")
 public class CashList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -69,7 +69,7 @@ public class CashList extends HttpServlet {
 		request.setAttribute("cashlist", cashlist);
 		getter.close();
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/each/cashList.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/each/fee/cashList.jsp");
 		dispatcher.forward(request, response);
 	}
 	
