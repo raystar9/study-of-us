@@ -51,7 +51,7 @@
 										<tr>
 											<td align="center"><c:out value="${num }"></c:out> <c:set var="num"
 													value="${num-1}" /></td>
-											<td><a href="./cashview?num=${c.index}">${c.date}</a></td>
+											<td><a href="./fee/${c.meetingIndex}">${c.date}</a></td>
 										</tr>
 									</c:forEach>
 									<tr class="h30 lime center btn">
@@ -84,7 +84,7 @@
 
 									<tr>
 										<c:if test="${b.name == id || id == 'admin' }">
-											<td colspan="5" style="text-align: right"><a href="#">[회비등록]</a></td>
+											<td colspan="5" style="text-align: right"><a href="./schedule?type=attend">[회비등록]</a></td>
 										</c:if>
 									</tr>
 								</tbody>

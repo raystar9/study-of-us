@@ -26,12 +26,12 @@ public class CashList extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		DataGetter getter = new DataGetter(DatabaseAccounts.SCOTT);
+		DataGetter getter = new DataGetter(DatabaseAccounts.PROJECT);
 		ArrayList<CashListBean> cashlist = new ArrayList<CashListBean>();
 
 		int page = 1;
 		int limit = 10;
-		int studyIndex = 3;
+		String studyName = (String) request.getAttribute("studyName");
 		
 		if (request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
@@ -39,9 +39,9 @@ public class CashList extends HttpServlet {
 		System.out.println("넘어온 페이지 = " + page);
 		
 		//회비관리 리스트 가져옴
-		cashlist = getter.getCashList(page, limit, studyIndex);
+		cashlist = getter.getCashList(page, limit, studyName);
 		//회비관리 리스트 개수 가져옴
-		int cashcount = getter.getCashCount(studyIndex);
+		int cashcount = getter.getCashCount(studyName);
 		System.out.println("총 리스트 수 = " + cashcount);
 		
 		int maxpage = (cashcount + limit - 1) / limit;

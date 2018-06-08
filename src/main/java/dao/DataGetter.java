@@ -7,8 +7,8 @@ import java.util.ArrayList;
 
 import beans.prototype.Member;
 import beans.prototype.Study;
-import beans.root.Find;
 import beans.prototype.StudyList;
+import beans.root.Find;
 import beans.root.Login;
 import beans.study.StudyListCount;
 import beans.study.StudyListSelect;
@@ -22,6 +22,9 @@ import beans.study.each.board.BoardListBean;
 import beans.study.each.board.BoardViewRegisterBean;
 import beans.study.each.board.CommentBean;
 import beans.study.each.fee.CashListBean;
+import beans.study.each.fee.FeeCollectListBean;
+import beansNew.FeeCollect;
+import beansNew.FeeSpend;
 import beansNew.StudyMember;
 import dao.interfaces.DataGettable;
 import dao.interfaces.DataSettable;
@@ -944,7 +947,7 @@ public class DataGetter extends DataAccessor {
 	}
 
 	// 회비관리 리스트 가져오는 메소드
-	public ArrayList<CashListBean> getCashList(int page, int limit, int studyIndex) {
+	public ArrayList<CashListBean> getCashList(int page, int limit, String studyName) {
 
 		@SuppressWarnings("unchecked")
 		ArrayList<CashListBean> list = (ArrayList<CashListBean>) get(CashListBean.QUERY_GET, new DataSettable() {
@@ -954,9 +957,9 @@ public class DataGetter extends DataAccessor {
 				// TODO Auto-generated method stub
 				int startrow = (page - 1) * limit + 1;
 				int endrow = startrow + limit - 1;
-				pstmt.setInt(1, studyIndex);
-				pstmt.setInt(1, startrow);
-				pstmt.setInt(2, endrow);
+				pstmt.setString(1, studyName);
+				pstmt.setInt(2, startrow);
+				pstmt.setInt(3, endrow);
 			}
 
 		}, new DataGettable() {
@@ -967,7 +970,7 @@ public class DataGetter extends DataAccessor {
 				while (rs.next()) {
 					CashListBean cash = new CashListBean();
 					// 회비 상세보기로 넘어갈 때 index 넘겨줘야 하니까 필요함
-					cash.setIndex(rs.getInt(1));
+					cash.setMeetingIndex(rs.getInt(1));
 					cash.setDate(rs.getString(2));
 					cashlist.add(cash);
 				}
@@ -981,14 +984,14 @@ public class DataGetter extends DataAccessor {
 	}
 
 	// 회비관리의 리스트 개수를 가져오는 메소드
-	public int getCashCount(int studyIndex) {
+	public int getCashCount(String studyName) {
 
 		int cashcount = (int) get(CashListBean.QUERY_GET_COUNT, new DataSettable() {
 
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
 				// TODO Auto-generated method stub
-				pstmt.setInt(1, studyIndex);
+				pstmt.setString(1, studyName);
 			}
 
 		}, new DataGettable() {
@@ -1293,33 +1296,106 @@ ArrayList<StudyListSelect> studylist = (ArrayList<StudyListSelect>) get(StudyLis
 		} );
 	}
 		
-	public int[] getMemIndex(int studyIndex) {
+		public int[] getMemIndex(int studyIndex) {
+	
+			int[] Index1 = (int[]) get(Member2.QUERY_GET_INDEX, new DataSettable() {
+	
+				@Override
+				public void prepare(PreparedStatement pstmt) throws SQLException {
+					// TODO Auto-generated method stub
+					/*pstmt.setInt(1, studyIndex);*/
+				}
+	
+			}, new DataGettable() {
+	
+				@Override
+				public int[] onGetResult(ResultSet rs) throws SQLException {
+					int[] index = new int[100];
+					int i = 0;
+					while (rs.next()) {
+						index[i] = rs.getInt(1);
+						i++;
+					}
+					return index;
+				}
+			});
+	
+			return Index1;
+		}
 
-		int[] Index1 = (int[]) get(Member2.QUERY_GET_INDEX, new DataSettable() {
-
+	@SuppressWarnings("unchecked")
+	public ArrayList<FeeSpend> getFeeExpense(int meetingId) {
+		return (ArrayList<FeeSpend>) get(FeeSpend.QUERY_GET, new DataSettable() {
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
-				// TODO Auto-generated method stub
-				/*pstmt.setInt(1, studyIndex);*/
+				pstmt.setInt(1, meetingId);
 			}
-
 		}, new DataGettable() {
-
 			@Override
-			public int[] onGetResult(ResultSet rs) throws SQLException {
-				int[] index = new int[100];
-				int i = 0;
-				while (rs.next()) {
-					index[i] = rs.getInt(1);
-					i++;
+			public Object onGetResult(ResultSet rs) throws SQLException {
+				ArrayList<FeeSpend> result = new ArrayList<>();
+				while(rs.next()) {
+					FeeSpend fs = new FeeSpend();
+					fs.setExpense(rs.getInt(1));
+					fs.setComment(rs.getString(2));
+					result.add(fs);
 				}
-				return index;
+				return result;
 			}
 		});
-
-		return Index1;
+	}
+	
+		@SuppressWarnings("unchecked")
+		public ArrayList<FeeCollectListBean> getFeeMember(int meetingId) {
+			return (ArrayList<FeeCollectListBean>) get(FeeCollectListBean.QUERY_GET, new DataSettable() {
+				@Override
+				public void prepare(PreparedStatement pstmt) throws SQLException {
+					pstmt.setInt(1, meetingId);
+				}
+			}, new DataGettable() {
+				@Override
+				public Object onGetResult(ResultSet rs) throws SQLException {
+					ArrayList<FeeCollectListBean> result = new ArrayList<>();
+					while(rs.next()) {
+						FeeCollectListBean fs = new FeeCollectListBean();
+						fs.setMemberName(rs.getString(1));
+						fs.setFee(rs.getInt(2));
+						fs.setNote(rs.getString(3));
+						result.add(fs);
+					}
+					return result;
+				}
+			});
+		}
+	public int getFeeSpentTotal(int meetingId) {
+		return (int) get(Queries.GET_TOTAL_SPENT_FEE, new DataSettable() {
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+				pstmt.setInt(1, meetingId);
+			}
+		}, new DataGettable() {
+			@Override
+			public Object onGetResult(ResultSet rs) throws SQLException {
+				rs.next();
+				return rs.getInt(1);
+			}
+		});
 	}
 
+		public int getFeeCollectTotal(int meetingId) {
+			return (int) get(Queries.GET_TOTAL_COLLECT_FEE, new DataSettable() {
+				@Override
+				public void prepare(PreparedStatement pstmt) throws SQLException {
+					pstmt.setInt(1, meetingId);
+				}
+			}, new DataGettable() {
+				@Override
+				public Object onGetResult(ResultSet rs) throws SQLException {
+					rs.next();
+					return rs.getInt(1);
+				}
+			});
+		}
 	/*
 	 * private ArrayList<?> getBean(ResultSet rs, Class<?> beanClass) throws
 	 * SQLException{ Field[] fields = beanClass.getDeclaredFields();
@@ -1329,4 +1405,27 @@ ArrayList<StudyListSelect> studylist = (ArrayList<StudyListSelect>) get(StudyLis
 	 * objects.add(rs.getString(i+1)); break;
 	 * 
 	 */
+
+		public boolean isFeeRegistered(String meetingId) {
+			return (boolean) get(Queries.IS_FEE_REGISTERED, new DataSettable() {
+				
+				@Override
+				public void prepare(PreparedStatement pstmt) throws SQLException {
+					pstmt.setString(1, meetingId);
+				}
+			}, new DataGettable() {
+				@Override
+				public Object onGetResult(ResultSet rs) throws SQLException {
+					rs.next();
+					if(rs.getInt(1) == 0) {
+						return false;
+					} else {
+						return true;
+					}
+				}
+			});
+			
+		}
+
+		
 }

@@ -1,8 +1,8 @@
 package beansNew;
 
 public class FeeCollect {
-	//TODO 쿼리문 검증 안됨
-	public static final String QUERY_POST = "INSERT INTO FeeMember(FM_ID, FM_M_INDEX, FM_MT_ID, FM_FEE, FM_NOTE) values(feemeber_id.nextval, ?, ?, ?, ?)";
+	
+	public static final String QUERY_POST = "INSERT INTO FeeMember(FM_ID, FM_M_INDEX, FM_MT_ID, FM_FEE, FM_NOTE) values(feemember_id.nextval, ?, ?, ?, ?)";
 	
 	int feeCollectId;
 	int meetingId;

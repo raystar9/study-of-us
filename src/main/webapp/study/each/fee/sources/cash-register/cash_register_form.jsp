@@ -11,7 +11,7 @@
 </head>
 
 <body>
-	<form action="./cashregister" method="post" class="cashRegisterForm">
+	<form action="./register" method="post" class="cashRegisterForm">
 
 		<table border='1'>
 			<tr>
