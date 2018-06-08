@@ -156,7 +156,8 @@ CREATE TABLE Board(
 	B_TITLE VARCHAR(50) NOT NULL,
 	B_DATE VARCHAR(10) NOT NULL,
 	B_CONTENT VARCHAR(300) NOT NULL,              -- CLOE처리 할수도..
-	B_S_INDEX NUMBER NOT NULL
+	B_S_INDEX NUMBER NOT NULL,
+	B_FILENAME VARCHAR(300)
 )
 
 select * from board;
@@ -164,26 +165,26 @@ drop table board cascade CONSTRAINT;
 select * from (SELECT ROWNUM RNUM, B_NO, B_TITLE, B_NAME, B_DATE, B_S_INDEX FROM BOARD b) where B_S_INDEX IN (select S_INDEX from STUDY where S_INDEX = 3) AND RNUM>=1 AND RNUM<=10 ORDER BY B_NO;
 select B_S_INDEX from board
 
-insert into Board values(board_no.nextval, '이다혜', '회비관련 공지하겠습니다.', '2018-05-25', '저번에 회비 안낸 노동완씨 이번에 꼭 내십시요.', 3);
-insert into Board values(board_no.nextval, '소문혁', '교재관련 공지하겠습니다.', '2018-05-22', '안녕하시요', 3);
-insert into Board values(board_no.nextval, '구명회', '회비관련 공지하겠습니다.', '2018-05-20', '가나다라마바사', 3);
-insert into Board values(board_no.nextval, '노동완', '장소관련 공지하겠습니다.', '2018-04-02', '이거는 내용내용', 3);
-insert into Board values(board_no.nextval, '곽승민', '교재관련 공지하겠습니다.', '2018-02-25', '여기도 내용내용내용!!!', 3);
-insert into Board values(board_no.nextval, '이다혜1', '회비관련 공지하겠습니다.', '2018-05-25', '저번에 회비 안낸 노동완씨 이번에 꼭 내십시요.', 3);
-insert into Board values(board_no.nextval, '소문혁1', '교재관련 공지하겠습니다.', '2018-05-22', '안녕하시요', 3);
-insert into Board values(board_no.nextval, '구명회1', '회비관련 공지하겠습니다.', '2018-05-20', '가나다라마바사', 3);
-insert into Board values(board_no.nextval, '노동완1', '장소관련 공지하겠습니다.', '2018-04-02', '이거는 내용내용', 3);
-insert into Board values(board_no.nextval, '곽승민1', '교재관련 공지하겠습니다.', '2018-02-25', '여기도 내용내용내용!!!', 3);
-insert into Board values(board_no.nextval, '이다혜2', '회비관련 공지하겠습니다.', '2018-05-25', '저번에 회비 안낸 노동완씨 이번에 꼭 내십시요.', 3);
-insert into Board values(board_no.nextval, '소문혁2', '교재관련 공지하겠습니다.', '2018-05-22', '안녕하시요', 3);
-insert into Board values(board_no.nextval, '구명회2', '회비관련 공지하겠습니다.', '2018-05-20', '가나다라마바사', 3);
-insert into Board values(board_no.nextval, '노동완2', '장소관련 공지하겠습니다.', '2018-04-02', '이거는 내용내용', 3);
-insert into Board values(board_no.nextval, '곽승민2', '교재관련 공지하겠습니다.', '2018-02-25', '여기도 내용내용내용!!!', 3);
-insert into Board values(board_no.nextval, '이다혜3', '회비관련 공지하겠습니다.', '2018-05-25', '저번에 회비 안낸 노동완씨 이번에 꼭 내십시요.', 3);
-insert into Board values(board_no.nextval, '소문혁3', '교재관련 공지하겠습니다.', '2018-05-22', '안녕하시요', 3);
-insert into Board values(board_no.nextval, '구명회3', '회비관련 공지하겠습니다.', '2018-05-20', '가나다라마바사', 3);
-insert into Board values(board_no.nextval, '노동완3', '장소관련 공지하겠습니다.', '2018-04-02', '이거는 내용내용', 3);
-insert into Board values(board_no.nextval, '곽승민3', '교재관련 공지하겠습니다.', '2018-02-25', '여기도 내용내용내용!!!', 3);
+insert into Board values(board_no.nextval, '이다혜', '회비관련 공지하겠습니다.', '2018-05-25', '저번에 회비 안낸 노동완씨 이번에 꼭 내십시요.', 3, '파일1.jpg');
+insert into Board values(board_no.nextval, '소문혁', '교재관련 공지하겠습니다.', '2018-05-22', '안녕하시요', 3, '파일2.jpg');
+insert into Board values(board_no.nextval, '구명회', '회비관련 공지하겠습니다.', '2018-05-20', '가나다라마바사', 3, '파일3.jpg');
+insert into Board values(board_no.nextval, '노동완', '장소관련 공지하겠습니다.', '2018-04-02', '이거는 내용내용', 3, null);
+insert into Board values(board_no.nextval, '곽승민', '교재관련 공지하겠습니다.', '2018-02-25', '여기도 내용내용내용!!!', 3, null);
+insert into Board values(board_no.nextval, '이다혜1', '회비관련 공지하겠습니다.', '2018-05-25', '저번에 회비 안낸 노동완씨 이번에 꼭 내십시요.', 3, null);
+insert into Board values(board_no.nextval, '소문혁1', '교재관련 공지하겠습니다.', '2018-05-22', '안녕하시요', 3, null);
+insert into Board values(board_no.nextval, '구명회1', '회비관련 공지하겠습니다.', '2018-05-20', '가나다라마바사', 3, null);
+insert into Board values(board_no.nextval, '노동완1', '장소관련 공지하겠습니다.', '2018-04-02', '이거는 내용내용', 3, null);
+insert into Board values(board_no.nextval, '곽승민1', '교재관련 공지하겠습니다.', '2018-02-25', '여기도 내용내용내용!!!', 3, null);
+insert into Board values(board_no.nextval, '이다혜2', '회비관련 공지하겠습니다.', '2018-05-25', '저번에 회비 안낸 노동완씨 이번에 꼭 내십시요.', 3, null);
+insert into Board values(board_no.nextval, '소문혁2', '교재관련 공지하겠습니다.', '2018-05-22', '안녕하시요', 3, null);
+insert into Board values(board_no.nextval, '구명회2', '회비관련 공지하겠습니다.', '2018-05-20', '가나다라마바사', 3, null);
+insert into Board values(board_no.nextval, '노동완2', '장소관련 공지하겠습니다.', '2018-04-02', '이거는 내용내용', 3, null);
+insert into Board values(board_no.nextval, '곽승민2', '교재관련 공지하겠습니다.', '2018-02-25', '여기도 내용내용내용!!!', 3, null);
+insert into Board values(board_no.nextval, '이다혜3', '회비관련 공지하겠습니다.', '2018-05-25', '저번에 회비 안낸 노동완씨 이번에 꼭 내십시요.', 3, null);
+insert into Board values(board_no.nextval, '소문혁3', '교재관련 공지하겠습니다.', '2018-05-22', '안녕하시요', 3, null);
+insert into Board values(board_no.nextval, '구명회3', '회비관련 공지하겠습니다.', '2018-05-20', '가나다라마바사', 3, null);
+insert into Board values(board_no.nextval, '노동완3', '장소관련 공지하겠습니다.', '2018-04-02', '이거는 내용내용', 3, null);
+insert into Board values(board_no.nextval, '곽승민3', '교재관련 공지하겠습니다.', '2018-02-25', '여기도 내용내용내용!!!', 3, null);
 
 select * from board;
 
@@ -302,9 +303,15 @@ create table COMMENT2(
 	C_BNO		NUMBER NOT NULL
 )
 
+UPDATE COMMENT2 SET C_CONTENT='UPDATE성공' WHERE C_CNO=2 AND C_BNO=40;
+UPDATE COMMENT2 SET C_CONTENT='유유' WHERE C_CNO=? AND C_BNO=?
+
 INSERT INTO COMMENT2 VALUES('이다혜','20180530','댓글1',1,1);
 INSERT INTO COMMENT2 VALUES('곽지혜','20180528','댓글2',2,2);
 INSERT INTO COMMENT2 VALUES('김연주','20180525','댓글3',2,2);
+INSERT INTO COMMENT2 VALUES('김연주','20180525','댓글3',2,2);
+INSERT INTO COMMENT2 VALUES('하하','20180525','댓글',1,40);
+INSERT INTO COMMENT2 VALUES('호호','20180525','댓글3',2,40);
 select * from member;
 SELECT * FROM COMMENT2;
 select * from study;
@@ -314,14 +321,40 @@ update comment2 set C_BNO = 39 where C_CONTENT = '댓글1';
 update comment2 set C_BNO = 40 where C_CONTENT = '댓글2';
 update comment2 set C_BNO = 41 where C_CONTENT = '댓글3';
 
+select * from feemember;
 
 
+drop table feemember;
 
+create table feemember(
+	FM_ID NUMBER NOT NULL PRIMARY KEY,
+	FM_M_INDEX NUMBER NOT NULL,
+	FM_MT_ID NUMBER NOT NULL,
+	FM_FEE NUMBER NOT NULL,
+	FM_NOTE VARCHAR(30)
+)
+select * from fee;
+
+drop table fee;
+drop table fee cascade CONSTRAINT;
+drop table feeExpense cascade CONSTRAINT;
+
+create table feeExpense(
+	FE_ID NUMBER NOT NULL PRIMARY KEY,
+	FE_MT_ID NUMBER NOT NULL,
+	F_EXPENSE VARCHAR(30) NOT NULL,
+	F_EXPENSEFEE NUMBER NOT NULL
+)
 
 SELECT * FROM COMMENT2 WHERE C_BNO = ?
+insert into feeExpense values (1, 1, '카페예약', 30000);
+insert into feeExpense values (2, 1, '카페예약', 30000);
+insert into feeExpense values (, 1, '카페예약', 30000);
+insert into feeExpense values (1, 1, '카페예약', 30000);
+insert into feeExpense values (1, 1, '카페예약', 30000);
+insert into feeExpense values (1, 1, '카페예약', 30000);
 
-
-
+select * from fee;
 
 
 select B_NO ,B_TITLE, B_CONTENT, B_NAME, B_DATE from BOARD b where B_S_INDEX = (select S_INDEX from STUDY where S_INDEX = 3) AND b.B_NO = 39

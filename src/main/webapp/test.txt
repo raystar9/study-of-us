@@ -1,0 +1,21 @@
+public Login getIndex(String id) {
+		Login index = (Login) get(Login.QUERY_GET3,new DataSettable() {
+			
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+				pstmt.setString(1, id);
+			}
+		},new DataGettable() {
+			
+			@Override
+			public Object onGetResult(ResultSet rs) throws SQLException {
+				Login innerIndex = null;
+				if(rs.next()) {
+					innerIndex = new Login();
+					innerIndex.setIndex(rs.getInt(1));
+				}
+				return innerIndex;
+			}
+		});
+		return index;
+	}

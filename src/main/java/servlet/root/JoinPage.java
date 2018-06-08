@@ -1,6 +1,7 @@
 package servlet.root;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -43,6 +44,9 @@ public class JoinPage extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html;charset=UTF-8");
+		
 		
 		System.out.println(request.getParameter("location"));
 		Member member = new Member();
@@ -54,14 +58,25 @@ public class JoinPage extends HttpServlet {
 		member.setAddress(request.getParameter("location"));
 		member.setGender(request.getParameter("gender"));
 		member.setIntroduce(request.getParameter("introduce"));
+		
+		
+		
+		
 		//TODO 회원가입 완료 했다는 페이지 만들어줘야된다. 전화번호 디비에 저장될때 맨앞에 0이면 0 이 생략됨.
 		
 		
 		
-		DataPoster poster = new DataPoster(DatabaseAccounts.ADMIN);//계정이름은 context 에 서 정해줄 수 있다 현재 system/1234
-		poster.postMembers(member);
+		DataPoster poster = new DataPoster(DatabaseAccounts.PROJECT);//계정이름은 context 에 서 정해줄 수 있다 현재 system/1234
+		int result = poster.postMembers(member);
 		poster.close();
-		response.sendRedirect("/study-of-us/home");
+		if(result == 1) {
+			PrintWriter out = response.getWriter();
+			out.print("<script>");
+			out.print("alert('회원가입이 완료되었습니다 ^^');");
+			out.print("location.href='/study-of-us/home';");
+			out.print("</script>");
+		}
+		/*response.sendRedirect("/study-of-us/home");*/
 		/*RequestDispatcher dispatcher = request.getRequestDispatcher("/home");
 		dispatcher.forward(request, response);*/
 	}

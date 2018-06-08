@@ -1,6 +1,7 @@
 package servlet.study.each.board;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -36,22 +37,24 @@ public class CommentList extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		response.setContentType("text/plain; charset=UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		
 		DataGetter getter = new DataGetter(DatabaseAccounts.SCOTT);
+		
 		ObjectMapper mapper = new ObjectMapper();
 		int studyIndex = 3; 
-		
 		ArrayList<CommentBean> comment = new ArrayList<CommentBean>();
-		System.out.println("num=" + request.getAttribute("num"));
-		BoardViewRegisterBean boardcontent = getter.getBoardView(Integer.parseInt(request.getParameter("num")), studyIndex);
+		BoardViewRegisterBean boardcontent = getter.getBoardView(Integer.parseInt(request.getParameter("bno")), studyIndex);
 		
 		int num = boardcontent.getIndex();
 		comment = getter.getCommentList(num);
-		
 		getter.close();
 		
-		ServletOutputStream out = response.getOutputStream();
-		System.out.println(mapper.writeValueAsString(comment));
+		PrintWriter out = response.getWriter();
 		out.println(mapper.writeValueAsString(comment));
+		
+		/*ServletOutputStream out = response.getOutputStream();*/
 	}
 
 }

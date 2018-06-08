@@ -19,7 +19,7 @@ public class DataPoster extends DataSetter {
 		super(user);
 	}
 
-	public void postMembers(Member member) {
+	public int postMembers(Member member) {
 
 		/*
 		 * DataSettable은 익명클래스로 구현하도록 되어있습니다. 외부 혹은 내부 클래스로 선언하여 실제로 구현하여 매개변수로 넣어줄 수도
@@ -29,8 +29,8 @@ public class DataPoster extends DataSetter {
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
 				pstmt.setString(1, member.getId());
-				pstmt.setString(2, member.getName());
-				pstmt.setString(3, member.getPassword());
+				pstmt.setString(2, member.getPassword());
+				pstmt.setString(3, member.getName());
 				pstmt.setString(4, member.getEmail());
 				pstmt.setString(5, member.getTel());
 				pstmt.setString(6, member.getAddress());
@@ -41,7 +41,7 @@ public class DataPoster extends DataSetter {
 
 			}
 		});
-
+		return 1;
 	}
 
 	public void postBoard(BoardViewRegisterBean board, int studyIndex) {
@@ -59,7 +59,7 @@ public class DataPoster extends DataSetter {
 			}
 		});
 	}
-	
+
 	public void postBoardModify(BoardViewRegisterBean board, int studyIndex) {
 
 		// 콜백함수를 통해 setteble 안에있는 prepare 를 사용한다.
@@ -77,11 +77,11 @@ public class DataPoster extends DataSetter {
 			}
 		});
 	}
-	
+
 	public void postMeeting(Meeting meeting) {
-		
+
 		set(Meeting.QUERY_POST, new DataSettable() {
-			
+
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
 				pstmt.setString(1, meeting.getLocation());
@@ -89,6 +89,7 @@ public class DataPoster extends DataSetter {
 			}
 		});
 	}
+
 	public void postBoardDelete(int num, int studyIndex) {
 
 		// 콜백함수를 통해 setteble 안에있는 prepare 를 사용한다.
@@ -103,7 +104,6 @@ public class DataPoster extends DataSetter {
 		});
 	}
 
-	
 	public void postSetup(InformSetup setup) {
 
 		// 콜백함수를 통해 setteble 안에있는 prepare 를 사용한다.
@@ -121,36 +121,37 @@ public class DataPoster extends DataSetter {
 				pstmt.setString(9, setup.getExplain());
 				pstmt.setString(10, setup.getPrepared());
 				pstmt.setString(11, setup.getEffective());
-				/*pstmt.setInt(12, index);	where절에 넣을 스터디번호*/
+				/* pstmt.setInt(12, index); where절에 넣을 스터디번호 */
 				pstmt.executeUpdate();
 				pstmt.close();
 			}
 		});
 	}
-				
-	public void postStudy(Study study) {
-		
+
+	public int postStudy(Study study) {
 		set(Study.QUERY_POST, new DataSettable() {
-			
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
 				pstmt.setString(1, study.getName());
-				pstmt.setInt(2, study.getC_id());
-				pstmt.setDate(3, study.getStart());
-				pstmt.setDate(4, study.getEnd());
-				pstmt.setInt(5, study.getPeoplenum());
-				pstmt.setString(6, study.getDay());
-				pstmt.setString(7, study.getTime());
-				pstmt.setString(8,study.getExplain());
-				pstmt.setString(9, study.getPrepared());
-				pstmt.setString(10, study.getEffective());
-				pstmt.setString(11, study.getPlace());
+				pstmt.setInt(2, study.getS_c_id());
+				pstmt.setInt(3, study.getS_m_index());
+				pstmt.setDate(4, study.getStart());
+				pstmt.setDate(5, study.getEnd());
+				pstmt.setInt(6, study.getMaxmember());
+				pstmt.setString(7, study.getDay());
+				pstmt.setString(8, study.getTime());
+				pstmt.setString(9, study.getExplain());
+				pstmt.setString(10, study.getMaterial());
+				pstmt.setString(11, study.getEffect());
+				pstmt.setString(12, study.getPlace());
 				pstmt.executeUpdate();
 				pstmt.close();
+				
 			}
 		});
+		return 1;
 	}
-	
+
 	public void postComment(CommentBean comment) {
 		
 		set(CommentBean.QUERY_POST, new DataSettable() {
@@ -169,7 +170,9 @@ public class DataPoster extends DataSetter {
 		});
 	}
 
-	public void Insertindex(int s_index, int m_index) {
+	
+	public ArrayList<StudyList> Insertindex(int s_index, int m_index) {
+
 		
 		set(StudyList.QUERY_POST, new DataSettable() {
 			@Override
@@ -181,7 +184,67 @@ public class DataPoster extends DataSetter {
 				pstmt.close();
 				
 			}
-		}
-		);
+
+		});
+		return null;
+	}
+
+	public void postCommentDelete(int cno) {
+
+		set(CommentBean.QUERY_DELETE, new DataSettable() {
+
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+				pstmt.setInt(1, cno);
+				pstmt.executeUpdate();
+				pstmt.close();
+			}
+		});
+	}
+
+	public void postCommentInsert(CommentBean comment) {
+
+		set(CommentBean.QUERY_POST, new DataSettable() {
+
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+				pstmt.setString(1, comment.getName());
+				pstmt.setString(2, comment.getContent());
+				pstmt.setInt(3, comment.getCno());
+				pstmt.setInt(4, comment.getBno());
+				pstmt.executeUpdate();
+				pstmt.close();
+			}
+		});
+	}
+
+	public void postCommentUpdate(String content, int cno, int bno) {
+
+		set(CommentBean.QUERY_PUT, new DataSettable() {
+
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+				pstmt.setString(1, content);
+				pstmt.setInt(2, cno);
+				pstmt.setInt(3, bno);
+				pstmt.executeUpdate();
+				pstmt.close();
+			}
+		});
+	}
+
+	
+	public void postStudyList(int m_index, int s_index) {
+		set(StudyList.QUERY_POST,new DataSettable() {
+			
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+				pstmt.setInt(1, s_index);
+				pstmt.setInt(2, m_index);
+				pstmt.executeUpdate();
+				pstmt.close();
+			}
+		});
 	}
 }
+

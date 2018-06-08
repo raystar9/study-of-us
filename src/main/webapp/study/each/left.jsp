@@ -21,9 +21,9 @@
 
 					<li><a href="./board"><i class="fa fa-edit fa-fw"></i>
 							게시판 </a></li>
-					<li><a href="#"><i class="fa fa-table fa-fw"></i>
+					<li><a href="./attendance"><i class="fa fa-table fa-fw"></i>
 							출석체크</a></li>
-					<li><a href="#"><i
+					<li><a href="./schedule"><i
 							class="fa fa-bar-chart-o fa-fw"></i> 진행현황</a></li>
 					<li><a href="./cash"><i class="fa fa-dollar fa-fw"></i>
 							회비관리</a></li>

@@ -33,12 +33,23 @@ public class Schedule extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String type = "notice";
+		if(request.getParameter("type") != null) {
+			type = request.getParameter("type");
+		}
 		ObjectMapper mapper = new ObjectMapper();
 		ArrayList<ScheduleBean> schedules = FakeDB.getInstance().getSchedules();
-		
-		System.out.println(mapper.writeValueAsString(schedules));
-		request.setAttribute("schedules", mapper.writeValueAsString(schedules));
-		
+		if(type.equals("attend")) {
+			System.out.println("attend입니다.");
+			schedules.get(0).setUrl("/study-of-us/study/each/attendance/each");
+			System.out.println(mapper.writeValueAsString(schedules));
+			request.setAttribute("schedules", mapper.writeValueAsString(schedules));
+		}else if(type.equals("notice")) {
+			
+			System.out.println(mapper.writeValueAsString(schedules));
+			schedules.get(0).setUrl("/study-of-us/study/each/schedule/each");
+			request.setAttribute("schedules", mapper.writeValueAsString(schedules));
+		}
 		request.getRequestDispatcher("schedule.jsp").forward(request, response);
 	}
 

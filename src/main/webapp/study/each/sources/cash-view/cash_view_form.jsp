@@ -138,6 +138,7 @@
 									name="duesTotalExpen" readOnly>&nbsp;원 &nbsp;=&nbsp; <input
 									type="text" class="total" id="dues-total" name="duesTotal"
 									readOnly>&nbsp;원
+								
 							</div>
 						</div>
 					</div> <br>
@@ -161,7 +162,9 @@
 			<tr>
 				<td><input type="button" class="btn btn-default" id="list-btn"
 					value="목록"> <input type="button" class="btn btn-default"
-					id="delete-btn" value="삭제"></td>
+					id="delete-btn" value="삭제">
+					<input type="button" class="btn btn-default"
+					id="modify-btn" value="수정"></td>
 			</tr>
 		</table>
 	</div>
