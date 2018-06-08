@@ -1,5 +1,23 @@
-	$(function() {
-		var commentcount = $('#commentcount').val();
+//댓글 개수
+	function commentCount(bno) {
+	var count;
+	$.ajax({
+		url : '/study-of-us/commentcount',
+		type : 'post',
+		async : false,
+		data : {
+			"bno" : bno
+		},
+		success : function(data) {
+			count = data;
+		}
+	});
+		return count;
+	}	
+
+$(function() {
+		var bno = $('#bno').val();
+		var commentcount = commentCount(bno);
 		$('#commentListBtn').val('답글보기(' + commentcount + ')▼');
 		
 		//댓글 버튼 눌렀을 때

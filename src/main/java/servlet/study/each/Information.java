@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import beans.study.each.CategoryBean;
 import beans.study.each.InformSetup;
 import beans.study.each.InformSetupMember;
 import dao.DataGetter;
@@ -30,24 +29,21 @@ public class Information extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		DataGetter getter = new DataGetter(DatabaseAccounts.SCOTT);
+		DataGetter getter = new DataGetter(DatabaseAccounts.PROJECT);
 		int studyIndex = 3;
+		//int studyIndex = request.getParameter("studyIndex");
 		
-		int membercount = getter.getInformMemberCount();	//스터디 참여인원
+		int membercount = getter.getInformMemberCount(studyIndex);	//스터디 참여인원
 		
 		ArrayList<InformSetupMember> memlist = new ArrayList<InformSetupMember>(); //스터디 참여인원의 정보
 		memlist = getter.getInformMember((String)request.getAttribute("studyName"));
 		
 		InformSetup setup = new InformSetup();
-		setup = getter.getInformation();	
-		
-		CategoryBean category = new CategoryBean();
-		category = getter.getCategory(studyIndex);
+		setup = getter.getInformation(studyIndex);	
 		
 		request.setAttribute("membercount", membercount); 	//스터디 참여인원
 		request.setAttribute("memlist", memlist);			//스터디 참여인원의 정보
 		request.setAttribute("setup", setup);				//설정 정보
-		request.setAttribute("category", category);			//카테고리
 		getter.close();
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/each/information.jsp");

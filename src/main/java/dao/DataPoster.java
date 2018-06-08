@@ -73,11 +73,9 @@ public class DataPoster extends DataSetter {
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
 				pstmt.setString(1, board.getTitle());
-				pstmt.setString(2, board.getName());
-				pstmt.setString(3, board.getDate());
-				pstmt.setString(4, board.getContent());
-				pstmt.setInt(5, studyIndex);
-				pstmt.setInt(6, board.getIndex());
+				pstmt.setString(2, board.getContent());
+				pstmt.setInt(3, studyIndex);
+				pstmt.setInt(4, board.getIndex());
 				pstmt.executeUpdate();
 				pstmt.close();
 			}
@@ -162,12 +160,9 @@ public class DataPoster extends DataSetter {
 			
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
-				pstmt.setString(1, comment.getName());
-				pstmt.setString(2, comment.getDate());
+				pstmt.setInt(1, comment.getBno());
+				pstmt.setInt(2, comment.getPersonIndex());
 				pstmt.setString(3, comment.getContent());
-				pstmt.setInt(4, comment.getCno());
-				pstmt.setInt(5, comment.getBno());
-				
 				pstmt.executeUpdate();
 				pstmt.close();
 			}
@@ -190,13 +185,14 @@ public class DataPoster extends DataSetter {
 		);
 	}
 
-	public void postCommentDelete(int cno) {
+	public void postCommentDelete(int bno,int cno) {
 
 		set(CommentBean.QUERY_DELETE, new DataSettable() {
 
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
-				pstmt.setInt(1, cno);
+				pstmt.setInt(1, bno);
+				pstmt.setInt(2, cno);
 				pstmt.executeUpdate();
 				pstmt.close();
 			}
@@ -209,10 +205,9 @@ public class DataPoster extends DataSetter {
 
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
-				pstmt.setString(1, comment.getName());
-				pstmt.setString(2, comment.getContent());
-				pstmt.setInt(3, comment.getCno());
-				pstmt.setInt(4, comment.getBno());
+				pstmt.setInt(1, comment.getBno());
+				pstmt.setInt(2, comment.getPersonIndex());
+				pstmt.setString(3, comment.getContent());
 				pstmt.executeUpdate();
 				pstmt.close();
 			}

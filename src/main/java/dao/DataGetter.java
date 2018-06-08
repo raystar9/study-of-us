@@ -13,10 +13,8 @@ import beans.root.Login;
 import beans.study.StudyListCount;
 import beans.study.StudyListSelect;
 import beans.study.StudySearch;
-import beans.study.each.CategoryBean;
 import beans.study.each.InformSetup;
 import beans.study.each.InformSetupMember;
-import beans.study.each.Member2;
 import beans.study.each.attendacne.MemberAttendanceBean;
 import beans.study.each.board.BoardListBean;
 import beans.study.each.board.BoardViewRegisterBean;
@@ -383,7 +381,7 @@ public class DataGetter extends DataAccessor {
 	// 게시판에 들어갔을 때 나오는 목록 데이터를 가져오는 메소드
 	public ArrayList<BoardListBean> getBoardList(int page, int limit, int studyIndex, String pluswhere, String search) {
 		String sql = BoardListBean.QUERY_GET + pluswhere
-				+ "where B_S_INDEX IN (select S_INDEX from STUDY where S_INDEX = ?) AND RNUM>=? AND RNUM<=? ORDER BY B_NO DESC";
+				+ "where B_S_INDEX = (select S_INDEX from STUDY where S_INDEX = ?)  AND RNUM>=? AND RNUM<=? ORDER BY B_NO DESC";
 		@SuppressWarnings("unchecked")
 		ArrayList<BoardListBean> list = (ArrayList<BoardListBean>) get(sql, new DataSettable() {
 
@@ -474,15 +472,14 @@ public class DataGetter extends DataAccessor {
 	 */
 
 	// 게시판에서 게시글을 눌렀을 때 상세정보 가져오는 메소드
-	public BoardViewRegisterBean getBoardView(int num, int studyIndex) {
+	public BoardViewRegisterBean getBoardView(int num) {
 
 		BoardViewRegisterBean list = (BoardViewRegisterBean) get(BoardViewRegisterBean.QUERY_GET, new DataSettable() {
 
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
 				// TODO Auto-generated method stub
-				pstmt.setInt(1, studyIndex);
-				pstmt.setInt(2, num);
+				pstmt.setInt(1, num);
 			}
 
 		}, new DataGettable() {
@@ -680,14 +677,14 @@ public class DataGetter extends DataAccessor {
 	}
 
 	// 정보보기&설정 구성원들 총원 가져오는 메소드
-	public int getInformMemberCount() {
+	public int getInformMemberCount(int studyIndex) {
 
-		int membercount = (int) get(Member2.QUERY_GET_COUNT, new DataSettable() {
+		int membercount = (int) get(InformSetup.QUERY_GET_COUNT, new DataSettable() {
 
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
 				// TODO Auto-generated method stub
-				// 아직 뭐 들어갈지 몰라서 정의하지 않았음
+				pstmt.setInt(1, studyIndex);
 			}
 
 		}, new DataGettable() {
@@ -736,12 +733,13 @@ public class DataGetter extends DataAccessor {
 	}
 
 	// 설정 정보 가져오는 메소드
-	public InformSetup getInformation() {
+	public InformSetup getInformation(int studyIndex) {
 		InformSetup list = (InformSetup) get(InformSetup.QUERY_GET, new DataSettable() {
 
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
 				// TODO Auto-generated method stub
+				pstmt.setInt(1, studyIndex);
 			}
 
 		}, new DataGettable() {
@@ -794,14 +792,15 @@ public class DataGetter extends DataAccessor {
 	}
 
 	// 게시글 당 댓글 총 리스트 가져오는 메소드
-	public ArrayList<CommentBean> getCommentList(int boardnum) {
+	public ArrayList<CommentBean> getCommentList(int studyIndex,int boardnum) {
 		@SuppressWarnings("unchecked")
 		ArrayList<CommentBean> list = (ArrayList<CommentBean>) get(CommentBean.QUERY_GET, new DataSettable() {
 
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
 				// TODO Auto-generated method stub
-				pstmt.setInt(1, boardnum);
+				pstmt.setInt(1, studyIndex);
+				pstmt.setInt(2, boardnum);
 			}
 		}, new DataGettable() {
 
@@ -810,11 +809,11 @@ public class DataGetter extends DataAccessor {
 				ArrayList<CommentBean> commentlist = new ArrayList<CommentBean>();
 				while (rs.next()) {
 					CommentBean comment = new CommentBean();
-					comment.setName(rs.getString(1));
-					comment.setDate(rs.getString(2));
-					comment.setContent(rs.getString(3));
-					comment.setCno(rs.getInt(4));
-					comment.setBno(rs.getInt(5));
+					comment.setCno(rs.getInt(1));
+					comment.setBno(rs.getInt(2));
+					comment.setName(rs.getString(3));
+					comment.setDate(rs.getString(4));
+					comment.setContent(rs.getString(5));
 					commentlist.add(comment);
 				}
 				return commentlist;
@@ -1009,32 +1008,6 @@ public class DataGetter extends DataAccessor {
 		return cashcount;
 	}
 
-	// 카테고리 대분류, 소분류를 가져오는 메소드
-	public CategoryBean getCategory(int studyIndex) {
-
-			CategoryBean category = (CategoryBean) get(CategoryBean.QUERY_GET, new DataSettable() {
-
-				@Override
-				public void prepare(PreparedStatement pstmt) throws SQLException {
-					// TODO Auto-generated method stub
-					/*pstmt.setInt(1, studyIndex);*/
-				}
-
-			}, new DataGettable() {
-
-				@Override
-				public CategoryBean onGetResult(ResultSet rs) throws SQLException {
-					CategoryBean cate = new CategoryBean();
-					while (rs.next()) {
-						cate.setCategory1(rs.getString(1));
-						cate.setCategory2(rs.getString(2));
-					}
-					return cate;
-				}
-			});
-
-			return category;
-		}
 	
 //		보여줄 스터디를 정리햇 ㅓ가져오기 
 	public ArrayList<StudyListSelect> getStudyList(int index, int page, int limit) {
@@ -1296,14 +1269,14 @@ ArrayList<StudyListSelect> studylist = (ArrayList<StudyListSelect>) get(StudyLis
 		} );
 	}
 		
-		public int[] getMemIndex(int studyIndex) {
+		/*public int[] getMemIndex(int studyIndex) {
 	
 			int[] Index1 = (int[]) get(Member2.QUERY_GET_INDEX, new DataSettable() {
 	
 				@Override
 				public void prepare(PreparedStatement pstmt) throws SQLException {
 					// TODO Auto-generated method stub
-					/*pstmt.setInt(1, studyIndex);*/
+					pstmt.setInt(1, studyIndex);
 				}
 	
 			}, new DataGettable() {
@@ -1321,7 +1294,7 @@ ArrayList<StudyListSelect> studylist = (ArrayList<StudyListSelect>) get(StudyLis
 			});
 	
 			return Index1;
-		}
+		}*/
 
 	@SuppressWarnings("unchecked")
 	public ArrayList<FeeSpend> getFeeExpense(int meetingId) {
