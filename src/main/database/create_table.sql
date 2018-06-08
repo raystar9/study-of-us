@@ -53,7 +53,10 @@ alter table Study modify(S_DAY VARCHAR(10));
 alter table Study modify(S_TIME VARCHAR(15));
 alter table Study rename column S_MEXMEMBER TO S_MAXMEMBER
 
+alter table Study modify S_NAME null;
+alter table Study ADD UNIQUE(S_NAME);
 
+drop sequence study_index;
 CREATE SEQUENCE study_index
 START WITH 1
 INCREMENT BY 1
