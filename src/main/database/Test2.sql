@@ -335,4 +335,5 @@ select * from(
 			 select m_name from study s , member m 
 			where m.m_index = s.s_m_index 
 			 
-
+select * from study;
+select * from studymember;
