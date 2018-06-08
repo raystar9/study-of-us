@@ -13,6 +13,7 @@ import beans.root.Login;
 import beans.study.StudyListCount;
 import beans.study.StudyListSelect;
 import beans.study.StudySearch;
+import beans.study.each.CategoryBean;
 import beans.study.each.InformSetup;
 import beans.study.each.InformSetupMember;
 import beans.study.each.Member2;
@@ -377,34 +378,29 @@ public class DataGetter extends DataAccessor {
 	}
 
 	// 게시판에 들어갔을 때 나오는 목록 데이터를 가져오는 메소드
-	public ArrayList<BoardListBean> getBoardList(int page, int limit, int studyIndex, String pluswhere, String search, String searchSelect) {
-		String sql = BoardListBean.QUERY_GET + pluswhere + " ORDER BY B_NO desc";
-		System.out.println(sql);
+	public ArrayList<BoardListBean> getBoardList(int page, int limit, int studyIndex, String pluswhere, String search) {
+		String sql = BoardListBean.QUERY_GET + pluswhere
+				+ "where B_S_INDEX IN (select S_INDEX from STUDY where S_INDEX = ?) AND RNUM>=? AND RNUM<=? ORDER BY B_NO DESC";
 		@SuppressWarnings("unchecked")
 		ArrayList<BoardListBean> list = (ArrayList<BoardListBean>) get(sql, new DataSettable() {
 
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
 				// TODO Auto-generated method stub
-				
 				int startrow = (page - 1) * limit + 1; // 읽기 시작할 row 번호( 1 11 21 )
 				int endrow = startrow + limit - 1; // 읽을 마지막 row 번호( 10 20 30 )
-				pstmt.setInt(1, studyIndex);
-				System.out.println(studyIndex + "인덱스");
-				pstmt.setInt(2, startrow);
-				pstmt.setInt(3, endrow);
-				System.out.println("startrow " + startrow);
 
-				System.out.println("endrow " + startrow);
-				if(search!=null && searchSelect!=null && search!="" && searchSelect!="") {
-					pstmt.setString(4, searchSelect);
-					System.out.println(searchSelect);
-					String search2 = "'%"+search+"%'";
-					System.out.println(search2);
-					pstmt.setString(5, search2);
-					
+				if (search != null && search != "") {
+					String search2 = "%" + search + "%";
+					pstmt.setString(1, search2);
+					pstmt.setInt(2, studyIndex);
+					pstmt.setInt(3, startrow);
+					pstmt.setInt(4, endrow);
+				} else {
+					pstmt.setInt(1, studyIndex);
+					pstmt.setInt(2, startrow);
+					pstmt.setInt(3, endrow);
 				}
-				System.out.println(sql);
 			}
 
 		}, new DataGettable() {
@@ -420,7 +416,6 @@ public class DataGetter extends DataAccessor {
 					board.setDate(rs.getString(4));
 					boardlist.add(board);
 				}
-				System.out.println("보드리스트"+boardlist.size());
 				return boardlist;
 			}
 		}
@@ -508,17 +503,24 @@ public class DataGetter extends DataAccessor {
 	}
 
 	// 게시판의 글 개수를 가져오는 메소드
-	public int getBoardCount(int studyIndex) {
+	public int getBoardCount(int studyIndex, String pluswhere, String search) {
+		String sql = BoardListBean.QUERY_GET_COUNT + pluswhere
+				+ " where B_S_INDEX IN (select S_INDEX from STUDY where S_INDEX = ?) ORDER BY B_NO desc";
 
-		int boardcount = (int) get(BoardListBean.QUERY_GET_COUNT, new DataSettable() {
-
+		int boardcount = (int) get(sql, new DataSettable() {
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
 				// TODO Auto-generated method stub
 				// 아직 뭐 들어갈지 몰라서 정의하지 않았음
-				pstmt.setInt(1, studyIndex);
-			}
+				if (search != null && search != "") {
+					String search2 = "%" + search + "%";
+					pstmt.setString(1, search2);
+					pstmt.setInt(2, studyIndex);
 
+				} else {
+					pstmt.setInt(1, studyIndex);
+				}
+			}
 		}, new DataGettable() {
 
 			@Override
@@ -562,27 +564,27 @@ public class DataGetter extends DataAccessor {
 
 	public ArrayList<Study> getStudies(String searchVal, String placeVal, String secondArray) {
 		@SuppressWarnings("unchecked")
-		ArrayList<Study> list = (ArrayList<Study>) get(Study.QUERY_GET3,new DataSettable() {
-			
+		ArrayList<Study> list = (ArrayList<Study>) get(Study.QUERY_GET3, new DataSettable() {
+
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
 				String place = "%%";
 				String search = "%%";
 				String second = "%%";
-				
-				if(placeVal!=null) {
-					place = "%"+placeVal+"%";
+
+				if (placeVal != null) {
+					place = "%" + placeVal + "%";
 				}
 				if (searchVal != null) {
 					search = "%" + searchVal + "%";
 				}
-				if(secondArray!=null) {
-					second = "%"+secondArray+"%";
+				if (secondArray != null) {
+					second = "%" + secondArray + "%";
 				}
 				pstmt.setString(1, place);
 				pstmt.setString(2, search);
 				pstmt.setString(3, second);
-				
+
 			}
 		}, new DataGettable() {
 
@@ -625,9 +627,9 @@ public class DataGetter extends DataAccessor {
 				String place = "%%";
 				String search = "%%";
 				String second = "%%";
-				
-				if(placeVal!=null) {
-					place = "%"+placeVal+"%";
+
+				if (placeVal != null) {
+					place = "%" + placeVal + "%";
 				}
 				if (searchVal != null) {
 					search = "%" + searchVal + "%";
@@ -673,8 +675,8 @@ public class DataGetter extends DataAccessor {
 		});
 		return list;
 	}
-	
-	//정보보기&설정 구성원들 총원 가져오는 메소드
+
+	// 정보보기&설정 구성원들 총원 가져오는 메소드
 	public int getInformMemberCount() {
 
 		int membercount = (int) get(Member2.QUERY_GET_COUNT, new DataSettable() {
@@ -699,8 +701,8 @@ public class DataGetter extends DataAccessor {
 
 		return membercount;
 	}
-	
-	//정보보기&설정 구성원들 이름, 전화번호 등 가져오는 메소드
+
+	// 정보보기&설정 구성원들 이름, 전화번호 등 가져오는 메소드
 	public ArrayList<InformSetupMember> getInformMember() {
 		@SuppressWarnings("unchecked")
 		ArrayList<InformSetupMember> list = (ArrayList<InformSetupMember>) get(InformSetupMember.QUERY_GET,
@@ -729,8 +731,8 @@ public class DataGetter extends DataAccessor {
 
 		return list;
 	}
-	
-	//설정 정보 가져오는 메소드
+
+	// 설정 정보 가져오는 메소드
 	public InformSetup getInformation() {
 		InformSetup list = (InformSetup) get(InformSetup.QUERY_GET, new DataSettable() {
 
@@ -746,17 +748,16 @@ public class DataGetter extends DataAccessor {
 				InformSetup Inform = new InformSetup();
 				while (rs.next()) {
 					Inform.setIndex(rs.getInt(1));
-					Inform.setCategory(rs.getString(2));
-					Inform.setPeopleNum(rs.getString(3));
-					Inform.setName(rs.getString(4));
-					Inform.setPlace(rs.getString(5));
-					Inform.setActivityTime(rs.getString(6));
-					Inform.setStartDate(rs.getString(7));
-					Inform.setEndDate(rs.getString(8));
-					Inform.setDay(rs.getString(9));
-					Inform.setExplain(rs.getString(10));
-					Inform.setPrepared(rs.getString(11));
-					Inform.setEffective(rs.getString(12));
+					Inform.setPeopleNum(rs.getString(2));
+					Inform.setName(rs.getString(3));
+					Inform.setPlace(rs.getString(4));
+					Inform.setActivityTime(rs.getString(5));
+					Inform.setStartDate(rs.getString(6));
+					Inform.setEndDate(rs.getString(7));
+					Inform.setDay(rs.getString(8));
+					Inform.setExplain(rs.getString(9));
+					Inform.setPrepared(rs.getString(10));
+					Inform.setEffective(rs.getString(11));
 				}
 				return Inform;
 			}
@@ -764,10 +765,10 @@ public class DataGetter extends DataAccessor {
 
 		return list;
 	}
-	
-	//댓글 총 개수 가져오는 메소드
+
+	// 댓글 총 개수 가져오는 메소드
 	public int getCommentCount(int num) {
-		int commentcount = (int)get(CommentBean.QUERY_GET_COUNT, new DataSettable() {
+		int commentcount = (int) get(CommentBean.QUERY_GET_COUNT, new DataSettable() {
 
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
@@ -788,8 +789,8 @@ public class DataGetter extends DataAccessor {
 
 		return commentcount;
 	}
-	
-	//게시글 당 댓글 총 리스트 가져오는 메소드
+
+	// 게시글 당 댓글 총 리스트 가져오는 메소드
 	public ArrayList<CommentBean> getCommentList(int boardnum) {
 		@SuppressWarnings("unchecked")
 		ArrayList<CommentBean> list = (ArrayList<CommentBean>) get(CommentBean.QUERY_GET, new DataSettable() {
@@ -819,7 +820,7 @@ public class DataGetter extends DataAccessor {
 
 		return list;
 	}
-	
+
 	// 스터디명 체크
 	public Study getSname_ck(String sname) {
 		Study study = (Study) get(Study.QUERY_GET, new DataSettable() {
@@ -845,11 +846,11 @@ public class DataGetter extends DataAccessor {
 
 	public ArrayList<Study> getStudies(int index) {
 		@SuppressWarnings("unchecked")
-		ArrayList<Study> list = (ArrayList<Study>) get(Study.QUERY_GET4,new DataSettable() {
-			
+		ArrayList<Study> list = (ArrayList<Study>) get(Study.QUERY_GET4, new DataSettable() {
+
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
-	
+
 				pstmt.setInt(1, index);
 
 			}
@@ -858,7 +859,7 @@ public class DataGetter extends DataAccessor {
 			@Override
 			public ArrayList<?> onGetResult(ResultSet rs) throws SQLException {
 				ArrayList<Study> studies = new ArrayList<>();
-				while(rs.next()) {
+				while (rs.next()) {
 					Study study = new Study();
 					study.setIndex(rs.getInt(1));
 					study.setName(rs.getString(2));
@@ -883,69 +884,67 @@ public class DataGetter extends DataAccessor {
 		// TODO Auto-generated method stub
 		return list;
 	}
-	
-	//스터디 리스트 가져오기
+
+	// 스터디 리스트 가져오기
 	public ArrayList<StudyListSelect> getStudyList(int index) {
 		@SuppressWarnings("unchecked")
-		ArrayList<StudyListSelect> studylist = (ArrayList<StudyListSelect>) get(StudyListSelect.QUERY_GET,new DataSettable() {
-			
-			@Override
-			public void prepare(PreparedStatement pstmt) throws SQLException {
-				pstmt.setInt(1, index);
-			}
-		}, new DataGettable() {
-			
-			
-			
-			@Override
-			public ArrayList<?> onGetResult(ResultSet rs) throws SQLException {
-				ArrayList<StudyListSelect> studylists = new ArrayList<>();
-				while(rs.next()) {
-					StudyListSelect sl = new StudyListSelect();
-					
-					sl.setProgress(rs.getInt("progress"));
-					sl.setS_name(rs.getString("s_name"));
-					sl.setS_peoplenum(rs.getInt("s_peoplenum"));
-					
-					studylists.add(sl);
-					
-				}
-				return studylists; 
-			}
-		});
+		ArrayList<StudyListSelect> studylist = (ArrayList<StudyListSelect>) get(StudyListSelect.QUERY_GET,
+				new DataSettable() {
+
+					@Override
+					public void prepare(PreparedStatement pstmt) throws SQLException {
+						pstmt.setInt(1, index);
+					}
+				}, new DataGettable() {
+
+					@Override
+					public ArrayList<?> onGetResult(ResultSet rs) throws SQLException {
+						ArrayList<StudyListSelect> studylists = new ArrayList<>();
+						while (rs.next()) {
+							StudyListSelect sl = new StudyListSelect();
+
+							sl.setProgress(rs.getInt("progress"));
+							sl.setS_name(rs.getString("s_name"));
+							sl.setS_peoplenum(rs.getInt("s_peoplenum"));
+
+							studylists.add(sl);
+
+						}
+						return studylists;
+					}
+				});
 		return studylist;
 	}
-	
-	
+
 	// 스터디 count 수 가져오기
 	public StudyListSelect getStudyListCount(int index) {
-		StudyListSelect count = (StudyListSelect) get(StudyListSelect.QUERY_GET2,new DataSettable() {
-			
+		StudyListSelect count = (StudyListSelect) get(StudyListSelect.QUERY_GET2, new DataSettable() {
+
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
 				pstmt.setInt(1, index);
-				
+
 			}
 		}, new DataGettable() {
-			
+
 			@Override
 			public Object onGetResult(ResultSet rs) throws SQLException {
 				StudyListSelect slist = null;
-				if(rs.next()) {
+				if (rs.next()) {
 					slist = new StudyListSelect();
 					slist.setCount(rs.getInt("count"));
 				}
-				
+
 				return slist;
 			}
 		});
-		
+
 		// TODO Auto-generated method stub
 		return count;
 	}
 
-	//회비관리 리스트 가져오는 메소드
-	public ArrayList<CashListBean> getCashList(int page, int limit /*, int studyIndex*/) {
+	// 회비관리 리스트 가져오는 메소드
+	public ArrayList<CashListBean> getCashList(int page, int limit, int studyIndex) {
 
 		@SuppressWarnings("unchecked")
 		ArrayList<CashListBean> list = (ArrayList<CashListBean>) get(CashListBean.QUERY_GET, new DataSettable() {
@@ -953,10 +952,9 @@ public class DataGetter extends DataAccessor {
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
 				// TODO Auto-generated method stub
-				// 아직 뭐 들어갈지 몰라서 정의하지 않았음
-				int startrow = (page - 1) * limit + 1; // 읽기 시작할 row 번호( 1 11 21 )
-				int endrow = startrow + limit - 1; // 읽을 마지막 row 번호( 10 20 30 )
-				/*pstmt.setInt(1, studyIndex);*/
+				int startrow = (page - 1) * limit + 1;
+				int endrow = startrow + limit - 1;
+				pstmt.setInt(1, studyIndex);
 				pstmt.setInt(1, startrow);
 				pstmt.setInt(2, endrow);
 			}
@@ -968,10 +966,9 @@ public class DataGetter extends DataAccessor {
 				ArrayList<CashListBean> cashlist = new ArrayList<>();
 				while (rs.next()) {
 					CashListBean cash = new CashListBean();
+					// 회비 상세보기로 넘어갈 때 index 넘겨줘야 하니까 필요함
 					cash.setIndex(rs.getInt(1));
-					cash.setTitle(rs.getString(2));
-					cash.setName(rs.getString(3));
-					cash.setDate(rs.getString(4));
+					cash.setDate(rs.getString(2));
 					cashlist.add(cash);
 				}
 				return cashlist;
@@ -982,32 +979,58 @@ public class DataGetter extends DataAccessor {
 
 		return list;
 	}
-	
-	// 회비관리의 리스트 개수를 가져오는 메소드
-		public int getCashCount(/*int studyIndex*/) {
 
-			int cashcount = (int) get(CashListBean.QUERY_GET_COUNT, new DataSettable() {
+	// 회비관리의 리스트 개수를 가져오는 메소드
+	public int getCashCount(int studyIndex) {
+
+		int cashcount = (int) get(CashListBean.QUERY_GET_COUNT, new DataSettable() {
+
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+				// TODO Auto-generated method stub
+				pstmt.setInt(1, studyIndex);
+			}
+
+		}, new DataGettable() {
+
+			@Override
+			public Integer onGetResult(ResultSet rs) throws SQLException {
+				int count = 0;
+				while (rs.next()) {
+					count = rs.getInt(1);
+				}
+				return count;
+			}
+		});
+
+		return cashcount;
+	}
+
+	// 카테고리 대분류, 소분류를 가져오는 메소드
+	public CategoryBean getCategory(int studyIndex) {
+
+			CategoryBean category = (CategoryBean) get(CategoryBean.QUERY_GET, new DataSettable() {
 
 				@Override
 				public void prepare(PreparedStatement pstmt) throws SQLException {
 					// TODO Auto-generated method stub
-					// 아직 뭐 들어갈지 몰라서 정의하지 않았음
 					/*pstmt.setInt(1, studyIndex);*/
 				}
 
 			}, new DataGettable() {
 
 				@Override
-				public Integer onGetResult(ResultSet rs) throws SQLException {
-					int count = 0;
+				public CategoryBean onGetResult(ResultSet rs) throws SQLException {
+					CategoryBean cate = new CategoryBean();
 					while (rs.next()) {
-						count = rs.getInt(1);
+						cate.setCategory1(rs.getString(1));
+						cate.setCategory2(rs.getString(2));
 					}
-					return count;
+					return cate;
 				}
 			});
 
-			return cashcount;
+			return category;
 		}
 	
 //		보여줄 스터디를 정리햇 ㅓ가져오기 
@@ -1249,6 +1272,33 @@ ArrayList<StudyListSelect> studylist = (ArrayList<StudyListSelect>) get(StudyLis
 				return results;
 			}
 		} );
+	}
+		
+	public int[] getMemIndex(int studyIndex) {
+
+		int[] Index1 = (int[]) get(Member2.QUERY_GET_INDEX, new DataSettable() {
+
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+				// TODO Auto-generated method stub
+				/*pstmt.setInt(1, studyIndex);*/
+			}
+
+		}, new DataGettable() {
+
+			@Override
+			public int[] onGetResult(ResultSet rs) throws SQLException {
+				int[] index = new int[100];
+				int i = 0;
+				while (rs.next()) {
+					index[i] = rs.getInt(1);
+					i++;
+				}
+				return index;
+			}
+		});
+
+		return Index1;
 	}
 
 	/*

@@ -50,13 +50,13 @@
 				<td colspan="5"><c:if test="${page <= 1 }">
       		이전&nbsp;
       		</c:if> <c:if test="${page > 1 }">
-					<a href="./board?page=${page-1}">이전</a>&nbsp;
+					<a href="./board?searchSelect=${searchSelect }&search=${search }&page=${page-1}">이전</a>&nbsp;
       		</c:if> <c:forEach var="a" begin="${startpage }" end="${endpage }">
 						<c:if test="${a == page}">
       				${a}
       			</c:if>
 						<c:if test="${a != page }">
-							<a href="./board?page=${a}">${a}</a>
+							<a href="./board?searchSelect=${searchSelect }&search=${search }&page=${a}">${a}</a>
 						</c:if>
 					</c:forEach> <c:if test="${page >= maxpage}">
       			&nbsp;다음
@@ -66,9 +66,9 @@
 		<tr>
 			<td colspan="5">
 					<select name="searchSelect">
-						<option value="B_TITLE" selected="selected">제목</option>
-						<option value="B_NAME">작성자</option>
-						<option value="B_DATE">날짜</option>
+						<option value="title" selected="selected">제목</option>
+						<option value="name">작성자</option>
+						<option value="date">날짜</option>
 					</select> <input type="text" class="" id="search" name="search"> <input
 						type="submit" value="검색"
 						id='boardSearchBtn'>
@@ -78,8 +78,8 @@
 		<!-- 레코드가 없으면 -->
 		<c:if test="${listcount == 0 }">
 			<tr>
-				<td colspan="4">MVC 게시판</td>
-				<td style="test-align: right"><font size=2>등록된 글이 없습니다.</font>
+				<td style="text-align: center" colspan='4'>
+					<font size=2><h4>등록된 글이 없습니다.</h4></font>
 				</td>
 			</tr>
 		</c:if>

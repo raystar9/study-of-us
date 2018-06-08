@@ -6,12 +6,12 @@
 <html lang="en">
 
 <head>
-<link rel="stylesheet" type="text/css" href="css/cash_register.css">
+<link rel="stylesheet" type="text/css" href="/study-of-us/study/each/fee/sources/cash-register/css/cash_register.css">
 <title>회비 등록 페이지</title>
 </head>
 
 <body>
-	<form action="./cashregister" method="post">
+	<form action="./cashregister" method="post" class="cashRegisterForm">
 
 		<table border='1'>
 			<tr>
@@ -55,10 +55,14 @@
 										<tbody>
 											<c:forEach var="name" items="${names }" varStatus="status">
 												<tr>
+													
 													<td>${status.count}</td>
-													<td>${name }</td>
-													<td><input type='text' class='form-control' placeholder='금액' id='dues-fee' name='duesFee'onkeyup='calculate();'></td>
-													<td><input type='text' class='form-control' placeholder='비고' id='dues-note' name='duesNote'></td>
+													<td>
+														${name }
+														<input type='hidden' value='${memIndex }' name='memIndex${status.count}'>
+													</td>
+													<td><input type='text' class='form-control' placeholder='금액' id='duesFee${status.count}' name='duesFee${status.count}' onkeyup='calculate();'></td>
+													<td><input type='text' class='form-control' placeholder='비고' id='duesNote${status.count}' name='duesNote${status.count}'></td>
 												</tr>
 											</c:forEach>
 										</tbody>
@@ -88,10 +92,12 @@
 									</thead>
 									<tbody id='cash_tbody'>
 										<tr>
+											<td>
+											<input type="hidden" id=' ' name='expenseCount' value=''>
+											<input type="text" class="form-control"
+												placeholder="내역" id='duesExp1' name='duesExp1'></td>
 											<td><input type="text" class="form-control"
-												placeholder="내역" id='dues-exp' name='duesExp'></td>
-											<td><input type="text" class="form-control"
-												placeholder="금액" id='dues-expfee' name='duesExpFee'
+												placeholder="금액" id='duesExpFee1' name='duesExpFee1'
 												onkeyup="calculate();"></td>
 										</tr>
 									</tbody>
@@ -136,8 +142,8 @@
 			</tr>
 			<tr>
 				<td><input type="button" class="btn btn-default" id="btn"
-					value="취소" onclick="location.href='./cash';"> <input
-					type="submit" class="btn btn-default" id="btn" value="등록"></td>
+					value="취소" onclick="location.href='/study-of-us/study/each/cash';"> <input
+					type="button" class="btn btn-default" id="submittbtn" value="등록"></td>
 			</tr>
 		</table>
 	</form>
