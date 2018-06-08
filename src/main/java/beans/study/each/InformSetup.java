@@ -2,6 +2,7 @@
 
 package beans.study.each;
 
+import java.util.Date;
 
 public class InformSetup {
 	
@@ -15,9 +16,9 @@ public class InformSetup {
 	private String category2;		//카테고리2
 	private int peopleNum;			//스터디 모집인원
 	private String place;			//스터디 장소
-	private String activityTime;	//스터디 활동시간
-	private String startDate;		//스터디 시작날짜
-	private	String endDate;			//스터디 종료날짜
+	private Date activityTime;		//스터디 활동시간
+	private Date startDate;			//스터디 시작날짜
+	private	Date endDate;			//스터디 종료날짜
 	private String day;				//스터디 활동요일
 	private String explain;			//스터디 개요
 	private String prepared;		//주요 교재 및 준비물
@@ -25,29 +26,30 @@ public class InformSetup {
 	
 	
 	
-	public String getActivityTime() {
+	
+	public Date getActivityTime() {
 		return activityTime;
 	}
-	public void setActivityTime(String activityTime) {
+	public void setActivityTime(Date activityTime) {
 		this.activityTime = activityTime;
+	}
+	public Date getStartDate() {
+		return startDate;
+	}
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+	public Date getEndDate() {
+		return endDate;
+	}
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
 	}
 	public int getPeopleNum() {
 		return peopleNum;
 	}
 	public void setPeopleNum(int peopleNum) {
 		this.peopleNum = peopleNum;
-	}
-	public String getStartDate() {
-		return startDate;
-	}
-	public void setStartDate(String startDate) {
-		this.startDate = startDate;
-	}
-	public String getEndDate() {
-		return endDate;
-	}
-	public void setEndDate(String endDate) {
-		this.endDate = endDate;
 	}
 	public String getDay() {
 		return day;
@@ -90,12 +92,6 @@ public class InformSetup {
 	}
 	public void setEffective(String effective) {
 		this.effective = effective;
-	}
-	public static String getQueryGet() {
-		return QUERY_GET;
-	}
-	public static String getQueryPut() {
-		return QUERY_PUT;
 	}
 	public String getCategory1() {
 		return category1;

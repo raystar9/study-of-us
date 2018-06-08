@@ -116,9 +116,9 @@ public class DataPoster extends DataSetter {
 				pstmt.setInt(1, setup.getPeopleNum());
 				pstmt.setString(2, setup.getName());
 				pstmt.setString(3, setup.getPlace());
-				pstmt.setDate(4, DateConverter.convertDateTime(setup.getActivityTime()));
-				pstmt.setDate(5, DateConverter.convertDateTime(setup.getStartDate()));
-				pstmt.setDate(6, DateConverter.convertDateTime(setup.getEndDate()));
+				pstmt.setDate(4, setup.getActivityTime());
+				pstmt.setDate(5, setup.getStartDate());
+				pstmt.setDate(6, setup.getEndDate());
 				pstmt.setString(7, setup.getDay());
 				pstmt.setString(8, setup.getExplain());
 				pstmt.setString(9, setup.getPrepared());

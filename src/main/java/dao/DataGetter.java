@@ -607,10 +607,10 @@ public class DataGetter extends DataAccessor {
 					Inform.setName(rs.getString(1));
 					Inform.setCategory1(rs.getString(2));
 					Inform.setCategory2(rs.getString(3));
-					Inform.setStartDate(DateConverter.getDateString(rs.getDate(4)));
-					Inform.setEndDate(DateConverter.getDateString(rs.getDate(5)));
+					Inform.setStartDate(rs.getDate(4));
+					Inform.setEndDate(rs.getDate(5));
 					Inform.setPeopleNum(rs.getInt(6));
-					Inform.setActivityTime(DateConverter.getDateString(rs.getDate(7)));
+					Inform.setActivityTime(rs.getDate(7));
 					Inform.setDay(DateConverter.getDateString(rs.getDate(8)));
 					//Inform.setDay(rs.getString(8));
 					Inform.setExplain(rs.getString(9));
