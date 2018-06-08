@@ -30,7 +30,7 @@ public class Setup extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		DataGetter getter = new DataGetter(DatabaseAccounts.SCOTT);
+		DataGetter getter = new DataGetter(DatabaseAccounts.PROJECT);
 		int studyIndex = 3;
 		//int studyIndex = (int)request.getSession().getAttribute("index");
 		
@@ -60,7 +60,7 @@ public class Setup extends HttpServlet {
 		
 		setup.setCategory1(request.getParameter("categoryGroup"));
 		setup.setCategory2(request.getParameter("categorySub"));
-		setup.setPeopleNum(request.getParameter("peopleNum"));
+		setup.setPeopleNum(Integer.parseInt(request.getParameter("peopleNum")));
 		setup.setName(request.getParameter("studyName"));
 		setup.setPlace(request.getParameter("place"));
 		setup.setActivityTime(request.getParameter("time"));
