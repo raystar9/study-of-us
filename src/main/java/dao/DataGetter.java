@@ -7,12 +7,15 @@ import java.util.ArrayList;
 
 import beans.prototype.Member;
 import beans.prototype.Study;
+import beans.prototype.StudyList;
 import beans.root.Find;
+
 import beans.root.Login;
 import beans.study.StudyListCount;
 import beans.study.StudyListSelect;
 import beans.study.StudyListSelect2;
 import beans.study.StudySearch;
+import beans.study.StudySearchMain;
 import beans.study.each.InformSetup;
 import beans.study.each.InformSetupMember;
 import beans.study.each.Member2;
@@ -111,17 +114,162 @@ public class DataGetter extends DataAccessor {
 					Study study = new Study();
 					study.setIndex(rs.getInt(1));
 					study.setName(rs.getString(2));
-					study.setC_id(rs.getInt(3));
-					study.setMt_index(rs.getInt(4));
-					study.setStart(rs.getDate(5));
-					study.setEnd(rs.getDate(6));
-					study.setPeoplenum(rs.getInt(7));
-					study.setDay(rs.getString(8));
-					study.setTime(rs.getString(9));
-					study.setExplain(rs.getString(10));
-					study.setPrepared(rs.getString(11));
-					study.setEffective(rs.getString(12));
-					study.setPlace(rs.getString(13));
+					study.setS_c_id(rs.getInt(3));
+					study.setS_mt_index(rs.getInt(4));
+					study.setS_m_index(rs.getInt(5));
+					study.setStart(rs.getDate(6));
+					study.setEnd(rs.getDate(7));
+					study.setMaxmember(rs.getInt(8));
+					study.setDay(rs.getString(9));
+					study.setTime(rs.getString(10));
+					study.setExplain(rs.getString(11));
+					study.setMaterial(rs.getString(12));
+					study.setEffect(rs.getString(13));
+					study.setPlace(rs.getString(14));
+
+					studies.add(study);
+				}
+				return studies;
+			}
+		});
+
+		// TODO Auto-generated method stub
+		return list;
+	}
+
+
+	public ArrayList<Study> getStudies(String search, String[] check, String secondArray, int startcount, int endcount) { 
+		
+		String sql = StudyListCount.QUERY_GET3+StudyListCount.QUERY_GET4;
+		 if(search != null && search != "") { 
+			 sql = StudyListCount.QUERY_GET3;
+			 // ) 로 짜른부분왓 ㅓ다시
+			 sql += " where s_name LIKE '%"+search+"%'"+StudyListCount.QUERY_GET4;
+				if(!secondArray.equals("소분 +`류") && secondArray != "" ) {
+					sql = (sql.substring(0,sql.length()-3));
+			 		sql += "where c_sub LIKE '%"+secondArray+"%' ))" ;
+				}
+					if(check != null ) { // 검색어와 체크값을 같이 검색 했을 시
+						String str = "";
+						// 체크값을 만족하는 경우
+						if(!secondArray.equals("소분류") && secondArray != "") {
+							sql = (sql.substring(0,sql.length()-1));
+							 str = " where s_place LIKE ";
+						}else {
+							str = ") where s_place LIKE ";
+						}
+								for(int i=0; i<check.length; i++) {
+					    	if(i<1) {
+					    		str += "'%"+check[i]+"%' ";
+					    	}else {
+					    		str += "or s_place LIKE '%"+check[i]+"%' ";
+					    	}
+					    }
+					 sql += str + ")"; 
+					}		
+		 	
+		 }
+		 sql += StudyListCount.QUERY_GET5;
+		 System.out.println(sql);
+	
+		@SuppressWarnings("unchecked")
+		ArrayList<Study> list = (ArrayList<Study>) get(sql,new DataSettable() {
+			
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+				pstmt.setInt(1, startcount);
+				pstmt.setInt(2, endcount);
+				
+			}
+		}, new DataGettable() {
+
+			@Override
+			public ArrayList<?> onGetResult(ResultSet rs) throws SQLException {
+				ArrayList<Study> studies = new ArrayList<>();
+				while (rs.next()) {
+					Study study = new Study();
+					study.setIndex(rs.getInt(1));
+					study.setName(rs.getString(2));
+					study.setS_c_id(rs.getInt(3));
+					study.setS_mt_index(rs.getInt(4));
+					study.setS_m_index(rs.getInt(5));
+					study.setStart(rs.getDate(6));
+					study.setEnd(rs.getDate(7));
+					study.setMaxmember(rs.getInt(8));
+					study.setDay(rs.getString(9));
+					study.setTime(rs.getString(10));
+					study.setExplain(rs.getString(11));
+					study.setMaterial(rs.getString(12));
+					study.setEffect(rs.getString(13));
+					study.setPlace(rs.getString(14));
+
+
+					studies.add(study);
+				}
+				return studies;
+			}
+		});
+
+		// TODO Auto-generated method stub
+		return list;
+	}
+	
+	public ArrayList<Study> getStudies(String search, String[] check, String secondArray) { 
+		
+		String sql = StudyListCount.QUERY_GET3+StudyListCount.QUERY_GET4;
+		 if(search != null && search != "") { 
+			 sql = StudyListCount.QUERY_GET3;
+			 // ) 로 짜른부분왓 ㅓ다시
+			 sql += " where s_name LIKE '%"+search+"%'"+StudyListCount.QUERY_GET4;
+				if(!secondArray.equals("소분류") && secondArray != "" ) {
+					sql = (sql.substring(0,sql.length()-3));
+			 		sql += "where c_sub LIKE '%"+secondArray+"%' ))" ;
+				}
+					if(check != null ) { // 검색어와 체크값을 같이 검색 했을 시
+						String str = "";
+						// 체크값을 만족하는 경우
+						if(!secondArray.equals("소분류") && secondArray != "") {
+							sql = (sql.substring(0,sql.length()-1));
+							 str = " where s_place LIKE ";
+						}else {
+							str = ") where s_place LIKE ";
+						}
+								for(int i=0; i<check.length; i++) {
+					    	if(i<1) {
+					    		str += "'%"+check[i]+"%' ";
+					    	}else {
+					    		str += "or s_place LIKE '%"+check[i]+"%' ";
+					    	}
+					    }
+					 sql += str + ")"; 
+					}		
+		 	
+		 }
+		 System.out.println(sql);
+	
+		@SuppressWarnings("unchecked")
+		ArrayList<Study> list = (ArrayList<Study>) get(sql, new DataGettable() {
+
+			@Override
+			public ArrayList<?> onGetResult(ResultSet rs) throws SQLException {
+				ArrayList<Study> studies = new ArrayList<>();
+				while (rs.next()) {
+					Study study = new Study();
+					study.setIndex(rs.getInt(1));
+					study.setName(rs.getString(2));
+					study.setS_c_id(rs.getInt(3));
+					study.setS_mt_index(rs.getInt(4));
+					study.setS_m_index(rs.getInt(5));
+					study.setStart(rs.getDate(6));
+					study.setEnd(rs.getDate(7));
+					study.setMaxmember(rs.getInt(8));
+					study.setDay(rs.getString(9));
+					study.setTime(rs.getString(10));
+					study.setExplain(rs.getString(11));
+					study.setMaterial(rs.getString(12));
+					study.setEffect(rs.getString(13));
+					study.setPlace(rs.getString(14));
+
 
 					studies.add(study);
 				}
@@ -436,17 +584,18 @@ public class DataGetter extends DataAccessor {
 					Study study = new Study();
 					study.setIndex(rs.getInt(1));
 					study.setName(rs.getString(2));
-					study.setC_id(rs.getInt(3));
-					study.setMt_index(rs.getInt(4));
-					study.setStart(rs.getDate(5));
-					study.setEnd(rs.getDate(6));
-					study.setPeoplenum(rs.getInt(7));
-					study.setDay(rs.getString(8));
-					study.setTime(rs.getString(9));
-					study.setExplain(rs.getString(10));
-					study.setPrepared(rs.getString(11));
-					study.setEffective(rs.getString(12));
-					study.setPlace(rs.getString(13));
+					study.setS_c_id(rs.getInt(3));
+					study.setS_mt_index(rs.getInt(4));
+					study.setS_m_index(rs.getInt(5));
+					study.setStart(rs.getDate(6));
+					study.setEnd(rs.getDate(7));
+					study.setMaxmember(rs.getInt(8));
+					study.setDay(rs.getString(9));
+					study.setTime(rs.getString(10));
+					study.setExplain(rs.getString(11));
+					study.setMaterial(rs.getString(12));
+					study.setEffect(rs.getString(13));
+					study.setPlace(rs.getString(14));
 
 					studies.add(study);
 				}
@@ -677,17 +826,19 @@ public class DataGetter extends DataAccessor {
 					Study study = new Study();
 					study.setIndex(rs.getInt(1));
 					study.setName(rs.getString(2));
-					study.setC_id(rs.getInt(3));
-					study.setMt_index(rs.getInt(4));
-					study.setStart(rs.getDate(5));
-					study.setEnd(rs.getDate(6));
-					study.setPeoplenum(rs.getInt(7));
-					study.setDay(rs.getString(8));
-					study.setTime(rs.getString(9));
-					study.setExplain(rs.getString(10));
-					study.setPrepared(rs.getString(11));
-					study.setEffective(rs.getString(12));
-					study.setPlace(rs.getString(13));
+					study.setS_c_id(rs.getInt(3));
+					study.setS_mt_index(rs.getInt(4));
+					study.setS_m_index(rs.getInt(5));
+					study.setStart(rs.getDate(6));
+					study.setEnd(rs.getDate(7));
+					study.setMaxmember(rs.getInt(8));
+					study.setDay(rs.getString(9));
+					study.setTime(rs.getString(10));
+					study.setExplain(rs.getString(11));
+					study.setMaterial(rs.getString(12));
+					study.setEffect(rs.getString(13));
+					study.setPlace(rs.getString(14));
+
 
 					studies.add(study);
 				}
@@ -723,6 +874,88 @@ public class DataGetter extends DataAccessor {
 		});
 		return index;
 	}
+
+	public ArrayList<StudyList> studylist(int s_index, int m_index) {
+		@SuppressWarnings("unchecked")
+		ArrayList<StudyList> list = (ArrayList<StudyList>) get(StudyList.QUERY_GET2, new DataSettable() {
+			
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+				pstmt.setInt(1, s_index);
+				pstmt.setInt(2, m_index);
+				
+			}
+		}, new DataGettable() {
+			
+			@Override
+			public Object onGetResult(ResultSet rs) throws SQLException {
+				ArrayList<Study> studies = new ArrayList<>();
+				while(rs.next()) {
+					Study study = new Study();
+					study.setIndex(rs.getInt(1));
+					study.setName(rs.getString(2));
+					study.setS_c_id(rs.getInt(3));
+					study.setS_mt_index(rs.getInt(4));
+					study.setS_m_index(rs.getInt(5));
+					study.setStart(rs.getDate(6));
+					study.setEnd(rs.getDate(7));
+					study.setMaxmember(rs.getInt(8));
+					study.setDay(rs.getString(9));
+					study.setTime(rs.getString(10));
+					study.setExplain(rs.getString(11));
+					study.setMaterial(rs.getString(12));
+					study.setEffect(rs.getString(13));
+					study.setPlace(rs.getString(14));
+
+					studies.add(study);
+				}
+				return studies;
+			}
+		});
+
+		// TODO Auto-generated method stub
+		return list;
+	}
+	public ArrayList<Study> getCategryStudies(String category) {
+			@SuppressWarnings("unchecked")
+			ArrayList<Study> list = (ArrayList<Study>) get(StudySearchMain.QUERY_GET, new DataSettable() {
+				
+				@Override
+				public void prepare(PreparedStatement pstmt) throws SQLException {
+					pstmt.setString(1, category);
+					
+				}
+			},new DataGettable() {
+				
+				@Override
+				public Object onGetResult(ResultSet rs) throws SQLException {
+					ArrayList<Study> studies = new ArrayList<>();
+					while(rs.next()) {
+						Study study = new Study();
+						study.setIndex(rs.getInt(1));
+						study.setName(rs.getString(2));
+						study.setS_c_id(rs.getInt(3));
+						study.setS_mt_index(rs.getInt(4));
+						study.setS_m_index(rs.getInt(5));
+						study.setStart(rs.getDate(6));
+						study.setEnd(rs.getDate(7));
+						study.setMaxmember(rs.getInt(8));
+						study.setDay(rs.getString(9));
+						study.setTime(rs.getString(10));
+						study.setExplain(rs.getString(11));
+						study.setMaterial(rs.getString(12));
+						study.setEffect(rs.getString(13));
+						study.setPlace(rs.getString(14));
+
+						studies.add(study);
+					}
+					return studies;
+				}
+			});
+
+			// TODO Auto-generated method stub
+			return list;
+		}
 
 	
 	public Find getFind(String name) {
@@ -870,6 +1103,7 @@ ArrayList<StudyListSelect> studylist = (ArrayList<StudyListSelect>) get(StudyLis
 		});
 		return dday;
 	}
+
 
 
 	/*

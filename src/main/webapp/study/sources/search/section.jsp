@@ -1,128 +1,177 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c"
- 				uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<script>
+	function myFunction() {
+		var x = document.getElementById("hidedetail");
+		if (x.style.display == "none") {
+			x.style.display = "block";
+		} else {
+			x.style.display = "none";
+		}
+	}
+	
+	
+</script>
 <!DOCTYPE html>
-	<form class="example" action="/study-of-us/study/search" method="get">
-<div class="search">
-  		<button type="submit"><i class="fa fa-search"></i></button>
- 		 <input type="text" placeholder="Search.." id="searchVal" name="searchVal" value="">
-	
-	
-	<div class="custom-select">
-  		<select id="firstArray" name="firstArray">
-  			  <option value="-1">대분류</option>
-  			  <option value="1">프로그래밍</option>
- 			  <option value="2">언어</option>
-   			  <option value="3">자격증</option>
-  		</select>
+<form class="example" action="/study-of-us/study/search" method="get">
+	<div class="search">
+		<div class="detail">
+			<button class="detail-search" type="button" onclick="myFunction()">세부
+				검색</button>
+			<button class="detail-search" type="submit" id="button">
+				<i class="fa fa-search"></i>
+			</button>
+			<input type="text" placeholder="Search.." id="searchVal"
+				name="searchVal" value="">
+		</div>
 	</div>
-	
-	<div class="custom-select2">
-  		<select id="secondArray" name="secondArray">
-  			  <option value="">소분류</option>
-  			  
-  		</select>
+	<input type="hidden" id="place2" name="place2" value="" />
+</form>
+<div id="loader"></div>
+
+<div class="hidedetail" id="hidedetail" style="display: none">
+	<form action="/action_page.php" style="max-width: 500px; margin: auto">
+		<h2>세부 검색</h2>
+		<div class="input-container">
+			<i class="fa fa-search icon"></i> <input class="input-field"
+				type="text" placeholder="검색어를 입력하세요" name="usrnm">
+		</div>
+
+		<div class="input-container">
+			<i class="fa fa-sitemap icon"></i> <input class="input-field"
+				type="text" placeholder="카테고리를 선택하세요" name="email"> 
+				<select id="firstArray" name="firstArray" style="width:100px">
+				<option value="-1">대분류</option>
+				<option value="1">프로그래밍</option>
+				<option value="2">언어</option>
+				<option value="3">자격증</option>
+			</select> 
+			<select id="secondArray" name="secondArray" style="width:100px">
+				<option >소분류</option>
+			</select>
+		</div>
+
+		<div class="input-container">
+			<i class="fa fa-clock-o icon"></i> <input class="input-field"
+				type="text" placeholder="시간대를 선택 하세요" name="psw"> 
+				<select id="stime" name="stime" style="width:100px">
+				<option value="">시간</option>
+				<option value="01:00~">01:00~</option>
+				<option value="02:00~">02:00~</option>
+				<option value="03:00~">03:00~</option>
+				<option value="04:00~">04:00~</option>
+				<option value="05:00~">05:00~</option>
+				<option value="06:00~">06:00~</option>
+				<option value="07:00~">07:00~</option>
+				<option value="08:00~">08:00~</option>
+				<option value="09:00~">09:00~</option>
+				<option value="10:00~">10:00~</option>
+				<option value="11:00~">11:00~</option>
+				<option value="12:00~">12:00~</option>
+				<option value="13:00~">13:00~</option>
+				<option value="14:00~">14:00~</option>
+				<option value="15:00~">15:00~</option>
+				<option value="16:00~">16:00~</option>
+				<option value="17:00~">17:00~</option>
+				<option value="18:00~">18:00~</option>
+				<option value="19:00~">19:00~</option>
+				<option value="20:00~">20:00~</option>
+				<option value="21:00~">21:00~</option>
+				<option value="22:00~">22:00~</option>
+				<option value="23:00~">23:00~</option>
+				<option value="24:00~">24:00~</option>
+			</select>
+		</div>
+
+		<div class="input-container">
+			<i class="fa fa-calendar-check-o icon"></i> <input
+				class="input-field" type="text" placeholder="요일을 선택 하세요" name="psw">
+				<select name="day" id="day" style="width:100px">
+					<option value="">요일</option>
+					<option value="월">월</option>
+					<option value="화">화</option>
+					<option value="수">수</option>
+					<option value="목">목</option>
+					<option value="금">금</option>
+					<option value="토">토</option>
+					<option value="일">일</option>
+			</select>
+		</div>
+		<div class="input-container">
+			<i class="fa fa-globe icon"></i> <input class="input-field"
+				type="text" placeholder="지역을 선택 하세요" name="psw">
+				 <select id="location" name="location" style="width:100px">
+				<option value="">지역</option>
+				<option value="서울">서울</option>
+				<option value="부천">부천</option>
+				<option value="인천">인천</option>
+				<option value="춘천">춘천</option>
+				<option value="대전">대전</option>
+				<option value="세종시">세종</option>
+				<option value="천안">천안</option>
+				<option value="부산">부산</option>
+				<option value="창원">창원</option>
+				<option value="광주">광주</option>
+			</select>
+		</div>
+
+		<button type="submit" class="btn">검색</button>
+	</form>
+</div>
+<div class="project">
+
+	<c:forEach var="study" items="${studies }">
+		<div class="projectcontainer">
+
+			<img src="/study-of-us/resources/images/pc.png" alt="Avatar"
+				style="width: 90px">
+			<H3>스터디 : ${study.name }</H3>
+			<p>목표 :</p>
+			<span>스터디 소개 : 자바의 정석 교재를 통해서 1회독을 목표로 진행하고 있으며 전공유무에 상관없이 스터디원을 모집합니다.</span> 
+			<p>스터디 위치 : ${study.place}</p>
+			<p>스터디 시간 : ${study.time}</p>
+			<p>진행 요일 : ${study.day}	</p>
+			<p>스터디 시작일 - 종료일  : ${study.start} -  ${study.end}
+			
+			
+			
+			<input type="hidden"
+				id="index" name="index" value="${study.index }" />
+		</div>
+	</c:forEach>
+
+	<H3 style="text-align: center">현재 페이지 ${page }</H3>
+	<div class="paging" style="text-align: center; margin-bottom: 100px">
+		<c:if test="${startpage > 1}">
+			<a class="round2"
+				href="/study-of-us/study/search?page=1&searchVal=${searchVal}${check}&secondArray=${secondArray}">&laquo;</a>
+		</c:if>
+
+		<c:if test="${page > 1}">
+			<a class="round"
+				href="/study-of-us/study/search?page=${page-1 }&searchVal=${searchVal}${check}&secondArray=${secondArray}">&#8249;</a>
+		</c:if>
+
+		<c:forEach var="i" begin="${startpage }" end="${endpage }">
+			<a id=atag
+				href="/study-of-us/study/search?page=${i }&searchVal=${searchVal}${check}&secondArray=${secondArray}">${i }</a>
+		</c:forEach>
+
+		<c:if test="${page < totalpage}">
+			<a class="round"
+				href="/study-of-us/study/search?page=${page+1 }&searchVal=${searchVal}&checkbox=${check}&secondArray=${secondArray}">&#8250;</a>
+		</c:if>
+
+		<c:if test="${endpage < totalpage}">
+			<a class="round2"
+				href="/study-of-us/study/search?page=${totalpage }&searchVal=${searchVal}${check}&secondArray=${secondArray}">&raquo;</a>
+		</c:if>
+
 	</div>
 </div>
-	
-	<div class="check" >
-	<p>
 
-	<label class="container">서울
-  		<input type="checkbox" name="checkbox" value="서울">
-		<span class="checkmark"></span>
-	</label>
-		<label class="container">부천
- 		<input type="checkbox" value="부천" name="checkbox">
-  		<span class="checkmark"></span>
-	</label>
-	<label class="container">인천
-  		<input type="checkbox" value="인천" name="checkbox">
- 		<span class="checkmark"></span>
-	</label>
-	<label class="container">춘천
-  		<input type="checkbox" value="춘천" name="checkbox">
-  		<span class="checkmark"></span>
-	</label>	
-	</p>
-	
-	<p>
-		<span style="font-size: 1.17em;
-    font-weight: bold">선호지역 </span>
-	<label class="container">대전
-  		<input type="checkbox" value="대전" name="checkbox">
-		<span class="checkmark"></span>
-	</label>
-		<label class="container">세종
- 		<input type="checkbox" value="세종" name="checkbox">
-  		<span class="checkmark"></span>
-	</label>
-	<label class="container">천안
-  		<input type="checkbox" value="천안" name="checkbox">
- 		<span class="checkmark"></span>
-	</label>
-	<label class="container">부산
-  		<input type="checkbox"  value="부산" name="checkbox">
-  		<span class="checkmark"></span>
-	</label>	
-	</p>
-	
-		<p>
-	<label class="container">부산
-  		<input type="checkbox"  value="부산" name="checkbox"> 
-		<span class="checkmark"></span>
-	</label>
-		<label class="container">경남
- 		<input type="checkbox"  value="창원" name="checkbox">
-  		<span class="checkmark"></span>
-	</label>
-	<label class="container">경북
-  		<input type="checkbox"  value="광주" name="checkbox">
- 		<span class="checkmark"></span>
-	</label>
-	<label class="container">전북
-  		<input type="checkbox"  value="수원" name="checkbox">
-  		<span class="checkmark"></span>
-	</label>	
-	</p>
-	</div>
-		<input type="hidden" id="place2" name="place2" value=""/>
-	</form>
-	<div class="project">
-		<c:forEach var="study" items="${studies }">
-		<div class="projectcontainer">
-		
-  			<img src="/study-of-us/resources/images/open-book.png" alt="Avatar" style="width:90px">
- 			 <H3>스터디 : ${study.name }</H3>
-  			<p>목표 :  </p>
-  			 <span>스터디 기간 :  스터디 위치 ${study.place}</span>
-  			<input type="hidden" id="index" name="index" value="${study.index }"/>
-		</div>
-		</c:forEach>
-		
-	
-	<div class="paging"  style="text-align:center; margin-bottom:100px">
-		<c:if test="${startpage > 1}">
-			<a href="/study-of-us/study/search?page=1&searchVal=${searchVal}&check=${place}">처음</a>
-		</c:if>
-		
-		<c:if test="${page > 1}">
-			<a href="/study-of-us/study/search?page=${page-1 }&searchVal=${searchVal}&check=${place}">이전</a>
-		</c:if>
-		
-		<c:forEach var="i" begin= "${startpage }" end="${endpage }">
-			<a href="/study-of-us/study/search?page=${i }&searchVal=${searchVal}&check=${place}">${i }</a>
-		</c:forEach>
-		
-		<c:if test="${page < totalpage}">
-			<a href="/study-of-us/study/search?page=${page+1 }&searchVal=${searchVal}&check=${place}">다음</a>
-		</c:if>
-		
-		<c:if test="${endpage < totalpage}">
-			<a href="/study-of-us/study/search?page=${totalpage }&searchVal=${searchVal}&check=${place}">끝</a>
-		</c:if>
 
-		</div>
-		</div>
-		
