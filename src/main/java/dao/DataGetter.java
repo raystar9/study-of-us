@@ -703,14 +703,14 @@ public class DataGetter extends DataAccessor {
 	}
 
 	// 정보보기&설정 구성원들 이름, 전화번호 등 가져오는 메소드
-	public ArrayList<InformSetupMember> getInformMember() {
+	public ArrayList<InformSetupMember> getInformMember(String studyName) {
 		@SuppressWarnings("unchecked")
 		ArrayList<InformSetupMember> list = (ArrayList<InformSetupMember>) get(InformSetupMember.QUERY_GET,
 				new DataSettable() {
 
 					@Override
 					public void prepare(PreparedStatement pstmt) throws SQLException {
-						// TODO Auto-generated method stub
+						pstmt.setString(1, studyName);
 					}
 
 				}, new DataGettable() {
@@ -1220,6 +1220,25 @@ ArrayList<StudyListSelect> studylist = (ArrayList<StudyListSelect>) get(StudyLis
 				}
 	
 	//공용
+		@SuppressWarnings("unchecked")
+		public ArrayList<Integer> getMemberIndexes(String studyName) {
+			return (ArrayList<Integer>) get(Queries.GET_STUDY_MEMBER, new DataSettable() {
+				@Override
+				public void prepare(PreparedStatement pstmt) throws SQLException {
+					pstmt.setString(1, studyName);
+				}
+			}, new DataGettable() {
+				@Override
+				public Object onGetResult(ResultSet rs) throws SQLException {
+					ArrayList<Integer> results = new ArrayList<>();
+					while(rs.next()) {
+						results.add(rs.getInt(1));
+					}
+					return results;
+				}
+			} );
+		}
+		
 	@SuppressWarnings("unchecked")
 	public ArrayList<Integer> getMemberIndexes(int studyIndex) {
 		return (ArrayList<Integer>) get(StudyMember.QUERY_GET_MEMBERS,new DataSettable() {
@@ -1256,11 +1275,11 @@ ArrayList<StudyListSelect> studylist = (ArrayList<StudyListSelect>) get(StudyLis
 	
 	@SuppressWarnings("unchecked")
 	public ArrayList<String> getMemberNames(String studyName) {
-		return (ArrayList<String>) get(Queries.GET_STUDY_MEMBER_NAMES, new DataSettable() {
+		return (ArrayList<String>) get(Queries.GET_STUDY_MEMBER, new DataSettable() {
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
 				System.out.println(studyName);
-				pstmt.setString(1, studyName);
+				pstmt.setString(2, studyName);
 			}
 		}, new DataGettable() {
 			@Override

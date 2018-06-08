@@ -1,15 +1,15 @@
 
 $(document).ready(function() {
 	
-	var addNum = 2;
+	var addNum = 1;
 	$('#cashAdd-btn').click(function() {
+		addNum++;
 		var strToAdd = "<tr><td>";
 			strToAdd += "<input type='text' class='form-control' placeholder='내역' id='duesExp" + addNum + "' name='duesExp" + addNum + "'>";
 			strToAdd += "</td>";
 			strToAdd += "<td>";
 			strToAdd += "<input type='text' class='form-control' placeholder='금액' id='duesExpFee" + addNum + "' name='duesExpFee" + addNum + "' onkeyup='calculate();'>";
 			strToAdd += "</td></tr>";
-			addNum++;
 		$('#expenseCount').val(addNum);
 		$('#cash_tbody').append(strToAdd);	
 	})// click end

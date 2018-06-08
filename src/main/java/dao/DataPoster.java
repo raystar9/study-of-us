@@ -11,9 +11,11 @@ import beans.prototype.StudyList;
 import beans.study.each.InformSetup;
 import beans.study.each.board.BoardViewRegisterBean;
 import beans.study.each.board.CommentBean;
-import beansNew.Attend;
 import beans.study.each.fee.CashExpenseBean;
 import beans.study.each.fee.CashMemberBean;
+import beansNew.Attend;
+import beansNew.FeeCollect;
+import beansNew.FeeSpend;
 import dao.interfaces.DataSettable;
 
 public class DataPoster extends DataSetter {
@@ -263,15 +265,16 @@ public class DataPoster extends DataSetter {
 		}
 	}
 	
-	public void postFeeMemberInsert(ArrayList<CashMemberBean> mem) {
-		for(CashMemberBean cmb : mem){	
-			set(CashMemberBean.QUERY_POST, new DataSettable() {
+	public void postFeeMemberInsert(ArrayList<FeeCollect> collects) {
+		for(FeeCollect collect : collects){	
+			set(FeeCollect.QUERY_POST, new DataSettable() {
 				
 				@Override
 				public void prepare(PreparedStatement pstmt) throws SQLException {
-					pstmt.setInt(1, cmb.getMemIndex());
-					pstmt.setInt(2, cmb.getMemfee());
-					pstmt.setString(3, cmb.getNote());
+					pstmt.setInt(1, collect.getMemberId());
+					pstmt.setInt(2, collect.getMeetingId());
+					pstmt.setInt(3, collect.getFee());
+					pstmt.setString(4, collect.getNote());
 					pstmt.executeUpdate();
 					pstmt.close();
 					
@@ -295,5 +298,20 @@ public class DataPoster extends DataSetter {
 			});
 		}
 	}
+
+		public void postFeeSpend(ArrayList<FeeSpend> spends) {
+			for(FeeSpend spend : spends) {
+				set(FeeSpend.QUERY_POST, new DataSettable() {
+					@Override
+					public void prepare(PreparedStatement pstmt) throws SQLException {
+						pstmt.setInt(1, spend.getMeetingId());
+						pstmt.setInt(2, spend.getExpense());
+						pstmt.setString(3, spend.getComment());
+						pstmt.executeQuery();
+						pstmt.close();
+					}
+				});
+			}
+		}
 	
 }
