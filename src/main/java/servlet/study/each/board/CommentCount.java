@@ -24,7 +24,7 @@ public class CommentCount extends HttpServlet {
     }
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		DataGetter getter = new DataGetter(DatabaseAccounts.SCOTT);
+		DataGetter getter = new DataGetter(DatabaseAccounts.PROJECT);
 
 		//게시글 번호
 		int boardnum = Integer.parseInt(request.getParameter("bno"));

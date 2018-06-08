@@ -55,6 +55,16 @@
 					</td>
 				</tr>
 			</c:forEach>
+			<!-- 레코드가 없으면 -->
+		<c:if test="${listcount == 0 }">
+			<tr>
+				<td style="text-align: center" colspan='7'>
+					<font size=2><h5>등록된 글이 없습니다.</h5></font>
+				</td>
+			</tr>
+			<tr>
+			<td></td>
+		</c:if>
 
 			<tr id="number"> 
 				<td colspan="7"><c:if test="${page <= 1 }">
@@ -86,20 +96,6 @@
 			</td>
 
 		</tr>
-
-		<!-- 레코드가 없으면 -->
-		<c:if test="${listcount == 0 }">
-			<tr>
-				<td style="text-align: center" colspan='4'>
-					<font size=2><h4>등록된 글이 없습니다.</h4></font>
-				</td>
-			</tr>
-			<tr>
-			<td colspan="5" style="text-align: right"><a
-				href="./boardregister">[글쓰기]</a></td>
-			</tr>
-		</c:if>
-
 		
 	</table>
 	</form>

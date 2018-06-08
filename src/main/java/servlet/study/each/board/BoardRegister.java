@@ -39,6 +39,7 @@ public class BoardRegister extends HttpServlet {
 		System.out.println("BoardRegister 서블릿으로 들어옴");
 		// TODO Auto-generated method stub
 		int studyIndex = 3;
+		//int studyIndex = (int)request.getSession().getAttribute("index");
 		String realFolder = "";
 		
 		//WebContent아래에 꼭 폴더 생성
