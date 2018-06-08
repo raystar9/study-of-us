@@ -11,12 +11,9 @@ import beans.prototype.StudyList;
 import beans.study.each.InformSetup;
 import beans.study.each.board.BoardViewRegisterBean;
 import beans.study.each.board.CommentBean;
-<<<<<<< HEAD
 import beansNew.Attend;
-=======
 import beans.study.each.fee.CashExpenseBean;
 import beans.study.each.fee.CashMemberBean;
->>>>>>> origin/dahye
 import dao.interfaces.DataSettable;
 
 public class DataPoster extends DataSetter {
