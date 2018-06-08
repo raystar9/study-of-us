@@ -14,6 +14,9 @@ import beans.study.each.board.BoardViewRegisterBean;
 import beans.study.each.board.CommentBean;
 import beans.study.each.fee.CashExpenseBean;
 import beans.study.each.fee.CashMemberBean;
+import beansNew.Attend;
+import beansNew.FeeCollect;
+import beansNew.FeeSpend;
 import dao.interfaces.DataSettable;
 import dateConverter.DateConverter;
 
@@ -23,7 +26,7 @@ public class DataPoster extends DataSetter {
 		super(user);
 	}
 
-	public void postMembers(Member member) {
+	public int postMembers(Member member) {
 
 		/*
 		 * DataSettable은 익명클래스로 구현하도록 되어있습니다. 외부 혹은 내부 클래스로 선언하여 실제로 구현하여 매개변수로 넣어줄 수도
@@ -45,7 +48,7 @@ public class DataPoster extends DataSetter {
 
 			}
 		});
-
+		return 1;
 	}
 
 	public void postBoard(BoardViewRegisterBean board, int studyIndex) {
@@ -130,11 +133,8 @@ public class DataPoster extends DataSetter {
 		});
 	}
 
-
-	public void postStudy(Study study) {
-
+	public int postStudy(Study study) {
 		set(Study.QUERY_POST, new DataSettable() {
-
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
 				pstmt.setString(1, study.getName());
@@ -150,8 +150,10 @@ public class DataPoster extends DataSetter {
 				pstmt.setString(11, study.getPlace());
 				pstmt.executeUpdate();
 				pstmt.close();
+				
 			}
 		});
+		return 1;
 	}
 
 	public void postComment(CommentBean comment) {
@@ -169,7 +171,7 @@ public class DataPoster extends DataSetter {
 		});
 	}
 	
-	public ArrayList<StudyList> Insertindex(int s_index, int m_index) {
+	public void Insertindex(int s_index, int m_index) {
 		
 		set(StudyList.QUERY_POST, new DataSettable() {
 			@Override
@@ -181,8 +183,8 @@ public class DataPoster extends DataSetter {
 				pstmt.close();
 				
 			}
-		});
-		return null;
+		}
+		);
 	}
 
 	public void postCommentDelete(int bno,int cno) {
@@ -228,16 +230,48 @@ public class DataPoster extends DataSetter {
 			}
 		});
 	}
+
 	
-	public void postFeeMemberInsert(ArrayList<CashMemberBean> mem) {
-		for(CashMemberBean cmb : mem){	
-			set(CashMemberBean.QUERY_POST, new DataSettable() {
+	public void postStudyList(int m_index, int s_index) {
+		set(StudyList.QUERY_POST,new DataSettable() {
+			
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+				pstmt.setInt(1, s_index);
+				pstmt.setInt(2, m_index);
+				pstmt.executeUpdate();
+				pstmt.close();
+			}
+		});
+	}
+	
+	//구명회 파트
+	
+	public void postAttend(ArrayList<Attend> attends) {
+		for(Attend attend : attends) {
+			set(Attend.QUERY_POST, new DataSettable() {
+				@Override
+				public void prepare(PreparedStatement pstmt) throws SQLException {
+					pstmt.setInt(1, attend.getMeetingId());
+					pstmt.setInt(2, attend.getMemberId());
+					pstmt.setString(3, attend.getAttend());
+					pstmt.executeQuery();
+					pstmt.close();
+				}
+			});
+		}
+	}
+	
+	public void postFeeMemberInsert(ArrayList<FeeCollect> collects) {
+		for(FeeCollect collect : collects){	
+			set(FeeCollect.QUERY_POST, new DataSettable() {
 				
 				@Override
 				public void prepare(PreparedStatement pstmt) throws SQLException {
-					pstmt.setInt(1, cmb.getMemIndex());
-					pstmt.setInt(2, cmb.getMemfee());
-					pstmt.setString(3, cmb.getNote());
+					pstmt.setInt(1, collect.getMemberId());
+					pstmt.setInt(2, collect.getMeetingId());
+					pstmt.setInt(3, collect.getFee());
+					pstmt.setString(4, collect.getNote());
 					pstmt.executeUpdate();
 					pstmt.close();
 					
@@ -261,5 +295,20 @@ public class DataPoster extends DataSetter {
 			});
 		}
 	}
+
+		public void postFeeSpend(ArrayList<FeeSpend> spends) {
+			for(FeeSpend spend : spends) {
+				set(FeeSpend.QUERY_POST, new DataSettable() {
+					@Override
+					public void prepare(PreparedStatement pstmt) throws SQLException {
+						pstmt.setInt(1, spend.getMeetingId());
+						pstmt.setInt(2, spend.getExpense());
+						pstmt.setString(3, spend.getComment());
+						pstmt.executeQuery();
+						pstmt.close();
+					}
+				});
+			}
+		}
 	
 }

@@ -59,12 +59,12 @@
 											</tr>
 										</thead>
 										<tbody>
-										<c:forEach var="mem" items="${mem }" varStatus="status">
+										<c:forEach var="member" items="${members }" varStatus="status">
 											<tr>
 												<td>${status.count}</td>
-												<td><div>${mem.name}</div></td>
-												<td><div>${mem.memfee}</div></td>
-												<td><div>${mem.note}</div></td>
+												<td><div>${member.memberName}</div></td>
+												<td><div>${member.fee}</div></td>
+												<td><div>${member.note}</div></td>
 											</tr>
 										</c:forEach>
 										</tbody>
@@ -88,15 +88,16 @@
 									id="total-table" border='1'>
 									<thead>
 										<tr>
+											<th>#</th>
 											<th>내역</th>
 											<th>금액</th>
 										</tr>
 									</thead>
 									<tbody id='cash_tbody'>
-									<c:forEach var="expense" items="${expense }" varStatus="status">
+									<c:forEach var="expense" items="${expenses }" varStatus="status">
 											<tr>
 												<td>${status.count}</td>
-												<td><div>${expense.content}</div></td>
+												<td><div>${expense.comment}</div></td>
 												<td><div>${expense.expense}</div></td>
 											</tr>
 									</c:forEach>
@@ -114,10 +115,10 @@
 						<div class="panel panel-default" id="cash">
 							<div class="panel-body">
 								<input type="text" class="total" id="dues-totalFee"
-									name="duesTotalFee" readOnly value='${c.memfeetotal }'>&nbsp;원 &nbsp;-&nbsp; <input
+									name="duesTotalFee" readOnly value='${collectToday }'>&nbsp;원 &nbsp;-&nbsp; <input
 									type="text" class="total" id="dues-totalExpen"
-									name="duesTotalExpen" readOnly value='${c.expensetotal }'>&nbsp;원 &nbsp;=&nbsp; 
-									<c:set var='total' value="${c.memfeetotal }-${c.expensetotal }" />
+									name="duesTotalExpen" readOnly value='${spentToday }'>&nbsp;원 &nbsp;=&nbsp; 
+									<c:set var='total' value="${collectToday - spentToday}" />
 									<input
 									type="text" class="total" id="dues-total" name="duesTotal"
 									readOnly value='${total }'>&nbsp;원
@@ -134,9 +135,8 @@
 						<div class="panel panel-default" id="cash">
 							<div class="panel-body">
 								<div>
-									<c:set var='allTotal' value="${c.alltotal }+${total }" />
 									<input type="text" class="total" id="dues-final"
-										name="duesfinal" placeholder="0" readOnly value='${allTotal}'>&nbsp;원
+										name="duesfinal" placeholder="0" readOnly value='${remainedFee}'>&nbsp;원
 								</div>
 							</div>
 						</div>
@@ -145,7 +145,7 @@
 			</tr>
 			<tr>
 				<td>
-					<a href="/study-of-us/study/each/cash">뒤로</a>
+					<a href="../fee">뒤로</a>
 				</td>
 					
 			</tr>
