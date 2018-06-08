@@ -867,34 +867,9 @@ AND (select )
 insert into COMMENTS
 values(comments_index.nextval,?,?,sysdate,?)
 
+select * from study;
+UPDATE STUDY SET S_CATEGORY=?, S_PLOPIENUM=?, S_NAME=?, S_PLACE=?, S_TIME=?, S_START=?, S_END=?, S_DAY=?, S_EXPLAIN=?, S_PREPARED=?, S_EFFECTIVE=?
 
-truncate table comments; 
+select S_NAME,C_GROUP, C_SUBGROUP, S_START, S_END, S_MAXMEMBER, S_TIME, S_DAY,  S_EXPLAIN, S_MATERIAL, S_EFFECT, S_PLACE from Study s, Category c where s.S_C_ID = c.C_ID and s.S_INDEX = 3
 
-	         select * from member;
-select * from comments;
-
-3번 스터디의 29번 게시물의 댓글 삭제
-
-delete from COMMENTS where C_B_NO = ? AND C_INDEX = ?
-
-UPDATE COMMENTS SET C_CONTENT=? WHERE C_INDEX=? AND C_B_NO=?
-
-
-select  from category;
-
-select * from board;
-
-update BOARD b set B_TITLE=?, B_CONTENT=? where (select S_INDEX from STUDY s where s.S_INDEX = b.B_S_INDEX) = ? AND b.B_NO = ?
-
-
-delete from BOARD where B_S_INDEX = 3 AND B_NO =s
-
-select M_NAME, M_TEL, M_EMAIL from studymemberlist where S_INDEX = ?
-
-select S_NAME,C_GROUP, C_SUBGROUP, S_START, S_END, S_MAXMEMBER, S_TIME, S_DAY,  S_EXPLAIN, S_MATERIAL, S_EFFECT, S_PLACE
-from Study s, Category c
-where s.S_C_ID = c.C_ID
-and s.S_INDEX = ?
-
-
-
+select S_NAME,C_GROUP, C_SUBGROUP, S_START, S_END, S_MAXMEMBER, S_TIME, S_DAY,  S_EXPLAIN, S_MATERIAL, S_EFFECT, S_PLACE from Study s, Category c where s.S_C_ID = c.C_ID and s.S_INDEX = 3

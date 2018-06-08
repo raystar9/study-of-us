@@ -13,7 +13,7 @@ public class InformSetup {
 	private String name;			//스터디 명
 	private String category1;		//카테고리1
 	private String category2;		//카테고리2
-	private String peopleNum;		//스터디 모집인원
+	private int peopleNum;			//스터디 모집인원
 	private String place;			//스터디 장소
 	private String activityTime;	//스터디 활동시간
 	private String startDate;		//스터디 시작날짜
@@ -24,11 +24,18 @@ public class InformSetup {
 	private	String effective;		//기대효과 및 활동분야
 	
 	
+	
 	public String getActivityTime() {
 		return activityTime;
 	}
 	public void setActivityTime(String activityTime) {
 		this.activityTime = activityTime;
+	}
+	public int getPeopleNum() {
+		return peopleNum;
+	}
+	public void setPeopleNum(int peopleNum) {
+		this.peopleNum = peopleNum;
 	}
 	public String getStartDate() {
 		return startDate;
@@ -53,12 +60,6 @@ public class InformSetup {
 	}
 	public void setIndex(int index) {
 		this.index = index;
-	}
-	public String getPeopleNum() {
-		return peopleNum;
-	}
-	public void setPeopleNum(String peopleNum) {
-		this.peopleNum = peopleNum;
 	}
 	public String getName() {
 		return name;

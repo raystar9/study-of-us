@@ -20,6 +20,7 @@ import beans.study.each.board.CommentBean;
 import beans.study.each.fee.CashListBean;
 import dao.interfaces.DataGettable;
 import dao.interfaces.DataSettable;
+import dateConverter.DateConverter;
 import exceptionHandler.ExceptionHandler;
 import exceptionHandler.TryGetObject;
 
@@ -603,17 +604,19 @@ public class DataGetter extends DataAccessor {
 			public InformSetup onGetResult(ResultSet rs) throws SQLException {
 				InformSetup Inform = new InformSetup();
 				while (rs.next()) {
-					Inform.setIndex(rs.getInt(1));
-					Inform.setPeopleNum(rs.getString(2));
-					Inform.setName(rs.getString(3));
-					Inform.setPlace(rs.getString(4));
-					Inform.setActivityTime(rs.getString(5));
-					Inform.setStartDate(rs.getString(6));
-					Inform.setEndDate(rs.getString(7));
-					Inform.setDay(rs.getString(8));
+					Inform.setName(rs.getString(1));
+					Inform.setCategory1(rs.getString(2));
+					Inform.setCategory2(rs.getString(3));
+					Inform.setStartDate(DateConverter.getDateString(rs.getDate(4)));
+					Inform.setEndDate(DateConverter.getDateString(rs.getDate(5)));
+					Inform.setPeopleNum(rs.getInt(6));
+					Inform.setActivityTime(DateConverter.getDateString(rs.getDate(7)));
+					Inform.setDay(DateConverter.getDateString(rs.getDate(8)));
+					//Inform.setDay(rs.getString(8));
 					Inform.setExplain(rs.getString(9));
 					Inform.setPrepared(rs.getString(10));
 					Inform.setEffective(rs.getString(11));
+					Inform.setPlace(rs.getString(12));
 				}
 				return Inform;
 			}

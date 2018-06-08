@@ -1,5 +1,6 @@
 package dao;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ import beans.study.each.board.CommentBean;
 import beans.study.each.fee.CashExpenseBean;
 import beans.study.each.fee.CashMemberBean;
 import dao.interfaces.DataSettable;
+import dateConverter.DateConverter;
 
 public class DataPoster extends DataSetter {
 
@@ -111,12 +113,12 @@ public class DataPoster extends DataSetter {
 		set(InformSetup.QUERY_PUT, new DataSettable() {
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
-				pstmt.setString(1, setup.getPeopleNum());
+				pstmt.setInt(1, setup.getPeopleNum());
 				pstmt.setString(2, setup.getName());
 				pstmt.setString(3, setup.getPlace());
-				pstmt.setString(4, setup.getActivityTime());
-				pstmt.setString(5, setup.getStartDate());
-				pstmt.setString(6, setup.getEndDate());
+				pstmt.setDate(4, DateConverter.convertDateTime(setup.getActivityTime()));
+				pstmt.setDate(5, DateConverter.convertDateTime(setup.getStartDate()));
+				pstmt.setDate(6, DateConverter.convertDateTime(setup.getEndDate()));
 				pstmt.setString(7, setup.getDay());
 				pstmt.setString(8, setup.getExplain());
 				pstmt.setString(9, setup.getPrepared());
@@ -127,6 +129,7 @@ public class DataPoster extends DataSetter {
 			}
 		});
 	}
+
 
 	public void postStudy(Study study) {
 
