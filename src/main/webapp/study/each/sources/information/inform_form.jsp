@@ -14,7 +14,6 @@
 	
 	<table border='1'>
 	<c:set var="set" value="${setup}" />
-	<c:set var="cate" value="${category}" />
 		<tr>
 			<td>
 				<h1 class="page-header">설정</h1>
@@ -30,7 +29,7 @@
 			<td><h4>*카테고리 (대분류/소분류)</h4>
 				<hr>
 				<div class="panel-body">
-				<div>${cate.category1 } / ${cate.category2 }</div>				
+				<div>${set.category1 } / ${set.category2 }</div>				
 				</div>
 			</td>
 		</tr>

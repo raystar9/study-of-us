@@ -26,7 +26,7 @@ public class BoardList extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		DataGetter getter = new DataGetter(DatabaseAccounts.SCOTT);
+		DataGetter getter = new DataGetter(DatabaseAccounts.PROJECT);
 		ArrayList<BoardListBean> boardlist = new ArrayList<BoardListBean>();
 		
 		String search = request.getParameter("search");
@@ -34,16 +34,17 @@ public class BoardList extends HttpServlet {
 		String pluswhere = ")";
 		
 		if(search != null && search != "" && searchSelect.equals("title")) {
-			pluswhere = " where B_TITLE like ?) ";
+			pluswhere = " AND B_TITLE like ?) ";
 		}else if(search != null && search != "" && searchSelect.equals("name")) {
-			pluswhere = " where B_NAME like ?) ";
+			pluswhere = " AND M_NAME like ?) ";
 		}else if(search != null && search != "" && searchSelect.equals("date")) {
-			pluswhere = " where B_DATE like ?) ";
+			pluswhere = " AND B_DATE like ?) ";
 		}
 		
 		int page = 1;
 		int limit = 10;
 		int studyIndex = 3;
+		//int studyIndex = (int)request.getSession().getAttribute("index");
 
 		if (request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));

@@ -1,5 +1,6 @@
 package dao;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -11,10 +12,13 @@ import beans.prototype.StudyList;
 import beans.study.each.InformSetup;
 import beans.study.each.board.BoardViewRegisterBean;
 import beans.study.each.board.CommentBean;
-import beansNew.Attend;
 import beans.study.each.fee.CashExpenseBean;
 import beans.study.each.fee.CashMemberBean;
+import beansNew.Attend;
+import beansNew.FeeCollect;
+import beansNew.FeeSpend;
 import dao.interfaces.DataSettable;
+import dateConverter.DateConverter;
 
 public class DataPoster extends DataSetter {
 
@@ -71,11 +75,9 @@ public class DataPoster extends DataSetter {
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
 				pstmt.setString(1, board.getTitle());
-				pstmt.setString(2, board.getName());
-				pstmt.setString(3, board.getDate());
-				pstmt.setString(4, board.getContent());
-				pstmt.setInt(5, studyIndex);
-				pstmt.setInt(6, board.getIndex());
+				pstmt.setString(2, board.getContent());
+				pstmt.setInt(3, studyIndex);
+				pstmt.setInt(4, board.getIndex());
 				pstmt.executeUpdate();
 				pstmt.close();
 			}
@@ -114,12 +116,12 @@ public class DataPoster extends DataSetter {
 		set(InformSetup.QUERY_PUT, new DataSettable() {
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
-				pstmt.setString(1, setup.getPeopleNum());
+				pstmt.setInt(1, setup.getPeopleNum());
 				pstmt.setString(2, setup.getName());
 				pstmt.setString(3, setup.getPlace());
-				pstmt.setString(4, setup.getActivityTime());
-				pstmt.setString(5, setup.getStartDate());
-				pstmt.setString(6, setup.getEndDate());
+				pstmt.setDate(4, DateConverter.convertDateTime(setup.getActivityTime()));
+				pstmt.setDate(5, DateConverter.convertDateTime(setup.getStartDate()));
+				pstmt.setDate(6, DateConverter.convertDateTime(setup.getEndDate()));
 				pstmt.setString(7, setup.getDay());
 				pstmt.setString(8, setup.getExplain());
 				pstmt.setString(9, setup.getPrepared());
@@ -160,12 +162,9 @@ public class DataPoster extends DataSetter {
 			
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
-				pstmt.setString(1, comment.getName());
-				pstmt.setString(2, comment.getDate());
+				pstmt.setInt(1, comment.getBno());
+				pstmt.setInt(2, comment.getPersonIndex());
 				pstmt.setString(3, comment.getContent());
-				pstmt.setInt(4, comment.getCno());
-				pstmt.setInt(5, comment.getBno());
-				
 				pstmt.executeUpdate();
 				pstmt.close();
 			}
@@ -188,13 +187,14 @@ public class DataPoster extends DataSetter {
 		);
 	}
 
-	public void postCommentDelete(int cno) {
+	public void postCommentDelete(int bno,int cno) {
 
 		set(CommentBean.QUERY_DELETE, new DataSettable() {
 
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
-				pstmt.setInt(1, cno);
+				pstmt.setInt(1, bno);
+				pstmt.setInt(2, cno);
 				pstmt.executeUpdate();
 				pstmt.close();
 			}
@@ -207,10 +207,9 @@ public class DataPoster extends DataSetter {
 
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
-				pstmt.setString(1, comment.getName());
-				pstmt.setString(2, comment.getContent());
-				pstmt.setInt(3, comment.getCno());
-				pstmt.setInt(4, comment.getBno());
+				pstmt.setInt(1, comment.getBno());
+				pstmt.setInt(2, comment.getPersonIndex());
+				pstmt.setString(3, comment.getContent());
 				pstmt.executeUpdate();
 				pstmt.close();
 			}
@@ -263,15 +262,16 @@ public class DataPoster extends DataSetter {
 		}
 	}
 	
-	public void postFeeMemberInsert(ArrayList<CashMemberBean> mem) {
-		for(CashMemberBean cmb : mem){	
-			set(CashMemberBean.QUERY_POST, new DataSettable() {
+	public void postFeeMemberInsert(ArrayList<FeeCollect> collects) {
+		for(FeeCollect collect : collects){	
+			set(FeeCollect.QUERY_POST, new DataSettable() {
 				
 				@Override
 				public void prepare(PreparedStatement pstmt) throws SQLException {
-					pstmt.setInt(1, cmb.getMemIndex());
-					pstmt.setInt(2, cmb.getMemfee());
-					pstmt.setString(3, cmb.getNote());
+					pstmt.setInt(1, collect.getMemberId());
+					pstmt.setInt(2, collect.getMeetingId());
+					pstmt.setInt(3, collect.getFee());
+					pstmt.setString(4, collect.getNote());
 					pstmt.executeUpdate();
 					pstmt.close();
 					
@@ -295,5 +295,20 @@ public class DataPoster extends DataSetter {
 			});
 		}
 	}
+
+		public void postFeeSpend(ArrayList<FeeSpend> spends) {
+			for(FeeSpend spend : spends) {
+				set(FeeSpend.QUERY_POST, new DataSettable() {
+					@Override
+					public void prepare(PreparedStatement pstmt) throws SQLException {
+						pstmt.setInt(1, spend.getMeetingId());
+						pstmt.setInt(2, spend.getExpense());
+						pstmt.setString(3, spend.getComment());
+						pstmt.executeQuery();
+						pstmt.close();
+					}
+				});
+			}
+		}
 	
 }

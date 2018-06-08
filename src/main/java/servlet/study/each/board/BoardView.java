@@ -29,10 +29,11 @@ public class BoardView extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		DataGetter getter = new DataGetter(DatabaseAccounts.SCOTT);
-		int studyIndex = 3; 
+		DataGetter getter = new DataGetter(DatabaseAccounts.PROJECT);
+		int studyIndex = 3;
+		//int studyIndex = (int)request.getSession().getAttribute("index");
 		
-		BoardViewRegisterBean boardcontent = getter.getBoardView(Integer.parseInt(request.getParameter("num")), studyIndex);
+		BoardViewRegisterBean boardcontent = getter.getBoardView(Integer.parseInt(request.getParameter("num")));
 		request.setAttribute("boardcontent", boardcontent);
 		
 		ArrayList<CommentBean> comment = new ArrayList<CommentBean>();
@@ -41,7 +42,7 @@ public class BoardView extends HttpServlet {
 		
 		//댓글 개수
 		int commentcount = getter.getCommentCount(boardnum);
-		comment = getter.getCommentList(boardnum);
+		comment = getter.getCommentList(studyIndex, boardnum);
 		
 		request.setAttribute("comment", comment);
 		request.setAttribute("commentcount", commentcount);

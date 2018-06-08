@@ -56,7 +56,6 @@
 	</table><br>
 	
 	<input type="button" class="btn btn-default" type="button" id="commentListBtn"  value=''>
-	
 	<div class="container">
         <label for="content">comment</label>
         <form name="commentInsertForm">
@@ -68,7 +67,7 @@
                </span>
               </div>
         </form>
-    </div>
+    </div><br>
     
     <div class="container">
         <div class="commentList"></div>
