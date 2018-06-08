@@ -1,7 +1,7 @@
 package dao;
 
 public enum DatabaseAccounts {
-	ADMIN("Admin"), SCOTT("Scott");
+	ADMIN("Admin"), SCOTT("Scott"), PROJECT("Project");
 	
 	private String _accountName;
 	private DatabaseAccounts(String accountName) {

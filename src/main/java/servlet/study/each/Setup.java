@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import beans.study.each.CategoryBean;
 import beans.study.each.InformSetup;
 import beans.study.each.InformSetupMember;
 import dao.DataGetter;
@@ -31,6 +32,7 @@ public class Setup extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		DataGetter getter = new DataGetter(DatabaseAccounts.SCOTT);
+		int studyIndex = 3;
 		
 		int membercount = getter.getInformMemberCount();	//스터디 참여인원
 		
@@ -40,9 +42,13 @@ public class Setup extends HttpServlet {
 		InformSetup setup = new InformSetup();
 		setup = getter.getInformation();	
 		
+		CategoryBean category = new CategoryBean();
+		category = getter.getCategory(studyIndex);
+		
 		request.setAttribute("membercount", membercount); 	//스터디 참여인원
 		request.setAttribute("memlist", memlist);			//스터디 참여인원의 정보
-		request.setAttribute("setup", setup);
+		request.setAttribute("setup", setup);				//설정 정보
+		request.setAttribute("category", category);			//카테고리
 		getter.close();
 		
 		
@@ -57,7 +63,6 @@ public class Setup extends HttpServlet {
 		InformSetup setup = new InformSetup();
 		/*int index = Integer.parseInt(request.getParameter("studyIndex"));*/
 		
-		setup.setCategory("새로운카테");
 		setup.setPeopleNum(request.getParameter("peopleNum"));
 		setup.setName(request.getParameter("studyName"));
 		setup.setPlace(request.getParameter("place"));

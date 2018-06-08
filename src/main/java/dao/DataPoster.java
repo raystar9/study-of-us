@@ -11,6 +11,12 @@ import beans.prototype.StudyList;
 import beans.study.each.InformSetup;
 import beans.study.each.board.BoardViewRegisterBean;
 import beans.study.each.board.CommentBean;
+<<<<<<< HEAD
+import beansNew.Attend;
+=======
+import beans.study.each.fee.CashExpenseBean;
+import beans.study.each.fee.CashMemberBean;
+>>>>>>> origin/dahye
 import dao.interfaces.DataSettable;
 
 public class DataPoster extends DataSetter {
@@ -111,17 +117,16 @@ public class DataPoster extends DataSetter {
 		set(InformSetup.QUERY_PUT, new DataSettable() {
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
-				pstmt.setString(1, setup.getCategory());
-				pstmt.setString(2, setup.getPeopleNum());
-				pstmt.setString(3, setup.getName());
-				pstmt.setString(4, setup.getPlace());
-				pstmt.setString(5, setup.getActivityTime());
-				pstmt.setString(6, setup.getStartDate());
-				pstmt.setString(7, setup.getEndDate());
-				pstmt.setString(8, setup.getDay());
-				pstmt.setString(9, setup.getExplain());
-				pstmt.setString(10, setup.getPrepared());
-				pstmt.setString(11, setup.getEffective());
+				pstmt.setString(1, setup.getPeopleNum());
+				pstmt.setString(2, setup.getName());
+				pstmt.setString(3, setup.getPlace());
+				pstmt.setString(4, setup.getActivityTime());
+				pstmt.setString(5, setup.getStartDate());
+				pstmt.setString(6, setup.getEndDate());
+				pstmt.setString(7, setup.getDay());
+				pstmt.setString(8, setup.getExplain());
+				pstmt.setString(9, setup.getPrepared());
+				pstmt.setString(10, setup.getEffective());
 				/* pstmt.setInt(12, index); where절에 넣을 스터디번호 */
 				pstmt.executeUpdate();
 				pstmt.close();
@@ -243,4 +248,55 @@ public class DataPoster extends DataSetter {
 			}
 		});
 	}
+	
+	//구명회 파트
+	
+	public void postAttend(ArrayList<Attend> attends) {
+		for(Attend attend : attends) {
+			set(Attend.QUERY_POST, new DataSettable() {
+				@Override
+				public void prepare(PreparedStatement pstmt) throws SQLException {
+					pstmt.setInt(1, attend.getMeetingId());
+					pstmt.setInt(2, attend.getMemberId());
+					pstmt.setString(3, attend.getAttend());
+					pstmt.executeQuery();
+					pstmt.close();
+				}
+			});
+		}
+	}
+	
+	public void postFeeMemberInsert(ArrayList<CashMemberBean> mem) {
+		for(CashMemberBean cmb : mem){	
+			set(CashMemberBean.QUERY_POST, new DataSettable() {
+				
+				@Override
+				public void prepare(PreparedStatement pstmt) throws SQLException {
+					pstmt.setInt(1, cmb.getMemIndex());
+					pstmt.setInt(2, cmb.getMemfee());
+					pstmt.setString(3, cmb.getNote());
+					pstmt.executeUpdate();
+					pstmt.close();
+					
+				}
+			});
+		}
+	}
+	
+	public void postExpenseInsert(ArrayList<CashExpenseBean> expense) {
+		for(CashExpenseBean ex : expense){	
+			set(CashExpenseBean.QUERY_POST, new DataSettable() {
+				
+				@Override
+				public void prepare(PreparedStatement pstmt) throws SQLException {
+					pstmt.setInt(1, ex.getExpense());
+					pstmt.setString(2, ex.getContent());
+					pstmt.executeUpdate();
+					pstmt.close();
+					
+				}
+			});
+		}
+	}
+	
 }

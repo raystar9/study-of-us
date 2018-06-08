@@ -12,7 +12,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import beans.study.each.schedule.ScheduleBean;
 import fakeDB.FakeGetter;
-import servlet.ServletDispatcher;
 
 /**
  * Servlet implementation class Schedule
@@ -54,7 +53,7 @@ public class Schedule extends HttpServlet {
 			}
 			request.setAttribute("schedules", mapper.writeValueAsString(schedules));
 		}
-		ServletDispatcher.forward(request, response, "schedule.jsp");
+		request.getRequestDispatcher("/study/each/schedule.jsp").forward(request, response);
 	}
 
 }

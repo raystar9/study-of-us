@@ -14,6 +14,7 @@ public class Member2{
 	/*	지울껀데 예비용으로 만들어서 사용해봄*/
 	
 	 public static final String QUERY_GET ="SELECT * FROM MEMBER";
+	 public static final String QUERY_GET_INDEX ="SELECT M_INDEX FROM MEMBER";
 	 public static final String QUERY_GET_COUNT ="SELECT COUNT(*) FROM MEMBER";
      public static final String QUERY_POST = "insert into member values(member_index.nextval,?,?,?,?,?,?,?,?)";
      public static final String QUERY_PUT = "UPDATE ";

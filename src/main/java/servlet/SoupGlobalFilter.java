@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.net.URLDecoder;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -51,7 +52,6 @@ public class SoupGlobalFilter implements Filter {
 			chain.doFilter(request, response);
 		} else if(uri.length >= 3) {
 			request.setAttribute("root", httpRequest.getContextPath());
-			request.setAttribute("uri", uri);
 			if(uri[2].equals("study")) {
 				studyPaging(httpRequest, httpResponse, chain, uri);
 			} else {
@@ -74,7 +74,8 @@ public class SoupGlobalFilter implements Filter {
 			if(uri[3].equals("search")) {
 				chain.doFilter(request, response);
 			}
-			uri[3] = "each";
+			
+			request.setAttribute("studyName", URLDecoder.decode(uri[3], "UTF-8"));
 			if(uri.length == 4) {
 				//TODO 각study의 기본 페이지로
 			} else {
@@ -96,7 +97,7 @@ public class SoupGlobalFilter implements Filter {
 		if(uri.length == 4 || uri.length == 5) {
 			new Attendance().service(request, response);
 		} else {
-			uri[5] = "each";
+			request.setAttribute("attendNumber", uri[5]);
 			if(uri[6].equals("confirm")) {
 				new AttendanceConfirm().service(request, response);
 			} else if(uri[6].equals("record")) {

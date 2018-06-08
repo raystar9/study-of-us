@@ -8,19 +8,17 @@ public class InformSetup {
 	public static final String QUERY_GET = "SELECT S_INDEX, S_CATEGORY, S_PLOPIENUM, S_NAME, S_PLACE, S_time, S_START, S_END, S_DAY, S_explain, S_prepared, S_effective FROM STUDY";
 	public static final String QUERY_PUT = "UPDATE STUDY SET S_CATEGORY=?, S_PLOPIENUM=?, S_NAME=?, S_PLACE=?, S_TIME=?, S_START=?, S_END=?, S_DAY=?, S_EXPLAIN=?, S_PREPARED=?, S_EFFECTIVE=?"; 
 	
-	private int index;			//스터디 번호
-	private String category;	//카테고리
-	private String peopleNum;	//스터디 모집인원
-	private String name;		//스터디 명
-	private String place;		//스터디 장소
+	private int index;				//스터디 번호
+	private String peopleNum;		//스터디 모집인원
+	private String name;			//스터디 명
+	private String place;			//스터디 장소
 	private String activityTime;	//스터디 활동시간
 	private String startDate;		//스터디 시작날짜
-	private	String endDate;		//스터디 종료날짜
-	private String day;			//스터디 활동요일
-	private String explain;		//스터디 개요
-	private String prepared;	//주요 교재 및 준비물
-	private	String effective;	//기대효과 및 활동분야
-	
+	private	String endDate;			//스터디 종료날짜
+	private String day;				//스터디 활동요일
+	private String explain;			//스터디 개요
+	private String prepared;		//주요 교재 및 준비물
+	private	String effective;		//기대효과 및 활동분야
 	
 	
 	public String getActivityTime() {
@@ -52,12 +50,6 @@ public class InformSetup {
 	}
 	public void setIndex(int index) {
 		this.index = index;
-	}
-	public String getCategory() {
-		return category;
-	}
-	public void setCategory(String category) {
-		this.category = category;
 	}
 	public String getPeopleNum() {
 		return peopleNum;

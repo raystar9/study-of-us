@@ -2,7 +2,6 @@
 
 package beans.study.each.fee;
 
-import java.util.Date;
 
 public class CashViewRegisterBean {
 	
@@ -12,33 +11,35 @@ public class CashViewRegisterBean {
 	public static final String QUERY_DELETE = "DELETE ";	//cash_view_form.jsp에서 데이터 삭제할 때 쿼리
 	public static final String QUERY_POST = "INSERT";		//cash_register_form.jsp에서 데이터 삽입할 때 쿼리
 
-	private String title; 		 // 회비게시글 제목
-	private Date date; 		 	 // 회비게시글 날짜
-	private int total; 			 // 누적된 총액
-
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public Date getDate() {
+	private String date; 		// 회비게시글 날짜
+	private int expensetotal;	// 지출 총액
+	private int memfeetotal;	// 낸 회비 총액
+	private int alltotal; 		// 누적된 총액
+	
+	public String getDate() {
 		return date;
 	}
-
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
-
-	public int getTotal() {
-		return total;
+	public int getExpensetotal() {
+		return expensetotal;
+	}
+	public void setExpensetotal(int expensetotal) {
+		this.expensetotal = expensetotal;
+	}
+	public int getMemfeetotal() {
+		return memfeetotal;
+	}
+	public void setMemfeetotal(int memfeetotal) {
+		this.memfeetotal = memfeetotal;
+	}
+	public int getAlltotal() {
+		return alltotal;
+	}
+	public void setAlltotal(int alltotal) {
+		this.alltotal = alltotal;
 	}
 
-	public void setTotal(int total) {
-		this.total = total;
-	}
 
 }
