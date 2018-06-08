@@ -1,21 +1,25 @@
-public Login getIndex(String id) {
-		Login index = (Login) get(Login.QUERY_GET3,new DataSettable() {
+	public StudyListSelect getStudyListCount(int index) {
+		StudyListSelect count = (StudyListSelect) get(StudyListSelect.QUERY_GET2,new DataSettable() {
 			
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
-				pstmt.setString(1, id);
+				pstmt.setInt(1, index);
+				
 			}
-		},new DataGettable() {
+		}, new DataGettable() {
 			
 			@Override
 			public Object onGetResult(ResultSet rs) throws SQLException {
-				Login innerIndex = null;
+				StudyListSelect slist = null;
 				if(rs.next()) {
-					innerIndex = new Login();
-					innerIndex.setIndex(rs.getInt(1));
+					slist = new StudyListSelect();
+					slist.setCount(rs.getInt("count"));
 				}
-				return innerIndex;
+				
+				return slist;
 			}
 		});
-		return index;
+		
+		// TODO Auto-generated method stub
+		return count;
 	}

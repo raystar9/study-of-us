@@ -33,7 +33,7 @@ public class List extends HttpServlet {
 		// 현재 페이지수
 		int page = 1;
 
-		//// 한페이지에 보여줄 스터디테이블 갯수
+		//// 한페이지에 보여줄 스터디테이블 개수
 		int limit = 3;
 
 		if (request.getParameter("page") != null) {
@@ -41,7 +41,6 @@ public class List extends HttpServlet {
 		}
 		System.out.println("넘어온 페이지 = " + page);
 
-		// 총스터디 수를 받아옵니다. (나의스터디만)
 		DataGetter getter = new DataGetter(DatabaseAccounts.PROJECT);
 		// 스터디 개수 뽑아옵니다
 		StudyListSelect studycount = getter.getStudyListCount(index);

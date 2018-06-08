@@ -61,6 +61,8 @@ body {
   </c:if>
   <a href="/study-of-us/study/each/Registration">Study Create</a>
   <a href="/study-of-us/study/SearchMain">Study Search</a>
+  <a href="/study-of-us/inquiryPage">Study Board</a>
+  
   <a href="#information">Information</a>
   
   <div class="topnav-right">
