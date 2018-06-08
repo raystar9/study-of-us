@@ -1,6 +1,7 @@
 package servlet.study.each;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -27,17 +28,25 @@ public class Participate extends HttpServlet {
     }
  
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		DataGetter getter = new DataGetter(DatabaseAccounts.SCOTT);
-		int index = Integer.parseInt(request.getParameter("index"));
+		DataGetter getter = new DataGetter(DatabaseAccounts.PROJECT);
 		
 		
-		ArrayList<Study> study = getter.getStudies(index); // 인덱스번호를 통해 선택된 스터디를 찾음
-		
-		request.setAttribute("study", study);
-		
-		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/each/participate.jsp");
-		dispatcher.forward(request, response);
+		System.out.println(request.getSession().getAttribute("id"));
+		if(request.getSession().getAttribute("id") == null) {
+			response.setContentType("text/html;charset=utf-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("alert('참여는 로그인 후에 이용 가능합니다.');");
+			out.println("history.back()");
+			out.println("</script>");
+		}else {
+			int index = Integer.parseInt(request.getParameter("index"));
+			ArrayList<Study> study = getter.getStudies(index); // 인덱스번호를 통해 선택된 스터디를 찾음
+			request.setAttribute("study", study);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/study/each/participate.jsp");
+			dispatcher.forward(request, response);
+		}
+	
 	}
 
 	

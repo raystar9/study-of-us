@@ -24,7 +24,7 @@
 </tr>
 <tr>
 <th>스터디 종류</th>
-<td>${study[0].c_id }</td>
+<td>${study[0].s_c_id }</td>
 </tr>
 
 <tr>
@@ -34,16 +34,16 @@
 
 <tr>
 <th>스터디 기대 및 효과</th>
-<td>${study[0].effective }</td>
+<td>${study[0].effect }</td>
 </tr>
 <tr>
 <th>교재 및 준비물</th>
-<td>${study[0].prepared }</td>
+<td>${study[0].material }</td>
 </tr>
 <tr>
 
 <tr>
-<th colspan=2>모집인원<input type=text value="${study[0].peoplenum }"> 활동시간<input type=text value="${study[0].time}"> 요일<input type=text value="${study[0].day }"></th>
+<th colspan=2>모집인원<input type=text value="${study[0].maxmember }"> 활동시간<input type=text value="${study[0].time}"> 요일<input type=text value="${study[0].day }"></th>
 </tr>
 <tr>
 <th>스터디 지역 </th>

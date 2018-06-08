@@ -107,7 +107,7 @@ html, body {
 	margin: auto;
 }
 
-.ranking{
+.ranking {
 	margin-bottom: 100px;
 }
 </style>
@@ -127,7 +127,8 @@ html, body {
 			</div>
 		</div>
 		<div class="category-body">
-			<h3>카테고리</h3><br>
+			<h3>카테고리</h3>
+			<br>
 			<div class="category">
 				<div class="category-container">
 					<div class="column">
@@ -166,17 +167,7 @@ html, body {
 						</div>
 					</div>
 
-					<div class="column">
-						<div class="card">
-							<img src="/study-of-us/resources/images/notebook.png" alt="Jane"
-								style="width: 60%;">
-							<div class="container">
-								<h2>문서작성</h2>
-								<p class="title">interview</p>
-								<button class="button">Contact</button>
-							</div>
-						</div>
-					</div>
+
 
 					<div class="column">
 						<div class="card">
@@ -196,6 +187,18 @@ html, body {
 								style="width: 60%;">
 							<div class="container">
 								<h2>자격증</h2>
+								<p class="title">interview</p>
+								<button class="button">Contact</button>
+							</div>
+						</div>
+					</div>
+
+					<div class="column">
+						<div class="card">
+							<img src="/study-of-us/resources/images/notebook.png" alt="Jane"
+								style="width: 60%;">
+							<div class="container">
+								<h2>전체 스터디</h2>
 								<p class="title">interview</p>
 								<button class="button">Contact</button>
 							</div>

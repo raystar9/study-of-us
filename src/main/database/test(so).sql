@@ -3,18 +3,29 @@ select * from study inner join CATEGORY on STUDY.S_C_ID = CATEGORY.C_ID where c_
 
 select * from study inner join CATEGORY on STUDY.S_C_ID = CATEGORY.C_ID where c_group = '프로그래밍';
 		
-select * from 
-(select rownum as rnum, s_index, s_name, s_c_id, S_MT_INDEX, S_START, S_END, S_PLOPIENUM, S_DAY, S_TIME,S_EXPLAIN,S_PREPARED,S_EFFECTIVE ,S_PLACE, C_SUB 
-from (select 
-s_index, s_name, s_c_id, S_MT_INDEX, S_START, S_END, S_PLOPIENUM, S_DAY, S_TIME,S_EXPLAIN,S_PREPARED,S_EFFECTIVE ,S_PLACE, C_SUB from 
-(select 
-* from study inner join CATEGORY on STUDY.S_C_ID = CATEGORY.C_ID 
-where s_name LIKE '%스%'  order by s_index) where c_sub like '%영어%')) 
-where rnum >= 1 and rnum <= 5 and s_place LIKE '%서울%' or s_place LIKE '%인천%' 
+select * from (select rownum as rnum, s_index, s_name, s_c_id, S_MT_INDEX, S_M_INDEX , S_START, S_END, S_MAXMEMBER, S_DAY, S_TIME, S_EXPLAIN, S_MATERIAL, S_EFFECT, S_PLACE ,C_GROUP, C_SUBGROUP 
+			from study inner join CATEGORY on STUDY.S_C_ID = CATEGORY.C_ID ) where C_SUBGROUP LIKE '%%'
+			
+			select * from (select rownum as rnum, s_index, s_name, s_c_id, S_MT_INDEX, S_M_INDEX , S_START, S_END, S_MAXMEMBER, S_DAY, S_TIME, S_EXPLAIN, S_MATERIAL, S_EFFECT, S_PLACE ,C_GROUP, C_SUBGROUP 
+			 from study inner join CATEGORY on STUDY.S_C_ID = CATEGORY.C_ID ) where S_NAME LIKE ? and S_PLACE LIKE ? and C_SUBGROUP LIKE ? and S_DAY LIKE ? and S_TIME LIKE ? 
 
-select 
-* from study inner join CATEGORY on STUDY.S_C_ID = CATEGORY.C_ID 
-where s_name LIKE '%스%' and c_sub LIKE '%영어%' order by s_index 
+
+select * from (select rownum as rnum, s_index, s_name, s_c_id, S_MT_INDEX, S_M_INDEX , S_START, S_END, S_MAXMEMBER, S_DAY, S_TIME, S_EXPLAIN, S_MATERIAL, S_EFFECT, S_PLACE ,C_GROUP, C_SUBGROUP 
+from study inner join CATEGORY on STUDY.S_C_ID = CATEGORY.C_ID order by s_index) where S_NAME LIKE '%외국%' and S_PLACE LIKE '%서울%' and C_SUBGROUP LIKE '%%' and S_DAY LIKE '%주말%' and S_TIME LIKE '%12:00%' and rnum >= 1 and rnum <= 5; 
+
+select * from study inner join CATEGORY on STUDY.S_C_ID = CATEGORY.C_ID where C_GROUP = '프로그래밍' order by S_index desc 
+select * from study inner join CATEGORY on STUDY.S_C_ID = CATEGORY.C_ID where c_group LIKE '%%'
+
+select * from CATEGORY 
+select * from (select rownum as rnum, s_index, s_name, s_c_id, S_MT_INDEX, S_START, S_END, S_PLOPIENUM, S_DAY, S_TIME,S_EXPLAIN,S_PREPARED,S_EFFECTIVE ,S_PLACE 
+			from (
+			select s_index, s_name, s_c_id, S_MT_INDEX, S_START, S_END, S_PLOPIENUM, S_DAY, S_TIME,S_EXPLAIN,S_PREPARED,S_EFFECTIVE ,S_PLACE 
+			from (
+			select * from study inner join CATEGORY on STUDY.S_C_ID = CATEGORY.C_ID where s_place LIKE '%%' and s_name LIKE '%%' and category.C_SUB LIKE '%%'
+			order by s_index))) 
+			where rnum >= 1 and rnum <= 5;
+
+
 
 delete study;
 
@@ -37,13 +48,7 @@ CREATE TABLE Study(
 	S_PLACE VARCHAR(50) NOT NULL           
 )
 )
-select * from (select rownum as rnum, s_index, s_name, s_c_id, S_MT_INDEX, S_START, S_END, S_PLOPIENUM, S_DAY, S_TIME,S_EXPLAIN,S_PREPARED,S_EFFECTIVE ,S_PLACE 
-			from (
-			select s_index, s_name, s_c_id, S_MT_INDEX, S_START, S_END, S_PLOPIENUM, S_DAY, S_TIME,S_EXPLAIN,S_PREPARED,S_EFFECTIVE ,S_PLACE 
-			from (
-			select * from study inner join CATEGORY on STUDY.S_C_ID = CATEGORY.C_ID where s_place LIKE '%%' and s_name LIKE '%%' and category.C_SUB LIKE '%%'
-			order by s_index))) 
-			where rnum >= 1 and rnum <= 5;
+
 			
 			
 			select * from study where s_place LIKE '%인천%' and s_name LIKE '%자바%' and LIKE 
@@ -61,13 +66,7 @@ START WITH 1
 INCREMENT BY 1
 NOMAXVALUE;
 
-select * from (select rownum as rnum, s_index, s_name, s_c_id, S_MT_INDEX, S_START, S_END, S_PLOPIENUM, S_DAY, S_TIME,S_EXPLAIN,S_PREPARED,S_EFFECTIVE ,S_PLACE 
-			from (
-			select s_index, s_name, s_c_id, S_MT_INDEX, S_START, S_END, S_PLOPIENUM, S_DAY, S_TIME,S_EXPLAIN,S_PREPARED,S_EFFECTIVE ,S_PLACE 
-			from (
-			select * from study inner join CATEGORY on STUDY.S_C_ID = CATEGORY.C_ID where s_place LIKE '%자바%' and s_name LIKE '%영어%' and category.C_SUB LIKE '%자바%' 
-			order by s_index))) 
-			where rnum >= 1 and rnum <= 5;
+검색어 , 카테고리 , 시간대 , 요일 , 지역
 
 select * from Category
 select * from study
@@ -79,22 +78,3 @@ select * from (select rownum as rnum, s_index, s_name, s_c_id, S_MT_INDEX, S_STA
 			from study 
 			order by s_index)) 
 			where rnum >= 1 and rnum <= 5;
-insert into study values(study_index.nextval,'자바스터디',1,2,'2018-05-29','2018-06-15',6,'2018-06-15','2018-06-15','2018-06-15','2018-06-15','2018-06-15','인천');
-insert into study values(study_index.nextval,'c언어스터디',2,2,'2018-05-29','2018-06-15',6,'2018-06-15','2018-06-15','2018-06-15','2018-06-15','2018-06-15','서울');
-insert into study values(study_index.nextval,'c++스터디',4,2,'2018-05-29','2018-06-15',6,'2018-06-15','2018-06-15','2018-06-15','2018-06-15','2018-06-15','세종');
-insert into study values(study_index.nextval,'c#언어스',5,2,'2018-05-29','2018-06-15',6,'2018-06-15','2018-06-15','2018-06-15','2018-06-15','2018-06-15','서울');
-insert into study values(study_index.nextval,'파이썬',3,2,'2018-05-29','2018-06-15',6,'2018-06-15','2018-06-15','2018-06-15','2018-06-15','2018-06-15','인천');
-insert into study values(study_index.nextval,'영어스터디',6,2,'2018-05-29','2018-06-15',6,'2018-06-15','2018-06-15','2018-06-15','2018-06-15','2018-06-15','서울');
-insert into study values(study_index.nextval,'불어스터디',7,2,'2018-05-29','2018-06-15',6,'2018-06-15','2018-06-15','2018-06-15','2018-06-15','2018-06-15','세종');
-insert into study values(study_index.nextval,'중국어스터',8,2,'2018-05-29','2018-06-15',6,'2018-06-15','2018-06-15','2018-06-15','2018-06-15','2018-06-15','서울');
-insert into study values(study_index.nextval,'일본어스터',9,2,'2018-05-29','2018-06-15',6,'2018-06-15','2018-06-15','2018-06-15','2018-06-15','2018-06-15','서울');
-insert into study values(study_index.nextval,'한국어스터',10,2,'2018-05-29','2018-06-15',6,'2018-06-15','2018-06-15','2018-06-15','2018-06-15','2018-06-15','인천');
-insert into study values(study_index.nextval,'정보처리',11,2,'2018-05-29','2018-06-15',6,'2018-06-15','2018-06-15','2018-06-15','2018-06-15','2018-06-15','서울');
-insert into study values(study_index.nextval,'컴활',12,2,'2018-05-29','2018-06-15',6,'2018-06-15','2018-06-15','2018-06-15','2018-06-15','2018-06-15','세종');
-insert into study values(study_index.nextval,'ccna',13,2,'2018-05-29','2018-06-15',6,'2018-06-15','2018-06-15','2018-06-15','2018-06-15','2018-06-15','세종');
-insert into study values(study_index.nextval,'ccnp',14,2,'2018-05-29','2018-06-15',6,'2018-06-15','2018-06-15','2018-06-15','2018-06-15','2018-06-15','서울');
-insert into study values(study_index.nextval,'네트워크',15,2,'2018-05-29','2018-06-15',6,'2018-06-15','2018-06-15','2018-06-15','2018-06-15','2018-06-15','서울');
-
-insert into study values(study_index.nextval,'토익',6,2,'2018-05-29','2018-06-15',6,'2018-06-15','2018-06-15','2018-06-15','2018-06-15','2018-06-15','서울');
-insert into study values(study_index.nextval,'토플',6,2,'2018-05-29','2018-06-15',6,'2018-06-15','2018-06-15','2018-06-15','2018-06-15','2018-06-15','서울');
-insert into study values(study_index.nextval,'토스',6,2,'2018-05-29','2018-06-15',6,'2018-06-15','2018-06-15','2018-06-15','2018-06-15','2018-06-15','인천');

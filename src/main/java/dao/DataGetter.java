@@ -103,106 +103,40 @@ public class DataGetter extends DataAccessor {
 		return list;
 	}
 
-	public ArrayList<Study> getStudies() {
+	public ArrayList<StudySearch> getStudies(String search, String location, String category, String day, String time) {
 		@SuppressWarnings("unchecked")
-		ArrayList<Study> list = (ArrayList<Study>) get(Study.QUERY_GET, new DataGettable() {
-
-			@Override
-			public ArrayList<?> onGetResult(ResultSet rs) throws SQLException {
-				ArrayList<Study> studies = new ArrayList<>();
-				while (rs.next()) {
-					Study study = new Study();
-					study.setIndex(rs.getInt(1));
-					study.setName(rs.getString(2));
-					study.setS_c_id(rs.getInt(3));
-					study.setS_mt_index(rs.getInt(4));
-					study.setS_m_index(rs.getInt(5));
-					study.setStart(rs.getDate(6));
-					study.setEnd(rs.getDate(7));
-					study.setMaxmember(rs.getInt(8));
-					study.setDay(rs.getString(9));
-					study.setTime(rs.getString(10));
-					study.setExplain(rs.getString(11));
-					study.setMaterial(rs.getString(12));
-					study.setEffect(rs.getString(13));
-					study.setPlace(rs.getString(14));
-
-					studies.add(study);
-				}
-				return studies;
-			}
-		});
-
-		// TODO Auto-generated method stub
-		return list;
-	}
-
-
-	public ArrayList<Study> getStudies(String search, String[] check, String secondArray, int startcount, int endcount) { 
+		ArrayList<StudySearch> list = (ArrayList<StudySearch>) get(StudySearch.QUERY_GET, new DataSettable() {
 		
-		String sql = StudyListCount.QUERY_GET3+StudyListCount.QUERY_GET4;
-		 if(search != null && search != "") { 
-			 sql = StudyListCount.QUERY_GET3;
-			 // ) 로 짜른부분왓 ㅓ다시
-			 sql += " where s_name LIKE '%"+search+"%'"+StudyListCount.QUERY_GET4;
-				if(!secondArray.equals("소분 +`류") && secondArray != "" ) {
-					sql = (sql.substring(0,sql.length()-3));
-			 		sql += "where c_sub LIKE '%"+secondArray+"%' ))" ;
-				}
-					if(check != null ) { // 검색어와 체크값을 같이 검색 했을 시
-						String str = "";
-						// 체크값을 만족하는 경우
-						if(!secondArray.equals("소분류") && secondArray != "") {
-							sql = (sql.substring(0,sql.length()-1));
-							 str = " where s_place LIKE ";
-						}else {
-							str = ") where s_place LIKE ";
-						}
-								for(int i=0; i<check.length; i++) {
-					    	if(i<1) {
-					    		str += "'%"+check[i]+"%' ";
-					    	}else {
-					    		str += "or s_place LIKE '%"+check[i]+"%' ";
-					    	}
-					    }
-					 sql += str + ")"; 
-					}		
-		 	
-		 }
-		 sql += StudyListCount.QUERY_GET5;
-		 System.out.println(sql);
-	
-		@SuppressWarnings("unchecked")
-		ArrayList<Study> list = (ArrayList<Study>) get(sql,new DataSettable() {
-			
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
-				pstmt.setInt(1, startcount);
-				pstmt.setInt(2, endcount);
+				pstmt.setString(1, search);
+				pstmt.setString(2, location);
+				pstmt.setString(3, category);
+				pstmt.setString(4, day);
+				pstmt.setString(5, time);
 				
 			}
 		}, new DataGettable() {
-
+					
 			@Override
 			public ArrayList<?> onGetResult(ResultSet rs) throws SQLException {
-				ArrayList<Study> studies = new ArrayList<>();
+				ArrayList<StudySearch> studies = new ArrayList<>();
 				while (rs.next()) {
-					Study study = new Study();
-					study.setIndex(rs.getInt(1));
-					study.setName(rs.getString(2));
-					study.setS_c_id(rs.getInt(3));
-					study.setS_mt_index(rs.getInt(4));
-					study.setS_m_index(rs.getInt(5));
-					study.setStart(rs.getDate(6));
-					study.setEnd(rs.getDate(7));
-					study.setMaxmember(rs.getInt(8));
-					study.setDay(rs.getString(9));
-					study.setTime(rs.getString(10));
-					study.setExplain(rs.getString(11));
-					study.setMaterial(rs.getString(12));
-					study.setEffect(rs.getString(13));
-					study.setPlace(rs.getString(14));
-
+					StudySearch study = new StudySearch();
+					study.setIndex(rs.getInt("s_index"));
+					study.setName(rs.getString("s_name"));
+					study.setS_c_id(rs.getInt("s_c_id"));
+					study.setS_mt_index(rs.getInt("s_mt_index"));
+					study.setS_m_index(rs.getInt("s_m_index"));
+					study.setStart(rs.getDate("s_start"));
+					study.setEnd(rs.getDate("s_end"));
+					study.setMaxmember(rs.getInt("s_maxmember"));
+					study.setDay(rs.getString("s_day"));
+					study.setTime(rs.getString("s_time"));
+					study.setExplain(rs.getString("s_explain"));
+					study.setMaterial(rs.getString("s_material"));
+					study.setEffect(rs.getString("s_effect"));
+					study.setPlace(rs.getString("s_place"));
 
 					studies.add(study);
 				}
@@ -213,42 +147,64 @@ public class DataGetter extends DataAccessor {
 		// TODO Auto-generated method stub
 		return list;
 	}
-	
-	public ArrayList<Study> getStudies(String search, String[] check, String secondArray) { 
-		
-		String sql = StudyListCount.QUERY_GET3+StudyListCount.QUERY_GET4;
-		 if(search != null && search != "") { 
-			 sql = StudyListCount.QUERY_GET3;
-			 // ) 로 짜른부분왓 ㅓ다시
-			 sql += " where s_name LIKE '%"+search+"%'"+StudyListCount.QUERY_GET4;
-				if(!secondArray.equals("소분류") && secondArray != "" ) {
-					sql = (sql.substring(0,sql.length()-3));
-			 		sql += "where c_sub LIKE '%"+secondArray+"%' ))" ;
-				}
-					if(check != null ) { // 검색어와 체크값을 같이 검색 했을 시
-						String str = "";
-						// 체크값을 만족하는 경우
-						if(!secondArray.equals("소분류") && secondArray != "") {
-							sql = (sql.substring(0,sql.length()-1));
-							 str = " where s_place LIKE ";
-						}else {
-							str = ") where s_place LIKE ";
-						}
-								for(int i=0; i<check.length; i++) {
-					    	if(i<1) {
-					    		str += "'%"+check[i]+"%' ";
-					    	}else {
-					    		str += "or s_place LIKE '%"+check[i]+"%' ";
-					    	}
-					    }
-					 sql += str + ")"; 
-					}		
-		 	
-		 }
-		 System.out.println(sql);
-	
+
+
+	public ArrayList<StudySearch> getStudies(String search, String location, String category, String day, String time, int startcount, int endcount) { 
 		@SuppressWarnings("unchecked")
-		ArrayList<Study> list = (ArrayList<Study>) get(sql, new DataGettable() {
+		ArrayList<StudySearch> list = (ArrayList<StudySearch>) get(StudySearch.QUERY_GET2, new DataSettable() {
+			
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+				pstmt.setString(1, search);
+				pstmt.setString(2, location);
+				pstmt.setString(3, category);
+				pstmt.setString(4, day);
+				pstmt.setString(5, time);
+				pstmt.setInt(6, startcount);
+				pstmt.setInt(7, endcount);
+				
+			}
+		}, new DataGettable() {
+					
+			@Override
+			public ArrayList<?> onGetResult(ResultSet rs) throws SQLException {
+				ArrayList<StudySearch> studies = new ArrayList<>();
+				while (rs.next()) {
+					StudySearch study = new StudySearch();
+					study.setIndex(rs.getInt("s_index"));
+					study.setName(rs.getString("s_name"));
+					study.setS_c_id(rs.getInt("s_c_id"));
+					study.setS_mt_index(rs.getInt("s_mt_index"));
+					study.setS_m_index(rs.getInt("s_m_index"));
+					study.setStart(rs.getDate("s_start"));
+					study.setEnd(rs.getDate("s_end"));
+					study.setMaxmember(rs.getInt("s_maxmember"));
+					study.setDay(rs.getString("s_day"));
+					study.setTime(rs.getString("s_time"));
+					study.setExplain(rs.getString("s_explain"));
+					study.setMaterial(rs.getString("s_material"));
+					study.setEffect(rs.getString("s_effect"));
+					study.setPlace(rs.getString("s_place"));
+
+					studies.add(study);
+				}
+				return studies;
+			}
+		});
+
+		// TODO Auto-generated method stub
+		return list;
+	}
+
+	public ArrayList<Study> getStudies(String search) { 
+		@SuppressWarnings("unchecked")
+		ArrayList<Study> list = (ArrayList<Study>) get(StudySearch.QUERY_GET,new DataSettable() {
+			
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+				pstmt.setString(1, search);
+			}
+		}, new DataGettable() {
 
 			@Override
 			public ArrayList<?> onGetResult(ResultSet rs) throws SQLException {
@@ -300,17 +256,23 @@ public class DataGetter extends DataAccessor {
 			public ArrayList<?> onGetResult(ResultSet rs) throws SQLException {
 				ArrayList<StudySearch> StudySearchlist = new ArrayList<>();
 				while (rs.next()) {
-					StudySearch studysearch = new StudySearch();
-					studysearch.setIndex(rs.getInt(2));
-					studysearch.setName(rs.getString(3));
-					studysearch.setC_id(rs.getString(4));
-					studysearch.setPlace(rs.getString(5));
-					studysearch.setTime(rs.getDate(6));
-					studysearch.setPloplenum(7);
-					studysearch.setGoal(rs.getString(8));
-					studysearch.setTerm(rs.getDate(9));
+					StudySearch study = new StudySearch();
+					study.setIndex(rs.getInt(1));
+					study.setName(rs.getString(2));
+					study.setS_c_id(rs.getInt(3));
+					study.setS_mt_index(rs.getInt(4));
+					study.setS_m_index(rs.getInt(5));
+					study.setStart(rs.getDate(6));
+					study.setEnd(rs.getDate(7));
+					study.setMaxmember(rs.getInt(8));
+					study.setDay(rs.getString(9));
+					study.setTime(rs.getString(10));
+					study.setExplain(rs.getString(11));
+					study.setMaterial(rs.getString(12));
+					study.setEffect(rs.getString(13));
+					study.setPlace(rs.getString(14));
 
-					StudySearchlist.add(studysearch);
+					StudySearchlist.add(study);
 				}
 				return StudySearchlist;
 			}
@@ -441,13 +403,18 @@ public class DataGetter extends DataAccessor {
 					StudySearch study = new StudySearch();
 					study.setIndex(rs.getInt(1));
 					study.setName(rs.getString(2));
-					study.setC_id(rs.getString(3));
-					study.setPlace(rs.getString(4));
-					study.setTime(rs.getDate(5));
-					study.setPloplenum(6);
-					study.setGoal(rs.getString(7));
-					study.setTerm(rs.getDate(8));
-
+					study.setS_c_id(rs.getInt(3));
+					study.setS_mt_index(rs.getInt(4));
+					study.setS_m_index(rs.getInt(5));
+					study.setStart(rs.getDate(6));
+					study.setEnd(rs.getDate(7));
+					study.setMaxmember(rs.getInt(8));
+					study.setDay(rs.getString(9));
+					study.setTime(rs.getString(10));
+					study.setExplain(rs.getString(11));
+					study.setMaterial(rs.getString(12));
+					study.setEffect(rs.getString(13));
+					study.setPlace(rs.getString(14));
 					studies.add(study);
 				}
 				return studies;
@@ -551,32 +518,10 @@ public class DataGetter extends DataAccessor {
 		return login;
 	}
 
-	public ArrayList<Study> getStudies(String searchVal, String placeVal, String secondArray) {
+	public ArrayList<Study> getStudies() {
 		@SuppressWarnings("unchecked")
-		ArrayList<Study> list = (ArrayList<Study>) get(Study.QUERY_GET3,new DataSettable() {
-			
-			@Override
-			public void prepare(PreparedStatement pstmt) throws SQLException {
-				String place = "%%";
-				String search = "%%";
-				String second = "%%";
-				
-				if(placeVal!=null) {
-					place = "%"+placeVal+"%";
-				}
-				if (searchVal != null) {
-					search = "%" + searchVal + "%";
-				}
-				if(secondArray!=null) {
-					second = "%"+secondArray+"%";
-				}
-				pstmt.setString(1, place);
-				pstmt.setString(2, search);
-				pstmt.setString(3, second);
-				
-			}
-		}, new DataGettable() {
-
+		ArrayList<Study> list = (ArrayList<Study>) get(Study.QUERY_GET,new DataGettable() {
+	
 			@Override
 			public ArrayList<?> onGetResult(ResultSet rs) throws SQLException {
 				ArrayList<Study> studies = new ArrayList<>();
@@ -916,9 +861,9 @@ public class DataGetter extends DataAccessor {
 		// TODO Auto-generated method stub
 		return list;
 	}
-	public ArrayList<Study> getCategryStudies(String category) {
+	public ArrayList<StudySearch> getCategryStudies(String category) {
 			@SuppressWarnings("unchecked")
-			ArrayList<Study> list = (ArrayList<Study>) get(StudySearchMain.QUERY_GET, new DataSettable() {
+			ArrayList<StudySearch> list = (ArrayList<StudySearch>) get(StudySearchMain.QUERY_GET, new DataSettable() {
 				
 				@Override
 				public void prepare(PreparedStatement pstmt) throws SQLException {
@@ -929,9 +874,9 @@ public class DataGetter extends DataAccessor {
 				
 				@Override
 				public Object onGetResult(ResultSet rs) throws SQLException {
-					ArrayList<Study> studies = new ArrayList<>();
+					ArrayList<StudySearch> studies = new ArrayList<>();
 					while(rs.next()) {
-						Study study = new Study();
+						StudySearch study = new StudySearch();
 						study.setIndex(rs.getInt(1));
 						study.setName(rs.getString(2));
 						study.setS_c_id(rs.getInt(3));
@@ -1214,10 +1159,160 @@ ArrayList<StudyListSelect> studylist = (ArrayList<StudyListSelect>) get(StudyLis
 			});
 			return dday;
 		}
-		
-		
-		
+
+		public ArrayList<StudySearch> getprogramming() {
+			@SuppressWarnings("unchecked")
+			ArrayList<StudySearch> list = (ArrayList<StudySearch>) get(StudySearch.QUERY_GET4, new DataGettable() {
+
+				@Override
+				public ArrayList<?> onGetResult(ResultSet rs) throws SQLException {
+					ArrayList<StudySearch> studies = new ArrayList<>();
+					while (rs.next()) {
+						StudySearch study = new StudySearch();
+						study.setIndex(rs.getInt("s_index"));
+						study.setName(rs.getString("s_name"));
+						study.setS_c_id(rs.getInt("s_c_id"));
+						study.setS_mt_index(rs.getInt("s_mt_index"));
+						study.setS_m_index(rs.getInt("s_m_index"));
+						study.setStart(rs.getDate("s_start"));
+						study.setEnd(rs.getDate("s_end"));
+						study.setMaxmember(rs.getInt("s_maxmember"));
+						study.setDay(rs.getString("s_day"));
+						study.setTime(rs.getString("s_time"));
+						study.setExplain(rs.getString("s_explain"));
+						study.setMaterial(rs.getString("s_material"));
+						study.setEffect(rs.getString("s_effect"));
+						study.setPlace(rs.getString("s_place"));
+
+
+
+						studies.add(study);
+					}
+					return studies;
+				}
+			});
+
+			// TODO Auto-generated method stub
+			return list;
+		}
+		public ArrayList<StudySearch> getlanguage() {
+			@SuppressWarnings("unchecked")
+			ArrayList<StudySearch> list = (ArrayList<StudySearch>) get(StudySearch.QUERY_GET5, new DataGettable() {
+
+				@Override
+				public ArrayList<?> onGetResult(ResultSet rs) throws SQLException {
+					ArrayList<StudySearch> studies = new ArrayList<>();
+					while (rs.next()) {
+						StudySearch study = new StudySearch();
+						study.setIndex(rs.getInt("s_index"));
+						study.setName(rs.getString("s_name"));
+						study.setS_c_id(rs.getInt("s_c_id"));
+						study.setS_mt_index(rs.getInt("s_mt_index"));
+						study.setS_m_index(rs.getInt("s_m_index"));
+						study.setStart(rs.getDate("s_start"));
+						study.setEnd(rs.getDate("s_end"));
+						study.setMaxmember(rs.getInt("s_maxmember"));
+						study.setDay(rs.getString("s_day"));
+						study.setTime(rs.getString("s_time"));
+						study.setExplain(rs.getString("s_explain"));
+						study.setMaterial(rs.getString("s_material"));
+						study.setEffect(rs.getString("s_effect"));
+						study.setPlace(rs.getString("s_place"));
+
+
+
+						studies.add(study);
+					}
+					return studies;
+				}
+			});
+
+			// TODO Auto-generated method stub
+			return list;
+		}
+		public ArrayList<StudySearch> getcertificate() {
+			@SuppressWarnings("unchecked")
+			ArrayList<StudySearch> list = (ArrayList<StudySearch>) get(StudySearch.QUERY_GET6, new DataGettable() {
+
+				@Override
+				public ArrayList<?> onGetResult(ResultSet rs) throws SQLException {
+					ArrayList<StudySearch> studies = new ArrayList<>();
+					while (rs.next()) {
+						StudySearch study = new StudySearch();
+						study.setIndex(rs.getInt("s_index"));
+						study.setName(rs.getString("s_name"));
+						study.setS_c_id(rs.getInt("s_c_id"));
+						study.setS_mt_index(rs.getInt("s_mt_index"));
+						study.setS_m_index(rs.getInt("s_m_index"));
+						study.setStart(rs.getDate("s_start"));
+						study.setEnd(rs.getDate("s_end"));
+						study.setMaxmember(rs.getInt("s_maxmember"));
+						study.setDay(rs.getString("s_day"));
+						study.setTime(rs.getString("s_time"));
+						study.setExplain(rs.getString("s_explain"));
+						study.setMaterial(rs.getString("s_material"));
+						study.setEffect(rs.getString("s_effect"));
+						study.setPlace(rs.getString("s_place"));
+
+
+
+						studies.add(study);
+					}
+					return studies;
+				}
+			});
+
+			// TODO Auto-generated method stub
+			return list;
+		}
+
+		public ArrayList<StudySearch> getCategryStudies(String category, int startcount, int endcount) {
+			@SuppressWarnings("unchecked")
+			ArrayList<StudySearch> list = (ArrayList<StudySearch>) get(StudySearch.QUERY_GET7,new DataSettable() {
+				
+				@Override
+				public void prepare(PreparedStatement pstmt) throws SQLException {
+					pstmt.setString(1, category);
+					pstmt.setInt(2, startcount);
+					pstmt.setInt(3, endcount);
+				}
+			}, new DataGettable() {
+
+				@Override
+				public ArrayList<?> onGetResult(ResultSet rs) throws SQLException {
+					ArrayList<StudySearch> studies = new ArrayList<>();
+					while (rs.next()) {
+						StudySearch study = new StudySearch();
+						study.setIndex(rs.getInt("s_index"));
+						study.setName(rs.getString("s_name"));
+						study.setS_c_id(rs.getInt("s_c_id"));
+						study.setS_mt_index(rs.getInt("s_mt_index"));
+						study.setS_m_index(rs.getInt("s_m_index"));
+						study.setStart(rs.getDate("s_start"));
+						study.setEnd(rs.getDate("s_end"));
+						study.setMaxmember(rs.getInt("s_maxmember"));
+						study.setDay(rs.getString("s_day"));
+						study.setTime(rs.getString("s_time"));
+						study.setExplain(rs.getString("s_explain"));
+						study.setMaterial(rs.getString("s_material"));
+						study.setEffect(rs.getString("s_effect"));
+						study.setPlace(rs.getString("s_place"));
+
+
+
+						studies.add(study);
+					}
+					return studies;
+				}
+			});
+
+			// TODO Auto-generated method stub
+			return list;
+		}
 }
+
+
+	
 
 
 

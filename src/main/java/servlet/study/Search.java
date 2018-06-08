@@ -1,7 +1,6 @@
 package servlet.study;
 
 import java.io.IOException;
-import java.net.URLDecoder;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -11,15 +10,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang3.SystemUtils;
 
-import beans.prototype.Study;
+import beans.study.StudySearch;
 import dao.DataGetter;
 import dao.DatabaseAccounts;
 
-/**
- * Servlet implementation class Home
- */
 @WebServlet("/study/search")
 public class Search extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -29,28 +24,46 @@ public class Search extends HttpServlet {
 			throws ServletException, IOException {
 		
 		System.out.println("스터디 검색 페이지");
-		DataGetter getter = new DataGetter(DatabaseAccounts.SCOTT);
-		String url = "";
+		DataGetter getter = new DataGetter(DatabaseAccounts.PROJECT);
+		String search = "%%";
+		String category = "%%";
+		String time = "%%";
+		String day = "%%";
+		String location = "%%";
 		
-		System.out.println(request.getParameter("params"));
-
-		String[] check = request.getParameterValues("checkbox");
-		String secondArray = request.getParameter("secondArray");
-		String search = request.getParameter("searchVal");
+		if(request.getParameter("searchVal") != null) {
+			search = request.getParameter("searchVal");	
+			search = "%"+search+"%";
+		}
+		if(request.getParameter("time") != null) {
+			time = request.getParameter("time");	
+			time = "%"+time+"%";
+		}
+		if(request.getParameter("category") != null) {
+			category = request.getParameter("category");	
+			category = "%"+category+"%";
+		}
+		
+		if(request.getParameter("day") != null) {
+			day = request.getParameter("day");	
+			day = "%"+day+"%";
+		}
+		if(request.getParameter("location") != null) {
+			location = request.getParameter("location");	
+			location = "%"+location+"%";
+		}
 
 		int startcount = 0;
 		int endcount = 0;
-
 		int page = 1; // 기본페이지 값은 항상 1
-		int countlist = 5; // 한 화면에 출력될 페이지의 수
-
-		ArrayList<Study> studiestotalcount = getter.getStudies(search, check, secondArray);
+		int countpage = 5; // 아래에 표시될 페이지 단위 1~5개 즉, 1,2,3,4,5 까지 하단의 표시
+		ArrayList<StudySearch> studiestotalcount = getter.getStudies(search,location,category,day,time);
 		int totalcount = studiestotalcount.size();
 		System.out.println("총 스터디의 수 :" + totalcount);
 		// 총 스터디의 개수를 구하기 위해서 getStudies 메서드 사용
-		int totalpage = totalcount / countlist;
+		int totalpage = totalcount / countpage;
 
-		if (totalcount > countlist * totalpage) {
+		if (totalcount > countpage * totalpage) {
 			totalpage++;
 		}
 
@@ -64,13 +77,13 @@ public class Search extends HttpServlet {
 			page = totalpage;
 		}
 		// 시작페이지와 끝페이지를 구하기
-		int countpage = 5; // 아래에 표시될 페이지 단위 1~5개 즉, 1,2,3,4,5 까지 하단의 표시
+		int countlist = 4; // 
+		
+		int startpage = ((page - 1) / countlist) * countlist + 1;
+		int endpage = startpage + countlist - 1;
 
-		int startpage = ((page - 1) / countpage) * countpage + 1;
-		int endpage = startpage + countpage - 1;
-
-		startcount = (page - 1) * countpage + 1;
-		endcount = page * countpage;
+		startcount = (page - 1) * countlist + 1;
+		endcount = page * countlist;
 
 		System.out.println(startcount + "start");
 		System.out.println(endcount + "endcount");
@@ -81,34 +94,32 @@ public class Search extends HttpServlet {
 			endpage = totalpage;
 		}
 
-		ArrayList<Study> studies = getter.getStudies(search, check, secondArray, startcount, endcount);
+		ArrayList<StudySearch> studies = getter.getStudies(search,location,category,day,time,startcount, endcount);
 
-		if (check != null) {
-			for (int i = 0; i < check.length; i++) {
-				url += "&checkbox=" + check[i];
-				request.setAttribute("check", url);
-			}
-		}
-		
-		request.setAttribute("checkbox", check);
+	
 		request.setAttribute("searchVal", search);
-		request.setAttribute("secondArray", secondArray);
+		request.setAttribute("category", category);
+		request.setAttribute("time", time);
+		request.setAttribute("day", day);
+		request.setAttribute("location", location);
+		
 		request.setAttribute("studies", studies);
 		request.setAttribute("startpage", startpage);
 		request.setAttribute("page", page);
 		request.setAttribute("totalpage", totalpage);
 		request.setAttribute("endpage", endpage);
-		System.out.println("check"+check);
 		
+
 		if(request.getParameter("state")!=null) {
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/study/sources/search/section2.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/study/sources/search/section3.jsp");
 			dispatcher.forward(request, response);
-			System.out.println("--------------------------Ajax 완료-------------------------");
-		
+			System.out.println("--------------------------ajax------------------------");
+			getter.close();
 		}else {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/search.jsp");
 		dispatcher.forward(request, response);
 		System.out.println("--------------------------완료-------------------------");
+		getter.close();
 		}
 	}
 }
