@@ -30,8 +30,9 @@ public class Information extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		DataGetter getter = new DataGetter(DatabaseAccounts.SCOTT);
+		DataGetter getter = new DataGetter(DatabaseAccounts.PROJECT);
 		int studyIndex = 3;
+		//int studyIndex = request.getParameter("studyIndex");
 		
 		int membercount = getter.getInformMemberCount();	//스터디 참여인원
 		

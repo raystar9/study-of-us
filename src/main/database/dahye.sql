@@ -537,7 +537,7 @@ from (SELECT ROWNUM RNUM, B_TITLE, B_NAME, B_DATE, B_S_INDEX, B_NO
 where B_S_INDEX IN (select S_INDEX 
                     from STUDY 
                     where S_INDEX = ?) 
-ORDER BY B_NO desc
+order by B_NO desc
 
 -----------------------------------------------------------------------------------
 
@@ -597,7 +597,7 @@ from COMMENT
 where (select S_INDEX 
        from STUDY s, BOARD b 
        where s.S_INDEX = b.B_S_INDEX) = ? 
-WHERE C_B_NO = ? 
+AND C_B_NO = ? 
 
 -----------------------------------------------------------------------------------
 
@@ -607,7 +607,7 @@ SET C_CONTENT=?
 where (select S_INDEX 
        from STUDY s, BOARD b 
        where s.S_INDEX = b.B_S_INDEX) = ? 
-WHERE C_B_NO = ? 
+AND C_B_NO = ? 
 AND C_INDEX = ?
        
 -----------------------------------------------------------------------------------
@@ -617,7 +617,7 @@ DELETE FROM COMMENT
 where (select S_INDEX 
        from STUDY s, BOARD b 
        where s.S_INDEX = b.B_S_INDEX) = ? 
-WHERE C_B_NO = ? 
+AND C_B_NO = ? 
 AND C_INDEX = ?
    
 -----------------------------------------------------------------------------------       
@@ -628,7 +628,7 @@ values(댓글시퀀스,스터디외래키,멤버외래키,?,?)
 where (select S_INDEX 
        from STUDY s, BOARD b 
        where s.S_INDEX = b.B_S_INDEX) = ? 
-WHERE C_B_NO = ?     
+AND C_B_NO = ?     
 
 ----------------------------------------------------------------------------------- 
 
@@ -642,18 +642,18 @@ where s.S_INDEX = ?
 ----------------------------------------------------------------------------------- 
 
 < InformSetup QUERY_GET - ?번 스터디의 정보를 수정하는 쿼리 >
-UPDATE STUDY s
-SET C_GROUP=?, C_SUBGROUP=?, S_MAXMEMBER=?, S_NAME=?, S_PLACE=?, S_TIME=?, S_START=?, S_END=?, S_DAY=?, S_EXPLAIN=?, S_MATERIAL=?, S_EFFECT=?    
+update STUDY s
+set C_GROUP=?, C_SUBGROUP=?, S_MAXMEMBER=?, S_NAME=?, S_PLACE=?, S_TIME=?, S_START=?, S_END=?, S_DAY=?, S_EXPLAIN=?, S_MATERIAL=?, S_EFFECT=?    
 where (select C_SUBGROUP, S_MAXMEMBER
        from CATEGORY c
        where c.C_ID = s.S_C_ID)
-where s.S_INDEX = ?
+AND s.S_INDEX = ?
 
 ----------------------------------------------------------------------------------- 
  
 < InformSetupMember QUERY_GET - ?번 스터디에 참여하고 있는 스터디원들의 정보를 가져오는 쿼리 >
-SELECT M_NAME, M_TEL, M_EMAIL 
-FROM MEMBER
+select M_NAME, M_TEL, M_EMAIL 
+from MEMBER
 where 
 
 ----------------------------------------------------------------------------------- 
@@ -663,7 +663,7 @@ where
 
 ----------------------------------------------------------------------------------- 
 
-< CashListBean QUERY_GET_COUNT - ?번 스터디에 있는 회비목록 개수 가져오는 쿼리 >
+< CashListBean QUERY_GET_COUNT - ?번 스터디에 있는 회비 리스트의 개수 가져오는 쿼리 >
 
 ----------------------------------------------------------------------------------- 
 
@@ -685,8 +685,18 @@ where
 
 < 
 
+select * from comment;
+select * from study;
+select * from member;
+select * from board;
 
-
-
+select COUNT(*) 
+from COMMENT, Board
+where B_S_INDEX = (select S_INDEX
+	from Study
+	where S_INDEX = 3)
+AND C_B_NO = (select B_NO 
+	from Board
+	where B_NO = 156)
 
 
