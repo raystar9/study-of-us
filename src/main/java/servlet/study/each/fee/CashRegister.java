@@ -35,17 +35,17 @@ public class CashRegister extends HttpServlet {
 		if(getter.isFeeRegistered((String)request.getAttribute("meetingId"))) {
 			response.sendRedirect("../../fee");
 		} else {
-			int studyIndex = 3;
+			String studyName = (String)request.getAttribute("studyName");
 			
 			ArrayList<InformSetupMember> memlist = new ArrayList<InformSetupMember>(); //스터디 참여인원의 정보
-			memlist = getter.getInformMember((String)request.getAttribute("studyName"));
+			memlist = getter.getInformMember(studyName);
 			String[] names = new String[memlist.size()];
 			
 			for(int i=0; i<memlist.size(); i++) {
 				names[i] = memlist.get(i).getName();
 			}
 			
-			int[] memIndex = getter.getMemIndex(studyIndex);
+			ArrayList<Integer> memIndex = getter.getMemberIndexes(studyName);
 			
 			request.setAttribute("memIndex", memIndex);
 			request.setAttribute("names", names); 	
