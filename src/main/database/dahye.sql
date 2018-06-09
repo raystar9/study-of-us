@@ -717,21 +717,21 @@ select * from member;
 select * from study;
 
 
-insert into board values(board_no.nextval, 3, 25, board_studyseq.nextval, '1테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
-insert into board values(board_no.nextval, 3, 25, board_studyseq.nextval, '2테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
-insert into board values(board_no.nextval, 3, 25, board_studyseq.nextval, '3테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
-insert into board values(board_no.nextval, 3, 25, board_studyseq.nextval, '4테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
-insert into board values(board_no.nextval, 3, 25, board_studyseq.nextval, '5테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
-insert into board values(board_no.nextval, 3, 25, board_studyseq.nextval, '6테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
-insert into board values(board_no.nextval, 3, 25, board_studyseq.nextval, '7테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
-insert into board values(board_no.nextval, 3, 25, board_studyseq.nextval, '8테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
-insert into board values(board_no.nextval, 3, 25, board_studyseq.nextval, '9테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
-insert into board values(board_no.nextval, 3, 25, board_studyseq.nextval, '10테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
-insert into board values(board_no.nextval, 3, 25, board_studyseq.nextval, '11테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
-insert into board values(board_no.nextval, 3, 25, board_studyseq.nextval, '12테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
-insert into board values(board_no.nextval, 3, 25, board_studyseq.nextval, '13테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
-insert into board values(board_no.nextval, 3, 25, board_studyseq.nextval, '14테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
-insert into board values(board_no.nextval, 3, 25, board_studyseq.nextval, '15테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
+insert into board values(board_no.nextval, 6, 27, board_studyseq.nextval, '1테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
+insert into board values(board_no.nextval, 6, 27, board_studyseq.nextval, '2테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
+insert into board values(board_no.nextval, 6, 27, board_studyseq.nextval, '6테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
+insert into board values(board_no.nextval, 6, 27, board_studyseq.nextval, '4테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
+insert into board values(board_no.nextval, 6, 27, board_studyseq.nextval, '5테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
+insert into board values(board_no.nextval, 6, 27, board_studyseq.nextval, '6테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
+insert into board values(board_no.nextval, 6, 27, board_studyseq.nextval, '7테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
+insert into board values(board_no.nextval, 6, 27, board_studyseq.nextval, '8테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
+insert into board values(board_no.nextval, 6, 27, board_studyseq.nextval, '9테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
+insert into board values(board_no.nextval, 6, 27, board_studyseq.nextval, '10테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
+insert into board values(board_no.nextval, 6, 27, board_studyseq.nextval, '11테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
+insert into board values(board_no.nextval, 6, 27, board_studyseq.nextval, '12테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
+insert into board values(board_no.nextval, 6, 27, board_studyseq.nextval, '16테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
+insert into board values(board_no.nextval, 6, 27, board_studyseq.nextval, '14테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
+insert into board values(board_no.nextval, 6, 27, board_studyseq.nextval, '15테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
 
 select * from board;
 select * from studymemberlist;

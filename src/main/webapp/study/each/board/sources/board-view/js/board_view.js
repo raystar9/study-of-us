@@ -17,6 +17,27 @@
 
 $(function() {
 		var bno = $('#bno').val();
+		$('#boarddelete').click(function() {
+			var result = confirm("게시글을 삭제하시겠습니까?");
+			if(result == true){
+				location.href="./boarddelete?num=" + bno;
+			}else{
+				return false;
+			}
+			
+		});// click end
+		
+		$('#back').click(function() {
+			var result = confirm("목록으로 돌아가시겠습니까?");
+			if(result == true){
+				location.href="./board";
+			}else{
+				return false;
+			}
+		});// click end
+		
+	
+		var bno = $('#bno').val();
 		var commentcount = commentCount(bno);
 		$('#commentListBtn').val('답글보기(' + commentcount + ')▼');
 		

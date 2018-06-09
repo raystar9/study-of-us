@@ -15,6 +15,7 @@ import beans.study.each.InformSetupMember;
 import dao.DataGetter;
 import dao.DataPoster;
 import dao.DatabaseAccounts;
+import dateConverter.DateConverter;
 
 
 @WebServlet("/study/each/setup")
@@ -63,9 +64,9 @@ public class Setup extends HttpServlet {
 		setup.setPeopleNum(Integer.parseInt(request.getParameter("peopleNum")));
 		setup.setName(request.getParameter("studyName"));
 		setup.setPlace(request.getParameter("place"));
-		setup.setActivityTime(request.getParameter("time"));
-		setup.setStartDate(request.getParameter("startDate"));
-		setup.setEndDate(request.getParameter("endDate"));
+		setup.setActivityTime(DateConverter.convertDateTime(request.getParameter("time")));
+		setup.setStartDate(DateConverter.convertDateTime(request.getParameter("startDate")));
+		setup.setEndDate(DateConverter.convertDateTime(request.getParameter("endDate")));
 		setup.setDay(request.getParameter("day"));
 		setup.setExplain(request.getParameter("explain"));
 		setup.setPrepared(request.getParameter("prepared"));

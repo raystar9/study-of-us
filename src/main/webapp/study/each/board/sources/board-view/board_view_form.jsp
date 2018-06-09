@@ -5,14 +5,18 @@
 <html>
 <head>
 <title>스터디 안의 게시판 페이지에서 글을 클릭했을 때 상세보기 되는 페이지</title>
+<style>
+
+</style>
 </head>
 <body>
 	<c:set var="b" value="${boardcontent}" />
 	<input type="hidden" name="commentcount" value="${commentcount}" id="commentcount" />
 	<c:set var='id' value="${b.name}" /><!-- "${sessionScope.id}" 바꿀꺼임 -->
+	<div class='panel panel-primary'>
 	<table border="1">
 		<tr class="center">
-			<th colspan="2">스터디 안의 게시판 페이지에서 글을 클릭했을 때 상세보기 되는 페이지</th>
+			<th colspan="2"></th>
 		</tr>
 
 		<tr>
@@ -49,11 +53,13 @@
 			<td colspan="2" class="center">&nbsp; <c:if
 					test="${b.name == id || id == 'admin' }">
 					<a href="./boardmodify?num=${b.index}">수정</a>&nbsp;&nbsp;
-				<a href="./boarddelete?num=${b.index}">삭제</a>&nbsp;&nbsp;
-			</c:if> <a href="./board">뒤로</a>
+				<a class='boarddelete'>삭제</a>&nbsp;&nbsp;
+			</c:if> <a class='back'>뒤로</a>
 			</td>
 		</tr>
-	</table><br>
+	</table>
+	</div>
+	<br>
 	
 	<input type="button" class="btn btn-default" type="button" id="commentListBtn"  value=''>
 	<div class="container">

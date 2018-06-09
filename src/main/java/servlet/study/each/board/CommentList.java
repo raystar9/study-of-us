@@ -42,7 +42,7 @@ public class CommentList extends HttpServlet {
 		DataGetter getter = new DataGetter(DatabaseAccounts.PROJECT);
 
 		ObjectMapper mapper = new ObjectMapper();
-		int studyIndex = 3; 
+		int studyIndex = 6; 
 		ArrayList<CommentBean> comment = new ArrayList<CommentBean>();
 		int boardnum = Integer.parseInt(request.getParameter("bno"));
 		BoardViewRegisterBean boardcontent = getter.getBoardView(boardnum);

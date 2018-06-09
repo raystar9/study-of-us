@@ -1,5 +1,6 @@
 package dao;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -415,7 +416,7 @@ public class DataGetter extends DataAccessor {
 					board.setIndex(rs.getInt(1));
 					board.setTitle(rs.getString(2));
 					board.setName(rs.getString(3));
-					board.setDate(rs.getString(4));
+					board.setDate(rs.getDate(4));
 					boardlist.add(board);
 				}
 				return boardlist;
@@ -493,7 +494,7 @@ public class DataGetter extends DataAccessor {
 					boardcontent.setTitle(rs.getString(2));
 					boardcontent.setContent(rs.getString(3));
 					boardcontent.setName(rs.getString(4));
-					boardcontent.setDate(rs.getString(5));
+					boardcontent.setDate(rs.getDate(5));
 					boardcontent.setFilename(rs.getString(6));
 				}
 				return boardcontent;
@@ -814,7 +815,7 @@ public class DataGetter extends DataAccessor {
 					comment.setCno(rs.getInt(1));
 					comment.setBno(rs.getInt(2));
 					comment.setName(rs.getString(3));
-					comment.setDate(rs.getString(4));
+					comment.setDate(rs.getDate(4));
 					comment.setContent(rs.getString(5));
 					commentlist.add(comment);
 				}

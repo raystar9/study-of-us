@@ -8,7 +8,7 @@
 </head>
 <body>
 	<c:set var='id' value="${sessionScope.id}" />
-	<form action="./boardregister" method="post" name="boardform" enctype="multipart/form-data">
+	<form action="./boardregister" method="post" name="boardform" enctype="multipart/form-data" class="boardform">
 		<table border="1">
 			<tr class="center">
 				<th colspan="4">글쓰기 - write</th>
@@ -42,7 +42,7 @@
 			</tr>
 			<tr class="center">
 				<td colspan="3" class="h30 lime">
-				<input type=submit value="등록">
+				<input type="button" class="btn btn-default" id="submittbtn" value="등록">
 				<input type=button value="취소" onClick="history.go(-1);"></td>
 			</tr>
 		</table>

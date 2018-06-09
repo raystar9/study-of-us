@@ -112,3 +112,9 @@ select * from board;
 select * from study;
 select * from comments;
 
+create view StudyBoard
+as select s_index, s_name, b_no, b_s_index, b_m_index, b_studyseq, b_title, b_date, b_content, b_filename
+from study, board
+where s_index = b_s_index;
+
+select * from studyboard;

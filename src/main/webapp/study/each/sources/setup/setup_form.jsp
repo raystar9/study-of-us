@@ -10,7 +10,7 @@
 </head>
 
 <body>
-<form action="./setup" method="post">
+<form action="./setup" method="post" class='setupForm'>
 	<c:set var="set" value="${setup}" />
 	<input type='hidden' id='studyIndex' value='${set.index}'>
 	<input type='hidden' id='category1' value='${cate.category1}'>
@@ -113,7 +113,7 @@
 		</tr>
 		<tr>
 			<td>
-				<input type="submit" class="btn btn-default" id="btn" value="수정"> 
+				<input type="button" class="btn btn-default" id="submittbtn" value="수정">
 				<input type="reset" class="btn btn-default" id="btn" value="초기화">
 				<input type="button" class="btn btn-default" id="btn" value="취소" onClick="history.go(-1);">
 			</td>

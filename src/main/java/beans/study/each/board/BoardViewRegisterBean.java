@@ -2,7 +2,7 @@
 
 package beans.study.each.board;
 
-
+import java.sql.Date;
 
 public class BoardViewRegisterBean {
 
@@ -15,7 +15,7 @@ public class BoardViewRegisterBean {
 	private String title; 	 // 게시글 제목
 	private String name; 	 // 게시글 작성자
 	private String content;  // 게시글 내용
-	private String date; 	 // 게시글 작성일
+	private Date date; 	 // 게시글 작성일
 	private String filename; // 첨부 파일명
 
 	
@@ -51,20 +51,20 @@ public class BoardViewRegisterBean {
 		this.content = content;
 	}
 
-	public String getDate() {
-		return date;
-	}
-
-	public void setDate(String date) {
-		this.date = date;
-	}
-
 	public String getFilename() {
 		return filename;
 	}
 
 	public void setFilename(String filename) {
 		this.filename = filename;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
 

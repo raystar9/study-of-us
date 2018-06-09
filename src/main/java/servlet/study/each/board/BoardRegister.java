@@ -38,7 +38,7 @@ public class BoardRegister extends HttpServlet {
 			throws ServletException, IOException {
 		System.out.println("BoardRegister 서블릿으로 들어옴");
 		// TODO Auto-generated method stub
-		int studyIndex = 3;
+		int studyIndex = 6;
 		//int studyIndex = (int)request.getSession().getAttribute("index");
 		String realFolder = "";
 		
