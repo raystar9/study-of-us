@@ -458,7 +458,7 @@ select B_NO, B_TITLE, B_NAME, B_DATE from (SELECT ROWNUM RNUM, B_TITLE, B_NAME, 
 
 
 
-
+truncate table board;
 
 
 select B_NO, B_TITLE, B_NAME, B_DATE from (SELECT ROWNUM RNUM, B_TITLE, B_NAME, B_DATE, B_S_INDEX, B_NO FROM BOARD b where B_TITLE like '%회비%') where B_S_INDEX IN (select S_INDEX from STUDY where S_INDEX = 3) AND RNUM>=1 AND RNUM<=10 ORDER BY B_NO desc
