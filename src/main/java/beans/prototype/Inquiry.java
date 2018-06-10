@@ -6,8 +6,8 @@ public class Inquiry {
 			   + " from (select m.m_id,rownum rnum, ib.i_subject, ib.i_date "
 		       + " from inquiryboard ib, member m where m.m_index = ib.i_m_index and ib.i_m_index = ?"
 		       + " order by ib.i_index desc)) "
-		       + " where rnum >= ? and rnum <= ? "
-		       + " order by rownum desc ";
+		       + " where rnum >= ? and rnum <= ? ";
+		       
 	
 	public static final String QUERY_COUNT = "select count(*) count from inquiryBoard where i_m_index = ? ";
 

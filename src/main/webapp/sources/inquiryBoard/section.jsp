@@ -26,14 +26,14 @@
 		<th  width="17%"><div >날짜</div></th>
 			</tr>
 	
-			<c:set var="num" value="${inquirycount-(page-1)*limit }"/>
+			<c:set var="num" value="${inquirycount-(page-1)*10 }"/>
 			<c:forEach var="list" items="${inquiryList }">
 		<tr>
 		<td>
-			 <%-- <c:out value="${num}"/>
-			 <c:set var="num" value="${num-1 }"/> --%>
+			  <c:out value="${num}"/>
+			 <c:set var="num" value="${num-1 }"/> 
 			 
-			 ${list.rnum }
+			 <%-- ${list.rnum } --%>
 		</td>
 		<td>
 			 ${list.subject}
