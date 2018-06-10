@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import beans.prototype.Inquiry;
 import beans.prototype.Member;
 import beans.prototype.Study;
 import beans.prototype.StudyList;
@@ -1566,6 +1567,67 @@ ArrayList<StudyListSelect> studylist = (ArrayList<StudyListSelect>) get(StudyLis
 			
 		}
 
+		public ArrayList<Inquiry> getInquiryBoard(int index, int page, int limit) {
+			@SuppressWarnings("unchecked")
+			ArrayList<Inquiry> boardlist = (ArrayList<Inquiry>) get(Inquiry.QUERY_GET,new DataSettable() {
+				@Override
+				public void prepare(PreparedStatement pstmt) throws SQLException {
+					int startrow = (page - 1) * limit + 1;
+					System.out.println("inquiry startrow : " + startrow);
+					
+					int endrow = startrow + limit - 1;
+					
+					
+					pstmt.setInt(1, index);
+					pstmt.setInt(2, startrow);
+					pstmt.setInt(3, endrow);
+					
+				}
+			}, new DataGettable() {
+				
+				@Override
+				public Object onGetResult(ResultSet rs) throws SQLException {
+					ArrayList<Inquiry> boardlists = new ArrayList<>();
+					while(rs.next()) {
+						Inquiry inquiry = new Inquiry();
+						
+						inquiry.setRnum(rs.getInt("rnum"));
+						inquiry.setSubject(rs.getString("i_subject"));
+						inquiry.setM_id(rs.getString("m_id"));
+						inquiry.setDate(rs.getString("i_date"));
+						boardlists.add(inquiry);
+					}
+					
+					return boardlists;
+				}
+			});
+			return boardlist;
+		}
+
+		
+		
+		//문의 테이블 count 가져오기
+		public Inquiry getInquiryCount(int index) {
+			Inquiry count = (Inquiry) get(Inquiry.QUERY_COUNT,new DataSettable() {
+				
+				@Override
+				public void prepare(PreparedStatement pstmt) throws SQLException {
+					pstmt.setInt(1, index);
+				}
+			}, new DataGettable() {
+				
+				@Override
+				public Object onGetResult(ResultSet rs) throws SQLException {
+					Inquiry inquiry = null;
+					if(rs.next()) {
+						inquiry = new Inquiry();
+						inquiry.setCount(rs.getInt("count"));
+					}
+					return inquiry;
+				}
+			});
+			return count;
+		}
 		
 		public ArrayList<StudySearch> getlanguage() {
 			@SuppressWarnings("unchecked")
@@ -1763,6 +1825,19 @@ ArrayList<StudyListSelect> studylist = (ArrayList<StudyListSelect>) get(StudyLis
 			});
 			return checkval;
 		}
+		
+
+		/*
+		 * private ArrayList<?> getBean(ResultSet rs, Class<?> beanClass) throws
+		 * SQLException{ Field[] fields = beanClass.getDeclaredFields();
+		 * ArrayList<beanClass> objects = new ArrayList<>(); for(int i = 0; i <
+		 * fields.length; i++) { rs.next(); switch(fields[i].getType().toString()) {
+		 * case "int" : objects.add(rs.getInt(i+1)); break; case "String" :
+		 * objects.add(rs.getString(i+1)); break;
+		 * 
+		 */
+		
+		
 }
 
 

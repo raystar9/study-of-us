@@ -46,7 +46,7 @@ public class List extends HttpServlet {
 		// 현재 페이지수
 		int page = 1;
 
-		//// 한페이지에 보여줄 스터디테이블 갯수
+		//// 한페이지에 보여줄 스터디테이블 개수
 		int limit = 3;
 
 		if (request.getParameter("page") != null) {
