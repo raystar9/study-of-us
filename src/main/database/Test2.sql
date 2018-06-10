@@ -425,7 +425,7 @@ create table inquiryBoard(
 select * from i_comment;
 
 insert into i_comment
-values (1,34,1,'이게 댓글이다',0,0,0,sysdate)
+values (1,12,1,'이게 댓글이다',0,0,0,sysdate)
 
 
 select * from member;
@@ -433,35 +433,35 @@ select * from inquiryBoard
 
 delete inquiryboard
 insert into inquiryBoard
-values(inquiry_index.nextval,34,'안녕하세요질문있습니다','파일','이게뭔가요?',sysdate)
+values(inquiry_index.nextval,12,'안녕하세요질문있습니다','파일','이게뭔가요?',sysdate)
 insert into inquiryBoard
-values(inquiry_index.nextval,34,'안녕하세요질문또있습니다','파일','이건뭔가요?',sysdate)
+values(inquiry_index.nextval,12,'안녕하세요질문또있습니다','파일','이건뭔가요?',sysdate)
 insert into inquiryBoard
-values(inquiry_index.nextval,34,'안녕하세요질문또또있습니다','파일','이건또뭔가요?',sysdate)
+values(inquiry_index.nextval,12,'안녕하세요질문또또있습니다','파일','이건또뭔가요?',sysdate)
 insert into inquiryBoard
-values(inquiry_index.nextval,35,'안녕하세요테스트입니다','파일','하나둘셋',sysdate)
+values(inquiry_index.nextval,12,'안녕하세요테스트입니다','파일','하나둘셋',sysdate)
 
 insert into inquiryBoard
-values(inquiry_index.nextval,35,'안녕하세요테스트1','파일','하나둘셋',sysdate)
+values(inquiry_index.nextval,12,'안녕하세요테스트1','파일','하나둘셋',sysdate)
 insert into inquiryBoard
-values(inquiry_index.nextval,35,'안녕하세요테스트2','파일','하나둘셋',sysdate)
+values(inquiry_index.nextval,12,'안녕하세요테스트2','파일','하나둘셋',sysdate)
 insert into inquiryBoard
-values(inquiry_index.nextval,35,'안녕하세요테스트3','파일','하나둘셋',sysdate)
+values(inquiry_index.nextval,12,'안녕하세요테스트3','파일','하나둘셋',sysdate)
 insert into inquiryBoard
-values(inquiry_index.nextval,35,'안녕하세요테스트4','파일','하나둘셋',sysdate)
+values(inquiry_index.nextval,12,'안녕하세요테스트4','파일','하나둘셋',sysdate)
 insert into inquiryBoard
-values(inquiry_index.nextval,35,'안녕하세요테스트5','파일','하나둘셋',sysdate)
+values(inquiry_index.nextval,12,'안녕하세요테스트5','파일','하나둘셋',sysdate)
 insert into inquiryBoard
-values(inquiry_index.nextval,35,'안녕하세요테스트6','파일','하나둘셋',sysdate)
+values(inquiry_index.nextval,12,'안녕하세요테스트6','파일','하나둘셋',sysdate)
 insert into inquiryBoard
-values(inquiry_index.nextval,35,'안녕하세요테스트7','파일','하나둘셋',sysdate)
+values(inquiry_index.nextval,12,'안녕하세요테스트7','파일','하나둘셋',sysdate)
 insert into inquiryBoard
-values(inquiry_index.nextval,35,'안녕하세요테스트8','파일','하나둘셋',sysdate)
+values(inquiry_index.nextval,12,'안녕하세요테스트8','파일','하나둘셋',sysdate)
 insert into inquiryBoard
-values(inquiry_index.nextval,35,'안녕하세요테스트9','파일','하나둘셋',sysdate)
+values(inquiry_index.nextval,12,'안녕하세요테스트9','파일','하나둘셋',sysdate)
 
 insert into inquiryBoard
-values(inquiry_index.nextval,35,'안녕하세요테스트10','파일','하나둘셋',sysdate)
+values(inquiry_index.nextval,12,'안녕하세요테스트10','파일','하나둘셋',sysdate)
 
 
 select * from member;
@@ -490,5 +490,9 @@ select * from inquiryBoard
        from inquiryboard ib, member m where m.m_index = ib.i_m_index and ib.i_m_index = 35
 order by ib.i_index desc))
 where rnum >= 1 and rnum <= 2
+
+update study set s_start = '2018-05-09'
+update study set s_end = '2018-05-30'
+
 
 
