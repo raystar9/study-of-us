@@ -60,11 +60,12 @@ body {
   <a class="active" href="/study-of-us/study/list">Home</a>
   </c:if>
   <a href="/study-of-us/study/each/Registration">Study Create</a>
-  <a href="/study-of-us/study/search">Study Search</a>
+  <a href="/study-of-us/study/SearchMain">Study Search</a>
   <a href="#information">Information</a>
   
   <div class="topnav-right">
   <c:if test="${empty id }">
+  	<a href=""><i class="fa fa-bell icon"></i></a>
     <a href="/study-of-us/LoginForm">Login</a>
     <a href="/study-of-us/join">SignUp</a>
   </c:if> 
