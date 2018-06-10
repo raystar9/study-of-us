@@ -1328,6 +1328,31 @@ ArrayList<StudyListSelect> studylist = (ArrayList<StudyListSelect>) get(StudyLis
 	
 			return Index1;
 		}*/
+		public StudyListSelect2 getStudyListCount2(int index) {
+			StudyListSelect2 count = (StudyListSelect2) get(StudyListSelect2.QUERY_GET2,new DataSettable() {
+
+				@Override
+				public void prepare(PreparedStatement pstmt) throws SQLException {
+					pstmt.setInt(1, index);
+
+				}
+			}, new DataGettable() {
+
+				@Override
+				public Object onGetResult(ResultSet rs) throws SQLException {
+					StudyListSelect2 slist = null;
+					if(rs.next()) {
+						slist = new StudyListSelect2();
+						slist.setCount(rs.getInt("count"));
+					}
+
+					return slist;
+				}
+			});
+
+			// TODO Auto-generated method stub
+			return count;
+		}
 
 	@SuppressWarnings("unchecked")
 	public ArrayList<FeeSpend> getFeeExpense(int meetingId) {
