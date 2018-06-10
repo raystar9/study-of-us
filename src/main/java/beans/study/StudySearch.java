@@ -4,13 +4,13 @@ import java.sql.Date;
 
 public class StudySearch {
 	public static final String QUERY_GET = "select * from (select rownum as rnum, s_index, s_name, s_c_id, S_MT_INDEX, S_M_INDEX , S_START, S_END, S_MAXMEMBER, S_DAY, S_TIME, S_EXPLAIN, S_MATERIAL, S_EFFECT, S_PLACE ,C_GROUP, C_SUBGROUP " + 
-			"from study inner join CATEGORY on STUDY.S_C_ID = CATEGORY.C_ID  order by s_index) where S_NAME LIKE ? and S_PLACE LIKE ? and C_SUBGROUP LIKE ? and S_DAY LIKE ? and S_TIME LIKE ?  ";
+			"from study inner join CATEGORY on STUDY.S_C_ID = CATEGORY.C_ID  where S_NAME LIKE ? and S_PLACE LIKE ?  and C_GROUP LIKE ? and C_SUBGROUP LIKE ? and S_DAY LIKE ? and S_TIME LIKE ? order by s_index)   ";
 	
-	public static final String QUERY_GET7 = "select * from (select rownum as rnum, s_index, s_name, s_c_id, S_MT_INDEX, S_M_INDEX , S_START, S_END, S_MAXMEMBER, S_DAY, S_TIME, S_EXPLAIN, S_MATERIAL, S_EFFECT, S_PLACE ,C_GROUP, C_SUBGROUP " + 
-			"from study inner join CATEGORY on STUDY.S_C_ID = CATEGORY.C_ID  order by s_index) where S_NAME LIKE ? and S_PLACE LIKE ? and C_SUBGROUP LIKE ? and S_DAY LIKE ? and S_TIME LIKE ? and rnum >= ? and rnum <= ?";
+	public static final String QUERY_GET7 = "select * from (select rownum as rnum, s_index, s_name, s_c_id, S_MT_INDEX, S_M_INDEX , S_START, S_END, S_MAXMEMBER, S_DAY, S_TIME, S_EXPLAIN, S_MATERIAL, S_EFFECT, S_PLACE ,C_GROUP, C_SUBGROUP " 
+			+"from study inner join CATEGORY on STUDY.S_C_ID = CATEGORY.C_ID where C_GROUP LIKE ?  order by s_index) where rnum >= ? and rnum <= ?";
 
 	public static final String QUERY_GET2 = "select * from (select rownum as rnum, s_index, s_name, s_c_id, S_MT_INDEX, S_M_INDEX , S_START, S_END, S_MAXMEMBER, S_DAY, S_TIME, S_EXPLAIN, S_MATERIAL, S_EFFECT, S_PLACE ,C_GROUP, C_SUBGROUP " + 
-			"from study inner join CATEGORY on STUDY.S_C_ID = CATEGORY.C_ID ) where S_NAME LIKE ? and S_PLACE LIKE ? and C_SUBGROUP LIKE ? and S_DAY LIKE ? and S_TIME LIKE ? and rnum >= ? and rnum <= ? ";
+			"from study inner join CATEGORY on STUDY.S_C_ID = CATEGORY.C_ID  where S_NAME LIKE ? and S_PLACE LIKE ? and C_GROUP LIKE ? and C_SUBGROUP LIKE ? and S_DAY LIKE ? and S_TIME LIKE ? order by s_index) where rnum >= ? and rnum <= ? ";
 
 	public static final String QUERY_GET3 = "select * from study inner join CATEGORY on STUDY.S_C_ID = CATEGORY.C_ID where s_place LIKE ? and s_name LIKE ? and category.C_SUB LIKE ? ";
 

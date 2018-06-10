@@ -19,6 +19,7 @@ import beans.study.StudySearchMain;
 import beans.study.each.InformSetup;
 import beans.study.each.InformSetupMember;
 import beans.study.each.Member2;
+import beans.study.each.Message;
 import beans.study.each.board.BoardListBean;
 import beans.study.each.board.BoardViewRegisterBean;
 import beans.study.each.board.CommentBean;
@@ -103,17 +104,19 @@ public class DataGetter extends DataAccessor {
 		return list;
 	}
 
-	public ArrayList<StudySearch> getStudies(String search, String location, String category, String day, String time) {
+	public ArrayList<StudySearch> getStudies(String search, String location,String category, String subcategory, String day, String time) {
 		@SuppressWarnings("unchecked")
 		ArrayList<StudySearch> list = (ArrayList<StudySearch>) get(StudySearch.QUERY_GET, new DataSettable() {
 		
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
+				System.out.println("search : " + search +" location : " + location + " category : " + category +" subcategory : " + subcategory + " day : " +day + " time : " + time);
 				pstmt.setString(1, search);
 				pstmt.setString(2, location);
 				pstmt.setString(3, category);
-				pstmt.setString(4, day);
-				pstmt.setString(5, time);
+				pstmt.setString(4, subcategory);
+				pstmt.setString(5, day);
+				pstmt.setString(6, time);
 				
 			}
 		}, new DataGettable() {
@@ -149,7 +152,7 @@ public class DataGetter extends DataAccessor {
 	}
 
 
-	public ArrayList<StudySearch> getStudies(String search, String location, String category, String day, String time, int startcount, int endcount) { 
+	public ArrayList<StudySearch> getStudies(String search, String location, String category,String subcategory, String day, String time, int startcount, int endcount) { 
 		@SuppressWarnings("unchecked")
 		ArrayList<StudySearch> list = (ArrayList<StudySearch>) get(StudySearch.QUERY_GET2, new DataSettable() {
 			
@@ -158,10 +161,11 @@ public class DataGetter extends DataAccessor {
 				pstmt.setString(1, search);
 				pstmt.setString(2, location);
 				pstmt.setString(3, category);
-				pstmt.setString(4, day);
-				pstmt.setString(5, time);
-				pstmt.setInt(6, startcount);
-				pstmt.setInt(7, endcount);
+				pstmt.setString(4, subcategory);
+				pstmt.setString(5, day);
+				pstmt.setString(6, time);
+				pstmt.setInt(7, startcount);
+				pstmt.setInt(8, endcount);
 				
 			}
 		}, new DataGettable() {
@@ -834,24 +838,39 @@ public class DataGetter extends DataAccessor {
 			
 			@Override
 			public Object onGetResult(ResultSet rs) throws SQLException {
-				ArrayList<Study> studies = new ArrayList<>();
+				ArrayList<StudyList> studies = new ArrayList<>();
 				while(rs.next()) {
-					Study study = new Study();
-					study.setIndex(rs.getInt(1));
-					study.setName(rs.getString(2));
-					study.setS_c_id(rs.getInt(3));
-					study.setS_mt_index(rs.getInt(4));
-					study.setS_m_index(rs.getInt(5));
-					study.setStart(rs.getDate(6));
-					study.setEnd(rs.getDate(7));
-					study.setMaxmember(rs.getInt(8));
-					study.setDay(rs.getString(9));
-					study.setTime(rs.getString(10));
-					study.setExplain(rs.getString(11));
-					study.setMaterial(rs.getString(12));
-					study.setEffect(rs.getString(13));
-					study.setPlace(rs.getString(14));
+					StudyList study = new StudyList();
+					study.setMemberindex(rs.getInt("SM_M_INDEX"));
+					study.setStudyindex(rs.getInt("SM_S_INDEX"));
+					studies.add(study);
+				}
+				return studies;
+			}
+		});
 
+		// TODO Auto-generated method stub
+		return list;
+	}
+	public ArrayList<Message> studyMessage(int s_index, int m_index) {
+		@SuppressWarnings("unchecked")
+		ArrayList<Message> list = (ArrayList<Message>) get(Message.QUERY_GET2, new DataSettable() {
+			
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+				pstmt.setInt(1, s_index);
+				pstmt.setInt(2, m_index);
+				
+			}
+		}, new DataGettable() {
+			
+			@Override
+			public Object onGetResult(ResultSet rs) throws SQLException {
+				ArrayList<Message> studies = new ArrayList<>();
+				while(rs.next()) {
+					Message study = new Message();
+					study.setM_m_index(rs.getInt("m_m_index"));
+					study.setM_s_index(rs.getInt("m_s_index"));
 					studies.add(study);
 				}
 				return studies;
@@ -1308,6 +1327,88 @@ ArrayList<StudyListSelect> studylist = (ArrayList<StudyListSelect>) get(StudyLis
 
 			// TODO Auto-generated method stub
 			return list;
+		}
+
+		public ArrayList<StudySearch> getMindex(String id) {
+
+			String sql = "select M_INDEX from member where M_ID = ? ";
+			
+			@SuppressWarnings("unchecked")
+			ArrayList<StudySearch> list = (ArrayList<StudySearch>) get(sql, new DataSettable() {
+				
+				@Override
+				public void prepare(PreparedStatement pstmt) throws SQLException {
+					pstmt.setString(1, id);
+					
+				}
+			}, new DataGettable() {
+				
+				@Override
+				public ArrayList<?> onGetResult(ResultSet rs) throws SQLException {
+					ArrayList<StudySearch> studies = new ArrayList<>();
+					while(rs.next()) {
+						StudySearch study = new StudySearch();
+						study.setS_m_index(rs.getInt(1));
+						studies.add(study);
+					}
+					return studies;
+					
+				}
+			});
+			return list;
+		}
+
+		public ArrayList<Message> getMessage(int messagecheck) {
+			
+			@SuppressWarnings("unchecked")
+			ArrayList<Message> list = (ArrayList<Message> ) get(Message.QUERY_GET,new DataSettable() {
+				
+				@Override
+				public void prepare(PreparedStatement pstmt) throws SQLException {
+					pstmt.setInt(1, messagecheck);
+					
+				}
+			}, new DataGettable() {
+	
+				@Override
+				public ArrayList<Message> onGetResult(ResultSet rs) throws SQLException {
+					ArrayList<Message> Messagelist = new ArrayList<>(); 
+					while(rs.next()) {
+						Message message = new Message();
+						message.setM_m_id(rs.getString("M_M_ID"));
+						message.setM_s_index(rs.getInt("M_S_INDEX"));
+						message.setM_s_name(rs.getString("M_S_NAME"));
+						message.setM_m_index(rs.getInt("M_M_INDEX"));
+						Messagelist.add(message);
+					}
+					return Messagelist;
+				}
+			});
+		
+			return list;
+		}
+
+		public int getMessageIDcheck(String s_m_index) {
+			String sql = "select s_m_index from study inner join member on study.s_m_index = member.m_index where m_ID = ?" ;
+			int checkval = (int) get(sql,new DataSettable() {
+				
+				@Override
+				public void prepare(PreparedStatement pstmt) throws SQLException {
+					pstmt.setString(1, s_m_index);
+					
+				}
+			}, new DataGettable() {
+				
+				@Override
+				public Object onGetResult(ResultSet rs) throws SQLException {
+					int result = 0;
+						if(rs.next()) {
+							result = rs.getInt(1);
+						}
+					return result;
+				}
+			});
+			return checkval;
 		}
 }
 

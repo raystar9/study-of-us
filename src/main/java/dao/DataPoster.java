@@ -9,6 +9,7 @@ import beans.prototype.Member;
 import beans.prototype.Study;
 import beans.prototype.StudyList;
 import beans.study.each.InformSetup;
+import beans.study.each.Message;
 import beans.study.each.board.BoardViewRegisterBean;
 import beans.study.each.board.CommentBean;
 import dao.interfaces.DataSettable;
@@ -245,6 +246,35 @@ public class DataPoster extends DataSetter {
 				pstmt.close();
 			}
 		});
+	}
+
+
+
+	public void setMessage(int s_m_index, String m_id, String s_name, int m_m_index) {
+		set(Message.QUERY_POST,new DataSettable() {
+			
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+				pstmt.setInt(1, s_m_index);
+				pstmt.setString(2, m_id);
+				pstmt.setString(3, s_name);
+				pstmt.setInt(4, m_m_index);
+				
+			}
+		});
+	}
+
+	public void delMessage(int sm_s_index, int sm_m_index) {
+		set(Message.QUERY_DELETE, new DataSettable() {
+			
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+				pstmt.setInt(1, sm_s_index);
+				pstmt.setInt(2, sm_m_index);
+				
+			}
+		});
+		
 	}
 }
 

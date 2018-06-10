@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import beans.study.StudyListSelect;
+import beans.study.each.Message;
 import dao.DataGetter;
 import dao.DatabaseAccounts;
 
@@ -24,12 +25,24 @@ public class List extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+		DataGetter getter = new DataGetter(DatabaseAccounts.PROJECT);
 		// 멤버의 인덱스번호 세션받아주고
 		HttpSession session = request.getSession();
 		int index = (int) session.getAttribute("index");
 		System.out.println(index);
-
+		
+		String id = (String) session.getAttribute("id");
+		System.out.println("아이디 값 : " + id);
+		
+		
+		int messagecheck = getter.getMessageIDcheck(id);
+		System.out.println("값이 1 이면 있는거죠 ? " + messagecheck);
+		
+		ArrayList<Message> Message = new ArrayList<>();
+		Message = getter.getMessage(messagecheck);
+		request.getSession().setAttribute("message", Message);
+		
+		
 		// 현재 페이지수
 		int page = 1;
 
@@ -42,7 +55,7 @@ public class List extends HttpServlet {
 		System.out.println("넘어온 페이지 = " + page);
 
 		// 총스터디 수를 받아옵니다. (나의스터디만)
-		DataGetter getter = new DataGetter(DatabaseAccounts.PROJECT);
+		
 		// 스터디 개수 뽑아옵니다
 		StudyListSelect studycount = getter.getStudyListCount(index);
 		// 내가뽑아올 목록을 받아옵니다.

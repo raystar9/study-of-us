@@ -1,23 +1,11 @@
 $(document).ready(function() {
 
 
-					var secondArray_0 = new Array("자바", "c언어", "파이썬", "c++","c#");
+					var secondArray_0 = new Array("Java", "c언어", "Python", "c++","c#");
 					var secondArray_1 = new Array("영어", "불어", "중국어", "일본어","한국어");
 					var secondArray_2 = new Array("정보처리기사", "컴퓨터활용", "ccna","ccnp", "네트워크관리사");
 
-					$(document).on("click", "#atag", function() {
-						var page = $(this).text()
-						var params = $("form").serialize()
-						$.ajax({
-							type : "get",
-							data : {"page" : page,"state" : "ajax"},
-							url : "/study-of-us/study/search?"+params ,
-							success : function(rdata) {
-								$(".project").empty().append(rdata);
-							}
-						})
-						return false;
-					})
+					
 
 					$("#firstArray").change(function() { // 대분류 선택시 소분류의 값을 선택할수 있도록
 										// 한다.
@@ -34,6 +22,7 @@ $(document).ready(function() {
 											}
 											$("#secondArray option").remove();
 											$("#secondArray").append(inner);
+											$('.category').val($("#secondArray").val())
 										}
 										if (selectVal == 2) {
 											for (var i = 0; i < secondArray_1.length; i++) {
@@ -45,6 +34,7 @@ $(document).ready(function() {
 											}
 											$("#secondArray option").remove();
 											$("#secondArray").append(inner);
+											$('.category').val($("#secondArray").val())
 										}
 										if (selectVal == 3) {
 											for (var i = 0; i < secondArray_2.length; i++) {
@@ -56,8 +46,11 @@ $(document).ready(function() {
 											}
 											$("#secondArray option").remove();
 											$("#secondArray").append(inner);
+											$('.category').val($("#secondArray").val())
 										}
 									});
+					
+					
 					
 					
 					$("#location").change(function(){
@@ -72,9 +65,7 @@ $(document).ready(function() {
 						$('.time').val($(this).val())
 					})
 					
-						$("#secondArray").change(function(){
-						$('.category').val($(this).val())
-					})
+			
 					
 					// 스터디를 클릭하면 참여할수 있도록 함
 

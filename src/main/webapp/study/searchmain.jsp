@@ -101,11 +101,11 @@ html, body {
 }
 
 .rankcard {
-	margin-left: 20%;
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-	transition: 0.3s;
-	width: 20%;
-	display: inline-block;
+margin-left: 70px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    width: 15%;
+    display: inline-block;
 }
 
 .ranking {
@@ -363,7 +363,7 @@ html, body {
 
 		<div class="ranking">
 			<div class="rank-container">
-				<h3 style="text-align: center">스터디 최다 생성자</h3>
+				<h2 style="text-align: center">Soup Developer</h2>
 				<div class="rankcard">
 					<img src="/study-of-us/resources/images/man.png" alt="Avatar"
 						style="width: 100%">
@@ -371,38 +371,47 @@ html, body {
 						<h4>
 							<b>John Doe</b>
 						</h4>
-						<p>Architect & Engineer</p>
+						<p>Developer</p>
 					</div>
 				</div>
 				<div class="rankcard">
-					<img src="/study-of-us/resources/images/man2.png" alt="Avatar"
+					<img src="/study-of-us/resources/images/boy.png" alt="Avatar"
 						style="width: 100%">
 					<div class="container">
 						<h4>
-							<b>John Doe</b>
+							<b>Mun Hyeok</b>
 						</h4>
-						<p>Architect & Engineer</p>
+						<p>Developer</p>
 					</div>
 				</div>
-				<h3 style="text-align: center">스터디 최다 참여자</h3>
 				<div class="rankcard">
 					<img src="/study-of-us/resources/images/girl.png" alt="Avatar"
 						style="width: 100%">
 					<div class="container">
 						<h4>
-							<b>John Doe</b>
+							<b>Da Hye</b>
 						</h4>
-						<p>Architect & Engineer</p>
+						<p>Developer</p>
 					</div>
 				</div>
 				<div class="rankcard">
-					<img src="/study-of-us/resources/images/man3.png" alt="Avatar"
+					<img src="/study-of-us/resources/images/man4.png" alt="Avatar"
 						style="width: 100%">
 					<div class="container">
 						<h4>
-							<b>John Doe</b>
+							<b>Seung Min</b>
 						</h4>
-						<p>Architect & Engineer</p>
+						<p>Developer</p>
+					</div>
+				</div>
+				<div class="rankcard">
+					<img src="/study-of-us/resources/images/man5.png" alt="Avatar"
+						style="width: 100%">
+					<div class="container">
+						<h4>
+							<b>Dong Wan</b>
+						</h4>
+						<p>Developer</p>
 					</div>
 				</div>
 			</div>

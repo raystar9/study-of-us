@@ -22,7 +22,7 @@ public class SearchMain extends HttpServlet {
 	@SuppressWarnings("resource")
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		DataGetter getter = new DataGetter(DatabaseAccounts.PROJECT);
+		DataGetter getter = new DataGetter(DatabaseAccounts.SCOTT);
 		String category = "";
 		if (request.getParameter("category") != null) {
 			category = request.getParameter("category");
@@ -40,10 +40,15 @@ public class SearchMain extends HttpServlet {
 		int countlist = 4;
 		int totalcount = studiestotalcount.size();
 		
+		if(request.getParameter("page") != null) {
+			page = Integer.parseInt(request.getParameter("page"));
+		}
+		
+		
 		int totalpage = totalcount / countlist;
 		
-		if(totalcount % countlist > 0) {
-			totalpage++;
+		if (totalcount > countlist * totalpage) {
+		    totalpage++;
 		}
 		
 		if(totalpage < page) {
@@ -59,8 +64,13 @@ public class SearchMain extends HttpServlet {
 			endpage = totalpage;
 		}
 		
-		int startcount = (page -1 ) * countpage + 1;
-		int endcount = page * countpage;
+		int startcount = (page -1 ) * countlist + 1;
+		int endcount = page * countlist;
+		
+		System.out.println("strat " + startcount);
+
+		System.out.println("endcount " + endcount);
+		
 		
 		studiestotalcount = getter.getCategryStudies(category, startcount, endcount);
 
@@ -77,7 +87,9 @@ public class SearchMain extends HttpServlet {
 		} else {
 			request.setAttribute("page", page); // 현재 페이지 수
 			request.setAttribute("totalpage", totalpage); // 최대 페이지 수
+			request.setAttribute("startpage", startpage);
 			request.setAttribute("endpage", endpage);
+			request.setAttribute("category", category);
 
 			request.setAttribute("studies", studiestotalcount);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/study/search.jsp");

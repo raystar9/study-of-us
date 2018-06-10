@@ -36,14 +36,14 @@
 		style="max-width: 500px; margin: auto">
 		<h2>세부 검색</h2>
 		<div class="input-container">
-			<i class="fa fa-search icon"></i> <input class="searchval"
+			<i class="fa fa-search icon2"></i> <input class="searchval"
 				type="text" placeholder="검색어를 입력하세요" name="searchVal"
 				style="width: 100%;">
 		</div>
 
 		<div class="input-container">
-			<i class="fa fa-sitemap icon"></i> <input class="category"
-				type="text" placeholder="카테고리를 선택하세요" name="category"
+			<i class="fa fa-sitemap icon2"></i> <input class="category"
+				type="text" placeholder="카테고리를 선택하세요" name="subcategory"
 				style="width: 60%;"> <select id="firstArray"
 				name="firstArray" style="width: 20%;">
 				<option value="-1">대분류</option>
@@ -56,39 +56,39 @@
 		</div>
 
 		<div class="input-container">
-			<i class="fa fa-clock-o icon"></i> <input class="time" type="text"
+			<i class="fa fa-clock-o icon2"></i> <input class="time" type="text"
 				placeholder="시간대를 선택 하세요" name="time" style="width: 70%;"> <select
 				id="stime" name="stime" style="width: 30%;">
 				<option value="">시간</option>
-				<option value="01:00~">01:00~</option>
-				<option value="02:00~">02:00~</option>
-				<option value="03:00~">03:00~</option>
-				<option value="04:00~">04:00~</option>
-				<option value="05:00~">05:00~</option>
-				<option value="06:00~">06:00~</option>
-				<option value="07:00~">07:00~</option>
-				<option value="08:00~">08:00~</option>
-				<option value="09:00~">09:00~</option>
-				<option value="10:00~">10:00~</option>
-				<option value="11:00~">11:00~</option>
-				<option value="12:00~">12:00~</option>
-				<option value="13:00~">13:00~</option>
-				<option value="14:00~">14:00~</option>
-				<option value="15:00~">15:00~</option>
-				<option value="16:00~">16:00~</option>
-				<option value="17:00~">17:00~</option>
-				<option value="18:00~">18:00~</option>
-				<option value="19:00~">19:00~</option>
-				<option value="20:00~">20:00~</option>
-				<option value="21:00~">21:00~</option>
-				<option value="22:00~">22:00~</option>
-				<option value="23:00~">23:00~</option>
-				<option value="24:00~">24:00~</option>
+				<option value="01:00">01:00~</option>
+				<option value="02:00">02:00~</option>
+				<option value="03:00">03:00~</option>
+				<option value="04:00">04:00~</option>
+				<option value="05:00">05:00~</option>
+				<option value="06:00">06:00~</option>
+				<option value="07:00">07:00~</option>
+				<option value="08:00">08:00~</option>
+				<option value="09:00">09:00~</option>
+				<option value="10:00">10:00~</option>
+				<option value="11:00">11:00~</option>
+				<option value="12:00">12:00~</option>
+				<option value="13:00">13:00~</option>
+				<option value="14:00">14:00~</option>
+				<option value="15:00">15:00~</option>
+				<option value="16:00">16:00~</option>
+				<option value="17:00">17:00~</option>
+				<option value="18:00">18:00~</option>
+				<option value="19:00">19:00~</option>
+				<option value="20:00">20:00~</option>
+				<option value="21:00">21:00~</option>
+				<option value="22:00">22:00~</option>
+				<option value="23:00">23:00~</option>
+				<option value="24:00">24:00~</option>
 			</select>
 		</div>
 
 		<div class="input-container">
-			<i class="fa fa-calendar-check-o icon"></i> <input class="day"
+			<i class="fa fa-calendar-check-o icon2"></i> <input class="day"
 				type="text" placeholder="요일을 선택 하세요" name="day" style="width: 70%;">
 			<select name="day" id="day-select" style="width: 30%;">
 				<option value="">요일</option>
@@ -102,9 +102,9 @@
 			</select>
 		</div>
 		<div class="input-container">
-			<i class="fa fa-globe icon"></i> <input class="location" type="text"
-				placeholder="지역을 선택 하세요" name="location"> <select
-				id="location" name="location" style="width: 30%;">
+			<i class="fa fa-globe icon2"></i> <input class="location" type="text"
+				placeholder="지역을 선택 하세요" name="location" style="width: 70%;">
+				 <select id="location" name="location" style="width: 30%;">
 				<option value="">지역</option>
 				<option value="서울">서울</option>
 				<option value="부천">부천</option>
@@ -122,7 +122,7 @@
 		<button type="submit" class="btn">검색</button>
 	</form>
 </div>
-<div class="pro">
+
 	<div class="project">
 		<div>
 			<c:forEach var="study" items="${studies }">
@@ -150,27 +150,27 @@
 	<div class="paging" style="text-align: center; margin-bottom: 100px">
 		<c:if test="${startpage > 1}">
 			<a class="round2"
-				href="/study-of-us/study/search?page=1&searchVal=${searchVal}&time=${time}&day=${day}&location=${location}&category=${category}">&laquo;</a>
+				href="/study-of-us/study/search?page=1&searchVal=${searchVal}&time=${time}&day=${day}&location=${location}&category=${category}&subcategory=${subcategory}">&laquo;</a>
 		</c:if>
 
 		<c:if test="${page > 1}">
 			<a class="round"
-				href="/study-of-us/study/search?page=${page-1 }&searchVal=${searchVal}&time=${time}&day=${day}&location=${location}&category=${category}">&#8249;</a>
+				href="/study-of-us/study/search?page=${page-1 }&searchVal=${searchVal}&time=${time}&day=${day}&location=${location}&category=${category}&subcategory=${subcategory}">&#8249;</a>
 		</c:if>
 
 		<c:forEach var="i" begin="${startpage }" end="${endpage }">
 			<a id=atag
-				href="/study-of-us/study/search?page=${i }&searchVal=${searchVal}&time=${time}&day=${day}&location=${location}&category=${category}">${i }</a>
+				href="/study-of-us/study/search?page=${i }&searchVal=${searchVal}&time=${time}&day=${day}&location=${location}&category=${category}&subcategory=${subcategory}">${i }</a>
 		</c:forEach>
 
 		<c:if test="${page < totalpage}">
 			<a class="round"
-				href="/study-of-us/study/search?page=${page+1 }&searchVal=${searchVal}&time=${time}&day=${day}&location=${location}&category=${category}">&#8250;</a>
+				href="/study-of-us/study/search?page=${page+1 }&searchVal=${searchVal}&time=${time}&day=${day}&location=${location}&category=${category}&subcategory=${subcategory}">&#8250;</a>
 		</c:if>
 
 		<c:if test="${endpage < totalpage}">
 			<a class="round2"
-				href="/study-of-us/study/search?page=${totalpage }&searchVal=${searchVal}&time=${time}&day=${day}&location=${location}&category=${category}">&raquo;</a>
+				href="/study-of-us/study/search?page=${totalpage }&searchVal=${searchVal}&time=${time}&day=${day}&location=${location}&category=${category}&subcategory=${subcategory}">&raquo;</a>
 		</c:if>
 
 	</div>
