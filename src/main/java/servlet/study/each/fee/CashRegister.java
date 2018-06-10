@@ -11,10 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import beans.study.each.InformSetupMember;
-import beans.study.each.Member2;
-import beans.study.each.fee.CashExpenseBean;
-import beans.study.each.fee.CashMemberBean;
-import beans.study.each.fee.CashViewRegisterBean;
+import beansNew.FeeCollect;
+import beansNew.FeeSpend;
 import dao.DataGetter;
 import dao.DataPoster;
 import dao.DatabaseAccounts;
@@ -33,72 +31,67 @@ public class CashRegister extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		System.out.println("CashRegister 서블릿 들어옴");
-		DataGetter getter = new DataGetter(DatabaseAccounts.SCOTT);
-		int studyIndex = 3;
-		
-		ArrayList<InformSetupMember> memlist = new ArrayList<InformSetupMember>(); //스터디 참여인원의 정보
-		memlist = getter.getInformMember();
-		String[] names = new String[memlist.size()];
-		
-		for(int i=0; i<memlist.size(); i++) {
-			names[i] = memlist.get(i).getName();
+		DataGetter getter = new DataGetter(DatabaseAccounts.PROJECT);
+		if(getter.isFeeRegistered((String)request.getAttribute("meetingId"))) {
+			response.sendRedirect("../../fee");
+		} else {
+			String studyName = (String)request.getAttribute("studyName");
+			
+			ArrayList<InformSetupMember> memlist = new ArrayList<InformSetupMember>(); //스터디 참여인원의 정보
+			memlist = getter.getInformMember(studyName);
+			String[] names = new String[memlist.size()];
+			
+			for(int i=0; i<memlist.size(); i++) {
+				names[i] = memlist.get(i).getName();
+			}
+			
+			ArrayList<Integer> memIndex = getter.getMemberIndexes(studyName);
+			
+			request.setAttribute("memIndex", memIndex);
+			request.setAttribute("names", names); 	
+			getter.close();
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/study/each/fee/cashRegister.jsp");
+			dispatcher.forward(request, response);
 		}
-		
-		int[] memIndex = getter.getMemIndex(studyIndex);
-		
-		request.setAttribute("memIndex", memIndex);
-		request.setAttribute("names", names); 	
-		getter.close();
-		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/each/fee/cashRegister.jsp");
-		dispatcher.forward(request, response);
 	}
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		DataGetter getter = new DataGetter(DatabaseAccounts.SCOTT);
-		DataPoster poster = new DataPoster(DatabaseAccounts.SCOTT);
-		int memcount = getter.getInformMemberCount();
+		DataGetter getter = new DataGetter(DatabaseAccounts.PROJECT);
+		ArrayList<Integer> memberIndexes = getter.getMemberIndexes((String)request.getAttribute("studyName"));
+		getter.close();
+		DataPoster poster = new DataPoster(DatabaseAccounts.PROJECT);
 		
+		int meetingId = Integer.parseInt((String)request.getAttribute("meetingId"));
 		//스터디원 별 낸 회비, 비고
-		ArrayList<CashMemberBean> mem = new ArrayList<CashMemberBean>();
-		int memFeeTotal = 0;
-		for(int i=1; i<=memcount; i++) {
-			CashMemberBean m = new CashMemberBean();
-			m.setMemIndex(Integer.parseInt(request.getParameter("memIndex" + i)));							//이름
-			m.setMemfee(Integer.parseInt(request.getParameter("duesFee" + i)));		//낸 회비
-			m.setNote(request.getParameter("duesNote" + i));						//비고
-			memFeeTotal += Integer.parseInt(request.getParameter("duesFee" + i));
-			mem.add(m);
+		ArrayList<FeeCollect> mem = new ArrayList<>();
+		for(int i=0; i<memberIndexes.size(); i++) {
+			FeeCollect collect = new FeeCollect();
+			collect.setMeetingId(meetingId);
+			collect.setMemberId(memberIndexes.get(i));
+			collect.setFee(Integer.parseInt(request.getParameter("duesFee" + (i+1))));
+			collect.setNote(request.getParameter("duesNote" + (i+1)));
+			mem.add(collect);
 		}
 		poster.postFeeMemberInsert(mem);
 		
-		//사용 내역, 금액
 		int expenseCount = Integer.parseInt(request.getParameter("expenseCount"));
-		int expenseTotal = 0;
-		ArrayList<CashExpenseBean> expense = new ArrayList<CashExpenseBean>();
-		for(int j=1; j<=expenseCount; j++) {
-			CashExpenseBean ex = new CashExpenseBean();
-			ex.setContent(request.getParameter("duesExp" + j));
-			ex.setExpense(Integer.parseInt(request.getParameter("duesExpFee" + j)));
-			expenseTotal += Integer.parseInt(request.getParameter("duesExpFee" + j));
-			expense.add(ex);
+		//사용 내역, 금액
+		ArrayList<FeeSpend> spends = new ArrayList<>();
+		for(int i=0; i<expenseCount; i++) {
+			FeeSpend spend = new FeeSpend();
+			spend.setMeetingId(meetingId);
+			spend.setExpense(Integer.parseInt(request.getParameter("duesExpFee" + (i+1))));
+			spend.setComment(request.getParameter("duesExp" + (i+1)));
+			spends.add(spend);
 		}
+		poster.postFeeSpend(spends);
 		
-		
-		//날짜, 총액 등
-		CashViewRegisterBean cash = new CashViewRegisterBean();
-		cash.setDate(request.getParameter("duesDate"));
-		cash.setMemfeetotal(memFeeTotal);
-		cash.setExpensetotal(expenseTotal);
-		cash.setAlltotal(memFeeTotal-expenseTotal);
-		
-		
-		getter.close();
 		poster.close();
 		
-		response.sendRedirect("/study-of-us/study/each/fee/cash");
+		response.sendRedirect("../");
 	}
 
 }

@@ -16,6 +16,9 @@ import javax.servlet.http.HttpServletResponse;
 import servlet.study.each.attendance.Attendance;
 import servlet.study.each.attendance.AttendanceConfirm;
 import servlet.study.each.attendance.AttendanceEach;
+import servlet.study.each.fee.CashList;
+import servlet.study.each.fee.CashRegister;
+import servlet.study.each.fee.CashView;
 import servlet.study.each.schedule.EachSchedule;
 import servlet.study.each.schedule.NewSchedule;
 import servlet.study.each.schedule.Schedule;
@@ -86,6 +89,9 @@ public class SoupGlobalFilter implements Filter {
 					case "attendance":
 						attendancePaging(request, response, chain, uri);
 						break;
+					case "fee":
+						feePaging(request, response, chain, uri);
+						break;
 					default:
 						chain.doFilter(request, response);
 				}
@@ -93,6 +99,22 @@ public class SoupGlobalFilter implements Filter {
 		}
 	}
 	
+	private void feePaging(HttpServletRequest request, HttpServletResponse response, FilterChain chain, String[] uri) throws IOException, ServletException {
+		if(uri.length == 5) {
+			new CashList().service(request, response);
+		} else {
+			request.setAttribute("meetingId", uri[5]);
+			if(uri.length == 6) {
+				new CashView().service(request, response);
+			} else if(uri[6].equals("register")) {
+				new CashRegister().service(request, response);
+			} else {
+				chain.doFilter(request, response);
+			}
+		}
+		
+	}
+
 	private void attendancePaging(HttpServletRequest request, HttpServletResponse response, FilterChain chain, String[] uri) throws IOException, ServletException {
 		if(uri.length == 4 || uri.length == 5) {
 			new Attendance().service(request, response);

@@ -1,6 +1,9 @@
 package beansNew;
 
 public class FeeCollect {
+	
+	public static final String QUERY_POST = "INSERT INTO FeeMember(FM_ID, FM_M_INDEX, FM_MT_ID, FM_FEE, FM_NOTE) values(feemember_id.nextval, ?, ?, ?, ?)";
+	
 	int feeCollectId;
 	int meetingId;
 	int memberId;

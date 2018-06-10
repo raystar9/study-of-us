@@ -11,7 +11,7 @@
 </head>
 
 <body>
-	<form action="./cashregister" method="post" class="cashRegisterForm">
+	<form action="./register" method="post" class="cashRegisterForm">
 
 		<table border='1'>
 			<tr>
@@ -88,12 +88,12 @@
 										<tr>
 											<th>내역</th>
 											<th>금액</th>
+											<th><input type="hidden" id='expenseCount' name='expenseCount' value='1'></th>
 										</tr>
 									</thead>
 									<tbody id='cash_tbody'>
 										<tr>
 											<td>
-											<input type="hidden" id=' ' name='expenseCount' value=''>
 											<input type="text" class="form-control"
 												placeholder="내역" id='duesExp1' name='duesExp1'></td>
 											<td><input type="text" class="form-control"

@@ -12,7 +12,6 @@
 <body>
 <form action="./setup" method="post">
 	<c:set var="set" value="${setup}" />
-	<c:set var="cate" value="${category}" />
 	<input type='hidden' id='studyIndex' value='${set.index}'>
 	<input type='hidden' id='category1' value='${cate.category1}'>
 	<input type='hidden' id='category2' value='${cate.category2}'>

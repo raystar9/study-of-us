@@ -24,7 +24,7 @@ public class CommentUpdate extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		DataPoster poster = new DataPoster(DatabaseAccounts.SCOTT);
+		DataPoster poster = new DataPoster(DatabaseAccounts.PROJECT);
 		System.out.println("update 서블릿으로 넘어옴");
 		String content = request.getParameter("content");
 		int cno = Integer.parseInt(request.getParameter("cno"));

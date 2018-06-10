@@ -3,8 +3,8 @@ package beans.study.each.board;
 
 public class BoardListBean {
 
-	public static final String QUERY_GET = "select B_NO, B_TITLE, B_NAME, B_DATE from (SELECT ROWNUM RNUM, B_TITLE, B_NAME, B_DATE, B_S_INDEX, B_NO FROM BOARD b";		//board_list_form.jsp에서 데이터 가져올 때 쿼리
-	public static final String QUERY_GET_COUNT = "select count(*) from (SELECT ROWNUM RNUM, B_TITLE, B_NAME, B_DATE, B_S_INDEX, B_NO FROM BOARD b";	//board_list_form.jsp에서 게시물 수 가져올 때 쿼리
+	public static final String QUERY_GET = "select B_NO, B_TITLE, M_NAME, B_DATE from (SELECT ROWNUM RNUM, B_NO, B_TITLE, M_NAME, B_DATE, B_S_INDEX FROM BOARD b, MEMBER m where B_M_INDEX = m.M_INDEX";		//board_list_form.jsp에서 데이터 가져올 때 쿼리
+	public static final String QUERY_GET_COUNT = "select count(*) from (SELECT ROWNUM RNUM, B_NO, B_TITLE, M_NAME, B_DATE, B_S_INDEX FROM BOARD b, MEMBER m where B_M_INDEX = m.M_INDEX";	//board_list_form.jsp에서 게시물 수 가져올 때 쿼리
 
 	private int index; 		// 게시글 번호
 	private String title; 	// 게시글 제목
