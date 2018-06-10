@@ -9,26 +9,26 @@ public class Study{
 	public static final String QUERY_GET3 = "select * from study inner join CATEGORY on STUDY.S_C_ID = CATEGORY.C_ID where s_place LIKE ? and s_name LIKE ? and category.C_SUB LIKE ? ";
 	public static final String QUERY_GET4 = "SELECT * FROM study where s_index = ? ";
 	public static final String QUERY_GET5 = "select max(s_index) s_index from study";
-	public static final String QUERY_POST = "INSERT INTO study VALUES(study_index.nextval, ?,?,?,?,?,?,?,?,?,?,?)";
+	public static final String QUERY_POST = "INSERT INTO study (s_index ,s_name, s_c_id, s_m_index, s_start, s_end, s_maxmember, s_day, s_time, s_explain, s_material, s_effect, s_place) "
+			+ " VALUES(study_index.nextval, ?,?,?,?,?,?,?,?,?,?,?,?)";
 	public static final String QUERY_PUT = "UPDATE ";
 	public static final String QUERY_DELETE = "DELETE ";
 	
 	
 	private int index;
 	private String name;
-	private int c_id;
-	private int mt_index; 
+	private int s_c_id;
+	private int s_mt_index;
+	private int s_m_index; //스터디 팀장
 	private Date start;
 	private Date end;
-	private int peoplenum;
+	private int maxmember;
 	private String day;
 	private String time;
 	private String explain;
-	private String prepared;
-	private String effective;
+	private String material; //준비물
+	private String effect;
 	private String place;
-	
-	
 	
 	
 	public int getIndex() {
@@ -43,11 +43,23 @@ public class Study{
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getC_id() {
-		return c_id;
+	public int getS_c_id() {
+		return s_c_id;
 	}
-	public void setC_id(int c_id) {
-		this.c_id = c_id;
+	public void setS_c_id(int s_c_id) {
+		this.s_c_id = s_c_id;
+	}
+	public int getS_mt_index() {
+		return s_mt_index;
+	}
+	public void setS_mt_index(int s_mt_index) {
+		this.s_mt_index = s_mt_index;
+	}
+	public int getS_m_index() {
+		return s_m_index;
+	}
+	public void setS_m_index(int s_m_index) {
+		this.s_m_index = s_m_index;
 	}
 	public Date getStart() {
 		return start;
@@ -61,11 +73,11 @@ public class Study{
 	public void setEnd(Date end) {
 		this.end = end;
 	}
-	public int getPeoplenum() {
-		return peoplenum;
+	public int getMaxmember() {
+		return maxmember;
 	}
-	public void setPeoplenum(int peoplenum) {
-		this.peoplenum = peoplenum;
+	public void setMaxmember(int maxmember) {
+		this.maxmember = maxmember;
 	}
 	public String getDay() {
 		return day;
@@ -85,17 +97,17 @@ public class Study{
 	public void setExplain(String explain) {
 		this.explain = explain;
 	}
-	public String getPrepared() {
-		return prepared;
+	public String getMaterial() {
+		return material;
 	}
-	public void setPrepared(String prepared) {
-		this.prepared = prepared;
+	public void setMaterial(String material) {
+		this.material = material;
 	}
-	public String getEffective() {
-		return effective;
+	public String getEffect() {
+		return effect;
 	}
-	public void setEffective(String effective) {
-		this.effective = effective;
+	public void setEffect(String effect) {
+		this.effect = effect;
 	}
 	public String getPlace() {
 		return place;
@@ -103,17 +115,9 @@ public class Study{
 	public void setPlace(String place) {
 		this.place = place;
 	}
-	public int getMt_index() {
-		return mt_index;
-	}
-	public void setMt_index(int mt_index) {
-		this.mt_index = mt_index;
-	}
 	
 	
 	
-	
-
 	
 	
 

@@ -10,6 +10,7 @@ import beans.prototype.Member;
 import beans.prototype.Study;
 import beans.prototype.StudyList;
 import beans.study.each.InformSetup;
+import beans.study.each.Message;
 import beans.study.each.board.BoardViewRegisterBean;
 import beans.study.each.board.CommentBean;
 import beans.study.each.fee.CashExpenseBean;
@@ -36,8 +37,8 @@ public class DataPoster extends DataSetter {
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
 				pstmt.setString(1, member.getId());
-				pstmt.setString(2, member.getName());
-				pstmt.setString(3, member.getPassword());
+				pstmt.setString(2, member.getPassword());
+				pstmt.setString(3, member.getName());
 				pstmt.setString(4, member.getEmail());
 				pstmt.setString(5, member.getTel());
 				pstmt.setString(6, member.getAddress());
@@ -138,16 +139,17 @@ public class DataPoster extends DataSetter {
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
 				pstmt.setString(1, study.getName());
-				pstmt.setInt(2, study.getC_id());
-				pstmt.setDate(3, study.getStart());
-				pstmt.setDate(4, study.getEnd());
-				pstmt.setInt(5, study.getPeoplenum());
-				pstmt.setString(6, study.getDay());
-				pstmt.setString(7, study.getTime());
-				pstmt.setString(8, study.getExplain());
-				pstmt.setString(9, study.getPrepared());
-				pstmt.setString(10, study.getEffective());
-				pstmt.setString(11, study.getPlace());
+				pstmt.setInt(2, study.getS_c_id());
+				pstmt.setInt(3, study.getS_m_index());
+				pstmt.setDate(4, study.getStart());
+				pstmt.setDate(5, study.getEnd());
+				pstmt.setInt(6, study.getMaxmember());
+				pstmt.setString(7, study.getDay());
+				pstmt.setString(8, study.getTime());
+				pstmt.setString(9, study.getExplain());
+				pstmt.setString(10, study.getMaterial());
+				pstmt.setString(11, study.getEffect());
+				pstmt.setString(12, study.getPlace());
 				pstmt.executeUpdate();
 				pstmt.close();
 				
@@ -170,6 +172,7 @@ public class DataPoster extends DataSetter {
 			}
 		});
 	}
+
 	
 	public void Insertindex(int s_index, int m_index) {
 		
@@ -311,4 +314,34 @@ public class DataPoster extends DataSetter {
 			}
 		}
 	
+
+
+
+	public void setMessage(int s_m_index, String m_id, String s_name, int m_m_index) {
+		set(Message.QUERY_POST,new DataSettable() {
+			
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+				pstmt.setInt(1, s_m_index);
+				pstmt.setString(2, m_id);
+				pstmt.setString(3, s_name);
+				pstmt.setInt(4, m_m_index);
+				
+			}
+		});
+	}
+
+	public void delMessage(int sm_s_index, int sm_m_index) {
+		set(Message.QUERY_DELETE, new DataSettable() {
+			
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+				pstmt.setInt(1, sm_s_index);
+				pstmt.setInt(2, sm_m_index);
+				
+			}
+		});
+		
+	}
 }
+
