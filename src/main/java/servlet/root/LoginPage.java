@@ -50,7 +50,7 @@ public class LoginPage extends HttpServlet {
 			System.out.println("비번 " + logpro.getPassword());
 			/*response.sendRedirect("/study-of-us/home");*/
 			getter.close();
-			response.sendRedirect("/study-of-us/study/list");
+			response.sendRedirect("/study-of-us/home");
 		}
 		
 	}

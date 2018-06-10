@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import beans.prototype.Comment;
 import beans.prototype.Inquiry;
 import beans.prototype.Member;
 import beans.prototype.Study;
@@ -27,6 +28,7 @@ import dao.interfaces.DataGettable;
 import dao.interfaces.DataSettable;
 import exceptionHandler.ExceptionHandler;
 import exceptionHandler.TryGetObject;
+import servlet.root.InquiryComment;
 
 /**
  * 데이터베이스에 쿼리문을 실행하며 해당 쿼리문에 대한 결과를 ArrayList에 담아 반환합니다.
@@ -1231,6 +1233,7 @@ ArrayList<StudyListSelect> studylist = (ArrayList<StudyListSelect>) get(StudyLis
 					while(rs.next()) {
 						Inquiry inquiry = new Inquiry();
 						
+						inquiry.setI_index(rs.getInt("i_index"));
 						inquiry.setRnum(rs.getInt("rnum"));
 						inquiry.setSubject(rs.getString("i_subject"));
 						inquiry.setM_id(rs.getString("m_id"));
@@ -1268,7 +1271,76 @@ ArrayList<StudyListSelect> studylist = (ArrayList<StudyListSelect>) get(StudyLis
 			});
 			return count;
 		}
-		
+
+		public Inquiry getInquiryBoardView(int num) {
+			Inquiry inquiry = (Inquiry) get(Inquiry.QUERY_GET2, new DataSettable() {
+				
+				@Override
+				public void prepare(PreparedStatement pstmt) throws SQLException {
+					pstmt.setInt(1, num);
+					
+				}
+			}, new DataGettable() {
+				
+				@Override
+				public Object onGetResult(ResultSet rs) throws SQLException {
+					Inquiry view = null;
+					if(rs.next()) {
+						view = new Inquiry();
+						view.setM_id(rs.getString("M_ID"));
+						view.setSubject(rs.getString("I_SUBJECT"));
+						view.setContent(rs.getString("i_content"));
+						view.setFile(rs.getString("i_file"));
+					}
+					return view;
+				}
+			});
+			
+			
+			return inquiry;
+		}
+
+		public InquiryComment getInquiryComment(int num) {
+			Comment comment = (Comment) get (Comment.QUERY_GET,new DataSettable() {
+				
+				@Override
+				public void prepare(PreparedStatement pstmt) throws SQLException {
+					pstmt.setInt(1, num);
+					
+					
+				}
+			},new DataGettable() {
+				
+				@Override
+				public Object onGetResult(ResultSet rs) throws SQLException {
+					StringBuffer sb = new StringBuffer();
+					sb.append("[");
+					int i = 0;
+					Comment com = null;
+					while(rs.next()) {
+						i++;
+						sb.append("{\"m_id\":");
+						sb.append("\""+rs.getString("m_id") + "\",");
+						sb.append("\"comment_content\":");
+						sb.append("\""+rs.getString("comment_content"));
+						sb.append("\"comment_date\":");
+						sb.append("\""+rs.getString("comment_date") + "\"},");
+						
+					}
+					if(i!=0){
+    					sb.deleteCharAt(sb.length()-1);//맨 마지막 콤마를 제거합니다.
+        				sb.append("]");
+    				}else{
+    					//데이터가 없는 경우 모두 제거합니다
+    					//delete(start, end):index 가 start 부터 end-1 까지 제거합니다.
+    					sb.delete(0,sb.length());
+					
+					return com;
+				}
+			});
+			return comment;
+		}
+
 		
 		
 

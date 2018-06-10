@@ -400,9 +400,15 @@ create table inquiryBoard(
 	i_content varchar(300) not null,			--게시글 내용
 	i_date date not null,					--게시글 작성 날짜
 	constraint FK_i_m_index_member foreign key(i_m_index) references member(m_index))	--멤버의 인덱스 번호를 참조함
-	drop table inquiryBoard
 	
 	
+	
+	--drop table inquiryBoard
+	
+	
+	
+	
+	drop table i_comment
 -- 댓글 테이블
 	create table i_comment(
 	comment_index number not null primary key, 				-- 댓글 테이블의 번호
@@ -419,6 +425,8 @@ create table inquiryBoard(
 	references member(m_index)		-- 멤버의 인덱스 번호참조
 	alter table i_comment add constraint fk_ib_index foreign key(comment_ib_index)
 	references inquiryBoard(i_index) 		-- 게시판에 인덱스 번호 참조
+	
+	
 
 
 
@@ -513,6 +521,32 @@ where rnum >= 1 and rnum <= 2
 
 update study set s_start = '2018-05-09'
 update study set s_end = '2018-05-30'
+
+
+
+----------------------------------------------------------------------- 2018 06 11 수정------------------------------------------------------------------------------------------------
+
+--	primary key(comment_m_index,comment_ib_index)
+drop table i_comment
+
+create table i_comment(
+	comment_index number not null ,
+	comment_m_index number not null,
+	comment_ib_index number not null,
+	comment_content varchar(300) not null,
+	comment_date date,
+	primary key (comment_index)
+	)
+	alter table i_comment add foreign key(comment_m_index) references member(m_index);
+	alter table i_comment add foreign key(comment_ib_index) references inquiryboard(i_index);
+	
+	
+	select * from i_comment
+	select * from member
+	select * from inquiryboard 
+	
+
+
 
 
 

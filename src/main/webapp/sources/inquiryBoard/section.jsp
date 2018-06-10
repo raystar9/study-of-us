@@ -36,7 +36,8 @@
 			 <%-- ${list.rnum } --%>
 		</td>
 		<td>
-			 ${list.subject}
+			 <a href="/study-of-us/inquiryView?num=${list.i_index}">
+			 			${ list.subject}</a>
 		</td>
 		<td>
 			 ${list.m_id} 
@@ -76,14 +77,13 @@
 			</c:if>
 		</td>
 	</tr>
-		
-		
-			
-			
-			
-		
 		</c:if>
-	
+		
+		
+		<tr>
+			<td colspan = "5" style="text-align : right"><a 
+			href ="/study-of-us/boardWriteView">[글쓰기]</a></td>
+		</tr>
 	</table>
 	
 	

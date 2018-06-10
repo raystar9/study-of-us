@@ -1,25 +1,24 @@
-	public StudyListSelect getStudyListCount(int index) {
-		StudyListSelect count = (StudyListSelect) get(StudyListSelect.QUERY_GET2,new DataSettable() {
-			
+	public Login getIdCheck(String id) {
+		Login login = (Login) get(Login.QUERY_GET2, new DataSettable() {
+
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
-				pstmt.setInt(1, index);
-				
+				// 바인딩변수채워주고
+				pstmt.setString(1, id);
 			}
 		}, new DataGettable() {
-			
+
 			@Override
 			public Object onGetResult(ResultSet rs) throws SQLException {
-				StudyListSelect slist = null;
-				if(rs.next()) {
-					slist = new StudyListSelect();
-					slist.setCount(rs.getInt("count"));
+				Login idck = null;
+				if (rs.next()) {
+					// 값이있다면 인스턴스변수 참조해서 값을 넣어준다
+					idck = new Login();
+					idck.setId(rs.getString(1));
 				}
-				
-				return slist;
+
+				return idck;
 			}
 		});
-		
-		// TODO Auto-generated method stub
-		return count;
+		return login;
 	}
