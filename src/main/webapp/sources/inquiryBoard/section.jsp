@@ -49,6 +49,7 @@
 		
 			</c:forEach>
 		
+		<!--  페이징 처리 -->
 		<tr class="h30 lime center btn">
 		<td colspan=5>			
 			<c:if test="${page <= 1 }">

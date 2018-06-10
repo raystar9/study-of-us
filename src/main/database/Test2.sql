@@ -464,6 +464,26 @@ insert into inquiryBoard
 values(inquiry_index.nextval,12,'안녕하세요테스트10','파일','하나둘셋',sysdate)
 
 
+insert into inquiryBoard
+values(inquiry_index.nextval,12,'안녕하세요테스트11','파일','하나둘셋',sysdate)
+insert into inquiryBoard
+values(inquiry_index.nextval,12,'안녕하세요테스트12','파일','하나둘셋',sysdate)
+insert into inquiryBoard
+values(inquiry_index.nextval,12,'안녕하세요테스트13','파일','하나둘셋',sysdate)
+insert into inquiryBoard
+values(inquiry_index.nextval,12,'안녕하세요테스트14','파일','하나둘셋',sysdate)
+insert into inquiryBoard
+values(inquiry_index.nextval,12,'안녕하세요테스트15','파일','하나둘셋',sysdate)
+insert into inquiryBoard
+values(inquiry_index.nextval,12,'안녕하세요테스트16','파일','하나둘셋',sysdate)
+insert into inquiryBoard
+values(inquiry_index.nextval,12,'안녕하세요테스트17','파일','하나둘셋',sysdate)
+
+
+
+
+
+
 select * from member;
 
 

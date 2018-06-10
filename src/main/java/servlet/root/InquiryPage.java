@@ -53,11 +53,11 @@ public class InquiryPage extends HttpServlet {
 		System.out.println("count 수 " + inquirycount.getCount());
 		
 		//현재 페이지수
-		int startpage = ((page-1/10) * 10 + 1);
-		System.out.println("현재 페이지에서 보여줄 시작 페이지수 " + startpage);
+		int startpage = ((page-1) /10) * 10 + 1;
+		System.out.println("현재 페이지에서 보여줄 시작 글넘버 " + startpage);
 		
 		int endpage = startpage + 10 - 1;
-		System.out.println("현재 페이지의 보여줄 마지막 페이지 수 " + endpage);
+		System.out.println("현재 페이지의 보여줄 마지막 글넘버  " + endpage);
 		
 		if (endpage > maxpage) 
 			endpage = maxpage;
