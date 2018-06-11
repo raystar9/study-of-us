@@ -10,7 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import beansNew.Meeting;
-import fakeDB.FakeDB;
+import dao.DataGetter;
+import dao.DatabaseAccounts;
 
 /**
  * Servlet implementation class EachStudy
@@ -30,11 +31,16 @@ public class EachSchedule extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Meeting m = FakeDB.getInstance().getMeetings().get(0);
+		String studyName = (String) request.getAttribute("studyName");
+		int meetingId = Integer.parseInt((String) request.getAttribute("meetingId"));
+		
+		DataGetter getter = new DataGetter(DatabaseAccounts.PROJECT);
+		Meeting m = getter.getEachSchedules(studyName, meetingId);
+		getter.close();
+		
 		request.setAttribute("meeting", m);
 		SimpleDateFormat format = new SimpleDateFormat("yy-MM-dd a h:mm");
-		request.setAttribute("time", format.format(m.getDate().getTime()));
-		
+		request.setAttribute("time", format.format(m.getTimestamp().getTime()));
 		request.getRequestDispatcher("/study/each/schedule/each.jsp").forward(request, response);
 	}
 

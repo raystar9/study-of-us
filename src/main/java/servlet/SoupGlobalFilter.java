@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.net.URLDecoder;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -15,6 +16,9 @@ import javax.servlet.http.HttpServletResponse;
 import servlet.study.each.attendance.Attendance;
 import servlet.study.each.attendance.AttendanceConfirm;
 import servlet.study.each.attendance.AttendanceEach;
+import servlet.study.each.fee.CashList;
+import servlet.study.each.fee.CashRegister;
+import servlet.study.each.fee.CashView;
 import servlet.study.each.schedule.EachSchedule;
 import servlet.study.each.schedule.NewSchedule;
 import servlet.study.each.schedule.Schedule;
@@ -73,7 +77,8 @@ public class SoupGlobalFilter implements Filter {
 			if(uri[3].equals("search")) {
 				chain.doFilter(request, response);
 			}
-			uri[3] = "each";
+			
+			request.setAttribute("studyName", URLDecoder.decode(uri[3], "UTF-8"));
 			if(uri.length == 4) {
 				//TODO 각study의 기본 페이지로
 			} else {
@@ -84,6 +89,9 @@ public class SoupGlobalFilter implements Filter {
 					case "attendance":
 						attendancePaging(request, response, chain, uri);
 						break;
+					case "fee":
+						feePaging(request, response, chain, uri);
+						break;
 					default:
 						chain.doFilter(request, response);
 				}
@@ -91,11 +99,27 @@ public class SoupGlobalFilter implements Filter {
 		}
 	}
 	
+	private void feePaging(HttpServletRequest request, HttpServletResponse response, FilterChain chain, String[] uri) throws IOException, ServletException {
+		if(uri.length == 5) {
+			new CashList().service(request, response);
+		} else {
+			request.setAttribute("meetingId", uri[5]);
+			if(uri.length == 6) {
+				new CashView().service(request, response);
+			} else if(uri[6].equals("register")) {
+				new CashRegister().service(request, response);
+			} else {
+				chain.doFilter(request, response);
+			}
+		}
+		
+	}
+
 	private void attendancePaging(HttpServletRequest request, HttpServletResponse response, FilterChain chain, String[] uri) throws IOException, ServletException {
 		if(uri.length == 4 || uri.length == 5) {
 			new Attendance().service(request, response);
 		} else {
-			uri[5] = "each";
+			request.setAttribute("meetingId", uri[5]);
 			if(uri[6].equals("confirm")) {
 				new AttendanceConfirm().service(request, response);
 			} else if(uri[6].equals("record")) {
@@ -108,12 +132,12 @@ public class SoupGlobalFilter implements Filter {
 		if(uri.length == 5) {
 			new Schedule().service(request, response);
 		} else {
-			
 			switch(uri[5]) {
 				case "new": 
 					new NewSchedule().service(request, response);
 					break;
 				default:
+					request.setAttribute("meetingId", uri[5]);
 					new EachSchedule().service(request, response);
 					break;
 			}

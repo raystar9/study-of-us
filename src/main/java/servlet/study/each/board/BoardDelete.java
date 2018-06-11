@@ -28,13 +28,13 @@ public class BoardDelete extends HttpServlet {
 		// TODO Auto-generated method stub
 		int num = Integer.parseInt(request.getParameter("num"));
 		int studyIndex = 3;
+		//int studyIndex = (int)request.getSession().getAttribute("index");
 		
-		DataPoster poster = new DataPoster(DatabaseAccounts.SCOTT);
+		DataPoster poster = new DataPoster(DatabaseAccounts.PROJECT);
 		poster.postBoardDelete(num, studyIndex);
 		poster.close();
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/each/boardList.jsp");
-		dispatcher.forward(request, response);
+		response.sendRedirect("/study-of-us/study/each/board");
 	}
 
 	

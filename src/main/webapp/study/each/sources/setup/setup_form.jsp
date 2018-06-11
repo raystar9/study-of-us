@@ -11,9 +11,10 @@
 
 <body>
 <form action="./setup" method="post">
-	<c:set var="m" value="${memlist}" />
-	<c:set var="s" value="${setup}" />
-	<input type='hidden' id='studyIndex' value='${s.index}'>
+	<c:set var="set" value="${setup}" />
+	<input type='hidden' id='studyIndex' value='${set.index}'>
+	<input type='hidden' id='category1' value='${cate.category1}'>
+	<input type='hidden' id='category2' value='${cate.category2}'>
 		<table border='1'>
 		<tr>
 			<td>
@@ -30,12 +31,12 @@
 			<td><h4>*카테고리 (대분류/소분류)</h4>
 				<hr>
 				<div class="panel-body">
-				<select>
+				<select name='categoryGroup' id='categoryGroup'>
 					<option value="프로그래밍">프로그래밍</option>
 					<option value="영어">영어</option>
 					<option value="국어">국어</option>
 				</select>
-				<select>
+				<select name='categorySub' id='categorySub'>
 					<option value="JAVA">JAVA</option>
 					<option value="토익">토익</option>
 					<option value="독후감">독후감</option>
@@ -71,44 +72,44 @@
 		<tr>
 			<td><h4>*기간</h4>
 				<hr> <input type="text" name='startDate' class="form-control"
-				 id="date_text" value='${s.startDate }'>&nbsp; ~
+				 id="date_text" value='${set.startDate }'>&nbsp; ~
 				&nbsp; <input type="text" name='endDate' class="form-control"
-				 id="date_text" value='${s.endDate }'>
+				 id="date_text" value='${set.endDate }'>
 			</td>
 		</tr>
 		<tr>
 			<td><h4>*현재인원 / 최대인원</h4>
 				<hr> 
 				<input type="text" name='memberCount' class="form-control" value='${membercount }' readOnly>명/
-				<input type="text" name='peopleNum' class="form-control" value='${s.peopleNum }'>명
+				<input type="text" name='peopleNum' class="form-control" value='${set.peopleNum }'>명
 			</td>
 		</tr>
 		<tr>
 			<td><h4>*활동시간</h4>
-				<hr> <input type="text" name='time' class="form-control" value='${s.activityTime }'>시간
+				<hr> <input type="text" name='time' class="form-control" value='${set.activityTime }'>시간
 			</td>
 		</tr>
 		<tr>
 			<td><h4>*요일</h4>
-				<hr> <input type="text" name='day' class="form-control" value='${s.day }'>요일
+				<hr> <input type="text" name='day' class="form-control" value='${set.day }'>요일
 			</td>
 		</tr>
 		<tr>
 			<td><h4>*스터디 지역</h4>
-				<hr> <input type="text" name='place' class="form-control" value='${s.place }'></td>
+				<hr> <input type="text" name='place' class="form-control" value='${set.place }'></td>
 		</tr>
 		<tr>
 			<td><h4>*프로젝트 개요</h4>
 				<hr>
-				<textarea rows="7" cols="100" name='explain'>${s.explain}</textarea></td>
+				<textarea rows="7" cols="100" name='explain'>${set.explain}</textarea></td>
 		</tr>
 		<tr>
 			<td><h4>*주요 교재 및 준비물</h4>
-				<hr> <textarea rows="7" cols="100" name='prepared'>${s.prepared }</textarea></td>
+				<hr> <textarea rows="7" cols="100" name='prepared'>${set.prepared }</textarea></td>
 		</tr>
 		<tr>
 			<td><h4>*기대효과 및 활동 분야</h4>
-				<hr><textarea rows="7" cols="100" name='effective'>${s.effective}</textarea></td>
+				<hr><textarea rows="7" cols="100" name='effective'>${set.effective}</textarea></td>
 		</tr>
 		<tr>
 			<td>

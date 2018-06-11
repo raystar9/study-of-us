@@ -1,12 +1,12 @@
 package beansNew;
 
 import java.sql.Date;
-import java.util.ArrayList;
 
 public class Study {
+	int studyId;
 	String name;
-	Category category;
-	Member leader;
+	int categoryId;
+	int leaderId;
 	Date startDate;
 	Date endDate;
 	int maxMember;
@@ -16,111 +16,112 @@ public class Study {
 	String material;
 	String effects;
 	String place;
-	ArrayList<Member> members;
 	
 	public Study() {
 	}
-	
-	public Study(String name, Category category, Member leader, Date startDate, Date endDate,
-			int maxMember, String dayOfWeek, String time, String explain, String material, String effects, String place,
-			ArrayList<Member> members) {
-		this.name = name;
-		this.category = category;
-		this.leader = leader;
-		this.startDate = startDate;
-		this.endDate = endDate;
-		this.maxMember = maxMember;
-		this.dayOfWeek = dayOfWeek;
-		this.time = time;
-		this.explain = explain;
-		this.material = material;
-		this.effects = effects;
-		this.place = place;
-		this.members = members;
+
+	public int getStudyId() {
+		return studyId;
 	}
-
-
 
 	public String getName() {
 		return name;
 	}
-	public void setName(String name) {
-		this.name = name;
+
+	public int getCategoryId() {
+		return categoryId;
 	}
-	public Category getCategory() {
-		return category;
+
+	public int getLeaderId() {
+		return leaderId;
 	}
-	public void setCategory(Category category) {
-		this.category = category;
-	}
-	public Member getLeader() {
-		return leader;
-	}
-	public void setLeader(Member member) {
-		this.leader = member;
-	}
+
 	public Date getStartDate() {
 		return startDate;
 	}
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
-	}
+
 	public Date getEndDate() {
 		return endDate;
 	}
-	public void setEndDate(Date endDate) {
-		this.endDate = endDate;
-	}
+
 	public int getMaxMember() {
 		return maxMember;
 	}
-	public void setMaxMember(int maxMember) {
-		this.maxMember = maxMember;
-	}
+
 	public String getDayOfWeek() {
 		return dayOfWeek;
 	}
-	public void setDayOfWeek(String dayOfWeek) {
-		this.dayOfWeek = dayOfWeek;
-	}
+
 	public String getTime() {
 		return time;
 	}
-	public void setTime(String time) {
-		this.time = time;
-	}
+
 	public String getExplain() {
 		return explain;
 	}
-	public void setExplain(String explain) {
-		this.explain = explain;
-	}
+
 	public String getMaterial() {
 		return material;
 	}
-	public void setMaterial(String material) {
-		this.material = material;
-	}
+
 	public String getEffects() {
 		return effects;
 	}
-	public void setEffects(String effects) {
-		this.effects = effects;
-	}
+
 	public String getPlace() {
 		return place;
 	}
+
+	public void setStudyId(int studyId) {
+		this.studyId = studyId;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setCategoryId(int categoryId) {
+		this.categoryId = categoryId;
+	}
+
+	public void setLeaderId(int leaderId) {
+		this.leaderId = leaderId;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
+
+	public void setMaxMember(int maxMember) {
+		this.maxMember = maxMember;
+	}
+
+	public void setDayOfWeek(String dayOfWeek) {
+		this.dayOfWeek = dayOfWeek;
+	}
+
+	public void setTime(String time) {
+		this.time = time;
+	}
+
+	public void setExplain(String explain) {
+		this.explain = explain;
+	}
+
+	public void setMaterial(String material) {
+		this.material = material;
+	}
+
+	public void setEffects(String effects) {
+		this.effects = effects;
+	}
+
 	public void setPlace(String place) {
 		this.place = place;
 	}
 	
-	public ArrayList<Member> getMembers() {
-		return members;
-	}
-	public void setMembers(ArrayList<Member> members) {
-		this.members = members;
-	}
-	public void addMember(Member member) {
-		members.add(member);
-	}
 }

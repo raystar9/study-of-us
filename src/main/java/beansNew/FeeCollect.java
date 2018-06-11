@@ -1,43 +1,66 @@
 package beansNew;
 
 public class FeeCollect {
-	Meeting meeting;
-	Member member;
+	
+	public static final String QUERY_POST = "INSERT INTO FeeMember(FM_ID, FM_M_INDEX, FM_MT_ID, FM_FEE, FM_NOTE) values(feemember_id.nextval, ?, ?, ?, ?)";
+	
+	int feeCollectId;
+	int meetingId;
+	int memberId;
 	int fee;
 	String note;
 	
 	public FeeCollect() {
 	}
-	public FeeCollect(Meeting meeting, Member member, int fee, String note) {
-		this.meeting = meeting;
-		this.member = member;
+
+
+	public FeeCollect(int feeCollectId, int meetingId, int memberId, int fee, String note) {
+		this.feeCollectId = feeCollectId;
+		this.meetingId = meetingId;
+		this.memberId = memberId;
 		this.fee = fee;
 		this.note = note;
 	}
-	public Meeting getMeeting() {
-		return meeting;
+
+
+	public int getFeeCollectId() {
+		return feeCollectId;
 	}
-	public void setMeeting(Meeting meeting) {
-		this.meeting = meeting;
+
+	public void setFeeCollectId(int feeCollectId) {
+		this.feeCollectId = feeCollectId;
 	}
-	public Member getMember() {
-		return member;
+
+	public int getMeetingId() {
+		return meetingId;
 	}
-	public void setMember(Member member) {
-		this.member = member;
+
+	public int getMemberId() {
+		return memberId;
 	}
+
 	public int getFee() {
 		return fee;
 	}
-	public void setFee(int fee) {
-		this.fee = fee;
-	}
+
 	public String getNote() {
 		return note;
 	}
+
+	public void setMeetingId(int meetingId) {
+		this.meetingId = meetingId;
+	}
+
+	public void setMemberId(int memberId) {
+		this.memberId = memberId;
+	}
+
+	public void setFee(int fee) {
+		this.fee = fee;
+	}
+
 	public void setNote(String note) {
 		this.note = note;
 	}
-	
 	
 }

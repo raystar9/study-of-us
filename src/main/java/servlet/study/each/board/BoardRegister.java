@@ -29,7 +29,7 @@ public class BoardRegister extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/each/boardRegister.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/each/board/boardRegister.jsp");
 		dispatcher.forward(request, response);
 
 	}
@@ -39,6 +39,7 @@ public class BoardRegister extends HttpServlet {
 		System.out.println("BoardRegister 서블릿으로 들어옴");
 		// TODO Auto-generated method stub
 		int studyIndex = 3;
+		//int studyIndex = (int)request.getSession().getAttribute("index");
 		String realFolder = "";
 		
 		//WebContent아래에 꼭 폴더 생성
@@ -59,21 +60,22 @@ public class BoardRegister extends HttpServlet {
 
 	    //BoardBean 객체에 글 등록 폼에서 입력 받은 정보들을 저장
 		BoardViewRegisterBean board = new BoardViewRegisterBean();
-		board.setTitle(request.getParameter("boardSubject"));
-		board.setName(request.getParameter("boardName"));
-		board.setContent(request.getParameter("boardContent"));
+		board.setName(multi.getParameter("boardName"));
+		board.setTitle(multi.getParameter("boardSubject"));
+		board.setContent(multi.getParameter("boardContent"));
 		//업로드의 파일명은 업로드한 파일의 전체 경로에서 파일 이름만 저장합니다.
         board.setFilename(multi.getFilesystemName((String)multi.getFileNames().nextElement()));
-
-
+        System.out.println("filename=" + multi.getFilesystemName((String)multi.getFileNames().nextElement()));
+        
 		DataPoster poster = new DataPoster(DatabaseAccounts.SCOTT);
 		poster.postBoard(board, studyIndex); 
-		
 		poster.close();
-
+		
+		/* 사용자 아이디 session에서 가져오는 것 필요 */
+        /* 사용자 아이디 session에서 저장해서 form으로 보내는 것 필요 */
+		
 		//나중엔 그 해당 글번호를 가져와서 등록한 글의 세부보기 페이지로 이동할 것임.
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/each/board_view_form.jsp");
-		dispatcher.forward(request, response);
+		response.sendRedirect("/study-of-us/study/each/board");
 	}
 
 }
