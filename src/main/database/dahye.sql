@@ -5,7 +5,8 @@ INCREMENT BY 1
 NOMAXVALUE;
 
 select * from study;
-
+select count(*) from studymemberlist where S_INDEX = 3
+select * from studymemberlist;
 update board set B_DATE = '2018-06-05' where B_NAME='ㅂㅈㄷ'
 
 select B_NO, B_TITLE, B_NAME, B_DATE from (SELECT ROWNUM RNUM, B_TITLE, B_NAME, B_DATE, B_S_INDEX, B_NO FROM BOARD b) where B_S_INDEX IN (select S_INDEX from STUDY where S_INDEX = 3) AND RNUM>=11 AND RNUM<=20 ORDER BY B_NO desc
@@ -17,6 +18,23 @@ select * from board order by B_NO desc;
 drop table Member;
 -- Member 테이블 생성
 CREATE TABLE Member(
+
+
+
+
+
+
+
+
+
+
+select count(*) from (select distinct C_GROUP from category);
+
+select * from category;
+
+
+
+
 	M_INDEX NUMBER NOT NULL PRIMARY KEY,      -- member_index 시퀀스 처리
 	M_ID VARCHAR(16) NOT NULL,
 	M_PASSWORD VARCHAR(16) NOT NULL,
@@ -715,29 +733,28 @@ INCREMENT 1
 NOMAXVALUE;
 select * from member;
 select * from study;
+select * from studymemberlist;
 
-
-insert into board values(board_no.nextval, 6, 27, board_studyseq.nextval, '1테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
-insert into board values(board_no.nextval, 6, 27, board_studyseq.nextval, '2테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
-insert into board values(board_no.nextval, 6, 27, board_studyseq.nextval, '6테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
-insert into board values(board_no.nextval, 6, 27, board_studyseq.nextval, '4테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
-insert into board values(board_no.nextval, 6, 27, board_studyseq.nextval, '5테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
-insert into board values(board_no.nextval, 6, 27, board_studyseq.nextval, '6테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
-insert into board values(board_no.nextval, 6, 27, board_studyseq.nextval, '7테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
-insert into board values(board_no.nextval, 6, 27, board_studyseq.nextval, '8테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
-insert into board values(board_no.nextval, 6, 27, board_studyseq.nextval, '9테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
-insert into board values(board_no.nextval, 6, 27, board_studyseq.nextval, '10테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
-insert into board values(board_no.nextval, 6, 27, board_studyseq.nextval, '11테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
-insert into board values(board_no.nextval, 6, 27, board_studyseq.nextval, '12테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
-insert into board values(board_no.nextval, 6, 27, board_studyseq.nextval, '16테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
-insert into board values(board_no.nextval, 6, 27, board_studyseq.nextval, '14테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
-insert into board values(board_no.nextval, 6, 27, board_studyseq.nextval, '15테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
-
-select * from board;
+insert into board values(board_no.nextval, 5, 6, board_studyseq.nextval, '1테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
+insert into board values(board_no.nextval, 5, 6, board_studyseq.nextval, '2테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
+insert into board values(board_no.nextval, 5, 6, board_studyseq.nextval, '3테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
+insert into board values(board_no.nextval, 5, 6, board_studyseq.nextval, '4테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
+insert into board values(board_no.nextval, 5, 6, board_studyseq.nextval, '5테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
+insert into board values(board_no.nextval, 5, 6, board_studyseq.nextval, '6테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
+insert into board values(board_no.nextval, 5, 6, board_studyseq.nextval, '7테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
+insert into board values(board_no.nextval, 5, 6, board_studyseq.nextval, '8테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
+insert into board values(board_no.nextval, 5, 6, board_studyseq.nextval, '9테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
+insert into board values(board_no.nextval, 5, 6, board_studyseq.nextval, '10테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
+insert into board values(board_no.nextval, 5, 6, board_studyseq.nextval, '11테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
+insert into board values(board_no.nextval, 5, 6, board_studyseq.nextval, '12테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
+insert into board values(board_no.nextval, 5, 6, board_studyseq.nextval, '13테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
+insert into board values(board_no.nextval, 5, 6, board_studyseq.nextval, '14테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
+insert into board values(board_no.nextval, 5, 6, board_studyseq.nextval, '15테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
+select * from board order by B_NO desc;
 select * from studymemberlist;
 
 
-
+select * from 
 
 
 select B_NO, B_TITLE, M_NAME, B_DATE 
@@ -868,8 +885,18 @@ insert into COMMENTS
 values(comments_index.nextval,?,?,sysdate,?)
 
 select * from study;
-UPDATE STUDY SET S_CATEGORY=?, S_PLOPIENUM=?, S_NAME=?, S_PLACE=?, S_TIME=?, S_START=?, S_END=?, S_DAY=?, S_EXPLAIN=?, S_PREPARED=?, S_EFFECTIVE=?
+
+
+select * from board;
+
+select * from category;
+
+select B_NO, B_TITLE, M_NAME, B_DATE from (SELECT ROWNUM RNUM, B_NO, B_TITLE, M_NAME, B_DATE, B_S_INDEX FROM BOARD b, MEMBER m where B_M_INDEX = m.M_INDEX)  where B_S_INDEX = (select S_INDEX from STUDY where S_INDEX = 3) AND RNUM>=1 AND RNUM<=10 ORDER BY B_NO DESC
+
+select distinct C_GROUP from category;
+
+select count(*) from studymemberlist where S_INDEX = 3;
 
 select S_NAME,C_GROUP, C_SUBGROUP, S_START, S_END, S_MAXMEMBER, S_TIME, S_DAY,  S_EXPLAIN, S_MATERIAL, S_EFFECT, S_PLACE from Study s, Category c where s.S_C_ID = c.C_ID and s.S_INDEX = 3
 
-select S_NAME,C_GROUP, C_SUBGROUP, S_START, S_END, S_MAXMEMBER, S_TIME, S_DAY,  S_EXPLAIN, S_MATERIAL, S_EFFECT, S_PLACE from Study s, Category c where s.S_C_ID = c.C_ID and s.S_INDEX = 3
+SELECT m_name, m_tel, m_email FROM studyMemberList WHERE s_name = '외국인처럼 말하기'; 

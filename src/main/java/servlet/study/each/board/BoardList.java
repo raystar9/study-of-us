@@ -43,7 +43,7 @@ public class BoardList extends HttpServlet {
 		
 		int page = 1;
 		int limit = 10;
-		int studyIndex = 6;
+		int studyIndex = 5;
 		//int studyIndex = (int)request.getSession().getAttribute("index");
 
 		if (request.getParameter("page") != null) {

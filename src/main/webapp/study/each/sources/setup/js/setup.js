@@ -14,6 +14,25 @@ $(document).ready(function() {
 			return false;
 		}
 		
-	});// click end
+	});// click() end
 	
-})// ready end
+})// ready() end
+
+function chageCategory(){
+	var category1 = $('#categoryGroup').val();
+	
+	$('#categorySub').empty();
+	$.ajax({ url : '/study-of-us/setupcategory',
+		 type : 'post',
+		 data : {"category1" : category1},
+			success : function(data) {
+				var a = '';
+				$.each(JSON.parse(data), function(index, value) {
+					a += '<option value=' + value + '>' + value + '</option>';
+				});
+
+				$("#categorySub").html(a);
+			}
+		});
+	
+}// changeCategory() end

@@ -1,4 +1,4 @@
-package servlet.study.each;
+ package servlet.study.each;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -32,7 +32,7 @@ public class Setup extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		DataGetter getter = new DataGetter(DatabaseAccounts.PROJECT);
-		int studyIndex = 3;
+		int studyIndex = 5;
 		//int studyIndex = (int)request.getSession().getAttribute("index");
 		
 		int membercount = getter.getInformMemberCount(studyIndex);	//스터디 참여인원
@@ -42,10 +42,19 @@ public class Setup extends HttpServlet {
 		
 		InformSetup setup = new InformSetup();
 		setup = getter.getInformation(studyIndex);	
+		String mainCategory = setup.getCategory1();
+		
+		String[] mainCategorys = new String[getter.getMainCategoryCount()];
+		String[] subCategory = new String[getter.getSubCategoryCount(mainCategory)];
+		
+		mainCategorys = getter.getMainCategory();
+		subCategory = getter.getSubCategory(mainCategory);
 		
 		request.setAttribute("membercount", membercount); 	//스터디 참여인원
 		request.setAttribute("memlist", memlist);			//스터디 참여인원의 정보
 		request.setAttribute("setup", setup);				//설정 정보
+		request.setAttribute("mainCategory", mainCategorys);	//카테고리 리스트
+		request.setAttribute("subCategory", subCategory);	//카테고리 리스트
 		getter.close();
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/each/setup.jsp");
@@ -64,7 +73,7 @@ public class Setup extends HttpServlet {
 		setup.setPeopleNum(Integer.parseInt(request.getParameter("peopleNum")));
 		setup.setName(request.getParameter("studyName"));
 		setup.setPlace(request.getParameter("place"));
-		setup.setActivityTime(DateConverter.convertDateTime(request.getParameter("time")));
+		setup.setActivityTime(request.getParameter("time"));
 		setup.setStartDate(DateConverter.convertDateTime(request.getParameter("startDate")));
 		setup.setEndDate(DateConverter.convertDateTime(request.getParameter("endDate")));
 		setup.setDay(request.getParameter("day"));

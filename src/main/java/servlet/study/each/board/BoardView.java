@@ -30,7 +30,7 @@ public class BoardView extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		DataGetter getter = new DataGetter(DatabaseAccounts.PROJECT);
-		int studyIndex = 6;
+		int studyIndex = 5;
 		//int studyIndex = (int)request.getSession().getAttribute("index");
 		
 		BoardViewRegisterBean boardcontent = getter.getBoardView(Integer.parseInt(request.getParameter("num")));

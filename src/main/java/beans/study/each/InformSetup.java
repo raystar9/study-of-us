@@ -7,6 +7,10 @@ import java.sql.Date;
 public class InformSetup {
 	
 	public static final String QUERY_GET = "select S_NAME,C_GROUP, C_SUBGROUP, S_START, S_END, S_MAXMEMBER, S_TIME, S_DAY,  S_EXPLAIN, S_MATERIAL, S_EFFECT, S_PLACE from Study s, Category c where s.S_C_ID = c.C_ID and s.S_INDEX = ?";
+	public static final String QUERY_GET_CATEGORY1 = "select distinct C_GROUP from category";
+	public static final String QUERY_GET_CATEGORY1_COUNT = "select count(*) from (select distinct C_GROUP from category)";
+	public static final String QUERY_GET_CATEGORY2 = "select C_SUBGROUP from category where C_GROUP = ?";
+	public static final String QUERY_GET_CATEGORY2_COUNT = "select count(*) from category where C_GROUP = ?";
 	public static final String QUERY_GET_COUNT = "select count(*) from studymemberlist where S_INDEX = ?";
 	public static final String QUERY_PUT = "UPDATE STUDY SET S_CATEGORY=?, S_PLOPIENUM=?, S_NAME=?, S_PLACE=?, S_TIME=?, S_START=?, S_END=?, S_DAY=?, S_EXPLAIN=?, S_PREPARED=?, S_EFFECTIVE=?"; 
 	
@@ -16,7 +20,7 @@ public class InformSetup {
 	private String category2;		//카테고리2
 	private int peopleNum;			//스터디 모집인원
 	private String place;			//스터디 장소
-	private Date activityTime;		//스터디 활동시간
+	private String activityTime;	//스터디 활동시간
 	private Date startDate;			//스터디 시작날짜
 	private	Date endDate;			//스터디 종료날짜
 	private String day;				//스터디 활동요일
@@ -26,11 +30,10 @@ public class InformSetup {
 	
 	
 	
-	
-	public Date getActivityTime() {
+	public String getActivityTime() {
 		return activityTime;
 	}
-	public void setActivityTime(Date activityTime) {
+	public void setActivityTime(String activityTime) {
 		this.activityTime = activityTime;
 	}
 	public Date getStartDate() {
@@ -105,8 +108,5 @@ public class InformSetup {
 	public void setCategory2(String category2) {
 		this.category2 = category2;
 	}
-	
-	
-	
 
 }

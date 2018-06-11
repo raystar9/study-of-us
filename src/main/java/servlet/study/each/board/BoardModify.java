@@ -28,7 +28,7 @@ public class BoardModify extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		int studyIndex = 6;
+		int studyIndex = 5;
 		//int studyIndex = (int)request.getSession().getAttribute("index");
 		
 		DataGetter getter = new DataGetter(DatabaseAccounts.PROJECT);
