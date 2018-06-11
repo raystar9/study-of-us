@@ -17,11 +17,11 @@
 <h3 align=center>Sign in to StudyOfUs</h3>
 
 <div>
-  <form action="LoginPage" method="get">
-    <label for="lid"><strong>Your ID</strong></label><a href="IDFind.jsp" class="forgot">Forgot ID?</a>
+  <form action="LoginPage" method="post">
+    <label for="lid"><strong>Your ID</strong></label><a href="IDFindForm" class="forgot">Forgot ID?</a>
     <input type="text" id="id" name="id" placeholder="Your ID.." maxlength="10">
 
-    <label for="password"><strong>Your Pass</strong></label><a href="PWFind.jsp" class="forgot">Forgot password?</a>
+    <label for="password"><strong>Your Pass</strong></label><a href="PWFindForm" class="forgot">Forgot password?</a>
     <input type="password" id="password" name="password" placeholder="Your PASS.." maxlength="13">
     <input type="submit" value="Sign in" id="submit">
   </form>

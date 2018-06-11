@@ -4,7 +4,7 @@
      String id = (String)request.getAttribute("id");
  
 %>  
-<form action="loginForm.jsp" method="get">
+<form action="loginForm.jsp" method="post">
 <div class="idresult">
 			아이디는 ${id }입니다.
 </div>

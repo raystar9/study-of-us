@@ -39,7 +39,7 @@ public class PWFindPage extends HttpServlet{
 		if(findid.getId().equals(id) && findname.getName().equals(name)){
 			String pw = findid.getPassword();
 		
-			System.out.println(id);
+			System.out.println(pw);
 			request.setAttribute("pw", pw);
 			request.getRequestDispatcher("/PWFindResult.jsp").forward(request, response);
 		}
