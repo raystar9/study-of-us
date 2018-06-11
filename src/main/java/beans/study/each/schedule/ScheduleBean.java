@@ -1,7 +1,7 @@
 package beans.study.each.schedule;
 
 public class ScheduleBean {
-	public static final String QUERY_GET = "SELECT mt_id, mt_place, mt_date FROM v_meeting WHERE S_NAME = ?";
+	public static final String QUERY_GET = "SELECT mt_id, mt_place, mt_date FROM meetingview WHERE S_NAME = ?";
 	
 	private int id;
 	private String title;
