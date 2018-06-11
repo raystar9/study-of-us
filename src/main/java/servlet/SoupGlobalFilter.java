@@ -18,6 +18,17 @@ import servlet.study.each.Setup;
 import servlet.study.each.attendance.Attendance;
 import servlet.study.each.attendance.AttendanceConfirm;
 import servlet.study.each.attendance.AttendanceEach;
+import servlet.study.each.board.BoardDelete;
+import servlet.study.each.board.BoardFileDown;
+import servlet.study.each.board.BoardList;
+import servlet.study.each.board.BoardModify;
+import servlet.study.each.board.BoardRegister;
+import servlet.study.each.board.BoardView;
+import servlet.study.each.board.CommentCount;
+import servlet.study.each.board.CommentDelete;
+import servlet.study.each.board.CommentInsert;
+import servlet.study.each.board.CommentList;
+import servlet.study.each.board.CommentUpdate;
 import servlet.study.each.fee.CashList;
 import servlet.study.each.fee.CashRegister;
 import servlet.study.each.fee.CashView;
@@ -85,6 +96,12 @@ public class SoupGlobalFilter implements Filter {
 				//TODO 각study의 기본 페이지로
 			} else {
 				switch(uri[4]) {
+					case "board":
+						boardPaging(request, response, chain, uri);
+						break;
+					case "comment":
+						commentPaging(request, response, chain, uri);
+						break;
 					case "schedule":
 						schedulePaging(request, response, chain, uri);
 						break;
@@ -107,6 +124,58 @@ public class SoupGlobalFilter implements Filter {
 		}
 	}
 	
+	private void commentPaging(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
+			String[] uri) throws IOException, ServletException {
+		switch(uri[5]) {
+		case "list":
+			new CommentList().service(request, response);
+			break;
+		case "count":
+			new CommentCount().service(request, response);
+			break;
+		case "insert":
+			new CommentInsert().service(request, response);
+			break;
+		case "update":
+			new CommentUpdate().service(request, response);
+			break;
+		case "delete":
+			new CommentDelete().service(request, response);
+			break;
+		default :
+			chain.doFilter(request, response);
+			break;
+		}
+	}
+
+	private void boardPaging(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
+			String[] uri) throws IOException, ServletException {
+		if(uri.length == 5){
+			new BoardList().service(request, response);
+		} else {
+			switch(uri[5]) {
+			case "view":
+				new BoardView().service(request, response);
+				break;
+			case "filedown":
+				new BoardFileDown().service(request, response);
+				break;
+			case "register":
+				new BoardRegister().service(request, response);
+				break;
+			case "modify":
+				new BoardModify().service(request, response);
+				break;
+			case "delete":
+				new BoardDelete().service(request, response);
+				break;
+			default :
+				chain.doFilter(request, response);
+				break;
+			}
+		}
+	}
+
 	private void feePaging(HttpServletRequest request, HttpServletResponse response, FilterChain chain, String[] uri) throws IOException, ServletException {
 		if(uri.length == 5) {
 			new CashList().service(request, response);
