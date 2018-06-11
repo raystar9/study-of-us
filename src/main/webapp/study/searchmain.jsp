@@ -70,6 +70,7 @@ html, body {
 
 .pickcolumn {
 	margin-left: 5%;
+	border-radius: 5px;
 	float: left;
 	width: 25%;
 	padding: 10px;
