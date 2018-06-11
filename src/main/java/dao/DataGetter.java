@@ -22,6 +22,7 @@ import beans.study.each.board.CommentBean;
 import beans.study.each.fee.CashListBean;
 import beans.study.each.fee.FeeCollectListBean;
 import beans.study.each.schedule.ScheduleBean;
+import beansNew.Attend;
 import beansNew.FeeSpend;
 import beansNew.Meeting;
 import beansNew.StudyMember;
@@ -1243,6 +1244,29 @@ ArrayList<StudyListSelect> studylist = (ArrayList<StudyListSelect>) get(StudyLis
 						}
 					});
 				}
+				
+		public boolean isAttendChecked(int meetingId){
+			return (boolean) get(Queries.IS_ATTENDANCE_CHECKED, new DataSettable() {
+				
+				@Override
+				public void prepare(PreparedStatement pstmt) throws SQLException {
+					pstmt.setInt(1, meetingId);
+				}
+			}  ,new DataGettable() {
+				@Override
+				public Object onGetResult(ResultSet rs) throws SQLException {
+					if(rs.next()) {
+						if(rs.getInt(1) != 0) {
+							return true;
+						} else {
+							return false;
+						}
+					} else {
+						return false;
+					}
+				}
+			});
+		}
 	
 	//공용
 		@SuppressWarnings("unchecked")

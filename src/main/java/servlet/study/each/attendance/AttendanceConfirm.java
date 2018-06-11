@@ -34,12 +34,19 @@ public class AttendanceConfirm extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String studyName = (String) request.getAttribute("studyName");
+		int meetingId = (int)request.getAttribute("meetingId");
+		
 		DataGetter getter = new DataGetter(DatabaseAccounts.PROJECT);
-		ArrayList<String> names = getter.getMemberNames((String)request.getAttribute("studyName"));
-		request.setAttribute("names", names);
+		if(getter.isAttendChecked(meetingId)) {
+			response.sendRedirect("/study/");
+		} else {
+			ArrayList<String> names = getter.getMemberNames((String)request.getAttribute("studyName"));
+			request.setAttribute("names", names);
+			request.getRequestDispatcher("/study/"+studyName+"/attendance/"+meetingId+"/confirm.jsp").forward(request, response);
+		}
 		getter.close();
 		
-		request.getRequestDispatcher("/study/each/attendance/each/confirm.jsp").forward(request, response);
 	}
 
 	/**

@@ -32,11 +32,14 @@ public class AttendanceEach extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int meetingId = (int) request.getAttribute("meetingId");
+		String studyName = (String) request.getAttribute("studyName");
+		
 		DataGetter getter = new DataGetter(DatabaseAccounts.PROJECT);
 		ArrayList<MemberAttendanceBean> attendance = getter.getAttends((String)request.getAttribute("studyName"));
 		request.setAttribute("attendance", attendance);
 		getter.close();
-		request.getRequestDispatcher("/study/each/attendance/each/record.jsp").forward(request, response);
+		request.getRequestDispatcher("/study/"+studyName+"/attendance/"+meetingId+"/record.jsp").forward(request, response);
 	}
 
 	@Override

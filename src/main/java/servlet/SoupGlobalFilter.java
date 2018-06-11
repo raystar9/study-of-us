@@ -119,7 +119,7 @@ public class SoupGlobalFilter implements Filter {
 		if(uri.length == 4 || uri.length == 5) {
 			new Attendance().service(request, response);
 		} else {
-			request.setAttribute("attendNumber", uri[5]);
+			request.setAttribute("meetingId", uri[5]);
 			if(uri[6].equals("confirm")) {
 				new AttendanceConfirm().service(request, response);
 			} else if(uri[6].equals("record")) {
