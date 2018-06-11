@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import beans.prototype.Comment;
 import beans.prototype.Inquiry;
 import beans.prototype.Member;
 import beans.prototype.Study;
@@ -35,6 +36,7 @@ import dateConverter.DateConverter;
 import exceptionHandler.ExceptionHandler;
 import exceptionHandler.TryGetObject;
 import query.Queries;
+import servlet.root.InquiryComment;
 
 /**
  * 데이터베이스에 쿼리문을 실행하며 해당 쿼리문에 대한 결과를 ArrayList에 담아 반환합니다.
@@ -1621,6 +1623,7 @@ ArrayList<StudyListSelect> studylist = (ArrayList<StudyListSelect>) get(StudyLis
 					while(rs.next()) {
 						Inquiry inquiry = new Inquiry();
 						
+						inquiry.setI_index(rs.getInt("i_index"));
 						inquiry.setRnum(rs.getInt("rnum"));
 						inquiry.setSubject(rs.getString("i_subject"));
 						inquiry.setM_id(rs.getString("m_id"));
@@ -1784,7 +1787,6 @@ ArrayList<StudyListSelect> studylist = (ArrayList<StudyListSelect>) get(StudyLis
 				@Override
 				public void prepare(PreparedStatement pstmt) throws SQLException {
 					pstmt.setString(1, id);
-					
 				}
 			}, new DataGettable() {
 				
@@ -1856,6 +1858,62 @@ ArrayList<StudyListSelect> studylist = (ArrayList<StudyListSelect>) get(StudyLis
 			});
 			return checkval;
 		}
+
+public Inquiry getInquiryBoardView(int num) {
+	Inquiry inquiry = (Inquiry) get(Inquiry.QUERY_GET2, new DataSettable() {
+		
+		@Override
+		public void prepare(PreparedStatement pstmt) throws SQLException {
+			pstmt.setInt(1, num);
+			
+		}
+	}, new DataGettable() {
+		
+		@Override
+				public Object onGetResult(ResultSet rs) throws SQLException {
+					Inquiry view = null;
+					if(rs.next()) {
+						view = new Inquiry();
+						view.setM_id(rs.getString("M_ID"));
+						view.setSubject(rs.getString("I_SUBJECT"));
+						view.setContent(rs.getString("i_content"));
+						view.setFile(rs.getString("i_file"));
+					}
+					return view;
+				}
+			});
+			
+			
+			return inquiry;
+		}
+
+		public ArrayList<Comment> getinquiryComment(int num) {
+			@SuppressWarnings("unchecked")
+			ArrayList<Comment> commentlist = (ArrayList<Comment>) get(Comment.QUERY_GET, new DataSettable() {
+				
+				@Override
+				public void prepare(PreparedStatement pstmt) throws SQLException {
+					pstmt.setInt(1, num);
+				}
+			},new DataGettable() {
+				
+				@Override
+				public Object onGetResult(ResultSet rs) throws SQLException {
+					ArrayList<Comment> comments = new ArrayList<>();
+					while(rs.next()) {
+						Comment cm = new Comment();
+ 						cm.setM_id(rs.getString("m_id"));
+ 						cm.setContent(rs.getString("comment_content"));
+ 						cm.setDate(rs.getString("comment_date"));
+ 						comments.add(cm);
+						
+					}
+					return comments;
+				}
+			});			
+			return commentlist;
+		}
+
 		
 
 		/*

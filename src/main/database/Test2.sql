@@ -400,9 +400,15 @@ create table inquiryBoard(
 	i_content varchar(300) not null,			--게시글 내용
 	i_date date not null,					--게시글 작성 날짜
 	constraint FK_i_m_index_member foreign key(i_m_index) references member(m_index))	--멤버의 인덱스 번호를 참조함
-	drop table inquiryBoard
 	
 	
+	
+	--drop table inquiryBoard
+	
+	
+	
+	
+	drop table i_comment
 -- 댓글 테이블
 	create table i_comment(
 	comment_index number not null primary key, 				-- 댓글 테이블의 번호
@@ -419,6 +425,8 @@ create table inquiryBoard(
 	references member(m_index)		-- 멤버의 인덱스 번호참조
 	alter table i_comment add constraint fk_ib_index foreign key(comment_ib_index)
 	references inquiryBoard(i_index) 		-- 게시판에 인덱스 번호 참조
+	
+	
 
 
 
@@ -432,36 +440,35 @@ select * from member;
 select * from inquiryBoard
 
 delete inquiryboard
-insert into inquiryBoard
-values(inquiry_index.nextval,12,'안녕하세요질문있습니다','파일','이게뭔가요?',sysdate)
-insert into inquiryBoard
-values(inquiry_index.nextval,12,'안녕하세요질문또있습니다','파일','이건뭔가요?',sysdate)
-insert into inquiryBoard
-values(inquiry_index.nextval,12,'안녕하세요질문또또있습니다','파일','이건또뭔가요?',sysdate)
-insert into inquiryBoard
-values(inquiry_index.nextval,12,'안녕하세요테스트입니다','파일','하나둘셋',sysdate)
+insert into inquiryBoard values(inquiry_index.nextval,11,'안녕하세요질문있습니다','파일','이게뭔가요?',sysdate)
+insert into inquiryBoard values(inquiry_index.nextval,11,'안녕하세요질문또있습니다','파일','이건뭔가요?',sysdate)
+insert into inquiryBoard values(inquiry_index.nextval,11,'안녕하세요질문또또있습니다','파일','이건또뭔가요?',sysdate)
+insert into inquiryBoard values(inquiry_index.nextval,11,'안녕하세요테스트입니다','파일','하나둘셋',sysdate)
 
-insert into inquiryBoard
-values(inquiry_index.nextval,12,'안녕하세요테스트1','파일','하나둘셋',sysdate)
-insert into inquiryBoard
-values(inquiry_index.nextval,12,'안녕하세요테스트2','파일','하나둘셋',sysdate)
-insert into inquiryBoard
-values(inquiry_index.nextval,12,'안녕하세요테스트3','파일','하나둘셋',sysdate)
-insert into inquiryBoard
-values(inquiry_index.nextval,12,'안녕하세요테스트4','파일','하나둘셋',sysdate)
-insert into inquiryBoard
-values(inquiry_index.nextval,12,'안녕하세요테스트5','파일','하나둘셋',sysdate)
-insert into inquiryBoard
-values(inquiry_index.nextval,12,'안녕하세요테스트6','파일','하나둘셋',sysdate)
-insert into inquiryBoard
-values(inquiry_index.nextval,12,'안녕하세요테스트7','파일','하나둘셋',sysdate)
-insert into inquiryBoard
-values(inquiry_index.nextval,12,'안녕하세요테스트8','파일','하나둘셋',sysdate)
-insert into inquiryBoard
-values(inquiry_index.nextval,12,'안녕하세요테스트9','파일','하나둘셋',sysdate)
+insert into inquiryBoard values(inquiry_index.nextval,11,'안녕하세요테스트1','파일','하나둘셋',sysdate)
+insert into inquiryBoard values(inquiry_index.nextval,11,'안녕하세요테스트2','파일','하나둘셋',sysdate)
+insert into inquiryBoard values(inquiry_index.nextval,11,'안녕하세요테스트3','파일','하나둘셋',sysdate)
+insert into inquiryBoard values(inquiry_index.nextval,11,'안녕하세요테스트4','파일','하나둘셋',sysdate)
+insert into inquiryBoard values(inquiry_index.nextval,11,'안녕하세요테스트5','파일','하나둘셋',sysdate)
+insert into inquiryBoard values(inquiry_index.nextval,11,'안녕하세요테스트6','파일','하나둘셋',sysdate)
+insert into inquiryBoard values(inquiry_index.nextval,11,'안녕하세요테스트7','파일','하나둘셋',sysdate)
+insert into inquiryBoard values(inquiry_index.nextval,11,'안녕하세요테스트8','파일','하나둘셋',sysdate)
+insert into inquiryBoard values(inquiry_index.nextval,11,'안녕하세요테스트9','파일','하나둘셋',sysdate)
 
-insert into inquiryBoard
-values(inquiry_index.nextval,12,'안녕하세요테스트10','파일','하나둘셋',sysdate)
+insert into inquiryBoard values(inquiry_index.nextval,11,'안녕하세요테스트10','파일','하나둘셋',sysdate)
+
+
+insert into inquiryBoard values(inquiry_index.nextval,11,'안녕하세요테스트11','파일','하나둘셋',sysdate)
+insert into inquiryBoard values(inquiry_index.nextval,11,'안녕하세요테스트12','파일','하나둘셋',sysdate)
+insert into inquiryBoard values(inquiry_index.nextval,11,'안녕하세요테스트13','파일','하나둘셋',sysdate)
+insert into inquiryBoard values(inquiry_index.nextval,11,'안녕하세요테스트14','파일','하나둘셋',sysdate)
+insert into inquiryBoard values(inquiry_index.nextval,11,'안녕하세요테스트15','파일','하나둘셋',sysdate)
+insert into inquiryBoard values(inquiry_index.nextval,11,'안녕하세요테스트16','파일','하나둘셋',sysdate)
+insert into inquiryBoard values(inquiry_index.nextval,11,'안녕하세요테스트17','파일','하나둘셋',sysdate)
+
+
+
+
 
 
 select * from member;
@@ -493,6 +500,42 @@ where rnum >= 1 and rnum <= 2
 
 update study set s_start = '2018-05-09'
 update study set s_end = '2018-05-30'
+
+select * from study
+
+
+
+----------------------------------------------------------------------- 2018 06 11 수정------------------------------------------------------------------------------------------------
+
+--	primary key(comment_m_index,comment_ib_index)
+drop table i_comment
+
+create table i_comment(
+	comment_index number not null ,
+	comment_m_index number not null,
+	comment_ib_index number not null,
+	comment_content varchar(300) not null,
+	comment_date date,
+	primary key (comment_index)
+	)
+	alter table i_comment add foreign key(comment_m_index) references member(m_index);
+	alter table i_comment add foreign key(comment_ib_index) references inquiryboard(i_index);
+	
+	
+	select c.comment_content, m.m_id, c.comment_date from i_comment c , member m 
+			 where c.comment_m_index = m.m_index and comment_ib_index = 23
+	
+	select * from i_comment
+	select * from member
+	select * from inquiryboard 
+	
+
+	
+	CREATE SEQUENCE comment_seq
+START WITH 1
+INCREMENT BY 1
+NOMAXVALUE;
+
 
 
 

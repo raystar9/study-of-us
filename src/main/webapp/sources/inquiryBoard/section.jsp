@@ -26,17 +26,18 @@
 		<th  width="17%"><div >날짜</div></th>
 			</tr>
 	
-			<c:set var="num" value="${inquirycount-(page-1)*limit }"/>
+			<c:set var="num" value="${inquirycount-(page-1)*10 }"/>
 			<c:forEach var="list" items="${inquiryList }">
 		<tr>
 		<td>
-			 <%-- <c:out value="${num}"/>
-			 <c:set var="num" value="${num-1 }"/> --%>
+			  <c:out value="${num}"/>
+			 <c:set var="num" value="${num-1 }"/> 
 			 
-			 ${list.rnum }
+			 <%-- ${list.rnum } --%>
 		</td>
 		<td>
-			 ${list.subject}
+			 <a href="/study-of-us/inquiryView?num=${list.i_index}">
+			 			${ list.subject}</a>
 		</td>
 		<td>
 			 ${list.m_id} 
@@ -49,6 +50,7 @@
 		
 			</c:forEach>
 		
+		<!--  페이징 처리 -->
 		<tr class="h30 lime center btn">
 		<td colspan=5>			
 			<c:if test="${page <= 1 }">
@@ -75,14 +77,13 @@
 			</c:if>
 		</td>
 	</tr>
-		
-		
-			
-			
-			
-		
 		</c:if>
-	
+		
+		
+		<tr>
+			<td colspan = "5" style="text-align : right"><a 
+			href ="/study-of-us/boardWriteView">[글쓰기]</a></td>
+		</tr>
 	</table>
 	
 	
