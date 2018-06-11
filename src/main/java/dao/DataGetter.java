@@ -27,8 +27,9 @@ import beans.study.each.board.BoardViewRegisterBean;
 import beans.study.each.board.CommentBean;
 import beans.study.each.fee.CashListBean;
 import beans.study.each.fee.FeeCollectListBean;
-import beansNew.FeeCollect;
+import beans.study.each.schedule.ScheduleBean;
 import beansNew.FeeSpend;
+import beansNew.Meeting;
 import beansNew.StudyMember;
 import dao.interfaces.DataGettable;
 import dao.interfaces.DataSettable;
@@ -361,7 +362,7 @@ public class DataGetter extends DataAccessor {
 	// 게시판에 들어갔을 때 나오는 목록 데이터를 가져오는 메소드
 	public ArrayList<BoardListBean> getBoardList(int page, int limit, int studyIndex, String pluswhere, String search) {
 		String sql = BoardListBean.QUERY_GET + pluswhere
-				+ "where B_S_INDEX = (select S_INDEX from STUDY where S_INDEX = ?)  AND RNUM>=? AND RNUM<=? ORDER BY B_NO DESC";
+				+ "ORDER BY B_NO DESC)) where B_S_INDEX = (select S_INDEX from STUDY where S_INDEX = ?) AND RNUM>=? AND RNUM<=?";
 		@SuppressWarnings("unchecked")
 		ArrayList<BoardListBean> list = (ArrayList<BoardListBean>) get(sql, new DataSettable() {
 
@@ -389,12 +390,13 @@ public class DataGetter extends DataAccessor {
 			@Override
 			public ArrayList<BoardListBean> onGetResult(ResultSet rs) throws SQLException {
 				ArrayList<BoardListBean> boardlist = new ArrayList<>();
+				System.out.println("sql = " + sql);
 				while (rs.next()) {
 					BoardListBean board = new BoardListBean();
 					board.setIndex(rs.getInt(1));
 					board.setTitle(rs.getString(2));
 					board.setName(rs.getString(3));
-					board.setDate(rs.getString(4));
+					board.setDate(rs.getDate(4));
 					boardlist.add(board);
 				}
 				return boardlist;
@@ -490,7 +492,7 @@ public class DataGetter extends DataAccessor {
 	// 게시판의 글 개수를 가져오는 메소드
 	public int getBoardCount(int studyIndex, String pluswhere, String search) {
 		String sql = BoardListBean.QUERY_GET_COUNT + pluswhere
-				+ " where B_S_INDEX IN (select S_INDEX from STUDY where S_INDEX = ?) ORDER BY B_NO desc";
+				+ " ORDER BY B_NO DESC)) where B_S_INDEX = (select S_INDEX from STUDY where S_INDEX = ?)";
 
 		int boardcount = (int) get(sql, new DataSettable() {
 			@Override
@@ -715,12 +717,11 @@ public class DataGetter extends DataAccessor {
 					Inform.setName(rs.getString(1));
 					Inform.setCategory1(rs.getString(2));
 					Inform.setCategory2(rs.getString(3));
-					Inform.setStartDate(DateConverter.getDateString(rs.getDate(4)));
-					Inform.setEndDate(DateConverter.getDateString(rs.getDate(5)));
+					Inform.setStartDate(rs.getString(4));
+					Inform.setEndDate(rs.getString(5));
 					Inform.setPeopleNum(rs.getInt(6));
-					Inform.setActivityTime(DateConverter.getDateString(rs.getDate(7)));
-					Inform.setDay(DateConverter.getDateString(rs.getDate(8)));
-					//Inform.setDay(rs.getString(8));
+					Inform.setActivityTime(rs.getString(7));
+					Inform.setDay(rs.getString(8));
 					Inform.setExplain(rs.getString(9));
 					Inform.setPrepared(rs.getString(10));
 					Inform.setEffective(rs.getString(11));
@@ -758,7 +759,7 @@ public class DataGetter extends DataAccessor {
 	}
 
 	// 게시글 당 댓글 총 리스트 가져오는 메소드
-	public ArrayList<CommentBean> getCommentList(int studyIndex,int boardnum) {
+	public ArrayList<CommentBean> getCommentList(int studyIndex, int boardnum) {
 		@SuppressWarnings("unchecked")
 		ArrayList<CommentBean> list = (ArrayList<CommentBean>) get(CommentBean.QUERY_GET, new DataSettable() {
 
@@ -938,6 +939,7 @@ public class DataGetter extends DataAccessor {
 		// TODO Auto-generated method stub
 		return list;
 	}
+	
 	public ArrayList<Message> studyMessage(int s_index, int m_index) {
 		@SuppressWarnings("unchecked")
 		ArrayList<Message> list = (ArrayList<Message>) get(Message.QUERY_GET2, new DataSettable() {
@@ -1070,8 +1072,7 @@ public class DataGetter extends DataAccessor {
 		return cashcount;
 	}
 
-	
-//		보여줄 스터디를 정리햇 ㅓ가져오기 
+	// 보여줄 스터디를 정리햇 ㅓ가져오기
 	public ArrayList<StudyListSelect> getStudyList(int index, int page, int limit) {
 @SuppressWarnings("unchecked")
 ArrayList<StudyListSelect> studylist = (ArrayList<StudyListSelect>) get(StudyListSelect.QUERY_GET3 , new DataSettable() {
@@ -1111,20 +1112,17 @@ ArrayList<StudyListSelect> studylist = (ArrayList<StudyListSelect>) get(StudyLis
 		}
 	});
 		return studylist;
-}
+	}
 
-	
-	
-	
 	public Study getSindex() {
-		
+
 		@SuppressWarnings("unchecked")
 		Study index = (Study) get(Study.QUERY_GET5, new DataGettable() {
-			
+
 			@Override
 			public Object onGetResult(ResultSet rs) throws SQLException {
 				Study s_index = null;
-				if(rs.next()) { 
+				if (rs.next()) {
 					s_index = new Study();
 					s_index.setIndex(rs.getInt("s_index"));
 				}
@@ -1133,7 +1131,6 @@ ArrayList<StudyListSelect> studylist = (ArrayList<StudyListSelect>) get(StudyLis
 		});
 		return index;
 	}
-
 	
 	
 	
@@ -1149,7 +1146,7 @@ ArrayList<StudyListSelect> studylist = (ArrayList<StudyListSelect>) get(StudyLis
 				pstmt.setInt(3, endrow);
 			}
 		}, new DataGettable() {
-			
+
 			@Override
 			public ArrayList<?> onGetResult(ResultSet rs) throws SQLException {
 				ArrayList<StudyListSelect> days = new ArrayList<>();
@@ -1164,22 +1161,52 @@ ArrayList<StudyListSelect> studylist = (ArrayList<StudyListSelect>) get(StudyLis
 			}
 		});
 		return dday;
-		}
+	}
+	//TODO 어떤게 진짜인지 모름;;
+/*
+public ArrayList<StudyList> studylist(int s_index, int m_index) {
+	@SuppressWarnings("unchecked")
+	ArrayList<StudyList> list = (ArrayList<StudyList>) get(StudyList.QUERY_GET2, new DataSettable() {
 
-	//로그인할때 인덱스 번호를 가져오기
+		@Override
+		public void prepare(PreparedStatement pstmt) throws SQLException {
+			pstmt.setInt(1, s_index);
+			pstmt.setInt(2, m_index);
+
+		}
+	}, new DataGettable() {
+
+		@Override
+			public Object onGetResult(ResultSet rs) throws SQLException {
+
+				ArrayList<StudyList> StudyListCheck = new ArrayList<>();
+				while (rs.next()) {
+					StudyList studycheck = new StudyList();
+					studycheck.setStudyindex(rs.getInt(1));
+					studycheck.setMemberindex(rs.getInt(2));
+					StudyListCheck.add(studycheck);
+		return list;
+		// TODO Auto-generated method stub
+
+	}
+
+}
+*/
+
+	// 로그인할때 인덱스 번호를 가져오기
 	public Login getIndex(String id) {
-		Login index = (Login) get(Login.QUERY_GET3,new DataSettable() {
-			
+		Login index = (Login) get(Login.QUERY_GET3, new DataSettable() {
+
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
 				pstmt.setString(1, id);
 			}
-		},new DataGettable() {
-			
+		}, new DataGettable() {
+
 			@Override
 			public Object onGetResult(ResultSet rs) throws SQLException {
 				Login innerIndex = null;
-				if(rs.next()) {
+				if (rs.next()) {
 					innerIndex = new Login();
 					innerIndex.setIndex(rs.getInt(1));
 				}
@@ -1188,30 +1215,30 @@ ArrayList<StudyListSelect> studylist = (ArrayList<StudyListSelect>) get(StudyLis
 		});
 		return index;
 	}
-		
-		public Find getFind(String name) {
-			Find find = (Find) get(Find.QUERY_GET, new DataSettable() {
 
-				@Override
-				public void prepare(PreparedStatement pstmt) throws SQLException {
-					pstmt.setString(1, name); // 바인딩변수를 채워주기위해서 데이터 세터블을 매개변수 추가하며 오버로딩을한다.
-				}
-			}, new DataGettable() {
+	public Find getFind(String name) {
+		Find find = (Find) get(Find.QUERY_GET, new DataSettable() {
 
-				@Override
-				public Object onGetResult(ResultSet rs) throws SQLException {
-					Find innerLogin = null;
-					if (rs.next()) {
-						innerLogin = new Find();
-						innerLogin.setId(rs.getString(1));
-						innerLogin.setName(rs.getString(2));
-					}
-					return innerLogin; 
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+				pstmt.setString(1, name); // 바인딩변수를 채워주기위해서 데이터 세터블을 매개변수 추가하며 오버로딩을한다.
+			}
+		}, new DataGettable() {
+
+			@Override
+			public Object onGetResult(ResultSet rs) throws SQLException {
+				Find innerLogin = null;
+				if (rs.next()) {
+					innerLogin = new Find();
+					innerLogin.setId(rs.getString(1));
+					innerLogin.setName(rs.getString(2));
 				}
-			});
-			return find; 
-		}
-		
+				return innerLogin;
+			}
+		});
+		return find;
+	}
+
 		public Find getEmail(String email) {
 			Find find = (Find) get(Find.QUERY_GET2, new DataSettable() {
 
@@ -1238,12 +1265,12 @@ ArrayList<StudyListSelect> studylist = (ArrayList<StudyListSelect>) get(StudyLis
 	
 				//구명회파트
 				@SuppressWarnings("unchecked")
-				public ArrayList<MemberAttendanceBean> getAttends(String studyName){
+				public ArrayList<MemberAttendanceBean> getAttends(int meetingId){
 					return (ArrayList<MemberAttendanceBean>) get(MemberAttendanceBean.QUERY_GET,new DataSettable() {
 						
 						@Override
 						public void prepare(PreparedStatement pstmt) throws SQLException {
-							pstmt.setString(1, studyName);
+							pstmt.setInt(1, meetingId);
 						}
 					}  ,new DataGettable() {
 						@Override
@@ -1260,30 +1287,95 @@ ArrayList<StudyListSelect> studylist = (ArrayList<StudyListSelect>) get(StudyLis
 						}
 					});
 				}
-	
-	//공용
-		@SuppressWarnings("unchecked")
-		public ArrayList<Integer> getMemberIndexes(String studyName) {
-			return (ArrayList<Integer>) get(Queries.GET_STUDY_MEMBER, new DataSettable() {
+			@SuppressWarnings("unchecked")
+			public ArrayList<ScheduleBean> getSchedules(String studyName){
+				return (ArrayList<ScheduleBean>) get(ScheduleBean.QUERY_GET,new DataSettable() {
+					
+					@Override
+					public void prepare(PreparedStatement pstmt) throws SQLException {
+						pstmt.setString(1, studyName);
+					}
+				}  ,new DataGettable() {
+					@Override
+					public Object onGetResult(ResultSet rs) throws SQLException {
+						ArrayList<ScheduleBean> results = new ArrayList<>();
+						while(rs.next()) {
+							ScheduleBean bean = new ScheduleBean();
+							bean.setId(rs.getInt(1));
+							bean.setTitle(rs.getString(2));;
+							bean.setStart(DateConverter.getDateString(rs.getTimestamp(3)));;
+							results.add(bean);
+						}
+						return results;
+					}
+				});
+			}
+				public Meeting getEachSchedules(String studyName, int meetingId){
+					return (Meeting) get(Meeting.QUERY_GET, new DataSettable() {
+						
+						@Override
+						public void prepare(PreparedStatement pstmt) throws SQLException {
+							pstmt.setString(1, studyName);
+							pstmt.setInt(2, meetingId);
+						}
+					}  ,new DataGettable() {
+						@Override
+						public Object onGetResult(ResultSet rs) throws SQLException {
+							Meeting result = new Meeting();
+							if(rs.next());{
+								result.setPlace(rs.getString(1));
+								result.setTimestampate(rs.getTimestamp(2));
+								result.setExpectedFee(rs.getInt(3));
+								result.setComment(rs.getString(4));
+							}
+							return result;
+						}
+					});
+				}
+				
+		public boolean isAttendChecked(int meetingId){
+			return (boolean) get(Queries.IS_ATTENDANCE_CHECKED, new DataSettable() {
+				
 				@Override
 				public void prepare(PreparedStatement pstmt) throws SQLException {
-					pstmt.setString(1, studyName);
+					pstmt.setInt(1, meetingId);
 				}
-			}, new DataGettable() {
+			}  ,new DataGettable() {
 				@Override
 				public Object onGetResult(ResultSet rs) throws SQLException {
-					ArrayList<Integer> results = new ArrayList<>();
-					while(rs.next()) {
-						results.add(rs.getInt(1));
+					rs.next();
+					if(rs.getInt(1) != 0) {
+						return true;
+					} else {
+						return false;
 					}
-					return results;
 				}
-			} );
+			});
 		}
-		
+
+	// 공용
+	@SuppressWarnings("unchecked")
+	public ArrayList<Integer> getMemberIndexes(String studyName) {
+		return (ArrayList<Integer>) get(Queries.GET_STUDY_MEMBER, new DataSettable() {
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+				pstmt.setString(1, studyName);
+			}
+		}, new DataGettable() {
+			@Override
+			public Object onGetResult(ResultSet rs) throws SQLException {
+				ArrayList<Integer> results = new ArrayList<>();
+				while (rs.next()) {
+					results.add(rs.getInt(1));
+				}
+				return results;
+			}
+		});
+	}
+
 	@SuppressWarnings("unchecked")
 	public ArrayList<Integer> getMemberIndexes(int studyIndex) {
-		return (ArrayList<Integer>) get(StudyMember.QUERY_GET_MEMBERS,new DataSettable() {
+		return (ArrayList<Integer>) get(StudyMember.QUERY_GET_MEMBERS, new DataSettable() {
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
 				pstmt.setInt(1, studyIndex);
@@ -1292,47 +1384,47 @@ ArrayList<StudyListSelect> studylist = (ArrayList<StudyListSelect>) get(StudyLis
 			@Override
 			public Object onGetResult(ResultSet rs) throws SQLException {
 				ArrayList<Integer> results = new ArrayList<>();
-				while(rs.next()) {
+				while (rs.next()) {
 					results.add(rs.getInt(1));
 				}
 				return results;
 			}
-		} );
+		});
 	}
-	
-		public int getStudyIndex(String studyName) {
-			return (int) get(Queries.GET_STUDY_ID, new DataSettable() {
-				@Override
-				public void prepare(PreparedStatement pstmt) throws SQLException {
-					pstmt.setString(1, studyName);
-				}
-			}, new DataGettable() {
-				@Override
-				public Object onGetResult(ResultSet rs) throws SQLException {
-					rs.next();
-					return rs.getInt(1);
-				}
-			} );
-		}
-	
+
+	public int getStudyIndex(String studyName) {
+		return (int) get(Queries.GET_STUDY_ID, new DataSettable() {
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+				pstmt.setString(1, studyName);
+			}
+		}, new DataGettable() {
+			@Override
+			public Object onGetResult(ResultSet rs) throws SQLException {
+				rs.next();
+				return rs.getInt(1);
+			}
+		});
+	}
+
 	@SuppressWarnings("unchecked")
 	public ArrayList<String> getMemberNames(String studyName) {
 		return (ArrayList<String>) get(Queries.GET_STUDY_MEMBER, new DataSettable() {
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
 				System.out.println(studyName);
-				pstmt.setString(2, studyName);
+				pstmt.setString(1, studyName);
 			}
 		}, new DataGettable() {
 			@Override
 			public Object onGetResult(ResultSet rs) throws SQLException {
 				ArrayList<String> results = new ArrayList<>();
 				while(rs.next()) {
-					results.add(rs.getString(1));
+					results.add(rs.getString(2));
 				}
 				return results;
 			}
-		} );
+		});
 	}
 		
 		/*public int[] getMemIndex(int studyIndex) {
@@ -1398,7 +1490,7 @@ ArrayList<StudyListSelect> studylist = (ArrayList<StudyListSelect>) get(StudyLis
 			@Override
 			public Object onGetResult(ResultSet rs) throws SQLException {
 				ArrayList<FeeSpend> result = new ArrayList<>();
-				while(rs.next()) {
+				while (rs.next()) {
 					FeeSpend fs = new FeeSpend();
 					fs.setExpense(rs.getInt(1));
 					fs.setComment(rs.getString(2));
@@ -1408,29 +1500,30 @@ ArrayList<StudyListSelect> studylist = (ArrayList<StudyListSelect>) get(StudyLis
 			}
 		});
 	}
-	
-		@SuppressWarnings("unchecked")
-		public ArrayList<FeeCollectListBean> getFeeMember(int meetingId) {
-			return (ArrayList<FeeCollectListBean>) get(FeeCollectListBean.QUERY_GET, new DataSettable() {
-				@Override
-				public void prepare(PreparedStatement pstmt) throws SQLException {
-					pstmt.setInt(1, meetingId);
+
+	@SuppressWarnings("unchecked")
+	public ArrayList<FeeCollectListBean> getFeeMember(int meetingId) {
+		return (ArrayList<FeeCollectListBean>) get(FeeCollectListBean.QUERY_GET, new DataSettable() {
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+				pstmt.setInt(1, meetingId);
+			}
+		}, new DataGettable() {
+			@Override
+			public Object onGetResult(ResultSet rs) throws SQLException {
+				ArrayList<FeeCollectListBean> result = new ArrayList<>();
+				while (rs.next()) {
+					FeeCollectListBean fs = new FeeCollectListBean();
+					fs.setMemberName(rs.getString(1));
+					fs.setFee(rs.getInt(2));
+					fs.setNote(rs.getString(3));
+					result.add(fs);
 				}
-			}, new DataGettable() {
-				@Override
-				public Object onGetResult(ResultSet rs) throws SQLException {
-					ArrayList<FeeCollectListBean> result = new ArrayList<>();
-					while(rs.next()) {
-						FeeCollectListBean fs = new FeeCollectListBean();
-						fs.setMemberName(rs.getString(1));
-						fs.setFee(rs.getInt(2));
-						fs.setNote(rs.getString(3));
-						result.add(fs);
-					}
-					return result;
-				}
-			});
-		}
+				return result;
+			}
+		});
+	}
+
 	public int getFeeSpentTotal(int meetingId) {
 		return (int) get(Queries.GET_TOTAL_SPENT_FEE, new DataSettable() {
 			@Override
@@ -1554,20 +1647,20 @@ ArrayList<StudyListSelect> studylist = (ArrayList<StudyListSelect>) get(StudyLis
 			return list;
 		}
 
-		public int getFeeCollectTotal(int meetingId) {
-			return (int) get(Queries.GET_TOTAL_COLLECT_FEE, new DataSettable() {
-				@Override
-				public void prepare(PreparedStatement pstmt) throws SQLException {
-					pstmt.setInt(1, meetingId);
-				}
-			}, new DataGettable() {
-				@Override
-				public Object onGetResult(ResultSet rs) throws SQLException {
-					rs.next();
-					return rs.getInt(1);
-				}
-			});
-		}
+	public int getFeeCollectTotal(int meetingId) {
+		return (int) get(Queries.GET_TOTAL_COLLECT_FEE, new DataSettable() {
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+				pstmt.setInt(1, meetingId);
+			}
+		}, new DataGettable() {
+			@Override
+			public Object onGetResult(ResultSet rs) throws SQLException {
+				rs.next();
+				return rs.getInt(1);
+			}
+		});
+	}
 	/*
 	 * private ArrayList<?> getBean(ResultSet rs, Class<?> beanClass) throws
 	 * SQLException{ Field[] fields = beanClass.getDeclaredFields();
@@ -1578,26 +1671,155 @@ ArrayList<StudyListSelect> studylist = (ArrayList<StudyListSelect>) get(StudyLis
 	 * 
 	 */
 
-		public boolean isFeeRegistered(String meetingId) {
-			return (boolean) get(Queries.IS_FEE_REGISTERED, new DataSettable() {
-				
+	public boolean isFeeRegistered(String meetingId) {
+		return (boolean) get(Queries.IS_FEE_REGISTERED, new DataSettable() {
+
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+				pstmt.setString(1, meetingId);
+			}
+		}, new DataGettable() {
+			@Override
+			public Object onGetResult(ResultSet rs) throws SQLException {
+				rs.next();
+				if (rs.getInt(1) == 0) {
+					return false;
+				} else {
+					return true;
+				}
+			}
+		});
+
+	}
+
+	// 스터디 설정에서 카테고리 가져오는 메소드
+	public String[] getSubCategory(String mainCategory) {
+
+			String[] SubCategory = (String[]) get(InformSetup.QUERY_GET_CATEGORY2, new DataSettable() {
+
 				@Override
 				public void prepare(PreparedStatement pstmt) throws SQLException {
-					pstmt.setString(1, meetingId);
+					// TODO Auto-generated method stub
+					pstmt.setString(1, mainCategory);
 				}
+
 			}, new DataGettable() {
+
 				@Override
-				public Object onGetResult(ResultSet rs) throws SQLException {
-					rs.next();
-					if(rs.getInt(1) == 0) {
-						return false;
-					} else {
-						return true;
+				public String[] onGetResult(ResultSet rs) throws SQLException {
+					String[] cate = new String[getSubCategoryCount(mainCategory)];
+					int i = 0;
+					while (rs.next()) {
+						cate[i] = rs.getString(1);
+						i++;
 					}
+					return cate;
 				}
 			});
-			
+
+			return SubCategory;
 		}
+	
+	public int getSubCategoryCount(String mainCategory) {
+
+		int SubCategoryCount = (int) get(InformSetup.QUERY_GET_CATEGORY2_COUNT, new DataSettable() {
+
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+				// TODO Auto-generated method stub
+				pstmt.setString(1, mainCategory);
+			}
+
+		}, new DataGettable() {
+
+			@Override
+			public Integer onGetResult(ResultSet rs) throws SQLException {
+				int count = 0;
+				while (rs.next()) {
+					count = rs.getInt(1);
+				}
+				return count;
+			}
+		});
+
+		return SubCategoryCount;
+	}
+	
+	public String[] getMainCategory() {
+
+		String[] mainCategory = (String[]) get(InformSetup.QUERY_GET_CATEGORY1, new DataSettable() {
+
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+				// TODO Auto-generated method stub
+			}
+
+		}, new DataGettable() {
+
+			@Override
+			public String[] onGetResult(ResultSet rs) throws SQLException {
+				String[] cate = new String[getMainCategoryCount()];
+				int i = 0;
+				while (rs.next()) {
+					cate[i] = rs.getString(1);
+					i++;
+				}
+				return cate;
+			}
+		});
+
+		return mainCategory;
+	}
+	
+	public int getMainCategoryCount() {
+
+		int MainCategoryCount = (int) get(InformSetup.QUERY_GET_CATEGORY1_COUNT, new DataSettable() {
+
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+				// TODO Auto-generated method stub
+			}
+
+		}, new DataGettable() {
+
+			@Override
+			public Integer onGetResult(ResultSet rs) throws SQLException {
+				int count = 0;
+				while (rs.next()) {
+					count = rs.getInt(1);
+				}
+				return count;
+			}
+		});
+
+		return MainCategoryCount;
+	}
+	
+	public int getCategoryNum(String category1, String category2) {
+
+		int categoryNum = (int) get(InformSetup.QUERY_GET_CATEGORY_NUM, new DataSettable() {
+
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+				// TODO Auto-generated method stub
+				pstmt.setString(1, category1);
+				pstmt.setString(2, category2);
+			}
+
+		}, new DataGettable() {
+
+			@Override
+			public Integer onGetResult(ResultSet rs) throws SQLException {
+				int num = 0;
+				while (rs.next()) {
+					num = rs.getInt(1);
+				}
+				return num;
+			}
+		});
+
+		return categoryNum;
+	}
 
 		public ArrayList<Inquiry> getInquiryBoard(int index, int page, int limit) {
 			@SuppressWarnings("unchecked")

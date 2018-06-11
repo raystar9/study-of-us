@@ -1,8 +1,7 @@
-package servlet.study.each.board;
+package servlet.study.each;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,47 +11,40 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import beans.study.each.board.BoardViewRegisterBean;
-import beans.study.each.board.CommentBean;
 import dao.DataGetter;
 import dao.DatabaseAccounts;
 
 
-@WebServlet("/commentlist")
-public class CommentList extends HttpServlet {
+@WebServlet("/setupcategory")
+public class SetupCategory extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    
-    public CommentList() {
+
+    public SetupCategory() {
         super();
         // TODO Auto-generated constructor stub
     }
-	
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
 	}
 
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		response.setContentType("text/plain; charset=UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		DataGetter getter = new DataGetter(DatabaseAccounts.PROJECT);
-
 		ObjectMapper mapper = new ObjectMapper();
-		int studyIndex = 5; 
-		ArrayList<CommentBean> comment = new ArrayList<CommentBean>();
-		int boardnum = Integer.parseInt(request.getParameter("bno"));
-		BoardViewRegisterBean boardcontent = getter.getBoardView(boardnum);
+		String mainCategory = request.getParameter("category1");
+		String[] subCategory = new String[getter.getSubCategoryCount(mainCategory)];
 		
-		int num = boardcontent.getIndex();
-		comment = getter.getCommentList(studyIndex, num);
-		getter.close();
+		subCategory = getter.getSubCategory(mainCategory);
 		
 		PrintWriter out = response.getWriter();
-		out.println(mapper.writeValueAsString(comment));
+		out.println(mapper.writeValueAsString(subCategory));
 		
+		getter.close();
 	}
 
 }

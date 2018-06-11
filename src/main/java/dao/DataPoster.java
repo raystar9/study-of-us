@@ -1,13 +1,11 @@
 package dao;
 
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 import beans.prototype.Comment;
 import beans.prototype.Inquiry;
-import beans.prototype.Meeting;
 import beans.prototype.Member;
 import beans.prototype.Study;
 import beans.prototype.StudyList;
@@ -16,10 +14,10 @@ import beans.study.each.Message;
 import beans.study.each.board.BoardViewRegisterBean;
 import beans.study.each.board.CommentBean;
 import beans.study.each.fee.CashExpenseBean;
-import beans.study.each.fee.CashMemberBean;
 import beansNew.Attend;
 import beansNew.FeeCollect;
 import beansNew.FeeSpend;
+import beansNew.Meeting;
 import dao.interfaces.DataSettable;
 import dateConverter.DateConverter;
 
@@ -54,16 +52,16 @@ public class DataPoster extends DataSetter {
 		return 1;
 	}
 
-	public void postBoard(BoardViewRegisterBean board, int studyIndex) {
+	public void postBoard(BoardViewRegisterBean board, int studyIndex, int personIndex) {
 
 		// 콜백함수를 통해 setteble 안에있는 prepare 를 사용한다.
 		set(BoardViewRegisterBean.QUERY_POST, new DataSettable() {
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
-				pstmt.setString(1, board.getName());
-				pstmt.setString(2, board.getTitle());
-				pstmt.setString(3, board.getContent());
-				pstmt.setInt(4, studyIndex);
+				pstmt.setInt(1, studyIndex);
+				pstmt.setInt(2, personIndex);
+				pstmt.setString(3, board.getTitle());
+				pstmt.setString(4, board.getContent());
 				pstmt.setString(5, board.getFilename());
 				pstmt.executeUpdate();
 				pstmt.close();
@@ -93,7 +91,12 @@ public class DataPoster extends DataSetter {
 
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
-				pstmt.setString(1, meeting.getLocation());
+				pstmt.setInt(1, meeting.getStudyId());
+				pstmt.setString(2, meeting.getPlace());
+				pstmt.setTimestamp(3, meeting.getTimestamp());
+				pstmt.setInt(4, meeting.getExpectedFee());
+				pstmt.setString(5, meeting.getComment());
+				pstmt.executeUpdate();
 				pstmt.close();
 			}
 		});
@@ -113,7 +116,7 @@ public class DataPoster extends DataSetter {
 		});
 	}
 
-	public void postSetup(InformSetup setup) {
+	public void postSetup(InformSetup setup, int studyIndex, int categoryNum) {
 
 		// 콜백함수를 통해 setteble 안에있는 prepare 를 사용한다.
 		set(InformSetup.QUERY_PUT, new DataSettable() {
@@ -122,9 +125,9 @@ public class DataPoster extends DataSetter {
 				pstmt.setInt(1, setup.getPeopleNum());
 				pstmt.setString(2, setup.getName());
 				pstmt.setString(3, setup.getPlace());
-				pstmt.setDate(4, DateConverter.convertDateTime(setup.getActivityTime()));
-				pstmt.setDate(5, DateConverter.convertDateTime(setup.getStartDate()));
-				pstmt.setDate(6, DateConverter.convertDateTime(setup.getEndDate()));
+				pstmt.setDate(4, DateConverter.convertDate(setup.getActivityTime()));
+				pstmt.setDate(5, DateConverter.convertDate(setup.getStartDate()));
+				pstmt.setDate(6, DateConverter.convertDate(setup.getEndDate()));
 				pstmt.setString(7, setup.getDay());
 				pstmt.setString(8, setup.getExplain());
 				pstmt.setString(9, setup.getPrepared());

@@ -13,6 +13,7 @@ import beans.study.each.board.BoardViewRegisterBean;
 import dao.DataGetter;
 import dao.DataPoster;
 import dao.DatabaseAccounts;
+import dateConverter.DateConverter;
 
 @WebServlet("/study/each/boardmodify")
 public class BoardModify extends HttpServlet {
@@ -27,7 +28,7 @@ public class BoardModify extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		int studyIndex = 3;
+		int studyIndex = 5;
 		//int studyIndex = (int)request.getSession().getAttribute("index");
 		
 		DataGetter getter = new DataGetter(DatabaseAccounts.PROJECT);
@@ -43,7 +44,8 @@ public class BoardModify extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		int studyIndex = 3;
+		System.out.println("BoardModify 서블릿으로 들어옴");
+		int studyIndex = 5;
 		//int studyIndex = (int)request.getSession().getAttribute("index");
 		
 		BoardViewRegisterBean boardmodify = new BoardViewRegisterBean();
@@ -52,6 +54,7 @@ public class BoardModify extends HttpServlet {
 		boardmodify.setDate(request.getParameter("boardDate"));
 		boardmodify.setFilename(request.getParameter("fileName"));
 		boardmodify.setIndex(Integer.parseInt(request.getParameter("num")));
+		
 		
 		DataPoster poster = new DataPoster(DatabaseAccounts.PROJECT);
 		int boardnum = Integer.parseInt(request.getParameter("num"));

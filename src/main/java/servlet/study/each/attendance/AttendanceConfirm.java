@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import beans.study.each.attendacne.MemberAttendanceBean;
 import beansNew.Attend;
 import dao.DataGetter;
 import dao.DataPoster;
@@ -34,12 +33,18 @@ public class AttendanceConfirm extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int meetingId = Integer.parseInt((String) request.getAttribute("meetingId"));
+		
 		DataGetter getter = new DataGetter(DatabaseAccounts.PROJECT);
-		ArrayList<String> names = getter.getMemberNames((String)request.getAttribute("studyName"));
-		request.setAttribute("names", names);
+		if(getter.isAttendChecked(meetingId)) {
+			response.sendRedirect("../../schedule?type=attend");
+		} else {
+			ArrayList<String> names = getter.getMemberNames((String)request.getAttribute("studyName"));
+			request.setAttribute("names", names);
+			request.getRequestDispatcher("/study/each/attendance/each/confirm.jsp").forward(request, response);
+		}
 		getter.close();
 		
-		request.getRequestDispatcher("/study/each/attendance/each/confirm.jsp").forward(request, response);
 	}
 
 	/**
@@ -47,13 +52,20 @@ public class AttendanceConfirm extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DataGetter getter = new DataGetter(DatabaseAccounts.PROJECT);
-		ArrayList<Integer> memberIndexes = getter.getMemberIndexes(getter.getStudyIndex((String)request.getAttribute("studyName")));
+		ArrayList<Integer> memberIndexes = getter.getMemberIndexes((String)request.getAttribute("studyName"));
 		getter.close();
+		
+		
+		System.out.println();
 		DataPoster poster = new DataPoster(DatabaseAccounts.PROJECT);
 		ArrayList<Attend> attends = new ArrayList<>();
+		int i = 0;
 		for(int memberIndex : memberIndexes) {
-			attends.add(new Attend(Integer.parseInt((String)request.getAttribute("attendNumber")), memberIndex, (String)request.getParameter("")));
+			attends.add(new Attend(Integer.parseInt((String)request.getAttribute("meetingId")), memberIndex, (String)request.getParameter("member"+i)));
+			System.out.println(memberIndex);
+			i++;
 		}
+		
 		poster.postAttend(attends);
 		
 		poster.close();

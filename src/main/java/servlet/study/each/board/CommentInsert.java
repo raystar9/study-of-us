@@ -36,7 +36,7 @@ public class CommentInsert extends HttpServlet {
 		//insert할 데이터 가져와서 Bean에 저장
 		comment.setContent(request.getParameter("content"));
 		comment.setBno(Integer.parseInt(request.getParameter("bno")));
-		comment.setPersonIndex(28);
+		comment.setPersonIndex(5);
 		//comment.setPersonIndex((int)request.getSession().getAttribute("index"));
 		
 		//DB안에 넣기

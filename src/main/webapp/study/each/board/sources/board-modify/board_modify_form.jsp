@@ -8,9 +8,9 @@
 </head>
 <body>
 	<c:set var='id' value="${sessionScope.id}" />
-	<form action='./boardmodify' method='post'>
+	<form action='./boardmodify' method='post' class='boardModify'>
 		<c:set var="b" value="${boardcontent}" />
-		<input type="hidden" name="num" value="${b.index}">
+		<input type="hidden" name="num" value="${b.index}" id='bno'>
 		<table border="1">
 			<tr class="center">
 				<th colspan="2">스터디 안의 게시판 페이지에서 글을 클릭했을 때 상세보기 되는 페이지</th>
@@ -48,9 +48,9 @@
 			</tr>
 
 			<tr>
-				<td colspan="2" class="center">&nbsp; <input type=submit
-					value="수정"> <input type=reset value="취소"
-					onClick="history.go(-1);">
+				<td colspan="2" class="center">&nbsp; 
+				<input type="button" class="btn btn-default" type="button" name="modifyBtn" value="등록" id='modifyBtn'>
+				 <input type=reset value="취소" onClick="history.go(-1);">
 				</td>
 			</tr>
 		</table>

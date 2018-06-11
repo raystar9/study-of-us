@@ -35,6 +35,7 @@ public class CommentCount extends HttpServlet {
 		getter.close();
 		
 		PrintWriter out = response.getWriter();
+		System.out.println("댓글개수 = " + commentcount);
 		out.println(commentcount);
 	}
 
