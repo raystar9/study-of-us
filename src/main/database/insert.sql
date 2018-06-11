@@ -72,9 +72,11 @@ INSERT INTO Study(S_INDEX, S_NAME, S_C_ID, S_M_INDEX, S_START, S_END, S_MAXMEMBE
 	VALUES (study_index.NEXTVAL, '외국인처럼 말하기', 201, 25, '2018-07-01', '2018-09-30', 2, '주말', '12:00', '외국인이 와도 무섭지않아요.', '영어사전', '영어 마스터', '서울특별시 동대문구');
 	
 	
-select * from tab;
+select * from attend;
 
-	
+drop table feemember;
+
+
 delete from Study;
 
 select * from study;
