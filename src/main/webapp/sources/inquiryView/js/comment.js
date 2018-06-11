@@ -15,15 +15,23 @@ $(document).ready(function() {
 		selectData();
 		event.preventDefault();
 	})
-})
+
 
 	function selectData(){
 			$.ajax({
 			type : "GET",
 			url : "/study-of-us/comment",
 			success : function(comment){
-				$("#output").append(comment);
-				$(comment).empty();
+				alert(comment)
+				var a = "";
+				$.each(JSON.parse(data), function(value){
+					a += '<div class="commentArea" style="border-bottom:1px solid darkgray; margin-bottom: 15px;">';
+					a += '작성자 : ' + this.m_id + '  날짜: ' + this.date;
+					a += '<p> 내용 : '+ this.content + '</p>';
+					a += '</div><br>';
+				})
+				$("#output").html(a);
 			}
 		});
 		};
+})

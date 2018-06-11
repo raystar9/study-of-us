@@ -36,8 +36,6 @@ public class InquiryView extends HttpServlet {
 		DataGetter getter = new DataGetter(DatabaseAccounts.PROJECT);
 		
 		
-		ArrayList<Comment> commentGet = getter.getinquiryComment(num);
-		request.setAttribute("commentGet", commentGet);
 		/*ArrayList<Comment> commentGet = getter.getinquiryComment(num);
 		request.setAttribute("commentGet", commentGet);*/
 		

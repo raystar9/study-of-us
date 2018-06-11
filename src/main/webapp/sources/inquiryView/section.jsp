@@ -52,13 +52,14 @@
 	
 	
 	
-	<c:forEach var="comment" items="${commentGet}">
-	<span id="output">
+	<%-- <c:forEach var="comment" items="${commentGet}"> 
 		${comment.m_id}
 		${comment.content}
-		${comment.date}<br>
+		${comment.date}<br> 
+	</c:forEach>   --%>
+	<span id="output">
+	
 	</span>
-	</c:forEach>  
 	
 		
 		
