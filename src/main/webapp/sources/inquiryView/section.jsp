@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,18 +39,28 @@
 		</c:if>
 	
 	</tr>
-		<tr>
+</table>
+	
+	
+	<form id = insert_form action = /study-of-us/comment action="post">
+	<table>
+		 <tr>
 			<td colspan="2"><textarea id="comment" name="comment"></textarea>&nbsp;&nbsp;<input type="submit" value="입력"></td>
 		</tr>
-		
-			
+	</table>
+	</form>
 	
-</table>
-	<form name= insert_form action=/study-of-us/comment action="post">
-		<table>
-			<tbody id="output"></tbody>
-		</table>	
-		</form>
+	
+	
+	<c:forEach var="comment" items="${commentGet}">
+	<span id="output">
+		${comment.m_id}
+		${comment.content}
+		${comment.date}<br>
+	</span>
+	</c:forEach>  
+	
+		
 		
 </body>
 </html>

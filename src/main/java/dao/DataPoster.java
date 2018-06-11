@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import beans.prototype.Comment;
 import beans.prototype.Inquiry;
 import beans.prototype.Meeting;
 import beans.prototype.Member;
@@ -262,6 +263,23 @@ public class DataPoster extends DataSetter {
 			}
 		});
 		return true;
+	}
+
+	
+	
+	public int postInquiryComment(int ib_index, String comment, int m_index) {
+		set(Comment.QUERY_POST,new DataSettable() {
+			
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+				pstmt.setInt(1, m_index);
+				pstmt.setInt(2, ib_index);
+				pstmt.setString(3, comment);
+				pstmt.executeUpdate();
+				pstmt.close();
+			}
+		});
+		return 1;
 	}
 }
 

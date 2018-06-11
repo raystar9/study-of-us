@@ -3,21 +3,33 @@ package beans.prototype;
 public class Comment {
 	
 	
-	public static final String QUERY_GET = "select c.comment_content, m.m_id, c.comment_date from comment c , member m "
-			+ " where c.comment_m_index = m.m_index and comment_ib_index = ? ";
+	public static final String QUERY_GET = "select c.comment_content, m.m_id, c.comment_date from i_comment c , member m "
+			+ " where c.comment_m_index = m.m_index and comment_ib_index = ? order by comment_date ";
 	
-	public static final String QUERY_POST = "insert into comment values(comment_seq.nextval,?,?,?,sysdate)";
+	public static final String QUERY_POST = "insert into i_comment values(comment_seq.nextval,?,?,?,sysdate)";
 	
 	
 	
 	private int c_index;
 	private int c_m_index;
 	private int c_ib_index;
+	private String m_id;
 	private String content;
 	private String date;
 	
 	
 	
+	
+	
+	
+	
+	
+	public String getM_id() {
+		return m_id;
+	}
+	public void setM_id(String m_id) {
+		this.m_id = m_id;
+	}
 	public int getC_index() {
 		return c_index;
 	}

@@ -757,6 +757,9 @@ public class DataGetter extends DataAccessor {
 		return list;
 	}
 
+	
+	
+	
 	public ArrayList<CommentBean> getCommentList(int num) {
 		@SuppressWarnings("unchecked")
 		ArrayList<CommentBean> list = (ArrayList<CommentBean>) get(CommentBean.QUERY_GET, new DataSettable() {
@@ -1300,48 +1303,33 @@ ArrayList<StudyListSelect> studylist = (ArrayList<StudyListSelect>) get(StudyLis
 			return inquiry;
 		}
 
-		public InquiryComment getInquiryComment(int num) {
-			Comment comment = (Comment) get (Comment.QUERY_GET,new DataSettable() {
+		public ArrayList<Comment> getinquiryComment(int num) {
+			@SuppressWarnings("unchecked")
+			ArrayList<Comment> commentlist = (ArrayList<Comment>) get(Comment.QUERY_GET, new DataSettable() {
 				
 				@Override
 				public void prepare(PreparedStatement pstmt) throws SQLException {
 					pstmt.setInt(1, num);
-					
-					
 				}
 			},new DataGettable() {
 				
 				@Override
 				public Object onGetResult(ResultSet rs) throws SQLException {
-					StringBuffer sb = new StringBuffer();
-					sb.append("[");
-					int i = 0;
-					Comment com = null;
+					ArrayList<Comment> comments = new ArrayList<>();
 					while(rs.next()) {
-						i++;
-						sb.append("{\"m_id\":");
-						sb.append("\""+rs.getString("m_id") + "\",");
-						sb.append("\"comment_content\":");
-						sb.append("\""+rs.getString("comment_content"));
-						sb.append("\"comment_date\":");
-						sb.append("\""+rs.getString("comment_date") + "\"},");
+						Comment cm = new Comment();
+ 						cm.setM_id(rs.getString("m_id"));
+ 						cm.setContent(rs.getString("comment_content"));
+ 						cm.setDate(rs.getString("comment_date"));
+ 						comments.add(cm);
 						
 					}
-					if(i!=0){
-    					sb.deleteCharAt(sb.length()-1);//맨 마지막 콤마를 제거합니다.
-        				sb.append("]");
-    				}else{
-    					//데이터가 없는 경우 모두 제거합니다
-    					//delete(start, end):index 가 start 부터 end-1 까지 제거합니다.
-    					sb.delete(0,sb.length());
-					
-					return com;
+					return comments;
 				}
-			});
-			return comment;
+			});			
+			return commentlist;
 		}
 
-		
 		
 
 		/*
