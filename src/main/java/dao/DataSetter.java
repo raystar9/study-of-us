@@ -36,10 +36,6 @@ abstract class DataSetter extends DataAccessor{ // 명호형이 만든지 확인
 				PreparedStatement pstmt = _conn.prepareStatement(query);
 
 				settable.prepare(pstmt);
-
-				result = pstmt.executeUpdate();
-				
-				pstmt.close();
 				return result;
 			}
 		});

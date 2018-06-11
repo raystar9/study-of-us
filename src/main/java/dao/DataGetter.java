@@ -22,6 +22,7 @@ import beans.study.each.board.CommentBean;
 import beans.study.each.fee.CashListBean;
 import beans.study.each.fee.FeeCollectListBean;
 import beans.study.each.schedule.ScheduleBean;
+import beansNew.Attend;
 import beansNew.FeeSpend;
 import beansNew.Meeting;
 import beansNew.StudyMember;
@@ -1176,12 +1177,12 @@ ArrayList<StudyListSelect> studylist = (ArrayList<StudyListSelect>) get(StudyLis
 	
 				//구명회파트
 				@SuppressWarnings("unchecked")
-				public ArrayList<MemberAttendanceBean> getAttends(String studyName){
+				public ArrayList<MemberAttendanceBean> getAttends(int meetingId){
 					return (ArrayList<MemberAttendanceBean>) get(MemberAttendanceBean.QUERY_GET,new DataSettable() {
 						
 						@Override
 						public void prepare(PreparedStatement pstmt) throws SQLException {
-							pstmt.setString(1, studyName);
+							pstmt.setInt(1, meetingId);
 						}
 					}  ,new DataGettable() {
 						@Override
@@ -1243,6 +1244,26 @@ ArrayList<StudyListSelect> studylist = (ArrayList<StudyListSelect>) get(StudyLis
 						}
 					});
 				}
+				
+		public boolean isAttendChecked(int meetingId){
+			return (boolean) get(Queries.IS_ATTENDANCE_CHECKED, new DataSettable() {
+				
+				@Override
+				public void prepare(PreparedStatement pstmt) throws SQLException {
+					pstmt.setInt(1, meetingId);
+				}
+			}  ,new DataGettable() {
+				@Override
+				public Object onGetResult(ResultSet rs) throws SQLException {
+					rs.next();
+					if(rs.getInt(1) != 0) {
+						return true;
+					} else {
+						return false;
+					}
+				}
+			});
+		}
 	
 	//공용
 		@SuppressWarnings("unchecked")
@@ -1304,14 +1325,14 @@ ArrayList<StudyListSelect> studylist = (ArrayList<StudyListSelect>) get(StudyLis
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
 				System.out.println(studyName);
-				pstmt.setString(2, studyName);
+				pstmt.setString(1, studyName);
 			}
 		}, new DataGettable() {
 			@Override
 			public Object onGetResult(ResultSet rs) throws SQLException {
 				ArrayList<String> results = new ArrayList<>();
 				while(rs.next()) {
-					results.add(rs.getString(1));
+					results.add(rs.getString(2));
 				}
 				return results;
 			}
