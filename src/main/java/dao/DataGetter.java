@@ -852,6 +852,36 @@ public class DataGetter extends DataAccessor {
 		// TODO Auto-generated method stub
 		return list;
 	}
+	public ArrayList<Member> getStudy_m_id(int index) {
+		@SuppressWarnings("unchecked")
+		ArrayList<Member> list = (ArrayList<Member>) get(Message.QUERY_GET3,new DataSettable() {
+			
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+	
+				pstmt.setInt(1, index);
+
+			}
+		}, new DataGettable() {
+
+			@Override
+			public ArrayList<?> onGetResult(ResultSet rs) throws SQLException {
+				ArrayList<Member> studies = new ArrayList<>();
+				while(rs.next()) {
+					Member member = new Member();
+					
+					member.setId(rs.getString("m_id"));
+
+
+					studies.add(member);
+				}
+				return studies;
+			}
+		});
+
+		// TODO Auto-generated method stub
+		return list;
+	}
 
 	// 스터디 count 수 가져오기
 	public StudyListSelect getStudyListCount(int index) {
@@ -1790,6 +1820,7 @@ ArrayList<StudyListSelect> studylist = (ArrayList<StudyListSelect>) get(StudyLis
 					ArrayList<Message> Messagelist = new ArrayList<>(); 
 					while(rs.next()) {
 						Message message = new Message();
+						message.setS_index(rs.getInt("s_index"));
 						message.setM_m_id(rs.getString("M_M_ID"));
 						message.setM_s_index(rs.getInt("M_S_INDEX"));
 						message.setM_s_name(rs.getString("M_S_NAME"));

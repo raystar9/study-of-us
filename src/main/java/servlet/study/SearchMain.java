@@ -22,7 +22,7 @@ public class SearchMain extends HttpServlet {
 	@SuppressWarnings("resource")
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		DataGetter getter = new DataGetter(DatabaseAccounts.SCOTT);
+		DataGetter getter = new DataGetter(DatabaseAccounts.PROJECT);
 		String category = "";
 		if (request.getParameter("category") != null) {
 			category = request.getParameter("category");

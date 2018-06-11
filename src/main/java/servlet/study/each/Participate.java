@@ -29,8 +29,7 @@ public class Participate extends HttpServlet {
  
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DataGetter getter = new DataGetter(DatabaseAccounts.PROJECT);
-		
-		
+	
 		System.out.println(request.getSession().getAttribute("id"));
 		if(request.getSession().getAttribute("id") == null) {
 			response.setContentType("text/html;charset=utf-8");

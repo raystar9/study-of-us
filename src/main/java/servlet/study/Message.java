@@ -25,6 +25,8 @@ public class Message extends HttpServlet {
 
 		int sm_s_index = Integer.parseInt(request.getParameter("sm_s_index"));
 		int sm_m_index = Integer.parseInt(request.getParameter("sm_m_index"));
+		int s_index = Integer.parseInt(request.getParameter("sm_index"));
+		
 			DataPoster poster = new DataPoster(DatabaseAccounts.PROJECT);
 			response.setContentType("text/html;charset=utf-8");
 			PrintWriter out = response.getWriter();
@@ -32,17 +34,19 @@ public class Message extends HttpServlet {
 			
 			if(request.getParameter("reject")==null) {
 				
-			System.out.println("sm_s_index : " + sm_s_index);
+			System.out.println("s_index : " + s_index);
 			System.out.println("sm_m_index : " + sm_m_index);
-			poster.Insertindex(sm_s_index,sm_m_index);
-			poster.delMessage(sm_s_index,sm_m_index);
+			
+			
+			poster.Insertindex(s_index,sm_m_index);
+			poster.delMessage(s_index,sm_m_index);
 		
 			out.println("<script>");
 			out.println("alert('수락 했습니다.');");
 			out.println("location.href = '/study-of-us/study/list' ");
 			out.println("</script>");
 			}else {
-				poster.delMessage(sm_s_index,sm_m_index);
+				poster.delMessage(s_index,sm_m_index);
 				out.println("<script>");
 				out.println("alert('거절 했습니다.');");
 				out.println("location.href = '/study-of-us/study/list' ");
