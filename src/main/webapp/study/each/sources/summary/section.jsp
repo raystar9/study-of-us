@@ -49,7 +49,7 @@ input[type=submit] {
 </style>
 </head>
 <body>
-<form action="/study-of-us/study/Studylist" method="get">
+<form action="/study-of-us/study/each/participate" method="post">
 <hr>
 	<h1 align=center>${study[0].name }</h1>
 <hr>

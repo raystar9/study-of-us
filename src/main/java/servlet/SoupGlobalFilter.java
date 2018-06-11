@@ -13,7 +13,11 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import servlet.study.List;
+import servlet.study.SearchMain;
+import servlet.study.Studylist;
 import servlet.study.each.Information;
+import servlet.study.each.Registration;
 import servlet.study.each.Setup;
 import servlet.study.each.attendance.Attendance;
 import servlet.study.each.attendance.AttendanceConfirm;
@@ -87,8 +91,19 @@ public class SoupGlobalFilter implements Filter {
 		if(uri.length == 3) {
 			//TODO study 기본페이지 구현해야됨!
 		} else {
-			if(uri[3].equals("search")) {
-				chain.doFilter(request, response);
+			switch(uri[3]) {
+			case "search":
+				new SearchMain().service(request, response);
+				break;
+			case "list":
+				new List().service(request, response);
+				break;
+			case "registration":
+				new Registration().service(request, response);
+				break;
+			case "join":
+				new Studylist().service(request, response);
+				break;
 			}
 			
 			request.setAttribute("studyName", URLDecoder.decode(uri[3], "UTF-8"));
