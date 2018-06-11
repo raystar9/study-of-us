@@ -64,9 +64,12 @@ public class Setup extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		DataGetter getter = new DataGetter(DatabaseAccounts.PROJECT);
 		DataPoster poster = new DataPoster(DatabaseAccounts.PROJECT);
 		InformSetup setup = new InformSetup();
+		int studyIndex = 5;
 		/*int index = Integer.parseInt(request.getParameter("studyIndex"));*/
+		
 		
 		setup.setCategory1(request.getParameter("categoryGroup"));
 		setup.setCategory2(request.getParameter("categorySub"));
@@ -74,16 +77,17 @@ public class Setup extends HttpServlet {
 		setup.setName(request.getParameter("studyName"));
 		setup.setPlace(request.getParameter("place"));
 		setup.setActivityTime(request.getParameter("time"));
-		setup.setStartDate(DateConverter.convertDateTime(request.getParameter("startDate")));
-		setup.setEndDate(DateConverter.convertDateTime(request.getParameter("endDate")));
+		setup.setStartDate(request.getParameter("startDate"));
+		setup.setEndDate(request.getParameter("endDate"));
 		setup.setDay(request.getParameter("day"));
 		setup.setExplain(request.getParameter("explain"));
 		setup.setPrepared(request.getParameter("prepared"));
 		setup.setEffective(request.getParameter("effective"));
 		
-		System.out.println(setup.getName());
-		poster.postSetup(setup);
+		int categoryNum = getter.getCategoryNum(setup.getCategory1(), setup.getCategory2());
+		poster.postSetup(setup, studyIndex, categoryNum);
 		
+		getter.close();
 		poster.close();
 		response.sendRedirect("./setup");
 	}

@@ -7,8 +7,10 @@
 
 <head>
 <link rel="stylesheet" type="text/css" href="css/setup.css">
+<style>
+	#categorySub , categoryGroup{width:100px;}
+</style>
 </head>
-
 <body>
 <form action="./setup" method="post" class='setupForm'>
 	<c:set var="set" value="${setup}" />

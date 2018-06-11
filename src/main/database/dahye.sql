@@ -4,6 +4,8 @@ START WITH 1
 INCREMENT BY 1
 NOMAXVALUE;
 
+select * from board;
+
 select * from study;
 select count(*) from studymemberlist where S_INDEX = 3
 select * from studymemberlist;
@@ -21,10 +23,10 @@ CREATE TABLE Member(
 
 
 
+select * from board;
 
 
-
-
+insert into BOARD values (board_no.nextval, 스터디번호, , sysdate, 'ㅌㅌㅌ', '5', null);
 
 
 
@@ -899,4 +901,32 @@ select count(*) from studymemberlist where S_INDEX = 3;
 
 select S_NAME,C_GROUP, C_SUBGROUP, S_START, S_END, S_MAXMEMBER, S_TIME, S_DAY,  S_EXPLAIN, S_MATERIAL, S_EFFECT, S_PLACE from Study s, Category c where s.S_C_ID = c.C_ID and s.S_INDEX = 3
 
-SELECT m_name, m_tel, m_email FROM studyMemberList WHERE s_name = '외국인처럼 말하기'; 
+SELECT m_name, m_tel, m_email FROM studyMemberList WHERE s_name = '외국인처럼 말하기';
+
+select * from member;
+
+select S_M_INDEX from Study where S_INDEX = 5;
+select * from board;
+
+update BOARD b set B_TITLE='수정테스트', B_CONTENT='수정' where (select S_INDEX from STUDY s where s.S_INDEX = b.B_S_INDEX) = 5 AND b.B_NO = 17
+
+
+select * from 
+
+
+
+insert into BOARD values (board_no.nextval, ?, ?, board_studyseq.nextval , ?, sysdate, ?, ?)
+insert into BOARD values (board_no.nextval, 스터디번호 ?, 작성회원번호 ?, board_studyseq.nextval , 제목?, sysdate, 내용?, 파일이름?)
+
+
+insert into COMMENTS values(comments_index.nextval,?,?,sysdate,?);
+
+
+select * from comments;
+
+
+select * from study;
+select * from category;
+select C_ID from category where C_GROUP = ? AND C_SUBGROUP = ?;
+
+UPDATE STUDY SET S_CATEGORY=?, S_MAXMEMBER=?, S_NAME=?, S_PLACE=?, S_TIME=?, S_START=?, S_END=?, S_DAY=?, S_EXPLAIN=?, S_MATERIAL=?, S_EFFECT=? where S_INDEX = ?

@@ -12,7 +12,9 @@ public class InformSetup {
 	public static final String QUERY_GET_CATEGORY2 = "select C_SUBGROUP from category where C_GROUP = ?";
 	public static final String QUERY_GET_CATEGORY2_COUNT = "select count(*) from category where C_GROUP = ?";
 	public static final String QUERY_GET_COUNT = "select count(*) from studymemberlist where S_INDEX = ?";
-	public static final String QUERY_PUT = "UPDATE STUDY SET S_CATEGORY=?, S_PLOPIENUM=?, S_NAME=?, S_PLACE=?, S_TIME=?, S_START=?, S_END=?, S_DAY=?, S_EXPLAIN=?, S_PREPARED=?, S_EFFECTIVE=?"; 
+	public static final String QUERY_PUT = "UPDATE STUDY SET S_C_ID=?, S_MAXMEMBER=?, S_NAME=?, S_PLACE=?, S_TIME=?, S_START=?, S_END=?, S_DAY=?, S_EXPLAIN=?, S_MATERIAL=?, S_EFFECT=? where S_INDEX = ?"; 
+	public static final String QUERY_GET_CATEGORY_NUM = "select C_ID from category where C_GROUP = ? AND C_SUBGROUP = ?"; 
+	
 	
 	private int index;				//스터디 번호
 	private String name;			//스터디 명
@@ -21,8 +23,8 @@ public class InformSetup {
 	private int peopleNum;			//스터디 모집인원
 	private String place;			//스터디 장소
 	private String activityTime;	//스터디 활동시간
-	private Date startDate;			//스터디 시작날짜
-	private	Date endDate;			//스터디 종료날짜
+	private String startDate;			//스터디 시작날짜
+	private	String endDate;			//스터디 종료날짜
 	private String day;				//스터디 활동요일
 	private String explain;			//스터디 개요
 	private String prepared;		//주요 교재 및 준비물
@@ -36,16 +38,16 @@ public class InformSetup {
 	public void setActivityTime(String activityTime) {
 		this.activityTime = activityTime;
 	}
-	public Date getStartDate() {
+	public String getStartDate() {
 		return startDate;
 	}
-	public void setStartDate(Date startDate) {
+	public void setStartDate(String startDate) {
 		this.startDate = startDate;
 	}
-	public Date getEndDate() {
+	public String getEndDate() {
 		return endDate;
 	}
-	public void setEndDate(Date endDate) {
+	public void setEndDate(String endDate) {
 		this.endDate = endDate;
 	}
 	public int getPeopleNum() {

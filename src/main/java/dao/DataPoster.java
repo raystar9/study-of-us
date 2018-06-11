@@ -51,16 +51,16 @@ public class DataPoster extends DataSetter {
 		return 1;
 	}
 
-	public void postBoard(BoardViewRegisterBean board, int studyIndex) {
+	public void postBoard(BoardViewRegisterBean board, int studyIndex, int personIndex) {
 
 		// 콜백함수를 통해 setteble 안에있는 prepare 를 사용한다.
 		set(BoardViewRegisterBean.QUERY_POST, new DataSettable() {
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
-				pstmt.setString(1, board.getName());
-				pstmt.setString(2, board.getTitle());
-				pstmt.setString(3, board.getContent());
-				pstmt.setInt(4, studyIndex);
+				pstmt.setInt(1, studyIndex);
+				pstmt.setInt(2, personIndex);
+				pstmt.setString(3, board.getTitle());
+				pstmt.setString(4, board.getContent());
 				pstmt.setString(5, board.getFilename());
 				pstmt.executeUpdate();
 				pstmt.close();
@@ -110,23 +110,24 @@ public class DataPoster extends DataSetter {
 		});
 	}
 
-	public void postSetup(InformSetup setup) {
+	public void postSetup(InformSetup setup, int studyIndex, int categoryNum) {
 
 		// 콜백함수를 통해 setteble 안에있는 prepare 를 사용한다.
 		set(InformSetup.QUERY_PUT, new DataSettable() {
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
-				pstmt.setInt(1, setup.getPeopleNum());
-				pstmt.setString(2, setup.getName());
-				pstmt.setString(3, setup.getPlace());
-				pstmt.setString(4, setup.getActivityTime());
-				pstmt.setDate(5, setup.getStartDate());
-				pstmt.setDate(6, setup.getEndDate());
-				pstmt.setString(7, setup.getDay());
-				pstmt.setString(8, setup.getExplain());
-				pstmt.setString(9, setup.getPrepared());
-				pstmt.setString(10, setup.getEffective());
-				/* pstmt.setInt(12, index); where절에 넣을 스터디번호 */
+				pstmt.setInt(1, categoryNum);
+				pstmt.setInt(2, setup.getPeopleNum());
+				pstmt.setString(3, setup.getName());
+				pstmt.setString(4, setup.getPlace());
+				pstmt.setString(5, setup.getActivityTime());
+				pstmt.setDate(6, DateConverter.convertDate(setup.getStartDate()));
+				pstmt.setDate(7, DateConverter.convertDate(setup.getEndDate()));
+				pstmt.setString(8, setup.getDay());
+				pstmt.setString(9, setup.getExplain());
+				pstmt.setString(10, setup.getPrepared());
+				pstmt.setString(11, setup.getEffective());
+				pstmt.setInt(12, studyIndex);
 				pstmt.executeUpdate();
 				pstmt.close();
 			}

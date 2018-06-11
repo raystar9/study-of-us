@@ -494,7 +494,7 @@ public class DataGetter extends DataAccessor {
 					boardcontent.setTitle(rs.getString(2));
 					boardcontent.setContent(rs.getString(3));
 					boardcontent.setName(rs.getString(4));
-					boardcontent.setDate(rs.getDate(5));
+					boardcontent.setDate(rs.getString(5));
 					boardcontent.setFilename(rs.getString(6));
 				}
 				return boardcontent;
@@ -753,8 +753,8 @@ public class DataGetter extends DataAccessor {
 					Inform.setName(rs.getString(1));
 					Inform.setCategory1(rs.getString(2));
 					Inform.setCategory2(rs.getString(3));
-					Inform.setStartDate(rs.getDate(4));
-					Inform.setEndDate(rs.getDate(5));
+					Inform.setStartDate(rs.getString(4));
+					Inform.setEndDate(rs.getString(5));
 					Inform.setPeopleNum(rs.getInt(6));
 					Inform.setActivityTime(rs.getString(7));
 					Inform.setDay(rs.getString(8));
@@ -1492,6 +1492,32 @@ public class DataGetter extends DataAccessor {
 		});
 
 		return MainCategoryCount;
+	}
+	
+	public int getCategoryNum(String category1, String category2) {
+
+		int categoryNum = (int) get(InformSetup.QUERY_GET_CATEGORY_NUM, new DataSettable() {
+
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+				// TODO Auto-generated method stub
+				pstmt.setString(1, category1);
+				pstmt.setString(2, category2);
+			}
+
+		}, new DataGettable() {
+
+			@Override
+			public Integer onGetResult(ResultSet rs) throws SQLException {
+				int num = 0;
+				while (rs.next()) {
+					num = rs.getInt(1);
+				}
+				return num;
+			}
+		});
+
+		return categoryNum;
 	}
 
 }

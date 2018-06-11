@@ -2,20 +2,19 @@
 
 package beans.study.each.board;
 
-import java.sql.Date;
 
 public class BoardViewRegisterBean {
 
 	public static final String QUERY_GET = "select B_NO, B_TITLE, B_CONTENT, M_NAME, B_DATE, B_FILENAME from studyboardlist where B_NO = ?";			//board_view_form.jsp에서 데이터 가져올 때 쿼리
 	public static final String QUERY_PUT = "update BOARD b set B_TITLE=?, B_CONTENT=? where (select S_INDEX from STUDY s where s.S_INDEX = b.B_S_INDEX) = ? AND b.B_NO = ?";	//board_view_form.jsp에서 데이터 수정할 때 쿼리
 	public static final String QUERY_DELETE = "delete from BOARD where B_S_INDEX = ? AND B_NO = ?";
-	public static final String QUERY_POST = "insert into BOARD values (board_no.nextval, ?, ?, sysdate, ?, ?, ?)";					//board_register_form.jsp에서 데이터 삽입할 때 쿼리
+	public static final String QUERY_POST = "insert into BOARD values (board_no.nextval, ?, ?, board_studyseq.nextval , ?, sysdate, ?, ?)";					//board_register_form.jsp에서 데이터 삽입할 때 쿼리
 
 	private int index;	 	 // 게시글 번호
 	private String title; 	 // 게시글 제목
 	private String name; 	 // 게시글 작성자
 	private String content;  // 게시글 내용
-	private Date date; 	 // 게시글 작성일
+	private String date; 	 	 // 게시글 작성일
 	private String filename; // 첨부 파일명
 
 	
@@ -59,13 +58,17 @@ public class BoardViewRegisterBean {
 		this.filename = filename;
 	}
 
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
+
+	
+
+
 
 
 }

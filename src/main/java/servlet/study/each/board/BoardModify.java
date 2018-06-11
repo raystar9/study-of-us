@@ -44,15 +44,17 @@ public class BoardModify extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		int studyIndex = 3;
+		System.out.println("BoardModify 서블릿으로 들어옴");
+		int studyIndex = 5;
 		//int studyIndex = (int)request.getSession().getAttribute("index");
 		
 		BoardViewRegisterBean boardmodify = new BoardViewRegisterBean();
 		boardmodify.setTitle(request.getParameter("boardSubject"));
 		boardmodify.setContent(request.getParameter("boardContent"));
-		boardmodify.setDate(DateConverter.convertDateTime(request.getParameter("boardDate")));
+		boardmodify.setDate(request.getParameter("boardDate"));
 		boardmodify.setFilename(request.getParameter("fileName"));
 		boardmodify.setIndex(Integer.parseInt(request.getParameter("num")));
+		
 		
 		DataPoster poster = new DataPoster(DatabaseAccounts.PROJECT);
 		int boardnum = Integer.parseInt(request.getParameter("num"));

@@ -41,12 +41,7 @@ public class SetupCategory extends HttpServlet {
 		
 		subCategory = getter.getSubCategory(mainCategory);
 		
-		for(int i=0; i<subCategory.length; i++) {
-			System.out.println("subCategory = " + subCategory[i]);
-		}
-		
 		PrintWriter out = response.getWriter();
-		System.out.println(mapper.writeValueAsString(subCategory));
 		out.println(mapper.writeValueAsString(subCategory));
 		
 		getter.close();
