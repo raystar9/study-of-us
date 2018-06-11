@@ -13,7 +13,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import beans.study.each.schedule.ScheduleBean;
 import dao.DataGetter;
 import dao.DatabaseAccounts;
-import fakeDB.FakeGetter;
 
 /**
  * Servlet implementation class Schedule

@@ -22,7 +22,6 @@ import beans.study.each.board.CommentBean;
 import beans.study.each.fee.CashListBean;
 import beans.study.each.fee.FeeCollectListBean;
 import beans.study.each.schedule.ScheduleBean;
-import beansNew.Attend;
 import beansNew.FeeSpend;
 import beansNew.Meeting;
 import beansNew.StudyMember;
@@ -1215,7 +1214,7 @@ ArrayList<StudyListSelect> studylist = (ArrayList<StudyListSelect>) get(StudyLis
 							ScheduleBean bean = new ScheduleBean();
 							bean.setId(rs.getInt(1));
 							bean.setTitle(rs.getString(2));;
-							bean.setStart(DateConverter.getDateString(rs.getDate(3)));;
+							bean.setStart(DateConverter.getDateString(rs.getTimestamp(3)));;
 							results.add(bean);
 						}
 						return results;
@@ -1236,7 +1235,7 @@ ArrayList<StudyListSelect> studylist = (ArrayList<StudyListSelect>) get(StudyLis
 							Meeting result = new Meeting();
 							if(rs.next());{
 								result.setPlace(rs.getString(1));
-								result.setDate(rs.getDate(2));
+								result.setTimestampate(rs.getTimestamp(2));
 								result.setExpectedFee(rs.getInt(3));
 								result.setComment(rs.getString(4));
 							}

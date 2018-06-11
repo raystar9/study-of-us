@@ -1,24 +1,25 @@
 package beansNew;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Meeting {
 	public static final String QUERY_GET = "SELECT mt_place, mt_date, mt_expectedfee, mt_comment FROM meetingview WHERE S_NAME = ? AND mt_id = ?";
-	public static final String QUERY_POST = "INSERT INTO meeting(mt_id, mt_place, mt_date, mt_expectedfee, mt_comment) VALUES(meeting_index.nextval, ?, ?, ?, ?)";
+	public static final String QUERY_POST = "INSERT INTO meeting(mt_id, mt_s_index, mt_place, mt_date, mt_expectedfee, mt_comment) VALUES(meeting_index.nextval, ?, ?, ?, ?, ?)";
 	
 	int meetingId;
 	int studyId;
 	String place;
-	Date date;
+	Timestamp timestamp;
 	int expectedFee;
 	String comment;
 	
 	public Meeting() {
 	}
-	public Meeting(int studyId, String place, Date date, int expectedFee) {
+	public Meeting(int studyId, String place, Timestamp timestamp, int expectedFee) {
 		this.studyId = studyId;
 		this.place = place;
-		this.date = date;
+		this.timestamp = timestamp;
 		this.expectedFee = expectedFee;
 	}
 	public int getMeetingId() {
@@ -37,8 +38,8 @@ public class Meeting {
 		return place;
 	}
 
-	public Date getDate() {
-		return date;
+	public Timestamp getTimestamp() {
+		return timestamp;
 	}
 
 	public int getExpectedFee() {
@@ -53,8 +54,8 @@ public class Meeting {
 		this.place = place;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
+	public void setTimestampate(Timestamp timestamp) {
+		this.timestamp = timestamp;
 	}
 
 	public void setExpectedFee(int expectedFee) {
