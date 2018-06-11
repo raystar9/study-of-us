@@ -36,13 +36,13 @@
 		style="max-width: 500px; margin: auto">
 		<h2>세부 검색</h2>
 		<div class="input-container">
-			<i class="fa fa-search icon2"></i> <input class="searchval"
+			<i class="fa fa-search icon"></i> <input class="searchval"
 				type="text" placeholder="검색어를 입력하세요" name="searchVal"
 				style="width: 100%;">
 		</div>
 
 		<div class="input-container">
-			<i class="fa fa-sitemap icon2"></i> <input class="category"
+			<i class="fa fa-sitemap icon"></i> <input class="category"
 				type="text" placeholder="카테고리를 선택하세요" name="subcategory"
 				style="width: 60%;"> <select id="firstArray"
 				name="firstArray" style="width: 20%;">
@@ -56,7 +56,7 @@
 		</div>
 
 		<div class="input-container">
-			<i class="fa fa-clock-o icon2"></i> <input class="time" type="text"
+			<i class="fa fa-clock-o icon"></i> <input class="time" type="text"
 				placeholder="시간대를 선택 하세요" name="time" style="width: 70%;"> <select
 				id="stime" name="stime" style="width: 30%;">
 				<option value="">시간</option>
@@ -88,7 +88,7 @@
 		</div>
 
 		<div class="input-container">
-			<i class="fa fa-calendar-check-o icon2"></i> <input class="day"
+			<i class="fa fa-calendar-check-o icon"></i> <input class="day"
 				type="text" placeholder="요일을 선택 하세요" name="day" style="width: 70%;">
 			<select name="day" id="day-select" style="width: 30%;">
 				<option value="">요일</option>
@@ -102,7 +102,7 @@
 			</select>
 		</div>
 		<div class="input-container">
-			<i class="fa fa-globe icon2"></i> <input class="location" type="text"
+			<i class="fa fa-globe icon"></i> <input class="location" type="text"
 				placeholder="지역을 선택 하세요" name="location" style="width: 70%;">
 				 <select id="location" name="location" style="width: 30%;">
 				<option value="">지역</option>

@@ -8,8 +8,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
-
-<script src="http://code.jquery.com/jquery-latest.js"></script>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
@@ -171,7 +169,7 @@ $(document).ready(function(){
 				<tr>
 					<th>신청자</th>
 					<th>스터디 명</th>
-					<th>말풍선 </th>
+					<th>${message[0].s_index } </th>
 				</tr>
 			</thead>
 			<tbody>
@@ -185,6 +183,7 @@ $(document).ready(function(){
 		
 				<input type="hidden" id="sm_s_index" name="sm_s_index" value="${message2.m_s_index }">
 				<input type="hidden" id="sm_m_index" name="sm_m_index" value="${message2.m_m_index }">
+				<input type="hidden" id="sm_index" name="sm_index" value="${message2.s_index }">
 	
 				</c:forEach>
 			</tbody>

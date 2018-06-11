@@ -250,15 +250,16 @@ public class DataPoster extends DataSetter {
 
 
 
-	public void setMessage(int s_m_index, String m_id, String s_name, int m_m_index) {
+	public void setMessage(int s_index, int s_m_index, String m_id, String s_name, int m_m_index) {
 		set(Message.QUERY_POST,new DataSettable() {
 			
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
-				pstmt.setInt(1, s_m_index);
-				pstmt.setString(2, m_id);
-				pstmt.setString(3, s_name);
-				pstmt.setInt(4, m_m_index);
+				pstmt.setInt(1, s_index);
+				pstmt.setInt(2, s_m_index);
+				pstmt.setString(3, m_id);
+				pstmt.setString(4, s_name);
+				pstmt.setInt(5, m_m_index);
 				
 			}
 		});

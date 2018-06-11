@@ -798,7 +798,36 @@ public class DataGetter extends DataAccessor {
 		// TODO Auto-generated method stub
 		return list;
 	}
+	public ArrayList<Member> getStudy_m_id(int index) {
+		@SuppressWarnings("unchecked")
+		ArrayList<Member> list = (ArrayList<Member>) get(Message.QUERY_GET3,new DataSettable() {
+			
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
 	
+				pstmt.setInt(1, index);
+
+			}
+		}, new DataGettable() {
+
+			@Override
+			public ArrayList<?> onGetResult(ResultSet rs) throws SQLException {
+				ArrayList<Member> studies = new ArrayList<>();
+				while(rs.next()) {
+					Member member = new Member();
+					
+					member.setId(rs.getString("m_id"));
+
+
+					studies.add(member);
+				}
+				return studies;
+			}
+		});
+
+		// TODO Auto-generated method stub
+		return list;
+	}
 
 
 //아이디 찾을 떄 인덱스 번호 가져오기
