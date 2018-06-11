@@ -3,7 +3,7 @@ package beansNew;
 import java.sql.Date;
 
 public class Meeting {
-	public static final String QUERY_GET = "SELECT mt_place, mt_date, mt_expectedfee, mt_comment FROM v_meeting WHERE S_NAME = ? AND mt_id = ?";
+	public static final String QUERY_GET = "SELECT mt_place, mt_date, mt_expectedfee, mt_comment FROM meetingview WHERE S_NAME = ? AND mt_id = ?";
 	public static final String QUERY_POST = "INSERT INTO meeting(mt_id, mt_place, mt_date, mt_expectedfee, mt_comment) VALUES(meeting_index.nextval, ?, ?, ?, ?)";
 	
 	int meetingId;
