@@ -815,7 +815,7 @@ public class DataGetter extends DataAccessor {
 					comment.setCno(rs.getInt(1));
 					comment.setBno(rs.getInt(2));
 					comment.setName(rs.getString(3));
-					comment.setDate(rs.getDate(4));
+					comment.setDate(rs.getString(4));
 					comment.setContent(rs.getString(5));
 					commentlist.add(comment);
 				}

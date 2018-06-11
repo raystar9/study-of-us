@@ -16,6 +16,7 @@
 	}	
 
 $(function() {
+		var check = 0;
 		var bno = $('#bno').val();
 		$('.boarddelete').click(function() {
 			var result = confirm("게시글을 삭제하시겠습니까?");
@@ -38,24 +39,28 @@ $(function() {
 		
 	
 		var bno = $('#bno').val();
-		var commentcount = commentCount(bno);
-		$('#commentListBtn').val('답글보기(' + commentcount + ')▼');
+		//var commentcount = commentCount(bno);
+		$('#commentListBtn').val('답글보기('+commentCount(bno)+')▼');
 		
-		//댓글 버튼 눌렀을 때
+		//댓글 등록 버튼 눌렀을 때
 		$('#commentInsertBtn').click(function() {
 			var insertData = $('[name=commentInsertForm]').serialize();
 			commentInsert(insertData);
 		});
 		
-		//댓글 등록 버튼 눌었을 때
+		//댓글 보기 버튼 눌었을 때
 		$('#commentListBtn').click(function() {
-			if($('#commentListBtn').val() == '답글보기(' + commentcount + ')▲'){
-				$(".commentList").empty();
-				$('#commentListBtn').val('답글보기(' + commentcount + ')▼');
-			}else{
-			$('#commentListBtn').val('답글보기(' + commentcount + ')▲');
+			
+			if(check == 0){
+				$('#commentListBtn').val('답글보기(' + commentCount(bno) + ')▲');
 				commentList();
+				check = 1;
+			}else if(check == 1){
+				$(".commentList").empty();
+				$('#commentListBtn').val('답글보기(' + commentCount(bno) + ')▼');
+				check = 0;
 			}
+			
 		});
 	});
 	
@@ -115,6 +120,9 @@ $(function() {
 	function commentUpdateProc(cno) {
 		var updateContent = $('[name=content_' + cno + ']').val();
 		var bno = $('#bno').val();
+		
+		var result = confirm("댓글을 수정하시겠습니까?");
+		if(result == true){
 		$.ajax({
 			url : '/study-of-us/commentupdate',
 			type : 'post',
@@ -128,12 +136,17 @@ $(function() {
 					commentList(bno); //댓글 수정후 목록 출력 
 			}
 		});
+		}else{
+			return false;
+		}
 	}
 
 	//댓글 삭제 
 	function commentDelete(cno) {
 		var c = cno;
 		var bno = $("#bno").val();
+		var result = confirm("댓글을 삭제하시겠습니까?");
+		if(result == true){
 		$.ajax({
 			url : '/study-of-us/commentdelete',
 			type : 'post',
@@ -142,8 +155,12 @@ $(function() {
 				"bno" : bno
 			},
 			success : function(data) {
-				$('#commentListBtn').val('답글보기(' + data + ')▲');
+				$('#commentListBtn').val('답글보기(' + commentCount(bno) + ')▲');
 					commentList(bno); //댓글 삭제후 목록 출력 
 			}
 		});
+		}else{
+			return false;
+		}
 	}
+	

@@ -11,7 +11,7 @@ public class CommentBean {
 	public static final String QUERY_POST = "insert into COMMENTS values(comments_index.nextval,?,?,sysdate,?)";		
 	
 	private String name;
-	private Date date;
+	private String date;
 	private String content;
 	private int cno;
 	private int bno;
@@ -48,12 +48,13 @@ public class CommentBean {
 	public void setPersonIndex(int personIndex) {
 		this.personIndex = personIndex;
 	}
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
+	
 	
 	
 }
