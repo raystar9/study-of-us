@@ -1,11 +1,9 @@
 package dao;
 
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import beans.prototype.Meeting;
 import beans.prototype.Member;
 import beans.prototype.Study;
 import beans.prototype.StudyList;
@@ -13,10 +11,10 @@ import beans.study.each.InformSetup;
 import beans.study.each.board.BoardViewRegisterBean;
 import beans.study.each.board.CommentBean;
 import beans.study.each.fee.CashExpenseBean;
-import beans.study.each.fee.CashMemberBean;
 import beansNew.Attend;
 import beansNew.FeeCollect;
 import beansNew.FeeSpend;
+import beansNew.Meeting;
 import dao.interfaces.DataSettable;
 import dateConverter.DateConverter;
 
@@ -90,8 +88,10 @@ public class DataPoster extends DataSetter {
 
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
-				pstmt.setString(1, meeting.getLocation());
-				pstmt.close();
+				pstmt.setString(1, meeting.getPlace());
+				pstmt.setDate(2, meeting.getDate());
+				pstmt.setInt(3, meeting.getExpectedFee());
+				pstmt.setString(4, meeting.getComment());
 			}
 		});
 	}
@@ -310,5 +310,4 @@ public class DataPoster extends DataSetter {
 				});
 			}
 		}
-	
 }

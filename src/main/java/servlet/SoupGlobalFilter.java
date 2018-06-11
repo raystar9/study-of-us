@@ -132,12 +132,12 @@ public class SoupGlobalFilter implements Filter {
 		if(uri.length == 5) {
 			new Schedule().service(request, response);
 		} else {
-			
 			switch(uri[5]) {
 				case "new": 
 					new NewSchedule().service(request, response);
 					break;
 				default:
+					request.setAttribute("meetingId", uri[5]);
 					new EachSchedule().service(request, response);
 					break;
 			}
