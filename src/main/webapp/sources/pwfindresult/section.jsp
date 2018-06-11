@@ -4,7 +4,7 @@
      String pw = (String)request.getAttribute("pw");
  
 %>  
-<form action="LoginPage" method="get">
+<form action="loginForm.jsp" method="get">
 <div class="pwresult">
 			비밀번호는 ${pw }입니다.
 </div>
