@@ -921,8 +921,49 @@ insert into BOARD values (board_no.nextval, 스터디번호 ?, 작성회원번�
 
 insert into COMMENTS values(comments_index.nextval,?,?,sysdate,?);
 
+select B_NO, B_TITLE, M_NAME, B_DATE 
+from (SELECT ROWNUM RNUM, B_NO, B_TITLE, M_NAME, B_DATE, B_S_INDEX 
+      FROM (select B_NO, B_TITLE, M_NAME, B_DATE, B_S_INDEX
+	        from BOARD b, MEMBER m 
+	        where B_M_INDEX = m.M_INDEX
+	        ORDER BY B_NO DESC)
+			)
+where B_S_INDEX = (select S_INDEX 
+                   from STUDY 
+                   where S_INDEX = 5)  
+AND RNUM>=1 AND RNUM<=10
+
+
+select count(*)
+from (SELECT ROWNUM RNUM, B_NO, B_TITLE, M_NAME, B_DATE, B_S_INDEX 
+      FROM (select B_NO, B_TITLE, M_NAME, B_DATE, B_S_INDEX
+	        from BOARD b, MEMBER m 
+	        where B_M_INDEX = m.M_INDEX
+	        ORDER BY B_NO DESC) 
+      		)
+where B_S_INDEX = (select S_INDEX 
+			       from STUDY 
+			       where S_INDEX = 5)  
+
 
 select * from comments;
+
+select B_NO, B_TITLE, M_NAME, B_DATE from (SELECT ROWNUM RNUM, B_NO, B_TITLE, M_NAME, B_DATE, B_S_INDEX FROM (select B_NO, B_TITLE, M_NAME, B_DATE, B_S_INDEX from BOARD b, MEMBER m where B_M_INDEX = m.M_INDEX ORDER BY B_NO DESC)) where B_S_INDEX = (select S_INDEX from STUDY where S_INDEX = 5) AND RNUM>=1 AND RNUM<=10
+
+
+
+
+
+select B_NO, B_TITLE, M_NAME, B_DATE from (SELECT ROWNUM RNUM, B_NO, B_TITLE, M_NAME, B_DATE, B_S_INDEX FROM (select B_NO, B_TITLE, M_NAME, B_DATE, B_S_INDEX from BOARD b, MEMBER m where B_M_INDEX = m.M_INDEX ORDER BY B_NO DESC)) where B_S_INDEX = (select S_INDEX from STUDY where S_INDEX = 5) AND RNUM>=1 AND RNUM<=10
+
+
+select B_NO, B_TITLE, M_NAME, B_DATE from (SELECT ROWNUM RNUM, B_NO, B_TITLE, M_NAME, B_DATE, B_S_INDEX FROM (select B_NO, B_TITLE, M_NAME, B_DATE, B_S_INDEX from BOARD b, MEMBER m where B_M_INDEX = m.M_INDEX ORDER BY B_NO DESC)) where B_S_INDEX = (select S_INDEX from STUDY where S_INDEX = 5) AND RNUM>=1 AND RNUM<=10
+
+
+
+
+
+
 
 
 select * from study;
