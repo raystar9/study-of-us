@@ -11,6 +11,8 @@ insert into studyMember values(2,3)
 select * from member
 select * from studyMember 
 insert into studyMember values
+ 
+delete message where S_INDEX = 9 and M_M_INDEX = 2
 
 drop table message
 select * from message

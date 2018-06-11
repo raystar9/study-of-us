@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions"  prefix="fn"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -77,6 +79,15 @@ table.type10 td {
 table.type10 .even {
     background: #fdf3f5;
 }
+.notification-counter {   
+    top: -2px;
+    left: 12px;
+    background-color: rgba(212, 19, 13, 1);
+    color: #fff;
+    border-radius: 3px;
+    padding: 1px 3px;
+    font: 8px Verdana;
+}
 
 </style>
 
@@ -120,8 +131,9 @@ $(document).ready(function(){
  $("#reject").click(function(){
 	var sm_s_index = $("#sm_s_index").val()
 	var sm_m_index = $("#sm_m_index").val()
+	var sm_index = $("#sm_index").val()
 
-	location.href = "/study-of-us/study/Message?sm_s_index="+sm_s_index+"&sm_m_index="+sm_m_index+"&reject=reject";
+	location.href = "/study-of-us/study/Message?sm_s_index="+sm_s_index+"&sm_m_index="+sm_m_index+"&reject=reject&sm_index="+sm_index;
 }) 
 
 })
@@ -148,7 +160,7 @@ $(document).ready(function(){
 			</c:if>
 
 			<c:if test="${!empty id }">
-				<a id="icon2"><i class="fa fa-bell icon2" ></i></a>
+				<a id="icon2"><i class="fa fa-bell icon2" ></i><span class="notification-counter">${fn:length(message)}</span></a>
 				<a>${id} 님 환영합니다</a>
 				<a href="/study-of-us/LogOut">로그아웃</a>
 			</c:if>
@@ -169,7 +181,7 @@ $(document).ready(function(){
 				<tr>
 					<th>신청자</th>
 					<th>스터디 명</th>
-					<th>${message[0].s_index } </th>
+					<th>수락 여부</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -184,7 +196,6 @@ $(document).ready(function(){
 				<input type="hidden" id="sm_s_index" name="sm_s_index" value="${message2.m_s_index }">
 				<input type="hidden" id="sm_m_index" name="sm_m_index" value="${message2.m_m_index }">
 				<input type="hidden" id="sm_index" name="sm_index" value="${message2.s_index }">
-	
 				</c:forEach>
 			</tbody>
 		</table>

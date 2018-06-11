@@ -5,7 +5,7 @@ public class Message {
 	
 	public static final String QUERY_GET = "select * from Message where m_s_index = ? ";
 	public static final String QUERY_POST = "insert into message values (?,?,?,?,?)"; 
-    public static final String QUERY_DELETE = "delete message where M_S_INDEX = ? and M_M_INDEX = ?";
+    public static final String QUERY_DELETE = "delete message where S_INDEX = ? and M_M_INDEX = ?";
 	public static final String QUERY_GET2 = "SELECT * FROM message where m_s_index = ? and m_m_index = ?";
 
 	public static final String QUERY_GET3 = "SELECT * FROM study inner join member on study.s_m_index = member.m_index where study.s_m_index = ?";
