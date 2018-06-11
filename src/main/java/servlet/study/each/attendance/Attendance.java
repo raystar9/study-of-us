@@ -1,6 +1,9 @@
 package servlet.study.each.attendance;
 
 import java.io.IOException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -27,8 +30,7 @@ public class Attendance extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String studyName = (String) request.getAttribute("studyName");
-		
-		response.sendRedirect("/study/"+studyName+"/schedule?type=attend");
+		response.sendRedirect("schedule?type=attend");
 	}
 
 }

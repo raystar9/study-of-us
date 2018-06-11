@@ -92,6 +92,8 @@ public class DataPoster extends DataSetter {
 				pstmt.setDate(2, meeting.getDate());
 				pstmt.setInt(3, meeting.getExpectedFee());
 				pstmt.setString(4, meeting.getComment());
+				pstmt.executeUpdate();
+				pstmt.close();
 			}
 		});
 	}
