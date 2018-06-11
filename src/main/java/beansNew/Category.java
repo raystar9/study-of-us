@@ -1,6 +1,7 @@
 package beansNew;
 
 public class Category {
+	int categoryId;
 	String group;
 	String subGroup;
 	
@@ -10,6 +11,14 @@ public class Category {
 	public Category(String group, String subGroup) {
 		this.group = group;
 		this.subGroup = subGroup;
+	}
+
+	public int getCategoryId() {
+		return categoryId;
+	}
+
+	public void setCategoryId(int categoryId) {
+		this.categoryId = categoryId;
 	}
 
 	public String getGroup() {

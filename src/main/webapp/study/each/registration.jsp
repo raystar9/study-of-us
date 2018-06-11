@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -21,7 +22,7 @@
 <link rel="stylesheet" href="sources/setting/css/setting.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="sources/registration/js/registration2_.js"></script>
+<script src="sources/registration/js/registration_.js"></script>
 
 
   

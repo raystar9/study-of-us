@@ -1,82 +1,40 @@
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-	
-	
-	
-	
-	public void postMembers(Member member) {
-
-		/*
-		 * DataSettable은 익명클래스로 구현하도록 되어있습니다. 외부 혹은 내부 클래스로 선언하여 실제로 구현하여 매개변수로 넣어줄 수도
-		 * 있지만 익명클래스로 처리하는 쪽이 더 간결해 보인다고 생각했습니다.
-		 */
-		set(Member.QUERY_POST, new DataSettable() { // 콜백함수를 통해 setteble 안에있는 prepare 를 사용한다.
+	public ArrayList<StudyListSelect> getStudyList(int index, int page, int limit) {
+@SuppressWarnings("unchecked")
+ArrayList<StudyListSelect> studylist = (ArrayList<StudyListSelect>) get(StudyListSelect.QUERY_GET3 , new DataSettable() {
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
-				pstmt.setString(1, member.getId());
-				pstmt.setString(2, member.getName());
-				pstmt.setString(3, member.getPassword());
-				pstmt.setString(4, member.getEmail());
-				pstmt.setString(5, member.getTel());
-				pstmt.setString(6, member.getAddress());
-				pstmt.setString(7, member.getGender());
-				pstmt.setString(8, member.getIntroduce());
-				pstmt.executeUpdate();
-				pstmt.close();
-
+				//읽기 시작할 row 번호 1
+				int startrow = (page - 1 ) * limit + 1;
+				System.out.println("스타트로우" + startrow);
+				//읽을 마지막 row 번호 2
+				int endrow = startrow + limit -1;
+				System.out.println("엔드로우" +endrow);
+				
+				pstmt.setInt(1, index);
+				pstmt.setInt(2, startrow);
+				pstmt.setInt(3, endrow);
+			
+				System.out.println(StudyListSelect.QUERY_GET3);
+				
 			}
-		});
-
-	}
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+		}, new DataGettable() {
+			
+			@Override
+			public ArrayList<?> onGetResult(ResultSet rs) throws SQLException {
+				ArrayList<StudyListSelect> studylists = new ArrayList<>();
+				while(rs.next()) {
+					StudyListSelect sl = new StudyListSelect();
+					
+					sl.setProgress(rs.getInt("progress"));
+					sl.setS_name(rs.getString("s_name"));
+					sl.setS_maxmember(rs.getInt("s_maxmember"));
+					sl.setStart(rs.getString("s_start"));
+					sl.setEnd(rs.getString("s_end"));
+					studylists.add(sl);
+			}
+		
+			return studylists;
+		}
+	});
+		return studylist;
+}

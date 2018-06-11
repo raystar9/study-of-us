@@ -29,7 +29,7 @@ public class IdCheck extends HttpServlet {
 		int result = 0;
 		System.out.println("id : " + id);
 		
-		DataGetter getter = new DataGetter(DatabaseAccounts.ADMIN);
+		DataGetter getter = new DataGetter(DatabaseAccounts.PROJECT);
 		Login idcheck = getter.getIdCheck(id);
 		
 		

@@ -29,10 +29,11 @@ public class BoardView extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		DataGetter getter = new DataGetter(DatabaseAccounts.SCOTT);
-		int studyIndex = 3; 
+		DataGetter getter = new DataGetter(DatabaseAccounts.PROJECT);
+		int studyIndex = 5;
+		//int studyIndex = (int)request.getSession().getAttribute("index");
 		
-		BoardViewRegisterBean boardcontent = getter.getBoardView(Integer.parseInt(request.getParameter("num")), studyIndex);
+		BoardViewRegisterBean boardcontent = getter.getBoardView(Integer.parseInt(request.getParameter("num")));
 		request.setAttribute("boardcontent", boardcontent);
 		
 		ArrayList<CommentBean> comment = new ArrayList<CommentBean>();
@@ -41,13 +42,16 @@ public class BoardView extends HttpServlet {
 		
 		//댓글 개수
 		int commentcount = getter.getCommentCount(boardnum);
-		comment = getter.getCommentList(boardnum);
+		comment = getter.getCommentList(studyIndex, boardnum);
 		
 		request.setAttribute("comment", comment);
 		request.setAttribute("commentcount", commentcount);
 		getter.close();
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/each/boardView.jsp");
+		/* 사용자 아이디 session에서 가져오는 것 필요 */
+        /* 사용자 아이디 session에서 저장해서 form으로 보내는 것 필요 */
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/each/board/boardView.jsp");
 		dispatcher.forward(request, response);
 		
 	}

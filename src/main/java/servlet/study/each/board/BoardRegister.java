@@ -29,7 +29,7 @@ public class BoardRegister extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/each/boardRegister.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/each/board/boardRegister.jsp");
 		dispatcher.forward(request, response);
 
 	}
@@ -38,7 +38,10 @@ public class BoardRegister extends HttpServlet {
 			throws ServletException, IOException {
 		System.out.println("BoardRegister 서블릿으로 들어옴");
 		// TODO Auto-generated method stub
-		int studyIndex = 3;
+		int studyIndex = 5;
+		//int studyIndex = (int)request.getSession().getAttribute("index");
+		//int personIndex = 로그인한 사람의 index 번호 가져오기
+		int personIndex = 6;
 		String realFolder = "";
 		
 		//WebContent아래에 꼭 폴더 생성
@@ -66,9 +69,13 @@ public class BoardRegister extends HttpServlet {
         board.setFilename(multi.getFilesystemName((String)multi.getFileNames().nextElement()));
         System.out.println("filename=" + multi.getFilesystemName((String)multi.getFileNames().nextElement()));
         
-		DataPoster poster = new DataPoster(DatabaseAccounts.SCOTT);
-		poster.postBoard(board, studyIndex); 
+		DataPoster poster = new DataPoster(DatabaseAccounts.PROJECT);
+		poster.postBoard(board, studyIndex, personIndex); 
 		poster.close();
+		
+		/* 사용자 아이디 session에서 가져오는 것 필요 */
+        /* 사용자 아이디 session에서 저장해서 form으로 보내는 것 필요 */
+		
 		//나중엔 그 해당 글번호를 가져와서 등록한 글의 세부보기 페이지로 이동할 것임.
 		response.sendRedirect("/study-of-us/study/each/board");
 	}

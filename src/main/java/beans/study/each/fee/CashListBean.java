@@ -3,38 +3,18 @@ package beans.study.each.fee;
 
 public class CashListBean {
 	
-	public static final String QUERY_GET = "SELECT * from ";		
-	public static final String QUERY_GET_COUNT = "SELECT";		
+	public static final String QUERY_GET = "SELECT mt_id, mt_date FROM(SELECT rownum as post, mt_id, mt_date FROM studyMeeting WHERE s_name = ?) WHERE post >= ? AND post <= ?";		
+	public static final String QUERY_GET_COUNT = "SELECT count(*) FROM studyMeeting WHERE s_name = ?";		
 
-	private int index; 		// 회비게시글 작성 번호
-	private String title; 	// 회비게시글 제목
-	private String name; 	// 회비게시글 작성자
+	private int meetingIndex;		// 회비게시글 작성 번호
 	private String date; 	// 회비게시 작성일
-	private int total; 		// 회비 총액
-
 	
-	public int getIndex() {
-		return index;
+	public int getMeetingIndex() {
+		return meetingIndex;
 	}
-
-	public void setIndex(int index) {
-		this.index = index;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
+	
+	public void setMeetingIndex(int meetingIndex) {
+		this.meetingIndex = meetingIndex;
 	}
 
 	public String getDate() {
@@ -43,14 +23,6 @@ public class CashListBean {
 
 	public void setDate(String date) {
 		this.date = date;
-	}
-
-	public int getTotal() {
-		return total;
-	}
-
-	public void setTotal(int total) {
-		this.total = total;
 	}
 
 }

@@ -4,15 +4,39 @@ START WITH 1
 INCREMENT BY 1
 NOMAXVALUE;
 
+select * from board;
 
-select B_NO, B_TITLE, B_NAME, B_DATE from (SELECT ROWNUM RNUM, B_TITLE, B_NAME, B_DATE, B_S_INDEX, B_NO FROM BOARD b) where B_S_INDEX IN (select S_INDEX from STUDY where S_INDEX = 3) AND RNUM>=1 AND RNUM<=10 AND B_TITLE like '%교재%' ORDER BY B_NO desc
+select * from study;
+select count(*) from studymemberlist where S_INDEX = 3
+select * from studymemberlist;
+update board set B_DATE = '2018-06-05' where B_NAME='ㅂㅈㄷ'
+
+select B_NO, B_TITLE, B_NAME, B_DATE from (SELECT ROWNUM RNUM, B_TITLE, B_NAME, B_DATE, B_S_INDEX, B_NO FROM BOARD b) where B_S_INDEX IN (select S_INDEX from STUDY where S_INDEX = 3) AND RNUM>=11 AND RNUM<=20 ORDER BY B_NO desc
 
 select B_NO, B_TITLE, B_NAME, B_DATE from (SELECT ROWNUM RNUM, B_TITLE, B_NAME, B_DATE, B_S_INDEX, B_NO FROM BOARD b) where B_S_INDEX IN (select S_INDEX from STUDY where S_INDEX = 3) AND RNUM>=1 AND RNUM<=10 AND B_TITLE like '%교재%'  ORDER BY B_NO desc
 
+select * from board order by B_NO desc;
 
 drop table Member;
 -- Member 테이블 생성
 CREATE TABLE Member(
+
+
+
+select * from board;
+
+
+insert into BOARD values (board_no.nextval, 스터디번호, , sysdate, 'ㅌㅌㅌ', '5', null);
+
+
+
+select count(*) from (select distinct C_GROUP from category);
+
+select * from category;
+
+
+
+
 	M_INDEX NUMBER NOT NULL PRIMARY KEY,      -- member_index 시퀀스 처리
 	M_ID VARCHAR(16) NOT NULL,
 	M_PASSWORD VARCHAR(16) NOT NULL,
@@ -213,10 +237,8 @@ INSERT INTO BOARD VALUES (board_no.nextval, '이름', '제목', '내용', SYSDAT
 CREATE TABLE Study(
    S_INDEX NUMBER NOT NULL PRIMARY KEY,      -- study_index 시퀀스 처리
    S_NAME VARCHAR(16) NOT NULL,            
-   S_CATEGORY VARCHAR(30) NOT NULL,              
    S_START VARCHAR(16) NOT NULL,                     --시작날짜
    S_END VARCHAR(16) NOT NULL,                     --끝날짜
-   
    S_PLOPIENUM NUMBER NOT NULL,               --인원
    S_DAY varchar(3) not null,                  --요일
    S_time number not null,                     --활동시간
@@ -227,7 +249,7 @@ CREATE TABLE Study(
 
 );
 truncate table study;
-INSERT INTO Study VALUES(study_index.nextval,'JAVA&JSP','카테카테1','20180501', '20180530', 7, '화',5,'개요입니다.','준비물입니다.','기대효과입니다.','장소');
+INSERT INTO Study VALUES(study_index.nextval,'JAVA&JSP','20180501', '20180530', 7, '화',5,'개요입니다.','준비물입니다.','기대효과입니다.','장소');
 
 select * from study;
 select * from member;
@@ -444,10 +466,508 @@ from (SELECT ROWNUM RNUM, B_TITLE, B_NAME, B_DATE, B_S_INDEX, B_NO
 AND B_TITLE like '%회비%'
 ORDER BY B_NO desc
 
-select count(*) from BOARD where (select S_INDEX from STUDY s where s.S_INDEX = b.B_S_INDEX) = 3) AND B_TITLE like '%회비%' ORDER BY B_NO desc
-select count(*) from (SELECT ROWNUM RNUM, B_TITLE, B_NAME, B_DATE, B_S_INDEX, B_NO FROM BOARD b) where B_S_INDEX IN (select S_INDEX from STUDY where S_INDEX = 3) ORDER BY B_NO desc
+select B_NO, B_TITLE, B_NAME, B_DATE from (SELECT ROWNUM RNUM, B_TITLE, B_NAME, B_DATE, B_S_INDEX, B_NO FROM BOARD b where B_TITLE like '%교재%') where B_S_INDEX IN (select S_INDEX from STUDY where S_INDEX = 3) AND RNUM>=1 AND RNUM<=10 ORDER BY B_NO desc
+select B_NO, B_TITLE, B_NAME, B_DATE from (SELECT ROWNUM RNUM, B_TITLE, B_NAME, B_DATE, B_S_INDEX, B_NO FROM BOARD b where B_TITLE like '%교재%') where B_S_INDEX IN (select S_INDEX from STUDY where S_INDEX = 3) AND RNUM>=1 AND RNUM<=10 ORDER BY B_NO desc
+select B_NO, B_TITLE, B_NAME, B_DATE from (SELECT ROWNUM RNUM, B_TITLE, B_NAME, B_DATE, B_S_INDEX, B_NO FROM BOARD b where B_TITLE like '%교재%') where B_S_INDEX IN (select S_INDEX from STUDY where S_INDEX = 3) AND RNUM>=1 AND RNUM<=10 ORDER BY B_NO desc
+select count(*) from (SELECT ROWNUM RNUM, B_TITLE, B_NAME, B_DATE, B_S_INDEX, B_NO FROM BOARD b where B_TITLE like '%교재%')  where B_S_INDEX IN (select S_INDEX from STUDY where S_INDEX = 3) ORDER BY B_NO desc
+
+select B_NO, B_TITLE, B_NAME, B_DATE from (SELECT ROWNUM RNUM, B_TITLE, B_NAME, B_DATE, B_S_INDEX, B_NO FROM BOARD b)where B_S_INDEX IN (select S_INDEX from STUDY where S_INDEX = 3) AND RNUM>=1 AND RNUM<=10 ORDER BY B_NO desc
+select B_NO, B_TITLE, B_NAME, B_DATE from (SELECT ROWNUM RNUM, B_TITLE, B_NAME, B_DATE, B_S_INDEX, B_NO FROM BOARD b)where B_S_INDEX IN (select S_INDEX from STUDY where S_INDEX = 3) AND RNUM>=1 AND RNUM<=10 ORDER BY B_NO desc
 
 
 
 
 
+truncate table board;
+
+
+select B_NO, B_TITLE, B_NAME, B_DATE from (SELECT ROWNUM RNUM, B_TITLE, B_NAME, B_DATE, B_S_INDEX, B_NO FROM BOARD b where B_TITLE like '%회비%') where B_S_INDEX IN (select S_INDEX from STUDY where S_INDEX = 3) AND RNUM>=1 AND RNUM<=10 ORDER BY B_NO desc
+
+
+
+
+select B_NO, B_TITLE, B_NAME, B_DATE from (SELECT ROWNUM RNUM, B_TITLE, B_NAME, B_DATE, B_S_INDEX, B_NO FROM BOARD b)where B_S_INDEX IN (select S_INDEX from STUDY where S_INDEX = 3) AND RNUM>=1 AND RNUM<=10 ORDER BY B_NO desc
+select count(*) from (SELECT ROWNUM RNUM, B_TITLE, B_NAME, B_DATE, B_S_INDEX, B_NO FROM BOARD b where B_TITLE like '%교재%')  where B_S_INDEX IN (select S_INDEX from STUDY where S_INDEX = 3) ORDER BY B_NO desc
+select B_NO, B_TITLE, B_NAME, B_DATE from (SELECT ROWNUM RNUM, B_TITLE, B_NAME, B_DATE, B_S_INDEX, B_NO FROM BOARD b where B_TITLE like ?) where B_S_INDEX IN (select S_INDEX from STUDY where S_INDEX = ?) AND RNUM>=? AND RNUM<=? ORDER BY B_NO desc
+
+create table CATEGORY(
+	C_ID NUMBER,
+	C_GROUP VARCHAR2(20),
+	C_SUB VARCHAR2(20)
+)
+Insert into category values (1, '프로그래밍', 'JAVA');
+
+select * from category;
+
+select * from study;
+select * from board;
+
+select B_NO, B_TITLE, B_NAME, B_DATE from (SELECT ROWNUM RNUM, B_TITLE, B_NAME, B_DATE, B_S_INDEX, B_NO FROM BOARD b) where B_S_INDEX IN (select S_INDEX from STUDY where S_INDEX = 3) AND RNUM>=1 AND RNUM<=10 ORDER BY B_NO DESC
+
+select * from board;
+select * from study;
+
+update study set S_INDEX=3;
+
+select B_NO, B_TITLE, B_NAME, B_DATE 
+from (SELECT ROWNUM RNUM, B_TITLE, B_NAME, B_DATE, B_S_INDEX, B_NO 
+       FROM BOARD b) 
+where B_S_INDEX IN (select S_INDEX 
+		   from STUDY 
+ 		   where S_INDEX = 3) 
+AND RNUM>=1 AND RNUM<=10 
+ORDER BY B_NO DESC
+
+SELECT M_INDEX 
+FROM MEMBER 
+where B_S_INDEX IN (select S_INDEX 
+		  		    from STUDY 
+ 		            where S_INDEX = 3) 
+
+select * from member
+
+
+
+
+
+
+
+
+
+
+
+
+-----------------------------------------------------------------------------------
+< BoardListBean QUERY_GET - ?번 스터디의 게시판 리스트 가져오는 쿼리 >
+select B_NO, B_TITLE, M_NAME, B_DATE 
+from (SELECT ROWNUM RNUM, B_NO, B_TITLE, M_NAME, B_DATE, B_S_INDEX
+      FROM BOARD b, MEMBER m where b.B_TITLE like ? AND b.B_M_INDEX = ?)
+where B_S_INDEX IN (select S_INDEX 
+                    from STUDY 
+                    where S_INDEX = ?) 
+AND RNUM>=? AND RNUM<=? ORDER BY B_NO DESC
+
+-----------------------------------------------------------------------------------
+
+< BoardListBean QUERY_GET_COUNT - ?번 스터디의 게시판 개수 가져오는 쿼리 >
+select count(*) 
+from (SELECT ROWNUM RNUM, B_TITLE, B_NAME, B_DATE, B_S_INDEX, B_NO 
+      FROM BOARD b 
+      where B_TITLE like ?) 
+where B_S_INDEX IN (select S_INDEX 
+                    from STUDY 
+                    where S_INDEX = ?) 
+order by B_NO desc
+
+-----------------------------------------------------------------------------------
+
+< BoardViewRegister QUERY_GET - ?번 스터디의 게시판의 ?번 게시글의 정보 가져오는 쿼리 >
+select B_NO ,B_TITLE, B_CONTENT, M_NAME, B_DATE, B_FILENAME 
+from BOARD b 
+where B_S_INDEX = (select S_INDEX 
+                   from STUDY 
+                   where S_INDEX = ?) 
+AND b.B_NO = ?
+
+-----------------------------------------------------------------------------------
+
+< BoardViewRegister QUERY_PUT - ?번 스터디의 게시판의 ?번 게시글의 정보를 수정하는 쿼리 >
+update BOARD b 
+set B_TITLE=?, B_CONTENT=? 
+where (select S_INDEX 
+       from STUDY s 
+       where s.S_INDEX = b.B_S_INDEX) = ? 
+AND b.B_NO = ?
+
+-----------------------------------------------------------------------------------
+
+< BoardViewRegister QUERY_DELETE - ?번 스터디의 게시판의 ?번 게시글을 삭제하는 쿼리 >
+delete from BOARD b
+where (select S_INDEX 
+       from STUDY s 
+       where s.S_INDEX = b.B_S_INDEX) = ? 
+AND b.B_NO = ?
+
+-----------------------------------------------------------------------------------
+
+< BoardViewRegister QUERY_POST - ?번 스터디의 게시판에 게시글을 삽입하는 쿼리 >
+insert into BOARD b
+values (board_no.nextval, 스터디외래키, 회원번호외래키, 스터디시퀀스, ?, sysdate, ?, ?)
+where (select S_INDEX 
+       from STUDY s 
+       where s.S_INDEX = b.B_S_INDEX) = ? 
+
+-----------------------------------------------------------------------------------
+       
+< CommentBean QUERY_GET - ?번 스터디의 게시판의 ?번 게시글의 댓글리스트를 가져오는 쿼리 >
+select C_CONTENT, C_DATE, M_NAME 
+from (select C_CONTENT, C_DATE, M_NAME, C_BNO
+      from COMMENT c, MEMBER m
+      where c.C_M_INDEX = m.M_INDEX)
+where (select S_INDEX 
+       from STUDY s, BOARD b 
+       where s.S_INDEX = b.B_S_INDEX) = ? 
+AND C_B_NO = ?
+       
+-----------------------------------------------------------------------------------       
+       
+< CommentBean QUERY_GET_COUNT - ?번 스터디의 게시판의 ?번 게시글의 댓글의 개수를 가져오는 쿼리 >    
+select COUNT(*) 
+from COMMENT 
+where (select S_INDEX 
+       from STUDY s, BOARD b 
+       where s.S_INDEX = b.B_S_INDEX) = ? 
+AND C_B_NO = ? 
+
+-----------------------------------------------------------------------------------
+
+< CommentBean QUERY_PUT - ?번 스터디의 게시판의 ?번 게시글의 ?번 댓글을 수정하는 쿼리 >     
+UPDATE COMMENT 
+SET C_CONTENT=? 
+where (select S_INDEX 
+       from STUDY s, BOARD b 
+       where s.S_INDEX = b.B_S_INDEX) = ? 
+AND C_B_NO = ? 
+AND C_INDEX = ?
+       
+-----------------------------------------------------------------------------------
+
+<CommentBean QUERY_DELETE - ?번 스터디의 게시판의 ?번 게시글의 ?번 댓글을 삭제하는 쿼리 >   
+DELETE FROM COMMENT 
+where (select S_INDEX 
+       from STUDY s, BOARD b 
+       where s.S_INDEX = b.B_S_INDEX) = ? 
+AND C_B_NO = ? 
+AND C_INDEX = ?
+   
+-----------------------------------------------------------------------------------       
+  
+< CommentBean QUERY_POST - ?번 스터디의 게시판의 ?번 게시글에 댓글을 삽입하는 쿼리 >
+insert into COMMENT 
+values(댓글시퀀스,스터디외래키,멤버외래키,?,?)
+where (select S_INDEX 
+       from STUDY s, BOARD b 
+       where s.S_INDEX = b.B_S_INDEX) = ? 
+AND C_B_NO = ?     
+
+----------------------------------------------------------------------------------- 
+
+<InformSetup QUERY_GET - ?번 스터디의 정보를 가져오는 쿼리 >
+select S_INDEX, S_NAME,C_GROUP, C_SUBGROUP, S_M_INDEX, S_START, S_END, S_MAXMEMBER, S_DAY, S_TIME,  S_EXPLAIN, S_MATERIAL, S_EFFECT, S_PLACE
+from (select S_INDEX, S_NAME,C_GROUP, C_SUBGROUP, S_M_INDEX, S_START, S_END, S_MAXMEMBER, S_DAY, S_TIME,  S_EXPLAIN, S_MATERIAL, S_EFFECT, S_PLACE
+	  from STUDY s, CATEGORY c
+	  where s.S_C_ID = c.C_ID)
+where s.S_INDEX = ?
+
+----------------------------------------------------------------------------------- 
+
+< InformSetup QUERY_GET - ?번 스터디의 정보를 수정하는 쿼리 >
+update STUDY s
+set C_GROUP=?, C_SUBGROUP=?, S_MAXMEMBER=?, S_NAME=?, S_PLACE=?, S_TIME=?, S_START=?, S_END=?, S_DAY=?, S_EXPLAIN=?, S_MATERIAL=?, S_EFFECT=?    
+where (select C_SUBGROUP, S_MAXMEMBER
+       from CATEGORY c
+       where c.C_ID = s.S_C_ID)
+AND s.S_INDEX = ?
+
+----------------------------------------------------------------------------------- 
+ 
+< InformSetupMember QUERY_GET - ?번 스터디에 참여하고 있는 스터디원들의 정보를 가져오는 쿼리 >
+select M_NAME, M_TEL, M_EMAIL 
+from MEMBER
+where 
+
+----------------------------------------------------------------------------------- 
+
+< CashListBean QUERY_GET - ?번 스터디에 있는 회비목록 리스트 가져오는 쿼리 >
+
+
+----------------------------------------------------------------------------------- 
+
+< CashListBean QUERY_GET_COUNT - ?번 스터디에 있는 회비 리스트의 개수 가져오는 쿼리 >
+
+----------------------------------------------------------------------------------- 
+
+< CashMemberBean QUERY_GET - ?번 스터디의 ?날짜에 기록한 스터디원들이 낸 회비 리스트를 가져오는 쿼리 >
+
+----------------------------------------------------------------------------------- 
+
+< CashMemberBean QUERY_POST - ?번 스터디의 ?날짜에 스터디원들이 낸 회비 리스트를 삽입하는 쿼리 >
+
+----------------------------------------------------------------------------------- 
+
+< CashExpenseBean QUERY_GET - ?번 스터디의 ?날짜에 기록한 회비 사용 내역 리스트를 가져오는 쿼리 >
+
+----------------------------------------------------------------------------------- 
+
+< CashExpenseBean QUERY_GET - ?번 스터디의 ?날짜에 회비 사용 내역 리스트를 삽입하는 쿼리 >
+
+----------------------------------------------------------------------------------- 
+
+< 
+
+select * from comment;
+select * from study;
+select * from member;
+select * from board;
+
+select COUNT(*) 
+from COMMENT, Board
+where B_S_INDEX = (select S_INDEX
+	from Study
+	where S_INDEX = 3)
+AND C_B_NO = (select B_NO 
+	from Board
+	where B_NO = 156)
+
+
+
+	CREATE TABLE Comment(
+	C_INDEX NUMBER NOT NULL PRIMARY KEY,
+	C_S_INDEX NUMBER NOT NULL,
+	C_M_INDEX NUMBER NOT NULL,
+	C_DATE DATE NOT NULL,
+	C_CONTENT VARCHAR(300) NOT NULL
+)
+select * from study;
+CREATE SEQUENCE comment_index
+START WITH 1
+INCREMENT 1
+NOMAXVALUE;
+select * from member;
+select * from study;
+select * from studymemberlist;
+
+insert into board values(board_no.nextval, 5, 6, board_studyseq.nextval, '1테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
+insert into board values(board_no.nextval, 5, 6, board_studyseq.nextval, '2테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
+insert into board values(board_no.nextval, 5, 6, board_studyseq.nextval, '3테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
+insert into board values(board_no.nextval, 5, 6, board_studyseq.nextval, '4테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
+insert into board values(board_no.nextval, 5, 6, board_studyseq.nextval, '5테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
+insert into board values(board_no.nextval, 5, 6, board_studyseq.nextval, '6테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
+insert into board values(board_no.nextval, 5, 6, board_studyseq.nextval, '7테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
+insert into board values(board_no.nextval, 5, 6, board_studyseq.nextval, '8테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
+insert into board values(board_no.nextval, 5, 6, board_studyseq.nextval, '9테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
+insert into board values(board_no.nextval, 5, 6, board_studyseq.nextval, '10테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
+insert into board values(board_no.nextval, 5, 6, board_studyseq.nextval, '11테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
+insert into board values(board_no.nextval, 5, 6, board_studyseq.nextval, '12테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
+insert into board values(board_no.nextval, 5, 6, board_studyseq.nextval, '13테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
+insert into board values(board_no.nextval, 5, 6, board_studyseq.nextval, '14테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
+insert into board values(board_no.nextval, 5, 6, board_studyseq.nextval, '15테스트 게시글', sysdate, '게시글 테스트 중입니다.', null);
+select * from board order by B_NO desc;
+select * from studymemberlist;
+
+
+select * from 
+
+
+select B_NO, B_TITLE, M_NAME, B_DATE 
+from (SELECT ROWNUM RNUM, B_NO, B_TITLE, M_NAME, B_DATE, B_S_INDEX
+      FROM BOARD b, MEMBER m 
+      where B_M_INDEX = m.M_INDEX
+      AND B_TITLE like '%1%')
+where B_S_INDEX = (select S_INDEX 
+                    from STUDY 
+                    where S_INDEX = 3) 
+AND RNUM>=1 
+AND RNUM<=10 
+ORDER BY B_NO DESC
+
+select count(*) from (SELECT ROWNUM RNUM, B_NO, B_TITLE, M_NAME, B_DATE, B_S_INDEX FROM BOARD b, MEMBER m where B_M_INDEX = m.M_INDEX) where B_S_INDEX = (select S_INDEX from STUDY where S_INDEX = 3) ORDER BY B_NO DESC
+
+
+select B_NO ,B_TITLE, B_CONTENT, M_NAME, B_DATE, B_FILENAME 
+from BOARD b, Member m 
+where B_S_INDEX = (select S_INDEX 
+                   from STUDY 
+                   where S_INDEX = 3) 
+AND B_M_INDEX = (select M_INDEX     --추가
+				 from Member
+	             where M_INDEX = 25)
+AND b.B_NO = 26
+
+
+select * from board;
+
+
+
+
+select B_NO ,B_TITLE, B_CONTENT, M_NAME, B_DATE, B_FILENAME 
+from (SELECT B_NO ,B_TITLE, B_CONTENT, M_NAME, B_DATE, B_FILENAME 
+      FROM BOARD b, MEMBER m 
+      where B_M_INDEX = m.M_INDEX)
+where B_S_INDEX = (select S_INDEX 
+                    from STUDY 
+                    where S_INDEX = 3) 
+
+
+
+
+select B_NO ,B_TITLE, B_CONTENT, B_NAME, B_DATE, B_FILENAME from BOARD b where B_S_INDEX = (select S_INDEX from STUDY where S_INDEX = ?) AND b.B_NO = ?
+
+select B_NO, B_TITLE, B_CONTENT, M_NAME, B_DATE, B_FILENAME from STUDYBOARDLIST where B_NO = 29;
+
+delete from BOARD where B_S_INDEX = ? AND B_NO = ?
+
+
+select * from board;
+
+select * from studyboardlist;
+
+select B_NO, B_TITLE, B_CONTENT, M_NAME, B_DATE, B_FILENAME from STUDYBOARDLIST where B_NO = 
+update BOARD b 
+set B_TITLE=?, B_DATE=?, B_CONTENT=? 
+where (select S_INDEX 
+       from STUDY s 
+       where s.S_INDEX = b.B_S_INDEX) = ? 
+AND b.B_NO = ?
+
+select * from member
+SELECT COUNT(*) FROM COMMENT WHERE C_BNO = ?
+select * from comments;
+
+select C_CONTENT, C_DATE, M_NAME
+from Comments c, Member m, Board b
+where b.B_S_INDEX = (select S_INDEX
+	                 from Study
+	                 where S_INDEX = 3)
+and C_B_NO = (select B_NO
+	from Board
+	where B_NO = 28)
+
+
+
+SELECT COUNT(*) FROM COMMENTS WHERE C_B_NO = ?;
+
+
+insert into comments values(comment_index.nextval, 29, 25, sysdate, '테스트 댓글1');
+insert into comments values(comment_index.nextval, 29, 25, sysdate, '테스트 댓글2');
+insert into comments values(comment_index.nextval, 29, 25, sysdate, '테스트 댓글3');
+insert into comments values(comment_index.nextval, 29, 25, sysdate, '테스트 댓글4');
+insert into comments values(comment_index.nextval, 29, 25, sysdate, '테스트 댓글5');
+
+
+
+스터디번호 3번, 게시물번호
+
+
+select C_INDEX, M_INDEX, C_DATE, C_CONTENT
+from (select C_INDEX, M_INDEX, C_DATE, C_CONTENT
+	  from Comments c, Member m, Board b
+	  where C_S_INDEX )
+
+
+select B_NO, C_INDEX, C_CONTENT, C_DATE, M_NAME
+from Comments c, Member m, Board b
+where b.B_S_INDEX = 3
+and c.C_B_NO = B_NO
+and c.C_B_NO = 29
+and c.C_M_INDEX = m.M_INDEX
+
+
+select * from comments;
+
+
+select * from studyboardlist;
+select * from studymemberlist;
+
+
+insert into COMMENTS c 
+values(comment_index.nextval,?,?,sysdate,?)
+where (select B_S_INDEX
+	   from BOARD
+	   where B_S_INDEX = c.C_S_INDEX)
+AND (select B_S_INDEX
+	 from BOARD
+	 where B_S_INDEX = 3)	   
+AND (select )	 
+
+
+3번 스터디의 게시판의 29번 게시글에 댓글 insert하기 
+
+insert into COMMENTS
+values(comments_index.nextval,?,?,sysdate,?)
+
+select * from study;
+
+
+select * from board;
+
+select * from category;
+
+select B_NO, B_TITLE, M_NAME, B_DATE from (SELECT ROWNUM RNUM, B_NO, B_TITLE, M_NAME, B_DATE, B_S_INDEX FROM BOARD b, MEMBER m where B_M_INDEX = m.M_INDEX)  where B_S_INDEX = (select S_INDEX from STUDY where S_INDEX = 3) AND RNUM>=1 AND RNUM<=10 ORDER BY B_NO DESC
+
+select distinct C_GROUP from category;
+
+select count(*) from studymemberlist where S_INDEX = 3;
+
+select S_NAME,C_GROUP, C_SUBGROUP, S_START, S_END, S_MAXMEMBER, S_TIME, S_DAY,  S_EXPLAIN, S_MATERIAL, S_EFFECT, S_PLACE from Study s, Category c where s.S_C_ID = c.C_ID and s.S_INDEX = 3
+
+SELECT m_name, m_tel, m_email FROM studyMemberList WHERE s_name = '외국인처럼 말하기';
+
+select * from member;
+
+select S_M_INDEX from Study where S_INDEX = 5;
+select * from board;
+
+update BOARD b set B_TITLE='수정테스트', B_CONTENT='수정' where (select S_INDEX from STUDY s where s.S_INDEX = b.B_S_INDEX) = 5 AND b.B_NO = 17
+
+
+select * from 
+
+
+
+insert into BOARD values (board_no.nextval, ?, ?, board_studyseq.nextval , ?, sysdate, ?, ?)
+insert into BOARD values (board_no.nextval, 스터디번호 ?, 작성회원번호 ?, board_studyseq.nextval , 제목?, sysdate, 내용?, 파일이름?)
+
+
+insert into COMMENTS values(comments_index.nextval,?,?,sysdate,?);
+
+select B_NO, B_TITLE, M_NAME, B_DATE 
+from (SELECT ROWNUM RNUM, B_NO, B_TITLE, M_NAME, B_DATE, B_S_INDEX 
+      FROM (select B_NO, B_TITLE, M_NAME, B_DATE, B_S_INDEX
+	        from BOARD b, MEMBER m 
+	        where B_M_INDEX = m.M_INDEX
+	        ORDER BY B_NO DESC)
+			)
+where B_S_INDEX = (select S_INDEX 
+                   from STUDY 
+                   where S_INDEX = 5)  
+AND RNUM>=1 AND RNUM<=10
+
+
+select count(*)
+from (SELECT ROWNUM RNUM, B_NO, B_TITLE, M_NAME, B_DATE, B_S_INDEX 
+      FROM (select B_NO, B_TITLE, M_NAME, B_DATE, B_S_INDEX
+	        from BOARD b, MEMBER m 
+	        where B_M_INDEX = m.M_INDEX
+	        ORDER BY B_NO DESC) 
+      		)
+where B_S_INDEX = (select S_INDEX 
+			       from STUDY 
+			       where S_INDEX = 5)  
+
+
+select * from comments;
+
+select B_NO, B_TITLE, M_NAME, B_DATE from (SELECT ROWNUM RNUM, B_NO, B_TITLE, M_NAME, B_DATE, B_S_INDEX FROM (select B_NO, B_TITLE, M_NAME, B_DATE, B_S_INDEX from BOARD b, MEMBER m where B_M_INDEX = m.M_INDEX ORDER BY B_NO DESC)) where B_S_INDEX = (select S_INDEX from STUDY where S_INDEX = 5) AND RNUM>=1 AND RNUM<=10
+
+
+
+
+
+select B_NO, B_TITLE, M_NAME, B_DATE from (SELECT ROWNUM RNUM, B_NO, B_TITLE, M_NAME, B_DATE, B_S_INDEX FROM (select B_NO, B_TITLE, M_NAME, B_DATE, B_S_INDEX from BOARD b, MEMBER m where B_M_INDEX = m.M_INDEX ORDER BY B_NO DESC)) where B_S_INDEX = (select S_INDEX from STUDY where S_INDEX = 5) AND RNUM>=1 AND RNUM<=10
+
+
+select B_NO, B_TITLE, M_NAME, B_DATE from (SELECT ROWNUM RNUM, B_NO, B_TITLE, M_NAME, B_DATE, B_S_INDEX FROM (select B_NO, B_TITLE, M_NAME, B_DATE, B_S_INDEX from BOARD b, MEMBER m where B_M_INDEX = m.M_INDEX ORDER BY B_NO DESC)) where B_S_INDEX = (select S_INDEX from STUDY where S_INDEX = 5) AND RNUM>=1 AND RNUM<=10
+
+
+
+
+
+
+
+
+select * from study;
+select * from category;
+select C_ID from category where C_GROUP = ? AND C_SUBGROUP = ?;
+
+UPDATE STUDY SET S_CATEGORY=?, S_MAXMEMBER=?, S_NAME=?, S_PLACE=?, S_TIME=?, S_START=?, S_END=?, S_DAY=?, S_EXPLAIN=?, S_MATERIAL=?, S_EFFECT=? where S_INDEX = ?

@@ -7,7 +7,7 @@ $().ready(()=>{
 			method: "post",
 			data: $("form").serialize(),
 			success: (result)=>{
-				location.href='/study-of-us/study/each/schedule?type=attend';
+				location.href='../../schedule?type=attend';
 				
 			}
 		});

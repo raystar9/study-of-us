@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.net.URLDecoder;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -12,9 +13,29 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import servlet.study.List;
+import servlet.study.SearchMain;
+import servlet.study.Studylist;
+import servlet.study.each.Information;
+import servlet.study.each.Registration;
+import servlet.study.each.Setup;
 import servlet.study.each.attendance.Attendance;
 import servlet.study.each.attendance.AttendanceConfirm;
 import servlet.study.each.attendance.AttendanceEach;
+import servlet.study.each.board.BoardDelete;
+import servlet.study.each.board.BoardFileDown;
+import servlet.study.each.board.BoardList;
+import servlet.study.each.board.BoardModify;
+import servlet.study.each.board.BoardRegister;
+import servlet.study.each.board.BoardView;
+import servlet.study.each.board.CommentCount;
+import servlet.study.each.board.CommentDelete;
+import servlet.study.each.board.CommentInsert;
+import servlet.study.each.board.CommentList;
+import servlet.study.each.board.CommentUpdate;
+import servlet.study.each.fee.CashList;
+import servlet.study.each.fee.CashRegister;
+import servlet.study.each.fee.CashView;
 import servlet.study.each.schedule.EachSchedule;
 import servlet.study.each.schedule.NewSchedule;
 import servlet.study.each.schedule.Schedule;
@@ -51,7 +72,6 @@ public class SoupGlobalFilter implements Filter {
 			chain.doFilter(request, response);
 		} else if(uri.length >= 3) {
 			request.setAttribute("root", httpRequest.getContextPath());
-			request.setAttribute("uri", uri);
 			if(uri[2].equals("study")) {
 				studyPaging(httpRequest, httpResponse, chain, uri);
 			} else {
@@ -71,19 +91,46 @@ public class SoupGlobalFilter implements Filter {
 		if(uri.length == 3) {
 			//TODO study 기본페이지 구현해야됨!
 		} else {
-			if(uri[3].equals("search")) {
-				chain.doFilter(request, response);
+			switch(uri[3]) {
+			case "search":
+				new SearchMain().service(request, response);
+				break;
+			case "list":
+				new List().service(request, response);
+				break;
+			case "registration":
+				new Registration().service(request, response);
+				break;
+			case "join":
+				new Studylist().service(request, response);
+				break;
 			}
-			uri[3] = "each";
+			
+			request.setAttribute("studyName", URLDecoder.decode(uri[3], "UTF-8"));
 			if(uri.length == 4) {
 				//TODO 각study의 기본 페이지로
 			} else {
 				switch(uri[4]) {
+					case "board":
+						boardPaging(request, response, chain, uri);
+						break;
+					case "comment":
+						commentPaging(request, response, chain, uri);
+						break;
 					case "schedule":
 						schedulePaging(request, response, chain, uri);
 						break;
 					case "attendance":
 						attendancePaging(request, response, chain, uri);
+						break;
+					case "fee":
+						feePaging(request, response, chain, uri);
+						break;
+					case "information":
+						new Information().service(request, response);
+						break;
+					case "setup":
+						new Setup().service(request, response);
 						break;
 					default:
 						chain.doFilter(request, response);
@@ -92,11 +139,79 @@ public class SoupGlobalFilter implements Filter {
 		}
 	}
 	
+	private void commentPaging(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
+			String[] uri) throws IOException, ServletException {
+		switch(uri[5]) {
+		case "list":
+			new CommentList().service(request, response);
+			break;
+		case "count":
+			new CommentCount().service(request, response);
+			break;
+		case "insert":
+			new CommentInsert().service(request, response);
+			break;
+		case "update":
+			new CommentUpdate().service(request, response);
+			break;
+		case "delete":
+			new CommentDelete().service(request, response);
+			break;
+		default :
+			chain.doFilter(request, response);
+			break;
+		}
+	}
+
+	private void boardPaging(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
+			String[] uri) throws IOException, ServletException {
+		if(uri.length == 5){
+			new BoardList().service(request, response);
+		} else {
+			switch(uri[5]) {
+			case "view":
+				new BoardView().service(request, response);
+				break;
+			case "filedown":
+				new BoardFileDown().service(request, response);
+				break;
+			case "register":
+				new BoardRegister().service(request, response);
+				break;
+			case "modify":
+				new BoardModify().service(request, response);
+				break;
+			case "delete":
+				new BoardDelete().service(request, response);
+				break;
+			default :
+				chain.doFilter(request, response);
+				break;
+			}
+		}
+	}
+
+	private void feePaging(HttpServletRequest request, HttpServletResponse response, FilterChain chain, String[] uri) throws IOException, ServletException {
+		if(uri.length == 5) {
+			new CashList().service(request, response);
+		} else {
+			request.setAttribute("meetingId", uri[5]);
+			if(uri.length == 6) {
+				new CashView().service(request, response);
+			} else if(uri[6].equals("register")) {
+				new CashRegister().service(request, response);
+			} else {
+				chain.doFilter(request, response);
+			}
+		}
+		
+	}
+
 	private void attendancePaging(HttpServletRequest request, HttpServletResponse response, FilterChain chain, String[] uri) throws IOException, ServletException {
 		if(uri.length == 4 || uri.length == 5) {
 			new Attendance().service(request, response);
 		} else {
-			uri[5] = "each";
+			request.setAttribute("meetingId", uri[5]);
 			if(uri[6].equals("confirm")) {
 				new AttendanceConfirm().service(request, response);
 			} else if(uri[6].equals("record")) {
@@ -109,12 +224,12 @@ public class SoupGlobalFilter implements Filter {
 		if(uri.length == 5) {
 			new Schedule().service(request, response);
 		} else {
-			
 			switch(uri[5]) {
 				case "new": 
 					new NewSchedule().service(request, response);
 					break;
 				default:
+					request.setAttribute("meetingId", uri[5]);
 					new EachSchedule().service(request, response);
 					break;
 			}

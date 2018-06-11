@@ -5,7 +5,7 @@
 <div class='notice-main'>
 <div class='notice-title-container notice-container'>
 <%--TODO 임시링크임. 수정 필요 --%>
-	<div class='notice-title'>공지사항</div><div class='notice-more'><a href="${root}/study/each/schedule">돌아가기</a>
+	<div class='notice-title'>공지사항</div><div class='notice-more'><a href="../schedule">돌아가기</a>
 	</div></div>
 <div class='notice-text-container1 notice-container'>장소 : ${meeting.place }</div>
 <div class='notice-text-container1 notice-container'>시간 : ${time}</div>

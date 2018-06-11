@@ -4,10 +4,6 @@ package servlet.study.each;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -21,11 +17,10 @@ import beans.prototype.Study;
 import dao.DataGetter;
 import dao.DataPoster;
 import dao.DatabaseAccounts;
-import dao.interfaces.DataGettable;
-import dao.interfaces.DataSettable;
 import dateConverter.DateConverter;
 @WebServlet("/study/each/Registration")
 public class Registration extends HttpServlet {
+	//TODO registration.jsp 및 기타등등 폴더 옮겨야됨, 링크 바꿔야됨 내일!
 	private static final long serialVersionUID = 1L;
 	@SuppressWarnings("unused")
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -43,7 +38,7 @@ public class Registration extends HttpServlet {
 			out.print("history.back();");
 			out.print("</script>");
 		}else {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("registration.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("each/registration.jsp");
 		dispatcher.forward(request, response);
 		}
 	}
@@ -51,25 +46,33 @@ public class Registration extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
+		
+		DataGetter getter = new DataGetter(DatabaseAccounts.PROJECT);
+		HttpSession session = request.getSession();
+		int m_index = (int)session.getAttribute("index");
+		
+		Date date = DateConverter.convertDate(request.getParameter("day1"));
+		Date date2 = DateConverter.convertDate(request.getParameter("day2"));
 		 
 		Study study = new Study();
 		System.out.println("데이1" + request.getParameter("day1"));
 		System.out.println("데이2" + request.getParameter("day1"));
 		
-		Date date = DateConverter.convertDate(request.getParameter("day1"));
-		Date date2 = DateConverter.convertDate(request.getParameter("day2"));
-		study.setC_id(Integer.parseInt(request.getParameter("first")));
+		
 		study.setName(request.getParameter("study_name"));
+		study.setS_c_id(Integer.parseInt(request.getParameter("second")));
+		System.out.println("소분류 값 잘받아오는지.. : " + Integer.parseInt(request.getParameter("second")));
+		study.setS_m_index(m_index);
 		study.setStart(date);
 		study.setEnd(date2);
-		study.setPeoplenum(Integer.parseInt(request.getParameter("people")));
+		study.setMaxmember(Integer.parseInt(request.getParameter("people")));
 		study.setDay(request.getParameter("day"));
 		study.setTime(request.getParameter("stime"));
 		study.setExplain(request.getParameter("explain"));
-		study.setPrepared(request.getParameter("prepared"));
-		study.setEffective(request.getParameter("activity"));
+		study.setMaterial(request.getParameter("prepared"));
+		study.setEffect(request.getParameter("activity"));
 		study.setPlace(request.getParameter("location"));
-		DataPoster poster = new DataPoster(DatabaseAccounts.ADMIN);
+		DataPoster poster = new DataPoster(DatabaseAccounts.PROJECT);
 		
 		
 		
@@ -77,30 +80,23 @@ public class Registration extends HttpServlet {
 		
 		
 		System.out.println("리절트 값 ㅡㅡ " + result);
-		
-		
 	
 		
-		
-		
-		
-		//스터디 인덱스 뽑아오고 
-		DataGetter getter = new DataGetter(DatabaseAccounts.ADMIN);
 		Study index = getter.getSindex();
-		
-		
 		int s_index = index.getIndex();
 		
 		
+		//스터디 인덱스 뽑아오고 
+		
+		System.out.println("세션으로 받은 m_index : " + m_index);
+		System.out.println("스터디의 인덱스 값 : " +  s_index);
 		
 		
-		HttpSession session = request.getSession();
-		int m_index = (int)session.getAttribute("index");
-		System.out.println("세션으로 받은 m_index : " + m_index);		
-		DataPoster poster2 = new DataPoster(DatabaseAccounts.ADMIN);
+		DataPoster poster2 = new DataPoster(DatabaseAccounts.PROJECT);
 		
 		//studyList 에 담아준다 
 		poster2.postStudyList(m_index , s_index);
+		
 		
 		//try catch 문 실행
 		poster.close();
