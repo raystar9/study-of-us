@@ -6,6 +6,7 @@ public class Comment {
 	public static final String QUERY_GET = "select c.comment_content, m.m_id, c.comment_date from i_comment c , member m "
 			+ " where c.comment_m_index = m.m_index and comment_ib_index = ? order by comment_date ";
 	
+	
 	public static final String QUERY_POST = "insert into i_comment values(comment_seq.nextval,?,?,?,sysdate)";
 	
 	
