@@ -16,33 +16,32 @@ import dao.DataGetter;
 import dao.DatabaseAccounts;
 import fakeDB.FakeDB;
 
-@WebServlet("/IDFindPage")
-public class IDFindPage extends HttpServlet{
+@WebServlet("/PWFindPage")
+public class PWFindPage extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		 String id = request.getParameter("id");
 		 String name = request.getParameter("name");
-		 String email = request.getParameter("email");
 
 		DataGetter getter = new DataGetter(DatabaseAccounts.SCOTT);
 		
+		Find findid = getter.getPass(id);
 		Find findname = getter.getFind(name);
-		Find findemail = getter.getEmail(email);
 		//
 		/*request.setAttribute("login", logpro);*/
 		
-		if(findname == null || !findname.getName().equals(name) || findemail == null || !findemail.getEmail().equals(email)) {
-			System.out.println(findname);
+		if(findid == null || !findid.getId().equals(id) || findname == null || !findname.getName().equals(name)) {
+			System.out.println(findid);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/IDFindFail");
 			dispatcher.forward(request, response);
 		}
-		if(findname.getName().equals(name) && findemail.getEmail().equals(email)){
-
-			String id = findname.getId();
+		if(findid.getId().equals(id) && findname.getName().equals(name)){
+			String pw = findid.getPassword();
 		
-			System.out.println(id);
-			request.setAttribute("id", id);
-			request.getRequestDispatcher("/IDFindResult.jsp").forward(request, response);
+			System.out.println(pw);
+			request.setAttribute("pw", pw);
+			request.getRequestDispatcher("/PWFindResult.jsp").forward(request, response);
 		}
 
 		getter.close();

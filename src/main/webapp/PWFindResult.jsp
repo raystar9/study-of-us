@@ -6,13 +6,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <link href="sources/idfindresult/css/IDFindResult.css" rel="stylesheet">
-<script src = "sources/idfindresult/js/ajax.js">
+<script src = "sources/pwfindresult/js/ajax.js">
 </script>
 </head>
 
 <body>
 
-<%@ include file= "sources/idfindresult/section.jsp" %>
+<%@ include file= "sources/pwfindresult/section.jsp" %>
 
 </body>
 </html>
