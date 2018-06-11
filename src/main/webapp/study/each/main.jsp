@@ -12,7 +12,6 @@
 	<div class="nav-container"><%@ include file = "/general-sources/Navigation.jsp" %></div>
 	<div class="main-container">
 		<div class="schedule-flexbox aside"><%@ include file = "/study/each/left.jsp" %></div>
-		<div class="schedule-flexbox section"><%@ include file = "sources/cash-view/cash_view_form.jsp" %><br></div>
 	</div>
 	
 	<%@ include file = "/general-sources/Footer.jsp" %>

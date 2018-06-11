@@ -2044,7 +2044,7 @@ public ArrayList<StudyList> studylist(int s_index, int m_index) {
 					ArrayList<Message> Messagelist = new ArrayList<>(); 
 					while(rs.next()) {
 						Message message = new Message();
-						message.setS_index(rs.getInt("s_index"));
+						message.setS_index(rs.getInt("MS_S_INDEX"));
 						message.setM_m_id(rs.getString("M_M_ID"));
 						message.setM_s_index(rs.getInt("M_S_INDEX"));
 						message.setM_s_name(rs.getString("M_S_NAME"));

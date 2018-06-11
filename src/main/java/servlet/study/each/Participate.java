@@ -53,8 +53,7 @@ public class Participate extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("스터디 인덱스" + request.getParameter("s_index"));
-		System.out.println("멤버 인덱스" + request.getParameter("m_index"));
+	
 
 		int s_index = Integer.parseInt(request.getParameter("s_index"));
 		int m_index = Integer.parseInt(request.getParameter("m_index"));
@@ -63,10 +62,6 @@ public class Participate extends HttpServlet {
 
 		String m_id = (String) request.getSession().getAttribute("id");
 
-		System.out.println("스터디장 인덱스 : " + s_m_index);
-		System.out.println("스터디 인덱스 : " + s_index);
-		System.out.println("스터디 이름 : " + s_name);
-		System.out.println("스터디 신청자 : " + m_id);
 
 		DataGetter getter = new DataGetter(DatabaseAccounts.PROJECT);
 		DataPoster poster = new DataPoster(DatabaseAccounts.PROJECT);
@@ -81,6 +76,14 @@ public class Participate extends HttpServlet {
 		int result = StudyList.size();
 		// 메세지 부분 (문혁) 메세지 값 넣기
 		System.out.println("아이디값은? " + StudyID.get(0).getId());
+		System.out.println(result + "result 값");
+		
+
+		System.out.println("스터디 인덱스 : " + s_index);
+		System.out.println("스터디장 인덱스 : " + s_m_index);
+		System.out.println("스터디 신청자 : " + m_id);
+		System.out.println("스터디 이름 : " + s_name);
+		System.out.println("멤버 인덱스" + request.getParameter("m_index"));
 
 		if (result == 1) {
 			PrintWriter out = response.getWriter();
