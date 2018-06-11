@@ -39,16 +39,16 @@ public class CommentList extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.setContentType("text/plain; charset=UTF-8");
 		response.setCharacterEncoding("UTF-8");
-		DataGetter getter = new DataGetter(DatabaseAccounts.SCOTT);
+		DataGetter getter = new DataGetter(DatabaseAccounts.PROJECT);
 
 		ObjectMapper mapper = new ObjectMapper();
 		int studyIndex = 3; 
 		ArrayList<CommentBean> comment = new ArrayList<CommentBean>();
 		int boardnum = Integer.parseInt(request.getParameter("bno"));
-		BoardViewRegisterBean boardcontent = getter.getBoardView(boardnum, studyIndex);
+		BoardViewRegisterBean boardcontent = getter.getBoardView(boardnum);
 		
 		int num = boardcontent.getIndex();
-		comment = getter.getCommentList(num);
+		comment = getter.getCommentList(studyIndex, num);
 		getter.close();
 		
 		PrintWriter out = response.getWriter();
