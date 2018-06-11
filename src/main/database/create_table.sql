@@ -233,6 +233,10 @@ DELETE FROM PreferenceArea WHERE P_M_INDEX=?;
 
 select * from studymember
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> studyMain
 -- StudyMember 테이블 생성(맵핑 테이블)
 CREATE TABLE StudyMember(
 	SM_S_INDEX NUMBER NOT NULL,
@@ -400,13 +404,32 @@ drop table Comments;
 
 CREATE SEQUENCE comments_index
 START WITH 1
+<<<<<<< HEAD
+<<<<<<< HEAD
+INCREMENT by 1
+=======
 INCREMENT BY 1
+>>>>>>> origin/so33
+=======
+INCREMENT BY 1
+>>>>>>> studyMain
 NOMAXVALUE;
 
 ALTER TABLE Comments ADD FOREIGN KEY(C_B_NO) REFERENCES Board(B_NO);
 ALTER TABLE Comments ADD FOREIGN KEY(C_M_INDEX) REFERENCES Member(M_INDEX);
+<<<<<<< HEAD
 
 SELECT C_INDEX, C_S_INDEX, C_M_INDEX, C_DATE, C_CONTENT FROM Comments;
 INSERT INTO Comments(C_INDEX, C_S_INDEX, C_M_INDEX, C_DATE, C_CONTENT) VALUES (comment_index.NEXTVAL, ?, ?, ?, ?);
 UPDATE Comments SET C_INDEX=?, C_S_INDEX=?, C_M_INDEX=?, C_DATE=?, C_CONTENT=? WHERE C_INDEX=?;
 DELETE FROM Comments WHERE SI_S_INDEX=? AND C_INDEX=?;
+=======
+
+SELECT C_INDEX, C_S_INDEX, C_M_INDEX, C_DATE, C_CONTENT FROM Comments;
+INSERT INTO Comments(C_INDEX, C_S_INDEX, C_M_INDEX, C_DATE, C_CONTENT) VALUES (comment_index.NEXTVAL, ?, ?, ?, ?);
+UPDATE Comments SET C_INDEX=?, C_S_INDEX=?, C_M_INDEX=?, C_DATE=?, C_CONTENT=? WHERE C_INDEX=?;
+DELETE FROM Comments WHERE SI_S_INDEX=? AND C_INDEX=?;
+
+
+drop table Member cascade CONSTRAINT;
+>>>>>>> studyMain

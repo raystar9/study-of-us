@@ -1,21 +1,40 @@
-public Login getIndex(String id) {
-		Login index = (Login) get(Login.QUERY_GET3,new DataSettable() {
-			
+	public ArrayList<StudyListSelect> getStudyList(int index, int page, int limit) {
+@SuppressWarnings("unchecked")
+ArrayList<StudyListSelect> studylist = (ArrayList<StudyListSelect>) get(StudyListSelect.QUERY_GET3 , new DataSettable() {
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
-				pstmt.setString(1, id);
+				//읽기 시작할 row 번호 1
+				int startrow = (page - 1 ) * limit + 1;
+				System.out.println("스타트로우" + startrow);
+				//읽을 마지막 row 번호 2
+				int endrow = startrow + limit -1;
+				System.out.println("엔드로우" +endrow);
+				
+				pstmt.setInt(1, index);
+				pstmt.setInt(2, startrow);
+				pstmt.setInt(3, endrow);
+			
+				System.out.println(StudyListSelect.QUERY_GET3);
+				
 			}
-		},new DataGettable() {
+		}, new DataGettable() {
 			
 			@Override
-			public Object onGetResult(ResultSet rs) throws SQLException {
-				Login innerIndex = null;
-				if(rs.next()) {
-					innerIndex = new Login();
-					innerIndex.setIndex(rs.getInt(1));
-				}
-				return innerIndex;
+			public ArrayList<?> onGetResult(ResultSet rs) throws SQLException {
+				ArrayList<StudyListSelect> studylists = new ArrayList<>();
+				while(rs.next()) {
+					StudyListSelect sl = new StudyListSelect();
+					
+					sl.setProgress(rs.getInt("progress"));
+					sl.setS_name(rs.getString("s_name"));
+					sl.setS_maxmember(rs.getInt("s_maxmember"));
+					sl.setStart(rs.getString("s_start"));
+					sl.setEnd(rs.getString("s_end"));
+					studylists.add(sl);
 			}
-		});
-		return index;
-	}
+		
+			return studylists;
+		}
+	});
+		return studylist;
+}

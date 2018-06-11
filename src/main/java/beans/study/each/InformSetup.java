@@ -2,24 +2,33 @@
 
 package beans.study.each;
 
+import java.sql.Date;
 
 public class InformSetup {
 	
-	public static final String QUERY_GET = "SELECT S_INDEX, S_CATEGORY, S_PLOPIENUM, S_NAME, S_PLACE, S_time, S_START, S_END, S_DAY, S_explain, S_prepared, S_effective FROM STUDY";
-	public static final String QUERY_PUT = "UPDATE STUDY SET S_CATEGORY=?, S_PLOPIENUM=?, S_NAME=?, S_PLACE=?, S_TIME=?, S_START=?, S_END=?, S_DAY=?, S_EXPLAIN=?, S_PREPARED=?, S_EFFECTIVE=?"; 
+	public static final String QUERY_GET = "select S_NAME,C_GROUP, C_SUBGROUP, S_START, S_END, S_MAXMEMBER, S_TIME, S_DAY,  S_EXPLAIN, S_MATERIAL, S_EFFECT, S_PLACE from Study s, Category c where s.S_C_ID = c.C_ID and s.S_INDEX = ?";
+	public static final String QUERY_GET_CATEGORY1 = "select distinct C_GROUP from category";
+	public static final String QUERY_GET_CATEGORY1_COUNT = "select count(*) from (select distinct C_GROUP from category)";
+	public static final String QUERY_GET_CATEGORY2 = "select C_SUBGROUP from category where C_GROUP = ?";
+	public static final String QUERY_GET_CATEGORY2_COUNT = "select count(*) from category where C_GROUP = ?";
+	public static final String QUERY_GET_COUNT = "select count(*) from studymemberlist where S_INDEX = ?";
+	public static final String QUERY_PUT = "UPDATE STUDY SET S_C_ID=?, S_MAXMEMBER=?, S_NAME=?, S_PLACE=?, S_TIME=?, S_START=?, S_END=?, S_DAY=?, S_EXPLAIN=?, S_MATERIAL=?, S_EFFECT=? where S_INDEX = ?"; 
+	public static final String QUERY_GET_CATEGORY_NUM = "select C_ID from category where C_GROUP = ? AND C_SUBGROUP = ?"; 
 	
-	private int index;			//스터디 번호
-	private String category;	//카테고리
-	private String peopleNum;	//스터디 모집인원
-	private String name;		//스터디 명
-	private String place;		//스터디 장소
+	
+	private int index;				//스터디 번호
+	private String name;			//스터디 명
+	private String category1;		//카테고리1
+	private String category2;		//카테고리2
+	private int peopleNum;			//스터디 모집인원
+	private String place;			//스터디 장소
 	private String activityTime;	//스터디 활동시간
-	private String startDate;		//스터디 시작날짜
-	private	String endDate;		//스터디 종료날짜
-	private String day;			//스터디 활동요일
-	private String explain;		//스터디 개요
-	private String prepared;	//주요 교재 및 준비물
-	private	String effective;	//기대효과 및 활동분야
+	private String startDate;			//스터디 시작날짜
+	private	String endDate;			//스터디 종료날짜
+	private String day;				//스터디 활동요일
+	private String explain;			//스터디 개요
+	private String prepared;		//주요 교재 및 준비물
+	private	String effective;		//기대효과 및 활동분야
 	
 	
 	
@@ -41,6 +50,12 @@ public class InformSetup {
 	public void setEndDate(String endDate) {
 		this.endDate = endDate;
 	}
+	public int getPeopleNum() {
+		return peopleNum;
+	}
+	public void setPeopleNum(int peopleNum) {
+		this.peopleNum = peopleNum;
+	}
 	public String getDay() {
 		return day;
 	}
@@ -52,18 +67,6 @@ public class InformSetup {
 	}
 	public void setIndex(int index) {
 		this.index = index;
-	}
-	public String getCategory() {
-		return category;
-	}
-	public void setCategory(String category) {
-		this.category = category;
-	}
-	public String getPeopleNum() {
-		return peopleNum;
-	}
-	public void setPeopleNum(String peopleNum) {
-		this.peopleNum = peopleNum;
 	}
 	public String getName() {
 		return name;
@@ -77,8 +80,6 @@ public class InformSetup {
 	public void setPlace(String place) {
 		this.place = place;
 	}
-	
-	
 	public String getExplain() {
 		return explain;
 	}
@@ -97,14 +98,17 @@ public class InformSetup {
 	public void setEffective(String effective) {
 		this.effective = effective;
 	}
-	public static String getQueryGet() {
-		return QUERY_GET;
+	public String getCategory1() {
+		return category1;
 	}
-	public static String getQueryPut() {
-		return QUERY_PUT;
+	public void setCategory1(String category1) {
+		this.category1 = category1;
 	}
-	
-	
-	
+	public String getCategory2() {
+		return category2;
+	}
+	public void setCategory2(String category2) {
+		this.category2 = category2;
+	}
 
 }

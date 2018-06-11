@@ -197,7 +197,7 @@ margin-left: 70px;
 		$(".column").each(function() {
 			$(this).click(function() {
 				var b = $(this).find("h2").text();
-				location.href = "/study-of-us/study/SearchMain?category=" + b
+				location.href = "/study-of-us/study/search?category=" + b
 			})
 
 		})

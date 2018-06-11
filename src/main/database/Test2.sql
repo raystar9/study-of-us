@@ -238,9 +238,7 @@ select * from
 (select * from study inner join CATEGORY on STUDY.S_C_ID = CATEGORY.C_ID  where s_name LIKE '%토익%' and c_sub LIKE '%영어%' 
 order by s_index))) where rnum >= 1 and rnum <= 5 and s_place LIKE '%서울%' or s_place LIKE '%부천%' or s_place LIKE '%인천%' or s_place LIKE '%춘천%'
 
-<<<<<<< HEAD
 select * from (select rownum as rnum, s_index, s_name, s_c_id, S_MT_INDEX, S_START, S_END, S_PLOPIENUM, S_DAY, S_TIME,S_EXPLAIN,S_PREPARED,S_EFFECTIVE ,S_PLACE, C_SUB from (select s_index, s_name, s_c_id, S_MT_INDEX, S_START, S_END, S_PLOPIENUM, S_DAY, S_TIME,S_EXPLAIN,S_PREPARED,S_EFFECTIVE ,S_PLACE from (select * from study inner join CATEGORY on STUDY.S_C_ID = CATEGORY.C_ID  where s_name LIKE '%자바%' and c_sub LIKE '%자바%' order by s_index))) where rnum >= 1 and rnum <= 5
-=======
 
 select max(s_index) from study; 
 select * from studyList where sl_m_index = 65
@@ -382,4 +380,162 @@ select * from(
 			 select m_name from study s , member m 
 			where m.m_index = s.s_m_index 
 			 
+select * from study;
+select * from studymember;
+			 
+
+
+
+
+
+
+
+
+--문의 사항 게시판
+create table inquiryBoard(
+	i_index number not null primary key,	--게시판 인덱스
+	i_m_index number not null,						--멤버테이블의 인덱스 참조
+	i_subject varchar(50) not null,			--게시판 글 의 제목
+	i_file varchar2(50), 					--게시판에 올릴 사진
+	i_content varchar(300) not null,			--게시글 내용
+	i_date date not null,					--게시글 작성 날짜
+	constraint FK_i_m_index_member foreign key(i_m_index) references member(m_index))	--멤버의 인덱스 번호를 참조함
+	
+	
+	
+	--drop table inquiryBoard
+	
+	
+	
+	
+	drop table i_comment
+-- 댓글 테이블
+	create table i_comment(
+	comment_index number not null primary key, 				-- 댓글 테이블의 번호
+	comment_m_index number not null,						-- 댓글을 누가썻는지 아이디를 받아올인덱스 번호
+	comment_ib_index number not null,						-- 댓글이 어떤게시판에 달렸는지 게시판에 인덱스 번호를 가져옴
+	comment_content varchar(50) not null,					-- 댓글의 내용
+  	comment_re_ref number not null,							-- 어떤 댓글을 참조 할 글의 번호
+	comment_re_lev number not null,							-- 대댓글을 레벨에 위치에 따라서 밀린다, 글의 깊이
+	comment_re_seq number not null,							--답변 글의 순서
+	comment_date date not null)								--댓글이 달린 날짜
+	drop table i_comment
+	
+	alter table i_comment add constraint fk_c_m_index foreign key(comment_m_index)
+	references member(m_index)		-- 멤버의 인덱스 번호참조
+	alter table i_comment add constraint fk_ib_index foreign key(comment_ib_index)
+	references inquiryBoard(i_index) 		-- 게시판에 인덱스 번호 참조
+	
+	
+
+
+
+select * from i_comment;
+
+insert into i_comment
+values (1,12,1,'이게 댓글이다',0,0,0,sysdate)
+
+
+select * from member;
+select * from inquiryBoard
+
+delete inquiryboard
+insert into inquiryBoard values(inquiry_index.nextval,11,'안녕하세요질문있습니다','파일','이게뭔가요?',sysdate)
+insert into inquiryBoard values(inquiry_index.nextval,11,'안녕하세요질문또있습니다','파일','이건뭔가요?',sysdate)
+insert into inquiryBoard values(inquiry_index.nextval,11,'안녕하세요질문또또있습니다','파일','이건또뭔가요?',sysdate)
+insert into inquiryBoard values(inquiry_index.nextval,11,'안녕하세요테스트입니다','파일','하나둘셋',sysdate)
+
+insert into inquiryBoard values(inquiry_index.nextval,11,'안녕하세요테스트1','파일','하나둘셋',sysdate)
+insert into inquiryBoard values(inquiry_index.nextval,11,'안녕하세요테스트2','파일','하나둘셋',sysdate)
+insert into inquiryBoard values(inquiry_index.nextval,11,'안녕하세요테스트3','파일','하나둘셋',sysdate)
+insert into inquiryBoard values(inquiry_index.nextval,11,'안녕하세요테스트4','파일','하나둘셋',sysdate)
+insert into inquiryBoard values(inquiry_index.nextval,11,'안녕하세요테스트5','파일','하나둘셋',sysdate)
+insert into inquiryBoard values(inquiry_index.nextval,11,'안녕하세요테스트6','파일','하나둘셋',sysdate)
+insert into inquiryBoard values(inquiry_index.nextval,11,'안녕하세요테스트7','파일','하나둘셋',sysdate)
+insert into inquiryBoard values(inquiry_index.nextval,11,'안녕하세요테스트8','파일','하나둘셋',sysdate)
+insert into inquiryBoard values(inquiry_index.nextval,11,'안녕하세요테스트9','파일','하나둘셋',sysdate)
+
+insert into inquiryBoard values(inquiry_index.nextval,11,'안녕하세요테스트10','파일','하나둘셋',sysdate)
+
+
+insert into inquiryBoard values(inquiry_index.nextval,11,'안녕하세요테스트11','파일','하나둘셋',sysdate)
+insert into inquiryBoard values(inquiry_index.nextval,11,'안녕하세요테스트12','파일','하나둘셋',sysdate)
+insert into inquiryBoard values(inquiry_index.nextval,11,'안녕하세요테스트13','파일','하나둘셋',sysdate)
+insert into inquiryBoard values(inquiry_index.nextval,11,'안녕하세요테스트14','파일','하나둘셋',sysdate)
+insert into inquiryBoard values(inquiry_index.nextval,11,'안녕하세요테스트15','파일','하나둘셋',sysdate)
+insert into inquiryBoard values(inquiry_index.nextval,11,'안녕하세요테스트16','파일','하나둘셋',sysdate)
+insert into inquiryBoard values(inquiry_index.nextval,11,'안녕하세요테스트17','파일','하나둘셋',sysdate)
+
+
+
+
+
+
+select * from member;
+
+
+CREATE SEQUENCE inquiry_index
+START WITH 1
+INCREMENT BY 1
+NOMAXVALUE;
+
+
+
+
+desc i_comment
+
+
+select * from inquiryBoard
+
+
+
+	select * from study
+	select * from member
+	
+	
+	select * from (select rownum rnum,i_subject,i_date, m_id from (select m.m_id,rownum rnum, ib.i_subject, ib.i_date
+       from inquiryboard ib, member m where m.m_index = ib.i_m_index and ib.i_m_index = 35
+order by ib.i_index desc))
+where rnum >= 1 and rnum <= 2
+
+update study set s_start = '2018-05-09'
+update study set s_end = '2018-05-30'
+
+select * from study
+
+
+
+----------------------------------------------------------------------- 2018 06 11 수정------------------------------------------------------------------------------------------------
+
+--	primary key(comment_m_index,comment_ib_index)
+drop table i_comment
+
+create table i_comment(
+	comment_index number not null ,
+	comment_m_index number not null,
+	comment_ib_index number not null,
+	comment_content varchar(300) not null,
+	comment_date date,
+	primary key (comment_index)
+	)
+	alter table i_comment add foreign key(comment_m_index) references member(m_index);
+	alter table i_comment add foreign key(comment_ib_index) references inquiryboard(i_index);
+	
+	
+	select c.comment_content, m.m_id, c.comment_date from i_comment c , member m 
+			 where c.comment_m_index = m.m_index and comment_ib_index = 23
+	
+	select * from i_comment
+	select * from member
+	select * from inquiryboard 
+	
+
+	
+	CREATE SEQUENCE comment_seq
+START WITH 1
+INCREMENT BY 1
+NOMAXVALUE;
+
+
+
 

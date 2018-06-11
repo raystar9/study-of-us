@@ -1,7 +1,6 @@
 package servlet.study.each.board;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,6 +13,7 @@ import beans.study.each.board.BoardViewRegisterBean;
 import dao.DataGetter;
 import dao.DataPoster;
 import dao.DatabaseAccounts;
+import dateConverter.DateConverter;
 
 @WebServlet("/study/each/boardmodify")
 public class BoardModify extends HttpServlet {
@@ -28,34 +28,40 @@ public class BoardModify extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		int studyIndex = 3;
-		DataGetter getter = new DataGetter(DatabaseAccounts.SCOTT);
-		BoardViewRegisterBean boardcontent = getter.getBoardView(Integer.parseInt(request.getParameter("num")), studyIndex);
+		int studyIndex = 5;
+		//int studyIndex = (int)request.getSession().getAttribute("index");
+		
+		DataGetter getter = new DataGetter(DatabaseAccounts.PROJECT);
+		BoardViewRegisterBean boardcontent = getter.getBoardView(Integer.parseInt(request.getParameter("num")));
 		request.setAttribute("boardcontent", boardcontent);
 		
 		getter.close();
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/each/boardModify.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/each/board/boardModify.jsp");
 		dispatcher.forward(request, response);
 		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		int studyIndex = 3;
+		System.out.println("BoardModify 서블릿으로 들어옴");
+		int studyIndex = 5;
+		//int studyIndex = (int)request.getSession().getAttribute("index");
+		
 		BoardViewRegisterBean boardmodify = new BoardViewRegisterBean();
 		boardmodify.setTitle(request.getParameter("boardSubject"));
 		boardmodify.setContent(request.getParameter("boardContent"));
 		boardmodify.setDate(request.getParameter("boardDate"));
-		boardmodify.setName(request.getParameter("boardName"));
+		boardmodify.setFilename(request.getParameter("fileName"));
 		boardmodify.setIndex(Integer.parseInt(request.getParameter("num")));
 		
-		DataPoster poster = new DataPoster(DatabaseAccounts.SCOTT);
+		
+		DataPoster poster = new DataPoster(DatabaseAccounts.PROJECT);
+		int boardnum = Integer.parseInt(request.getParameter("num"));
 		
 		poster.postBoardModify(boardmodify, studyIndex);
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/each/boardList.jsp");
-		dispatcher.forward(request, response);
+		response.sendRedirect("/study-of-us/study/each/boardview" + "?num=" + boardnum);
 		poster.close();
 	}
 

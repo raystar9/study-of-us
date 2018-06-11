@@ -2,7 +2,6 @@ package servlet.study.each.attendance;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Enumeration;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,11 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import beans.prototype.Attendance;
-import beans.prototype.Member;
-import fakeDB.FakeDB;
+import beansNew.Attend;
+import dao.DataGetter;
+import dao.DataPoster;
+import dao.DatabaseAccounts;
 
 /**
  * Servlet implementation class AttendanceConfirm
@@ -35,29 +33,42 @@ public class AttendanceConfirm extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		FakeDB db = FakeDB.getInstance();
-		ArrayList<Member> members = db.getMembers();
-		request.setAttribute("members", members);
-		request.getRequestDispatcher("/study/each/attendance/each/confirm.jsp").forward(request, response);
+		int meetingId = Integer.parseInt((String) request.getAttribute("meetingId"));
+		
+		DataGetter getter = new DataGetter(DatabaseAccounts.PROJECT);
+		if(getter.isAttendChecked(meetingId)) {
+			response.sendRedirect("../../schedule?type=attend");
+		} else {
+			ArrayList<String> names = getter.getMemberNames((String)request.getAttribute("studyName"));
+			request.setAttribute("names", names);
+			request.getRequestDispatcher("/study/each/attendance/each/confirm.jsp").forward(request, response);
+		}
+		getter.close();
+		
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		FakeDB db = FakeDB.getInstance();
-		Enumeration<String> names = request.getAttributeNames();
-		while(names.hasMoreElements()) {
-			//TODO 보여줄 수준만 구현해둠. 추가 구현해야함.
-			Attendance attendance = new Attendance();
-			String name = names.nextElement();
-			attendance.setId(name);
-			attendance.setAttend((String)request.getAttribute(name));
-			db.addAttendances(attendance);
+		DataGetter getter = new DataGetter(DatabaseAccounts.PROJECT);
+		ArrayList<Integer> memberIndexes = getter.getMemberIndexes((String)request.getAttribute("studyName"));
+		getter.close();
+		
+		
+		System.out.println();
+		DataPoster poster = new DataPoster(DatabaseAccounts.PROJECT);
+		ArrayList<Attend> attends = new ArrayList<>();
+		int i = 0;
+		for(int memberIndex : memberIndexes) {
+			attends.add(new Attend(Integer.parseInt((String)request.getAttribute("meetingId")), memberIndex, (String)request.getParameter("member"+i)));
+			System.out.println(memberIndex);
+			i++;
 		}
 		
-		ObjectMapper mapper = new ObjectMapper();
-		response.getOutputStream().print(mapper.writeValueAsString(db.getAttendances()));
+		poster.postAttend(attends);
+		
+		poster.close();
 		System.out.println("데이터를 넣어줌!");
 	}
 

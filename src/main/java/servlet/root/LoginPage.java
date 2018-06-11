@@ -56,7 +56,7 @@ public class LoginPage extends HttpServlet {
 			
 			/*response.sendRedirect("/study-of-us/home");*/
 			getter.close();
-			response.sendRedirect("/study-of-us/study/list");
+			response.sendRedirect("/study-of-us/home");
 		}
 		
 	}

@@ -31,6 +31,5 @@ public class StudyList {
 	public void setMemberindex(int memberindex) {
 		this.memberindex = memberindex;
 	}
-
      
 }

@@ -9,8 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import beans.prototype.Member;
-import fakeDB.FakeDB;
+import beans.study.each.attendacne.MemberAttendanceBean;
+import dao.DataGetter;
+import dao.DatabaseAccounts;
 
 /**
  * Servlet implementation class Attendance
@@ -31,9 +32,13 @@ public class AttendanceEach extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		FakeDB db = FakeDB.getInstance();
-		ArrayList<Member> members = db.getMembers();
-		request.setAttribute("members", members);
+		int meetingId = Integer.parseInt((String) request.getAttribute("meetingId"));
+		String studyName = (String) request.getAttribute("studyName");
+		
+		DataGetter getter = new DataGetter(DatabaseAccounts.PROJECT);
+		ArrayList<MemberAttendanceBean> attendances = getter.getAttends(meetingId);
+		request.setAttribute("attendances", attendances);
+		getter.close();
 		request.getRequestDispatcher("/study/each/attendance/each/record.jsp").forward(request, response);
 	}
 
