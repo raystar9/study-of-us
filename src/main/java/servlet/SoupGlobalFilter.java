@@ -13,6 +13,8 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import servlet.study.each.Information;
+import servlet.study.each.Setup;
 import servlet.study.each.attendance.Attendance;
 import servlet.study.each.attendance.AttendanceConfirm;
 import servlet.study.each.attendance.AttendanceEach;
@@ -91,6 +93,12 @@ public class SoupGlobalFilter implements Filter {
 						break;
 					case "fee":
 						feePaging(request, response, chain, uri);
+						break;
+					case "information":
+						new Information().service(request, response);
+						break;
+					case "setup":
+						new Setup().service(request, response);
 						break;
 					default:
 						chain.doFilter(request, response);
