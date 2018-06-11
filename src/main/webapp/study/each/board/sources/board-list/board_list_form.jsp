@@ -16,11 +16,14 @@
 	#number{text-align: center; font-size:13px}
 	#write{float:right; padding:3px 10px; font-size:12px}
 	#boardSearchBtn{padding:3px 10px; font-size:11px}
+	#searchSelect{height:19.5px}
+	#search{height:20px}
+	.boardlistform{align-content: center}
 </style>
 </head>
 <body>
 	<!-- 게시판 리스트 -->
-	<form action='./board' method='get'>
+	<form action='./board' method='get' class='boardlistform'>
 	<table class="table table-striped" id="boardtable">
 		<!-- 레코드가 있으면 -->
 		<tr>
@@ -85,7 +88,7 @@
 					</c:if></td>
 		<tr>
 			<td colspan="7">
-					<select name="searchSelect">
+					<select name="searchSelect" id='searchSelect'>
 						<option value="title" selected="selected">제목</option>
 						<option value="name">작성자</option>
 						<option value="date">날짜</option>

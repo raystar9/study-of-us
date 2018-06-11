@@ -384,7 +384,7 @@ public class DataGetter extends DataAccessor {
 	// 게시판에 들어갔을 때 나오는 목록 데이터를 가져오는 메소드
 	public ArrayList<BoardListBean> getBoardList(int page, int limit, int studyIndex, String pluswhere, String search) {
 		String sql = BoardListBean.QUERY_GET + pluswhere
-				+ "where B_S_INDEX = (select S_INDEX from STUDY where S_INDEX = ?)  AND RNUM>=? AND RNUM<=? ORDER BY B_NO DESC";
+				+ "ORDER BY B_NO DESC)) where B_S_INDEX = (select S_INDEX from STUDY where S_INDEX = ?) AND RNUM>=? AND RNUM<=?";
 		@SuppressWarnings("unchecked")
 		ArrayList<BoardListBean> list = (ArrayList<BoardListBean>) get(sql, new DataSettable() {
 
@@ -412,6 +412,7 @@ public class DataGetter extends DataAccessor {
 			@Override
 			public ArrayList<BoardListBean> onGetResult(ResultSet rs) throws SQLException {
 				ArrayList<BoardListBean> boardlist = new ArrayList<>();
+				System.out.println("sql = " + sql);
 				while (rs.next()) {
 					BoardListBean board = new BoardListBean();
 					board.setIndex(rs.getInt(1));
@@ -508,7 +509,7 @@ public class DataGetter extends DataAccessor {
 	// 게시판의 글 개수를 가져오는 메소드
 	public int getBoardCount(int studyIndex, String pluswhere, String search) {
 		String sql = BoardListBean.QUERY_GET_COUNT + pluswhere
-				+ " where B_S_INDEX IN (select S_INDEX from STUDY where S_INDEX = ?) ORDER BY B_NO desc";
+				+ " ORDER BY B_NO DESC)) where B_S_INDEX = (select S_INDEX from STUDY where S_INDEX = ?)";
 
 		int boardcount = (int) get(sql, new DataSettable() {
 			@Override

@@ -31,14 +31,14 @@ public class BoardList extends HttpServlet {
 		
 		String search = request.getParameter("search");
 		String searchSelect = request.getParameter("searchSelect");
-		String pluswhere = ")";
+		String pluswhere = "";
 		
 		if(search != null && search != "" && searchSelect.equals("title")) {
-			pluswhere = " AND B_TITLE like ?) ";
+			pluswhere = " AND B_TITLE like ? ";
 		}else if(search != null && search != "" && searchSelect.equals("name")) {
-			pluswhere = " AND M_NAME like ?) ";
+			pluswhere = " AND M_NAME like ? ";
 		}else if(search != null && search != "" && searchSelect.equals("date")) {
-			pluswhere = " AND B_DATE like ?) ";
+			pluswhere = " AND B_DATE like ? ";
 		}
 		
 		int page = 1;
