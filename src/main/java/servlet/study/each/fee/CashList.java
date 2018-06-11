@@ -14,7 +14,7 @@ import beans.study.each.fee.CashListBean;
 import dao.DataGetter;
 import dao.DatabaseAccounts;
 
-@WebServlet("/study/each/cash")
+@WebServlet("/study/each/fee")
 public class CashList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -24,15 +24,14 @@ public class CashList extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		DataGetter getter = new DataGetter(DatabaseAccounts.SCOTT);
+		DataGetter getter = new DataGetter(DatabaseAccounts.PROJECT);
 		ArrayList<CashListBean> cashlist = new ArrayList<CashListBean>();
 
 		int page = 1;
 		int limit = 10;
-		/*int studyIndex = 3;*/
+		String studyName = (String) request.getAttribute("studyName");
 		
 		if (request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
@@ -40,9 +39,9 @@ public class CashList extends HttpServlet {
 		System.out.println("넘어온 페이지 = " + page);
 		
 		//회비관리 리스트 가져옴
-		cashlist = getter.getCashList(page, limit /*, studyIndex*/);
+		cashlist = getter.getCashList(page, limit, studyName);
 		//회비관리 리스트 개수 가져옴
-		int cashcount = getter.getCashCount(/*studyIndex*/);
+		int cashcount = getter.getCashCount(studyName);
 		System.out.println("총 리스트 수 = " + cashcount);
 		
 		int maxpage = (cashcount + limit - 1) / limit;
@@ -62,7 +61,6 @@ public class CashList extends HttpServlet {
 
 		// 현재 페이지에 표시할 첫 페이지 수
 		request.setAttribute("startpage", startpage);
-		
 		request.setAttribute("endpage", endpage);
 
 		// 현재 페이지에 표시할 끝 페이지 수
@@ -71,7 +69,7 @@ public class CashList extends HttpServlet {
 		request.setAttribute("cashlist", cashlist);
 		getter.close();
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/each/cashList.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/each/fee/cashList.jsp");
 		dispatcher.forward(request, response);
 	}
 	

@@ -28,16 +28,17 @@ public class CommentInsert extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		System.out.println("insert 서블릿으로 옴");
-		DataGetter getter = new DataGetter(DatabaseAccounts.SCOTT);
-		DataPoster poster = new DataPoster(DatabaseAccounts.SCOTT);
+		DataGetter getter = new DataGetter(DatabaseAccounts.PROJECT);
+		DataPoster poster = new DataPoster(DatabaseAccounts.PROJECT);
 		
 		CommentBean comment = new CommentBean();
 		
 		//insert할 데이터 가져와서 Bean에 저장
 		comment.setContent(request.getParameter("content"));
-		comment.setBno(Integer.parseInt(request.getParameter("bno")));		//시퀀스 처리?
-		comment.setCno(10);	
-		comment.setName("이다혜");	
+		comment.setBno(Integer.parseInt(request.getParameter("bno")));
+		comment.setPersonIndex(28);
+		//comment.setPersonIndex((int)request.getSession().getAttribute("index"));
+		
 		//DB안에 넣기
 		poster.postCommentInsert(comment);
 		
