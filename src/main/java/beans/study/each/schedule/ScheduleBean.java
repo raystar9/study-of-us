@@ -1,12 +1,19 @@
 package beans.study.each.schedule;
 
 public class ScheduleBean {
-	public static final String QUERY_GET = "";
+	public static final String QUERY_GET = "SELECT mt_id, mt_place, mt_date FROM v_meeting WHERE S_NAME = ?";
 	
+	private int id;
 	private String title;
 	private String start;
 	private String url;
 	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getTitle() {
 		return title;
 	}

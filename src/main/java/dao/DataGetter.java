@@ -21,8 +21,9 @@ import beans.study.each.board.BoardViewRegisterBean;
 import beans.study.each.board.CommentBean;
 import beans.study.each.fee.CashListBean;
 import beans.study.each.fee.FeeCollectListBean;
-import beansNew.FeeCollect;
+import beans.study.each.schedule.ScheduleBean;
 import beansNew.FeeSpend;
+import beansNew.Meeting;
 import beansNew.StudyMember;
 import dao.interfaces.DataGettable;
 import dao.interfaces.DataSettable;
@@ -1194,6 +1195,51 @@ ArrayList<StudyListSelect> studylist = (ArrayList<StudyListSelect>) get(StudyLis
 								results.add(bean);
 							}
 							return results;
+						}
+					});
+				}
+			@SuppressWarnings("unchecked")
+			public ArrayList<ScheduleBean> getSchedules(String studyName){
+				return (ArrayList<ScheduleBean>) get(ScheduleBean.QUERY_GET,new DataSettable() {
+					
+					@Override
+					public void prepare(PreparedStatement pstmt) throws SQLException {
+						pstmt.setString(1, studyName);
+					}
+				}  ,new DataGettable() {
+					@Override
+					public Object onGetResult(ResultSet rs) throws SQLException {
+						ArrayList<ScheduleBean> results = new ArrayList<>();
+						while(rs.next()) {
+							ScheduleBean bean = new ScheduleBean();
+							bean.setId(rs.getInt(1));
+							bean.setTitle(rs.getString(2));;
+							bean.setStart(DateConverter.getDateString(rs.getDate(3)));;
+							results.add(bean);
+						}
+						return results;
+					}
+				});
+			}
+				public Meeting getEachSchedules(String studyName, int meetingId){
+					return (Meeting) get(Meeting.QUERY_GET, new DataSettable() {
+						
+						@Override
+						public void prepare(PreparedStatement pstmt) throws SQLException {
+							pstmt.setString(1, studyName);
+							pstmt.setInt(2, meetingId);
+						}
+					}  ,new DataGettable() {
+						@Override
+						public Object onGetResult(ResultSet rs) throws SQLException {
+							Meeting result = new Meeting();
+							if(rs.next());{
+								result.setPlace(rs.getString(1));
+								result.setDate(rs.getDate(2));
+								result.setExpectedFee(rs.getInt(3));
+								result.setComment(rs.getString(4));
+							}
+							return result;
 						}
 					});
 				}
