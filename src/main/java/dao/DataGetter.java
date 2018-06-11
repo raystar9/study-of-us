@@ -141,48 +141,49 @@ public class DataGetter extends DataAccessor {
 		return list;
 	}
 
-	public ArrayList<Study> getStudies(String search, String[] check, String secondArray, int startcount, int endcount) { 
-		
-		String sql = StudyListCount.QUERY_GET3+StudyListCount.QUERY_GET4;
-		 if(search != null && search != "") { 
-			 sql = StudyListCount.QUERY_GET3;
-			 // ) 로 짜른부분왓 ㅓ다시
-			 sql += " where s_name LIKE '%"+search+"%'"+StudyListCount.QUERY_GET4;
-				if(!secondArray.equals("소분 +`류") && secondArray != "" ) {
-					sql = (sql.substring(0,sql.length()-3));
-			 		sql += "where c_sub LIKE '%"+secondArray+"%' ))" ;
+	public ArrayList<Study> getStudies(String search, String[] check, String secondArray, int startcount,
+			int endcount) {
+
+		String sql = StudyListCount.QUERY_GET3 + StudyListCount.QUERY_GET4;
+		if (search != null && search != "") {
+			sql = StudyListCount.QUERY_GET3;
+			// ) 로 짜른부분왓 ㅓ다시
+			sql += " where s_name LIKE '%" + search + "%'" + StudyListCount.QUERY_GET4;
+			if (!secondArray.equals("소분 +`류") && secondArray != "") {
+				sql = (sql.substring(0, sql.length() - 3));
+				sql += "where c_sub LIKE '%" + secondArray + "%' ))";
+			}
+			if (check != null) { // 검색어와 체크값을 같이 검색 했을 시
+				String str = "";
+				// 체크값을 만족하는 경우
+				if (!secondArray.equals("소분류") && secondArray != "") {
+					sql = (sql.substring(0, sql.length() - 1));
+					str = " where s_place LIKE ";
+				} else {
+					str = ") where s_place LIKE ";
 				}
-					if(check != null ) { // 검색어와 체크값을 같이 검색 했을 시
-						String str = "";
-						// 체크값을 만족하는 경우
-						if(!secondArray.equals("소분류") && secondArray != "") {
-							sql = (sql.substring(0,sql.length()-1));
-							 str = " where s_place LIKE ";
-						}else {
-							str = ") where s_place LIKE ";
-						}
-								for(int i=0; i<check.length; i++) {
-					    	if(i<1) {
-					    		str += "'%"+check[i]+"%' ";
-					    	}else {
-					    		str += "or s_place LIKE '%"+check[i]+"%' ";
-					    	}
-					    }
-					 sql += str + ")"; 
-					}		
-		 	
-		 }
-		 sql += StudyListCount.QUERY_GET5;
-		 System.out.println(sql);
-	
+				for (int i = 0; i < check.length; i++) {
+					if (i < 1) {
+						str += "'%" + check[i] + "%' ";
+					} else {
+						str += "or s_place LIKE '%" + check[i] + "%' ";
+					}
+				}
+				sql += str + ")";
+			}
+
+		}
+		sql += StudyListCount.QUERY_GET5;
+		System.out.println(sql);
+
 		@SuppressWarnings("unchecked")
-		ArrayList<Study> list = (ArrayList<Study>) get(sql,new DataSettable() {
-			
+		ArrayList<Study> list = (ArrayList<Study>) get(sql, new DataSettable() {
+
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
 				pstmt.setInt(1, startcount);
 				pstmt.setInt(2, endcount);
-				
+
 			}
 		}, new DataGettable() {
 
@@ -214,40 +215,40 @@ public class DataGetter extends DataAccessor {
 		// TODO Auto-generated method stub
 		return list;
 	}
-	
-	public ArrayList<Study> getStudies(String search, String[] check, String secondArray) { 
-		
-		String sql = StudyListCount.QUERY_GET3+StudyListCount.QUERY_GET4;
-		 if(search != null && search != "") { 
-			 sql = StudyListCount.QUERY_GET3;
-			 // ) 로 짜른부분왓 ㅓ다시
-			 sql += " where s_name LIKE '%"+search+"%'"+StudyListCount.QUERY_GET4;
-				if(!secondArray.equals("소분류") && secondArray != "" ) {
-					sql = (sql.substring(0,sql.length()-3));
-			 		sql += "where c_sub LIKE '%"+secondArray+"%' ))" ;
+
+	public ArrayList<Study> getStudies(String search, String[] check, String secondArray) {
+
+		String sql = StudyListCount.QUERY_GET3 + StudyListCount.QUERY_GET4;
+		if (search != null && search != "") {
+			sql = StudyListCount.QUERY_GET3;
+			// ) 로 짜른부분왓 ㅓ다시
+			sql += " where s_name LIKE '%" + search + "%'" + StudyListCount.QUERY_GET4;
+			if (!secondArray.equals("소분류") && secondArray != "") {
+				sql = (sql.substring(0, sql.length() - 3));
+				sql += "where c_sub LIKE '%" + secondArray + "%' ))";
+			}
+			if (check != null) { // 검색어와 체크값을 같이 검색 했을 시
+				String str = "";
+				// 체크값을 만족하는 경우
+				if (!secondArray.equals("소분류") && secondArray != "") {
+					sql = (sql.substring(0, sql.length() - 1));
+					str = " where s_place LIKE ";
+				} else {
+					str = ") where s_place LIKE ";
 				}
-					if(check != null ) { // 검색어와 체크값을 같이 검색 했을 시
-						String str = "";
-						// 체크값을 만족하는 경우
-						if(!secondArray.equals("소분류") && secondArray != "") {
-							sql = (sql.substring(0,sql.length()-1));
-							 str = " where s_place LIKE ";
-						}else {
-							str = ") where s_place LIKE ";
-						}
-								for(int i=0; i<check.length; i++) {
-					    	if(i<1) {
-					    		str += "'%"+check[i]+"%' ";
-					    	}else {
-					    		str += "or s_place LIKE '%"+check[i]+"%' ";
-					    	}
-					    }
-					 sql += str + ")"; 
-					}		
-		 	
-		 }
-		 System.out.println(sql);
-	
+				for (int i = 0; i < check.length; i++) {
+					if (i < 1) {
+						str += "'%" + check[i] + "%' ";
+					} else {
+						str += "or s_place LIKE '%" + check[i] + "%' ";
+					}
+				}
+				sql += str + ")";
+			}
+
+		}
+		System.out.println(sql);
+
 		@SuppressWarnings("unchecked")
 		ArrayList<Study> list = (ArrayList<Study>) get(sql, new DataGettable() {
 
@@ -416,7 +417,7 @@ public class DataGetter extends DataAccessor {
 					board.setIndex(rs.getInt(1));
 					board.setTitle(rs.getString(2));
 					board.setName(rs.getString(3));
-					board.setDate(rs.getString(4));
+					board.setDate(rs.getDate(4));
 					boardlist.add(board);
 				}
 				return boardlist;
@@ -753,12 +754,11 @@ public class DataGetter extends DataAccessor {
 					Inform.setName(rs.getString(1));
 					Inform.setCategory1(rs.getString(2));
 					Inform.setCategory2(rs.getString(3));
-					Inform.setStartDate(DateConverter.getDateString(rs.getDate(4)));
-					Inform.setEndDate(DateConverter.getDateString(rs.getDate(5)));
+					Inform.setStartDate(rs.getString(4));
+					Inform.setEndDate(rs.getString(5));
 					Inform.setPeopleNum(rs.getInt(6));
-					Inform.setActivityTime(DateConverter.getDateString(rs.getDate(7)));
-					Inform.setDay(DateConverter.getDateString(rs.getDate(8)));
-					//Inform.setDay(rs.getString(8));
+					Inform.setActivityTime(rs.getString(7));
+					Inform.setDay(rs.getString(8));
 					Inform.setExplain(rs.getString(9));
 					Inform.setPrepared(rs.getString(10));
 					Inform.setEffective(rs.getString(11));
@@ -796,7 +796,7 @@ public class DataGetter extends DataAccessor {
 	}
 
 	// 게시글 당 댓글 총 리스트 가져오는 메소드
-	public ArrayList<CommentBean> getCommentList(int studyIndex,int boardnum) {
+	public ArrayList<CommentBean> getCommentList(int studyIndex, int boardnum) {
 		@SuppressWarnings("unchecked")
 		ArrayList<CommentBean> list = (ArrayList<CommentBean>) get(CommentBean.QUERY_GET, new DataSettable() {
 
@@ -1012,59 +1012,56 @@ public class DataGetter extends DataAccessor {
 		return cashcount;
 	}
 
-	
-//		보여줄 스터디를 정리햇 ㅓ가져오기 
+	// 보여줄 스터디를 정리햇 ㅓ가져오기
 	public ArrayList<StudyListSelect> getStudyList(int index, int page, int limit) {
-@SuppressWarnings("unchecked")
-ArrayList<StudyListSelect> studylist = (ArrayList<StudyListSelect>) get(StudyListSelect.QUERY_GET3 , new DataSettable() {
-			@Override
-			public void prepare(PreparedStatement pstmt) throws SQLException {
-				//읽기 시작할 row 번호 1
-				int startrow = (page - 1 ) * limit + 1;
-				System.out.println("스타트로우" + startrow);
-				//읽을 마지막 row 번호 2
-				int endrow = startrow + limit -1;
-				System.out.println("엔드로우" +endrow);
-				
-				pstmt.setInt(1, index);
-				pstmt.setInt(2, startrow);
-				pstmt.setInt(3, endrow);
-			
-				System.out.println(StudyListSelect.QUERY_GET3);
-				
-			}
-		}, new DataGettable() {
-			
-			@Override
-			public ArrayList<?> onGetResult(ResultSet rs) throws SQLException {
-				ArrayList<StudyListSelect> studylists = new ArrayList<>();
-				while(rs.next()) {
-					StudyListSelect sl = new StudyListSelect();
-					
-					sl.setProgress(rs.getInt("progress"));
-					sl.setS_name(rs.getString("s_name"));
-					sl.setS_peoplenum(rs.getInt("s_peoplenum"));
-					studylists.add(sl);
-			}
-		
-			return studylists;
-		}
-	});
-		return studylist;
-}
+		@SuppressWarnings("unchecked")
+		ArrayList<StudyListSelect> studylist = (ArrayList<StudyListSelect>) get(StudyListSelect.QUERY_GET3,
+				new DataSettable() {
+					@Override
+					public void prepare(PreparedStatement pstmt) throws SQLException {
+						// 읽기 시작할 row 번호 1
+						int startrow = (page - 1) * limit + 1;
+						System.out.println("스타트로우" + startrow);
+						// 읽을 마지막 row 번호 2
+						int endrow = startrow + limit - 1;
+						System.out.println("엔드로우" + endrow);
 
-	
-	
-	
+						pstmt.setInt(1, index);
+						pstmt.setInt(2, startrow);
+						pstmt.setInt(3, endrow);
+
+						System.out.println(StudyListSelect.QUERY_GET3);
+
+					}
+				}, new DataGettable() {
+
+					@Override
+					public ArrayList<?> onGetResult(ResultSet rs) throws SQLException {
+						ArrayList<StudyListSelect> studylists = new ArrayList<>();
+						while (rs.next()) {
+							StudyListSelect sl = new StudyListSelect();
+
+							sl.setProgress(rs.getInt("progress"));
+							sl.setS_name(rs.getString("s_name"));
+							sl.setS_peoplenum(rs.getInt("s_peoplenum"));
+							studylists.add(sl);
+						}
+
+						return studylists;
+					}
+				});
+		return studylist;
+	}
+
 	public Study getSindex() {
-		
+
 		@SuppressWarnings("unchecked")
 		Study index = (Study) get(Study.QUERY_GET5, new DataGettable() {
-			
+
 			@Override
 			public Object onGetResult(ResultSet rs) throws SQLException {
 				Study s_index = null;
-				if(rs.next()) { 
+				if (rs.next()) {
 					s_index = new Study();
 					s_index.setIndex(rs.getInt("s_index"));
 				}
@@ -1073,23 +1070,24 @@ ArrayList<StudyListSelect> studylist = (ArrayList<StudyListSelect>) get(StudyLis
 		});
 		return index;
 	}
+
 	public ArrayList<StudyList> studylist(int s_index, int m_index) {
 		@SuppressWarnings("unchecked")
 		ArrayList<StudyList> list = (ArrayList<StudyList>) get(StudyList.QUERY_GET2, new DataSettable() {
-			
+
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
 				pstmt.setInt(1, s_index);
 				pstmt.setInt(2, m_index);
-				
+
 			}
 		}, new DataGettable() {
-			
+
 			@Override
 			public Object onGetResult(ResultSet rs) throws SQLException {
 
 				ArrayList<StudyList> StudyListCheck = new ArrayList<>();
-				while(rs.next()) {
+				while (rs.next()) {
 					StudyList studycheck = new StudyList();
 					studycheck.setStudyindex(rs.getInt(1));
 					studycheck.setMemberindex(rs.getInt(2));
@@ -1098,26 +1096,26 @@ ArrayList<StudyListSelect> studylist = (ArrayList<StudyListSelect>) get(StudyLis
 				return StudyListCheck;
 			}
 		});
-		
+
 		return list;
 		// TODO Auto-generated method stub
-	
+
 	}
 
-	//로그인할때 인덱스 번호를 가져오기
+	// 로그인할때 인덱스 번호를 가져오기
 	public Login getIndex(String id) {
-		Login index = (Login) get(Login.QUERY_GET3,new DataSettable() {
-			
+		Login index = (Login) get(Login.QUERY_GET3, new DataSettable() {
+
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
 				pstmt.setString(1, id);
 			}
-		},new DataGettable() {
-			
+		}, new DataGettable() {
+
 			@Override
 			public Object onGetResult(ResultSet rs) throws SQLException {
 				Login innerIndex = null;
-				if(rs.next()) {
+				if (rs.next()) {
 					innerIndex = new Login();
 					innerIndex.setIndex(rs.getInt(1));
 				}
@@ -1126,30 +1124,30 @@ ArrayList<StudyListSelect> studylist = (ArrayList<StudyListSelect>) get(StudyLis
 		});
 		return index;
 	}
-		
-		public Find getFind(String name) {
-			Find find = (Find) get(Find.QUERY_GET, new DataSettable() {
 
-				@Override
-				public void prepare(PreparedStatement pstmt) throws SQLException {
-					pstmt.setString(1, name); // 바인딩변수를 채워주기위해서 데이터 세터블을 매개변수 추가하며 오버로딩을한다.
-				}
-			}, new DataGettable() {
+	public Find getFind(String name) {
+		Find find = (Find) get(Find.QUERY_GET, new DataSettable() {
 
-				@Override
-				public Object onGetResult(ResultSet rs) throws SQLException {
-					Find innerLogin = null;
-					if (rs.next()) {
-						innerLogin = new Find();
-						innerLogin.setId(rs.getString(1));
-						innerLogin.setName(rs.getString(2));
-					}
-					return innerLogin; 
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+				pstmt.setString(1, name); // 바인딩변수를 채워주기위해서 데이터 세터블을 매개변수 추가하며 오버로딩을한다.
+			}
+		}, new DataGettable() {
+
+			@Override
+			public Object onGetResult(ResultSet rs) throws SQLException {
+				Find innerLogin = null;
+				if (rs.next()) {
+					innerLogin = new Find();
+					innerLogin.setId(rs.getString(1));
+					innerLogin.setName(rs.getString(2));
 				}
-			});
-			return find; 
-		}
-		
+				return innerLogin;
+			}
+		});
+		return find;
+	}
+
 		public Find getEmail(String email) {
 			Find find = (Find) get(Find.QUERY_GET2, new DataSettable() {
 
@@ -1263,30 +1261,30 @@ ArrayList<StudyListSelect> studylist = (ArrayList<StudyListSelect>) get(StudyLis
 				}
 			});
 		}
-	
-	//공용
-		@SuppressWarnings("unchecked")
-		public ArrayList<Integer> getMemberIndexes(String studyName) {
-			return (ArrayList<Integer>) get(Queries.GET_STUDY_MEMBER, new DataSettable() {
-				@Override
-				public void prepare(PreparedStatement pstmt) throws SQLException {
-					pstmt.setString(1, studyName);
+
+	// 공용
+	@SuppressWarnings("unchecked")
+	public ArrayList<Integer> getMemberIndexes(String studyName) {
+		return (ArrayList<Integer>) get(Queries.GET_STUDY_MEMBER, new DataSettable() {
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+				pstmt.setString(1, studyName);
+			}
+		}, new DataGettable() {
+			@Override
+			public Object onGetResult(ResultSet rs) throws SQLException {
+				ArrayList<Integer> results = new ArrayList<>();
+				while (rs.next()) {
+					results.add(rs.getInt(1));
 				}
-			}, new DataGettable() {
-				@Override
-				public Object onGetResult(ResultSet rs) throws SQLException {
-					ArrayList<Integer> results = new ArrayList<>();
-					while(rs.next()) {
-						results.add(rs.getInt(1));
-					}
-					return results;
-				}
-			} );
-		}
-		
+				return results;
+			}
+		});
+	}
+
 	@SuppressWarnings("unchecked")
 	public ArrayList<Integer> getMemberIndexes(int studyIndex) {
-		return (ArrayList<Integer>) get(StudyMember.QUERY_GET_MEMBERS,new DataSettable() {
+		return (ArrayList<Integer>) get(StudyMember.QUERY_GET_MEMBERS, new DataSettable() {
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
 				pstmt.setInt(1, studyIndex);
@@ -1295,29 +1293,29 @@ ArrayList<StudyListSelect> studylist = (ArrayList<StudyListSelect>) get(StudyLis
 			@Override
 			public Object onGetResult(ResultSet rs) throws SQLException {
 				ArrayList<Integer> results = new ArrayList<>();
-				while(rs.next()) {
+				while (rs.next()) {
 					results.add(rs.getInt(1));
 				}
 				return results;
 			}
-		} );
+		});
 	}
-	
-		public int getStudyIndex(String studyName) {
-			return (int) get(Queries.GET_STUDY_ID, new DataSettable() {
-				@Override
-				public void prepare(PreparedStatement pstmt) throws SQLException {
-					pstmt.setString(1, studyName);
-				}
-			}, new DataGettable() {
-				@Override
-				public Object onGetResult(ResultSet rs) throws SQLException {
-					rs.next();
-					return rs.getInt(1);
-				}
-			} );
-		}
-	
+
+	public int getStudyIndex(String studyName) {
+		return (int) get(Queries.GET_STUDY_ID, new DataSettable() {
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+				pstmt.setString(1, studyName);
+			}
+		}, new DataGettable() {
+			@Override
+			public Object onGetResult(ResultSet rs) throws SQLException {
+				rs.next();
+				return rs.getInt(1);
+			}
+		});
+	}
+
 	@SuppressWarnings("unchecked")
 	public ArrayList<String> getMemberNames(String studyName) {
 		return (ArrayList<String>) get(Queries.GET_STUDY_MEMBER, new DataSettable() {
@@ -1335,35 +1333,25 @@ ArrayList<StudyListSelect> studylist = (ArrayList<StudyListSelect>) get(StudyLis
 				}
 				return results;
 			}
-		} );
+		});
 	}
-		
-		/*public int[] getMemIndex(int studyIndex) {
-	
-			int[] Index1 = (int[]) get(Member2.QUERY_GET_INDEX, new DataSettable() {
-	
-				@Override
-				public void prepare(PreparedStatement pstmt) throws SQLException {
-					// TODO Auto-generated method stub
-					pstmt.setInt(1, studyIndex);
-				}
-	
-			}, new DataGettable() {
-	
-				@Override
-				public int[] onGetResult(ResultSet rs) throws SQLException {
-					int[] index = new int[100];
-					int i = 0;
-					while (rs.next()) {
-						index[i] = rs.getInt(1);
-						i++;
-					}
-					return index;
-				}
-			});
-	
-			return Index1;
-		}*/
+
+	/*
+	 * public int[] getMemIndex(int studyIndex) {
+	 * 
+	 * int[] Index1 = (int[]) get(Member2.QUERY_GET_INDEX, new DataSettable() {
+	 * 
+	 * @Override public void prepare(PreparedStatement pstmt) throws SQLException {
+	 * // TODO Auto-generated method stub pstmt.setInt(1, studyIndex); }
+	 * 
+	 * }, new DataGettable() {
+	 * 
+	 * @Override public int[] onGetResult(ResultSet rs) throws SQLException { int[]
+	 * index = new int[100]; int i = 0; while (rs.next()) { index[i] = rs.getInt(1);
+	 * i++; } return index; } });
+	 * 
+	 * return Index1; }
+	 */
 
 	@SuppressWarnings("unchecked")
 	public ArrayList<FeeSpend> getFeeExpense(int meetingId) {
@@ -1376,7 +1364,7 @@ ArrayList<StudyListSelect> studylist = (ArrayList<StudyListSelect>) get(StudyLis
 			@Override
 			public Object onGetResult(ResultSet rs) throws SQLException {
 				ArrayList<FeeSpend> result = new ArrayList<>();
-				while(rs.next()) {
+				while (rs.next()) {
 					FeeSpend fs = new FeeSpend();
 					fs.setExpense(rs.getInt(1));
 					fs.setComment(rs.getString(2));
@@ -1386,29 +1374,30 @@ ArrayList<StudyListSelect> studylist = (ArrayList<StudyListSelect>) get(StudyLis
 			}
 		});
 	}
-	
-		@SuppressWarnings("unchecked")
-		public ArrayList<FeeCollectListBean> getFeeMember(int meetingId) {
-			return (ArrayList<FeeCollectListBean>) get(FeeCollectListBean.QUERY_GET, new DataSettable() {
-				@Override
-				public void prepare(PreparedStatement pstmt) throws SQLException {
-					pstmt.setInt(1, meetingId);
+
+	@SuppressWarnings("unchecked")
+	public ArrayList<FeeCollectListBean> getFeeMember(int meetingId) {
+		return (ArrayList<FeeCollectListBean>) get(FeeCollectListBean.QUERY_GET, new DataSettable() {
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+				pstmt.setInt(1, meetingId);
+			}
+		}, new DataGettable() {
+			@Override
+			public Object onGetResult(ResultSet rs) throws SQLException {
+				ArrayList<FeeCollectListBean> result = new ArrayList<>();
+				while (rs.next()) {
+					FeeCollectListBean fs = new FeeCollectListBean();
+					fs.setMemberName(rs.getString(1));
+					fs.setFee(rs.getInt(2));
+					fs.setNote(rs.getString(3));
+					result.add(fs);
 				}
-			}, new DataGettable() {
-				@Override
-				public Object onGetResult(ResultSet rs) throws SQLException {
-					ArrayList<FeeCollectListBean> result = new ArrayList<>();
-					while(rs.next()) {
-						FeeCollectListBean fs = new FeeCollectListBean();
-						fs.setMemberName(rs.getString(1));
-						fs.setFee(rs.getInt(2));
-						fs.setNote(rs.getString(3));
-						result.add(fs);
-					}
-					return result;
-				}
-			});
-		}
+				return result;
+			}
+		});
+	}
+
 	public int getFeeSpentTotal(int meetingId) {
 		return (int) get(Queries.GET_TOTAL_SPENT_FEE, new DataSettable() {
 			@Override
@@ -1424,20 +1413,20 @@ ArrayList<StudyListSelect> studylist = (ArrayList<StudyListSelect>) get(StudyLis
 		});
 	}
 
-		public int getFeeCollectTotal(int meetingId) {
-			return (int) get(Queries.GET_TOTAL_COLLECT_FEE, new DataSettable() {
-				@Override
-				public void prepare(PreparedStatement pstmt) throws SQLException {
-					pstmt.setInt(1, meetingId);
-				}
-			}, new DataGettable() {
-				@Override
-				public Object onGetResult(ResultSet rs) throws SQLException {
-					rs.next();
-					return rs.getInt(1);
-				}
-			});
-		}
+	public int getFeeCollectTotal(int meetingId) {
+		return (int) get(Queries.GET_TOTAL_COLLECT_FEE, new DataSettable() {
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+				pstmt.setInt(1, meetingId);
+			}
+		}, new DataGettable() {
+			@Override
+			public Object onGetResult(ResultSet rs) throws SQLException {
+				rs.next();
+				return rs.getInt(1);
+			}
+		});
+	}
 	/*
 	 * private ArrayList<?> getBean(ResultSet rs, Class<?> beanClass) throws
 	 * SQLException{ Field[] fields = beanClass.getDeclaredFields();
@@ -1448,26 +1437,154 @@ ArrayList<StudyListSelect> studylist = (ArrayList<StudyListSelect>) get(StudyLis
 	 * 
 	 */
 
-		public boolean isFeeRegistered(String meetingId) {
-			return (boolean) get(Queries.IS_FEE_REGISTERED, new DataSettable() {
-				
+	public boolean isFeeRegistered(String meetingId) {
+		return (boolean) get(Queries.IS_FEE_REGISTERED, new DataSettable() {
+
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+				pstmt.setString(1, meetingId);
+			}
+		}, new DataGettable() {
+			@Override
+			public Object onGetResult(ResultSet rs) throws SQLException {
+				rs.next();
+				if (rs.getInt(1) == 0) {
+					return false;
+				} else {
+					return true;
+				}
+			}
+		});
+
+	}
+
+	// 스터디 설정에서 카테고리 가져오는 메소드
+	public String[] getSubCategory(String mainCategory) {
+
+			String[] SubCategory = (String[]) get(InformSetup.QUERY_GET_CATEGORY2, new DataSettable() {
+
 				@Override
 				public void prepare(PreparedStatement pstmt) throws SQLException {
-					pstmt.setString(1, meetingId);
+					// TODO Auto-generated method stub
+					pstmt.setString(1, mainCategory);
 				}
+
 			}, new DataGettable() {
+
 				@Override
-				public Object onGetResult(ResultSet rs) throws SQLException {
-					rs.next();
-					if(rs.getInt(1) == 0) {
-						return false;
-					} else {
-						return true;
+				public String[] onGetResult(ResultSet rs) throws SQLException {
+					String[] cate = new String[getSubCategoryCount(mainCategory)];
+					int i = 0;
+					while (rs.next()) {
+						cate[i] = rs.getString(1);
+						i++;
 					}
+					return cate;
 				}
 			});
-			
-		}
 
-		
+			return SubCategory;
+		}
+	
+	public int getSubCategoryCount(String mainCategory) {
+
+		int SubCategoryCount = (int) get(InformSetup.QUERY_GET_CATEGORY2_COUNT, new DataSettable() {
+
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+				// TODO Auto-generated method stub
+				pstmt.setString(1, mainCategory);
+			}
+
+		}, new DataGettable() {
+
+			@Override
+			public Integer onGetResult(ResultSet rs) throws SQLException {
+				int count = 0;
+				while (rs.next()) {
+					count = rs.getInt(1);
+				}
+				return count;
+			}
+		});
+
+		return SubCategoryCount;
+	}
+	
+	public String[] getMainCategory() {
+
+		String[] mainCategory = (String[]) get(InformSetup.QUERY_GET_CATEGORY1, new DataSettable() {
+
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+				// TODO Auto-generated method stub
+			}
+
+		}, new DataGettable() {
+
+			@Override
+			public String[] onGetResult(ResultSet rs) throws SQLException {
+				String[] cate = new String[getMainCategoryCount()];
+				int i = 0;
+				while (rs.next()) {
+					cate[i] = rs.getString(1);
+					i++;
+				}
+				return cate;
+			}
+		});
+
+		return mainCategory;
+	}
+	
+	public int getMainCategoryCount() {
+
+		int MainCategoryCount = (int) get(InformSetup.QUERY_GET_CATEGORY1_COUNT, new DataSettable() {
+
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+				// TODO Auto-generated method stub
+			}
+
+		}, new DataGettable() {
+
+			@Override
+			public Integer onGetResult(ResultSet rs) throws SQLException {
+				int count = 0;
+				while (rs.next()) {
+					count = rs.getInt(1);
+				}
+				return count;
+			}
+		});
+
+		return MainCategoryCount;
+	}
+	
+	public int getCategoryNum(String category1, String category2) {
+
+		int categoryNum = (int) get(InformSetup.QUERY_GET_CATEGORY_NUM, new DataSettable() {
+
+			@Override
+			public void prepare(PreparedStatement pstmt) throws SQLException {
+				// TODO Auto-generated method stub
+				pstmt.setString(1, category1);
+				pstmt.setString(2, category2);
+			}
+
+		}, new DataGettable() {
+
+			@Override
+			public Integer onGetResult(ResultSet rs) throws SQLException {
+				int num = 0;
+				while (rs.next()) {
+					num = rs.getInt(1);
+				}
+				return num;
+			}
+		});
+
+		return categoryNum;
+	}
+
 }

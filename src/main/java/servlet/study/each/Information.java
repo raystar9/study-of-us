@@ -1,6 +1,7 @@
 package servlet.study.each;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -30,7 +31,7 @@ public class Information extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		DataGetter getter = new DataGetter(DatabaseAccounts.PROJECT);
-		int studyIndex = 3;
+		int studyIndex = 5;
 		//int studyIndex = request.getParameter("studyIndex");
 		
 		int membercount = getter.getInformMemberCount(studyIndex);	//스터디 참여인원
@@ -48,11 +49,6 @@ public class Information extends HttpServlet {
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/each/information.jsp");
 		dispatcher.forward(request, response);
-	}
-
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 	}
 
 }

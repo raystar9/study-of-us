@@ -16,7 +16,7 @@
 	<c:set var="set" value="${setup}" />
 		<tr>
 			<td>
-				<h1 class="page-header">설정</h1>
+				<h1 class="page-header">정보</h1>
 			</td>
 		</tr>
 		<tr>

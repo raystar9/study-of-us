@@ -7,14 +7,16 @@
 
 <head>
 <link rel="stylesheet" type="text/css" href="css/setup.css">
+<style>
+	#categorySub , categoryGroup{width:100px;}
+</style>
 </head>
-
 <body>
-<form action="./setup" method="post">
+<form action="./setup" method="post" class='setupForm'>
 	<c:set var="set" value="${setup}" />
 	<input type='hidden' id='studyIndex' value='${set.index}'>
-	<input type='hidden' id='category1' value='${cate.category1}'>
-	<input type='hidden' id='category2' value='${cate.category2}'>
+	<input type='hidden' id='category1' value='${set.category1}'>
+	<input type='hidden' id='category2' value='${set.category2}'>
 		<table border='1'>
 		<tr>
 			<td>
@@ -24,22 +26,22 @@
 		<tr>
 			<td><h4>*스터디 명</h4>
 				<hr>
-				<div class="panel-body"><input type="text" class="form-control" name='studyName' value="${s.name }"></div>
+				<div class="panel-body"><input type="text" class="form-control" name='studyName' value="${set.name }"></div>
 			</td>
 		</tr>
 		<tr>
 			<td><h4>*카테고리 (대분류/소분류)</h4>
 				<hr>
 				<div class="panel-body">
-				<select name='categoryGroup' id='categoryGroup'>
-					<option value="프로그래밍">프로그래밍</option>
-					<option value="영어">영어</option>
-					<option value="국어">국어</option>
+				<select name='categoryGroup' id='categoryGroup' onchange="chageCategory()" >
+				<c:forEach var="item" items="${mainCategory }">
+					<option value="${item }">${item }</option>
+				</c:forEach>
 				</select>
 				<select name='categorySub' id='categorySub'>
-					<option value="JAVA">JAVA</option>
-					<option value="토익">토익</option>
-					<option value="독후감">독후감</option>
+				<c:forEach var="item" items="${subCategory }">
+					<option value="${item }">${item }</option>
+				</c:forEach>
 				</select>
 					
 				</div>
@@ -113,7 +115,7 @@
 		</tr>
 		<tr>
 			<td>
-				<input type="submit" class="btn btn-default" id="btn" value="수정"> 
+				<input type="button" class="btn btn-default" id="submittbtn" value="수정">
 				<input type="reset" class="btn btn-default" id="btn" value="초기화">
 				<input type="button" class="btn btn-default" id="btn" value="취소" onClick="history.go(-1);">
 			</td>

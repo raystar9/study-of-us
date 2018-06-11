@@ -49,16 +49,16 @@ public class DataPoster extends DataSetter {
 		return 1;
 	}
 
-	public void postBoard(BoardViewRegisterBean board, int studyIndex) {
+	public void postBoard(BoardViewRegisterBean board, int studyIndex, int personIndex) {
 
 		// 콜백함수를 통해 setteble 안에있는 prepare 를 사용한다.
 		set(BoardViewRegisterBean.QUERY_POST, new DataSettable() {
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
-				pstmt.setString(1, board.getName());
-				pstmt.setString(2, board.getTitle());
-				pstmt.setString(3, board.getContent());
-				pstmt.setInt(4, studyIndex);
+				pstmt.setInt(1, studyIndex);
+				pstmt.setInt(2, personIndex);
+				pstmt.setString(3, board.getTitle());
+				pstmt.setString(4, board.getContent());
 				pstmt.setString(5, board.getFilename());
 				pstmt.executeUpdate();
 				pstmt.close();
@@ -113,7 +113,7 @@ public class DataPoster extends DataSetter {
 		});
 	}
 
-	public void postSetup(InformSetup setup) {
+	public void postSetup(InformSetup setup, int studyIndex, int categoryNum) {
 
 		// 콜백함수를 통해 setteble 안에있는 prepare 를 사용한다.
 		set(InformSetup.QUERY_PUT, new DataSettable() {

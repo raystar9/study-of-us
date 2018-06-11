@@ -1,5 +1,6 @@
 package beans.study.each.board;
 
+import java.sql.Date;
 
 public class BoardListBean {
 
@@ -9,7 +10,7 @@ public class BoardListBean {
 	private int index; 		// 게시글 번호
 	private String title; 	// 게시글 제목
 	private String name; 	// 게시글 작성자
-	private String date; 	// 게시글 작성일
+	private Date date; 	// 게시글 작성일
 	private String filename;// 첨부파일 이름
 	private int count; 		// 게시글 개수
 
@@ -46,11 +47,11 @@ public class BoardListBean {
 		this.name = name;
 	}
 
-	public String getDate() {
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(String date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 
