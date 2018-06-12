@@ -97,7 +97,6 @@ function closeLayer( obj ) {
 }
 
 $(function(){
-	$('.popupLayer').hide()
 	/* 클릭 클릭시 클릭을 클릭한 위치 근처에 레이어가 나타난다. */
 	$('#icon2').click(function(e)
 	{
@@ -169,7 +168,7 @@ $(document).ready(function(){
 	</div>
 
 
-	<div class="popupLayer">
+	<div class="popupLayer" style="display:none">
 		<div>
 			<span onClick="closeLayer(this)"
 				style="cursor: pointer; font-size: 1.5em" title="닫기">X</span>
