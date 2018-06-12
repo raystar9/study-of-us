@@ -8,17 +8,16 @@
 </head>
 
 <body>
-	
 	<table id='inform_table'>
 		<c:set var="set" value="${setup}" />
 		<tr>
 			<td id='title_h1'>
-				<h1 ><i class="fa fa-gear"></i>정보</h1><br>
+				<h1 ><i class="fa fa-gear"></i>정보 <input type="button" class="btn btn-default" type="button"
+				name="modifyBtn" value="탈퇴하기" id='withdraw-btn'></h1><br>
 			</td>
 		</tr>
 		<tr>
 			<td id='td_title'><strong>*스터디 명</strong></td>
-			
 		</tr>
 		<tr>
 			<td id='shortText'>${set.name}</td>
@@ -46,9 +45,9 @@
 					<tbody>
 						<c:forEach var="memlist" items="${memlist }">
 							<tr>
-								<td>${memlist.name }</td>
-								<td>${memlist.phone }</td>
-								<td>${memlist.email }</td>
+								<td id='tr_mem'>${memlist.name }</td>
+								<td id='tr_mem'>${memlist.phone }</td>
+								<td id='tr_mem'>${memlist.email }</td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -102,10 +101,6 @@
 		</tr>
 		<tr>
 			<td id='longText'>${set.place }</td>
-		</tr>
-		<tr>
-			<td id='td_title'><input type="button" class="btn btn-default" type="button"
-				name="modifyBtn" value="탈퇴하기" id='withdraw-btn'></td>
 		</tr>
 	</table>
 </body>

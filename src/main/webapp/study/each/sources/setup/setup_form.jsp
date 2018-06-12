@@ -7,6 +7,7 @@
 
 <head>
 <link rel="stylesheet" type="text/css" href="css/setup.css">
+
 <style>
 	#categorySub , categoryGroup{width:100px;}
 </style>

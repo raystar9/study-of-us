@@ -25,7 +25,12 @@
 	float: right;
 	margin-top: 7px;
 	margin-bottom: 7px;
-	margin-right: 10px;
+	margin-right: 20px;
+	width:70px;
+	font-size:12px;
+	height:30px;
+    padding-left: 10px;
+	
 }
 #person_num{
 	width:150px;	
@@ -35,8 +40,9 @@ background-color: #f5f5f5;
 }
 #td_title{
 	background-color: #337ab72e;
-	height:35px;
+	height:20px;
 	font-size:14px;
+	line-height: 30px;
 }
 #longText{
 	height:100px;
@@ -51,6 +57,14 @@ background-color: #f5f5f5;
 #title_h1{
 	padding-left:10px;
 }
+#tr_mem{
+	font-size:13px;
+}
 #member{
 	font-size:13px;
+	height:15px;
+	
+}
+#bottomBtn{
+	border-top:1px solid gray;
 }
