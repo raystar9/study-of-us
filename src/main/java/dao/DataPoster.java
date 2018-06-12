@@ -332,7 +332,8 @@ public class DataPoster extends DataSetter {
 				pstmt.setString(3, m_id);
 				pstmt.setString(4, s_name);
 				pstmt.setInt(5, m_m_index);
-				
+				pstmt.executeUpdate();
+				pstmt.close();
 			}
 		});
 	}
@@ -344,7 +345,8 @@ public class DataPoster extends DataSetter {
 			public void prepare(PreparedStatement pstmt) throws SQLException {
 				pstmt.setInt(1, sm_s_index);
 				pstmt.setInt(2, sm_m_index);
-				
+				pstmt.executeUpdate();
+				pstmt.close();
 			}
 		});
 	}

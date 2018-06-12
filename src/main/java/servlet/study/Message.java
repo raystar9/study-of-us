@@ -31,11 +31,16 @@ public class Message extends HttpServlet {
 			response.setContentType("text/html;charset=utf-8");
 			PrintWriter out = response.getWriter();
 			System.out.println("거절 합니다222222222222"+request.getParameter("reject"));
+
+			System.out.println("s_index : " + s_index);
+			System.out.println("sm_m_index : " + sm_m_index);
+			System.out.println("sm_s_index : " + sm_s_index);
 			
 			if(request.getParameter("reject")==null) {
 				
 			System.out.println("s_index : " + s_index);
 			System.out.println("sm_m_index : " + sm_m_index);
+			System.out.println("sm_s_index : " + sm_s_index);
 			
 			
 			poster.Insertindex(s_index,sm_m_index);

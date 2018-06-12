@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import servlet.study.List;
+import servlet.study.Message;
 import servlet.study.Search;
 import servlet.study.SearchMain;
 import servlet.study.Studylist;
@@ -98,6 +99,9 @@ public class SoupGlobalFilter implements Filter {
 				break;
 			case "search2":
 				new Search().service(request, response);
+				break;
+			case "Message":
+				new Message().service(request, response);
 				break;
 			case "list":
 				new List().service(request, response);
