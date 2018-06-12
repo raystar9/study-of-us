@@ -13,6 +13,8 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import servlet.root.Home;
+import servlet.study.Studylist;
 import servlet.study.each.Information;
 import servlet.study.each.Setup;
 import servlet.study.each.attendance.Attendance;
@@ -66,7 +68,9 @@ public class SoupGlobalFilter implements Filter {
 		String lastUri = uri[uri.length - 1];
 		if(lastUri.endsWith(".jsp") || lastUri.endsWith(".js") || lastUri.endsWith(".css") || lastUri.endsWith(".woff") || lastUri.endsWith(".ttf")) {
 			chain.doFilter(request, response);
-		} else if(uri.length >= 3) {
+		} else if(uri.length == 2) {
+			httpResponse.sendRedirect("/study-of-us/home");
+		} else {
 			request.setAttribute("root", httpRequest.getContextPath());
 			if(uri[2].equals("study")) {
 				studyPaging(httpRequest, httpResponse, chain, uri);
@@ -85,7 +89,7 @@ public class SoupGlobalFilter implements Filter {
 	
 	private void studyPaging(HttpServletRequest request, HttpServletResponse response, FilterChain chain, String[] uri) throws IOException, ServletException {
 		if(uri.length == 3) {
-			//TODO study 기본페이지 구현해야됨!
+			new Studylist().service(request, response);
 		} else {
 			if(uri[3].equals("search")) {
 				chain.doFilter(request, response);
@@ -93,7 +97,7 @@ public class SoupGlobalFilter implements Filter {
 			
 			request.setAttribute("studyName", URLDecoder.decode(uri[3], "UTF-8"));
 			if(uri.length == 4) {
-				//TODO 각study의 기본 페이지로
+				response.sendRedirect(request.getRequestURI() + "/schedule");
 			} else {
 				switch(uri[4]) {
 					case "board":
