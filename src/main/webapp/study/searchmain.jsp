@@ -281,11 +281,11 @@ margin-left: 70px;
 
 					<div class="column">
 						<div class="card">
-							<img src="/study-of-us/resources/images/painting-palette.png"
+							<img src="/study-of-us/resources/images/laptop.png"
 								alt="Jane" style="width: 60%;">
 							<div class="container">
-								<h2>미술</h2>
-								<p class="title">interview</p>
+								<h2>입시</h2>
+								<p class="title">entrance examination</p>
 								<button class="button">Contact</button>
 							</div>
 						</div>
