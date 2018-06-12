@@ -6,6 +6,9 @@ select * from message inner join member on message.M_INDEX = member.m_index
 SELECT * FROM study inner join member on study.s_m_index = member.m_index where study.s_m_index = 2
 
 
+insert into message values (10,2,'so01','동완이 테스트',2)
+select * from message
+
 insert into studyMember values(2,3)
 
 select * from member
@@ -17,7 +20,7 @@ delete message where S_INDEX = 9 and M_M_INDEX = 2
 drop table message
 select * from message
 create table message (
-	S_INDEX NUMBER,
+	MS_S_INDEX NUMBER,
 	M_S_INDEX NUMBER, 
 	M_M_ID VARCHAR(20),
 	M_S_NAME VARCHAR(50),
@@ -26,7 +29,7 @@ create table message (
 select * from studymember
 insert into studyMember values(35,25)
 
-
+delete studymember
 select * from studymember
 select * from study inner join member on study.s_m_index = member.m_index where s_m_index = ?
 select * from Message where m_s_index = 7
