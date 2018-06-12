@@ -1,82 +1,38 @@
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
-	
-	
-	
-	
-	public void postMembers(Member member) {
-
-		/*
-		 * DataSettable은 익명클래스로 구현하도록 되어있습니다. 외부 혹은 내부 클래스로 선언하여 실제로 구현하여 매개변수로 넣어줄 수도
-		 * 있지만 익명클래스로 처리하는 쪽이 더 간결해 보인다고 생각했습니다.
-		 */
-		set(Member.QUERY_POST, new DataSettable() { // 콜백함수를 통해 setteble 안에있는 prepare 를 사용한다.
-			@Override
-			public void prepare(PreparedStatement pstmt) throws SQLException {
-				pstmt.setString(1, member.getId());
-				pstmt.setString(2, member.getName());
-				pstmt.setString(3, member.getPassword());
-				pstmt.setString(4, member.getEmail());
-				pstmt.setString(5, member.getTel());
-				pstmt.setString(6, member.getAddress());
-				pstmt.setString(7, member.getGender());
-				pstmt.setString(8, member.getIntroduce());
-				pstmt.executeUpdate();
-				pstmt.close();
-
-			}
-		});
-
-	}
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+		public ArrayList<Inquiry> getInquiryBoard(int index, int page, int limit) {
+			@SuppressWarnings("unchecked")
+			ArrayList<Inquiry> boardlist = (ArrayList<Inquiry>) get(Inquiry.QUERY_GET,new DataSettable() {
+				@Override
+				public void prepare(PreparedStatement pstmt) throws SQLException {
+					int startrow = (page - 1) * limit + 1;
+					System.out.println("inquiry startrow : " + startrow);
+					
+					int endrow = startrow + limit - 1;
+					
+					
+					pstmt.setInt(1, index);
+					pstmt.setInt(2, startrow);
+					pstmt.setInt(3, endrow);
+					
+				}
+			}, new DataGettable() {
+				
+				@Override
+				public Object onGetResult(ResultSet rs) throws SQLException {
+					ArrayList<Inquiry> boardlists = new ArrayList<>();
+					while(rs.next()) {
+						Inquiry inquiry = new Inquiry();
+						
+						inquiry.setI_index(rs.getInt("i_index"));
+						inquiry.setRnum(rs.getInt("rnum"));
+						inquiry.setSubject(rs.getString("i_subject"));
+						inquiry.setM_id(rs.getString("m_id"));
+						inquiry.setDate(rs.getString("i_date"));
+						boardlists.add(inquiry);
+					}
+					
+					return boardlists;
+				}
+			});
+			return boardlist;
+		}

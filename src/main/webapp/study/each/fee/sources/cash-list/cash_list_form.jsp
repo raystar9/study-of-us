@@ -84,7 +84,7 @@
 
 									<tr>
 										<c:if test="${b.name == id || id == 'admin' }">
-											<td colspan="5" style="text-align: right"><a href="./schedule?type=attend">[회비등록]</a></td>
+											<td colspan="5" style="text-align: right"><a href="./schedule?type=fee">[회비등록]</a></td>
 										</c:if>
 									</tr>
 								</tbody>

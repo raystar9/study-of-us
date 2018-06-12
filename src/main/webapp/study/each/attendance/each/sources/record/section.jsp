@@ -6,5 +6,5 @@
 <c:forEach var="attendance" items="${attendances}">
 <%@ include file="article.jsp" %>
 </c:forEach>
-<a href="/study-of-us/study/each/attendance/each/confirm">출석체크하기</a><br>
-<a href="/study-of-us/study/each/schedule?type=attend">다른 날짜 확인</a>
+<a href="confirm">출석체크하기</a><br>
+<a href="../../schedule?type=attend">다른 날짜 확인</a>

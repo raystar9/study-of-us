@@ -2,7 +2,7 @@ package beansNew;
 
 public class Attend {
 	//TODO 시퀀스명 변경해야함!
-	public static final String QUERY_POST = "INSERT INTO attend(A_INDEX, A_MT_ID, A_M_INDEX, A_ATTEND) VALUES(1, ?, ?, ?)";
+	public static final String QUERY_POST = "INSERT INTO attend(A_INDEX, A_MT_ID, A_M_INDEX, A_ATTEND) VALUES(attend_index.nextval, ?, ?, ?)";
 	
 	int attendId;
 	int meetingId;

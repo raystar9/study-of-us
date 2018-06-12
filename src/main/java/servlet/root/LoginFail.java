@@ -16,7 +16,8 @@ import javax.servlet.http.HttpServletResponse;
 public class LoginFail extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/error/loginFail.jsp");
 		dispatcher.forward(request, response);
 	}

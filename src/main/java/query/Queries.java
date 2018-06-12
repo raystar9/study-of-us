@@ -7,4 +7,5 @@ public class Queries {
 	public static final String GET_TOTAL_SPENT_FEE = "select sum(fe_expense) from meeting, feeexpense where fe_mt_id = mt_id AND mt_id <= ?";
 	public static final String GET_TOTAL_COLLECT_FEE = "select sum(fm_fee) from meeting, feemember where fm_mt_id = mt_id AND mt_id <= ?";
 	public static final String IS_FEE_REGISTERED = "select count(*) from meeting, feemember where fm_mt_id = mt_id AND mt_id = ?";
+	public static final String IS_ATTENDANCE_CHECKED = "select count(*) from meeting, attend where a_mt_id = mt_id AND mt_id = ?";
 }

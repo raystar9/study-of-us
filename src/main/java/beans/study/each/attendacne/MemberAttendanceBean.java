@@ -1,7 +1,7 @@
 package beans.study.each.attendacne;
 
 public class MemberAttendanceBean {
-	public static final String QUERY_GET = "SELECT m_index, m_name, a_attend FROM attend, studymemberlist WHERE s_name = ?";
+	public static final String QUERY_GET = "select m_index, m_name, a_attend from studyMemberList, studyMeeting, attend where studyMemberList.s_index = studyMeeting.s_index and a_m_index = m_index and a_mt_id = ?";
 	public static final String QUERY_UPDATE = "UPDATE attend SET a_attend = ? where a_index = ?";
 	
 	int memberId;

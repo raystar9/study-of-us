@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="sources/main/css/main.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script src = "http://code.jquery.com/jquery-3.3.1.js"></script> 
 
 </head>
 <body>
