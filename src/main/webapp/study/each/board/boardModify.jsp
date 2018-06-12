@@ -6,6 +6,7 @@
 <title>스터디 메인 페이지입니다.</title>
 <script src='/study-of-us/study/each/sources/schedule/js/jquery.min.js'></script>
 <link rel="stylesheet" href="/study-of-us/study/each/sources/main/css/main.css">
+<link rel="stylesheet" href="/study-of-us/study/each/board/sources/board-modify/css/board_modify.css">
 <script src="/study-of-us/study/each/board/sources/board-modify/js/board_modify.js" type="text/javascript"></script>
 </head>
 <body>
