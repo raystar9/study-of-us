@@ -38,7 +38,7 @@
 						<div>
 							&nbsp; ▶ <a href="./boardview?num=${b.index}"> ${b.title} </a>
 							<c:if test='${!empty b.filename }'>
-								<img src='../sources/board-list/file.png' width='13px'
+								<img src='/study-of-us/study/each/board/sources/board-list/file.png' width='13px'
 									height='13px'>
 							</c:if>
 						</div>

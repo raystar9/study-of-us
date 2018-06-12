@@ -411,13 +411,13 @@ public class DataGetter extends DataAccessor {
 			@Override
 			public ArrayList<BoardListBean> onGetResult(ResultSet rs) throws SQLException {
 				ArrayList<BoardListBean> boardlist = new ArrayList<>();
-				System.out.println("sql = " + sql);
 				while (rs.next()) {
 					BoardListBean board = new BoardListBean();
 					board.setIndex(rs.getInt(1));
 					board.setTitle(rs.getString(2));
 					board.setName(rs.getString(3));
 					board.setDate(rs.getDate(4));
+					board.setFilename(rs.getString(5));
 					boardlist.add(board);
 				}
 				return boardlist;
