@@ -2,18 +2,19 @@
     pageEncoding="UTF-8"%>
 <html>
 <head>
-<style>
-	#left{
-		float:left;
-	}
-</style>
+<link rel="stylesheet" href="/study-of-us/study/each/sources/main/css/main.css">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="sources/setup/js/setup.js" type="text/javascript"></script>
 </head>
 <body>
-<%@ include file = "/general-sources/Navigation.jsp" %>
-<%@ include file = "left.jsp" %>
-<%@ include file = "sources/setup/setup_form.jsp" %>
-<%@ include file = "/general-sources/Footer.jsp" %>
+<div class="page-container">
+	<div class="nav-container"><%@ include file = "/general-sources/Navigation.jsp" %></div>
+	<div class="main-container">
+		<div class="schedule-flexbox aside"><%@ include file = "/study/each/left.jsp" %></div>
+		<div class="schedule-flexbox section"><c:import url="sources/setup/setup_form.jsp"/><br></div>
+	</div>
+	
+	<%@ include file = "/general-sources/Footer.jsp" %>
+</div>
 </body>
 </html>
