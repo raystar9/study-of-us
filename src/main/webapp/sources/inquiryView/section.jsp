@@ -14,19 +14,19 @@
 	</tr>
 	
 	<tr>
-		<td>글쓴이</td>
-		<td>${boardView.m_id }</td>
+		<td width="30%">글쓴이</td>
+		<td width="70%">${boardView.m_id }</td>
 	</tr>
 	
 	<tr>
-		<td>제목</td>
-		<td>${boardView.subject }</td>
+		<td width="30%">제목</td>
+		<td width="70%">${boardView.subject }</td>
 	</tr>	
 	
 	
 	<tr>
-		<td>내용</td>
-		<td>${boardView.content }</td>
+		<td width="30%">내용</td>
+		<td width="70%">${boardView.content }</td>
 	</tr>	
 	
 	<tr>
@@ -52,21 +52,18 @@
 	
 	
 	
-	<%-- <c:forEach var="comment" items="${commentGet}"> 
-		${comment.m_id}
-		${comment.content}
-		${comment.date}<br> 
-	</c:forEach>   --%>
+	<div class="container">
+	
+	</div>
+	
+	<!-- <table>
+		<tbody class="container"></tbody>
+		
+	</table> -->
 	<!-- <div class="container">
 		<div class="commentList"> 
 		</div>
 	</div> -->
-	
-	<div class="container">
-  <img src="/w3images/bandmember.jpg" alt="Avatar" style="width:100%;">
-  <p>Hello. How are you today?</p>
-  <span class="time-right">11:00</span>
-</div>
 		
 		
 </body>

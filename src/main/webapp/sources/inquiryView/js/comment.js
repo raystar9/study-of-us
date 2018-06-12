@@ -26,11 +26,11 @@ $(document).ready(function() {
 			success : function(comment){
 				$.each(JSON.parse(comment), function(index, item){
 					var output = ''; 
-					output += "<span>"
-					output +=  item.m_id
-					output +=  item.content
-					output +=  item.date 
-					output += '</span><br>';
+					output += "<tr>"
+					output += "<td>" + item.m_id + "</td>" 
+					output += "<td>" + item.content + "</td>"
+					output += + "<td>" +  item.date + "</td>" 
+					output += "</tr>";
 					$(".container").append(output);
 				})
 			}
@@ -46,8 +46,11 @@ $(document).ready(function() {
 		success : function(comment){
 			$.each(JSON.parse(comment), function(index, item){
 				var output = ''; 
-				output +=  "<p>" + item.content +"</p>"
-				output +=  "<span class='time-right'>" + item.date + "</span><br>"
+				output += "<div class='comment'>"
+				output += "<p>" + item.m_id + "</p>" 
+				output += "<p>" + item.content + "</p>"
+				output += "<p>" +  item.date + "</p>"
+				output += "</div> " 
 				$(".container").append(output);
 			})
 		}

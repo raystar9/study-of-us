@@ -4,7 +4,7 @@ public class Inquiry {
 	//게시판 테이블
 	public static final String QUERY_GET = "select * from (select i_index,rownum rnum,i_subject,i_date, m_id "
 			   + " from (select ib.i_index,m.m_id,rownum rnum, ib.i_subject, ib.i_date "
-		       + " from inquiryboard ib, member m where m.m_index = ib.i_m_index and (ib.i_m_index = ?  or ib.i_m_index = 41) " 
+		       + " from inquiryboard ib, member m where m.m_index = ib.i_m_index and (ib.i_m_index = ?  or ib.i_m_index = 13) " 
 		       + " order by ib.i_index desc)) "
 		       + " where rnum >= ? and rnum <= ? ";
 	
