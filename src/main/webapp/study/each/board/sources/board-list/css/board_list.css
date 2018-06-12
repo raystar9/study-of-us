@@ -1,0 +1,39 @@
+#boardtable {
+	width: 1080px;
+	font-size: 11px;
+	margin-top: 30px;
+	margin-botton: 100px;
+	margin-left: 30px;
+}
+#number {
+	text-align: center;
+	font-size: 13px
+}
+
+#write {
+	float: right;
+	padding: 3px 10px;
+	font-size: 12px
+}
+
+#boardSearchBtn {
+	padding: 3px 10px;
+	font-size: 11px
+}
+
+#searchSelect {
+	height: 19.5px
+}
+
+#search {
+	height: 20px
+}
+
+.boardlistform {
+	align-content: center
+}
+#table_title{
+	background-color: #337ab7eb;
+	color: white;
+	
+}
