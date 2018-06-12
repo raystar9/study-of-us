@@ -2,6 +2,7 @@ package servlet;
 
 import java.io.IOException;
 import java.net.URLDecoder;
+import java.util.ArrayList;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -13,6 +14,8 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.DataGetter;
+import dao.DatabaseAccounts;
 import servlet.study.List;
 import servlet.study.Registration;
 import servlet.study.SearchMain;
@@ -107,36 +110,46 @@ public class SoupGlobalFilter implements Filter {
 				new Studylist().service(request, response);
 				break;
 			default : 
-				request.setAttribute("studyName", URLDecoder.decode(uri[3], "UTF-8"));
-				response.sendRedirect(request.getRequestURI() + "/schedule");
+				String studyName = URLDecoder.decode(uri[3], "UTF-8");
+				if(isMember(request, studyName)) {
+					request.setAttribute("studyName", studyName);					
+					request.getRequestDispatcher("/study/each/schedule.jsp").forward(request, response);
+				} else {
+					request.getRequestDispatcher("/study/each/not-member.jsp").forward(request, response);
+				}
 				break;
 			}
 		} else if(uri.length > 4) {
-			request.setAttribute("studyName", URLDecoder.decode(uri[3], "UTF-8"));
+			String studyName = URLDecoder.decode(uri[3], "UTF-8");
+			request.setAttribute("studyName", studyName);
+			if(isMember(request, studyName)) {
 				switch(uri[4]) {
-					case "board":
-						boardPaging(request, response, chain, uri);
-						break;
-					case "comment":
-						commentPaging(request, response, chain, uri);
-						break;
-					case "schedule":
-						schedulePaging(request, response, chain, uri);
-						break;
-					case "attendance":
-						attendancePaging(request, response, chain, uri);
-						break;
-					case "fee":
-						feePaging(request, response, chain, uri);
-						break;
-					case "information":
-						new Information().service(request, response);
-						break;
-					case "setup":
-						new Setup().service(request, response);
-						break;
-					default:
-						chain.doFilter(request, response);
+				case "board":
+					boardPaging(request, response, chain, uri);
+					break;
+				case "comment":
+					commentPaging(request, response, chain, uri);
+					break;
+				case "schedule":
+					schedulePaging(request, response, chain, uri);
+					break;
+				case "attendance":
+					attendancePaging(request, response, chain, uri);
+					break;
+				case "fee":
+					feePaging(request, response, chain, uri);
+					break;
+				case "information":
+					new Information().service(request, response);
+					break;
+				case "setup":
+					new Setup().service(request, response);
+					break;
+				default:
+					chain.doFilter(request, response);
+				}
+			} else {
+				request.getRequestDispatcher("/study/each/not-member.jsp").forward(request, response);
 			}
 		}
 	}
@@ -236,5 +249,31 @@ public class SoupGlobalFilter implements Filter {
 					break;
 			}
 		}
+	}
+	
+	private boolean isLogin(HttpServletRequest request) throws IOException, ServletException {
+		String id = (String) request.getSession().getAttribute("id");
+		boolean isLogin = false;
+		if(id != null) {
+			isLogin = true;
+		}
+		return isLogin;
+	}
+	private boolean isMember(HttpServletRequest request, String studyName) throws IOException, ServletException {
+		if(!isLogin(request)) {
+			return false;
+		}
+		
+		int id =(int)request.getSession().getAttribute("index");
+		DataGetter getter = new DataGetter(DatabaseAccounts.PROJECT);
+		ArrayList<Integer> memberIndexes = getter.getMemberIndexes(studyName);
+		getter.close();
+		boolean isMember = false;
+		for(int memberIndex : memberIndexes) {
+			if(memberIndex == id) {
+				isMember = true;
+			}
+		}
+		return isMember;
 	}
 }
