@@ -4,7 +4,7 @@
 <head>
 <link rel="stylesheet" href="/study-of-us/study/each/sources/main/css/main.css">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
-<script src="sources/setup/js/setup.js" type="text/javascript"></script>
+<script type="text/javascript" src="/study-of-us/study/each/sources/setup/js/setup.js"></script>
 <link rel="stylesheet" href="/study-of-us/study/each/sources/setup/css/setup.css">
 </head>
 <body>

@@ -37,7 +37,7 @@ select count(*) from (select distinct C_GROUP from category);
 
 select * from category;
 
-
+UPDATE STUDY SET S_NAME=?, S_C_ID=?, S_START=?, S_END=?, S_MAXMEMBER=?, S_DAY=?, S_TIME=?, S_EXPLAIN=?, S_MATERIAL=?, S_EFFECT=?, S_PLACE=? where S_INDEX = ?
 
 
 	M_INDEX NUMBER NOT NULL PRIMARY KEY,      -- member_index 시퀀스 처리
