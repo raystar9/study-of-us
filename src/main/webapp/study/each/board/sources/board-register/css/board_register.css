@@ -1,0 +1,44 @@
+#submittbtn, #cancelbtn{
+	height:25px;
+	font-size:12px;
+	padding-top: 4px;
+} 
+#trbtn{
+	text-align: right;
+}
+textarea {
+	border: 0;
+}
+
+#viewtable {
+	border: 1px solid #8080805e;
+	margin-left: 30px;
+	margin-top: 30px;
+}
+
+table>tr {
+	border-botton: 1px solid gray;
+}
+
+#default {
+	width: 600px;
+	height: 550px;
+}
+
+#tdfooter {
+	padding: 10px 15px;
+	background-color: #f5f5f5;
+	border-top: 1px solid #ddd;
+	border-bottom-right-radius: 3px;
+	border-bottom-left-radius: 3px;
+}
+
+#commentContainer {
+	margin-left: 30px;
+	padding-left: 0px;
+	margin-top: 10px;
+}
+
+#commentListBtn {
+	margin-left: 30px;
+}
