@@ -34,7 +34,7 @@ public class BoardDelete extends HttpServlet {
 		poster.postBoardDelete(num, studyIndex);
 		poster.close();
 		
-		response.sendRedirect("/study-of-us/study/each/board");
+		response.sendRedirect("../board");
 	}
 
 	

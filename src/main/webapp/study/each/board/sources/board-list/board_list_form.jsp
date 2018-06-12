@@ -36,7 +36,7 @@
 							var="num" value="${num-1}" /></td>
 					<td>
 						<div>
-							&nbsp; ▶ <a href="./boardview?num=${b.index}"> ${b.title} </a>
+							&nbsp; ▶ <a href="./board/view?num=${b.index}"> ${b.title} </a>
 							<c:if test='${!empty b.filename }'>
 								<img src='/study-of-us/study/each/board/sources/board-list/file.png' width='11px'
 									height='11px'>
@@ -89,7 +89,7 @@
 				</select> <input type="text" class="" id="search" name="search"> <input
 					type="submit" value="검색" class="btn btn-default"
 					id='boardSearchBtn'> <input type="button"
-					class="btn btn-default" onClick='location.href="./boardregister"'
+					class="btn btn-default" onClick='location.href="./board/register"'
 					id='write' value="글쓰기"></td>
 			</tr>
 		</table>

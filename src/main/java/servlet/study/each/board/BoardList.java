@@ -31,6 +31,7 @@ public class BoardList extends HttpServlet {
 		
 		String search = request.getParameter("search");
 		String searchSelect = request.getParameter("searchSelect");
+		String studyName = (String) request.getAttribute("studyName");
 		String pluswhere = "";
 		
 		if(search != null && search != "" && searchSelect.equals("title")) {
@@ -43,7 +44,7 @@ public class BoardList extends HttpServlet {
 		
 		int page = 1;
 		int limit = 10;
-		int studyIndex = 5;
+		int studyIndex = getter.getStudyIndex(studyName);
 		//int studyIndex = (int)request.getSession().getAttribute("index");
 
 		if (request.getParameter("page") != null) {

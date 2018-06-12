@@ -11,7 +11,7 @@
 </head>
 <body>
 	<c:set var='id' value="${sessionScope.id}" />
-	<form action="./boardregister" method="post" name="boardform" enctype="multipart/form-data" class="boardform">
+	<form action="./register" method="post" name="boardform" enctype="multipart/form-data" class="boardform">
 	<table id='viewtable'>
 		<tr class="center" style="border-bottom: 1px solid #ccc; height: 20px;" id='tdfooter'>
 			<td colspan="2" id='td_top'></td>
@@ -26,8 +26,8 @@
 		<tr style="border-bottom: 1px solid #ccc">
 			<td width='10%'
 				style="background: #cccccc38; padding-left: 5px; height: 30px;">글쓴이</td>
-			<td style="padding-left: 10px;"><input type="text" name="boardName" id="board-name" size="10" maxlength="30">
-					<%-- value="${id}"하고 readOnly로 바꿀것임 --%></td>
+			<td style="padding-left: 10px;">${writer}
+			</td>
 		</tr>
 
 
