@@ -33,7 +33,8 @@ public class CashRegister extends HttpServlet {
 		System.out.println("CashRegister 서블릿 들어옴");
 		DataGetter getter = new DataGetter(DatabaseAccounts.PROJECT);
 		if(getter.isFeeRegistered((String)request.getAttribute("meetingId"))) {
-			response.sendRedirect("../../fee");
+			request.getRequestDispatcher("/study/each/fee/already-registered.jsp").forward(request, response);
+			
 		} else {
 			String studyName = (String)request.getAttribute("studyName");
 			
