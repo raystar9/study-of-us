@@ -16,26 +16,28 @@
 		
 		<c:if test="${admincount > 0}">
 			<tr>
-				<th colspan = "3"> 문의사항 게시판 list</th>
-				<th colspan = "2">
+				<th class="title" colspan="3">문의사항 게시판</h2></th>
+				<%-- <th>
 					<font size=2>글 개수 : ${admincount }</font>
-				</th>
+				</th> --%>
 			</tr>
 			<tr>
-		<th  width="50%"><div >제목</div></th>
-		<th width="25%"><div >작성자</div></th>
-		<th  width="25%"><div >날짜</div></th>
+		<th width="50%">제목</th>
+		<th width="25%">작성자</th>
+		<th width="25%">작성날짜</th>
 			</tr>
 	
 			<c:set var="num" value="${admincount-(page-1)*10 }"/>
 			<c:forEach var="list" items="${admin }">
 		<tr>
+		
+		
 		<%-- <td>
 			  <c:out value="${num}"/>
 			 <c:set var="num" value="${num-1 }"/> 
-			 
 			 ${list.rnum }
 		</td> --%>
+		
 		<td>
 			 <a href="/study-of-us/inquiryView?num=${list.i_index}">
 			 			${ list.subject}</a>
@@ -58,7 +60,7 @@
 				이전&nbsp;
 			</c:if>
 			<c:if test="${page > 1 }">			
-				 <a href="/study-of-us/inquiryPage?page=${page-1}">이전</a>&nbsp;
+				 <a href="/study-of-us/inquiry?page=${page-1}">이전</a>&nbsp;
 			</c:if>
 					
 			<c:forEach var="a" begin="${startpage2}" end="${endpage2}">
@@ -66,7 +68,7 @@
 					${a}
 				</c:if>
 				<c:if test="${a != page }">
-					<a href="/study-of-us/inquiryPage?page=${a}">${a}</a>
+					<a href="/study-of-us/inquiry?page=${a}">${a}</a>
 				</c:if>
 			</c:forEach>
 			
@@ -74,7 +76,7 @@
 				&nbsp;다음 
 			</c:if>
 			<c:if test="${page < maxpage2 }">
-				<a href="/study-of-us/inquiryPage?page=${page+1}">&nbsp;다음</a>
+				<a href="/study-of-us/inquiry?page=${page+1}">&nbsp;다음</a>
 			</c:if>
 		</td>
 	</tr>
@@ -96,27 +98,28 @@
 	<table>
 		
 		<c:if test="${inquirycount > 0}">
-			<tr>
-				<th colspan = "3"> 문의사항 게시판 list</th>
-				<th colspan = "2">
-					<font size=2>글 개수 : ${inquirycount }</font>
-				</th>
+				<tr>
+				<th colspan="3">문의사항 게시판</th>
+				<%-- <th>
+					<font size=2>글 개수 : ${admincount }</font>
+				</th> --%>
 			</tr>
 			<tr>
-		<th  width="50%"><div >제목</div></th>
-		<th width="25%"><div >작성자</div></th>
-		<th  width="25%"><div >날짜</div></th>
-			</tr>
-	
+		<th width="50%">제목</th>
+		<th width="25%">작성자</th>
+		<th width="25%">날짜</th>
 			<c:set var="num" value="${inquirycount-(page-1)*10 }"/>
 			<c:forEach var="list" items="${inquiryList }">
 		<tr>
-	<%-- 	<td>
+		
+		<%-- <td>
 			  <c:out value="${num}"/>
 			 <c:set var="num" value="${num-1 }"/> 
 			 
 			 ${list.rnum }
-		</td> --%>
+		</td> --%> 
+		
+		
 		<td>
 			 <a href="/study-of-us/inquiryView?num=${list.i_index}">
 			 			${ list.subject}</a>
@@ -139,7 +142,7 @@
 				이전&nbsp;
 			</c:if>
 			<c:if test="${page > 1 }">			
-				 <a href="/study-of-us/inquiryPage?page=${page-1}">이전</a>&nbsp;
+				 <a href="/study-of-us/inquiry?page=${page-1}">이전</a>&nbsp;
 			</c:if>
 					
 			<c:forEach var="a" begin="${startpage}" end="${endpage}">
@@ -147,7 +150,7 @@
 					${a}
 				</c:if>
 				<c:if test="${a != page }">
-					<a href="/study-of-us/inquiryPage?page=${a}">${a}</a>
+					<a href="/study-of-us/inquiry?page=${a}">${a}</a>
 				</c:if>
 			</c:forEach>
 			
@@ -155,7 +158,7 @@
 				&nbsp;다음 
 			</c:if>
 			<c:if test="${page < maxpage }">
-				<a href="/study-of-us/inquiryPage?page=${page+1}">&nbsp;다음</a>
+				<a href="/study-of-us/inquiry?page=${page+1}">&nbsp;다음</a>
 			</c:if>
 		</td>
 	</tr>

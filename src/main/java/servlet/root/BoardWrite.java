@@ -82,7 +82,7 @@ public class BoardWrite extends HttpServlet {
 			// Redircet 여부를 true 로 설정합니다.
 			
 			
-			response.sendRedirect("/study-of-us/inquiryPage");
+			response.sendRedirect("/study-of-us/inquiry");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

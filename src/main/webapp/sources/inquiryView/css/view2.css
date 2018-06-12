@@ -1,54 +1,41 @@
 @CHARSET "UTF-8";
 
-body {
-    margin: 0 auto;
-    max-width: 800px;
-    padding: 0 20px;
+@CHARSET "UTF-8";
+table {
+	margin : 0 auto;
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 80%;
+    border: 1px solid #ddd;
 }
 
+th, td {
+    text-align: left;
+    padding: 16px;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2
+}
+
+ 
 .container {
+	 margin : 0 auto; 
+	width : 80%;
+	heignt : 50%;
     border: 2px solid #dedede;
     background-color: #f1f1f1;
     border-radius: 5px;
     padding: 10px;
-    margin: 10px 0;
+   /*  margin: 10px 0; */
 }
-
-.darker {
-    border-color: #ccc;
-    background-color: #ddd;
+.comment{
+	width : 30%;
+	text-align : right;
+	background-color : yellowgreen;
+	
 }
-
-.container::after {
-    content: "";
-    clear: both;
-    display: table;
-}
-
-.container img {
-    float: left;
-    max-width: 60px;
-    width: 100%;
-    margin-right: 20px;
-    border-radius: 50%;
-}
-
-.container img.right {
-    float: right;
-    margin-left: 20px;
-    margin-right:0;
-}
-
-.time-right {
-    float: right;
-    color: #aaa;
-}
-
-.time-left {
-    float: left;
-    color: #999;
-}
-
+/* 
 {box-sizing:border-box;}
 table{margin:0 auto;width:80% ;border-collapse:collapse;}
 td{border-bottom:1px solid #cdc9c9;padding:1%;}
@@ -64,5 +51,5 @@ input[type=text], input[type=password]{width:100%;}
 input[type=submit],input[type=reset]{border-radius:3px}
 textarea{width:90%}
 input[name="BOARD_NAME"]{border:none}
-img{width:20px;} 
+img{width:20px;}  */
    

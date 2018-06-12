@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import servlet.study.Complete;
 import servlet.study.List;
 import servlet.study.Registration;
 import servlet.study.SearchMain;
@@ -102,6 +103,9 @@ public class SoupGlobalFilter implements Filter {
 				break;
 			case "registration":
 				new Registration().service(request, response);
+				break;
+			case "complete":
+				new Complete().service(request, response);
 				break;
 			case "join":
 				new Studylist().service(request, response);
