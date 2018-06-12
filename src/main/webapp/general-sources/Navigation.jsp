@@ -151,7 +151,7 @@ $(document).ready(function(){
 		</c:if>
 		<a href="/study-of-us/study/registration">Study Create</a> <a
 			href="/study-of-us/study/search">Study Search</a> <a
-			href="#information">Information</a>
+			href="/study-of-us/inquiry">Inquiry</a>
 
 		<div class="topnav-right">
 			<c:if test="${empty id }">
