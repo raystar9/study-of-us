@@ -14,10 +14,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import servlet.study.List;
+import servlet.study.Registration;
 import servlet.study.SearchMain;
 import servlet.study.Studylist;
 import servlet.study.each.Information;
-import servlet.study.each.Registration;
 import servlet.study.each.Setup;
 import servlet.study.each.attendance.Attendance;
 import servlet.study.each.attendance.AttendanceConfirm;
