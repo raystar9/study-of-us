@@ -150,27 +150,27 @@
 	<div class="paging" style="text-align: center; margin-bottom: 100px">
 		<c:if test="${startpage > 1}">
 			<a class="round2"
-				href="/study-of-us/study/search?page=1&searchVal=${searchVal}&time=${time}&day=${day}&location=${location}&category=${category}&subcategory=${subcategory}">&laquo;</a>
+				href="/study-of-us/study/search2?page=1&searchVal=${searchVal}&time=${time}&day=${day}&location=${location}&category=${category}&subcategory=${subcategory}">&laquo;</a>
 		</c:if>
 
 		<c:if test="${page > 1}">
 			<a class="round"
-				href="/study-of-us/study/search?page=${page-1 }&searchVal=${searchVal}&time=${time}&day=${day}&location=${location}&category=${category}&subcategory=${subcategory}">&#8249;</a>
+				href="/study-of-us/study/search2?page=${page-1 }&searchVal=${searchVal}&time=${time}&day=${day}&location=${location}&category=${category}&subcategory=${subcategory}">&#8249;</a>
 		</c:if>
 
 		<c:forEach var="i" begin="${startpage }" end="${endpage }">
 			<a id=atag
-				href="/study-of-us/study/search?page=${i }&searchVal=${searchVal}&time=${time}&day=${day}&location=${location}&category=${category}&subcategory=${subcategory}">${i }</a>
+				href="/study-of-us/study/search2?page=${i }&searchVal=${searchVal}&time=${time}&day=${day}&location=${location}&category=${category}&subcategory=${subcategory}">${i }</a>
 		</c:forEach>
 
 		<c:if test="${page < totalpage}">
 			<a class="round"
-				href="/study-of-us/study/search?page=${page+1 }&searchVal=${searchVal}&time=${time}&day=${day}&location=${location}&category=${category}&subcategory=${subcategory}">&#8250;</a>
+				href="/study-of-us/study/search2?page=${page+1 }&searchVal=${searchVal}&time=${time}&day=${day}&location=${location}&category=${category}&subcategory=${subcategory}">&#8250;</a>
 		</c:if>
 
 		<c:if test="${endpage < totalpage}">
 			<a class="round2"
-				href="/study-of-us/study/search?page=${totalpage }&searchVal=${searchVal}&time=${time}&day=${day}&location=${location}&category=${category}&subcategory=${subcategory}">&raquo;</a>
+				href="/study-of-us/study/search2?page=${totalpage }&searchVal=${searchVal}&time=${time}&day=${day}&location=${location}&category=${category}&subcategory=${subcategory}">&raquo;</a>
 		</c:if>
 
 	</div>
