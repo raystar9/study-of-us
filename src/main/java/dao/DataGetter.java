@@ -1103,8 +1103,8 @@ ArrayList<StudyListSelect> studylist = (ArrayList<StudyListSelect>) get(StudyLis
 					sl.setProgress(rs.getInt("progress"));
 					sl.setS_name(rs.getString("s_name"));
 					sl.setS_maxmember(rs.getInt("s_maxmember"));
-					sl.setStart(rs.getString("s_start"));
-					sl.setEnd(rs.getString("s_end"));
+					sl.setStart(rs.getString("s_start").substring(0,11));
+					sl.setEnd(rs.getString("s_end").substring(0,11));
 					studylists.add(sl);
 			}
 		
