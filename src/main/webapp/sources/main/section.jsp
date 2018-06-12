@@ -8,7 +8,7 @@
     All life is an experiment.<br>
      The more experiments you make the better.</h1>
 </div>
-  <form action="LoginPage" method="get">
+  <form action="LoginPage" method="post">
     <div class="container">
       <h1>Login</h1>
       <label for="id"><b>ID</b></label>

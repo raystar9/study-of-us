@@ -7,11 +7,11 @@
 <title>Insert title here</title>
 
 <link href="sources/registration/css/registration.css" rel="stylesheet">
-<link href="sources/summary/css/participate.css" rel="stylesheet">
+<link href="sources/summary/css/participate1.css" rel="stylesheet">
 <script src = "http://code.jquery.com/jquery-3.3.1.js"></script>
 </head>
 <body>
 
-<%@ include file="sources/summary/section.jsp" %>
+<%@ include file="sources/summary/section2.jsp" %>
 </body>
 </html>

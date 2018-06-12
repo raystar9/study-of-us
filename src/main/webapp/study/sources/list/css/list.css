@@ -69,6 +69,10 @@
     }
 }
 
-page{
+.page{
 	   text-align: center;
+}
+
+.dayday{
+	float : right;
 }

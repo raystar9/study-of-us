@@ -31,6 +31,12 @@
 			 alert("끝날짜 입력해주세요");
 			 return false;
 		 }
+
+		 if($("#day1").val() == $("#day2").val()){
+			 alert("날짜를 다시 선택해주세요")
+			 return false;
+		 }
+		 
 		 
 		 if($("#people").val() == ""){
 			 alert("모집인원을 입력해주세요");
@@ -68,6 +74,8 @@
 			 return false;
 		 }
 		 
+		 
+		 
 
 		 /*
 		 
@@ -95,6 +103,16 @@
 		 
 	  })
 	  
+	  $('#people').keyup(function(){
+		  if(isNaN($("#people").val())){
+			  alert("숫자만 입력가능합니다.")
+			  $("#people").val("")
+		  }
+	  })
+	  
+
+	  
+	  
 	  
 	  //달력
 	  
@@ -113,11 +131,11 @@
           //buttonImage: "/jdAdmin/images/calendar.png", // 버튼 이미지
           //buttonImageOnly : true,             // 버튼 이미지만 표시할지 여부
           //buttonText: "날짜선택",             // 버튼의 대체 텍스트
-           minDate : 0,
+           minDate : 7,
           dateFormat: "yy-mm-dd",             // 날짜의 형식
           changeMonth: true,                  // 월을 이동하기 위한 선택상자 표시여부
               /*maxDate: 0,                       // 선택할수있는 최소날짜, ( 0 : 오늘 이후 날짜 선택 불가)
-*/          onClose: function( selectedDate ) {    
+*/          onSelect: function( selectedDate ) {    
               // 시작일(fromDate) datepicker가 닫힐때
               // 종료일(toDate)의 선택할수있는 최소 날짜(minDate)를 선택한 시작일로 지정
               $("#day2").datepicker( "option", "minDate", selectedDate );
@@ -131,16 +149,16 @@
            dayNamesMin:["일","월","화","수","목","금","토"], 
           dateFormat: "yy-mm-dd",
           changeMonth: true,
-          /*maxDate: 0, // 오늘 이후 날짜 선택 불가
-*/          onClose: function( selectedDate ) {
+          onSelect: function( selectedDate ) {
               // 종료일(toDate) datepicker가 닫힐때
               // 시작일(fromDate)의 선택할수있는 최대 날짜(maxDate)를 선택한 종료일로 지정 
-              $("#day1").datepicker( "option", "maxDate", selectedDate );
-          }                
+              $("#day1").datepicker( "option", "maxDate"+7, selectedDate );
+          },
+          minDate : 7
       });
     
     
-    // 지도
+    /*// 지도
 	  
 	
 	  sel = $("#locationSel");
@@ -149,7 +167,7 @@
 		 var sel = $("#locationSel").val();
 	
     var map = new naver.maps.Map('map');
-     /*myaddress = '서울';// 도로명 주소나 지번 주소만 가능 (건물명 불가!!!!)*/    
+     myaddress = '서울';// 도로명 주소나 지번 주소만 가능 (건물명 불가!!!!)    
 	 myaddress = sel;
 	 naver.maps.Service.geocode({address: myaddress}, function(status, response) {
         if (status !== naver.maps.Service.Status.OK) {
@@ -179,21 +197,28 @@
             content: '<h4> [네이버 개발자센터]</h4><a href="https://blog.naver.com/rumor1993" target="_blank"><img src="https://developers.naver.com/inc/devcenter/images/nd_img.png"></a>'
         });
     });
-    
-	 })
+	 })*/
     
     //카테고리
-    var second0=new Array ("자바","c언어","파이썬","c++","c#");
-    var second1=new Array ("영어","불어","중국어","일본어");
-    var second2=new Array ("정보처리기사","컴활","ccna","ccnp");
+    /*var second0=new Array ("프로그래밍","언어","자격증","수능");*/
+    var second0=new Array ("java","c언어","c#","c++","linux","pyhon","html");
+    var second1=new Array ("영어","일본어","중국어","불어","스페인어");
+    var second2=new Array ("토익","토플","정보처리기사","리눅스마스터","한자");
+    var second3=new Array ("언어","수학","외국어","사회탐구","과학탐구","제2외국어");
+   p = 101;
+   e = 201;
+   t = 301;
+   k = 401;
+   		
+   
+    
     
     $("#first").change(function(){				//대분류 소분류의 값을 선택할 수 있도록한다.
     	var selectVal = $("#first").val();
     	var inner = "";
-    	
     	if(selectVal == 1){
 		for(var i = 0; i < second0.length; i++){
-			inner += "<option value="+i+">";
+			inner += "<option value="+(p+i)+">";
 			inner += second0[i];
 			inner += "</option>";
 		}
@@ -203,17 +228,16 @@
 	
 	if(selectVal == 2){
 		for(var i = 0; i < second1.length; i++){
-			inner += "<option value="+i+">";
+			inner += "<option value="+(e+i)+">";
 			inner += second1[i];
 			inner += "</option>";
 		}
 		$("#second option").remove();
 		$("#second").append(inner);
 	}
-	
 	if(selectVal == 3){
 		for(var i = 0; i < second2.length; i++){
-			inner += "<option value="+i+">";
+			inner += "<option value="+(t+i)+">";
 			inner += second2[i];
 			inner += "</option>";
 		}
@@ -221,7 +245,20 @@
 		$("#second").append(inner);
 	}
 	
+	if(selectVal == 4){
+		for(var i = 0; i < second3.length; i++){
+			inner += "<option value="+(k+i)+">";
+			inner += second3[i];
+			inner += "</option>";
+		}
+		$("#second option").remove();
+		$("#second").append(inner);
+	}
+	
+	
 })		
-    
+	
+
+
     
   });

@@ -13,7 +13,9 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import servlet.root.Home;
+import servlet.study.List;
+import servlet.study.Registration;
+import servlet.study.SearchMain;
 import servlet.study.Studylist;
 import servlet.study.each.Information;
 import servlet.study.each.Setup;
@@ -90,15 +92,27 @@ public class SoupGlobalFilter implements Filter {
 	private void studyPaging(HttpServletRequest request, HttpServletResponse response, FilterChain chain, String[] uri) throws IOException, ServletException {
 		if(uri.length == 3) {
 			new Studylist().service(request, response);
-		} else {
-			if(uri[3].equals("search")) {
-				chain.doFilter(request, response);
-			}
-			
-			request.setAttribute("studyName", URLDecoder.decode(uri[3], "UTF-8"));
-			if(uri.length == 4) {
+		} else if(uri.length == 4) {
+			switch(uri[3]) {
+			case "search":
+				new SearchMain().service(request, response);
+				break;
+			case "list":
+				new List().service(request, response);
+				break;
+			case "registration":
+				new Registration().service(request, response);
+				break;
+			case "join":
+				new Studylist().service(request, response);
+				break;
+			default : 
+				request.setAttribute("studyName", URLDecoder.decode(uri[3], "UTF-8"));
 				response.sendRedirect(request.getRequestURI() + "/schedule");
-			} else {
+				break;
+			}
+		} else if(uri.length > 4) {
+			request.setAttribute("studyName", URLDecoder.decode(uri[3], "UTF-8"));
 				switch(uri[4]) {
 					case "board":
 						boardPaging(request, response, chain, uri);
@@ -123,7 +137,6 @@ public class SoupGlobalFilter implements Filter {
 						break;
 					default:
 						chain.doFilter(request, response);
-				}
 			}
 		}
 	}
