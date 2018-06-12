@@ -37,7 +37,7 @@ public class AttendanceConfirm extends HttpServlet {
 		
 		DataGetter getter = new DataGetter(DatabaseAccounts.PROJECT);
 		if(getter.isAttendChecked(meetingId)) {
-			response.sendRedirect("../../schedule?type=attend");
+			request.getRequestDispatcher("/study/each/attendance/each/already-confirm.jsp").forward(request, response);
 		} else {
 			ArrayList<String> names = getter.getMemberNames((String)request.getAttribute("studyName"));
 			request.setAttribute("names", names);
