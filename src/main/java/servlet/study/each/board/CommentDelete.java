@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.DataGetter;
 import dao.DataPoster;
 import dao.DatabaseAccounts;
 
@@ -26,13 +27,22 @@ public class CommentDelete extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		System.out.println("Delete 서블릿으로 왔음");
-		DataPoster poster = new DataPoster(DatabaseAccounts.SCOTT);
+		DataPoster poster = new DataPoster(DatabaseAccounts.PROJECT);
+		DataGetter getter = new DataGetter(DatabaseAccounts.PROJECT);
+		//댓글 번호
 		int cno = Integer.parseInt(request.getParameter("cno"));
-		poster.postCommentDelete(cno);
+		//게시글 번호
+		int boardnum = Integer.parseInt(request.getParameter("bno"));
+		//댓글 개수
+		int commentcount = getter.getCommentCount(boardnum);
+		
+		poster.postCommentDelete(boardnum,cno);
+		
 		poster.close();
+		getter.close();
 		
 		PrintWriter out = response.getWriter();
-		out.println(1);
+		out.println(commentcount);
 		
 	}
 

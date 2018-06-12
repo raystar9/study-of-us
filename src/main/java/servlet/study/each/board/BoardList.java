@@ -26,23 +26,36 @@ public class BoardList extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		DataGetter getter = new DataGetter(DatabaseAccounts.SCOTT);
+		DataGetter getter = new DataGetter(DatabaseAccounts.PROJECT);
 		ArrayList<BoardListBean> boardlist = new ArrayList<BoardListBean>();
-
+		
+		String search = request.getParameter("search");
+		String searchSelect = request.getParameter("searchSelect");
+		String pluswhere = "";
+		
+		if(search != null && search != "" && searchSelect.equals("title")) {
+			pluswhere = " AND B_TITLE like ? ";
+		}else if(search != null && search != "" && searchSelect.equals("name")) {
+			pluswhere = " AND M_NAME like ? ";
+		}else if(search != null && search != "" && searchSelect.equals("date")) {
+			pluswhere = " AND B_DATE like ? ";
+		}
+		
 		int page = 1;
 		int limit = 10;
-		int studyIndex = 3;
+		int studyIndex = 5;
+		//int studyIndex = (int)request.getSession().getAttribute("index");
 
 		if (request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
 		}
 		System.out.println("넘어온 페이지 = " + page);
 
-		boardlist = getter.getBoardList(page, limit, studyIndex); // 총 리스트 받아오기
+		// 총 리스트 받아오기
+		boardlist = getter.getBoardList(page, limit, studyIndex, pluswhere, search); 
+		// 총 리스트 수 받아오기
+		int boardcount = getter.getBoardCount(studyIndex, pluswhere,search); 
 		
-		int boardcount = getter.getBoardCount(studyIndex); // 총 리스트 수 받아오기
-		System.out.println("총 리스트 수 = " + boardcount);
-
 		int maxpage = (boardcount + limit - 1) / limit;
 		System.out.println("총 페이지수 = " + maxpage);
 
@@ -54,8 +67,10 @@ public class BoardList extends HttpServlet {
 
 		if (endpage > maxpage)
 			endpage = maxpage;
+		
 		request.setAttribute("page", page); // 현재 페이지 수
 		request.setAttribute("maxpage", maxpage); // 최대 페이지 수
+		request.setAttribute("endpage", endpage); 
 
 		// 현재 페이지에 표시할 첫 페이지 수
 		request.setAttribute("startpage", startpage);
@@ -64,16 +79,14 @@ public class BoardList extends HttpServlet {
 		request.setAttribute("listcount", boardcount);
 		// 해당 페이지의 글 목록을 갖고 있는 리스트
 		request.setAttribute("boardlist", boardlist);
+		
+		request.setAttribute("search", search);
+		request.setAttribute("searchSelect", searchSelect);
+		
 		getter.close();
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/each/boardList.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/each/board/boardList.jsp");
 		dispatcher.forward(request, response);
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-
 	}
 
 }

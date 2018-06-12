@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -16,9 +16,9 @@
   <form action="IDFindPage" method="post">
     <label for="lid"><strong>Your Name</strong></label>
     <input type="text" id="name" name="name" placeholder="Your Name.." maxlength="20">
-
-    <label for="password"><strong>Your EMail</strong></label>
-    <input type="text" id="email" name="email" placeholder="Your EMail.." maxlength="50">
+    
+    <label for="lid"><strong>Your Email</strong></label>
+    <input type="text" id="email" name="email" placeholder="Your Email.." maxlength="50">
     <input type="submit" value="Find" id="submit">
   </form>
 </div>

@@ -1,24 +1,24 @@
 package servlet.study.each.schedule;
 
 import java.io.IOException;
-import java.sql.Date;
-import java.util.ArrayList;
+import java.sql.Timestamp;
+import java.util.HashMap;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import beans.prototype.Meeting;
-import beans.study.each.schedule.ScheduleBean;
+import beansNew.Meeting;
+import dao.DataGetter;
+import dao.DataPoster;
+import dao.DatabaseAccounts;
 import dateConverter.DateConverter;
-import fakeDB.FakeDB;
+import param.ParameterGetter;
 
 /**
  * Servlet implementation class NewSchedule
  */
-@WebServlet("/study/each/schedule/new")
 public class NewSchedule extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -34,37 +34,34 @@ public class NewSchedule extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("new-schedule.jsp").forward(request, response);
+		request.getRequestDispatcher("/study/each/schedule/new-schedule.jsp").forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		/*TODO 데이터베이스 연결부분.
-		DataPoster poster = new DataPoster(DatabaseAccounts.SCOTT);
+		String studyName = (String)request.getAttribute("studyName");
+		DataGetter getter = new DataGetter(DatabaseAccounts.PROJECT);
+		int studyIndex = getter.getStudyIndex(studyName);
+		getter.close();
+		HashMap<String, String> map = ParameterGetter.get(request);
+		
 		Meeting meeting = new Meeting();
+		ParameterGetter.get(request).get("date");
+		System.out.println(map.get("date") + ' ' + map.get("time"));
 		
+		Timestamp dateIn = DateConverter.convertDateTime(map.get("date") + 'T' + map.get("time"));
+		
+		meeting.setTimestampate(dateIn);
+		meeting.setStudyId(studyIndex);
+		meeting.setPlace((String) map.get("location"));
+		meeting.setComment((String) map.get("comment"));
+		meeting.setExpectedFee(Integer.parseInt((String)map.get("fee")));
+		DataPoster poster = new DataPoster(DatabaseAccounts.PROJECT);
 		poster.postMeeting(meeting);
-		
 		poster.close();
-		*/
-		ArrayList<ScheduleBean> schedules = FakeDB.getInstance().getSchedules();
-		
-		Meeting m = new Meeting();
-		Date dateIn = DateConverter.convertDateTime((String)request.getAttribute("date") + 'T' + (String)request.getAttribute("time") + ":00");
-		m.setDate(dateIn);
-		m.setLocation((String) request.getAttribute("location"));
-		FakeDB.getInstance().setMeeting(m);
-		
-		ScheduleBean s = new ScheduleBean();
-		s.setStart(DateConverter.getDateString(m.getDate()));
-		s.setTitle(m.getLocation());
-		//TODO 추후에 schedule번호로 수정해야함.
-		s.setUrl("/study-of-us/study/each/schedule/each");
-		schedules.add(s);
-		//TODO Database 연결 시 위의 두 코드가 합쳐질 예정임.
 		
 	}
-
+	
 }

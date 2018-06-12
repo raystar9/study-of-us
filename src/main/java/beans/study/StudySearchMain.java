@@ -3,7 +3,7 @@ package beans.study;
 import java.sql.Date;
 
 public class StudySearchMain {
-		public static final String QUERY_GET = "select * from study inner join CATEGORY on STUDY.S_C_ID = CATEGORY.C_ID where c_group = ?";
+		public static final String QUERY_GET = "select * from study inner join CATEGORY on STUDY.S_C_ID = CATEGORY.C_ID where c_group LIKE ?";
 		
 		
 		private int index;

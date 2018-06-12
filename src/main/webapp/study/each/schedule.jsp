@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="sources/main/css/main.css">
+<link rel="stylesheet" href="/study-of-us/study/each/sources/main/css/main.css">
 <style>
 
 .button-container {text-align: center; display:table;}
@@ -12,17 +12,16 @@
 .schedule-flexbox section {width: 100%;}
 #new-button {width: 400px; height: 50px;}
 #left {width: 200px; height: 100%;}
-#calendar {vertical-align: top; padding: 15px; text-align: center;}
+#calendar {vertical-align: top; padding: 15px;}
 </style>
-<link href='sources/schedule/css/fullcalendar.min.css' rel='stylesheet' />
-<link href='sources/schedule/css/fullcalendar.print.min.css' rel='stylesheet' media='print' />
-<link href='sources/schedule/css/schedule.css' rel='stylesheet'/>
+<link href='/study-of-us/study/each/sources/schedule/css/fullcalendar.min.css' rel='stylesheet' />
+<link href='/study-of-us/study/each/sources/schedule/css/fullcalendar.print.min.css' rel='stylesheet' media='print' />
+<link href='/study-of-us/study/each/sources/schedule/css/schedule.css' rel='stylesheet'/>
 <script src='/study-of-us/webjars/jquery/3.2.1/jquery.min.js'></script>
-<script src='sources/schedule/js/moment.min.js'></script>
-<script src='sources/schedule/js/fullcalendar.min.js'></script>
-<script src='sources/schedule/js/schedule.js'></script>
-<script src='sources/schedule/js/locale/ko.js'></script>
-
+<script src='/study-of-us/study/each/sources/schedule/js/moment.min.js'></script>
+<script src='/study-of-us/study/each/sources/schedule/js/fullcalendar.min.js'></script>
+<script src='/study-of-us/study/each/sources/schedule/js/schedule.js'></script>
+<script src='/study-of-us/study/each/sources/schedule/js/locale/ko.js'></script>
 <script>
 var eventList = ${schedules}
 console.log(eventList);

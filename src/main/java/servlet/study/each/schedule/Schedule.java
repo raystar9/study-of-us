@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,12 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import beans.study.each.schedule.ScheduleBean;
-import fakeDB.FakeDB;
+import dao.DataGetter;
+import dao.DatabaseAccounts;
 
 /**
  * Servlet implementation class Schedule
  */
-@WebServlet("/study/each/schedule")
 public class Schedule extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -34,23 +33,37 @@ public class Schedule extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String type = "notice";
+		String studyName = (String)request.getAttribute("studyName");
 		if(request.getParameter("type") != null) {
 			type = request.getParameter("type");
 		}
+		DataGetter getter = new DataGetter(DatabaseAccounts.PROJECT);
 		ObjectMapper mapper = new ObjectMapper();
-		ArrayList<ScheduleBean> schedules = FakeDB.getInstance().getSchedules();
+		ArrayList<ScheduleBean> schedules = getter.getSchedules(studyName);
+		getter.close();
 		if(type.equals("attend")) {
 			System.out.println("attend입니다.");
-			schedules.get(0).setUrl("/study-of-us/study/each/attendance/each");
+			for(ScheduleBean schedule : schedules) {
+				schedule.setUrl("/study-of-us/study/"+studyName+"/attendance/"+schedule.getId()+"/record");
+			}
 			System.out.println(mapper.writeValueAsString(schedules));
 			request.setAttribute("schedules", mapper.writeValueAsString(schedules));
 		}else if(type.equals("notice")) {
 			
 			System.out.println(mapper.writeValueAsString(schedules));
-			schedules.get(0).setUrl("/study-of-us/study/each/schedule/each");
+			for(ScheduleBean schedule : schedules) {
+				schedule.setUrl("/study-of-us/study/"+studyName+"/schedule/" + schedule.getId());
+			}
+			request.setAttribute("schedules", mapper.writeValueAsString(schedules));
+		}else if(type.equals("fee")) {
+			
+			System.out.println(mapper.writeValueAsString(schedules));
+			for(ScheduleBean schedule : schedules) {
+				schedule.setUrl("/study-of-us/study/"+request.getAttribute("studyName")+"/fee/" + schedule.getId() + "/register");
+			}
 			request.setAttribute("schedules", mapper.writeValueAsString(schedules));
 		}
-		request.getRequestDispatcher("schedule.jsp").forward(request, response);
+		request.getRequestDispatcher("/study/each/schedule.jsp").forward(request, response);
 	}
 
 }

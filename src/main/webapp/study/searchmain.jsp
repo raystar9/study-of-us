@@ -70,6 +70,7 @@ html, body {
 
 .pickcolumn {
 	margin-left: 5%;
+	border-radius: 5px;
 	float: left;
 	width: 25%;
 	padding: 10px;
@@ -101,10 +102,10 @@ html, body {
 }
 
 .rankcard {
-    margin-left: 20%;
+margin-left: 70px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     transition: 0.3s;
-    width: 20%;
+    width: 15%;
     display: inline-block;
 }
 
@@ -122,6 +123,11 @@ html, body {
 
 .openBtn:hover {
 	background: #bbb;
+}
+
+.pickrowcontainer:hover {
+	background-color: #ddd;
+	color: black;
 }
 
 .overlay {
@@ -191,12 +197,22 @@ html, body {
 		$(".column").each(function() {
 			$(this).click(function() {
 				var b = $(this).find("h2").text();
-				location.href = "/study-of-us/study/SearchMain?category=" + b
+				location.href = "/study-of-us/study/search?category=" + b
 			})
 
 		})
 
 	})
+
+	$(document).on(
+			"click",
+			".pickrowcontainer",
+			function() {
+				var index = $(this).children('#index')
+				// 자식의 값을 가져오기 위해서 children('선택자')를 사용
+				location.href = "/study-of-us/study/each/participate?index="
+						+ index.val();
+			})
 
 	function openSearch() {
 		document.getElementById("myOverlay").style.display = "block";
@@ -242,7 +258,7 @@ html, body {
 							<img src="/study-of-us/resources/images/graduate.png" alt="Jane"
 								style="width: 60%;">
 							<div class="container">
-								<h2>외국어</h2>
+								<h2>언어</h2>
 								<p class="title">Language</p>
 								<button class="button">Contact</button>
 							</div>
@@ -261,17 +277,7 @@ html, body {
 						</div>
 					</div>
 
-					<div class="column">
-						<div class="card">
-							<img src="/study-of-us/resources/images/notebook.png" alt="Jane"
-								style="width: 60%;">
-							<div class="container">
-								<h2>문서작성</h2>
-								<p class="title">interview</p>
-								<button class="button">Contact</button>
-							</div>
-						</div>
-					</div>
+
 
 					<div class="column">
 						<div class="card">
@@ -291,7 +297,19 @@ html, body {
 								style="width: 60%;">
 							<div class="container">
 								<h2>자격증</h2>
-								<p class="title">interview</p>
+								<p class="title">certificate</p>
+								<button class="button">Contact</button>
+							</div>
+						</div>
+					</div>
+
+					<div class="column">
+						<div class="card">
+							<img src="/study-of-us/resources/images/notebook.png" alt="Jane"
+								style="width: 60%;">
+							<div class="container">
+								<h2>전체스터디</h2>
+								<p class="title">all</p>
 								<button class="button">Contact</button>
 							</div>
 						</div>
@@ -302,38 +320,41 @@ html, body {
 
 		<div class="soup-pick">
 
-			<h3 style="text-align: center">SOUP 추천 스터디 목록</h3>
+			<h3 style="text-align: center">SOUP 최신 스터디 목록</h3>
 			<div class="pickrow">
 				<div class="pickcolumn" style="background-color: #aaa;">
 					<h2>프로그래밍</h2>
-					<c:forEach var="study" begin="1" end="2" items="${studies }">
-						<div class="pickrowcontainer">
-							<img src="/study-of-us/resources/images/IMG.jpg" alt="Avatar"
+					<c:forEach var="study" begin="0" end="1" items="${programming }">
+						<div class="pickrowcontainer" id="pickrowcontainer">
+							<img src="/study-of-us/resources/images/pc.png" alt="Avatar"
 								class="right">
 							<h2>스터디 : ${study.name }</h2>
-							<span class="time-left">스터디 내용 & 스터디 생성일</span>
+							<span class="time-left">스터디 내용 & 스터디 생성일</span> <input
+								type="hidden" id="index" name="index" value="${study.index }" />
 						</div>
 					</c:forEach>
 				</div>
 				<div class="pickcolumn" style="background-color: #bbb;">
-					<h2>외국어</h2>
-					<c:forEach var="study" begin="1" end="2" items="${studies }">
-						<div class="pickrowcontainer">
-							<img src="/study-of-us/resources/images/IMG.jpg" alt="Avatar"
+					<h2>언어</h2>
+					<c:forEach var="study" begin="0" end="1" items="${language }">
+						<div class="pickrowcontainer" id="pickrowcontainer">
+							<img src="/study-of-us/resources/images/graduate.png" alt="Avatar"
 								class="right">
 							<h2>스터디 : ${study.name }</h2>
-							<span class="time-left">스터디 내용 & 스터디 생성일</span>
+							<span class="time-left">스터디 내용 & 스터디 생성일</span> <input
+								type="hidden" id="index" name="index" value="${study.index }" />
 						</div>
 					</c:forEach>
 				</div>
 				<div class="pickcolumn" style="background-color: #ccc;">
 					<h2>자격증</h2>
-					<c:forEach var="study" begin="1" end="2" items="${studies }">
-						<div class="pickrowcontainer">
-							<img src="/study-of-us/resources/images/IMG.jpg" alt="Avatar"
+					<c:forEach var="study" begin="0" end="1" items="${certificate }">
+						<div class="pickrowcontainer" id="pickrowcontainer">
+							<img src="/study-of-us/resources/images/id-card.png" alt="Avatar"	
 								class="right">
 							<h2>스터디 : ${study.name }</h2>
-							<span class="time-left">스터디 내용 & 스터디 생성일</span>
+							<span class="time-left">스터디 내용 & 스터디 생성일</span> <input
+								type="hidden" id="index" name="index" value="${study.index }" />
 						</div>
 					</c:forEach>
 				</div>
@@ -343,7 +364,7 @@ html, body {
 
 		<div class="ranking">
 			<div class="rank-container">
-				<h3 style="text-align: center">스터디 최다 생성자</h3>
+				<h2 style="text-align: center">Soup Developer</h2>
 				<div class="rankcard">
 					<img src="/study-of-us/resources/images/man.png" alt="Avatar"
 						style="width: 100%">
@@ -351,38 +372,47 @@ html, body {
 						<h4>
 							<b>John Doe</b>
 						</h4>
-						<p>Architect & Engineer</p>
+						<p>Developer</p>
 					</div>
 				</div>
 				<div class="rankcard">
-					<img src="/study-of-us/resources/images/man2.png" alt="Avatar"
+					<img src="/study-of-us/resources/images/boy.png" alt="Avatar"
 						style="width: 100%">
 					<div class="container">
 						<h4>
-							<b>John Doe</b>
+							<b>Mun Hyeok</b>
 						</h4>
-						<p>Architect & Engineer</p>
+						<p>Developer</p>
 					</div>
 				</div>
-				<h3 style="text-align: center">스터디 최다 참여자</h3>
 				<div class="rankcard">
 					<img src="/study-of-us/resources/images/girl.png" alt="Avatar"
 						style="width: 100%">
 					<div class="container">
 						<h4>
-							<b>John Doe</b>
+							<b>Da Hye</b>
 						</h4>
-						<p>Architect & Engineer</p>
+						<p>Developer</p>
 					</div>
 				</div>
 				<div class="rankcard">
-					<img src="/study-of-us/resources/images/man3.png" alt="Avatar"
+					<img src="/study-of-us/resources/images/man4.png" alt="Avatar"
 						style="width: 100%">
 					<div class="container">
 						<h4>
-							<b>John Doe</b>
+							<b>Seung Min</b>
 						</h4>
-						<p>Architect & Engineer</p>
+						<p>Developer</p>
+					</div>
+				</div>
+				<div class="rankcard">
+					<img src="/study-of-us/resources/images/man5.png" alt="Avatar"
+						style="width: 100%">
+					<div class="container">
+						<h4>
+							<b>Dong Wan</b>
+						</h4>
+						<p>Developer</p>
 					</div>
 				</div>
 			</div>
@@ -393,7 +423,7 @@ html, body {
 		<span class="closebtn" onclick="closeSearch()" title="Close Overlay">×</span>
 		<div class="overlay-content">
 			<form action="/study-of-us/study/search">
-				<input type="text" placeholder="Search.." name="search"
+				<input type="text" placeholder="Search.." name="searchVal"
 					id="searchVal">
 				<button type="submit">
 					<i class="fa fa-search"></i>

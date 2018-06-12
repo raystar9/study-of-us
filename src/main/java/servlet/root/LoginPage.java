@@ -1,6 +1,7 @@
 package servlet.root;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import beans.root.Login;
+import beans.study.StudySearch;
+import beans.study.each.Message;
 import dao.DataGetter;
 import dao.DatabaseAccounts;
 
@@ -30,6 +33,7 @@ public class LoginPage extends HttpServlet {
 
 		
 		Login logpro = getter.getLogin(id);
+		ArrayList<StudySearch> m_index = getter.getMindex(id);
 		
 		/*
 		System.out.println( "리턴받아온 아이디 : "+logpro.getId());
@@ -48,6 +52,8 @@ public class LoginPage extends HttpServlet {
 			session.setAttribute("index", logpro.getIndex());
 			System.out.println("세션값:" + session.getAttribute("index"));
 			System.out.println("비번 " + logpro.getPassword());
+			
+			
 			/*response.sendRedirect("/study-of-us/home");*/
 			getter.close();
 			response.sendRedirect("/study-of-us/home");
