@@ -46,7 +46,7 @@
        </c:choose>
     <br>
     
-    <a href="#">내스터디</a>
+    <a href="/study-of-us/study/${list.s_name}">내스터디</a>
   </div>
 </div>
 </div>

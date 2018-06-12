@@ -1,5 +1,5 @@
 //스터디 등록
-package servlet.study.each;
+package servlet.study;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -38,7 +38,7 @@ public class Registration extends HttpServlet {
 			out.print("history.back();");
 			out.print("</script>");
 		}else {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("each/registration.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("registration.jsp");
 		dispatcher.forward(request, response);
 		}
 	}

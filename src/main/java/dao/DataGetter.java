@@ -2159,6 +2159,58 @@ public Inquiry getInquiryBoardView(int num) {
 			return commentlist;
 		}
 
+		public ArrayList<Inquiry> getAdminInquiryBoard(int index, int page, int limit) {
+			
+			@SuppressWarnings("unchecked")
+			ArrayList<Inquiry> boardlist = (ArrayList<Inquiry>) get(Inquiry.QUERY_ADMIN,new DataSettable() {
+				@Override
+				public void prepare(PreparedStatement pstmt) throws SQLException {
+					int startrow = (page - 1) * limit + 1;
+					System.out.println("inquiry startrow : " + startrow);
+					
+					int endrow = startrow + limit - 1;
+					
+					
+					pstmt.setInt(1, startrow);
+					pstmt.setInt(2, endrow);
+					
+				}
+			}, new DataGettable() {
+				
+				@Override
+				public Object onGetResult(ResultSet rs) throws SQLException {
+					ArrayList<Inquiry> boardlists = new ArrayList<>();
+					while(rs.next()) {
+						Inquiry inquiry = new Inquiry();
+						
+						inquiry.setI_index(rs.getInt("i_index"));
+						inquiry.setRnum(rs.getInt("rnum"));
+						inquiry.setSubject(rs.getString("i_subject"));
+						inquiry.setM_id(rs.getString("m_id"));
+						inquiry.setDate(rs.getString("i_date"));
+						boardlists.add(inquiry);
+					}
+					
+					return boardlists;
+				}
+			});
+			return boardlist;
+		}
+
+		public Inquiry getAdminCount() {
+			Inquiry count = (Inquiry) get(Inquiry.QUERY_ADMIN_COUNT, new DataGettable() {
+				@Override
+				public Object onGetResult(ResultSet rs) throws SQLException {
+					Inquiry inquiry = null;
+					if(rs.next()) {
+						inquiry = new Inquiry();
+						inquiry.setCount(rs.getInt("count"));
+					}
+					return inquiry;
+				}
+			});
+			return count;
+		}
 		
 
 		/*

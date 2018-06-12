@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+		selectData();
+	
 	$("#insert_form").submit(function(event) {
 		var data1 = $(this).serialize();
 		alert(data1)
@@ -11,19 +13,44 @@ $(document).ready(function() {
 				$("#comment").val("")
 			}
 		});
-		/*$('#output').empty();*/
+		$('.container').empty();
 		selectData();
 		event.preventDefault();
 	})
-})
 
-	function selectData(){
+
+/*	function selectData(){
 			$.ajax({
 			type : "GET",
 			url : "/study-of-us/comment",
 			success : function(comment){
-				$("#output").append(comment);
-				$(comment).empty();
+				$.each(JSON.parse(comment), function(index, item){
+					var output = ''; 
+					output += "<span>"
+					output +=  item.m_id
+					output +=  item.content
+					output +=  item.date 
+					output += '</span><br>';
+					$(".container").append(output);
+				})
 			}
 		});
-		};
+		};*/
+	
+	
+	
+	function selectData(){
+		$.ajax({
+		type : "GET",
+		url : "/study-of-us/comment",
+		success : function(comment){
+			$.each(JSON.parse(comment), function(index, item){
+				var output = ''; 
+				output +=  "<p>" + item.content +"</p>"
+				output +=  "<span class='time-right'>" + item.date + "</span><br>"
+				$(".container").append(output);
+			})
+		}
+	});
+	};
+})

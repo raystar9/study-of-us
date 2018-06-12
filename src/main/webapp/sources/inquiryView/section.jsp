@@ -52,14 +52,21 @@
 	
 	
 	
-	<c:forEach var="comment" items="${commentGet}">
-	<span id="output">
+	<%-- <c:forEach var="comment" items="${commentGet}"> 
 		${comment.m_id}
 		${comment.content}
-		${comment.date}<br>
-	</span>
-	</c:forEach>  
+		${comment.date}<br> 
+	</c:forEach>   --%>
+	<!-- <div class="container">
+		<div class="commentList"> 
+		</div>
+	</div> -->
 	
+	<div class="container">
+  <img src="/w3images/bandmember.jpg" alt="Avatar" style="width:100%;">
+  <p>Hello. How are you today?</p>
+  <span class="time-right">11:00</span>
+</div>
 		
 		
 </body>

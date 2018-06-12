@@ -40,13 +40,41 @@ public class InquiryPage extends HttpServlet {
 		DataGetter getter = new DataGetter(DatabaseAccounts.PROJECT);
 
 		//총게시판 숫자 뽑아옵니다.
-		
 		Inquiry inquirycount = getter.getInquiryCount(index);
+		Inquiry admincount = getter.getAdminCount();
 		
 		
 		//게시판 글 전체 뽑아옵니다.
 		ArrayList<Inquiry> board = getter.getInquiryBoard(index, page,limit);
 		
+		
+		//admin 의 게시글 전체
+		ArrayList<Inquiry> boardAdmin = getter.getAdminInquiryBoard(index, page,limit);
+		
+		
+		
+		//
+		int maxpage2 = (admincount.getCount() + limit - 1) / limit;
+		System.out.println("총페이지수 = " + maxpage2);
+		System.out.println("count 수 " + inquirycount.getCount());
+		
+		//현재 페이지수
+		int startpage2 = ((page-1) /10) * 10 + 1;
+		System.out.println("현재 페이지에서 보여줄 시작 글넘버 " + startpage2);
+		
+		int endpage2 = startpage2 + 10 - 1;
+		System.out.println("현재 페이지의 보여줄 마지막 글넘버  " + endpage2);
+		
+		if (endpage2 > maxpage2) 
+			endpage2 = maxpage2;
+		request.setAttribute("page", page); // 현재 페이지의 수
+		request.setAttribute("maxpage2", maxpage2); // 최대 페이지의 수
+		
+		//현재 페이지에서 표시할 첫 페이지의 수
+		request.setAttribute("startpage2", startpage2);
+		request.setAttribute("endpage2", endpage2);
+		
+		//
 		
 		int maxpage = (inquirycount.getCount() + limit - 1) / limit;
 		System.out.println("총페이지수 = " + maxpage);
@@ -74,6 +102,12 @@ public class InquiryPage extends HttpServlet {
 		
 		//게시판 리스트
 		request.setAttribute("inquiryList", board);
+		
+		
+		//admin 의 게시판 개수 와리스트
+		request.setAttribute("admincount", admincount.getCount());
+		request.setAttribute("admin",boardAdmin);
+		//
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/inquiryBoard.jsp");
 		dispatcher.forward(request, response);
