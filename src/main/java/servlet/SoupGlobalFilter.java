@@ -70,7 +70,9 @@ public class SoupGlobalFilter implements Filter {
 		String lastUri = uri[uri.length - 1];
 		if(lastUri.endsWith(".jsp") || lastUri.endsWith(".js") || lastUri.endsWith(".css") || lastUri.endsWith(".woff") || lastUri.endsWith(".ttf")) {
 			chain.doFilter(request, response);
-		} else if(uri.length >= 3) {
+		} else if(uri.length == 2) {
+			httpResponse.sendRedirect("/study-of-us/home");
+		} else {
 			request.setAttribute("root", httpRequest.getContextPath());
 			if(uri[2].equals("study")) {
 				studyPaging(httpRequest, httpResponse, chain, uri);
@@ -89,8 +91,8 @@ public class SoupGlobalFilter implements Filter {
 	
 	private void studyPaging(HttpServletRequest request, HttpServletResponse response, FilterChain chain, String[] uri) throws IOException, ServletException {
 		if(uri.length == 3) {
-			//TODO study 기본페이지 구현해야됨!
-		} else {
+			new Studylist().service(request, response);
+		} else if(uri.length == 4) {
 			switch(uri[3]) {
 			case "search":
 				new SearchMain().service(request, response);
@@ -104,12 +106,13 @@ public class SoupGlobalFilter implements Filter {
 			case "join":
 				new Studylist().service(request, response);
 				break;
+			default : 
+				request.setAttribute("studyName", URLDecoder.decode(uri[3], "UTF-8"));
+				response.sendRedirect(request.getRequestURI() + "/schedule");
+				break;
 			}
-			
+		} else if(uri.length > 4) {
 			request.setAttribute("studyName", URLDecoder.decode(uri[3], "UTF-8"));
-			if(uri.length == 4) {
-				//TODO 각study의 기본 페이지로
-			} else {
 				switch(uri[4]) {
 					case "board":
 						boardPaging(request, response, chain, uri);
@@ -134,7 +137,6 @@ public class SoupGlobalFilter implements Filter {
 						break;
 					default:
 						chain.doFilter(request, response);
-				}
 			}
 		}
 	}
