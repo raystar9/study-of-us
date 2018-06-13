@@ -87,8 +87,7 @@
 									<thead>
 										<tr>
 											<th>내역</th>
-											<th>금액</th>
-											<th><input type="hidden" id='expenseCount' name='expenseCount' value='1'></th>
+											<th>금액<input type="hidden" id='expenseCount' name='expenseCount' value='1'></th>
 										</tr>
 									</thead>
 									<tbody id='cash_tbody'>
