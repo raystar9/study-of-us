@@ -11,7 +11,7 @@
 	<div class='well well-sm'>장소 : ${meeting.place }</div>
 	<div class='well well-sm'>시간 : ${time}</div>
 	<div class='well well-sm'>회비 : ${meeting.expectedFee }</div>
-	<div class='notice-map-container notice-container'>지도 api가 들어갈 자리</div>
+	<div class='notice-map-container'><span id='map'></span></div>
 	<div class='well well-sm'>코멘트 : ${meeting.comment }</div>
 </div>
 </div>
