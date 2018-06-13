@@ -56,7 +56,7 @@
 		<tr style="border-bottom: 1px solid #ccc" id='trbtn'>
 			<td colspan='2' id='tdfooter'><c:if
 					test="${b.name == id || id == 'admin' }">
-					<a href="./boardmodify?num=${b.index}">수정</a>&nbsp;&nbsp;
+					<a href="./modify?num=${b.index}">수정</a>&nbsp;&nbsp;
 							<a href="#" class='boarddelete'>삭제</a>&nbsp;&nbsp;
 						</c:if> <a href="#" class='back'>뒤로</a></td>
 		</tr>

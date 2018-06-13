@@ -12,7 +12,7 @@
 </head>
 <body>
 	<c:set var='id' value="${sessionScope.id}" />
-	<form action='./boardmodify' method='post' class='boardModify'>
+	<form action='./modify' method='post' class='boardModify'>
 		<c:set var="b" value="${boardcontent}" />
 		<input type="hidden" name="num" value="${b.index}" id='bno'>
 

@@ -1432,7 +1432,7 @@ public ArrayList<StudyList> studylist(int s_index, int m_index) {
 
 	@SuppressWarnings("unchecked")
 	public ArrayList<String> getMemberNames(String studyName) {
-		return (ArrayList<String>) get(Queries.GET_STUDY_MEMBER, new DataSettable() {
+		return (ArrayList<String>) get(Queries.GET_STUDY_MEMBERS, new DataSettable() {
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
 				System.out.println(studyName);
@@ -1449,6 +1449,22 @@ public ArrayList<StudyList> studylist(int s_index, int m_index) {
 			}
 		});
 	}
+		public String getMemberName(String studyName, int memberIndex) {
+			return (String) get(Queries.GET_STUDY_MEMBER, new DataSettable() {
+				@Override
+				public void prepare(PreparedStatement pstmt) throws SQLException {
+					System.out.println(studyName);
+					pstmt.setString(1, studyName);
+					pstmt.setInt(2, memberIndex);
+				}
+			}, new DataGettable() {
+				@Override
+				public Object onGetResult(ResultSet rs) throws SQLException {
+					rs.next();
+					return rs.getString(2);
+				}
+			});
+		}
 		
 		/*public int[] getMemIndex(int studyIndex) {
 	
