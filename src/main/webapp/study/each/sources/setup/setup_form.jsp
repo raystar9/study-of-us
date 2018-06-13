@@ -5,10 +5,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="stylesheet" href="/study-of-us/study/each/sources/setup/css/setup.css">
-<link href="/study-of-us/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link href="/study-of-us/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
-<link href="/study-of-us/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 </head>
 <style>
 	#categorySub , #categoryGroup{width:100px; height:25px;}
