@@ -31,7 +31,7 @@
 	<div class='form-group'>
 		<label class='control-label col-sm-2' for='comment'>코멘트 : </label>
 		<div class='col-sm-12'>
-			<textarea class='form-control' name="comment" id="comment" cols="30" rows="10" ></textarea>
+			<textarea class='form-control' name="comment" id="comment" rows="10" ></textarea>
 		</div>
 	</div>
 	<input type="submit" class='btn btn-default' value="등록" />
