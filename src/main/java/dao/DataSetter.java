@@ -34,7 +34,6 @@ abstract class DataSetter extends DataAccessor{ // 명호형이 만든지 확인
 			public Object action(Object result) throws SQLException {
 				
 				PreparedStatement pstmt = _conn.prepareStatement(query);
-
 				settable.prepare(pstmt);
 				return result;
 			}

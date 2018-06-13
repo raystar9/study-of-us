@@ -12,9 +12,9 @@
 <script src="/study-of-us/study/each/schedule/sources/new-schedule/js/ajax.js"></script>
 
 <link rel="stylesheet" href="/study-of-us/study/each/sources/main/css/main.css">
-<link rel="stylesheet" href='/study-of-us/study/each/schedule/sources/new-schedule/css/new-schedule.css'/>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="//cdn.rawgit.com/fgelinas/timepicker/master/jquery.ui.timepicker.css">
+<link rel="stylesheet" href='/study-of-us/study/each/schedule/sources/new-schedule/css/new-schedule.css'/>
 </head>
 
 <body>

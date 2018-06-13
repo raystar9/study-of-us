@@ -16,6 +16,7 @@
 <!-- 자바 ui -->
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="sources/setting/css/setting.css">
+<link rel="stylesheet" href="/study-of-us/study/each/sources/main/css/main.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="sources/setting/js/setting.js"></script>
@@ -23,9 +24,15 @@
   
 </head>
 <body>
-<%@ include file = "/general-sources/Navigation.jsp" %>
-<%@ include file = "sources/setting/section.jsp" %>
-<%@ include file = "/general-sources/Footer.jsp" %>
+<div class="page-container">
+	<div class="nav-container"><%@ include file = "/general-sources/Navigation.jsp" %></div>
+	<div class="main-container">
+		<div class="schedule-flexbox aside"><%@ include file = "/study/each/left.jsp" %></div>
+		<div class="schedule-flexbox section"><c:import url="sources/setting/section.jsp"/><br></div>
+	</div>
+	
+	<%@ include file = "/general-sources/Footer.jsp" %>
+</div>
 </body>
 </html>
 

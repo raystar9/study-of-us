@@ -5,12 +5,9 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <title>스터디 안의 게시판 리스트 페이지</title>
@@ -36,10 +33,10 @@
 							var="num" value="${num-1}" /></td>
 					<td>
 						<div>
-							&nbsp; ▶ <a href="./boardview?num=${b.index}"> ${b.title} </a>
+							&nbsp; ▶ <a href="./board/view?num=${b.index}"> ${b.title} </a>
 							<c:if test='${!empty b.filename }'>
-								<img src='/study-of-us/study/each/board/sources/board-list/file.png' width='13px'
-									height='13px'>
+								<img src='/study-of-us/study/each/board/sources/board-list/file.png' width='11px'
+									height='11px'>
 							</c:if>
 						</div>
 					</td>
@@ -89,7 +86,7 @@
 				</select> <input type="text" class="" id="search" name="search"> <input
 					type="submit" value="검색" class="btn btn-default"
 					id='boardSearchBtn'> <input type="button"
-					class="btn btn-default" onClick='location.href="./boardregister"'
+					class="btn btn-default" onClick='location.href="./board/register"'
 					id='write' value="글쓰기"></td>
 			</tr>
 		</table>

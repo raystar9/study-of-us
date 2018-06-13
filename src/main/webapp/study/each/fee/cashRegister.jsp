@@ -7,6 +7,7 @@
 <script src='/study-of-us/study/each/sources/schedule/js/jquery.min.js'></script>
 <link rel="stylesheet" href="/study-of-us/study/each/sources/main/css/main.css">
 <script type="text/javascript" src="/study-of-us/study/each/fee/sources/cash-register/js/cash_register.js"></script>
+<link rel="stylesheet" href="/study-of-us/study/each/fee/sources/cash-register/css/cash_register.css">
 </head>
 <body>
 <div class="page-container">

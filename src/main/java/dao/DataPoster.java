@@ -122,17 +122,18 @@ public class DataPoster extends DataSetter {
 		set(InformSetup.QUERY_PUT, new DataSettable() {
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
-				pstmt.setInt(1, setup.getPeopleNum());
-				pstmt.setString(2, setup.getName());
-				pstmt.setString(3, setup.getPlace());
-				pstmt.setDate(4, DateConverter.convertDate(setup.getActivityTime()));
-				pstmt.setDate(5, DateConverter.convertDate(setup.getStartDate()));
-				pstmt.setDate(6, DateConverter.convertDate(setup.getEndDate()));
-				pstmt.setString(7, setup.getDay());
-				pstmt.setString(8, setup.getExplain());
-				pstmt.setString(9, setup.getPrepared());
-				pstmt.setString(10, setup.getEffective());
-				/* pstmt.setInt(12, index); where절에 넣을 스터디번호 */
+				pstmt.setInt(1, categoryNum);
+				pstmt.setInt(2, setup.getPeopleNum());
+				pstmt.setString(3, setup.getName());
+				pstmt.setString(4, setup.getPlace());
+				pstmt.setString(5, setup.getActivityTime());
+				pstmt.setDate(6, DateConverter.convertDate(setup.getStartDate()));
+				pstmt.setDate(7, DateConverter.convertDate(setup.getEndDate()));
+				pstmt.setString(8, setup.getDay());
+				pstmt.setString(9, setup.getExplain());
+				pstmt.setString(10, setup.getPrepared());
+				pstmt.setString(11, setup.getEffective());
+				pstmt.setInt(12, studyIndex);
 				pstmt.executeUpdate();
 				pstmt.close();
 			}
