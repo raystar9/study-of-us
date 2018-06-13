@@ -5,6 +5,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link rel="stylesheet" href="/study-of-us/study/each/sources/setup/css/setup.css">
+<link href="/study-of-us/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/study-of-us/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+<link href="/study-of-us/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 </head>
 <style>
 	#categorySub , #categoryGroup{width:100px; height:25px;}
@@ -121,7 +125,7 @@
 			<td id='td_title'><i class="fa fa-crosshairs"></i>&nbsp;<strong>스터디 지역</strong></td>
 		</tr>
 		<tr>
-			<td id='shortText' style="padding-top:20px"><input type="text" name='place' class="form-control" value='${set.place }' style="width:600px;"><hr><br></td>
+			<td id='shortText' style="padding-top:20px;"><input type="text" name='place' class="form-control" value='${set.place }' style="width:600px;margin-left:10px;"><hr><br></td>
 		</tr>
 		<tr>
 			<td id='bottombtn'>
