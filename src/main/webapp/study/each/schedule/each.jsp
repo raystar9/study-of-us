@@ -5,6 +5,9 @@
 <html>
 <head>
 <script src='/study-of-us/webjars/jquery/3.2.1/jquery.min.js'></script>
+<script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="/study-of-us/study/each/schedule/sources/each/js/naver-map.js"></script>
+<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=trCkUlkJ2oAOjw3kdZSY&submodules=geocoder"></script>
 <link rel="stylesheet" href='/study-of-us/study/each/schedule/sources/each/css/notice.css'/>
 <link rel="stylesheet" href="/study-of-us/study/each/sources/main/css/main.css">
 

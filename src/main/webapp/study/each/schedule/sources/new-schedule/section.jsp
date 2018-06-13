@@ -27,7 +27,7 @@
 			<input type="number" class="form-control" name="fee" id="fee" step="100"/>
 		</div>
 	</div>
-	<div class='new-schedule-map-container new-schedule-container'>지도 api가 들어갈 자리</div>
+	<div class='new-schedule-map-container'><span id='map'></span></div>
 	<div class='form-group'>
 		<label class='control-label col-sm-2' for='comment'>코멘트 : </label>
 		<div class='col-sm-12'>

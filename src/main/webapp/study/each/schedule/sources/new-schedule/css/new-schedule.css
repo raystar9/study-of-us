@@ -26,16 +26,13 @@
 	height : 150px;
 }
 .new-schedule-map-container {
+	box-sizing: border-box;
 	display : inline-block;
 	width : 300px;
 	height : 300px;
 	margin-bottom: 20px;
 }
 
-#comment {
-	width: 100%;
-	resize: none;
-}
 .signup {
    border : 1px solid #0000004a;
    max-width : 700px;
@@ -50,4 +47,14 @@ form {
 
 .ui-timepicker-table td a {
 	width: 2.2em;
+}
+#comment {
+	width: 100%;
+	resize: none;
+}
+#map {
+   border : 1px solid #ccc;
+   float : left;
+	width: 300px;
+	height: 300px;
 }
