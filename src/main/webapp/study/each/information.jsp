@@ -10,7 +10,6 @@
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript" src="sources/information/js/inform.js"></script>
 <link rel="stylesheet" href="/study-of-us/study/each/sources/information/css/inform.css">
-<link rel="stylesheet" type="text/css" href="sources/information/css/inform.css">
 </head>
 <body>
 <%@ include file = "/general-sources/Navigation.jsp" %>
