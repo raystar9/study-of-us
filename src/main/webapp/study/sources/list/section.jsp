@@ -3,6 +3,30 @@
    <%@ taglib prefix = "c"
 				uri="http://java.sun.com/jsp/jstl/core" %>
 
+<script>
+	$(document).ready(function(){
+	
+	var timer = setTimeout(function(){
+		$('.bar-5').css('background-color','#03e60b40')
+	},100)
+	
+	var timer = setTimeout(function(){
+		$('.bar-5').css('background-color','#03e60b8a')
+	},200)
+	
+	var timer = setTimeout(function(){
+		$('.bar-5').css('background-color','#03e60bc4')
+	},300)
+	
+	var timer = setTimeout(function(){
+		$('.bar-5').css('background-color','#03e60b')
+	},400)
+})		
+		
+		
+
+</script>
+
 
 <c:choose>
 <c:when test="${studycount == 0}">
@@ -19,12 +43,12 @@
 
 
 <div class="StudyList">
-<span class="heading">${list.s_name} </span> <span class="dayday">기간 ${list.start} ~  ${list.end} </span>
+<i class="material-icons">border_color</i>&nbsp;<span class="heading">${list.s_name} </span> <span class="dayday"> ${list.start} ~  ${list.end} </span><span class="dayday" style="margin-top: -4px;"><i class="material-icons">event</i></span>
 <hr style="border:3px solid #f1f1f1">
 <div class="people">${list.s_maxmember}명</div><br>
 <div class="row">
   <div class="side">
-    <div>스터디 진행현황</div>
+   <div>진행현황</div>
   </div>
   <div class="middle">
     <div class="bar-container">
@@ -40,8 +64,8 @@
      <c:when test="${list.progress > 100}">
     <div>100% </div>
     </c:when>
-    <c:otherwise>
-       <div>${list.progress}%</div>
+    <c:otherwise> 
+       <div class='abc'>${list.progress}%</div>
        </c:otherwise>
        </c:choose>
     <br>

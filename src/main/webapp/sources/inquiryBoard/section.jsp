@@ -137,7 +137,7 @@
 		
 		<!--  페이징 처리 -->
 		<tr class="h30 lime center btn">
-		<td colspan=5>			
+		<td colspan=5 style="text-align : center;">			
 			<c:if test="${page <= 1 }">
 				이전&nbsp;
 			</c:if>

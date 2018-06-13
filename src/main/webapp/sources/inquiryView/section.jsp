@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+ 
+ 
+ 
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +11,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<table border = 1>
+<div id="scroll" style="overflow:scroll;">
+<table class=one border = 1>
 	<tr>
 		<th colspan = 2>게시판 view 페이지</th>
 	</tr>
@@ -43,18 +47,22 @@
 	
 	
 	<form id = insert_form action = /study-of-us/comment action="post">
-	<table>
+	<table class="two">
 		 <tr>
-			<td colspan="2"><textarea id="comment" name="comment"></textarea>&nbsp;&nbsp;<input type="submit" value="입력"></td>
+			<td colspan="2"><textarea id="comment" name="comment" style="margin: 0px; width: 707px; height: 117px;"></textarea>&nbsp;&nbsp;<input type="submit" value="입력"></td>
 		</tr>
 	</table>
 	</form>
 	
 	
 	
-	<div class="container">
 	
+	
+	<table class="comment">
+	
+	</table>	
 	</div>
+	
 	
 	<!-- <table>
 		<tbody class="container"></tbody>

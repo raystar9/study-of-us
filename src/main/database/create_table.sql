@@ -2,6 +2,7 @@ INSERT INTO Member(M_INDEX, M_ID, M_PASSWORD, M_NAME, M_EMAIL, M_TEL, M_ADDRESS,
 	VALUES (member_index.NEXTVAL, 'sm00', '1234', '곽승민', 'snow@naver.com', 01050667016, '경기도 의정부시 의정부동', '남', '안녕하세요~~');
 
 	drop table message
+	select * from member
 	
 INSERT INTO Member(M_INDEX, M_ID, M_PASSWORD, M_NAME, M_EMAIL, M_TEL, M_ADDRESS, M_GENDER, M_INTRODUCE)
 	VALUES (member_index.NEXTVAL, 'so01', '5678', '소문혁', 'soso@daum.com', 01011112222, '서울특별시 노원구', '남', '잘부탁해요~');

@@ -1,12 +1,43 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+ <head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-alpha.4/css/materialize.min.css">
 
-</body>
+ </head>
+
+<body class = "container"> 
+<table>
+<thead>
+  <tr>
+      <th>Product ID</th>
+      <th>Product Name</th>
+      <th>Product Quanity</th>
+  </tr>
+</thead>
+
+<tbody>
+  <tr>
+    <td>P-001</td>
+    <td>Mango</td>
+    <td>105 Dozen</td>
+  </tr>
+  <tr>
+    <td>P-002</td>
+    <td>Apple</td>
+    <td>35 Kgs</td>
+  </tr>
+  <tr>
+    <td>P-001</td>
+    <td>Oranges</td>
+    <td>55 Kgs</td>
+  </tr>
+  <tr>
+    <td>P-004</td>
+    <td>Strawberries</td>
+    <td>15 Kgs</td>
+  </tr>          
+</tbody>
+</table>
+</body>   
 </html>
+

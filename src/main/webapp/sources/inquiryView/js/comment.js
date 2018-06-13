@@ -4,7 +4,6 @@ $(document).ready(function() {
 	
 	$("#insert_form").submit(function(event) {
 		var data1 = $(this).serialize();
-		alert(data1)
 		$.ajax({
 			type : "POST",
 			data : data1,
@@ -13,7 +12,7 @@ $(document).ready(function() {
 				$("#comment").val("")
 			}
 		});
-		$('.container').empty();
+		$('.comment').empty();
 		selectData();
 		event.preventDefault();
 	})
@@ -38,20 +37,29 @@ $(document).ready(function() {
 		};*/
 	
 	
-	
+
 	function selectData(){
 		$.ajax({
 		type : "GET",
 		url : "/study-of-us/comment",
 		success : function(comment){
 			$.each(JSON.parse(comment), function(index, item){
-				var output = ''; 
-				output += "<div class='comment'>"
-				output += "<p>" + item.m_id + "</p>" 
-				output += "<p>" + item.content + "</p>"
-				output += "<p>" +  item.date + "</p>"
-				output += "</div> " 
-				$(".container").append(output);
+				var output = '';
+				if(item.m_id == 'admin'){
+					output +=  "<tr class='whiteTr'>"
+					output +=  "<td>" + "<font color='blue' style='width:20%'>" + item.m_id+"</font>"    
+					output +=   "<td style='width: 50%;'>"+item.content +"</td>"   
+					output +=   "<td style='width: 50%;'>" + item.date + "</td>" 
+					output +=  "</tr>"
+						$(".comment").append(output);
+				}else{
+				output +=  "<tr class='whiteTr'>"
+				output +=  "<td style='width: 20%;'>" + item.m_id+"</td>"
+				output +=  "<td style='width: 50%;'>" + item.content   +"</td>"
+				output +=  "<td style='width: 30%;'>" + item.date +"</td>"
+				output +=  "</tr>"
+				$(".comment").append(output);
+				}
 			})
 		}
 	});
