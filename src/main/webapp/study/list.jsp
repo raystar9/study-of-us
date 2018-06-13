@@ -17,6 +17,5 @@
 	<%@ include file = "/general-sources/Footer.jsp" %>
 			
 	
-	<%-- <%@ include file ="/general-sources/Footer.jsp" %> --%>
 </body>
 </html>

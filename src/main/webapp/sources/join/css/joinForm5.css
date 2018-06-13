@@ -1,5 +1,16 @@
 @CHARSET "UTF-8";
-input[type=text],input[type=password] {
+
+body{
+	height : 100%;
+	width : 100%;
+}
+
+.all{
+	margin-bottom : 10%;
+	
+}
+
+input[type=text],input[type=password],input[type=email] {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -22,25 +33,46 @@ input[type=submit] {
 
 input[type=submit]:hover {
     background-color: #45a049;
+    width : 100%;
 }
 
-div {
+.join_form {
 	border : 1px solid #0000004a;
-	max-width : 300px;
+	max-width : 500px;
     border-radius: 5px;
-    background-color: #f2f2f259;
+    background-color: #f1f1f1;
     padding: 20px;
     margin : 0 auto;
+   
 }
-.forgot{
-	float : right;
+#email{
+	width : 100%
+}
+/* 
+#domain{
+	width : 30%
+}	 */
+#id{
+	width: 85%;
 }
 
-.icon{
-	width : 100px;
-	height : 100px;
+p{
+	text-align : center;
 }
 
-.icon{
-	   margin: 0 auto;
+textarea{
+	width : 100%;
+}
+select{
+	width : 30%;
+	padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+a{
+	text-decoration: none;
 }

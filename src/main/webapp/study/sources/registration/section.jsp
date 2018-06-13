@@ -10,8 +10,10 @@
   
 </head>
 <body>
-<form action="/study-of-us/study/each/Registration" method="post">
-<h3 align=center><a href = "/study-of-us/home">StudyOfUs</a></h3>
+
+<div class="all">
+<form action="/study-of-us/study/registration" method="post">
+<h2 align=center>StudyOfUs</h2>
 <div class="signup">
 <i class="material-icons">category</i>
 <label for="category"><strong>카테고리</strong></label><br>
@@ -65,7 +67,7 @@
       <option value="토">토</option>
       <option value="일">일</option>
       </select>
-</span>
+</span>&nbsp;
 
 <span class="three">
       <i class="material-icons">access_time</i>
@@ -97,25 +99,11 @@
       <option value = "23:00~">23:00~</option>
       <option value = "24:00~">24:00~</option>
       </select>
-</span>
-</span>
+</span>&nbsp;
 
-
-
-<i class="material-icons">edit</i>
-<label for="explain"><strong>프로젝트 개요</strong></label><br>
-<textarea rows=10 cols=60 name=explain id=explain  placeholder="너무 어려워.."></textarea><br>
-
-<i class="material-icons">star_half</i>
-<label for="prepared"><strong>주요 교재 및 준비물</strong></label><br>
-<textarea rows=10 cols=60 name=prepared id=prepared></textarea><br>
-
-<label for="prepared"><strong>기대효과 및 활동 분야</strong></label><br>
-<textarea rows=10 cols=60 name=activity id=activity></textarea><br>
-<br>
-<p>
+<span class="four">
+<i class="material-icons">location_on</i>
 <label for="location"><strong>선호 지역</strong></label><br>
-<span style="width:100%" id="location">
 <select id="locationSel" name=location>
 <option value="">지역</option>
 <option value="서울">서울</option>
@@ -130,13 +118,26 @@
 <option value="광주">광주</option>
 </select>
 </span>
-<!-- <span id="map" style="width:48%;height:400px;">
+</span>
 
-</span> -->
-</p>
+
+
+<i class="material-icons">edit</i>
+<label for="explain"><strong>프로젝트 개요</strong></label><br>
+<textarea rows=10 cols=60 name=explain id=explain ></textarea><br>
+
+<i class="material-icons">star_half</i>
+<label for="prepared"><strong>주요 교재 및 준비물</strong></label><br>
+<textarea rows=10 cols=60 name=prepared id=prepared></textarea><br>
+
+<i class="material-icons">public</i>
+<label for="prepared"><strong>기대효과 및 활동 분야</strong></label><br>
+<textarea rows=10 cols=60 name=activity id=activity></textarea><br>
+
 
    <input type=submit value="저장하기">
 </div>
 </form>
+</div>
 </body>
 </html>

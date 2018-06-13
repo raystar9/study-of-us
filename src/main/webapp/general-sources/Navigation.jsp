@@ -21,6 +21,8 @@ body {
 .topnav {
 	overflow: hidden;
 	background-color: #ccc;
+	    height: 52px;
+	
 }
 
 .topnav a {

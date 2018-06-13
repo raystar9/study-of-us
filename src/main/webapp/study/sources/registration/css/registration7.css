@@ -1,3 +1,12 @@
+
+.all{
+	width : 100%;
+	heigth : 100%;
+    margin-bottom: 10%;
+	
+	
+}
+
 input[type=text] {
 	width: 100%;
 	padding: 12px 20px;
@@ -23,11 +32,11 @@ input[type=submit]:hover {
 	background-color: #45a049;
 }
 
-div.signup {
+.signup {
 	border: 1px solid #0000004a;
 	max-width: 700px;
 	border-radius: 5px;
-	background-color: #f2f2f259;
+	background-color: #f1f1f1;
 	padding: 20px;
 	margin: 0 auto;
 }
@@ -36,20 +45,28 @@ div.signup {
 }
 
 span {
+	float : left;
 	display: inline-block;
 	width: 100%;
 }
 
 .one {
-	width: 33%;
+	width: 23%;
+	margin-right: 15px;
 }
 
 .two {
-	width: 33%;
+	width: 23%;
+	margin-right: 15px;
 }
 
 .three{
-	width : 33%:
+	width : 23%;
+    margin-right: 12px;
+	
+}
+.four{
+	width : 23%	
 }
 
 textarea {
@@ -123,5 +140,17 @@ textarea {
 	box-sizing: border-box;
 }
 
+
+#day1,#day2{
+	width: 48%;
+	padding: 12px 20px;
+	margin: 8px 0;
+	display: inline-block;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+	
+	
+}
 
 
