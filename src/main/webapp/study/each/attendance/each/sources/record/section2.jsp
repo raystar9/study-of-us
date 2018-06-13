@@ -17,9 +17,21 @@
 			검색 결과가 없습니다.
 		</td></tr>
 	</c:if>
-<c:forEach var="attendance" items="${attendances}">
-<%@ include file="article.jsp" %>
-</c:forEach>
+	<tr>
+		<td><div><b>${attendance.memberName }</b></div></td>
+		<td>
+		<c:if test='${attendance.attend.equals("a") }'>
+			<div>출석</div>
+		</c:if>
+		<c:if test='${attendance.attend.equals("na") }'>
+			<div>결석</div>
+		</c:if>
+		</td>
+	</tr>
+	<tr>
+		<td><div><b>노동완</b></div></td>
+		<td><div>na</div></td>
+	</tr>
 <tr><td colspan=2>
 <a href="confirm">출석체크하기</a><br>
 <a href="../../schedule?type=attend">다른 날짜 확인</a>
