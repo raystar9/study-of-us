@@ -334,7 +334,6 @@ public class DataPoster extends DataSetter {
 				pstmt.setInt(5, m_m_index);
 				pstmt.executeUpdate();
 				pstmt.close();
-				
 			}
 		});
 	}
@@ -348,7 +347,6 @@ public class DataPoster extends DataSetter {
 				pstmt.setInt(2, sm_m_index);
 				pstmt.executeUpdate();
 				pstmt.close();
-				
 			}
 		});
 	}

@@ -2058,6 +2058,7 @@ public ArrayList<StudyList> studylist(int s_index, int m_index) {
 				@Override
 				public void prepare(PreparedStatement pstmt) throws SQLException {
 					pstmt.setInt(1, messagecheck);
+					pstmt.executeQuery();
 					
 				}
 			}, new DataGettable() {
@@ -2067,12 +2068,13 @@ public ArrayList<StudyList> studylist(int s_index, int m_index) {
 					ArrayList<Message> Messagelist = new ArrayList<>(); 
 					while(rs.next()) {
 						Message message = new Message();
-						message.setS_index(rs.getInt("MS_S_INDEX"));
+						message.setS_index(rs.getInt("MS_S_index"));
 						message.setM_m_id(rs.getString("M_M_ID"));
 						message.setM_s_index(rs.getInt("M_S_INDEX"));
 						message.setM_s_name(rs.getString("M_S_NAME"));
 						message.setM_m_index(rs.getInt("M_M_INDEX"));
 						Messagelist.add(message);
+	
 					}
 					return Messagelist;
 				}

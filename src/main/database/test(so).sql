@@ -4,19 +4,22 @@ select * from member where M_id = 'so' = (select * from studymember where = )
 select * from message inner join member on message.M_INDEX = member.m_index
 
 SELECT * FROM study inner join member on study.s_m_index = member.m_index where study.s_m_index = 2
-
+3
+insert into studyMember values(2,6)
 
 insert into message values (10,2,'so01','동완이 테스트',2)
 select * from message
 
 insert into studyMember values(2,3)
 
+
+select * from study
 select * from member
 select * from studyMember 
 insert into studyMember values
  
 delete message where S_INDEX = 9 and M_M_INDEX = 2
-
+delete message
 drop table message
 select * from message
 create table message (

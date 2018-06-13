@@ -15,7 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import servlet.study.Complete;
 import servlet.study.List;
+import servlet.study.Message;
 import servlet.study.Registration;
+import servlet.study.Search;
 import servlet.study.SearchMain;
 import servlet.study.Studylist;
 import servlet.study.each.Information;
@@ -97,6 +99,12 @@ public class SoupGlobalFilter implements Filter {
 			switch(uri[3]) {
 			case "search":
 				new SearchMain().service(request, response);
+				break;
+			case "search2":
+				new Search().service(request, response);
+				break;
+			case "Message":
+				new Message().service(request, response);
 				break;
 			case "list":
 				new List().service(request, response);

@@ -49,7 +49,6 @@ table caption {
 							class="table table-bordered table-hover">
 							<thead>
 
-
 							</thead>
 							<tbody>
 								<tr>
