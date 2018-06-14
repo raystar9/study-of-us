@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+   <tr>
 <td class ="attend-table-border">
 	<div class="attend-name"><b>${name }</b></div>
 </td>
@@ -9,3 +10,4 @@
 		<label class = "radio-inline"><input type="radio" name="member${loop.index}" value="na" />결석</label>
 	</div>
 </td>
+<tr>

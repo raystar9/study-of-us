@@ -61,7 +61,7 @@ public class BoardModify extends HttpServlet {
 		
 		poster.postBoardModify(boardmodify, studyIndex);
 		
-		response.sendRedirect("/study-of-us/study/each/boardview" + "?num=" + boardnum);
+		response.sendRedirect("view" + "?num=" + boardnum);
 		poster.close();
 	}
 

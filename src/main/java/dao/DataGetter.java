@@ -1379,7 +1379,7 @@ public ArrayList<StudyList> studylist(int s_index, int m_index) {
 	// 공용
 	@SuppressWarnings("unchecked")
 	public ArrayList<Integer> getMemberIndexes(String studyName) {
-		return (ArrayList<Integer>) get(Queries.GET_STUDY_MEMBER, new DataSettable() {
+		return (ArrayList<Integer>) get(Queries.GET_STUDY_MEMBERS, new DataSettable() {
 			@Override
 			public void prepare(PreparedStatement pstmt) throws SQLException {
 				pstmt.setString(1, studyName);
