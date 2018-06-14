@@ -8,7 +8,8 @@ $(document).ready(function() {
 			strToAdd += "<input type='text' class='form-control' placeholder='내역' id='duesExp" + addNum + "' name='duesExp" + addNum + "'>";
 			strToAdd += "</td>";
 			strToAdd += "<td>";
-			strToAdd += "<input type='text' class='form-control' placeholder='금액' id='duesExpFee" + addNum + "' name='duesExpFee" + addNum + "' onkeyup='calculate();'>";
+			strToAdd += "<input type='text' class='form-control' placeholder='금액' id='duesExpFee" + addNum + "' name='duesExpFee"
+						+ addNum + "' onkeyup='calculate();'>";
 			strToAdd += "</td></tr>";
 		$('#expenseCount').val(addNum);
 		$('#cash_tbody').append(strToAdd);	
@@ -26,7 +27,8 @@ $(document).ready(function() {
 	
 })// ready end
 
-function calculate(){	// onkeyup 발생 함수 (자동계산)
+//회비 등록 자동 계산 - onkeyup 발생 함수 (자동계산)
+function calculate(){	
 	var duesFee = 0;	
 	var duesExpFee = 0;	
 	var duesFee_sum = 0;	
@@ -43,7 +45,6 @@ function calculate(){	// onkeyup 발생 함수 (자동계산)
 	
 	for(var i=1; i<= $('#total-table tbody tr').length; i++){
 		duesExpFee = document.getElementById('duesExpFee'+i).value;
-		/*alert(document.getElementById('duesExpFee'+i).value);*/
 		if(isNaN(parseInt(duesExpFee))){
 			duesExpFee = 0;
 		}

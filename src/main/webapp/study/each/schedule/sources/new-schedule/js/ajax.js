@@ -6,7 +6,7 @@ $().ready(()=>{
 			method: "post",
 			data: $("form").serialize(),
 			success: function(){
-				alert($("form").serialize());
+				alert("성공적으로 등록되었습니다.");
 				location.href="../schedule";
 			},
 			error: function(){
