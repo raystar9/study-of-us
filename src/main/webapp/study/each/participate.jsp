@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>우리를 위한 스터디 SOUP!</title>
 
 <link href="sources/registration/css/registration.css" rel="stylesheet">
 <link href="sources/summary/css/participate1.css" rel="stylesheet">

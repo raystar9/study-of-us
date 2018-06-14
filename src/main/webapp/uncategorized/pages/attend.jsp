@@ -2,7 +2,7 @@
     pageEncoding="EUC-KR"%>
 <html>
 <head>
-<title>Insert title here</title>
+<title>우리를 위한 스터디 SOUP!</title>
 </head>
 <body>
 
