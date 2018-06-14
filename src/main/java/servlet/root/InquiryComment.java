@@ -44,10 +44,6 @@ public class InquiryComment extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		out.println(mapper.writeValueAsString(commentGet));
 		
-		/*request.setAttribute("commentGet", commentGet);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/sources/inquiryView/section2.jsp");
-		dispatcher.forward(request, response);*/
-		
 		getter.close();
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

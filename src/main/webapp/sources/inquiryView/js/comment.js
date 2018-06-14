@@ -16,28 +16,6 @@ $(document).ready(function() {
 		selectData();
 		event.preventDefault();
 	})
-
-
-/*	function selectData(){
-			$.ajax({
-			type : "GET",
-			url : "/study-of-us/comment",
-			success : function(comment){
-				$.each(JSON.parse(comment), function(index, item){
-					var output = ''; 
-					output += "<tr>"
-					output += "<td>" + item.m_id + "</td>" 
-					output += "<td>" + item.content + "</td>"
-					output += + "<td>" +  item.date + "</td>" 
-					output += "</tr>";
-					$(".container").append(output);
-				})
-			}
-		});
-		};*/
-	
-	
-
 	function selectData(){
 		$.ajax({
 		type : "GET",
