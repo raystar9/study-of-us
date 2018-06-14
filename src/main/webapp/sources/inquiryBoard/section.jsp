@@ -9,6 +9,7 @@
 </head>
 <body>
 	
+	<div class="all">
 	
 	<c:choose>
 	<c:when test="${id == 'admin' }">
@@ -16,7 +17,7 @@
 		
 		<c:if test="${admincount > 0}">
 			<tr>
-				<th class="title" colspan="3">문의사항 게시판</h2></th>
+				<th class="title" colspan="3" style="text-align : center;"><h3>문의사항 게시판</h3></th>
 				<%-- <th>
 					<font size=2>글 개수 : ${admincount }</font>
 				</th> --%>
@@ -43,7 +44,14 @@
 			 			${ list.subject}</a>
 		</td>
 		<td>
-			 ${list.m_id} 
+			<c:choose>
+		<c:when test="${ list.m_id == 'admin'}">
+			<font color='blue'> ${list.m_id}</font>
+		</c:when>
+		<c:otherwise>
+			${list.m_id}
+		</c:otherwise>
+		</c:choose>
 		</td>
 		<td>
 			 ${list.date }
@@ -55,7 +63,7 @@
 		
 		<!--  페이징 처리 -->
 		<tr class="h30 lime center btn">
-		<td colspan=5>			
+		<td colspan=5 style="text-align : center;">			
 			<c:if test="${page <= 1 }">
 				이전&nbsp;
 			</c:if>
@@ -99,7 +107,7 @@
 		
 		<c:if test="${inquirycount > 0}">
 				<tr>
-				<th colspan="3">문의사항 게시판</th>
+				<th colspan="3" style="text-align : center;"><h3>문의사항 게시판</h3></th>
 				<%-- <th>
 					<font size=2>글 개수 : ${admincount }</font>
 				</th> --%>
@@ -124,9 +132,18 @@
 			 <a href="/study-of-us/inquiryView?num=${list.i_index}">
 			 			${ list.subject}</a>
 		</td>
+		
 		<td>
-			 ${list.m_id} 
-		</td>
+		<c:choose>
+		<c:when test="${ list.m_id == 'admin'}">
+			<font color='blue'> ${list.m_id}</font>
+		</c:when>
+		<c:otherwise>
+			${list.m_id}
+		</c:otherwise>
+		</c:choose>
+		</td> 
+		
 		<td>
 			 ${list.date }
 		</td>
@@ -179,7 +196,7 @@
 	
 
 	
-
+</div>
 	
 </body>
 </html>

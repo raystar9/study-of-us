@@ -18,7 +18,7 @@ import dao.DataGetter;
 import dao.DataPoster;
 import dao.DatabaseAccounts;
 import dateConverter.DateConverter;
-@WebServlet("/study/each/Registration")
+@WebServlet("/study/registration")
 public class Registration extends HttpServlet {
 	//TODO registration.jsp 및 기타등등 폴더 옮겨야됨, 링크 바꿔야됨 내일!
 	private static final long serialVersionUID = 1L;
@@ -38,7 +38,7 @@ public class Registration extends HttpServlet {
 			out.print("history.back();");
 			out.print("</script>");
 		}else {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("registration.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/study/registration.jsp");
 		dispatcher.forward(request, response);
 		}
 	}

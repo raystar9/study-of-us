@@ -1,9 +1,11 @@
 @charset "UTF-8";
 
 <style>
+
 body, html {
     height: 100%;
     font-family: Arial, Helvetica, sans-serif;
+
 }
 
 * {
@@ -12,7 +14,7 @@ body, html {
 
 .bg-img {
     /* The image used */
-    background-image: url("/study-of-us/resources/images/image6.jpg");
+    background-image: url("/study-of-us/resources/images/image20.jpg");
 
     min-height: 600px;
 
@@ -20,6 +22,7 @@ body, html {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    margin-bottom :10%;
 }
 
 
@@ -34,15 +37,19 @@ body, html {
 
 /* Add styles to the form container */
 
-
+#id,#password{
+	    border-radius: 10px;
+	
+}
 
 .container {
+	border-radius: 15px;
     position: absolute;
     left: 50%;
     margin: 20px;
     max-width: 400px;
     padding: 16px;
-    background-color: white;
+    background-color: #f1f1f1;
     margin-top: 150px;
 }
 
@@ -52,7 +59,7 @@ input[type=text], input[type=password] {
     padding: 15px;
     margin: 5px 0 22px 0;
     border: none;
-    background: #f1f1f1;
+    background: white;
 }
 
 input[type=text]:focus, input[type=password]:focus {
@@ -62,6 +69,7 @@ input[type=text]:focus, input[type=password]:focus {
 
 /* Set a style for the submit button */
 .btn {
+	border-radius: 15px;
     background-color: #4CAF50;
     color: white;
     padding: 16px 20px;

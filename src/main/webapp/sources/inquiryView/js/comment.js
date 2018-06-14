@@ -54,9 +54,9 @@ $(document).ready(function() {
 						$(".comment").append(output);
 				}else{
 				output +=  "<tr class='whiteTr'>"
-				output +=  "<td style='width: 20%;'>" + item.m_id+"</td>"
-				output +=  "<td style='width: 50%;'>" + item.content   +"</td>"
-				output +=  "<td style='width: 30%;'>" + item.date +"</td>"
+				output +=  "<td style='width: 20%; background-color : white;'>" + item.m_id+"</td>"
+				output +=  "<td style='width: 50%; background-color : white;'>" + item.content   +"</td>"
+				output +=  "<td style='width: 30%; background-color : white;'>" + item.date +"</td>"
 				output +=  "</tr>"
 				$(".comment").append(output);
 				}

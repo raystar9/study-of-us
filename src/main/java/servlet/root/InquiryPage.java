@@ -1,6 +1,7 @@
 package servlet.root;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -22,7 +23,23 @@ import dao.DatabaseAccounts;
 public class InquiryPage extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html;charset=UTF-8");
+		
 		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("id");
+		if(id==null) {
+			PrintWriter out = response.getWriter();
+			out.print("<script>");
+			out.print("alert('로그인을 해주세요');");
+			out.print("history.back();");
+			out.print("</script>");
+			
+		}
+		else {
+		
+		
 		int index = (int)session.getAttribute("index");
 		
 		
@@ -114,8 +131,8 @@ public class InquiryPage extends HttpServlet {
 		
 		getter.close();
 		
+		}
 	}
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	}
 

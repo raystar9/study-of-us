@@ -1,6 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+
+<style>
+.rankcard {
+margin-left: 70px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    width: 15%;
+    display: inline-block;
+}
+
+.ranking {
+	margin-bottom: 100px;
+}
+
+</style>
+
+
+<div class="all">
 <div class="bg-img">
 <div class=main-writing>
    <h1>Don't be too timid and <br>
@@ -15,9 +33,12 @@
       <input type="text" placeholder="Enter Email" name="id" id="id" required>
 
       <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="password" required>
+      <input type="password" placeholder="Enter Password" name="password" id="password" required>
 
       <button type="submit" class="btn">Login</button>
-    </div>
+      
+      </div>
   </form>
 </div>
+</div>
+

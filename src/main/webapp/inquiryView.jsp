@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link href="sources/inquiryView/css/view2.css" rel="stylesheet">
+<link href="sources/inquiryView/css/view3.css" rel="stylesheet">
 <script src = "http://code.jquery.com/jquery-3.3.1.js"></script> 
 <script src="sources/inquiryView/js/comment.js"></script>
 </head>

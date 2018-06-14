@@ -7,19 +7,19 @@
 	$(document).ready(function(){
 	
 	var timer = setTimeout(function(){
-		$('.bar-5').css('background-color','#03e60b40')
+		$('.bar-5').css('background-color','#0276ff3b')
 	},100)
 	
 	var timer = setTimeout(function(){
-		$('.bar-5').css('background-color','#03e60b8a')
+		$('.bar-5').css('background-color','#0276ff8a')
 	},200)
 	
 	var timer = setTimeout(function(){
-		$('.bar-5').css('background-color','#03e60bc4')
+		$('.bar-5').css('background-color','#0276ffbf')
 	},300)
 	
 	var timer = setTimeout(function(){
-		$('.bar-5').css('background-color','#03e60b')
+		$('.bar-5').css('background-color','#0276ff')
 	},400)
 })		
 		
@@ -28,12 +28,13 @@
 </script>
 
 
+<div class="all">
 <c:choose>
 <c:when test="${studycount == 0}">
 <div class="StudyList">
 	<span class="heading">아직 생성된 스터디가 없습니다</span>
-	<hr style="border:3px olid #f1f1f1">
-	<a href="/study-of-us/study/each/Registration">스터디 생성하러가기</a>/<a href=#>스터디 참가하러가기</a>
+	<hr style="border:3px olid #d6d5d596">
+	<a href="/study-of-us/study/registration">스터디 생성하러가기</a>/<a href=#>스터디 참가하러가기</a>
 </div>	
 </c:when>
 
@@ -44,7 +45,7 @@
 
 <div class="StudyList">
 <i class="material-icons">border_color</i>&nbsp;<span class="heading">${list.s_name} </span> <span class="dayday"> ${list.start} ~  ${list.end} </span><span class="dayday" style="margin-top: -4px;"><i class="material-icons">event</i></span>
-<hr style="border:3px solid #f1f1f1">
+<hr style="border:3px solid #d6d5d596">
 <div class="people">${list.s_maxmember}명</div><br>
 <div class="row">
   <div class="side">
@@ -103,12 +104,8 @@
 	<a href="/study-of-us/study/list?page=${page+1 }">다음</a>&nbsp;<a href="/study-of-us/study/complete">완료목록</a>
 </c:if>
 </div>
-
-
-
-
 </c:otherwise>
 </c:choose>
-
+</div>
 
 

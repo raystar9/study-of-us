@@ -11,10 +11,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div id="scroll" style="overflow:scroll;">
-<table class=one border = 1>
+
+<div class="all">
+<table>
 	<tr>
-		<th colspan = 2>게시판 view 페이지</th>
+		<th colspan = 2 style="text-align : center;" ><h3>게시판 view 페이지</h3></th>
 	</tr>
 	
 	<tr>
@@ -35,33 +36,52 @@
 	
 	<tr>
 		<td>파일</td>
-		<c:if test="${!empty boardView.file }">
+		
+		<c:choose>
+		<c:when test="${!empty boardView.file }">
 		<td>
 		<a href="/study-of-us/fileDown?filename=${boardView.file}">
 						${boardView.file }</a>
 		</td>
-		</c:if>
+		</c:when>
+		<c:otherwise>
+		<td> </td>
+		</c:otherwise>
+		
+		</c:choose>
+		
+		<%-- <c:if test="${!empty boardView.file }">
+		<td>
+		<a href="/study-of-us/fileDown?filename=${boardView.file}">
+						${boardView.file }</a>
+		</td>
+		</c:if> --%>
 	
 	</tr>
-</table>
 	
+	
+	
+</table>
+	<br><br><br>
+	<table class="comment">
+	
+	</table>	
+	
+	<br>
 	
 	<form id = insert_form action = /study-of-us/comment action="post">
 	<table class="two">
 		 <tr>
-			<td colspan="2"><textarea id="comment" name="comment" style="margin: 0px; width: 707px; height: 117px;"></textarea>&nbsp;&nbsp;<input type="submit" value="입력"></td>
+			<td colspan="2"><textarea id="comment" name="comment" style="margin: 0px; width:90%; height: 80%;"></textarea>&nbsp;&nbsp;<input type="submit" value="입력"></td>
 		</tr>
 	</table>
 	</form>
 	
 	
-	
-	
-	
-	<table class="comment">
-	
-	</table>	
 	</div>
+	
+	
+	
 	
 	
 	<!-- <table>

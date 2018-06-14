@@ -1,4 +1,9 @@
 
+.all{
+	height : 100%;
+	width : 100%;
+	margin-bottom : 10%;
+}
 .StudyList {
 
 	border:1px solid black;
@@ -44,7 +49,7 @@
 /* The bar container */
 .bar-container {
     width: 100%;
-    background-color: #f1f1f1;
+    background-color: #d6d5d5;
     text-align: center;
     color: white;
     border-radius: 15px;
@@ -55,6 +60,12 @@
 	text-align : right;
 }
 
+
+a{
+	    text-decoration: none;
+	
+	
+}
 
 /* Individual bars */
 .bar-5 { height: 18px; background-color: #f1f1f1;

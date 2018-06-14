@@ -2,14 +2,36 @@
     pageEncoding="UTF-8"%>
    <%@ taglib prefix = "c"
 				uri="http://java.sun.com/jsp/jstl/core" %>
+<script>
+	$(document).ready(function(){
+	
+	var timer = setTimeout(function(){
+		$('.bar-5').css('background-color','#0276ff3b')
+	},100)
+	
+	var timer = setTimeout(function(){
+		$('.bar-5').css('background-color','#0276ff8a')
+	},200)
+	
+	var timer = setTimeout(function(){
+		$('.bar-5').css('background-color','#0276ffbf')
+	},300)
+	
+	var timer = setTimeout(function(){
+		$('.bar-5').css('background-color','#0276ff')
+	},400)
+})		
+
+</script>
+
 
 
 <c:choose>
 <c:when test="${studycount == 0}">
 <div class="StudyList">
 	<span class="heading">아직 생성된 스터디가 없습니다</span>
-	<hr style="border:3px olid #f1f1f1">
-	<a href="/study-of-us/study/each/Registration">스터디 생성하러가기</a>/<a href=#>스터디 참가하러가기</a>
+	<hr style="border:3px olid #d6d5d596">
+	<a href="/study-of-us/study/registration">스터디 생성하러가기</a>/<a href=#>스터디 참가하러가기</a>
 </div>	
 </c:when>
 
@@ -20,7 +42,7 @@
 
 <div class="StudyList">
 <span class="heading">${list.s_name} </span> <span class="dayday">기간 ${list.start} ~  ${list.end}</span>
-<hr style="border:3px solid #f1f1f1">
+<hr style="border:3px solid #d6d5d596">
 <div class="people">${list.s_maxmember}명</div><br>
 <div class="row">
   <div class="side">

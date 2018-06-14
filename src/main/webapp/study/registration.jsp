@@ -12,7 +12,7 @@
 <!-- <script src = "http://code.jquery.com/jquery-3.3.1.js"></script> -->
 
 <!--css  -->
-<link href="/study-of-us/study/sources/registration/css/registration.css" rel="stylesheet">
+<link href="/study-of-us/study/sources/registration/css/registration7.css" rel="stylesheet">
 
 <!--  아이콘 -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">

@@ -11,12 +11,9 @@
 
 </head>
 <body>
-<p class=icon>
-<a href=home><img class="icon" src="/study-of-us/resources/images/cat.png"></a>
-</p>
-<h3 align=center>Sign in to StudyOfUs</h3>
+<h2 align=center>Sign in to StudyOfUs</h2>
 
-<div>
+<div class=login_form>
   <form action="LoginPage" method="post">
     <label for="lid"><strong>Your ID</strong></label><a href="IDFindForm" class="forgot">Forgot ID?</a>
     <input type="text" id="id" name="id" placeholder="Your ID.." maxlength="10">
@@ -27,8 +24,8 @@
   </form>
 </div>
 <br>
-<div>
-	<strong>New to StudyOfUs?&nbsp;&nbsp;<a href=#>Create an account</a></strong>
+<div class=login_form>
+	<strong>New to StudyOfUs?&nbsp;&nbsp;<a href=join>Create an account</a></strong>
 </div>
 		<p></p>
 </body>
