@@ -3,13 +3,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <div class='notice-main'>
-<div class='notice-title-container notice-container'>
 <%--TODO 임시링크임. 수정 필요 --%>
-	<div class='notice-title'>공지사항</div><div class='notice-more'><a href="../schedule">돌아가기</a>
-	</div></div>
-<div class='notice-text-container1 notice-container'>장소 : ${meeting.place }</div>
-<div class='notice-text-container1 notice-container'>시간 : ${time}</div>
-<div class='notice-text-container1 notice-container'>회비 : ${meeting.expectedFee }</div>
-<div class='notice-map-container notice-container'>지도 api가 들어갈 자리</div>
-<div class='notice-text-container2 notice-container'>코멘트 : ${meeting.comment }</div>
+	<div class="notice-body">
+	<div class='notice-title'><h1><i class="fa fa-bullhorn"></i>&nbsp;공지사항</h1></div><div class='notice-more'><a href="../schedule">돌아가기</a>
+</div>
+<div class="signup">
+	<div class='well well-sm'>장소 : ${meeting.place }</div>
+	<div class='well well-sm'>시간 : ${time}</div>
+	<div class='well well-sm'>회비 : ${meeting.expectedFee }</div>
+	<div class='notice-map-container'><span id='map'></span></div>
+	<div class='well well-sm'>코멘트 : ${meeting.comment }</div>
+</div>
+</div>
 </div>

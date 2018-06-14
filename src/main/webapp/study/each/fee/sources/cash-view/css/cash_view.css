@@ -1,24 +1,50 @@
-@charset "UTF-8";
-.btn btn-default {
-	float: right;
+.registerTable{
+	border-radius: 10px 10px 10px 10px;
+	margin-left: 30px;
+	margin-top: 30px;
+	margin-bottom: 100px;
+	border: 1px solid #80808040;
+	width:650px;
+	padding-left: 20px;
+	padding-right: 20px;
+	
 }
-
-#cash {
-	width: 600px;
+#td_title{
+	background-color: #4b7fac38;
+	height:20px;
+	font-size:14px;
+	line-height: 30px;
 }
-
-#cash2 {
-	width: 700px;
+#td_date{
+    padding-bottom: 20px;
+    padding-top: 20px;
+    padding-left: 10px;
 }
-
-#cash3 {
-	float: right;
+#title_h1{
+	padding-left:20px;
+	padding-top:5px;
 }
-
-.total {
-	width: 150px;
+#td_total{
+	margin:20px 20px 20px 20px;
 }
-
-#btn {
-	float: right;
+#td_allTotal{
+	margin-left:20px;
+	margin-top:20px;
+}
+#th_title{
+	text-align: center;
+	height:20px;
+}
+.total{
+	width:160px;
+}
+.form-control{
+	width:250px;
+	margin-left:15px;
+}
+#td_back{
+	float:right;
+	margin-right:20px;
+	margin-top:10px;
+	margin-bottom:10px;
 }

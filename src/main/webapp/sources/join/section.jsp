@@ -4,11 +4,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>우리를 위한 스터디 SOUP!</title>
 </head>
 <body>
-<a href="home"><h3 align=center>Join StudyOfUs</h3></a>
-	<div>
+
+<div class="all">
+<h2 align=center>Join StudyOfUs</h2>
+	<div class="join_form">
   <form action="join" method="post">
     <label for="lid"><strong>ID</strong></label><br>
     <span id="place"></span><input type="text" id="id" name="id" maxlength=13>
@@ -74,6 +76,6 @@
 </div>
 
 
-
+</div>
 </body>
 </html>

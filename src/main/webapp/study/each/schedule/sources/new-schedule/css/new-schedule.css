@@ -1,6 +1,6 @@
 .new-schedule-main {
 	display : inline-block;
-	width : 500px;
+	width : 600px;
 	height : 100%;
 }
 .new-schedule-container {
@@ -13,16 +13,12 @@
 	height : 50px;
 }
 .new-schedule-title {
-	text-align : center;
+	margin-left: 10px;
 	font-size : 20px;
 	display : inline-block;
-	width : 80%;
+	width: 100%;
 }
 
-.new-schedule-more {
-	display : inline-block;
-	width : 20%;
-}
 .new-schedule-text-container1 {
 	height : 50px;
 }
@@ -30,13 +26,35 @@
 	height : 150px;
 }
 .new-schedule-map-container {
+	box-sizing: border-box;
 	display : inline-block;
 	width : 300px;
 	height : 300px;
+	margin-bottom: 20px;
 }
 
+.signup {
+   border : 1px solid #0000004a;
+   max-width : 700px;
+    border-radius: 5px;
+    background-color: #f2f2f259;
+    padding: 20px;
+    margin : 0 auto;
+}
+form {
+	margin: 30px;
+}
+
+.ui-timepicker-table td a {
+	width: 2.2em;
+}
 #comment {
-	width: 475px;
-	height: 105px;
+	width: 100%;
 	resize: none;
+}
+#map {
+   border : 1px solid #ccc;
+   float : left;
+	width: 300px;
+	height: 300px;
 }

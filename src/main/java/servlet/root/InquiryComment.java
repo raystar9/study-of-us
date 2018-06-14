@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import beans.prototype.Comment;
 import dao.DataGetter;
 import dao.DataPoster;
@@ -27,18 +29,20 @@ public class InquiryComment extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		response.setContentType("text/plain; charset=UTF-8");
+		response.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
 		int ib_index = (int)session.getAttribute("num");
 		
+		ObjectMapper mapper = new ObjectMapper();
+		
+		
+		
 		DataGetter getter = new DataGetter(DatabaseAccounts.PROJECT);
 		ArrayList<Comment> commentGet = getter.getinquiryComment(ib_index);
-		request.setAttribute("commentGet", commentGet);
 		
-		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/sources/inquiryView/section2.jsp");
-		dispatcher.forward(request, response);
-		
+		PrintWriter out = response.getWriter();
+		out.println(mapper.writeValueAsString(commentGet));
 		
 		getter.close();
 	}

@@ -1,3 +1,14 @@
+.attend-table {
+	vertical-align: middle;
+	border: 1px solid #80808040;
+}
+
+.attend-title {
+	margin-left: 10px;
+}
+.attend-main {
+	margin: 20px;
+}
 .attend-container {
 	box-sizing: border-box;
 	border: 1px solid black;
@@ -6,10 +17,14 @@
 }
 .attend-name {
 	display: inline-block;
-	width: 300px;
+	margin: 10px;
+	width: 180px;
 }
 .attend-button-space {
-	text-align: right;
 	display: inline-block;
-	width: 300px;
+	text-align: center;
+	width: 200px;
+}
+.attend-submit-space {
+	text-align: right;
 }

@@ -28,8 +28,6 @@ public class BoardModify extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		int studyIndex = 5;
-		//int studyIndex = (int)request.getSession().getAttribute("index");
 		
 		DataGetter getter = new DataGetter(DatabaseAccounts.PROJECT);
 		BoardViewRegisterBean boardcontent = getter.getBoardView(Integer.parseInt(request.getParameter("num")));
@@ -44,9 +42,10 @@ public class BoardModify extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		DataGetter getter = new DataGetter(DatabaseAccounts.PROJECT);
 		System.out.println("BoardModify 서블릿으로 들어옴");
-		int studyIndex = 5;
-		//int studyIndex = (int)request.getSession().getAttribute("index");
+		String studyName = (String) request.getAttribute("studyName");
+		int studyIndex = getter.getStudyIndex(studyName);
 		
 		BoardViewRegisterBean boardmodify = new BoardViewRegisterBean();
 		boardmodify.setTitle(request.getParameter("boardSubject"));
@@ -61,8 +60,9 @@ public class BoardModify extends HttpServlet {
 		
 		poster.postBoardModify(boardmodify, studyIndex);
 		
-		response.sendRedirect("/study-of-us/study/each/boardview" + "?num=" + boardnum);
+		response.sendRedirect("view" + "?num=" + boardnum);
 		poster.close();
+		getter.close();
 	}
 
 }

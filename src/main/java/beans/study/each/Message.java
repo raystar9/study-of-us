@@ -1,11 +1,14 @@
 package beans.study.each;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 public class Message {
 	
 	
 	public static final String QUERY_GET = "select * from Message where m_s_index = ? ";
 	public static final String QUERY_POST = "insert into message values (?,?,?,?,?)"; 
-    public static final String QUERY_DELETE = "delete message where S_INDEX = ? and M_M_INDEX = ?";
+    public static final String QUERY_DELETE = "delete message where MS_S_INDEX = ? and M_M_INDEX = ?";
 	public static final String QUERY_GET2 = "SELECT * FROM message where m_s_index = ? and m_m_index = ?";
 
 	public static final String QUERY_GET3 = "SELECT * FROM study inner join member on study.s_m_index = member.m_index where study.s_m_index = ?";
@@ -48,6 +51,7 @@ public class Message {
 	public void setM_m_index(int m_m_index) {
 		this.m_m_index = m_m_index;
 	}
+
 	
 	
 

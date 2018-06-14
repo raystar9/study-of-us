@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>우리를 위한 스터디 SOUP!</title>
 </head>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -21,6 +21,8 @@ body {
 .topnav {
 	overflow: hidden;
 	background-color: #ccc;
+	    height: 52px;
+	
 }
 
 .topnav a {
@@ -97,7 +99,6 @@ function closeLayer( obj ) {
 }
 
 $(function(){
-	$('.popupLayer').hide()
 	/* 클릭 클릭시 클릭을 클릭한 위치 근처에 레이어가 나타난다. */
 	$('#icon2').click(function(e)
 	{
@@ -151,7 +152,7 @@ $(document).ready(function(){
 		</c:if>
 		<a href="/study-of-us/study/registration">Study Create</a> <a
 			href="/study-of-us/study/search">Study Search</a> <a
-			href="#information">Information</a>
+			href="/study-of-us/inquiry">Inquiry</a>
 
 		<div class="topnav-right">
 			<c:if test="${empty id }">
@@ -160,7 +161,7 @@ $(document).ready(function(){
 			</c:if>
 
 			<c:if test="${!empty id }">
-				<a id="icon2"><i class="fa fa-bell icon2" ></i><span class="notification-counter">${fn:length(message)}</span></a>
+				<a id="icon2"><i class="fa fa-bell icon2" ></i><sup><span class="notification-counter">${fn:length(message)}</span></sup></a>
 				<a>${id} 님 환영합니다</a>
 				<a href="/study-of-us/LogOut">로그아웃</a>
 			</c:if>
@@ -169,7 +170,7 @@ $(document).ready(function(){
 	</div>
 
 
-	<div class="popupLayer">
+	<div class="popupLayer" style="display:none">
 		<div>
 			<span onClick="closeLayer(this)"
 				style="cursor: pointer; font-size: 1.5em" title="닫기">X</span>

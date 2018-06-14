@@ -1,7 +1,16 @@
-.attend-record-content {
+
+.attend-table {
+	vertical-align: middle;
+	margin: 20px;
+	border: 1px solid #80808040;
+}
+.attend-title {
+	margin-left: 10px;
+}
+.attend-time-container {
 	box-sizing: content-box;
 	width: 100%;
-	height: 65px;
-	border: 1px solid black;
-	margin: 2px;
+	vertical-align: middle;
+	text-align: right;
 }
+

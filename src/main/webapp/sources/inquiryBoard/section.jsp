@@ -9,38 +9,49 @@
 </head>
 <body>
 	
+	<div class="all">
 	
+	<c:choose>
+	<c:when test="${id == 'admin' }">
 	<table>
 		
-		<c:if test="${inquirycount > 0}">
+		<c:if test="${admincount > 0}">
 			<tr>
-				<th colspan = "3"> 문의사항 게시판 list</th>
-				<th colspan = "2">
-					<font size=2>글 개수 : ${inquirycount }</font>
-				</th>
+				<th class="title" colspan="3" style="text-align : center;"><h3>문의사항 게시판</h3></th>
+				<%-- <th>
+					<font size=2>글 개수 : ${admincount }</font>
+				</th> --%>
 			</tr>
 			<tr>
-		<th width="8%"><div>번호</div></th>
-		<th  width="50%"><div >제목</div></th>
-		<th width="14%"><div >작성자</div></th>
-		<th  width="17%"><div >날짜</div></th>
+		<th width="50%">제목</th>
+		<th width="25%">작성자</th>
+		<th width="25%">작성날짜</th>
 			</tr>
 	
-			<c:set var="num" value="${inquirycount-(page-1)*10 }"/>
-			<c:forEach var="list" items="${inquiryList }">
+			<c:set var="num" value="${admincount-(page-1)*10 }"/>
+			<c:forEach var="list" items="${admin }">
 		<tr>
-		<td>
+		
+		
+		<%-- <td>
 			  <c:out value="${num}"/>
 			 <c:set var="num" value="${num-1 }"/> 
-			 
-			 <%-- ${list.rnum } --%>
-		</td>
+			 ${list.rnum }
+		</td> --%>
+		
 		<td>
 			 <a href="/study-of-us/inquiryView?num=${list.i_index}">
 			 			${ list.subject}</a>
 		</td>
 		<td>
-			 ${list.m_id} 
+			<c:choose>
+		<c:when test="${ list.m_id == 'admin'}">
+			<font color='blue'> ${list.m_id}</font>
+		</c:when>
+		<c:otherwise>
+			${list.m_id}
+		</c:otherwise>
+		</c:choose>
 		</td>
 		<td>
 			 ${list.date }
@@ -52,28 +63,28 @@
 		
 		<!--  페이징 처리 -->
 		<tr class="h30 lime center btn">
-		<td colspan=5>			
+		<td colspan=5 style="text-align : center;">			
 			<c:if test="${page <= 1 }">
 				이전&nbsp;
 			</c:if>
 			<c:if test="${page > 1 }">			
-				 <a href="/study-of-us/inquiryPage?page=${page-1}">이전</a>&nbsp;
+				 <a href="/study-of-us/inquiry?page=${page-1}">이전</a>&nbsp;
 			</c:if>
 					
-			<c:forEach var="a" begin="${startpage}" end="${endpage}">
+			<c:forEach var="a" begin="${startpage2}" end="${endpage2}">
 				<c:if test="${a == page }">
 					${a}
 				</c:if>
 				<c:if test="${a != page }">
-					<a href="/study-of-us/inquiryPage?page=${a}">${a}</a>
+					<a href="/study-of-us/inquiry?page=${a}">${a}</a>
 				</c:if>
 			</c:forEach>
 			
-			<c:if test="${page >= maxpage }">
+			<c:if test="${page >= maxpage2 }">
 				&nbsp;다음 
 			</c:if>
-			<c:if test="${page < maxpage }">
-				<a href="/study-of-us/inquiryPage?page=${page+1}">&nbsp;다음</a>
+			<c:if test="${page < maxpage2 }">
+				<a href="/study-of-us/inquiry?page=${page+1}">&nbsp;다음</a>
 			</c:if>
 		</td>
 	</tr>
@@ -87,7 +98,105 @@
 	</table>
 	
 	
+	</c:when>
+	
+	<c:otherwise>
+	
+		
+	<table>
+		
+		<c:if test="${inquirycount > 0}">
+				<tr>
+				<th colspan="3" style="text-align : center;"><h3>문의사항 게시판</h3></th>
+				<%-- <th>
+					<font size=2>글 개수 : ${admincount }</font>
+				</th> --%>
+			</tr>
+			<tr>
+		<th width="50%">제목</th>
+		<th width="25%">작성자</th>
+		<th width="25%">날짜</th>
+			<c:set var="num" value="${inquirycount-(page-1)*10 }"/>
+			<c:forEach var="list" items="${inquiryList }">
+		<tr>
+		
+		<%-- <td>
+			  <c:out value="${num}"/>
+			 <c:set var="num" value="${num-1 }"/> 
+			 
+			 ${list.rnum }
+		</td> --%> 
+		
+		
+		<td>
+			 <a href="/study-of-us/inquiryView?num=${list.i_index}">
+			 			${ list.subject}</a>
+		</td>
+		
+		<td>
+		<c:choose>
+		<c:when test="${ list.m_id == 'admin'}">
+			<font color='blue'> ${list.m_id}</font>
+		</c:when>
+		<c:otherwise>
+			${list.m_id}
+		</c:otherwise>
+		</c:choose>
+		</td> 
+		
+		<td>
+			 ${list.date }
+		</td>
+		
+		</tr>
+		
+			</c:forEach>
+		
+		<!--  페이징 처리 -->
+		<tr class="h30 lime center btn">
+		<td colspan=5 style="text-align : center;">			
+			<c:if test="${page <= 1 }">
+				이전&nbsp;
+			</c:if>
+			<c:if test="${page > 1 }">			
+				 <a href="/study-of-us/inquiry?page=${page-1}">이전</a>&nbsp;
+			</c:if>
+					
+			<c:forEach var="a" begin="${startpage}" end="${endpage}">
+				<c:if test="${a == page }">
+					${a}
+				</c:if>
+				<c:if test="${a != page }">
+					<a href="/study-of-us/inquiry?page=${a}">${a}</a>
+				</c:if>
+			</c:forEach>
+			
+			<c:if test="${page >= maxpage }">
+				&nbsp;다음 
+			</c:if>
+			<c:if test="${page < maxpage }">
+				<a href="/study-of-us/inquiry?page=${page+1}">&nbsp;다음</a>
+			</c:if>
+		</td>
+	</tr>
+		</c:if>
+		
+		
+		<tr>
+			<td colspan = "5" style="text-align : right"><a 
+			href ="/study-of-us/boardWriteView">[글쓰기]</a></td>
+		</tr>
+	</table>
+	
+	</c:otherwise>
+	
+	</c:choose>
+	
+	
+	
 
+	
+</div>
 	
 </body>
 </html>

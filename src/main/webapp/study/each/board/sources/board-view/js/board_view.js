@@ -21,7 +21,8 @@ $(function() {
 		$('.boarddelete').click(function() {
 			var result = confirm("게시글을 삭제하시겠습니까?");
 			if(result == true){
-				location.href="./boarddelete?num=" + bno;
+				location.href="./delete?num=" + bno;
+				
 			}else{
 				return false;
 			}
@@ -31,7 +32,7 @@ $(function() {
 		$('.back').click(function() {
 			var result = confirm("목록으로 돌아가시겠습니까?");
 			if(result == true){
-				location.href="./board";
+				location.href="../board";
 			}else{
 				return false;
 			}
@@ -67,7 +68,7 @@ $(function() {
 	//댓글 목록 출력
 	function commentList() {
 		var bno = $("#bno").val();
-			$.ajax({ url : '/study-of-us/commentlist',
+			$.ajax({ url : '../comment/list',
 					 type : 'post',
 					 data : {"bno" : bno},
 						success : function(data) {
@@ -90,7 +91,7 @@ $(function() {
 	//댓글 등록
 	function commentInsert(insertData) {
 		$.ajax({
-			url : '/study-of-us/commentinsert',
+			url : '../comment/insert',
 			type : 'post',
 			data : insertData,
 			success : function(data) {
@@ -124,7 +125,7 @@ $(function() {
 		var result = confirm("댓글을 수정하시겠습니까?");
 		if(result == true){
 		$.ajax({
-			url : '/study-of-us/commentupdate',
+			url : '../comment/update',
 			type : 'post',
 			data : {
 				'content' : updateContent,
@@ -148,7 +149,7 @@ $(function() {
 		var result = confirm("댓글을 삭제하시겠습니까?");
 		if(result == true){
 		$.ajax({
-			url : '/study-of-us/commentdelete',
+			url : '../comment/delete',
 			type : 'post',
 			data : {
 				"cno" : cno,

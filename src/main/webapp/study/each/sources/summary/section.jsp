@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>우리를 위한 스터디 SOUP!</title>
 <style>
 
 .type11{
@@ -103,7 +103,7 @@ input[type=submit] {
 <input type="hidden" name="m_index" value=${index }>
 <input type="hidden" name="s_m_index" value=${study[0].s_m_index }>
 <input type="hidden" name="s_name" value="${study[0].name }">
-	<input type=submit value='스터디 참여하기'>
+
 </div>
 </form>
 </body>

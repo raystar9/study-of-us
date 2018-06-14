@@ -4,14 +4,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<link href="sources/login/css/loginForm.css" rel="stylesheet">
+<title>우리를 위한 스터디 SOUP!</title>
+<link href="sources/login/css/loginForm5.css" rel="stylesheet">
 
 
 </head>
 <body>
-
+<%@ include file ="/general-sources/Navigation.jsp" %>
 <%@ include file= "sources/login/section.jsp" %>
-
+<%@ include file ="/general-sources/Footer.jsp" %>
 </body>
 </html>

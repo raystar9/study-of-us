@@ -538,4 +538,8 @@ NOMAXVALUE;
 
 
 
+select * from member;
+select * from study where s_m_index =12;
 
+
+update study set s_start = '2018-05-23', s_end ='2018-06-13' where s_name = 'ddd'

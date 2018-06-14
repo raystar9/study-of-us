@@ -5,8 +5,7 @@
 <html>
 <head>
 <title>스터디 안의 게시판 페이지에서 글을 클릭했을 때 상세보기 되는 페이지</title>
-<style>
-</style>
+
 <!-- Bootstrap Core CSS -->
 <link href="/study-of-us/vendor/bootstrap/css/bootstrap.css"
 	rel="stylesheet">
@@ -17,61 +16,57 @@
 		id="commentcount" />
 	<c:set var='id' value="${b.name}" />
 	<!-- "${sessionScope.id}" 바꿀꺼임 -->
-	<div class="col-lg-4">
-		<div class="panel panel-primary">
-			<div class="panel-heading"></div>
-			<div class="panel-body">
-				<table border="1">
-					<tr class="center">
-						<th colspan="2"></th>
-					</tr>
 
-					<tr>
-						<td width='10%'>글쓴이</td>
-						<td><c:out value="${b.name}" /></td>
-					</tr>
+	<table id='viewtable'>
+		<tr class="center" style="border-bottom: 1px solid #ccc; height: 20px;" id='tdfooter'>
+			<td colspan="2" id='td_top'></td>
+		</tr>
 
-					<tr>
-						<td>제목</td>
-						<td><c:out value="${b.title }" /></td>
-					</tr>
+		<tr style="border-bottom: 1px solid #ccc" >
+			<td style="background: #cccccc38; padding-left: 5px; height: 35px; width:70px;" >제목</td>
+			<td style="padding-left: 10px;"><c:out value="${b.title }" /></td>
+		</tr>
 
-					<tr>
-						<td>내용</td>
-						<td><textarea cols="67" rows="15" readOnly><c:out
-									value="${b.content }" /></textarea></td>
-					</tr>
+		<tr style="border-bottom: 1px solid #ccc">
+			<td width='10%'
+				style="background: #cccccc38; padding-left: 5px; height: 35px;">글쓴이</td>
+			<td style="padding-left: 10px;"><c:out value="${b.name}" /></td>
+		</tr>
 
-					<tr>
-						<td>날짜</td>
-						<td><c:out value="${b.date}" /></td>
-					</tr>
-					<tr>
-						<td><div>첨부파일</div></td>
-						<c:if test="${!empty b.filename }">
-							<td><img src="image/down.png" width="10px"> <a
-								href="./boardfiledown?filename=${b.filename }"> ${b.filename }
-							</a></td>
-						</c:if>
-					</tr>
-				</table>
-			</div>
-			<div class="panel-footer">
-				<c:if test="${b.name == id || id == 'admin' }">
-					<a href="./boardmodify?num=${b.index}">수정</a>&nbsp;&nbsp;
-				<a href="#" class='boarddelete'>삭제</a>&nbsp;&nbsp;
+
+		<tr style="border-bottom: 1px solid #ccc">
+			<td style="background: #cccccc38; padding-left: 5px;">내용</td>
+			<td style="padding-left: 10px;"><textarea cols="70" rows="15"
+					readOnly><c:out value="${b.content }" /></textarea></td>
+		</tr>
+
+		<tr style="border-bottom: 1px solid #ccc">
+			<td style="background: #cccccc38; padding-left: 5px; height: 35px;">날짜</td>
+			<td style="padding-left: 10px;"><c:out value="${b.date}" /></td>
+		</tr>
+		<tr style="border-bottom: 1px solid #ccc">
+			<td style="background: #cccccc38; padding-left: 5px; height: 35px;"><div>첨부파일</div></td>
+			<c:if test="${!empty b.filename }">
+				<td style="padding-left: 10px;"><img src="image/down.png"
+					width="10px"> <a
+					href="./boardfiledown?filename=${b.filename }"> ${b.filename }
+				</a></td>
 			</c:if>
-				<a href="#" class='back'>뒤로</a>
-			</div>
-		</div>
-	</div>
-
+		</tr>
+		<tr style="border-bottom: 1px solid #ccc" id='trbtn'>
+			<td colspan='2' id='tdfooter'><c:if
+					test="${b.name == id || id == 'admin' }">
+					<a href="./modify?num=${b.index}">수정</a>&nbsp;&nbsp;
+							<a href="#" class='boarddelete'>삭제</a>&nbsp;&nbsp;
+						</c:if> <a href="#" class='back'>뒤로</a></td>
+		</tr>
+	</table>
 
 	<br>
 
 	<input type="button" class="btn btn-default" type="button"
 		id="commentListBtn" value=''>
-	<div class="container">
+	<div class="container" id='commentContainer'>
 		<label for="content">comment</label>
 		<form name="commentInsertForm">
 			<div class="input-group">

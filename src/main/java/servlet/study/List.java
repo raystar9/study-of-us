@@ -33,16 +33,14 @@ public class List extends HttpServlet {
 		
 		String id = (String) session.getAttribute("id");
 		System.out.println("아이디 값 : " + id);
-		
-		
+			
 		int messagecheck = getter.getMessageIDcheck(id);
 		System.out.println("값이 1 이면 있는거죠 ? " + messagecheck);
 		
 		ArrayList<Message> Message = new ArrayList<>();
 		Message = getter.getMessage(messagecheck);
 		request.getSession().setAttribute("message", Message);
-		
-		
+	
 		// 현재 페이지수
 		int page = 1;
 
@@ -61,12 +59,7 @@ public class List extends HttpServlet {
 		// 내가뽑아올 목록을 받아옵니다.
 		ArrayList<StudyListSelect> studyList = getter.getStudyList(index,page ,limit);
 		// 남은일수 뽑아옵니다.
-		ArrayList<StudyListSelect> dday = getter.getDday(index, page, limit);
-		// 조장이름 뽑아옵니다.
-		
-
-		
-		
+		ArrayList<StudyListSelect> dday = getter.getDday(index, page, limit);		
 		// (17 + (3 - 1)) / 3 = 6페이지가 마지막 페이지가된다. 19 / 3 = 6
 		int maxpage = (studycount.getCount() + limit - 1) / limit;
 		System.out.println("총페이지수 = " + maxpage);

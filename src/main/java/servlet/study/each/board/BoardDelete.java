@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.DataGetter;
 import dao.DataPoster;
 import dao.DatabaseAccounts;
 
@@ -26,15 +27,17 @@ public class BoardDelete extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		DataGetter getter = new DataGetter(DatabaseAccounts.PROJECT);
 		int num = Integer.parseInt(request.getParameter("num"));
-		int studyIndex = 5;
-		//int studyIndex = (int)request.getSession().getAttribute("index");
+		String studyName = (String) request.getAttribute("studyName");
+		int studyIndex = getter.getStudyIndex(studyName);
 		
 		DataPoster poster = new DataPoster(DatabaseAccounts.PROJECT);
 		poster.postBoardDelete(num, studyIndex);
 		poster.close();
+		getter.close();
 		
-		response.sendRedirect("/study-of-us/study/each/board");
+		response.sendRedirect("../board");
 	}
 
 	

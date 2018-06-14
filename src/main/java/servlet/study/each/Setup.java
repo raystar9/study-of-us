@@ -32,8 +32,8 @@ public class Setup extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		DataGetter getter = new DataGetter(DatabaseAccounts.PROJECT);
-		int studyIndex = 5;
-		//int studyIndex = (int)request.getSession().getAttribute("index");
+		String studyName = (String) request.getAttribute("studyName");
+		int studyIndex = getter.getStudyIndex(studyName);
 		
 		int membercount = getter.getInformMemberCount(studyIndex);	//스터디 참여인원
 		
