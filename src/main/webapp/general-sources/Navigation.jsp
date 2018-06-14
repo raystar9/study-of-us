@@ -159,7 +159,7 @@ $(document).ready(function(){
 			</c:if>
 
 			<c:if test="${!empty id }">
-				<a id="icon2"><i class="fa fa-bell icon2" ></i><span class="notification-counter">${fn:length(message)}</span></a>
+				<a id="icon2"><i class="fa fa-bell icon2" ></i><sup><span class="notification-counter">${fn:length(message)}</span></sup></a>
 				<a>${id} 님 환영합니다</a>
 				<a href="/study-of-us/LogOut">로그아웃</a>
 			</c:if>
