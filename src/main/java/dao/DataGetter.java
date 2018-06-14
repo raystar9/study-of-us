@@ -665,7 +665,7 @@ public class DataGetter extends DataAccessor {
 			}
 		});
 
-		return membercount;
+		return membercount+1;
 	}
 
 	// 정보보기&설정 구성원들 이름, 전화번호 등 가져오는 메소드
@@ -844,7 +844,6 @@ public class DataGetter extends DataAccessor {
 					study.setMaterial(rs.getString(12));
 					study.setEffect(rs.getString(13));
 					study.setPlace(rs.getString(14));
-
 
 					studies.add(study);
 				}

@@ -3,6 +3,8 @@
 }
 textarea {
 	border: 0;
+	padding-left:5px;
+	padding-top:10px;
 }
 
 #viewtable {

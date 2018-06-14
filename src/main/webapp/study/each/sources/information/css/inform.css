@@ -15,7 +15,7 @@
 }
 #inform_table {
 	border-radius: 10px 10px 10px 10px;
-	width: 650px;
+	width: 800px;
 	margin-bottom: 100px;
 	margin-left: 30px;
 	margin-top: 30px;
@@ -71,4 +71,7 @@ background-color: #f5f5f5;
 }
 #bottomBtn{
 	border-top:1px solid gray;
+}
+#memtable{
+	width:100%;
 }

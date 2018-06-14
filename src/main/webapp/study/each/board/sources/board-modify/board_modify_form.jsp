@@ -22,14 +22,14 @@
 		</tr>
 
 		<tr style="border-bottom: 1px solid #ccc" >
-			<td style="background: #cccccc38; padding-left: 5px; height: 30px;" width='12%'>제목</td>
+			<td style="background: #cccccc38; padding-left: 5px; height: 35px;">제목</td>
 			<td style="padding-left: 10px;"><input name="boardSubject" id="board-subject" type="text"
 					size="50" maxlength="100" value="${b.title }"></td>
 		</tr>
 
 		<tr style="border-bottom: 1px solid #ccc">
 			<td width='10%'
-				style="background: #cccccc38; padding-left: 5px; height: 30px;">글쓴이</td>
+				style="background: #cccccc38; padding-left: 5px; height: 35px;">글쓴이</td>
 			<td style="padding-left: 10px;"><div id="board-name">${b.name}</div></td>
 		</tr>
 
@@ -41,12 +41,12 @@
 		</tr>
 
 		<tr style="border-bottom: 1px solid #ccc">
-			<td style="background: #cccccc38; padding-left: 5px; height: 30px;">날짜</td>
+			<td style="background: #cccccc38; padding-left: 5px; height: 35px;">날짜</td>
 			<td style="padding-left: 10px;"><input name="boardDate" id="board-date" type="hidden"
 					size="10" maxlength="30" value="${b.date}"><div>${b.date}</div></td>
 		</tr>
 		<tr style="border-bottom: 1px solid #ccc">
-			<td style="background: #cccccc38; padding-left: 5px; height: 35px;"><div>첨부파일</div></td>
+			<td style="background: #cccccc38; padding-left: 5px; height: 35px; width:180px;"><div>첨부파일</div></td>
 			<c:if test="${!empty b.filename }">
 				<td style="padding-left: 10px;">&nbsp;${b.filename }</td>
 			</c:if>

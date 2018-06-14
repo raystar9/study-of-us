@@ -8,6 +8,8 @@
 }
 textarea {
 	border: 0;
+	padding-left:2px;
+	padding-top:10px;
 }
 
 #viewtable {

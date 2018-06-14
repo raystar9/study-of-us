@@ -3,9 +3,11 @@ CREATE SEQUENCE member_index
 START WITH 1
 INCREMENT BY 1
 NOMAXVALUE;
+select C_INDEX, B_NO, M_NAME, C_DATE, C_CONTENT from Comments c, Member m, Board b where b.B_S_INDEX = 5 and c.C_B_NO = B_NO and c.C_B_NO = 42 and c.C_M_INDEX = m.M_INDEX
+SELECT s_index FROM study WHERE s_name = '수능만점';
 
 select B_NO, B_TITLE, M_NAME, B_DATE, B_FILENAME from (SELECT ROWNUM RNUM, B_NO, B_TITLE, M_NAME, B_DATE, B_S_INDEX, B_FILENAME FROM (select B_NO, B_TITLE, M_NAME, B_DATE, B_S_INDEX, B_FILENAME from BOARD b, MEMBER m where B_M_INDEX = m.M_INDEX ORDER BY B_NO DESC)) where B_S_INDEX = (select S_INDEX from STUDY where S_INDEX = 5) AND RNUM>=1 AND RNUM<=10
-
+select C_INDEX, B_NO, M_NAME, C_DATE, C_CONTENT from Comments c, Member m, Board b where b.B_S_INDEX = ? and c.C_B_NO = B_NO and c.C_B_NO = ? and c.C_M_INDEX = m.M_INDEX
 
 select * from board;
 
