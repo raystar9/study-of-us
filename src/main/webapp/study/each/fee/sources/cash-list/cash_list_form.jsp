@@ -14,8 +14,6 @@
 </head>
 
 <body>
-	<!-- "${sessionScope.id}" 바꿀꺼임 -->
-	<c:set var='id' value="${b.name}" />
 					<div id="top_head">
 						*회비: <input type="text" class="form-control" id="top-total"
 							value="" readOnly style='height:28px'>&nbsp;원
