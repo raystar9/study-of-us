@@ -18,14 +18,14 @@
 		</tr>
 
 		<tr style="border-bottom: 1px solid #ccc" >
-			<td style="background: #cccccc38; padding-left: 5px; height: 30px;" width='12%'>제목</td>
+			<td style="background: #cccccc38; padding-left: 5px; height: 35px; width:180px;">제목</td>
 			<td style="padding-left: 10px;"><input name="boardSubject" id="board-subject" type="text"
 					size="50" maxlength="100" value=""></td>
 		</tr>
 
 		<tr style="border-bottom: 1px solid #ccc">
 			<td width='10%'
-				style="background: #cccccc38; padding-left: 5px; height: 30px;">글쓴이</td>
+				style="background: #cccccc38; padding-left: 5px; height: 35px;">글쓴이</td>
 			<td style="padding-left: 10px;">${writer}
 			</td>
 		</tr>

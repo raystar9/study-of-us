@@ -34,7 +34,7 @@
 		<tr>
 			<td>
 			<table class="table table-striped table-bordered table-hover"
-					border='1'>
+					border='1' id='memtable'>
 					<thead>
 						<tr>
 							<td id='member'><strong>이름</strong></td>

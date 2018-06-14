@@ -32,7 +32,7 @@ $(function() {
 		$('.back').click(function() {
 			var result = confirm("목록으로 돌아가시겠습니까?");
 			if(result == true){
-				location.href="./board";
+				location.href="../board";
 			}else{
 				return false;
 			}
