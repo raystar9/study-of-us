@@ -30,8 +30,8 @@
 <c:when test="${studycount == 0}">
 <div class="StudyList">
 	<span class="heading">아직 생성된 스터디가 없습니다</span>
-	<hr style="border:3px olid #d6d5d596">
-	<a href="/study-of-us/study/registration">스터디 생성하러가기</a>/<a href=#>스터디 참가하러가기</a>
+	<hr style="border:1px solid #d6d5d536;">
+	<a href="/study-of-us/study/registration">스터디 생성하러가기</a>/<a href=/study-of-us/study/serach>스터디 참가하러가기</a>
 </div>	
 </c:when>
 
@@ -42,7 +42,7 @@
 
 <div class="StudyList">
 <span class="heading">${list.s_name} </span> <span class="dayday">기간 ${list.start} ~  ${list.end}</span>
-<hr style="border:3px solid #d6d5d596">
+	<hr style="border:1px solid #d6d5d536;">
 <div class="people">${list.s_maxmember}명</div><br>
 <div class="row">
   <div class="side">
