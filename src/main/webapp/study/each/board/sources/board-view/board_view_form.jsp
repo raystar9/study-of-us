@@ -49,7 +49,7 @@
 			<c:if test="${!empty b.filename }">
 				<td style="padding-left: 10px;"><img src="image/down.png"
 					width="10px"> <a
-					href="./boardfiledown?filename=${b.filename }"> ${b.filename }
+					href="./filedown?filename=${b.filename }"> ${b.filename }
 				</a></td>
 			</c:if>
 		</tr>

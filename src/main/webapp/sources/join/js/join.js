@@ -82,7 +82,6 @@ $(document).ready(function() {
 		}
 		check++;
 		sid = $('input[name=id]').val();
-		alert(sid);
 		$.ajax({
 			type : "GET",
 			url : "/study-of-us/IdCheck",
@@ -102,7 +101,6 @@ $(document).ready(function() {
 					$("#place").css("color","red");
 					overlap = false;
 				}
-				alert(result);
 			}
 		})
 	})

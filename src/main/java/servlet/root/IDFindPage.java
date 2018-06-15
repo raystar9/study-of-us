@@ -1,7 +1,6 @@
 package servlet.root;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,10 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import beans.root.Find;
-import beansNew.Member;
 import dao.DataGetter;
 import dao.DatabaseAccounts;
-import fakeDB.FakeDB;
 
 @WebServlet("/IDFindPage")
 public class IDFindPage extends HttpServlet{
@@ -24,7 +21,7 @@ public class IDFindPage extends HttpServlet{
 		 String name = request.getParameter("name");
 		 String email = request.getParameter("email");
 
-		DataGetter getter = new DataGetter(DatabaseAccounts.SCOTT);
+		DataGetter getter = new DataGetter(DatabaseAccounts.PROJECT);
 		
 		Find findname = getter.getFind(name);
 		Find findemail = getter.getEmail(email);
