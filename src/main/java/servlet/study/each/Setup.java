@@ -67,7 +67,8 @@ public class Setup extends HttpServlet {
 		DataGetter getter = new DataGetter(DatabaseAccounts.PROJECT);
 		DataPoster poster = new DataPoster(DatabaseAccounts.PROJECT);
 		InformSetup setup = new InformSetup();
-		int studyIndex = 5;
+		String studyName = (String) request.getAttribute("studyName");
+		int studyIndex = getter.getStudyIndex(studyName);
 		/*int index = Integer.parseInt(request.getParameter("studyIndex"));*/
 		
 		

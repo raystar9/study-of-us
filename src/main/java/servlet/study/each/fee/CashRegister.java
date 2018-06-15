@@ -92,7 +92,7 @@ public class CashRegister extends HttpServlet {
 		
 		poster.close();
 		
-		response.sendRedirect("../");
+		response.sendRedirect("../../fee");
 	}
 
 }

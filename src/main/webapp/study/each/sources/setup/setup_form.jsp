@@ -26,7 +26,7 @@
 			<td id='td_title'><i class="fa fa-mortar-board"></i>&nbsp;<strong>스터디 명</strong></td>
 		</tr>
 		<tr>
-			<td id='shortText' style=" padding-left:0;"><div class="panel-body"><input type="text" class="form-control" name='studyName' value="${set.name }" style="width:600px;"></div></td>
+			<td id='shortText' style=" padding-left:0;"><div class="panel-body"><input type="text" class="form-control" name='studyName' value="${set.name }" style="width:600px;" readonly></div></td>
 		</tr>
 		<tr>
 			<td id='td_title'><i class="fa fa-check-circle"></i>&nbsp;<strong>카테고리 (대분류/소분류)</strong></td>
